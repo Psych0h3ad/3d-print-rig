@@ -1,0 +1,30 @@
+{
+  "schema": "top-view-source-regression-v1",
+  "baseline_revision": "47d0585b4575086bca5bd12b2e18a43f21d4d26d",
+  "baseline_app_sha256": "e87d03146f11265552f56dffecab973679dca5ed5492a33d4d41289e11eeb968",
+  "old_top": {
+    "position": [
+      0.001,
+      1.8,
+      0.001
+    ],
+    "target": [
+      0,
+      0.22,
+      0
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ]
+  },
+  "observed_machine": "siboor_trident_350",
+  "expected_world_x_horizontal": true,
+  "expected_screen_up_world": [
+    0,
+    0,
+    -1
+  ],
+  "scope": "Historical exact shipped camera source and real public browser45deg finding; no model reshape."
+}

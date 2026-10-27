@@ -114,6 +114,7 @@
     "scripts/fixtures/sphinx-belt-entrances.json": "a5497b9b3f6b1587747c89f5c6d3abc6ddfced8ad01f565443bbc46bf0bf0507",
     "scripts/fixtures/sphinx-companion-presets.json": "b659152a407a20c9e92b5997f4ed57f9e4b9b12cb0e98e53df35855f65128c46",
     "scripts/fixtures/stinger-motion.json": "25cdad41975fdefe2c31641894daf94dc60abf836883fdd4774ce2ac35be928c",
+    "scripts/fixtures/top-view-source.json": "6433a7345414a2df44a601b533c7b21bc7f987dee386b1722e7c88c7cf21ced7",
     "scripts/fixtures/trident-bed-registration-95.json": "b830d8661ac9dd5798e34a20788f61d7c63d1967c4429c393d025fbb3ae7a835",
     "scripts/fixtures/trident-custom-bed-joint-belts.json": "b19444c5f580fa39445e70239bd267e4aa400766490cf32761469f6c6434bb2a",
     "scripts/fixtures/trident-front-registration-350.json": "7abea0900944d6ff7643bc0a020eda33ebb4d7120041001d97f207a06456a51a",
@@ -161,6 +162,7 @@
     "scripts/test_bed_chain_native_roots.mjs": "fb4eb3085cb4bfaa58d335690148e0df71795508736db07494f7a6fa22d16a29",
     "scripts/test_bed_chain.mjs": "13d44bc398cbf1e0510c5a86ad7e7d4224cda54c6cac4ade6755319824a0cbbf",
     "scripts/test_build_evidence.py": "18fd1e29424b98fbf2931c39922cbf44e4c6a2ae809db2cf17576389db3de41e",
+    "scripts/test_camera_presets.mjs": "cf3951525bda0f918a7c3cf156790fe8c8e1e2fb5a2b9293a5167884f844ee6f",
     "scripts/test_catalog_requests.mjs": "fd2c6638432081326355d52c70220a6eaf1c3a4fd6b6aebeb6c6a857973100fa",
     "scripts/test_chain_moving_anchor.mjs": "99a5c47af7c22e8700907b249bbf66921728258a54483fe99d14cb429b6ba861",
     "scripts/test_changer_bank_ui.mjs": "14634767da377cc322b798ca9d6d41f8e147ea39324082c61f1e5c3ce86bea46",
@@ -557,7 +559,7 @@
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
     "site/viewer/annex.html": "85bc6b5df5b9f15ed6a432dda5641a88db5c82cd10ca400f6d58dcf9481f30c2",
     "site/viewer/annex.js": "77e2040dfd774767b8e187adc10d1b5bd18186ff440d9235bc0c039f133d2d69",
-    "site/viewer/app.js": "e87d03146f11265552f56dffecab973679dca5ed5492a33d4d41289e11eeb968",
+    "site/viewer/app.js": "cea22aad13867b8e59d23ba03b3302c301d0bab1e246c0ba82f615721927c7a2",
     "site/viewer/appearance-role.mjs": "977c4d1e134e7fe27a0ed8c73ecb3f81592822c9e25b94f9fe80d0444c336b5a",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
@@ -567,7 +569,7 @@
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "5c6ddd46ac13e6974c7352b944225966455ccb4a462a5315519428af3788d4d0",
-    "site/viewer/bootstrap.js": "5b3ef74af2933e56088f7970a955a3368451e1d26f22268ea83511bfdb0a8a3a",
+    "site/viewer/bootstrap.js": "1ccdd8add8306d05f2fa97c3742396f54645675f9ac3a84a0567120808423454",
     "site/viewer/bounded-sha256.mjs": "7b5cb05f2862b026fadc740607e6d9e5755e1dfc96b555ee88430f36fb684e51",
     "site/viewer/builder-ui.mjs": "53686dc5507631f3c2e463651110356bc79fcf5c19078abc550aa77ff1056e3b",
     "site/viewer/catalog-requests.mjs": "e08161a1108d8bf2b5b35fe10dbb7d1e3ba6818b900179fa1da762749bf2abd5",
@@ -654,7 +656,7 @@
     "site/viewer/head-validation.mjs": "bba39d88e1b5b7f848c0447a93850abd4e8a3accbadfcd4db2e9ff772e855e9d",
     "site/viewer/i18n.mjs": "631b4aa663eb7a31366f731bf86288cab987e324b87f6b9af4b8e398e17adb28",
     "site/viewer/inactive-head-cache.mjs": "6822e90a376bc578618589c2dfb804276ccc46d9ea257c20ca83b197a8049299",
-    "site/viewer/index.html": "571dec018e4ed28d852a89a6e5a6a5a56ab7beab33cab5a3c79f4823882a8d70",
+    "site/viewer/index.html": "86bb67f500b0e0ae300982fe08d59cebd2155f437c3844161f84f3226629af0c",
     "site/viewer/internal-spool.mjs": "ca3a453f6bf2966e020830957f6ca3290d89dffebe02ec3aa1b82a45a31c5f99",
     "site/viewer/kit-reference-loader.mjs": "1e4ea653a75783c74b414c0dece9a16f70221eaa579b25382caa8162f3d000cc",
     "site/viewer/kit-reference.html": "6c6a36789f0573ab00775fc8ca4ff39eedde7ce7e3bd22963e15e9a265fdca9d",
@@ -727,6 +729,7 @@
     "site/viewer/positron-state.mjs": "8296d1b775fbca04462f5518a3126d25a53d372ddebadb0c2adff67968fee9ea",
     "site/viewer/positron.html": "3d6cc968ca6ea2dbaecf98cd0dbd319b9a48b809d2087563617a2732934b3cce",
     "site/viewer/positron.js": "4d7fdb27c460f01d08ae06d21479aae71ee67146983148efe5967f516cf0c0c5",
+    "site/viewer/printer-camera-presets.mjs": "b501c6f4b805ff7d9d15b660b204d0cbf3fd5a91a506767f6e991234e5472611",
     "site/viewer/printer-gantry.mjs": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5",
     "site/viewer/privacy.css": "d6f9aa797830cbc876e98d02cf25181d0696873adabd5957e7c74e231a2a92e4",
     "site/viewer/privacy.html": "d47f5ffa118eec9cad31169206c8ecfe7758494d52b39728782fb1c872499ec8",
@@ -751,7 +754,7 @@
     "site/viewer/remorph.js": "8fa195398d9b8466426f4409897497fbdc2df31fb5f2e2bc61adab0757b99ff1",
     "site/viewer/render-export.js": "92d6e71ee392361a4f7d5558f3648790bd5ac0672a4a9828bee47c2a8e53974a",
     "site/viewer/requested-mods.mjs": "165580239f7428aeab513975bd06d8f1bb8155568a2001ece44609ae687c5d94",
-    "site/viewer/responsive-camera.mjs": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8",
+    "site/viewer/responsive-camera.mjs": "1c003767ede548495cef57e292b35b97b3fd68a5bfd6dc3c23687a9475d2d017",
     "site/viewer/scene-lighting-state.mjs": "0e24bd8b53a400dfb636e7f6743ee217fba4eff54bb488a36545938f66efa7dc",
     "site/viewer/shared-component-glb.mjs": "4a77abe6f67574be8ee102415fdca65839b1f1461dffb5db3835dbb4a3d79a45",
     "site/viewer/siboor-catalog.mjs": "a22aed2a3d203bf83582cd8187af65de72a44814ba741fcc8604263bf706fbc6",
@@ -8405,7 +8408,7 @@
         "assembly_manifest.json": "519def1433c254b8685af09d18b013723164deb5a32704e1f9e2fcb8e7027afb"
       },
       "adapter_sha256": {
-        "site/viewer/bootstrap.js": "6623d5925a53fc94edc2a6fe753d372a2d4dbeb18209abce7f102f5fb2b74f5a"
+        "site/viewer/bootstrap.js": "1ccdd8add8306d05f2fa97c3742396f54645675f9ac3a84a0567120808423454"
       },
       "container_parsed": true,
       "catalog_hash_checked": true,
@@ -8616,6 +8619,9 @@
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "64351d3e846892efe21db553cdab5381cbfe1a115d6e9f18a9a04743c493b50a",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
+      },
+      "camera_previous_adapter_sha256": {
+        "site/viewer/bootstrap.js": "6623d5925a53fc94edc2a6fe753d372a2d4dbeb18209abce7f102f5fb2b74f5a"
       }
     },
     {
@@ -8627,7 +8633,7 @@
         "assembly_manifest.json": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf"
       },
       "adapter_sha256": {
-        "site/viewer/bootstrap.js": "6623d5925a53fc94edc2a6fe753d372a2d4dbeb18209abce7f102f5fb2b74f5a"
+        "site/viewer/bootstrap.js": "1ccdd8add8306d05f2fa97c3742396f54645675f9ac3a84a0567120808423454"
       },
       "container_parsed": true,
       "catalog_hash_checked": true,
@@ -8838,6 +8844,9 @@
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "b825b53f8c1c38d9c1dddbc71ceb4b1e19b2f2fdf7cc4a712127ce0b95d4e359",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
+      },
+      "camera_previous_adapter_sha256": {
+        "site/viewer/bootstrap.js": "6623d5925a53fc94edc2a6fe753d372a2d4dbeb18209abce7f102f5fb2b74f5a"
       }
     },
     {
@@ -20130,5 +20139,30 @@
         "scope": "Selected E3NG full/head/full UI, eight selections, six languages, custom colors, standard reset, configuration save/load, light/dark, mobile orbit and 1920px image export."
       }
     ]
+  },
+  "current_camera_review": {
+    "scope": "Printer top projection and preset input settling only. Model assets and mechanical placements are unchanged; prior model evidence retains its original scope.",
+    "main_camera_top": [
+      0,
+      1.8,
+      0
+    ],
+    "world_up": [
+      0,
+      1,
+      0
+    ],
+    "control_versions": 2,
+    "production_control_samples": 36,
+    "preset_sequences": [
+      "top/front/iso/top",
+      "pointer orbit and pan/dolly before each preset"
+    ],
+    "portrait_and_landscape": true,
+    "browser_machine": "siboor_trident_350",
+    "browser_configuration": "siboor_awd__stealthburner__rapido2_uhf__cw2",
+    "browser_review_sha256": "445514fc9fe99407b95d61df6b38dab480eb84d4b5714cee4a851626eb3edc6f",
+    "all_machine_browser_reviewed": false,
+    "new_native_clearance": false
   }
 }
