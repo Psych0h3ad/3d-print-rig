@@ -88,18 +88,35 @@ node scripts/test_support_catalog.mjs ../rig-preview ../rig-preview/support/data
 python -m http.server 8000 --directory ../rig-preview
 ```
 
-The default build downloads the archive pinned by `site/ASSET_BUNDLE.json`,
-checks its size/hash, validates every extracted file and mounting-evidence
-input, and generates `support/data/`. To reuse an already downloaded archive:
+The default build uses the exact per-file contract in
+`site/APPROVED_DELIVERY.json`, verifies each input's size/hash, runs the required
+actual-asset audits, and generates `support/data/`. To reuse approved local
+inputs, provide a mapping of their publication paths to the exact local files:
 
 ```sh
-python scripts/build_site.py --output ../rig-preview-local --assets ../viewer-models.zip
+python scripts/build_site.py --output ../rig-preview-local --inputs ../approved-inputs.json
 ```
 
-Before using `--assets` for release verification, compare that archive's bytes
-and SHA-256 with `site/ASSET_BUNDLE.json`. The local path still verifies the
-internal manifest, but bypasses the download's outer archive hash check. Do not
-label an arbitrary local bundle as the pinned release.
+Local input mappings retain the same per-file checksum and size checks; missing
+or changed bodies fail the build. The delivery contract remains inventoried and
+checksum-checked as a build input. The normal build temporarily stages its exact
+bytes for mandatory assembled-site audits, including their delivery-specific
+checks, and removes that copy before measuring or serving the final site. An
+approved runtime row cannot reintroduce this build-only path. Runtime catalogs,
+models, licenses and the deployment size limit are unchanged by that exclusion.
+
+When rerunning an assembled-site audit that reads this contract, use the same
+reviewed contract and its recorded SHA-256. The wrapper exposes it only for the
+command and removes the unchanged temporary copy on success or audit failure:
+
+```sh
+python scripts/delivery_audit_context.py --delivery site/APPROVED_DELIVERY.json --site ../rig-preview --expected-sha256 <recorded-contract-sha256> -- node scripts/audit_microswiss_source_shrouds.mjs --site ../rig-preview --report ../microswiss-review.json
+```
+
+An existing target manifest is preserved and rejected; a changed source or
+temporary contract also fails the build. Keep audit reports outside the served
+site. Removing the manifest must not select a legacy audit fallback or relax
+the actual asset pins.
 
 Keep output models, native source archives, logs and generated reports outside
 Git. The build rejects existing output directories and enforces its total site

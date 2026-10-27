@@ -333,17 +333,7 @@ def validate_mounting_evidence(target):
     print('Mounting evidence verified against the shipped files.')
 
 
-def main():
-    # Build runtime files only from the exact current per-file approved contract.
-    # The historical archive helpers below are fixture APIs, never this entry path.
-    if '--plan-only' in sys.argv or '--verify-inputs' in sys.argv:
-        raise ValueError('Use build_approved_site.py for a non-deploying input plan.')
-    from build_approved_site import main as build_approved
-    parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument('--output', type=Path, required=True)
-    args, _ = parser.parse_known_args()
-    target = args.output.resolve()
-    build_approved()
+def _audit_built_runtime(target):
     # Require genuine UHF rear5 author geometry and every current Yavoth
     # consumer. Internal diagnostic reports are temporary, never site payload.
     with tempfile.TemporaryDirectory(prefix='yavoth-source-release-') as folder:
@@ -459,6 +449,24 @@ def main():
     # Check the complete page graph after generated inputs (including support
     # data) exist, before the artifact can be uploaded.
     print(json.dumps(verify_entrypoints(target, input_map)))
+
+
+def main():
+    # Build runtime files only from the exact current per-file approved contract.
+    # The historical archive helpers below are fixture APIs, never this entry path.
+    if '--plan-only' in sys.argv or '--verify-inputs' in sys.argv:
+        raise ValueError('Use build_approved_site.py for a non-deploying input plan.')
+    from build_approved_site import main as build_approved
+    from delivery_audit_context import audit_delivery_contract
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--delivery', type=Path, default=ROOT/'site/APPROVED_DELIVERY.json')
+    args, _ = parser.parse_known_args()
+    target = args.output.resolve()
+    contract_sha256 = hashlib.sha256(args.delivery.read_bytes()).hexdigest()
+    build_approved()
+    with audit_delivery_contract(args.delivery, target, contract_sha256):
+        _audit_built_runtime(target)
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
     if size >= MAX_SITE_BYTES:
         raise ValueError('Site exceeds the deployment size budget.')

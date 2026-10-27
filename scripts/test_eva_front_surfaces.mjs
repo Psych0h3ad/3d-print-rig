@@ -298,21 +298,139 @@ for(const [owner,row]of Object.entries(installed.machines)){
 // Verify the normal publication path cannot bypass the actual four-owner gate.
 // Parse Python's AST, so comments/unused text cannot stand in for a real call.
 const gateCheck=spawnSync(process.env.PYTHON||'python',['-c',`
-import ast, pathlib, sys
+import ast, copy, pathlib, sys
+
+def assert_mandatory_eva_gate(build):
+ parents={child:node for node in ast.walk(build) for child in ast.iter_child_nodes(node)}
+ def definition(name):
+  matches=[n for n in ast.walk(build) if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)) and n.name==name]
+  assert len(matches)==1 and isinstance(matches[0],ast.FunctionDef) and parents.get(matches[0]) is build, 'Build entry/helper must have one top-level synchronous definition: '+name
+  fn=matches[0]
+  assert not fn.decorator_list, 'Build entry/helper cannot be decorated'
+  assert not any(isinstance(n,(ast.Yield,ast.YieldFrom)) for n in ast.walk(fn)), 'Build entry/helper cannot be a deferred generator'
+  assert not any(isinstance(n,ast.Name) and isinstance(n.ctx,(ast.Store,ast.Del)) and n.id==name or isinstance(n,ast.arg) and n.arg==name or isinstance(n,ast.ClassDef) and n.name==name or isinstance(n,ast.alias) and (n.asname or n.name.split('.')[0])==name for n in ast.walk(build)), 'Build entry/helper cannot be rebound: '+name
+  return fn
+ def unconditional(call,fn):
+  statement=parents.get(call)
+  assert isinstance(statement,ast.Expr) and statement.value is call, 'Actual EVA path must be a direct statement, not an optional expression'
+  while True:
+   block=parents.get(statement)
+   assert block is fn or isinstance(block,ast.With), 'Actual EVA path cannot be conditional, looped, deferred or exception-handled'
+   assert statement in block.body, 'Actual EVA path is outside the required body'
+   before=block.body[:block.body.index(statement)]
+   assert not any(isinstance(n,(ast.Return,ast.Yield,ast.YieldFrom,ast.Break,ast.Continue)) for s in before for n in ast.walk(s)), 'Actual EVA path can be bypassed by an earlier exit'
+   if block is fn: return
+   # Only the existing non-suppressing build contexts belong to this path.
+   # In particular, suppress()/unknown managers cannot hide a failed gate.
+   for item in block.items:
+    ctx=item.context_expr
+    assert isinstance(ctx,ast.Call) and (isinstance(ctx.func,ast.Name) and ctx.func.id=='audit_delivery_contract' or isinstance(ctx.func,ast.Attribute) and isinstance(ctx.func.value,ast.Name) and ctx.func.value.id=='tempfile' and ctx.func.attr=='TemporaryDirectory'), 'Unknown context on mandatory actual EVA path'
+   statement=block
+ main=definition('main')
+ calls=[n for n in ast.walk(build) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='run' and any(isinstance(v,ast.Constant) and v.value=='scripts/check_eva_front_release.py' for v in ast.walk(n))]
+ assert len(calls)==1, 'Mandatory actual EVA gate call missing/repeated'
+ call=calls[0]
+ assert isinstance(call.func.value,ast.Name) and call.func.value.id=='subprocess', 'Actual EVA gate must invoke subprocess.run'
+ expected_command=ast.parse("[sys.executable, str(ROOT/'scripts/check_eva_front_release.py')]",mode='eval').body
+ assert len(call.args)==1 and isinstance(call.args[0],ast.List) and len(call.args[0].elts)>=2 and all(ast.dump(actual)==ast.dump(expected) for actual,expected in zip(call.args[0].elts[:2],expected_command.elts)), 'Actual EVA gate must be the executed Python script, not an unused string or optional command'
+ checks=[k.value for k in call.keywords if k.arg=='check']
+ assert len(checks)==1 and isinstance(checks[0],ast.Constant) and checks[0].value is True and all(k.arg is not None for k in call.keywords), 'Gate failure must abort build with literal check=True'
+ owner=parents[call]
+ while owner in parents and not isinstance(owner,(ast.FunctionDef,ast.AsyncFunctionDef)):
+  owner=parents[owner]
+ if owner is main:
+  unconditional(call,main)
+ else:
+  helper=definition('_audit_built_runtime')
+  assert owner is helper, 'Actual gate is not on the build entry path'
+  unconditional(call,helper)
+  callers=[n for n in ast.walk(build) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id==helper.name]
+  assert len(callers)==1, 'Mandatory actual EVA helper caller missing/repeated'
+  caller=callers[0]
+  assert len(caller.args)==1 and isinstance(caller.args[0],ast.Name) and caller.args[0].id=='target' and not caller.keywords, 'Actual EVA helper must receive the built target directly'
+  unconditional(caller,main)
+ # A correctly named but unused main is not a build entry point.
+ entries=[n for n in ast.walk(build) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='main']
+ assert len(entries)==1 and not entries[0].args and not entries[0].keywords, 'Build main invocation missing/repeated'
+ statement=parents.get(entries[0]); entry=parents.get(statement)
+ expected=ast.parse("__name__ == '__main__'",mode='eval').body
+ assert isinstance(statement,ast.Expr) and statement.value is entries[0] and isinstance(entry,ast.If) and parents.get(entry) is build and entry.body==[statement] and not entry.orelse and ast.dump(entry.test)==ast.dump(expected), 'Build main must run directly under its module entry guard'
+
+# Bounded AST-only fixtures: no imports/builds/auditors are executed.
+entry="""
+if __name__ == '__main__':
+ main()
+"""
+inline=ast.parse("""
+def main():
+ with tempfile.TemporaryDirectory(prefix='eva-front-release-') as folder:
+  subprocess.run([sys.executable, str(ROOT/'scripts/check_eva_front_release.py'), '--output', folder], cwd=ROOT, check=True)
+"""+entry)
+extracted=ast.parse("""
+def _audit_built_runtime(target):
+ with tempfile.TemporaryDirectory(prefix='eva-front-release-') as folder:
+  subprocess.run([sys.executable, str(ROOT/'scripts/check_eva_front_release.py'), '--output', folder], cwd=ROOT, check=True)
+def main():
+ with audit_delivery_contract(delivery, target, digest):
+  _audit_built_runtime(target)
+"""+entry)
+assert_mandatory_eva_gate(inline)
+assert_mandatory_eva_gate(extracted)
+
+def rejected_case(name,mutate):
+ tree=copy.deepcopy(extracted)
+ mutate(tree)
+ try: assert_mandatory_eva_gate(tree)
+ except AssertionError: return
+ raise AssertionError('Mandatory actual EVA AST accepted negative fixture: '+name)
+
+def wrap_call(tree,where,source):
+ block=tree.body[where].body[0]
+ wrapper=ast.parse(source).body[0]
+ wrapper.body=block.body
+ block.body=[wrapper]
+
+negative_cases=[
+ ('helper-uncalled',lambda t: setattr(t.body[1].body[0],'body',[ast.Pass()])),
+ ('helper-definition-dead',lambda t: t.body.__setitem__(0,ast.If(test=ast.Constant(False),body=[t.body[0]],orelse=[]))),
+ ('helper-caller-dead',lambda t: wrap_call(t,1,'if False: pass')),
+ ('helper-gate-dead',lambda t: wrap_call(t,0,'if False: pass')),
+ ('optional-caller',lambda t: wrap_call(t,1,'if enabled: pass')),
+ ('optional-gate',lambda t: wrap_call(t,0,'if enabled: pass')),
+ ('loop-caller',lambda t: wrap_call(t,1,'for item in []: pass')),
+ ('loop-gate',lambda t: wrap_call(t,0,'while enabled: pass')),
+ ('caught-gate-failure',lambda t: wrap_call(t,0,'try: pass'+chr(10)+'except Exception: pass')),
+ ('duplicate-helper',lambda t: t.body.insert(1,copy.deepcopy(t.body[0]))),
+ ('helper-shadowed-by-empty-definition',lambda t: t.body.insert(1,ast.parse('def _audit_built_runtime(target): pass').body[0])),
+ ('duplicate-gate',lambda t: t.body[0].body[0].body.append(copy.deepcopy(t.body[0].body[0].body[0]))),
+ ('missing-gate',lambda t: setattr(t.body[0].body[0],'body',[ast.Pass()])),
+ ('duplicate-helper-caller',lambda t: t.body[1].body[0].body.append(copy.deepcopy(t.body[1].body[0].body[0]))),
+ ('unchecked-subprocess',lambda t: t.body[0].body[0].body[0].value.keywords.pop()),
+ ('check-false',lambda t: setattr(t.body[0].body[0].body[0].value.keywords[-1],'value',ast.Constant(False))),
+ ('check-one-is-not-true',lambda t: setattr(t.body[0].body[0].body[0].value.keywords[-1],'value',ast.Constant(1))),
+ ('check-dynamic',lambda t: setattr(t.body[0].body[0].body[0].value.keywords[-1],'value',ast.Name(id='enabled',ctx=ast.Load()))),
+ ('early-return-caller',lambda t: t.body[1].body.insert(0,ast.Return())),
+ ('early-return-gate',lambda t: t.body[0].body.insert(0,ast.Return())),
+ ('conditional-early-return-caller',lambda t: t.body[1].body.insert(0,ast.parse('if enabled: return').body[0])),
+ ('generator-helper',lambda t: t.body[0].body.append(ast.Expr(value=ast.Yield()))),
+ ('decorated-helper',lambda t: t.body[0].decorator_list.append(ast.Name(id='optional',ctx=ast.Load()))),
+ ('rebound-helper',lambda t: t.body.insert(2,ast.parse('_audit_built_runtime = lambda target: None').body[0])),
+ ('suppressed-gate-failure',lambda t: setattr(t.body[0].body[0].items[0],'context_expr',ast.parse('contextlib.suppress(Exception)',mode='eval').body)),
+ ('optional-expression-caller',lambda t: setattr(t.body[1].body[0].body[0],'value',ast.BoolOp(op=ast.And(),values=[ast.Constant(False),t.body[1].body[0].body[0].value]))),
+ ('optional-expression-gate',lambda t: setattr(t.body[0].body[0].body[0],'value',ast.BoolOp(op=ast.And(),values=[ast.Constant(False),t.body[0].body[0].body[0].value]))),
+ ('dead-module-entry',lambda t: setattr(t.body[2],'test',ast.Constant(False))),
+ ('missing-module-entry',lambda t: t.body.pop()),
+ ('arbitrary-dead-helper',lambda t: setattr(t.body[0],'name','unused_audit')),
+ ('non-subprocess-run',lambda t: setattr(t.body[0].body[0].body[0].value.func,'value',ast.Name(id='unrelated',ctx=ast.Load()))),
+ ('unused-script-string-only',lambda t: t.body[0].body[0].body[0].value.args[0].elts.insert(1,ast.Constant('scripts/some_other_script.py'))),
+ ('optional-script-command',lambda t: setattr(t.body[0].body[0].body[0].value.args[0],'elts',[t.body[0].body[0].body[0].value.args[0].elts[0],ast.IfExp(test=ast.Constant(False),body=t.body[0].body[0].body[0].value.args[0].elts[1],orelse=ast.Constant('other.py'))])),
+ ('non-python-command',lambda t: t.body[0].body[0].body[0].value.args[0].elts.__setitem__(0,ast.Constant('echo'))),
+ ('duplicate-check-keyword',lambda t: t.body[0].body[0].body[0].value.keywords.append(ast.keyword(arg='check',value=ast.Constant(True)))),
+]
+assert len(negative_cases)==35
+for name,mutate in negative_cases: rejected_case(name,mutate)
 build=ast.parse(pathlib.Path(sys.argv[1]).read_text(encoding='utf8'))
-parents={child:node for node in ast.walk(build) for child in ast.iter_child_nodes(node)}
-calls=[n for n in ast.walk(build) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='run' and any(isinstance(v,ast.Constant) and v.value=='scripts/check_eva_front_release.py' for v in ast.walk(n))]
-assert len(calls)==1, 'Mandatory actual EVA gate call missing/repeated'
-call=calls[0]
-assert any(k.arg=='check' and isinstance(k.value,ast.Constant) and k.value.value is True for k in call.keywords), 'Gate failure must abort build'
-node=call
-while node in parents:
- node=parents[node]
- assert not isinstance(node,(ast.If,ast.IfExp)), 'Actual EVA gate cannot be optional'
- if isinstance(node,ast.FunctionDef):
-  assert node.name=='main', 'Actual gate is not on the build entry path'
-  break
-else: raise AssertionError('Actual gate is not inside build main')
+assert_mandatory_eva_gate(build)
 gate=ast.parse(pathlib.Path(sys.argv[2]).read_text(encoding='utf8'))
 assert any(isinstance(n,ast.Constant) and n.value=='scripts/audit_eva_front_surfaces.mjs' for n in ast.walk(gate)), 'Release gate must invoke actual audit CLI'
 # Execute only definitions: no imports via bytecode cache, network, models or

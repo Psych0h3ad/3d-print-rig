@@ -2,6 +2,7 @@ import hashlib,json,pathlib,tempfile,unittest,sys,io,urllib.error,subprocess
 import contextlib
 from unittest.mock import patch
 import build_site,build_approved_site
+import delivery_audit_context
 from build_approved_site import run,validate_contract,safe_path
 
 class ApprovedBuild(unittest.TestCase):
@@ -61,6 +62,292 @@ class ApprovedBuild(unittest.TestCase):
         with self.assertRaises(ValueError):validate_contract({'schema':'approved-static-delivery-v1','files':[row]})
         row['url']='https://psych0h3ad.github.io/model.bin'
         with self.assertRaisesRegex(ValueError,'Duplicate'):validate_contract({'schema':'approved-static-delivery-v1','files':[row,row]})
+
+class ApprovedBuildOnlySources(unittest.TestCase):
+    """Build authentication and served bytes, using tiny local bodies only."""
+
+    def setUp(self):
+        network = patch.object(build_approved_site.urllib.request, 'urlopen',
+                               side_effect=AssertionError('No live fixture requests'))
+        self.urlopen = network.start(); self.addCleanup(network.stop)
+
+    def fixture(self, nested=False, inventory_manifest=True):
+        folder = tempfile.TemporaryDirectory(); self.addCleanup(folder.cleanup)
+        root = pathlib.Path(folder.name)
+        (root/'site').mkdir(); (root/'docs').mkdir()
+        source_bodies = {'index.html': b'<html>Tiny approved build</html>',
+                         'APPROVED_DELIVERY.json': b'{"build_only":true}\n'}
+        runtime_name = 'runtime/APPROVED_DELIVERY.json' if nested else 'runtime/body.bin'
+        if nested:
+            source_bodies['static/APPROVED_DELIVERY.json'] = b'{"static":true}\n'
+        inventory = []
+        for name, data in source_bodies.items():
+            file = root/'site'/name; file.parent.mkdir(parents=True, exist_ok=True)
+            file.write_bytes(data)
+            if inventory_manifest or name != 'APPROVED_DELIVERY.json':
+                inventory.append({'path': 'site/'+name, 'sha256': hashlib.sha256(data).hexdigest()})
+        (root/'docs/SOURCE_INVENTORY.json').write_text(json.dumps({'files': inventory}))
+        (root/'docs/MACHINE_REVIEW_COVERAGE.json').write_text(json.dumps({'machines': [{'id': 'fixture'}]}))
+        body = root/'private-runtime'; body.write_bytes(b'{"runtime":"exact pinned body"}\n')
+        row = {'path': runtime_name, 'bytes': body.stat().st_size,
+               'sha256': build_approved_site.digest(body),
+               'url': 'https://psych0h3ad.github.io/'+runtime_name, 'approval_receipt_sha256': '1'*64}
+        contract = {'schema': 'approved-static-delivery-v1', 'machine_ids': ['fixture'], 'files': [row]}
+        return root, contract, {'files': {runtime_name: str(body)}}, source_bodies
+
+    def test_root_manifest_not_copied_or_counted_in_plan_and_build(self):
+        root, contract, inputs, sources = self.fixture()
+        expected = len(sources['index.html']) + contract['files'][0]['bytes']
+        self.assertEqual(set(build_approved_site.source_files(root)), {'index.html'})
+        for plan_only in [True, False]:
+            with self.subTest(plan_only=plan_only):
+                output = root/('plan' if plan_only else 'built')
+                result = run(root, contract, output, inputs, plan_only=plan_only, verify_inputs=True)
+                self.assertEqual(result['planned_site_bytes'], expected)
+                self.assertEqual(result['site_limit_bytes'], 990_000_000)
+                self.assertEqual(result['source_files'], 1)
+                self.assertEqual(result['runtime_files'], 1)
+                self.assertEqual(result['verified_exact_bodies'], 1)
+                self.assertFalse((output/'APPROVED_DELIVERY.json').exists())
+                if plan_only:
+                    self.assertFalse(output.exists())
+                else:
+                    self.assertTrue(result['deployment_ready'])
+                    self.assertEqual({p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()},
+                                     {'index.html', contract['files'][0]['path'], '.nojekyll'})
+                    self.assertEqual(sum(p.stat().st_size for p in output.rglob('*') if p.is_file()), expected)
+                    row = contract['files'][0]
+                    self.assertEqual(build_approved_site.digest(output/row['path']), row['sha256'])
+        self.assertEqual((root/'site/APPROVED_DELIVERY.json').read_bytes(), sources['APPROVED_DELIVERY.json'])
+        self.urlopen.assert_not_called()
+
+    def test_nested_same_basename_static_and_runtime_retained(self):
+        root, contract, inputs, sources = self.fixture(nested=True)
+        expected_sources = {'index.html', 'static/APPROVED_DELIVERY.json'}
+        self.assertEqual(set(build_approved_site.source_files(root)), expected_sources)
+        expected = sum(len(sources[name]) for name in expected_sources) + contract['files'][0]['bytes']
+        for plan_only in [True, False]:
+            with self.subTest(plan_only=plan_only):
+                output = root/('plan' if plan_only else 'built')
+                result = run(root, contract, output, inputs, plan_only=plan_only, verify_inputs=True)
+                self.assertEqual(result['planned_site_bytes'], expected)
+                self.assertEqual(result['source_files'], 2)
+                self.assertEqual(result['verified_exact_bodies'], 1)
+                if not plan_only:
+                    self.assertEqual((output/'static/APPROVED_DELIVERY.json').read_bytes(),
+                                     sources['static/APPROVED_DELIVERY.json'])
+                    row = contract['files'][0]
+                    self.assertEqual((output/row['path']).read_bytes(), pathlib.Path(inputs['files'][row['path']]).read_bytes())
+                    self.assertEqual(build_approved_site.digest(output/row['path']), row['sha256'])
+                    self.assertFalse((output/'APPROVED_DELIVERY.json').exists())
+
+    def test_excluded_manifest_checksum_still_enforced_in_plan_and_build(self):
+        root, contract, inputs, _ = self.fixture()
+        (root/'site/APPROVED_DELIVERY.json').write_bytes(b'{"build_only":evil}\n')
+        for plan_only in [True, False]:
+            with self.subTest(plan_only=plan_only):
+                output = root/('plan' if plan_only else 'built')
+                with self.assertRaisesRegex(ValueError, r'Changed source snapshot: APPROVED_DELIVERY\.json'):
+                    run(root, contract, output, inputs, plan_only=plan_only)
+                self.assertFalse(output.exists())
+        self.urlopen.assert_not_called()
+
+    def test_missing_excluded_manifest_still_rejected(self):
+        root, contract, inputs, _ = self.fixture()
+        (root/'site/APPROVED_DELIVERY.json').unlink()
+        for plan_only in [True, False]:
+            with self.subTest(plan_only=plan_only):
+                output = root/('plan' if plan_only else 'built')
+                with self.assertRaises(FileNotFoundError):
+                    run(root, contract, output, inputs, plan_only=plan_only)
+                self.assertFalse(output.exists())
+
+    def test_runtime_cannot_reintroduce_root_manifest_even_without_inventory_row(self):
+        for inventoried in [True, False]:
+            root, contract, inputs, sources = self.fixture(inventory_manifest=inventoried)
+            name = 'APPROVED_DELIVERY.json'; data = sources[name]
+            contract['files'].append({'path': name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
+                'url': 'https://psych0h3ad.github.io/'+name, 'approval_receipt_sha256': '1'*64})
+            inputs['files'][name] = str(root/'site'/name)
+            # Both rows are valid pins; rejection must not rely on a source collision.
+            validate_contract(contract)
+            for plan_only in [True, False]:
+                with self.subTest(inventoried=inventoried, plan_only=plan_only):
+                    output = root/('plan' if plan_only else 'built')
+                    with self.assertRaisesRegex(ValueError, 'Build-only source path cannot be an approved runtime body'):
+                        run(root, contract, output, inputs, plan_only=plan_only)
+                    self.assertFalse(output.exists())
+        self.urlopen.assert_not_called()
+
+    def test_nested_same_basename_runtime_checksum_still_enforced(self):
+        root, contract, inputs, _ = self.fixture(nested=True)
+        row = contract['files'][0]; body = pathlib.Path(inputs['files'][row['path']])
+        body.write_bytes(b'X'*row['bytes'])
+        for plan_only in [True, False]:
+            with self.subTest(plan_only=plan_only):
+                output = root/('plan' if plan_only else 'built')
+                with self.assertRaisesRegex(ValueError, 'Missing exact approved inputs'):
+                    run(root, contract, output, inputs, plan_only=plan_only, verify_inputs=True)
+                self.assertFalse((output/'.nojekyll').exists())
+        self.urlopen.assert_not_called()
+
+
+class ApprovedDeliveryAuditContext(unittest.TestCase):
+    """Exact audit metadata lifecycle; all audits and builds are tiny mocks."""
+
+    def setUp(self):
+        for owner, name in [(build_approved_site.urllib.request, 'urlopen'),
+                            (delivery_audit_context.subprocess, 'run')]:
+            guard = patch.object(owner, name, side_effect=AssertionError('No live audit or asset requests'))
+            guard.start(); self.addCleanup(guard.stop)
+
+    def fixture(self, existing_site=True):
+        folder = tempfile.TemporaryDirectory(); self.addCleanup(folder.cleanup)
+        root = pathlib.Path(folder.name); site = root/'assembled'
+        # Deliberate CRLF/whitespace: raw pinned bytes must not be reserialized.
+        body = b'{\r\n  "fixture": "exact audit contract"\r\n}\r\n'
+        source = root/'custom-delivery.json'; source.write_bytes(body)
+        if existing_site:
+            site.mkdir(); (site/'runtime.bin').write_bytes(b'tiny runtime')
+        return root, source, site, body, hashlib.sha256(body).hexdigest()
+
+    def test_context_exposes_exact_contract_only_during_successful_audit(self):
+        _, source, site, body, pin = self.fixture()
+        target = site/'APPROVED_DELIVERY.json'
+        self.assertFalse(target.exists())
+        with delivery_audit_context.audit_delivery_contract(source, site, pin) as staged:
+            self.assertEqual(staged, target)
+            self.assertEqual(target.read_bytes(), body)
+            self.assertEqual(hashlib.sha256(target.read_bytes()).hexdigest(), pin)
+        self.assertFalse(target.exists())
+        self.assertEqual(source.read_bytes(), body)
+        self.assertEqual((site/'runtime.bin').read_bytes(), b'tiny runtime')
+
+    def test_failed_audit_cleans_unchanged_contract_and_preserves_failure(self):
+        _, source, site, body, pin = self.fixture()
+        failure = subprocess.CalledProcessError(9, ['fixture-audit'])
+        with self.assertRaises(subprocess.CalledProcessError) as raised:
+            with delivery_audit_context.audit_delivery_contract(source, site, pin):
+                self.assertEqual((site/'APPROVED_DELIVERY.json').read_bytes(), body)
+                raise failure
+        self.assertIs(raised.exception, failure)
+        self.assertFalse((site/'APPROVED_DELIVERY.json').exists())
+        self.assertEqual(source.read_bytes(), body)
+        self.assertEqual((site/'runtime.bin').read_bytes(), b'tiny runtime')
+
+    def test_changed_source_pin_rejected_before_audit_metadata_is_created(self):
+        _, source, site, body, pin = self.fixture()
+        source.write_bytes(body.replace(b'exact', b'other'))
+        with self.assertRaisesRegex(ValueError, 'Delivery contract changed'):
+            with delivery_audit_context.audit_delivery_contract(source, site, pin):
+                self.fail('An unpinned source must never reach the audit')
+        self.assertFalse((site/'APPROVED_DELIVERY.json').exists())
+        self.assertEqual((site/'runtime.bin').read_bytes(), b'tiny runtime')
+
+    def test_preexisting_manifest_rejected_and_preserved_even_if_byte_identical(self):
+        for identical in [True, False]:
+            with self.subTest(identical=identical):
+                _, source, site, body, pin = self.fixture()
+                target = site/'APPROVED_DELIVERY.json'
+                previous = body if identical else b'preexisting unrelated metadata'
+                target.write_bytes(previous)
+                with self.assertRaises(FileExistsError):
+                    with delivery_audit_context.audit_delivery_contract(source, site, pin):
+                        self.fail('A preexisting manifest must never be borrowed or overwritten')
+                self.assertEqual(target.read_bytes(), previous)
+                self.assertEqual(source.read_bytes(), body)
+
+    def test_changed_staged_contract_fails_closed_and_is_preserved_on_any_exit(self):
+        for audit_fails in [False, True]:
+            with self.subTest(audit_fails=audit_fails):
+                _, source, site, body, pin = self.fixture()
+                target = site/'APPROVED_DELIVERY.json'; changed = body.replace(b'exact', b'other')
+                with self.assertRaisesRegex(ValueError, 'Temporary audit contract changed'):
+                    with delivery_audit_context.audit_delivery_contract(source, site, pin):
+                        target.write_bytes(changed)
+                        if audit_fails:
+                            raise subprocess.CalledProcessError(9, ['fixture-audit'])
+                self.assertEqual(target.read_bytes(), changed)
+                self.assertEqual(source.read_bytes(), body)
+                self.assertEqual((site/'runtime.bin').read_bytes(), b'tiny runtime')
+
+    def normal_build(self, audit_fails=False, change_source=False):
+        root, source, site, body, _ = self.fixture(existing_site=False)
+        target = site/'APPROVED_DELIVERY.json'; events = []
+        failure = subprocess.CalledProcessError(9, ['mandatory-fixture-audit'])
+        def approved_build():
+            events.append('build')
+            self.assertFalse(site.exists())
+            site.mkdir(); (site/'runtime.bin').write_bytes(b'tiny runtime')
+            self.assertFalse(target.exists())
+            if change_source: source.write_bytes(body.replace(b'exact', b'other'))
+        def actual_audit(output):
+            events.append('audit')
+            self.assertEqual(output, site.resolve())
+            self.assertEqual(target.read_bytes(), body)
+            self.assertEqual((site/'runtime.bin').read_bytes(), b'tiny runtime')
+            if audit_fails: raise failure
+        argv = ['build_site.py', '--output', str(site), '--delivery', str(source)]
+        with patch.object(sys, 'argv', argv), patch.object(build_site, 'ROOT', root), \
+                patch.object(build_approved_site, 'main', side_effect=approved_build) as approved, \
+                patch.object(build_site, '_audit_built_runtime', side_effect=actual_audit) as audit, \
+                patch.object(build_site, 'MAX_SITE_BYTES', len(b'tiny runtime')+1), \
+                patch('sys.stdout', new_callable=io.StringIO) as stdout:
+            if change_source:
+                with self.assertRaisesRegex(ValueError, 'Delivery contract changed'):
+                    build_site.main()
+                audit.assert_not_called()
+            elif audit_fails:
+                with self.assertRaises(subprocess.CalledProcessError) as raised:
+                    build_site.main()
+                self.assertIs(raised.exception, failure)
+            else:
+                build_site.main()
+                self.assertIn('Static viewer built (12 bytes).', stdout.getvalue())
+            approved.assert_called_once_with()
+            if not change_source: audit.assert_called_once_with(site.resolve())
+            if change_source or audit_fails: self.assertEqual(stdout.getvalue(), '')
+        self.assertEqual(events, ['build'] if change_source else ['build', 'audit'])
+        self.assertFalse(target.exists())
+        self.assertEqual({p.name for p in site.iterdir()}, {'runtime.bin'})
+        self.assertEqual((site/'runtime.bin').read_bytes(), b'tiny runtime')
+        if not change_source: self.assertEqual(source.read_bytes(), body)
+
+    def test_normal_build_audit_sees_exact_custom_delivery_and_final_size_excludes_it(self):
+        self.normal_build()
+
+    def test_normal_build_audit_failure_propagates_without_final_root_manifest(self):
+        self.normal_build(audit_fails=True)
+
+    def test_normal_build_pins_source_before_build_and_rejects_changed_delivery(self):
+        self.normal_build(change_source=True)
+
+    def test_cli_wraps_exact_command_and_cleans_on_success_or_failed_audit(self):
+        for audit_fails in [False, True]:
+            with self.subTest(audit_fails=audit_fails):
+                _, source, site, body, pin = self.fixture()
+                command = ['fixture-audit', '--site', str(site), '--strict-pins']
+                failure = subprocess.CalledProcessError(9, command)
+                def audit(command_args, **kwargs):
+                    self.assertEqual(command_args, command)
+                    self.assertEqual(kwargs, {'check': True})
+                    self.assertEqual((site/'APPROVED_DELIVERY.json').read_bytes(), body)
+                    if audit_fails: raise failure
+                    return subprocess.CompletedProcess(command_args, 0)
+                argv = ['delivery_audit_context.py', '--delivery', str(source), '--site', str(site),
+                        '--expected-sha256', pin, '--', *command]
+                with patch.object(sys, 'argv', argv), \
+                        patch.object(delivery_audit_context.subprocess, 'run', side_effect=audit) as invoked:
+                    if audit_fails:
+                        with self.assertRaises(subprocess.CalledProcessError) as raised:
+                            delivery_audit_context.main()
+                        self.assertIs(raised.exception, failure)
+                    else:
+                        delivery_audit_context.main()
+                    invoked.assert_called_once_with(command, check=True)
+                self.assertFalse((site/'APPROVED_DELIVERY.json').exists())
+                self.assertEqual(source.read_bytes(), body)
+
 
 class ApprovedEquipmentBuildGates(unittest.TestCase):
     """Tiny exact-body fixtures only: mocked plan, preparer and audit subprocess.
