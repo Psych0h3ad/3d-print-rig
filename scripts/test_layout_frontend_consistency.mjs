@@ -565,7 +565,7 @@ await test('active-placement-name-and-status-switch-supported-languages-without-
  const rotation=unique(app,'function rotatePlacement(reverse=false){','\nfunction download(');
  const factory=new Function('deps',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
-const {placementStatus}=deps;let placement={kind:'desk',name:'Desk',yawDeg:0};const $=s=>deps.nodes[s],t=(k,v)=>deps.translate(k,v),view={refreshPlacement(){const result={valid:true};updatePlacementBar(result);return result;}};${source}${rotation};return {update:updatePlacementBar,rotate:rotatePlacement,kind:value=>placement.kind=value};`);
+const ui=null,{placementStatus}=deps;let placement={kind:'desk',name:'Desk',yawDeg:0};const $=s=>deps.nodes[s],t=(k,v)=>deps.translate(k,v),view={refreshPlacement(){const result={valid:true};updatePlacementBar(result);return result;}};${source}${rotation};return {update:updatePlacementBar,rotate:rotatePlacement,kind:value=>placement.kind=value};`);
  const bar={dataset:{}},name={textContent:''};let writes=0,text='';const status={dataset:{},get textContent(){return text},set textContent(v){text=v;writes++}};
  let language='en';const nodes={'#layout-placement-bar':bar,'#layout-placement-name':name,'#layout-placement-status':status};
  const r=factory({nodes,placementStatus,translate:(k,v)=>t(k,v,language)});
@@ -573,9 +573,9 @@ const {placementStatus}=deps;let placement={kind:'desk',name:'Desk',yawDeg:0};co
 });
 await test('back-forward-cache-preserves-live-controls-and-real-unload-disposes',()=>{
  const source=unique(app,'function pageHide(event){',"\nwindow.addEventListener('pagehide'");
- const effects=[],factory=new Function('effects',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
+ const effects=[],factory=new Function('effects',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},buildTools={dispose:()=>effects.push('build-tools')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
  const r=factory(effects);r.pageHide({persisted:true});r.pageHide({persisted:true});assert.equal(r.isDisposed(),false);assert.deepEqual(effects,['cancel','abort','cancel','abort']);
- r.pageHide({persisted:false});assert.equal(r.isDisposed(),true);assert.deepEqual(effects.slice(4),['cancel','abort','remove','remove','remove','remove','view','ui','language','url']);
+ r.pageHide({persisted:false});assert.equal(r.isDisposed(),true);assert.deepEqual(effects.slice(4),['cancel','abort','remove','remove','remove','remove','view','ui','build-tools','language','url']);
  assert(app.includes("window.addEventListener('pagehide',pageHide)"));
 });
 for(const [rel,h]of Object.entries(consumed))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(site,rel))).digest('hex'),h,'Source changed: '+rel);

@@ -662,6 +662,15 @@ function operationSetup(realOrbit=false,options={}){
  const nodes=plan=>{const out=new Map();renderer.lastScene.traverse(o=>{if(o.userData.entityId&&!!o.userData.planProjection===plan)out.set(o.userData.entityId,o)});return out};
  return {api,renderer,observer,container,catalog,commits,rotationCommits,selections,views,errors,nodes,state:()=>state};
 }
+// Copied furniture IDs are internal references, not plan/export labels.
+{
+ const state=S.createDefaultLayout({furniture:[S.createDesk({id:'original-desk',pose:{xMm:-1500,zMm:0,yawDeg:0}}),S.createDesk({id:'unit-copy:f2',pose:{xMm:1500,zMm:0,yawDeg:0}}),S.createShelf({id:'unit-copy:f3',pose:{xMm:-2000,zMm:1400,yawDeg:0}})]},[]);
+ const api=factory({container:makeContainer(),catalog:[],t:(key,{number}={})=>key==='layout.deskName'?`Desk ${number}`:key==='layout.shelfName'?`Shelf ${number}`:key});
+ api.setState(state,null);api.view('top');await settled();const labels=new Map();renderers.at(-1).lastScene.traverse(g=>{if(g.userData.planProjection)labels.set(g.userData.entityId,g.userData.planLabel)});
+ assert.deepEqual([...labels.values()],['Desk 1','Desk 2','Shelf 1']);
+ await api.exportImage({width:900});const words=canvases.at(-1).reviewDraws.filter(r=>r[0]==='fillText').map(r=>r[1]);assert(words.includes('Desk 2')&&words.includes('Shelf 1'));assert(!words.some(w=>String(w).includes('unit-copy:')));
+ api.dispose();passed.push('Copied desk/shelf preview and PNG labels use inspector names and numbering, never internal copy IDs');
+}
 const screen=(v,camera)=>{camera.updateMatrixWorld(true);const p=v.clone().project(camera);return {clientX:(p.x+1)*size.width/2,clientY:(1-p.y)*size.height/2}};
 const cameraSnapshot=c=>({position:c.position.toArray(),quaternion:c.quaternion.toArray(),zoom:c.zoom});
 {
@@ -833,7 +842,7 @@ for(const ending of ['commit','cancel','round-trip']){
  const desk=S.createDesk({id:'desk',widthMm:1200,depthMm:900,heightMm:750}),printer={id:'stack-printer',machineId:'label-stack-machine',configurationId:null,attachment:{parentId:'desk',surfaceId:'top',xMm:0,zMm:0,yawDeg:0}};
  const occupied=S.createDefaultLayout({furniture:[desk],printers:[printer]},catalog),empty=S.applyAction(occupied,{type:'REMOVE_PRINTER',id:'stack-printer'},catalog),api=factory({container:makeContainer(),catalog,onSelect:id=>selections.push(id)});
  const renderer=renderers.at(-1),groups=()=>{const m=new Map();renderer.lastScene.traverse(g=>{if(g.userData.planProjection)m.set(g.userData.entityId,g)});return m},visibleLabels=()=>{const a=[];renderer.lastScene.traverseVisible(o=>{if(o.isMesh&&o.userData.planLabel===true)a.push(o)});return a};
- for(const [name,state,count,expectedText]of [['occupied',occupied,2,'Printer name'],['empty',empty,1,'desk'],['occupied-again',occupied,2,'Printer name']]){
+ for(const [name,state,count,expectedText]of [['occupied',occupied,2,'Printer name'],['empty',empty,1,'layout.deskName'],['occupied-again',occupied,2,'Printer name']]){
   const jsonBefore=S.serializeLayout(state,catalog);api.setState(state,'desk');api.view('top');await settled();const map=groups(),labels=visibleLabels();assert.equal(map.size,count);assert.equal(labels.length,1,'Duplicate centered white label planes: '+name);
   assert.equal(map.get('desk').children.find(o=>o.userData.planLabel).visible,name==='empty');
   if(name!=='empty')assert.equal(map.get('stack-printer').children.find(o=>o.userData.planLabel).visible,true);

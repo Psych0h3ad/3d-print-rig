@@ -13,6 +13,8 @@ export function resolveLayoutLanguage({href, stored} = {}) {
 // Each row is [id, English, Japanese, Spanish, Korean, Russian, German].
 // Names and dimensions supplied by the catalog are values, never translated IDs.
 const rows = [
+  ['layout.tools.title','Build tools','配置ツール','Herramientas de colocación','배치 도구','Инструменты размещения','Platzierungswerkzeuge'],
+  ['layout.tools.select','Select','選択','Seleccionar','선택','Выбрать','Auswählen'],
   ['layout.browser.showItems','Show items','一覧を開く','Mostrar elementos','항목 표시','Показать объекты','Objekte anzeigen'],
   ['layout.browser.hideItems','Hide items','一覧を閉じる','Ocultar elementos','항목 숨기기','Скрыть объекты','Objekte ausblenden'],
   ['layout.openings.selectMode','Select / move','選択・移動','Seleccionar / mover','선택 / 이동','Выбрать / переместить','Auswählen / verschieben'],
