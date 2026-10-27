@@ -40,7 +40,7 @@ const PATHS = {
   ungroup:'M3 8V3h5m8 0h5v5M3 16v5h5m8 0h5v-5M8 8h8v8H8Z'
 };
 
-export function createLayoutUI({container, onAction, t, catalog = [], onObjectSearchEscape = () => {}, onPickedChange = (ids) => {}, onOpeningSelect = () => {}}) {
+export function createLayoutUI({container, onAction, t, catalog = [], onObjectSearchEscape = () => {}, onPickedChange = (ids) => {}, onOpeningSelect = () => {}, onToolsRefresh = () => {}, onBuildToolKey = () => false}) {
   if (!container?.ownerDocument || typeof onAction !== 'function' || typeof t !== 'function') {
     throw new TypeError('createLayoutUI requires container, onAction and t');
   }
@@ -50,7 +50,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   let currentIssues = [], editorKey = null, listKey = '';
   let roomMode='rectangle', roomAcceptedMode='rectangle', roomDraft=false, roomSignature=null;
   let openingId=null,openingListKey='',openingEditorKey=null,openingWallsKey='',pendingOpeningAdd=null;
-  let openingTool=null,openingSelectionCleared=false,browserExpanded=true,openingPaletteKey=null;
+  let openingTool=null,browserExpanded=false,openingPaletteKey=null;
   let openingWalls=[];
   let farmKey='', libraryKey='', groupLibrary=[];
   let activePanel='selection', objectType='all', pendingSelectionPanel=false;
@@ -318,9 +318,9 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   const openingEmpty=copy(el('p','layout-help'),'layout.openings.empty'),openingList=el('ul','layout-opening-list');openingList.id='layout-opening-list';
   const openingEditor=el('div','layout-opening-editor');openingEditor.id='layout-opening-editor';
   const openingInventory=el('details','layout-opening-inventory'),openingInventoryTitle=el('summary');openingInventory.append(openingInventoryTitle,openingList);
-  openingSection.append(openingEditor,openingEmpty,openingInventory,manualOpening);
-  // Opening tools and the current selection come first. Shape drafts stay in
-  // their original nodes while the less frequent room controls are collapsed.
+  openingSection.append(openingEmpty,openingInventory,manualOpening);
+  // Room tools stay here; opening properties share the Selected inspector.
+  // Shape drafts stay in their original nodes inside the collapsed controls.
   const roomHeading=roomSection.firstChild,roomSettings=el('details','layout-room-settings'),roomAppearance=el('details','layout-room-settings');
   roomHeading.classList.add('layout-sr-only');
   roomSettings.append(copy(el('summary'),'layout.room_shape'),roomTools,shapeLabel,roomFields,roomNote,cutFields,custom,applyRoom);
@@ -410,16 +410,19 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   function refreshOpenings(){
     refreshOpeningWalls();
     const all=roomOpenings();
-    if(pendingOpeningAdd){const added=all.find(o=>!pendingOpeningAdd.ids.has(o.id)&&o.type===pendingOpeningAdd.kind&&o.wallIndex===pendingOpeningAdd.wallIndex);if(added){openingId=added.id;openingSelectionCleared=false;}pendingOpeningAdd=null;}
-    if(!all.some(o=>o.id===openingId))openingId=openingSelectionCleared?null:all[0]?.id??null;
+    let addedSelection=false;
+    if(pendingOpeningAdd){const added=all.find(o=>!pendingOpeningAdd.ids.has(o.id)&&o.type===pendingOpeningAdd.kind&&o.wallIndex===pendingOpeningAdd.wallIndex);if(added){openingId=added.id;addedSelection=true;}pendingOpeningAdd=null;}
+    if(!all.some(o=>o.id===openingId))openingId=null;
     const key=JSON.stringify(all.map(o=>[o.id,openingTitle(o)]));
     if(key!==openingListKey){
       openingListKey=key;openingList.replaceChildren();
-      for(const o of all){const row=el('li'),select=button('layout.openings.select',()=>{if(status.busy)return;openingId=o.id;openingSelectionCleared=false;onOpeningSelect(o.id);refreshOpenings();refreshOpeningValues();refreshStatus();revealOpening();releaseDetachedControls();},o.type);select.className='layout-object-button layout-opening-button';select.dataset.layoutOpeningId=o.id;select.replaceChildren(icon(o.type),el('span','layout-object-name',openingTitle(o)));select.setAttribute('aria-label',openingTitle(o));row.append(select);openingList.append(row);}
+      for(const o of all){const row=el('li'),select=button('layout.openings.select',()=>{if(status.busy)return;openingId=o.id;onOpeningSelect(o.id);refreshOpenings();refreshOpeningValues();refreshStatus();revealOpening();releaseDetachedControls();},o.type);select.className='layout-object-button layout-opening-button';select.dataset.layoutOpeningId=o.id;select.replaceChildren(icon(o.type),el('span','layout-object-name',openingTitle(o)));select.setAttribute('aria-label',openingTitle(o));row.append(select);openingList.append(row);}
     }
     for(const b of openingList.querySelectorAll('[data-layout-opening-id]'))b.setAttribute('aria-pressed',String(b.dataset.layoutOpeningId===openingId));
     copy(openingInventoryTitle,'layout.openings.inventory',{count:all.length});
-    openingEmpty.hidden=all.length>0||!!openingTool;openingList.hidden=!all.length;openingInventory.hidden=!all.length;buildOpeningEditor();openingEditor.hidden=!!openingTool||!selectedOpening();refreshOpeningMode();
+    openingEmpty.hidden=all.length>0||!!openingTool;openingList.hidden=!all.length;openingInventory.hidden=!all.length;buildOpeningEditor();openingEditor.hidden=!!openingTool||!selectedOpening();buildEditor();refreshOpeningMode();
+    refreshSelectionButtons();
+    if(addedSelection)revealOpening();
   }
   function refreshOpeningMode(){
     const key=openingTool?(openingTool.kind==='window'?'window':openingTool.motion):null;
@@ -430,11 +433,17 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     openingSelect.setAttribute('aria-pressed',String(!key));for(const [name,tool]of openingTools)tool.setAttribute('aria-pressed',String(name===key));
     copy(openingMode,key?'layout.openings.placing':'layout.openings.selectHelp',key?{type:tr(`layout.openings.${key}`)}:{});
   }
-  function revealOpening(){showPanel('room');setBrowserExpanded(false);panelHost.scrollTop=0;}
+  function revealOpening(){showPanel('selection');setBrowserExpanded(false);panelHost.scrollTop=0;}
   function setOpeningTool(tool){
     if(disposed||JSON.stringify(tool)===JSON.stringify(openingTool))return;
-    openingTool=tool;if(tool){openingId=null;openingSelectionCleared=true;revealOpening();}
+    openingTool=tool;if(tool){openingId=null;showPanel('room');setBrowserExpanded(false);panelHost.scrollTop=0;}
     refreshOpenings();refreshOpeningValues();refreshStatus();releaseDetachedControls();
+  }
+  function clearOpeningSelection(){
+    if(disposed)return;openingId=null;refreshOpenings();refreshValues();refreshStatus();releaseDetachedControls();
+  }
+  function selectObject(id){
+    if(disposed||status.busy)return;clearOpeningSelection();emit({type:'select',id});
   }
 
   const addSection = section('layout.add');
@@ -529,7 +538,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   const unitTools=el('details','layout-unit-tools'),unitSummary=copy(el('summary'),'layout.browser.unitTools',{count:0});
   unitTools.append(unitSummary,farmSection);objectSection.append(unitTools);
   const savedUnits=el('details','layout-saved-units');savedUnits.append(copy(el('summary'),'layout.group.library'),libraryHeading,libraryList,noTemplates);addSection.append(savedUnits);
-  const editorSection=section('layout.selection'), editor=el('div','layout-editor'); editorSection.append(editor);
+  const editorSection=section('layout.selection'), editor=el('div','layout-editor'); editorSection.append(editor,openingEditor);
   const warningSection=section('layout.checks'), issueList=el('ul','layout-issues'); warningSection.append(issueList);
   const renderSection=section('layout.finalRender');
   const renderButton=button('layout.render','render','render');renderButton.classList.add('layout-primary','layout-render-button');renderButton.id='layout-render';
@@ -544,7 +553,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   const panelHost=el('div','layout-workspace-panels'),outputPanel=el('div','layout-output-panel');outputPanel.append(renderSection,warningSection,scope);
   for(const [name,target]of [['selection',editorSection],['add',addSection],['room',roomSection],['output',outputPanel]]){
     target.id=`layout-nav-${name}`;target.setAttribute('role','tabpanel');target.setAttribute('aria-labelledby',`layout-tab-${name}`);panels.set(name,target);
-    const tab=button(`layout.nav.${name}`,()=>{showPanel(name);if(!status.busy&&name==='room')panelHost.scrollTop=0;});tab.id=`layout-tab-${name}`;tab.dataset.layoutTab=name;tab.setAttribute('role','tab');tab.setAttribute('aria-controls',target.id);
+    const tab=button(`layout.nav.${name}`,()=>showPanel(name));tab.id=`layout-tab-${name}`;tab.dataset.layoutTab=name;tab.setAttribute('role','tab');tab.setAttribute('aria-controls',target.id);
     listen(tab,'keydown',event=>{
       if(event.altKey||event.ctrlKey||event.metaKey||event.isComposing)return;
       const names=[...panels.keys()],index=names.indexOf(name);let next;
@@ -558,17 +567,21 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   const busyArea=el('div','layout-workspace-progress');busyArea.id='layout-workspace-progress';busyArea.hidden=true;busyArea.append(progress,renderMessage,cancel);
   const browserBody=el('div','layout-browser-body');browserBody.id='layout-browser-body';
   browserBody.append(...[...objectSection.children].filter(n=>n!==objectHeading));
-  const browserToggle=button('layout.browser.hideItems',()=>setBrowserExpanded(!browserExpanded));browserToggle.id='layout-browser-toggle';browserToggle.setAttribute('aria-controls',browserBody.id);browserToggle.setAttribute('aria-expanded','true');objectHeading.append(browserToggle);objectSection.append(browserBody);
-  root.replaceChildren(actions,notices,tabs,objectSection,panelHost,busyArea);
+  const browserToggle=button('layout.browser.showItems',()=>setBrowserExpanded(!browserExpanded));browserToggle.id='layout-browser-toggle';browserToggle.setAttribute('aria-controls',browserBody.id);objectHeading.append(browserToggle);objectSection.append(browserBody);
+  root.replaceChildren(actions,notices,tabs,panelHost,objectSection,busyArea);
+  setBrowserExpanded(browserExpanded);
   showPanel('selection');
   container.replaceChildren(root);
 
   function showPanel(name){
     if(disposed||status.busy||!panels.has(name))return;
     if(openingTool&&name!=='room')emit({type:'room-opening-select'});
-    if(name!==activePanel){panelScrolls.set(activePanel,panelHost.scrollTop||0);panelHost.scrollTop=name==='room'?0:panelScrolls.get(name)||0;setBrowserExpanded(name==='selection'||name==='add');}
+    const changed=name!==activePanel;
+    if(changed)panelScrolls.set(activePanel,panelHost.scrollTop||0);
     activePanel=name;
     for(const [key,panel]of panels){panel.hidden=key!==name;const tab=tabButtons.get(key);tab.setAttribute('aria-selected',String(key===name));tab.tabIndex=key===name?0:-1;}
+    // Restore after showing the destination so its own content bounds scrolling.
+    if(changed)panelHost.scrollTop=panelScrolls.get(name)||0;
   }
   function setBrowserExpanded(expanded){
     browserExpanded=expanded;browserBody.hidden=!expanded;objectSection.dataset.collapsed=String(!expanded);browserToggle.setAttribute('aria-expanded',String(expanded));
@@ -635,7 +648,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
       listKey=key; list.replaceChildren();memberChecks.clear();
       for(const [id,row]of browserRows)if(row.type!=='units')browserRows.delete(id);
       for(const e of all){
-        const li=el('li','layout-object-row'), b=button('layout.selectObject',()=>emit({type:'select',id:e.id}),e.type||'printer');
+        const li=el('li','layout-object-row'), b=button('layout.selectObject',()=>selectObject(e.id),e.type||'printer');
         b.className='layout-object-button'; b.dataset.layoutEntity=e.id;b.replaceChildren(icon(e.type||'printer'));
         const c=el('span','layout-object-copy');c.append(el('span','layout-object-name',title(e)));b.append(c);
         b.setAttribute('aria-label',title(e));
@@ -658,7 +671,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
         li.append(b);list.append(li);
       }
     }
-    for(const b of list.querySelectorAll('[data-layout-entity]'))b.setAttribute('aria-pressed',String(b.dataset.layoutEntity===selectedId));
+    refreshSelectionButtons();
   }
   function refreshFarm() {
     const all=groups(), key=JSON.stringify(all.map(g=>[g.id,unitTitle(g),counts(members(g.memberIds))]));
@@ -668,15 +681,18 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
       farmKey=key;groupList.replaceChildren();
       for(const [id,row]of browserRows)if(row.type==='units')browserRows.delete(id);
       for(const group of all){
-        const row=el('li'), b=button('layout.selectObject',()=>emit({type:'select',id:group.id}),'group');
+        const row=el('li'), b=button('layout.selectObject',()=>selectObject(group.id),'group');
         b.className='layout-object-button';b.dataset.layoutGroup=group.id;b.replaceChildren(icon('group'));
         const c=el('span','layout-object-copy');c.append(el('span','layout-object-name',group.name),copy(el('span','layout-object-detail'),'layout.group.counts',counts(members(group.memberIds))));
         b.append(unitBadge(group),c);b.setAttribute('aria-label',unitTitle(group));row.append(b);groupList.append(row);
         browserRows.set(group.id,{node:row,type:'units',entity:group});
       }
     }
-    for(const b of groupList.querySelectorAll('[data-layout-group]'))b.setAttribute('aria-pressed',String(b.dataset.layoutGroup===selectedId));
+    refreshSelectionButtons();
     refreshGroupDraft();
+  }
+  function refreshSelectionButtons(){
+    for(const b of root.querySelectorAll('[data-layout-entity],[data-layout-group]'))b.setAttribute('aria-pressed',String(!selectedOpening()&&(b.dataset.layoutEntity||b.dataset.layoutGroup)===selectedId));
   }
   function filterObjects(){
     const query=objectSearch.value.trim().toLocaleLowerCase(),terms=query.split(/\s+/).filter(Boolean);
@@ -720,7 +736,8 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   }
   function patchEntity(e, patch) { emit({type:'machineId' in e?'UPDATE_PRINTER':'UPDATE_FURNITURE',id:e.id,patch}); }
   function buildEditor() {
-    const e=selected(), group=e&&isGroup(e);
+    editor.hidden=!!selectedOpening();
+    const e=selectedOpening()?null:selected(), group=e&&isGroup(e);
     const nextKey=group?JSON.stringify(['group',e.id,members(e.memberIds).map(m=>[m.id,title(m)])]):e?`${e.id}:${e.type||'printer'}:${e.attachment?.parentId||''}:${JSON.stringify(e.levels?.map(l=>l.id)||[])}:${JSON.stringify(state.furniture.map(f=>[f.id,f.type,f.levels?.map(l=>l.id)]))}:${JSON.stringify(state.printers.map(p=>[p.id,p.machineId,p.attachment.parentId]))}`:'';
     if(nextKey===editorKey)return;
     editorKey=nextKey;
@@ -835,7 +852,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     editor.append(copy(el('h3'),'layout.group.members'));
     const list=el('ul','layout-object-list layout-group-members');
     for(const member of members(group.memberIds)){
-      const row=el('li'), b=button('layout.selectObject',()=>emit({type:'select',id:member.id}),member.type||'printer');
+      const row=el('li'), b=button('layout.selectObject',()=>selectObject(member.id),member.type||'printer');
       b.className='layout-object-button';b.dataset.layoutGroupObject=member.id;b.replaceChildren(icon(member.type||'printer'),el('span','layout-object-name',title(member)));b.setAttribute('aria-label',title(member));row.append(b);list.append(row);
     }
     editor.append(list);
@@ -897,7 +914,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     if(disposed)return;
     const previousSelection=selectedId;
     state=next;selectedId=typeof selection==='object'?selection?.id:selection;currentIssues=Array.isArray(issues)?issues:[];
-    if(selectedId!==previousSelection&&selected()){if(status.busy)pendingSelectionPanel=true;else{showPanel('selection');panelHost.scrollTop=0;}}
+    if(selectedId!==previousSelection&&selected()){openingId=null;if(status.busy)pendingSelectionPanel=true;else{showPanel('selection');panelHost.scrollTop=0;}}
     refreshList();refreshFarm();filterObjects();buildEditor();refreshOpenings();refreshValues();refreshIssues();refreshStatus();
     // Rebuilt lists/editors must not retain detached controls or their closures.
     releaseDetachedControls();
@@ -926,7 +943,11 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   }
   function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();pickedRoots.clear();root.remove();state=null;}
   function focusObjectSearch(){if(disposed||status.busy)return false;setBrowserExpanded(true);objectSearch.focus();objectSearch.select?.();return true;}
-  function focusSelection(){if(disposed||status.busy||!selected())return false;showPanel('selection');panelHost.scrollTop=0;return true;}
+  function focusSelection(){if(disposed||status.busy||(!selected()&&!selectedOpening()))return false;showPanel('selection');panelHost.scrollTop=0;return true;}
+  function openPrinterCatalog(){
+    if(disposed||status.busy)return false;
+    showPanel('add');search.scrollIntoView?.({block:'nearest'});search.focus({preventScroll:true});return true;
+  }
   populateMachines();refreshStatus();
   function setPickedRootIds(ids){
     if(disposed||status.busy)return;
@@ -935,8 +956,10 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     refreshGroupDraft();notifyPickedChange();
   }
   return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,
+    refreshBuildTools(){if(!disposed)onToolsRefresh();},
+    handleBuildToolKey(event){return !disposed&&!status.busy&&!!onBuildToolKey(event);},
     setOpeningTool,
-    clearOpeningSelection(){if(disposed)return;openingId=null;openingSelectionCleared=true;refreshOpenings();refreshOpeningValues();},
-    setOpeningSelection(id){if(disposed||status.busy)return;openingId=id;openingSelectionCleared=id===null;refreshOpenings();refreshOpeningValues();refreshStatus();revealOpening();},
-    getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,focusObjectSearch,focusSelection,dispose});
+    clearOpeningSelection,
+    setOpeningSelection(id){if(disposed||status.busy)return;openingId=id;refreshOpenings();refreshOpeningValues();refreshStatus();if(selectedOpening())revealOpening();releaseDetachedControls();},
+    getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,focusObjectSearch,focusSelection,openPrinterCatalog,dispose});
 }

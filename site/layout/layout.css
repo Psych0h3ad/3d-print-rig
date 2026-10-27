@@ -147,12 +147,12 @@ button[aria-pressed="true"] { background: var(--layout-selected); border-color: 
 .layout-workspace-progress { padding: 8px 12px; border-top: 1px solid var(--line); background: var(--paper); max-height: 32%; overflow: auto; }
 .layout-workspace-progress .layout-render-progress { margin-top: 0; }
 .layout-workspace-notices .layout-feedback { margin: 0; padding: 7px 12px; max-height: 90px; overflow: auto; }
-.layout-ui > .layout-browser { display: flex; flex-direction: column; flex: 0 1 auto; min-height: 0; max-height: 43%; padding: 10px 12px; gap: 7px; overflow: auto; overscroll-behavior: contain; }
-.layout-browser-body { display: flex; flex-direction: column; gap: 7px; min-height: 0; }
+.layout-ui > .layout-browser { display: flex; flex-direction: column; flex: 0 1 auto; min-height: 0; max-height: min(32%,280px); padding: 8px 12px; gap: 7px; overflow: hidden; border-top: 1px solid var(--line); }
+.layout-browser-body { display: flex; flex-direction: column; flex: 1 1 auto; gap: 7px; min-height: 0; overflow: auto; overscroll-behavior: contain; }
 .layout-browser-body > .layout-empty { margin: 0; }
-.layout-ui > .layout-browser[data-collapsed="true"] { flex: 0 0 auto; padding-block: 6px; }
+.layout-ui > .layout-browser[data-collapsed="true"] { flex: 0 0 auto; max-height: none; padding-block: 6px; }
 .layout-browser #layout-browser-toggle { min-height: 28px; margin-left: auto; padding: 4px 7px; font-size: 11px; }
-.layout-browser .layout-section-heading { margin: 0; }
+.layout-browser .layout-section-heading { flex: 0 0 auto; flex-wrap: wrap; margin: 0; }
 .layout-object-search { flex: 0 0 auto; width: 100%; min-width: 0; padding: 6px 9px; font-size: 12px; }
 .layout-object-filters { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; flex: 0 0 auto; }
 .layout-object-filters button { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 3px; min-height: 29px; min-width: 0; padding: 4px 2px; font-size: 10px; overflow-wrap: anywhere; }
@@ -162,7 +162,6 @@ button[aria-pressed="true"] { background: var(--layout-selected); border-color: 
 .layout-selection-actions > button { flex: 1 1 70px; min-width: 0; min-height: 32px; gap: 4px; padding: 4px; font-size: 11px; overflow-wrap: anywhere; }
 .layout-selection-actions > button > span { min-width: 0; }
 .layout-selection-actions svg { width: 14px; height: 14px; flex-basis: 14px; }
-.layout-ui > .layout-browser:has(.layout-selection-actions:not([hidden])) { max-height: 55%; }
 .layout-browser-scroll { min-height: 38px; max-height: clamp(72px,18vh,170px); overflow: auto; overscroll-behavior: contain; flex: 1 1 auto; }
 .layout-browser-scroll .layout-object-list { max-height: none; overflow: visible; gap: 3px; }
 .layout-browser-scroll .layout-group-list { margin-top: 3px; }
@@ -307,7 +306,7 @@ input[aria-invalid="true"] { border-color: var(--layout-error); }
   .layout-editor .layout-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-height: 800px) {
-  .layout-ui > .layout-browser { max-height: clamp(210px,42dvh,300px); padding-top: 7px; padding-bottom: 7px; gap: 4px; }
+  .layout-ui > .layout-browser { padding-top: 7px; padding-bottom: 7px; gap: 4px; }
   .layout-object-search { min-height: 32px; }
   .layout-browser-scroll { min-height: 28px; }
 }
@@ -390,6 +389,7 @@ input[aria-invalid="true"] { border-color: var(--layout-error); }
 .layout-opening-button[aria-pressed="true"] { background: var(--layout-selected); border-color: var(--accent); color: var(--accent); }
 .layout-opening-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .layout-opening-editor { margin-top: 8px; padding: 10px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--layout-soft); scroll-margin-top: 44px; }
+#layout-nav-selection > .layout-opening-editor { margin-top: 0; }
 .layout-opening-editor h4 { margin: 0 0 10px; color: var(--ink); font-size: 12px; }
 .layout-opening-group { min-width: 0; margin: 8px 0 0; padding: 8px 0 0; border: 0; border-top: 1px solid var(--line); }
 .layout-opening-group legend { padding: 0 6px 0 0; color: var(--ink); font-size: 12px; font-weight: 600; }

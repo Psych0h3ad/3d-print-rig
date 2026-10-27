@@ -178,6 +178,23 @@ const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function 
 const createRenderer=new Function(...Object.keys(ports),body+'\nreturn createLayoutRenderer;')(...Object.values(ports));
 function flush(){for(let n=0;frames.size;n++){assert.ok(n<20,'Bounded draw queue');const callbacks=[...frames.values()];frames.clear();for(const f of callbacks)f();}}
 function setup(room){const container=node('div'),api=createRenderer({container,catalog:[]}),renderer=renderers.at(-1);api.setState({room,groups:[]},null);api.view('perspective');flush();return {container,api,renderer};}
+// Entering wall placement must recover from a previously zoomed small room.
+// Switching opening types preserves the working view; Fit keeps the tool live.
+{
+  const changes=[],api=createRenderer({container:node('div'),catalog:[],onOpeningToolChange:tool=>changes.push(tool)});
+  const room=withOpenings();api.setState({room,groups:[]},null);api.view('top');flush();
+  const plan=controls.findLast(c=>c.object.isOrthographicCamera);
+  plan.object.zoom=5;plan.target.set(8,0,8);plan.object.updateProjectionMatrix();
+  const large={...room,polygonMm:[[-3000,-2500],[3000,-2500],[3000,2500],[-3000,2500]]};
+  api.setState({room:large,groups:[]},null);api.view('perspective');api.beginOpening('window');flush();
+  assert.equal(api.getView().projection,'orthographic-floorplan');assert.equal(plan.object.zoom,1);
+  for(const [x,z]of large.polygonMm){const point=new THREE.Vector3(x/1000,0,z/1000).project(plan.object);assert(Math.abs(point.x)<1&&Math.abs(point.y)<1,'Wall placement must show every room corner');}
+  plan.object.zoom=2;plan.object.updateProjectionMatrix();
+  api.beginOpening('door',{motion:'sliding',frameRoom:false});flush();assert.equal(plan.object.zoom,2);
+  assert.deepEqual(changes.at(-1),{kind:'door',motion:'sliding'});const count=changes.length;
+  api.view('fit');flush();assert.equal(plan.object.zoom,1);assert.equal(changes.length,count,'Fit must preserve the active opening tool');
+  api.dispose();passed.push('Opening placement refits a changed room, preserves type-switch zoom and keeps the tool during Fit');
+}
 for(const motion of ['hinged','sliding']){
   const room=withOpenings();if(motion==='sliding')room.openings[1]=slidingOpening();
   const {api,renderer,container}=setup(room),scene=renderer.lastScene,wallGroups=scene.children.flatMap(o=>o.children).flatMap(o=>o.children).filter(o=>o.userData.openingWall);

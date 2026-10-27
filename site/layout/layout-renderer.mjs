@@ -255,7 +255,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const c=Math.cos(e.yawRad||0),s=Math.sin(e.yawRad||0);
     return [[-w/2,-d/2],[w/2,-d/2],[w/2,d/2],[-w/2,d/2]].map(([px,pz])=>[c*px+s*pz,-s*px+c*pz]);
   }
-  function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:e.type==='popstation_mini'?'BIQU PopStation Mini':e.id;}
+  function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:e.type==='popstation_mini'?'BIQU PopStation Mini':['desk','shelf'].includes(e.type)?selectedLabel(e):e.id;}
   function selectedLabel(e){if(e.type==='group')return `${groupLabel(current,e.id)} · ${e.name||e.id}`;if(e.machineId||e.type==='popstation_mini')return planLabel(e);const same=(current.furniture||derived.furniture||[]).filter(f=>f.type===e.type);return t(e.type==='desk'?'layout.deskName':'layout.shelfName',{number:same.findIndex(f=>f.id===e.id)+1});}
   function makePlan(e,warning){
     const points=footprint(e),g=new THREE.Group();g.userData.entityId=e.id;g.userData.planProjection=true;g.userData.planPoints=points;g.userData.planLabel=planLabel(e);g.userData.planColor=warning?'#bf6d48':e.type==='printer'?'#6489a3':'#c2a379';
@@ -733,7 +733,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   openingInteraction=createOpeningInteraction({room:()=>current.room,locate:locateOpeningWall,pick:pickOpening,
     preview(value,selected){openingFeedbackValue=value;openingSelection=selected;draw();},
     select:onOpeningSelect,commit:onOpeningCommit,changed(){if(!openingInteraction.dragging&&openingPointer!==null){const pointer=openingPointer;openingPointer=null;if(canvas.hasPointerCapture(pointer))canvas.releasePointerCapture(pointer);}enableControls();canvas.style.cursor=openingInteraction.active?'crosshair':'grab';onOpeningToolChange(openingInteraction.tool);}});
-  function beginOpening(kind,options={}){if(disposed||exporting)return false;cancel();setPlacement(null);view('top');openingInteraction.begin(kind,options);canvas.focus({preventScroll:true});return true;}
+  function beginOpening(kind,options={}){if(disposed||exporting)return false;cancel();setPlacement(null);view('top');if(options.frameRoom!==false)view('fit');openingInteraction.begin(kind,options);canvas.focus({preventScroll:true});return true;}
   function setOpeningSelection(id){openingSelection=id;openingInteraction.selection(id);}
   function openingEvent(event,method){
     if(disposed||exporting||placing||drag)return false;

@@ -69,7 +69,7 @@ const factory=new Function('deps',`"use strict";
   captureLayoutClipboard,regroupLayoutSelection}=deps;
  ${keys}
  let state=deps.initial,catalog=deps.catalog,rows=deps.catalog,ui,view=deps.view,selected='unit-a';
- let disposed=false,busy=false,roomEditing=false,startEmpty=false,placement=null,interactionGeneration=0,operation=null;
+ let disposed=false,busy=false,buildTools=null,activeOpeningTool=null,roomEditing=false,startEmpty=false,placement=null,interactionGeneration=0,operation=null;
  let groupLibrary=[],nextId=1,rendererOptions;
  ${idBody}
  const past=[],future=[],actions=[],rotations=[],messages=[],downloads=[],placementCommands=[],pending=[];

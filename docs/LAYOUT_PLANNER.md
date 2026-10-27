@@ -68,9 +68,15 @@ These are outside-dimension planning envelopes, so allow extra working space.
 Older plans with overlaps still open and show the affected objects; move them
 apart before rotating or arranging them further.
 
+The scene toolbar provides Select, Printers, Desk, Shelf, Window, Hinged and
+Sliding tools. Use **1–7** outside text fields to switch tools, or click their
+buttons. Furniture and opening tools start a preview; nothing is added until
+you click a valid position. **Printers** opens the searchable catalog.
+
 The settings panel keeps four tabs at the top: **Selected**, **Add**, **Room**
-and **Output**. The object list collapses while editing the room or exporting;
-**Show items** opens it again. Select an object to open its position and
+and **Output**. The item list is a collapsible drawer at the bottom, leaving the main area for
+the current settings. **Show items** opens it; its search, checkboxes and group
+tools remain available. Switching tabs retains the drawer setting. Select an object to open its position and
 rotation controls. Filter the list to printers, furniture or units, or search
 by name or unit letter. Press **/** outside a text field to focus the search.
 Tab changes preserve unfinished form entries; selecting another object opens
@@ -78,12 +84,14 @@ Tab changes preserve unfinished form entries; selecting another object opens
 
 ## Windows and doors
 
-Open **Room → Windows and doors** and choose **Window**, **Hinged** or **Sliding**. The planner
-opens the 2D plan. Point near a wall to see a green preview and click to place;
+Choose **Window**, **Hinged** or **Sliding** from the scene toolbar, or under
+**Room → Windows and doors**. Starting placement opens a 2D plan fitted to the
+room. Switching between opening types keeps the working view. **Fit room**
+reframes the plan without leaving the tool. Point near a wall to see a green preview and click to place;
 a red preview means that no free span fits. Corners and existing openings clamp
 the preview to an available span. Press **Esc** to cancel without changing the plan.
 
-Click an opening in the plan to select it and reveal its editor. Drag it along
+Click an opening in the plan to edit its properties under **Selected**. Drag it along
 its wall to preview a new position, then release to apply one undoable edit.
 Dragging stops at corners and neighbouring openings; it cannot pass through
 another opening with overlapping height. **Esc** cancels the drag. In 3D, click
