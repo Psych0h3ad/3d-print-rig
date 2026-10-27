@@ -1,9 +1,9 @@
 import {attachSourceMaterialDisplay} from './source-assembly-runtime/source-material-display.mjs?v=5d773caa9598cb098acb';
-import {loadProgressiveSource,createProgressiveUploader} from './source-assembly-runtime/progressive-source-loader.mjs?v=021b0c77b5e0df5a2a87';
+import {loadProgressiveSource,createProgressiveUploader} from './source-assembly-runtime/progressive-source-loader.mjs?v=77261ad7dac1c69f7ee8';
 import {attachIllustrativeLatchDisplay} from './source-assembly-runtime/illustrative-latch-adapter.mjs?v=99ad800d6fe1e947f0cf';
 import{GLTFLoader}from'./vendor-r180/GLTFLoader.js?v=adbbafe8ce40416525b6';
-import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=c803b3642a0d2339782e';
-import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=249538000d01b5f846a8';
+import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=59ca7254a5afb2484e9d';
+import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=803c15f7b9c8d997cc3f';
 import{headSubsetPlan,headSubsetPacket}from'./source-assembly-runtime/head_subset.mjs?v=9d559758a3aaa9114976';
 import{createAssembly}from'./source-assembly-runtime/assembly.mjs?v=184e8963c12cd2734592';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede';

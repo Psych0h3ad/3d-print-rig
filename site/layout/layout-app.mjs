@@ -1,13 +1,13 @@
 import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,resolveSupportedPrinterRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=aaf3e2a50f2b27f89723';
 import {equipmentRows,isLayoutEquipmentPreviewPrepared} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview} from './layout-equipment-preview.mjs?v=aface112775d91937ff3';
-import {createLayoutUI} from './layout-ui.mjs?v=88e5faccf904b8600abf';
-import {setupLayoutLanguage} from './layout-language.mjs?v=5264cfe5752e9c27c899';
+import {createLayoutUI} from './layout-ui.mjs?v=96b14d57152cc5c5473c';
+import {setupLayoutLanguage} from './layout-language.mjs?v=564c1a485d7a7b5e23aa';
 import {proposePlacement} from './layout-placement.mjs?v=3e7200eba3adada5fa7e';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
   captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=34c055f72b5b436bbb49';
 import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=0a06dd9ca2c90b0ec46f';
-import {placementStatus} from './layout-placement-feedback.mjs?v=3315cf6ae1f42adaf8a8';
+import {placementStatus} from './layout-placement-feedback.mjs?v=85fba65871ec5024e9b6';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {newRoomOpening} from './layout-openings.mjs?v=8fab3154ec519f37f666';
 
@@ -53,7 +53,7 @@ function commit(next,{history=true,selection=selected}={}){
   if(history){past.push(state);if(past.length>80)past.shift();future.length=0;}
   state=next;selected=selection;delete $('#layout-status')._layoutMessage;$('#layout-status').hidden=true;$('#layout-status').textContent='';ui.setStatus({message:'',error:false});sync();store();
 }
-function select(value){if(busy)return;view?.setOpeningSelection?.(null);if(placement)cancelPlacement();interactionGeneration++;ui?.setPickedRootIds?.([]);selected=value;sync();ui?.focusSelection?.();}
+function select(value){if(busy)return;view?.setOpeningSelection?.(null);ui?.clearOpeningSelection?.();if(placement)cancelPlacement();interactionGeneration++;ui?.setPickedRootIds?.([]);selected=value;sync();ui?.focusSelection?.();}
 function pick({ids,mode,seedIds=[]}){
   if(disposed||busy||roomEditing||placement)return;
   interactionGeneration++;
@@ -64,6 +64,7 @@ function pick({ids,mode,seedIds=[]}){
 }
 function selectOpening(openingId){
   if(busy||roomEditing)return;
+  view?.cancelOpening?.();
   select(null);ui.setOpeningSelection(openingId);view.setOpeningSelection(openingId);
 }
 function changeOpening({type,opening}){
@@ -327,7 +328,7 @@ async function render(){
   document.body.dataset.layoutRendering='loading';message(()=>t(floorplan?'layout.render.planLoading':'layout.render.loading'));
   try{
     // Genuine CAD and its loaders are intentionally absent from the placement path.
-    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=7393f58a168d4fecf160')).loadLayoutMachine;
+    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=85c9c2d1e55037b09f29')).loadLayoutMachine;
     let lastPercent=0;
     const result=await view.exportImage({loadMachine:loadLayoutMachine,width:1920,signal:operation.signal,onProgress:p=>{
       if(floorplan){message(()=>t('layout.render.planLoading'),false,{renderProgress:null});return;}
@@ -363,7 +364,8 @@ async function act(action){
       case 'undo':if(past.length){future.push(state);commit(past.pop(),{history:false});}return;
       case 'redo':if(future.length){past.push(state);commit(future.pop(),{history:false});}return;
       case 'reset':commit(createDefaultLayout(),{selection:null});view.view('perspective');view.view('fit');return;
-      case 'room-opening-place':cancelPlacement();selected=null;ui.setPickedRootIds?.([]);sync();view.beginOpening(action.kind);message(()=>t('layout.openings.placeHelp'));return;
+      case 'room-opening-place':cancelPlacement();selected=null;ui.setPickedRootIds?.([]);sync();view.beginOpening(action.kind,{motion:action.motion});return;
+      case 'room-opening-select':view?.cancelOpening?.();return;
       case 'room-opening-add':commit(applyAction(state,{type:'ADD_ROOM_OPENING',opening:newRoomOpening(state.room,{id:id(action.kind),type:action.kind,wallIndex:action.wallIndex})},catalog));return;
       case 'add':{
         beginPlacement(action);
@@ -541,7 +543,7 @@ async function start(){
   if(!startEmpty)try{const saved=readSavedLayout();if(saved&&saved.length<=maxFileBytes){state=parseLayout(saved,catalog);store();}}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=3620c62396a03c28dbe2');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=6dec56913a0e34377e74');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows,onPickedChange:ids=>{
     interactionGeneration++;
     if(ids.length&&selected!==null){selected=null;sync();}
@@ -549,7 +551,7 @@ async function start(){
   },onOpeningSelect:id=>selectOpening(id),onObjectSearchEscape:()=>view?.canvas.focus()});
   ui.setStatus({canPaste:true});
   refreshGroupLibrary();
-  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onPick:pick,onOpeningSelect:id=>selectOpening(id),onOpeningCommit:change=>changeOpening(change),onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
+  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onPick:pick,onOpeningSelect:id=>selectOpening(id),onOpeningCommit:change=>changeOpening(change),onOpeningToolChange:tool=>ui?.setOpeningTool?.(tool),onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   sync();view.view('perspective');document.addEventListener('keydown',historyKey);document.addEventListener('keydown',placementKey);document.addEventListener('copy',copyEvent);document.addEventListener('paste',pasteEvent);
   for(const button of document.querySelectorAll('[data-layout-placement]'))button.addEventListener('click',()=>{if(button.dataset.layoutPlacement==='rotate')rotatePlacement();else cancelPlacement();view.canvas.focus?.({preventScroll:true});});
   $('#layout-repeat')?.addEventListener('change',()=>view?.canvas.focus?.({preventScroll:true}));

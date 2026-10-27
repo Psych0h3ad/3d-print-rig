@@ -18,13 +18,14 @@ const before=hashes(),results=[];
 const section=(a,b)=>{const i=app.indexOf(a),j=app.indexOf(b,i+a.length);assert(i>=0&&j>i,a);return app.slice(i,j);};
 const engineFactory=new Function('initial','catalog','S','O','document','t',`
  const {applyAction,validatePlacement,serializeLayout}=S,{newRoomOpening}=O;
- const rows=catalog,groupLibrary=[],writes=[],view={setState(){}};
- let state=initial,selected=initial.printers[0]?.id??null,ui=null,busy=false,disposed=false,roomEditing=false,placement=null,operation=null,interactionGeneration=0;
+ const rows=catalog,groupLibrary=[],writes=[],updatePlacementBar=()=>{},view={setState(){},setPlacement(){},setOpeningSelection(){},cancelOpening(){ui?.setOpeningTool?.(null);},beginOpening(kind,{motion}={}){ui.setOpeningTool({kind,...(kind==='door'?{motion:motion??'hinged'}:{})});}};
+ let state=initial,selected=initial.printers[0]?.id??null,ui=null,busy=false,disposed=false,roomEditing=false,placement=null,lastPlacementTarget=null,operation=null,interactionGeneration=0;
  ${section('const past=','const t=')}
  const $=selector=>document.body.querySelector(selector),store=()=>writes.push(serializeLayout(state,catalog));
  ${section('function message(','async function ensureEquipmentPreview(')}
+ ${section('function cancelPlacement(){','function beginPlacement(spec){')}
  ${section('async function act(action){','function updateViewPresentation(')}
- return {act,sync,bind(value){ui=value;sync();},read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes]})};`);
+ return {act,sync,selectOpening,bind(value){ui=value;sync();},read:()=>({state,selected,past:[...past],future:[...future],writes:[...writes]})};`);
 const catalog=[{id:'fixture-printer',label:'Fixture printer',widthMm:200,depthMm:200,heightMm:300}];
 const windowOpening={id:'window-seed',type:'window',wallIndex:0,offsetMm:200.125,widthMm:800.375,heightMm:900.625,sillMm:1000.125};
 const doorOpening={id:'door-seed',type:'door',wallIndex:1,offsetMm:600.125,widthMm:900.375,heightMm:2100.625,sillMm:0,hinge:'left',openAngleDeg:90};
@@ -167,6 +168,52 @@ for(const language of supportedLanguages)await test(`${language}: sliding direct
   const roomWidth=x.find('[data-layout-field=room-width]');input(roomWidth,7000.375);roomWidth.blur();roomWidth.dispatch('change');const n=x.field('openPercent');input(n,61.875);x.locale(language);const replacement=x.field('openPercent');assert.notEqual(replacement,n);assert.equal(x.document.activeElement,replacement);assert.equal(replacement.value,'61.875');finish(replacement,'blur-first');await x.settle();assert.equal(opening(x.engine.read().state,'door-seed').openPercent,61.875);assert.equal(x.find('[data-layout-field=room-width]').value,'7000.4');assert.equal(x.engine.read().past.length,2);
   const beforeActions=x.actions.length;x.ui.setStatus({busy:true});assert.equal(x.find('#layout-opening-motion').disabled,true);assert.equal(x.find('#layout-opening-slide-direction').disabled,true);chooseMotion(x,'hinged');direction.value='left';direction.dispatch('change');assert.equal(x.actions.length,beforeActions);x.ui.setStatus({busy:false});x.engine.sync();assertMotion(x,'sliding');
   x.ui.update(x.engine.read().state,'printer-1',[{code:'DOOR_SWING_WALL',params:{walls:'1, 2',wallIndices:[0,1]}}]);assert(x.container.textContent.includes(x.t('layout.warning.DOOR_SWING_WALL',{walls:'1, 2'})));assertMotion(x,'sliding');
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)await test(`${language}: app placement mode is contextual, leaves no history and exits on tab change or opening selection`,async()=>{
+ const x=fixture(language),original=S.serializeLayout(x.initial,catalog);try{
+  x.command('layout.openings.sliding').click();await x.settle();assert.equal(x.feedback().hidden,true,'Placement start must not enter the app error handler');assert.deepEqual(x.actions.at(-1),{type:'room-opening-place',kind:'door',motion:'sliding'});assert.equal(x.find('[data-opening-tool="sliding"]').getAttribute('aria-pressed'),'true');assert.equal(x.find('#layout-opening-editor').hidden,true);assert.equal(x.find('#layout-opening-mode').textContent,x.t('layout.openings.placing',{type:x.t('layout.openings.sliding')}));noHistory(x,original);
+  x.find('#layout-tab-output').click();await x.settle();assert.deepEqual(x.actions.at(-1),{type:'room-opening-select'});assert.equal(x.find('#layout-opening-select-mode').getAttribute('aria-pressed'),'true');assert.equal(x.find('#layout-nav-output').hidden,false);noHistory(x,original);
+  x.find('#layout-tab-room').click();x.command('layout.openings.window').click();await x.settle();x.engine.selectOpening('door-seed');assert.equal(x.find('#layout-opening-editor').hidden,false);assert.equal(x.find('#layout-opening-title').textContent,x.t('layout.openings.item',{type:x.t('layout.openings.door'),number:2,wall:2}));assert.equal(x.find('#layout-opening-select-mode').getAttribute('aria-pressed'),'true');assert.equal(x.engine.read().selected,null);noHistory(x,original);
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)await test(`${language}: openings precede collapsed room/manual settings; selected card stays above opening inventory`,()=>{
+ const x=fixture(language);try{
+  const panel=x.find('#layout-nav-room'),section=x.find('#layout-openings'),card=x.find('#layout-opening-editor'),manual=x.find('#layout-opening-add-wall').parentNode.parentNode;
+  assert.equal(panel.children[1],section);assert.equal(panel.children[2].tagName,'DETAILS');assert(!panel.children[2].open);assert.equal(panel.children[3].tagName,'DETAILS');assert(!panel.children[3].open);assert.equal(manual.tagName,'DETAILS');assert(!manual.open);
+  assert([...section.children].indexOf(card)<[...section.children].indexOf(x.find('#layout-opening-list').parentNode));assert.equal(card.querySelectorAll('fieldset').length,1);
+  const host=panel.parentNode;host.scrollTop=900;x.ui.setOpeningSelection('door-seed');assert.equal(host.scrollTop,0);assert.equal(card.querySelectorAll('fieldset').length,2);assert.equal(x.find('#layout-browser-body').hidden,true);
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)for(const motion of ['hinged','sliding'])await test(`${language}/${motion}: compact selection keeps dimensions and motion before collapsed wall details`,()=>{
+ const x=fixture(language,seed([windowOpening,motion==='sliding'?slidingDoorOpening:doorOpening])),original=S.serializeLayout(x.initial,catalog);try{
+  x.pick('door-seed');const card=x.find('#layout-opening-editor'),groups=card.querySelectorAll('fieldset'),position=x.find('#layout-opening-position'),palette=x.find('#layout-opening-tool-options'),summary=palette.firstChild;
+  assert.equal(position.tagName,'DETAILS');assert(!position.open);assert.equal(position.firstChild.textContent,x.t('layout.openings.position'));assert(position.contains(x.field('offsetMm')));assert(position.contains(x.find('#layout-opening-wall')));
+  assert.equal(groups[0].firstChild.textContent,x.t('layout.openings.size'));assert.equal(groups[1].firstChild.textContent,x.t('layout.openings.motion'));assert([...card.children].indexOf(groups[0])<[...card.children].indexOf(groups[1]));assert([...card.children].indexOf(groups[1])<[...card.children].indexOf(position));assert.equal(position.contains(x.command('layout.openings.center')),false);
+  const openingField=x.field(motion==='sliding'?'openPercent':'openAngleDeg');assert(groups[1].contains(openingField));assert.strictEqual(openingField.parentNode.parentNode.parentNode,x.find('#layout-opening-motion').parentNode.parentNode,'Motion type and opening amount share the primary row');
+  assert.equal(palette.open,false);assert.equal(summary.hidden,false);assert.equal(summary.textContent,x.t('layout.openings.title'));assert.equal(palette.parentNode.dataset.compact,'true');assert(x.find('#layout-nav-room').firstChild.className.includes('layout-sr-only'));assert(x.find('#layout-openings-heading').className.includes('layout-sr-only'));
+  palette.open=true;position.open=true;x.engine.sync();assert.equal(palette.open,true);assert.strictEqual(x.find('#layout-opening-position'),position);assert.equal(position.open,true);noHistory(x,original);
+  x.command('layout.openings.window').click();assert.equal(palette.open,true);assert.equal(summary.hidden,true);assert.equal(palette.parentNode.dataset.compact,'false');assert.equal(card.hidden,true);noHistory(x,original);
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)for(const [id,preset]of [['window-seed','600x600'],['door-seed','800x2100']])await test(`${language}/${id}: size preset is one undoable exact edit; sill/placement retained`,async()=>{
+ const x=fixture(language),original=S.serializeLayout(x.initial,catalog);try{
+  x.pick(id);const before=opening(x.initial,id),size=x.find('#layout-opening-size-preset');assert.equal(size.value,'custom');size.value=preset;size.dispatch('change');await x.settle();
+  const [widthMm,heightMm]=preset.split('x').map(Number);assert.deepEqual(x.actions,[{type:'UPDATE_ROOM_OPENING',id,patch:{widthMm,heightMm}}]);const current=opening(x.engine.read().state,id);assert.deepEqual(current,{...before,widthMm,heightMm});assert.equal(x.engine.read().past.length,1);assert.strictEqual(x.find('#layout-opening-size-preset'),size);assert.equal(size.value,preset);
+  size.dispatch('change');await x.settle();assert.equal(x.actions.length,1);const saved=S.serializeLayout(x.engine.read().state,catalog);assert.equal(S.serializeLayout(S.parseLayout(saved,catalog),catalog),saved);await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,catalog),original);assert.equal(size.value,'custom');await x.engine.act({type:'redo'});assert.equal(S.serializeLayout(x.engine.read().state,catalog),saved);assert.equal(size.value,preset);
+  x.ui.setStatus({busy:true});size.value='1600x2100';size.dispatch('change');assert.equal(x.actions.length,1);
+ }finally{x.dispose();}
+});
+
+for(const language of supportedLanguages)await test(`${language}: rejected size preset rolls back; centering retains exact other fields`,async()=>{
+  const tight={...windowOpening,wallIndex:0,offsetMm:0,widthMm:800,heightMm:900,sillMm:1000},base=seed([tight]),initial=S.createDefaultLayout({...base,room:{...base.room,polygonMm:[[-500,-2000],[500,-2000],[500,2000],[-500,2000]]}},catalog);
+ const x=fixture(language,initial),original=S.serializeLayout(initial,catalog);try{
+  const size=x.find('#layout-opening-size-preset');size.value='1800x1200';size.dispatch('change');await x.settle();noHistory(x,original);assert.equal(size.value,'custom');assert.equal(x.feedback().textContent,x.t('layout.error.OPENING_OUT_OF_BOUNDS'));
+  x.command('layout.openings.center').click();await x.settle();assert.deepEqual(opening(x.engine.read().state,tight.id),{...tight,offsetMm:100});assert.equal(x.engine.read().past.length,1);x.command('layout.openings.center').click();await x.settle();assert.equal(x.engine.read().past.length,1);await x.engine.act({type:'undo'});assert.equal(S.serializeLayout(x.engine.read().state,catalog),original);
  }finally{x.dispose();}
 });
 

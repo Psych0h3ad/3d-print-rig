@@ -5,7 +5,8 @@ import {micronTubeSpecs,micronTubeRoute} from './micron-tube-routes.mjs?v=7d2e3d
 
 const point=([x,y,z])=>new Vector3(x/1000,z/1000,-y/1000);
 // Endpoint bores and straight insertion sections follow their owning parts.
-// Free loops remain routing previews: service length/swept clearance unverified.
+// Moving free loops remain routing previews: service length/clearance unverified.
+// At source reset retain the authored meshes, including the fixed rear passage.
 
 export function createMicronFlexible(nodes,records,profile){
  const plus=profile.machine_id===micronChainPins.machine,axis=new Vector3(0,0,1),keys=new Set();
@@ -23,6 +24,8 @@ export function createMicronFlexible(nodes,records,profile){
  const fixed=[...records].filter(([k,r])=>r.motion==='reference_flexible'&&r.source?.assembly_path?.includes('Bed_Assembly v9:1')&&r.name==='Wire').map(([k])=>{keys.add(k);return nodes.get(k)});
  let lastZ,route,lastDelta='',tubeState=[];
  function update(delta,visible){
+  if(delta.length!==3||!delta.every(Number.isFinite))throw Error('Invalid Micron tube pose');
+  const atReference=delta.every(v=>Math.abs(v)<1e-6),deltaKey=atReference?'native':delta.join(',');
   const z=delta[2],active=Boolean(visible);
   if(chain.length&&z!==lastZ){
    const pins=micronChainPins;route=bedChainRoute(pins.start_xz_mm,[pins.end_xz_mm[0],pins.end_xz_mm[1]+z],chain.length,pins.pitch_mm);
@@ -33,18 +36,20 @@ export function createMicronFlexible(nodes,records,profile){
    }
    lastZ=z;
   }
-  if(delta.join(',')!==lastDelta){
+  if(deltaKey!==lastDelta){
    tubeState=[];
    for(const t of tubes){
-    const route=micronTubeRoute(t,delta);
+    const route=atReference?null:micronTubeRoute(t,delta);
     for(const e of t.meshes){
      e.preview?.dispose();e.preview=null;
-     e.preview=new TubeGeometry(route.curve,192,t.radius_mm/1000,12,false);e.preview.computeBoundingBox();e.preview.computeBoundingSphere();e.node.geometry=e.preview;
+     if(atReference)e.node.geometry=e.original;
+     else{e.preview=new TubeGeometry(route.curve,192,t.radius_mm/1000,12,false);e.preview.computeBoundingBox();e.preview.computeBoundingSphere();e.node.geometry=e.preview;}
     }
     t.node.position.copy(t.origin);
-    tubeState.push({key:t.key,endpoints_mm:route.endpoints_mm,straight_sections_mm:route.straight_sections_mm,outer_diameter_mm:t.radius_mm*2,native_geometry:false});
+    // Preview straight sections do not describe the restored source geometry.
+    tubeState.push({key:t.key,endpoints_mm:route?.endpoints_mm??[t.start_mm.slice(),t.end_mm.slice()],straight_sections_mm:route?.straight_sections_mm??[],outer_diameter_mm:t.radius_mm*2,native_geometry:atReference});
    }
-   lastDelta=delta.join(',');
+   lastDelta=deltaKey;
   }else for(const t of tubes)t.node.position.copy(t.origin);
   for(const e of chain)e.node.visible=active;for(const t of tubes)t.node.visible=active;for(const n of fixed)n.visible=active;
   return {visible:active,managed_parts:keys.size,chain:chain.length?{links:chain.length,pitch_mm:micronChainPins.pitch_mm,endpoint_error_mm:route.endpoint_error_mm}:null,tubes:tubeState};

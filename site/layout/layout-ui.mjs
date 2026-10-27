@@ -50,6 +50,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   let currentIssues = [], editorKey = null, listKey = '';
   let roomMode='rectangle', roomAcceptedMode='rectangle', roomDraft=false, roomSignature=null;
   let openingId=null,openingListKey='',openingEditorKey=null,openingWallsKey='',pendingOpeningAdd=null;
+  let openingTool=null,openingSelectionCleared=false,browserExpanded=true,openingPaletteKey=null;
   let openingWalls=[];
   let farmKey='', libraryKey='', groupLibrary=[];
   let activePanel='selection', objectType='all', pendingSelectionPanel=false;
@@ -286,14 +287,24 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   }
 
   const openingSection=el('section','layout-room-openings');openingSection.id='layout-openings';
-  const openingHeading=copy(el('h3'),'layout.openings.title');openingHeading.id='layout-openings-heading';
-  openingSection.setAttribute('aria-labelledby',openingHeading.id);openingSection.append(openingHeading,copy(el('p','layout-help'),'layout.openings.help'));
-  const placeOpeningActions=el('div','layout-opening-actions');
-  for(const kind of ['window','door'])placeOpeningActions.append(button(`layout.openings.${kind}`,()=>{if(!status.busy)emit({type:'room-opening-place',kind});},kind));
-  openingSection.append(placeOpeningActions,copy(el('p','layout-help'),'layout.openings.placeHelp'));
+  const openingHeading=copy(el('h3','layout-sr-only'),'layout.openings.title');openingHeading.id='layout-openings-heading';
+  openingSection.setAttribute('aria-labelledby',openingHeading.id);openingSection.append(openingHeading);
+  const openingToolbox=el('div','layout-opening-toolbox');
+  const openingToolOptions=el('details','layout-opening-tool-options');openingToolOptions.id='layout-opening-tool-options';
+  const openingToolSummary=copy(el('summary'),'layout.openings.title');openingToolOptions.append(openingToolSummary);
+  const openingSelect=button('layout.openings.selectMode',()=>emit({type:'room-opening-select'}),'edit');
+  openingSelect.id='layout-opening-select-mode';openingSelect.setAttribute('aria-pressed','true');
+  const openingMode=el('p','layout-help layout-opening-mode');openingMode.id='layout-opening-mode';openingMode.setAttribute('role','status');openingMode.setAttribute('aria-live','polite');
+  const placeOpeningActions=el('div','layout-opening-actions layout-opening-presets'),openingTools=new Map();
+  for(const [key,kind,motion]of [['window','window',null],['hinged','door','hinged'],['sliding','door','sliding']]){
+    const tool=button(`layout.openings.${key}`,()=>{if(!status.busy)emit({type:'room-opening-place',kind,...(motion?{motion}:{})});},kind);
+    tool.dataset.openingTool=key;tool.setAttribute('aria-pressed','false');tool.setAttribute('aria-describedby',openingMode.id);openingTools.set(key,tool);placeOpeningActions.append(tool);
+  }
+  openingToolOptions.append(openingSelect,openingMode,placeOpeningActions);openingToolbox.append(openingToolOptions);openingSection.append(openingToolbox);
+  const manualOpening=el('details','layout-opening-manual');manualOpening.append(copy(el('summary'),'layout.openings.manualPlacement'),copy(el('p','layout-help'),'layout.openings.help'));
   const openingWallLabel=el('label','layout-field');openingWallLabel.append(copy(el('span'),'layout.openings.addWall'));
-  const openingWall=el('select');openingWall.id='layout-opening-add-wall';openingWallLabel.append(openingWall);openingSection.append(openingWallLabel);
-  const openingWallHint=el('p','layout-help layout-opening-wall-coordinates');openingWallHint.id='layout-opening-add-wall-coordinates';openingWall.setAttribute('aria-describedby',openingWallHint.id);openingSection.append(openingWallHint);
+  const openingWall=el('select');openingWall.id='layout-opening-add-wall';openingWallLabel.append(openingWall);manualOpening.append(openingWallLabel);
+  const openingWallHint=el('p','layout-help layout-opening-wall-coordinates');openingWallHint.id='layout-opening-add-wall-coordinates';openingWall.setAttribute('aria-describedby',openingWallHint.id);manualOpening.append(openingWallHint);
   listen(openingWall,'change',()=>{openingWallHint.textContent=openingWallCoordinates(Number(openingWall.value));});
   const openingActions=el('div','layout-opening-actions');
   const addOpening=kind=>{
@@ -303,9 +314,18 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     emit({type:'room-opening-add',kind,wallIndex});
   };
   const addWindow=button('layout.openings.addWindow',()=>addOpening('window'),'window');
-  const addDoor=button('layout.openings.addDoor',()=>addOpening('door'),'door');openingActions.append(addWindow,addDoor);openingSection.append(openingActions);
+  const addDoor=button('layout.openings.addDoor',()=>addOpening('door'),'door');openingActions.append(addWindow,addDoor);manualOpening.append(openingActions);
   const openingEmpty=copy(el('p','layout-help'),'layout.openings.empty'),openingList=el('ul','layout-opening-list');openingList.id='layout-opening-list';
-  const openingEditor=el('div','layout-opening-editor');openingSection.append(openingEmpty,openingList,openingEditor);roomSection.append(openingSection);
+  const openingEditor=el('div','layout-opening-editor');openingEditor.id='layout-opening-editor';
+  const openingInventory=el('details','layout-opening-inventory'),openingInventoryTitle=el('summary');openingInventory.append(openingInventoryTitle,openingList);
+  openingSection.append(openingEditor,openingEmpty,openingInventory,manualOpening);
+  // Opening tools and the current selection come first. Shape drafts stay in
+  // their original nodes while the less frequent room controls are collapsed.
+  const roomHeading=roomSection.firstChild,roomSettings=el('details','layout-room-settings'),roomAppearance=el('details','layout-room-settings');
+  roomHeading.classList.add('layout-sr-only');
+  roomSettings.append(copy(el('summary'),'layout.room_shape'),roomTools,shapeLabel,roomFields,roomNote,cutFields,custom,applyRoom);
+  roomAppearance.append(copy(el('summary'),'layout.room_appearance'),appearance);
+  roomSection.replaceChildren(roomHeading,openingSection,roomSettings,roomAppearance);
   function roomOpenings(){return state?.room?.openings||[];}
   function selectedOpening(){return roomOpenings().find(o=>o.id===openingId);}
   function openingMotion(o){return o.motion??'hinged';}
@@ -329,36 +349,51 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     const editWall=openingEditor.querySelector('#layout-opening-wall');if(editWall)fillOpeningWalls(editWall,selectedOpening()?.wallIndex??0);
   }
   function patchOpening(id,patch){if(selectedOpening()?.id===id)emit({type:'UPDATE_ROOM_OPENING',id,patch});}
+  function openingGroup(key){const group=el('fieldset','layout-opening-group');group.append(copy(el('legend'),key));openingEditor.append(group);return group;}
+  function openingSizes(o){return (o.type==='window'?[[600,600],[1200,1000],[1800,1200]]:[[800,2100],[900,2100],[1600,2100]]);}
   function buildOpeningEditor(){
     const o=selectedOpening(),key=o?JSON.stringify([o.id,o.type,o.type==='door'?openingMotion(o):null]):'';if(key===openingEditorKey)return;
     openingEditorKey=key;
     for(const name of [...fields.keys()])if(name.startsWith('opening-'))fields.delete(name);
-    openingEditor.replaceChildren();openingEditor.hidden=!o;if(!o)return;
+    openingEditor.replaceChildren();openingEditor.hidden=!!openingTool||!o;if(!o)return;
     const heading=el('h4','',openingTitle(o));heading.id='layout-opening-title';openingEditor.setAttribute('role','group');openingEditor.setAttribute('aria-labelledby',heading.id);openingEditor.append(heading);
+    const sizeGroup=openingGroup('layout.openings.size');
+    const sizeLabel=el('label','layout-field');sizeLabel.append(copy(el('span'),'layout.openings.sizePreset'));
+    const sizePreset=el('select');sizePreset.id='layout-opening-size-preset';const customSize=copy(el('option'),'layout.openings.customSize');customSize.value='custom';sizePreset.append(customSize);
+    for(const [width,height]of openingSizes(o)){const option=copy(el('option'),'layout.openings.sizeOption',{width,height});option.value=`${width}x${height}`;sizePreset.append(option);}
+    sizeLabel.append(sizePreset);sizeGroup.append(sizeLabel);
+    listen(sizePreset,'change',()=>{const current=selectedOpening(),size=openingSizes(o).find(([w,h])=>`${w}x${h}`===sizePreset.value);if(!status.busy&&current?.id===o.id&&size&&(size[0]!==current.widthMm||size[1]!==current.heightMm))patchOpening(o.id,{widthMm:size[0],heightMm:size[1]});});
+    const dimensions=el('div','layout-opening-fields');sizeGroup.append(dimensions);
+    for(const [prop,label,min]of [['widthMm','width',1],['heightMm','height',1],...(o.type==='window'?[['sillMm','sill',0]]:[])])numberField(dimensions,`layout.openings.${label}`,`opening-${prop}`,{min,action:v=>patchOpening(o.id,{[prop]:v})});
+    const positionGroup=el('details','layout-opening-position');positionGroup.id='layout-opening-position';positionGroup.append(copy(el('summary'),'layout.openings.position'));
     const wallLabel=el('label','layout-field');wallLabel.append(copy(el('span'),'layout.openings.wallLabel'));
-    const wall=el('select');wall.id='layout-opening-wall';fillOpeningWalls(wall,o.wallIndex);wallLabel.append(wall);openingEditor.append(wallLabel);
-    const wallHint=el('p','layout-help layout-opening-wall-coordinates');wallHint.id='layout-opening-edit-wall-coordinates';wall.setAttribute('aria-describedby',wallHint.id);openingEditor.append(wallHint);
+    const wall=el('select');wall.id='layout-opening-wall';fillOpeningWalls(wall,o.wallIndex);wallLabel.append(wall);positionGroup.append(wallLabel);
+    const wallHint=el('p','layout-help layout-opening-wall-coordinates');wallHint.id='layout-opening-edit-wall-coordinates';wall.setAttribute('aria-describedby',wallHint.id);positionGroup.append(wallHint);
     listen(wall,'change',()=>{const current=selectedOpening(),wallIndex=Number(wall.value);if(!status.busy&&current?.id===o.id&&openingWalls[wallIndex]&&wallIndex!==current.wallIndex)patchOpening(o.id,{wallIndex});});
+    numberField(positionGroup,'layout.openings.offset','opening-offsetMm',{min:0,action:v=>patchOpening(o.id,{offsetMm:v})});
+    const alignActions=el('div','layout-opening-quick-actions'),center=button('layout.openings.center',()=>{
+      const current=selectedOpening();if(!current||current.id!==o.id)return;
+      const poly=state.room.polygonMm,a=poly[current.wallIndex],b=poly[(current.wallIndex+1)%poly.length],offsetMm=(Math.hypot(b[0]-a[0],b[1]-a[1])-current.widthMm)/2;
+      if(offsetMm!==current.offsetMm)patchOpening(o.id,{offsetMm});
+    });alignActions.append(center,copy(el('p','layout-help'),'layout.openings.dragHelp'));
+    const sliding=o.type==='door'&&openingMotion(o)==='sliding';
     if(o.type==='door'){
+      const motionGroup=openingGroup('layout.openings.motion');
+      const motionFields=el('div','layout-opening-fields');motionGroup.append(motionFields);
       const motionLabel=el('label','layout-field');motionLabel.append(copy(el('span'),'layout.openings.motion'));
       const motion=el('select');motion.id='layout-opening-motion';
       for(const kind of ['hinged','sliding']){const option=copy(el('option'),`layout.openings.${kind}`);option.value=kind;motion.append(option);}
-      motionLabel.append(motion);openingEditor.append(motionLabel);
+      motionLabel.append(motion);motionFields.append(motionLabel);
       listen(motion,'change',()=>{const current=selectedOpening();if(!status.busy&&current?.id===o.id&&['hinged','sliding'].includes(motion.value)&&motion.value!==openingMotion(current))emit({type:'SET_ROOM_OPENING_MOTION',id:o.id,motion:motion.value});});
-    }
-    const sliding=o.type==='door'&&openingMotion(o)==='sliding';
-    const dimensions=el('div','layout-opening-fields');openingEditor.append(dimensions);
-    for(const [prop,label,min,max,unit]of [['offsetMm','offset',0,undefined,'mm'],['widthMm','width',1,undefined,'mm'],['heightMm','height',1,undefined,'mm'],...(o.type==='window'?[['sillMm','sill',0,undefined,'mm']]:sliding?[['openPercent','openPercent',0,100,'%']]:[['openAngleDeg','angle',0,120,'°']])]){
-      numberField(dimensions,`layout.openings.${label}`,`opening-${prop}`,{min,max,unit,action:v=>patchOpening(o.id,{[prop]:v})});
-    }
-    if(o.type==='door'){
+      const prop=sliding?'openPercent':'openAngleDeg';numberField(motionFields,sliding?'layout.openings.openPercent':'layout.openings.angle',`opening-${prop}`,{min:0,max:sliding?100:120,unit:sliding?'%':'°',action:v=>patchOpening(o.id,{[prop]:v})});
       const directionLabel=el('label','layout-field');directionLabel.append(copy(el('span'),sliding?'layout.openings.slideDirection':'layout.openings.hinge'));
       const direction=el('select');direction.id=sliding?'layout-opening-slide-direction':'layout-opening-hinge';
       for(const side of ['left','right']){const option=copy(el('option'),`layout.openings.${sliding?'slide'+(side==='left'?'Left':'Right'):side}`);option.value=side;direction.append(option);}
-      directionLabel.append(direction);openingEditor.append(directionLabel);
-      const prop=sliding?'slideDirection':'hinge';
-      listen(direction,'change',()=>{const current=selectedOpening();if(!status.busy&&current?.id===o.id&&['left','right'].includes(direction.value)&&direction.value!==current[prop])patchOpening(o.id,{[prop]:direction.value});});
+      directionLabel.append(direction);motionGroup.append(directionLabel);
+      const directionProp=sliding?'slideDirection':'hinge';
+      listen(direction,'change',()=>{const current=selectedOpening();if(!status.busy&&current?.id===o.id&&['left','right'].includes(direction.value)&&direction.value!==current[directionProp])patchOpening(o.id,{[directionProp]:direction.value});});
     }
+    openingEditor.append(alignActions,positionGroup);
     const remove=button('layout.openings.remove',()=>{if(selectedOpening()?.id===o.id)emit({type:'REMOVE_ROOM_OPENING',id:o.id});},'trash');remove.classList.add('layout-delete');openingEditor.append(remove);
   }
   function refreshOpeningValues(){
@@ -370,19 +405,36 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     const motion=openingEditor.querySelector('#layout-opening-motion');if(motion)motion.value=openingMotion(o);
     const direction=openingEditor.querySelector('#layout-opening-slide-direction');if(direction)direction.value=o.slideDirection;
     const heading=openingEditor.querySelector('#layout-opening-title');if(heading)heading.textContent=openingTitle(o);
+    const preset=openingEditor.querySelector('#layout-opening-size-preset');if(preset)preset.value=openingSizes(o).some(([w,h])=>w===o.widthMm&&h===o.heightMm)?`${o.widthMm}x${o.heightMm}`:'custom';
   }
   function refreshOpenings(){
     refreshOpeningWalls();
     const all=roomOpenings();
-    if(pendingOpeningAdd){const added=all.find(o=>!pendingOpeningAdd.ids.has(o.id)&&o.type===pendingOpeningAdd.kind&&o.wallIndex===pendingOpeningAdd.wallIndex);if(added)openingId=added.id;pendingOpeningAdd=null;}
-    if(!all.some(o=>o.id===openingId))openingId=all[0]?.id??null;
+    if(pendingOpeningAdd){const added=all.find(o=>!pendingOpeningAdd.ids.has(o.id)&&o.type===pendingOpeningAdd.kind&&o.wallIndex===pendingOpeningAdd.wallIndex);if(added){openingId=added.id;openingSelectionCleared=false;}pendingOpeningAdd=null;}
+    if(!all.some(o=>o.id===openingId))openingId=openingSelectionCleared?null:all[0]?.id??null;
     const key=JSON.stringify(all.map(o=>[o.id,openingTitle(o)]));
     if(key!==openingListKey){
       openingListKey=key;openingList.replaceChildren();
-      for(const o of all){const row=el('li'),select=button('layout.openings.select',()=>{if(status.busy)return;openingId=o.id;onOpeningSelect(o.id);refreshOpenings();refreshOpeningValues();refreshStatus();releaseDetachedControls();},o.type);select.className='layout-object-button layout-opening-button';select.dataset.layoutOpeningId=o.id;select.replaceChildren(icon(o.type),el('span','layout-object-name',openingTitle(o)));select.setAttribute('aria-label',openingTitle(o));row.append(select);openingList.append(row);}
+      for(const o of all){const row=el('li'),select=button('layout.openings.select',()=>{if(status.busy)return;openingId=o.id;openingSelectionCleared=false;onOpeningSelect(o.id);refreshOpenings();refreshOpeningValues();refreshStatus();revealOpening();releaseDetachedControls();},o.type);select.className='layout-object-button layout-opening-button';select.dataset.layoutOpeningId=o.id;select.replaceChildren(icon(o.type),el('span','layout-object-name',openingTitle(o)));select.setAttribute('aria-label',openingTitle(o));row.append(select);openingList.append(row);}
     }
     for(const b of openingList.querySelectorAll('[data-layout-opening-id]'))b.setAttribute('aria-pressed',String(b.dataset.layoutOpeningId===openingId));
-    openingEmpty.hidden=all.length>0;openingList.hidden=!all.length;buildOpeningEditor();
+    copy(openingInventoryTitle,'layout.openings.inventory',{count:all.length});
+    openingEmpty.hidden=all.length>0||!!openingTool;openingList.hidden=!all.length;openingInventory.hidden=!all.length;buildOpeningEditor();openingEditor.hidden=!!openingTool||!selectedOpening();refreshOpeningMode();
+  }
+  function refreshOpeningMode(){
+    const key=openingTool?(openingTool.kind==='window'?'window':openingTool.motion):null;
+    const compact=!!selectedOpening()&&!openingTool,paletteKey=compact?`selected:${openingId}`:'expanded';
+    // Keep a deliberately reopened palette open during value-only mirrors.
+    if(paletteKey!==openingPaletteKey){openingToolOptions.open=!compact;openingPaletteKey=paletteKey;}
+    openingToolSummary.hidden=!compact;openingToolbox.dataset.compact=String(compact);
+    openingSelect.setAttribute('aria-pressed',String(!key));for(const [name,tool]of openingTools)tool.setAttribute('aria-pressed',String(name===key));
+    copy(openingMode,key?'layout.openings.placing':'layout.openings.selectHelp',key?{type:tr(`layout.openings.${key}`)}:{});
+  }
+  function revealOpening(){showPanel('room');setBrowserExpanded(false);panelHost.scrollTop=0;}
+  function setOpeningTool(tool){
+    if(disposed||JSON.stringify(tool)===JSON.stringify(openingTool))return;
+    openingTool=tool;if(tool){openingId=null;openingSelectionCleared=true;revealOpening();}
+    refreshOpenings();refreshOpeningValues();refreshStatus();releaseDetachedControls();
   }
 
   const addSection = section('layout.add');
@@ -492,7 +544,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   const panelHost=el('div','layout-workspace-panels'),outputPanel=el('div','layout-output-panel');outputPanel.append(renderSection,warningSection,scope);
   for(const [name,target]of [['selection',editorSection],['add',addSection],['room',roomSection],['output',outputPanel]]){
     target.id=`layout-nav-${name}`;target.setAttribute('role','tabpanel');target.setAttribute('aria-labelledby',`layout-tab-${name}`);panels.set(name,target);
-    const tab=button(`layout.nav.${name}`,()=>showPanel(name));tab.id=`layout-tab-${name}`;tab.dataset.layoutTab=name;tab.setAttribute('role','tab');tab.setAttribute('aria-controls',target.id);
+    const tab=button(`layout.nav.${name}`,()=>{showPanel(name);if(!status.busy&&name==='room')panelHost.scrollTop=0;});tab.id=`layout-tab-${name}`;tab.dataset.layoutTab=name;tab.setAttribute('role','tab');tab.setAttribute('aria-controls',target.id);
     listen(tab,'keydown',event=>{
       if(event.altKey||event.ctrlKey||event.metaKey||event.isComposing)return;
       const names=[...panels.keys()],index=names.indexOf(name);let next;
@@ -504,15 +556,23 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   }
   const notices=el('div','layout-workspace-notices');notices.append(feedback,boundsNotice);
   const busyArea=el('div','layout-workspace-progress');busyArea.id='layout-workspace-progress';busyArea.hidden=true;busyArea.append(progress,renderMessage,cancel);
-  root.replaceChildren(actions,notices,objectSection,tabs,panelHost,busyArea);
+  const browserBody=el('div','layout-browser-body');browserBody.id='layout-browser-body';
+  browserBody.append(...[...objectSection.children].filter(n=>n!==objectHeading));
+  const browserToggle=button('layout.browser.hideItems',()=>setBrowserExpanded(!browserExpanded));browserToggle.id='layout-browser-toggle';browserToggle.setAttribute('aria-controls',browserBody.id);browserToggle.setAttribute('aria-expanded','true');objectHeading.append(browserToggle);objectSection.append(browserBody);
+  root.replaceChildren(actions,notices,tabs,objectSection,panelHost,busyArea);
   showPanel('selection');
   container.replaceChildren(root);
 
   function showPanel(name){
     if(disposed||status.busy||!panels.has(name))return;
-    if(name!==activePanel){panelScrolls.set(activePanel,panelHost.scrollTop||0);panelHost.scrollTop=panelScrolls.get(name)||0;}
+    if(openingTool&&name!=='room')emit({type:'room-opening-select'});
+    if(name!==activePanel){panelScrolls.set(activePanel,panelHost.scrollTop||0);panelHost.scrollTop=name==='room'?0:panelScrolls.get(name)||0;setBrowserExpanded(name==='selection'||name==='add');}
     activePanel=name;
     for(const [key,panel]of panels){panel.hidden=key!==name;const tab=tabButtons.get(key);tab.setAttribute('aria-selected',String(key===name));tab.tabIndex=key===name?0:-1;}
+  }
+  function setBrowserExpanded(expanded){
+    browserExpanded=expanded;browserBody.hidden=!expanded;objectSection.dataset.collapsed=String(!expanded);browserToggle.setAttribute('aria-expanded',String(expanded));
+    const key=expanded?'layout.browser.hideItems':'layout.browser.showItems';copy(browserToggle.querySelector('span'),key);browserToggle.dataset.layoutLabel=key;browserToggle.setAttribute('aria-label',tr(key));
   }
 
   function machineLabel(m) { return String(m?.label || m?.name || m?.title || m?.id || ''); }
@@ -865,7 +925,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     releaseDetachedControls();
   }
   function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();pickedRoots.clear();root.remove();state=null;}
-  function focusObjectSearch(){if(disposed||status.busy)return false;objectSearch.focus();objectSearch.select?.();return true;}
+  function focusObjectSearch(){if(disposed||status.busy)return false;setBrowserExpanded(true);objectSearch.focus();objectSearch.select?.();return true;}
   function focusSelection(){if(disposed||status.busy||!selected())return false;showPanel('selection');panelHost.scrollTop=0;return true;}
   populateMachines();refreshStatus();
   function setPickedRootIds(ids){
@@ -875,6 +935,8 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     refreshGroupDraft();notifyPickedChange();
   }
   return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,
-    setOpeningSelection(id){if(disposed||status.busy)return;openingId=id;refreshOpenings();refreshOpeningValues();refreshStatus();showPanel('room');openingEditor.scrollIntoView?.({block:'nearest'});},
+    setOpeningTool,
+    clearOpeningSelection(){if(disposed)return;openingId=null;openingSelectionCleared=true;refreshOpenings();refreshOpeningValues();},
+    setOpeningSelection(id){if(disposed||status.busy)return;openingId=id;openingSelectionCleared=id===null;refreshOpenings();refreshOpeningValues();refreshStatus();revealOpening();},
     getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,focusObjectSearch,focusSelection,dispose});
 }

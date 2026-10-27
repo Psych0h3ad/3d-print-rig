@@ -140,7 +140,7 @@ button[aria-pressed="true"] { background: var(--layout-selected); border-color: 
 .layout-action-spacer { flex: 1; }
 .layout-plan-actions button { min-height: 32px; }
 .layout-plan-actions, .layout-workspace-notices, .layout-workspace-tabs, .layout-workspace-progress { flex: 0 0 auto; }
-.layout-workspace-tabs { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; padding: 5px 8px; border-bottom: 1px solid var(--line); background: var(--paper); }
+.layout-workspace-tabs { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; padding: 5px 8px; border-bottom: 1px solid var(--line); background: var(--paper); }
 .layout-workspace-tabs button { min-width: 0; min-height: 32px; padding: 6px 3px; font-size: 11px; overflow-wrap: anywhere; border-color: transparent; }
 .layout-workspace-tabs button[aria-selected="true"] { border-color: var(--accent); color: var(--ink); background: var(--layout-selected); }
 .layout-workspace-panels { flex: 1 1 0; min-height: 0; min-width: 0; overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; background: var(--paper); }
@@ -148,6 +148,10 @@ button[aria-pressed="true"] { background: var(--layout-selected); border-color: 
 .layout-workspace-progress .layout-render-progress { margin-top: 0; }
 .layout-workspace-notices .layout-feedback { margin: 0; padding: 7px 12px; max-height: 90px; overflow: auto; }
 .layout-ui > .layout-browser { display: flex; flex-direction: column; flex: 0 1 auto; min-height: 0; max-height: 43%; padding: 10px 12px; gap: 7px; overflow: auto; overscroll-behavior: contain; }
+.layout-browser-body { display: flex; flex-direction: column; gap: 7px; min-height: 0; }
+.layout-browser-body > .layout-empty { margin: 0; }
+.layout-ui > .layout-browser[data-collapsed="true"] { flex: 0 0 auto; padding-block: 6px; }
+.layout-browser #layout-browser-toggle { min-height: 28px; margin-left: auto; padding: 4px 7px; font-size: 11px; }
 .layout-browser .layout-section-heading { margin: 0; }
 .layout-object-search { flex: 0 0 auto; width: 100%; min-width: 0; padding: 6px 9px; font-size: 12px; }
 .layout-object-filters { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; flex: 0 0 auto; }
@@ -362,20 +366,42 @@ input[aria-invalid="true"] { border-color: var(--layout-error); }
 .layout-placement-repeat input { margin: 0; accent-color: var(--accent); }
 .layout-placement-status { max-width: 100%; overflow-wrap: anywhere; }
 
-.layout-room-openings { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.layout-room-openings { margin: 0; }
 .layout-room-openings h3 { margin: 0 0 8px; font-size: 13px; }
+.layout-opening-toolbox { position: sticky; top: 0; z-index: 2; padding: 6px 0; background: var(--paper); border-bottom: 1px solid var(--line); }
+.layout-opening-tool-options > button { width: 100%; justify-content: center; }
+.layout-opening-tool-options > summary { padding: 6px 0; cursor: pointer; color: var(--ink); font-size: 12px; font-weight: 600; }
+.layout-opening-toolbox[data-compact="true"] { padding-block: 2px; }
+.layout-opening-toolbox[data-compact="true"] .layout-opening-mode { min-height: 0; }
+.layout-opening-toolbox button[aria-pressed="true"] { background: var(--layout-selected); color: var(--accent); border-color: var(--accent); }
+.layout-opening-mode { margin: 4px 0; min-height: 2.8em; }
 .layout-opening-actions, .layout-opening-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .layout-opening-actions { margin: 10px 0; }
 .layout-opening-actions button { justify-content: center; min-width: 0; }
+.layout-opening-presets { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin: 6px 0; }
+.layout-opening-presets button { flex-direction: column; gap: 4px; min-height: 50px; padding: 6px 3px; font-size: 11px; overflow-wrap: anywhere; }
+.layout-opening-presets button span { min-width: 0; }
+.layout-opening-manual, .layout-opening-inventory, .layout-room-settings { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+.layout-opening-manual > summary, .layout-opening-inventory > summary, .layout-room-settings > summary { padding: 5px 0; color: var(--ink); cursor: pointer; font-size: 12px; font-weight: 600; }
+.layout-room-settings[open] > summary { margin-bottom: 10px; }
 .layout-opening-list { list-style: none; padding: 0; margin: 10px 0; max-height: 160px; overflow: auto; }
 .layout-opening-list li + li { margin-top: 5px; }
 .layout-opening-button { width: 100%; border: 1px solid var(--line); background: var(--paper); }
 .layout-opening-button[aria-pressed="true"] { background: var(--layout-selected); border-color: var(--accent); color: var(--accent); }
 .layout-opening-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.layout-opening-editor { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.layout-opening-editor { margin-top: 8px; padding: 10px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--layout-soft); scroll-margin-top: 44px; }
 .layout-opening-editor h4 { margin: 0 0 10px; color: var(--ink); font-size: 12px; }
+.layout-opening-group { min-width: 0; margin: 8px 0 0; padding: 8px 0 0; border: 0; border-top: 1px solid var(--line); }
+.layout-opening-group legend { padding: 0 6px 0 0; color: var(--ink); font-size: 12px; font-weight: 600; }
+.layout-opening-group > .layout-field { margin-bottom: 10px; }
 .layout-opening-editor > .layout-field { margin-bottom: 10px; }
 .layout-opening-fields { margin-bottom: 10px; }
 .layout-opening-fields > .layout-field { min-width: 0; }
 .layout-opening-wall-coordinates { margin-top: 5px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
 .layout-opening-editor > .layout-delete { margin-top: 8px; }
+.layout-opening-position { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+.layout-opening-position > summary { padding: 5px 0; color: var(--ink); cursor: pointer; font-size: 12px; font-weight: 600; }
+.layout-opening-position > .layout-field { margin-block: 10px; }
+.layout-opening-quick-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.layout-opening-quick-actions button { flex: 0 1 auto; }
+.layout-opening-quick-actions .layout-help { flex: 1 1 140px; margin: 0; }

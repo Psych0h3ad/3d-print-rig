@@ -6,11 +6,11 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {createMicronAdapter} from './micron-adapter.mjs?v=cb8a104cf7e93b61d536';
+import {createMicronAdapter} from './micron-adapter.mjs?v=ec300b2b8946b751b247';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=3b1176ccb89e63e0cd35';
+import {setupPublicInfo} from './public-info.js?v=cdd0db06152d4c09b101';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 export async function mount(scope){

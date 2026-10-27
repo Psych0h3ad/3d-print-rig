@@ -1,4 +1,4 @@
-import {wallFrame,newRoomOpening,MAX_ROOM_OPENINGS,openingProblems} from './layout-openings.mjs?v=8fab3154ec519f37f666';
+import {wallFrame,newRoomOpening,withDoorMotion,MAX_ROOM_OPENINGS,openingProblems} from './layout-openings.mjs?v=8fab3154ec519f37f666';
 
 // Free spans respect vertical overlap, just like the saved room contract.
 export function openingSpans(room,opening){
@@ -23,7 +23,7 @@ export function openingAt(room,opening,offsetMm,{drag=false}={}){
 // Event transaction controller. The renderer supplies screen/ray picking and a
 // disposable visual preview. Only pointer-up writes to application history.
 export function createOpeningInteraction({room,locate,pick,preview,select,commit,changed=()=>{}}){
-  let type=null,gesture=null,shown=null,selected=null;
+  let type=null,motion='hinged',gesture=null,shown=null,selected=null;
   const show=value=>{shown=value;preview(value,selected);};
   function update(event){
     const r=room(),wall=locate(event,gesture?.opening?.wallIndex);
@@ -31,7 +31,7 @@ export function createOpeningInteraction({room,locate,pick,preview,select,commit
     let o=gesture?.opening;
     if(o){o=openingAt(r,o,wall.alongMm-gesture.grabMm,{drag:true});}
     else if(type){
-      try{o=newRoomOpening({...r,openings:[]},{id:'opening-preview',type,wallIndex:wall.wallIndex});}
+      try{o=newRoomOpening({...r,openings:[]},{id:'opening-preview',type,wallIndex:wall.wallIndex});if(type==='door'&&motion==='sliding')o=withDoorMotion(o,motion);}
       catch(error){
         if(error?.code!=='OPENING_NO_SPACE')throw error;
         // Imported outlines may contain valid but sub-100mm wall segments.
@@ -47,8 +47,9 @@ export function createOpeningInteraction({room,locate,pick,preview,select,commit
   }
   function cancel(){const used=!!(type||gesture);type=null;gesture=null;show(null);changed();return used;}
   return {
-    begin(kind){cancel();type=kind;selected=null;show(null);changed();},
+    begin(kind,options={}){cancel();type=kind;motion=options.motion==='sliding'?'sliding':'hinged';selected=null;show(null);changed();},
     selection(id){selected=id;show(shown);},
+    get tool(){return type?{kind:type,...(type==='door'?{motion}: {})}:null;},
     get active(){return !!type;},get dragging(){return !!gesture;},
     down(event){
       if(event.button!==0||event.isPrimary===false)return false;

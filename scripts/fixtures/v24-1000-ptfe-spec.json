@@ -1,0 +1,82 @@
+{
+  "source_url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/voron1000-v1/voron_v24_1000_custom/assembly_manifest.json",
+  "source_sha256": "82c421891fed42099df90386d03b05e3afae6aa8c4af3d49354050d82375e567",
+  "spec": {
+    "schema": "v24-external-ptfe-runtime-preview-95",
+    "machine_id": "voron_v24_1000_custom",
+    "reference_xyz_mm": [
+      499.99958314925163,
+      504.09979116960073,
+      27.009292523210483
+    ],
+    "preview_display_limits_mm": {
+      "X": [
+        0,
+        1000
+      ],
+      "Y": [
+        0,
+        1000
+      ],
+      "Z": [
+        0,
+        969
+      ]
+    },
+    "cw2_part_key": "v24_00125",
+    "internal_tube_part_key": "v24_00107",
+    "connector_part_key": "v24_01416",
+    "holder_part_key": "v24_01391",
+    "native_mate_guards": {
+      "v24_00125": "f85bc08e71455ccfae108dc4ded7996bab0ca1a5a51740756354d65b736c9579",
+      "v24_00107": "de5cb84563811eb9f6e6e6c10013c6f83e9fa5c86fabc8f16194f61b64f689fd",
+      "v24_01329": "2c24e17c153959d59e147acc78c2f247fc2db5c3e44afa3ce00b30f9efc2a814",
+      "v24_01416": "fc9dc69408c9485d6dc45cc1be8c8f364fa0ee7bf73ea78129b772b06993124f",
+      "v24_01417": "7b3c6da273be2f4eb26e19e8fd258847dc93f2091e6cdc4326fbb17351d106c1",
+      "v24_01391": "cf4a759707efb45bad4a7cb836ea351f4f0cac9f6fb26d20985b02169f1dbe73"
+    },
+    "head_seat_reference_mm": [
+      -0.00040922494540797226,
+      -36.10025621134396,
+      208.622451
+    ],
+    "stem_top_reference_z_mm": 209.5,
+    "maximum_bend_radius_mm": 25,
+    "cubic_y_handle_fraction": 0.75,
+    "inner_feedthrough_mm": [
+      8.054999516104999E-05,
+      604,
+      1145.2201133804933
+    ],
+    "connector_exit_mm": [
+      8.054999516104999E-05,
+      644.4995966482873,
+      1145.2201133804933
+    ],
+    "holder_left_mm": [
+      448.40008055018785,
+      610.0000761630849,
+      1179.5000000000034
+    ],
+    "holder_right_mm": [
+      471.6000805501879,
+      610.0000761630849,
+      1179.5000000000034
+    ],
+    "cross_section": {
+      "outer_diameter_mm": 4,
+      "inner_diameter_mm": 1.9,
+      "radius_mm": 2,
+      "inner_radius_mm": 0.95,
+      "source_part_key": "v24_00107",
+      "source_native_sha256": "de5cb84563811eb9f6e6e6c10013c6f83e9fa5c86fabc8f16194f61b64f689fd",
+      "scope": "Exact internal source section used for a separately identified external runtime preview. Existing source internal tube/chamfers retained; no externally supplied tube or source cut-length assertion"
+    },
+    "radius_mm": 2,
+    "inner_radius_mm": 0.95,
+    "roof": {
+      "bottom_z_mm": 1181.0000000000978,
+      "scope": "Moving stem/arc/cubic centerline cap only; fixed tail is outside roof XY projection. Not a whole-native-clearance certificate"
+    }
+  }
+}

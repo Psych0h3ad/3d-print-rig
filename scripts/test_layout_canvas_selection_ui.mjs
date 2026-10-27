@@ -36,10 +36,12 @@ function setup(state=plan(),onPickedChange){
 const results=[];
 function test(name,run){try{run();results.push({name,pass:true});}catch(error){results.push({name,pass:false,error:error.stack});}}
 
-test('empty selection hides the strip; the hint and strip live outside details and tab panels',()=>{
+test('empty selection hides the strip; the collapsible object body retains hint and actions outside tab panels',()=>{
   const r=setup();assert.equal(r.strip.hidden,true);assert.deepEqual(r.notifications,[]);
-  assert.strictEqual(r.strip.parentNode,r.find('#layout-nav-objects'));
-  assert.strictEqual(r.find('#layout-selection-hint').parentNode,r.strip.parentNode);
+  const objects=r.find('#layout-nav-objects'),body=r.find('#layout-browser-body');
+  assert.equal(body.parentNode===objects,true,'The collapsible body stays in the object browser');
+  assert.equal(r.strip.parentNode===body,true,'Selection actions stay with the collapsible object list');
+  assert.equal(r.find('#layout-selection-hint').parentNode===body,true,'The hint stays with its object list');
   assert.equal(r.find('#layout-selection-hint').textContent,'Shift-click to select several. In 2D, Shift-drag a selection box.');
   assert.equal(r.strip.getAttribute('aria-labelledby'),r.count.id);assert.equal(r.count.getAttribute('aria-live'),'polite');
   for(const button of r.strip.querySelectorAll('button'))assert.equal(button.disabled,true);
