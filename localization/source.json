@@ -14285,6 +14285,16 @@
       "kind": "message",
       "ja": "配線穴付き",
       "en": "Cable opening"
+    },
+    "e3ng.mods.panels": {
+      "kind": "message",
+      "ja": "背面パネル",
+      "en": "Rear panels"
+    },
+    "e3ng.mods.hex": {
+      "kind": "message",
+      "ja": "六角形パターン",
+      "en": "Hexagon pattern"
     }
   }
 }

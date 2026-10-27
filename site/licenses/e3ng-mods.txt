@@ -9,9 +9,15 @@ https://www.printables.com/model/1348213-ender-3-ng-v12-toolhead-cable-mount-wit
 Based on RH3D's E3NG v1.2:
 https://www.printables.com/model/922401-ender-3-ng-v12-corexy-conversion
 
-License for both parts and their adapted Web meshes: CC BY-NC-SA 4.0
+RH3D: hex-pattern rear electronics panels, E3NG v1.2 EXTRAS
+Public STL files 4093353, 4093350, 4093351, 4093352 (2024-08-16)
+https://www.printables.com/model/922401-ender-3-ng-v12-corexy-conversion
+
+License for these parts and their adapted Web meshes: CC BY-NC-SA 4.0
 https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 Changes: tessellation of public author STEP files and rigid mounting transforms.
 No source solids reshaped; no supports identified or removed from these parts.
+Panel STL triangles are retained without facet removal and placed rigidly.
+The four panels follow the printed base color; dual-color printing is not simulated.
 Attribution, noncommercial use and ShareAlike conditions remain applicable.

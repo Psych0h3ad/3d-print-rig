@@ -4,7 +4,7 @@ import {sourceControlBounds} from './source-control-bounds.mjs?v=1c112b375b6d53f
 import * as THREE from './vendor-r180/three.module.js?v=c8211c69345d2e9949dc';
 import{OrbitControls}from'./vendor-r180/OrbitControls.js?v=1c5dfa7751d7ab320ac0';
 import{RoomEnvironment}from'./vendor-r180/RoomEnvironment.js?v=c20f0b4677f6128a138d';
-import{loadLanguage}from'./i18n.mjs?v=a12e07e81f7a29aaeea7';
+import{loadLanguage}from'./i18n.mjs?v=631b4aa663eb7a31366f';
 import{setupMachineNavigation}from'./machines.js?v=def15e6e5867393ab8db';
 import{sceneLightingState}from'./scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import{readDisplay,rememberDisplayControl}from'./display-preferences.mjs?v=8f347468def25922153c';
@@ -12,19 +12,19 @@ import{workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver}from
 import{setResponsiveAspect,frameResponsiveView}from'./responsive-camera.mjs?v=a5087f024910f351f1de';
 import{setupRenderExport}from'./render-export.js?v=92d6e71ee392361a4f7d';
 import{sourceText}from'./source-assembly-messages.mjs?v=ca9a1808a98c73d5824f';
-import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=391a2159b56dfde7bb18';
+import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=8b88774290cc549d75a9';
 import{sourceReviewBounds}from'./source-assembly-runtime/receiver_guard309.mjs?v=e73d2df413e8fdcf045d';
 import{sourceMinimumContext,sourceMinimumState}from'./source-assembly-runtime/state.mjs?v=b5247a9c87c6a42703d7';
 import{restoreCurrentAssemblyState}from'./source-assembly-runtime/restore_current_state.mjs?v=88db86b7780e49ae0a4f';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede';
-import{createLoadCoordinator,sourceProgressStatus}from'./source-assembly-runtime/loading.mjs?v=a9fe32ac86eb91526568';
-import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=066521b11365c14cabf6';
+import{createLoadCoordinator,sourceProgressStatus}from'./source-assembly-runtime/loading.mjs?v=1dcb51305c7a14cbea17';
+import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=ef1d5bf4e457795e78ee';
 import{sourceXYMessage}from'./source-assembly-runtime/source_XY309.mjs?v=9e7ad89598a23adcc9e0';
 import{captureCamera,restoreCamera}from './source-assembly-view-state.mjs?v=f5cb6c47b1d718dbcd9e';
 import{bindSourceConfigurationLoad,selectSourceCameraPreset}from './source-assembly-configuration-ui.mjs?v=0db9c665fde5b4c30b36';
 import{createSourceUIText,sourceCreditNote,sourceCreditLabel}from './source-assembly-ui-text.mjs?v=02957ea40a587daba0a1';
 import{sourceReferencePanel,sourceCreditRecords}from './source-assembly-references.mjs?v=0a283a57ad3b7af595e8';
-import{setupE3NGModControls,captureE3NGModSelection,transferE3NGModSelection,appendE3NGModCredits}from './e3ng-mod-controls.mjs?v=401a793f94952a21e0c7';
+import{setupE3NGModControls,captureE3NGModSelection,transferE3NGModSelection,appendE3NGModCredits}from './e3ng-mod-controls.mjs?v=c81d8b56db85829796d0';
 export async function mount(scope){
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),lang=()=>document.documentElement.lang,t=k=>sourceText(k,lang()),machine=new URLSearchParams(location.search).get('machine');
@@ -66,7 +66,7 @@ export async function mount(scope){
  const ambient=new THREE.HemisphereLight(0xffffff,0x586b80,.25),sun=new THREE.DirectionalLight(0xffffff,1.4),chamber=new THREE.DirectionalLight(0xffffff,0);sun.position.set(2,4,3);scene.add(ambient,sun,chamber,chamber.target);
  const grid=new THREE.GridHelper(2,40,0xa8b8b1,0xc5cec9);grid.visible=false;scene.add(grid);
  const coordinator=createLoadCoordinator();let packet,headPlan,active,mode='full',frame=null,renderExport;
- const modControls=setupE3NGModControls({host:modHost,machine,language:lang,getState:()=>active?.snapshot()??null,apply,owned,messages});
+ const modControls=setupE3NGModControls({host:modHost,machine,language:lang,getState:()=>active?.snapshot()??null,getAvailability:()=>active?.e3ngMods?{base:true,cable:true,panels:active.e3ngMods.fullAssembly===true}:null,apply,owned,messages});
  function render(){if(frame!==null||scope.disposed||sourceContextLost)return;frame=workspaceFrame(time=>{frame=null;if(active?.snapshot().lighting==='rgb')chamber.color.setHSL((time/15000)%1,.65,.5);controls.update();renderer.render(scene,camera);if(active?.snapshot().lighting==='rgb')render();});}
  function display(){const s=active?.snapshot(),settings=sceneLightingState({darkUI:$('night').checked});scene.background=new THREE.Color(settings.background);scene.environmentIntensity=light.value==='off'?0:settings.environmentIntensity;renderer.toneMappingExposure=settings.exposure;ambient.intensity=light.value==='off'?.12:settings.ambientIntensity;sun.intensity=light.value==='off'?0:1.4;chamber.intensity=['white','rgb'].includes(light.value)?.3:0;if(light.value!=='rgb')chamber.color.set(0xffffff);grid.visible=$('gridVisible').checked;document.body.dataset.roomDark='false';render();}
  function visibleBounds(keys=null){const b=new THREE.Box3();active?.root.traverse(n=>{if(!n.isMesh)return;for(let p=n;p;p=p.parent)if(!p.visible)return;if(keys){let p=n;while(p&&!keys.has(p.userData?.part_key))p=p.parent;if(!p)return;}b.expandByObject(n);});return b;}
@@ -107,5 +107,5 @@ export async function mount(scope){
  for(const key of sourceReferenceNoticeKeys(packet))for(const host of[sourceReference,credits])host.append(text(owned('p',{className:'foot'}),key));
  if(packet.machine==='e3ng')for(const host of[sourceReference,credits])for(let i=0;i<e3ngSourceNotices('en',packet).length;i++)host.append(messages.dynamic(owned('p',{className:'foot'}),()=>e3ngSourceNotices(lang(),packet)[i]));
  await load('full');
- if(!scope.disposed)appendE3NGModCredits({hosts:[creditsList,sourceReferenceList],machine,language:lang,owned,messages});
+ if(!scope.disposed)appendE3NGModCredits({hosts:[creditsList,sourceReferenceList],machine,packet,language:lang,owned,messages});
 }

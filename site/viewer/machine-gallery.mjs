@@ -1,4 +1,4 @@
-import {setupUsageStatistics} from './usage-statistics.mjs?v=fe725238f53c15aec9fc';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=e00ee5d1503713655b03';
 import {setupLayoutNavigation} from './layout-nav.mjs?v=cd8646ed17dbf0b4f426';
 import {machineChoices, machineFamilies, machineVendors} from './machines.js?v=def15e6e5867393ab8db';
 import {normalizeLanguage, languageURL} from './languages.mjs?v=2e376566920474c0f57c';
@@ -98,7 +98,7 @@ export function createMachineCard(row, {document, current, language, translate, 
 
 export async function mountGallery({document = globalThis.document, window = globalThis.window, fetcher = globalThis.fetch, services} = {}) {
   const [{setupLanguage, translate, formatMessage}, {setupHeaderThemeToggle, applyDisplay, displayKey}] = services || await Promise.all([
-    import('./i18n.mjs?v=a12e07e81f7a29aaeea7'), import('./display-preferences.mjs?v=8f347468def25922153c'),
+    import('./i18n.mjs?v=631b4aa663eb7a31366f'), import('./display-preferences.mjs?v=8f347468def25922153c'),
   ]);
   const $ = id => document.getElementById(id), lang = setupLanguage({document, window});
   setupLayoutNavigation(document.querySelector('[data-gallery-nav]'), {document, window});

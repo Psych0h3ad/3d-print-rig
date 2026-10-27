@@ -6,7 +6,8 @@ save a configuration. **Source colors** restores the original appearance.
 
 **Configuration** also offers a reinforced toolhead base and a cable guide with
 a cable opening. These Synthead parts can be selected independently in both
-printer and head views, giving four combinations with the stock parts. Pose
+printer and head views. The full printer view also offers RH3D's hex-pattern
+rear electronics panels. These three independent choices give eight combinations. Pose
 reset restores the stock selection; configuration files retain the choices.
 
 The optional parts use Synthead's public STEP files 6207809 (2025-11-09) and
@@ -14,6 +15,12 @@ The optional parts use Synthead's public STEP files 6207809 (2025-11-09) and
 Their Web meshes are tessellated and rigidly aligned to the original mounts.
 Selected common mounting cylinders and planes were compared with the original
 public parts. This does not certify an entire physical build.
+
+The four rear panels use RH3D's v1.2 EXTRAS STL files 4093353, 4093350,
+4093351 and 4093352 (2024-08-16), under CC BY-NC-SA 4.0. Their source triangles
+are retained without removing facets. The panels follow the printed base color;
+the author's optional dual-color printing process is not simulated. Stock panels
+are replaced as a set. The panel overlay is not loaded in the head-only view.
 
 The model is assembled from RH3D's publicly released STL files and separately
 credited public component models. It does not use the paid E3NG STEP assembly.

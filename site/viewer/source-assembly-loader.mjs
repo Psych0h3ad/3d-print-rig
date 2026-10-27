@@ -1,11 +1,11 @@
 import {attachSourceMaterialDisplay} from './source-assembly-runtime/source-material-display.mjs?v=5d773caa9598cb098acb';
-import {attachE3NGMods} from './source-assembly-runtime/e3ng-mods.mjs?v=92a08bcd1cb52440d593';
-import {e3ngModAsset,e3ngModModel} from './source-assembly-runtime/e3ng-mod-data.mjs?v=69469889a5a32641c077';
-import {loadProgressiveSource,createProgressiveUploader} from './source-assembly-runtime/progressive-source-loader.mjs?v=15a2d8c4dc1ce2b55eca';
+import {attachE3NGMods} from './source-assembly-runtime/e3ng-mods.mjs?v=de4e6dbe8cee9009ed32';
+import {e3ngModAsset,e3ngPanelAsset,e3ngModModel} from './source-assembly-runtime/e3ng-mod-data.mjs?v=6c0d243d5a84b25d0ea1';
+import {loadProgressiveSource,createProgressiveUploader} from './source-assembly-runtime/progressive-source-loader.mjs?v=93c2cd2386b1f4fac592';
 import {attachIllustrativeLatchDisplay} from './source-assembly-runtime/illustrative-latch-adapter.mjs?v=99ad800d6fe1e947f0cf';
 import{GLTFLoader}from'./vendor-r180/GLTFLoader.js?v=adbbafe8ce40416525b6';
-import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=a9fe32ac86eb91526568';
-import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=6006e719733954fe0168';
+import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=1dcb51305c7a14cbea17';
+import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=71c708fe79c2c334466d';
 import{headSubsetPlan,headSubsetPacket}from'./source-assembly-runtime/head_subset.mjs?v=9d559758a3aaa9114976';
 import{createAssembly}from'./source-assembly-runtime/assembly.mjs?v=184e8963c12cd2734592';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede';
@@ -28,8 +28,17 @@ export async function loadSourceAssembly(packet,{signal,mode='full',headPlan=nul
  }
  else gltf=await loadChunkedModel(new GLTFLoader(),packet,{signal,onProgress:progress,fetchAsset,selectedPartKeys:mode==='head'?packet.public_head_keys:null});
  try{if(signal?.aborted)throw new DOMException('Canceled','AbortError');progress({phase:'assembly',percent:null,downloadPercent:100});assembly=createAssembly(gltf,p);if(progressive)assembly=attachIllustrativeLatchDisplay(assembly,packet.illustrative_latch_display);if(packet.machine==='e3ng'&&packet.model.sha256===e3ngModModel&&includeModifications){
- const bytes=await fetchPinned(e3ngModAsset.url,e3ngModAsset,signal),mods=await new GLTFLoader().parseAsync(bytes,'');
- if(signal?.aborted){releaseRoot(mods.scene);throw new DOMException('Canceled','AbortError');}
- try{assembly=attachE3NGMods(assembly,mods);}catch(error){releaseRoot(mods.scene);throw error;}
+ let mods;
+ try{
+  const bytes=await fetchPinned(e3ngModAsset.url,e3ngModAsset,signal);mods=await new GLTFLoader().parseAsync(bytes,'');
+  if(signal?.aborted)throw new DOMException('Canceled','AbortError');
+  if(mode==='full'){
+   if(!Number.isSafeInteger(e3ngPanelAsset?.bytes)||e3ngPanelAsset.bytes<=0||e3ngPanelAsset.bytes>8*1024*1024)throw Error('E3NG panel asset exceeds limit');
+   const panelBytes=await fetchPinned(e3ngPanelAsset.url,e3ngPanelAsset,signal),panels=await new GLTFLoader().parseAsync(panelBytes,'');
+   mods.scene.add(panels.scene);
+   if(signal?.aborted)throw new DOMException('Canceled','AbortError');
+  }
+  assembly=attachE3NGMods(assembly,mods,{mode});
+ }catch(error){if(mods)releaseRoot(mods.scene);throw error;}
  }if(packet.machine==='e3ng')assembly=attachSourceMaterialDisplay(assembly);progress({phase:'ready',percent:null,downloadPercent:100});return assembly;}catch(error){releaseRoot(gltf.scene,assembly);throw error;}
 }
