@@ -1,0 +1,17 @@
+E3NG v1.2 optional printed parts
+
+Synthead: reinforced toolhead base, public file 6207809 (2025-11-09)
+https://www.printables.com/model/1378246-ender-ng-3-v12-toolhead-base-with-large-reinforcem
+
+Synthead: cable-hole mount, public file 5672858 (2025-07-07)
+https://www.printables.com/model/1348213-ender-3-ng-v12-toolhead-cable-mount-with-cable-hol
+
+Based on RH3D's E3NG v1.2:
+https://www.printables.com/model/922401-ender-3-ng-v12-corexy-conversion
+
+License for both parts and their adapted Web meshes: CC BY-NC-SA 4.0
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Changes: tessellation of public author STEP files and rigid mounting transforms.
+No source solids reshaped; no supports identified or removed from these parts.
+Attribution, noncommercial use and ShareAlike conditions remain applicable.

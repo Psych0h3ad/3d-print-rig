@@ -1,9 +1,11 @@
 import {attachSourceMaterialDisplay} from './source-assembly-runtime/source-material-display.mjs?v=5d773caa9598cb098acb';
-import {loadProgressiveSource,createProgressiveUploader} from './source-assembly-runtime/progressive-source-loader.mjs?v=77261ad7dac1c69f7ee8';
+import {attachE3NGMods} from './source-assembly-runtime/e3ng-mods.mjs?v=92a08bcd1cb52440d593';
+import {e3ngModAsset,e3ngModModel} from './source-assembly-runtime/e3ng-mod-data.mjs?v=69469889a5a32641c077';
+import {loadProgressiveSource,createProgressiveUploader} from './source-assembly-runtime/progressive-source-loader.mjs?v=15a2d8c4dc1ce2b55eca';
 import {attachIllustrativeLatchDisplay} from './source-assembly-runtime/illustrative-latch-adapter.mjs?v=99ad800d6fe1e947f0cf';
 import{GLTFLoader}from'./vendor-r180/GLTFLoader.js?v=adbbafe8ce40416525b6';
-import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=59ca7254a5afb2484e9d';
-import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=803c15f7b9c8d997cc3f';
+import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=a9fe32ac86eb91526568';
+import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=6006e719733954fe0168';
 import{headSubsetPlan,headSubsetPacket}from'./source-assembly-runtime/head_subset.mjs?v=9d559758a3aaa9114976';
 import{createAssembly}from'./source-assembly-runtime/assembly.mjs?v=184e8963c12cd2734592';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede';
@@ -13,17 +15,21 @@ export async function loadSourceIndex(signal){const r=await fetch(indexURL,{sign
 export async function loadSourcePacket(record,signal){const p=JSON.parse(new TextDecoder().decode(await fetchPinned(record.packet.url,record.packet,signal)));if(p.id!==record.assembly_id||p.model.sha256!==record.model_sha256||p.default_variant!==record.configuration)throw Error('Source assembly binding changed');return p;}
 export async function sourceHeadPlan(packet,signal){const m=validateChunkManifest(JSON.parse(new TextDecoder().decode(await fetchPinned(packet.chunk_delivery.manifest.url,packet.chunk_delivery.manifest,signal))),packet);return headSubsetPlan(packet,m,packet.public_head_keys);}
 export function selectedSourcePacket(packet,plan){const p=headSubsetPacket(packet,plan);for(const k of['source_drive304','source_loom306'])delete p[k];return p;}
-export async function loadSourceAssembly(packet,{signal,mode='full',headPlan=null,onProgress=()=>{},fetchAsset,renderer}={}){
+export async function loadSourceAssembly(packet,{signal,mode='full',headPlan=null,onProgress=()=>{},fetchAsset,renderer,includeModifications=true}={}){
  if(!['full','head'].includes(mode))throw Error('Unknown assembly view');
  if(mode==='head'&&!headPlan)throw Error('Head plan missing');
  const p=mode==='head'?selectedSourcePacket(packet,headPlan):packet;
  assertLoadingBudget(p,0,{largeModelConfirmed:true});
  const progress=q=>{if(!signal?.aborted)onProgress(q);};
- let gltf;const progressive=mode==='full'&&packet.machine==='e3ng'&&packet.illustrative_latch_display;
+ let gltf,assembly;const progressive=mode==='full'&&packet.machine==='e3ng'&&packet.illustrative_latch_display;
  if(progressive){
   if(renderer){const uploader=createProgressiveUploader(renderer);try{gltf=await loadProgressiveSource(packet,{signal,onProgress:progress,fetchAsset,upload:uploader.upload,displayProfile:packet.illustrative_latch_display});}finally{uploader.dispose();}}
   else gltf=await loadProgressiveSource(packet,{signal,onProgress:progress,fetchAsset,retainCPU:true,displayProfile:packet.illustrative_latch_display,maxAccountedBytes:packet.loading_budget.single_load_peak_bytes});
  }
  else gltf=await loadChunkedModel(new GLTFLoader(),packet,{signal,onProgress:progress,fetchAsset,selectedPartKeys:mode==='head'?packet.public_head_keys:null});
- try{if(signal?.aborted)throw new DOMException('Canceled','AbortError');progress({phase:'assembly',percent:null,downloadPercent:100});let assembly=createAssembly(gltf,p);if(progressive)assembly=attachIllustrativeLatchDisplay(assembly,packet.illustrative_latch_display);if(packet.machine==='e3ng')assembly=attachSourceMaterialDisplay(assembly);progress({phase:'ready',percent:null,downloadPercent:100});return assembly;}catch(error){releaseRoot(gltf.scene);throw error;}
+ try{if(signal?.aborted)throw new DOMException('Canceled','AbortError');progress({phase:'assembly',percent:null,downloadPercent:100});assembly=createAssembly(gltf,p);if(progressive)assembly=attachIllustrativeLatchDisplay(assembly,packet.illustrative_latch_display);if(packet.machine==='e3ng'&&packet.model.sha256===e3ngModModel&&includeModifications){
+ const bytes=await fetchPinned(e3ngModAsset.url,e3ngModAsset,signal),mods=await new GLTFLoader().parseAsync(bytes,'');
+ if(signal?.aborted){releaseRoot(mods.scene);throw new DOMException('Canceled','AbortError');}
+ try{assembly=attachE3NGMods(assembly,mods);}catch(error){releaseRoot(mods.scene);throw error;}
+ }if(packet.machine==='e3ng')assembly=attachSourceMaterialDisplay(assembly);progress({phase:'ready',percent:null,downloadPercent:100});return assembly;}catch(error){releaseRoot(gltf.scene,assembly);throw error;}
 }

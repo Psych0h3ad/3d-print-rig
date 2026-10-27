@@ -1,4 +1,4 @@
-import {monolithHeadCatalog} from './monolith-head-model.mjs?v=652d8e8318e847c8b58c';
+import {monolithHeadCatalog} from './monolith-head-model.mjs?v=4e81650ffa1e443e94b3';
 import {translatedProbeFit} from './probe-checks.js?v=0f70f5c099338db857e7';
 
 const clone=value=>JSON.parse(JSON.stringify(value));

@@ -14265,6 +14265,26 @@
       "kind": "message",
       "ja": "元の色",
       "en": "Source colors"
+    },
+    "e3ng.mods.base": {
+      "kind": "message",
+      "ja": "ツールヘッドベース",
+      "en": "Toolhead base"
+    },
+    "e3ng.mods.reinforced": {
+      "kind": "message",
+      "ja": "補強型",
+      "en": "Reinforced"
+    },
+    "e3ng.mods.cable": {
+      "kind": "message",
+      "ja": "ケーブルガイド",
+      "en": "Cable guide"
+    },
+    "e3ng.mods.hole": {
+      "kind": "message",
+      "ja": "配線穴付き",
+      "en": "Cable opening"
     }
   }
 }
