@@ -265,8 +265,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1219075,
-      "sha256": "732996854c3868c222d564115c1adea47322c9fb0c7c7287b84473fcd6e25a51"
+      "bytes": 1220547,
+      "sha256": "7d86373b2c00790290105e7ec8785f077a6a1a51dfacc1e260fb9201bafd24cf"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -1184,6 +1184,11 @@
       "sha256": "25cdad41975fdefe2c31641894daf94dc60abf836883fdd4774ce2ac35be928c"
     },
     {
+      "path": "scripts/fixtures/top-view-source.json",
+      "bytes": 635,
+      "sha256": "6433a7345414a2df44a601b533c7b21bc7f987dee386b1722e7c88c7cf21ced7"
+    },
+    {
       "path": "scripts/fixtures/trident-bed-registration-95.json",
       "bytes": 36804,
       "sha256": "b830d8661ac9dd5798e34a20788f61d7c63d1967c4429c393d025fbb3ae7a835"
@@ -1417,6 +1422,11 @@
       "path": "scripts/test_build_evidence.py",
       "bytes": 19076,
       "sha256": "18fd1e29424b98fbf2931c39922cbf44e4c6a2ae809db2cf17576389db3de41e"
+    },
+    {
+      "path": "scripts/test_camera_presets.mjs",
+      "bytes": 5641,
+      "sha256": "cf3951525bda0f918a7c3cf156790fe8c8e1e2fb5a2b9293a5167884f844ee6f"
     },
     {
       "path": "scripts/test_catalog_requests.mjs",
@@ -6535,8 +6545,8 @@
     },
     {
       "path": "site/viewer/app.js",
-      "bytes": 35657,
-      "sha256": "e87d03146f11265552f56dffecab973679dca5ed5492a33d4d41289e11eeb968"
+      "bytes": 35612,
+      "sha256": "cea22aad13867b8e59d23ba03b3302c301d0bab1e246c0ba82f615721927c7a2"
     },
     {
       "path": "site/viewer/appearance-role.mjs",
@@ -6591,7 +6601,7 @@
     {
       "path": "site/viewer/bootstrap.js",
       "bytes": 676,
-      "sha256": "5b3ef74af2933e56088f7970a955a3368451e1d26f22268ea83511bfdb0a8a3a"
+      "sha256": "1ccdd8add8306d05f2fa97c3742396f54645675f9ac3a84a0567120808423454"
     },
     {
       "path": "site/viewer/bounded-sha256.mjs",
@@ -7076,7 +7086,7 @@
     {
       "path": "site/viewer/index.html",
       "bytes": 11596,
-      "sha256": "571dec018e4ed28d852a89a6e5a6a5a56ab7beab33cab5a3c79f4823882a8d70"
+      "sha256": "86bb67f500b0e0ae300982fe08d59cebd2155f437c3844161f84f3226629af0c"
     },
     {
       "path": "site/viewer/internal-spool.mjs",
@@ -7479,6 +7489,11 @@
       "sha256": "4d7fdb27c460f01d08ae06d21479aae71ee67146983148efe5967f516cf0c0c5"
     },
     {
+      "path": "site/viewer/printer-camera-presets.mjs",
+      "bytes": 669,
+      "sha256": "b501c6f4b805ff7d9d15b660b204d0cbf3fd5a91a506767f6e991234e5472611"
+    },
+    {
       "path": "site/viewer/printer-gantry.mjs",
       "bytes": 3487,
       "sha256": "f2f8aca7cc040f3911ab2b31b982d914df930c58cb5c63d2db4374e0b9b1cff5"
@@ -7600,8 +7615,8 @@
     },
     {
       "path": "site/viewer/responsive-camera.mjs",
-      "bytes": 857,
-      "sha256": "a5087f024910f351f1deca2caa00f8e26ffbffaec6ece167c0120b59036ca1b8"
+      "bytes": 1567,
+      "sha256": "1c003767ede548495cef57e292b35b97b3fd68a5bfd6dc3c23687a9475d2d017"
     },
     {
       "path": "site/viewer/scene-lighting-state.mjs",

@@ -9,6 +9,7 @@ import {loadMonolithMachines} from './monolith-machine.js?v=d3d264afdf035272955f
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=cbba1b0d7201d9bf86de';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
+import {framePrinterView} from './printer-camera-presets.mjs';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
@@ -292,7 +293,7 @@ $('#releaseSwitch').onclick=()=>{program?.invalidate();stop();if(focusAxis==='Z'
 $('#panels').onchange=e=>{for(const p of panes)p.visible=e.target.checked};
 $('#head').onchange=()=>{showHead();refreshCurrentPose()};
 $('#cables').onchange=()=>refreshCurrentPose();
-for(const[id,p]of [['iso',[1.05,.78,1.18]],['front',[0,.24,1.65]],['top',[.001,1.8,.001]]])$('#'+id).onclick=()=>{unfocus();camera.position.set(...p);controls.target.set(0,.22,0);frameResponsiveView(camera,controls)};
+for(const id of ['iso','front','top'])$('#'+id).onclick=()=>{unfocus();framePrinterView(camera,controls,id)};
 $('#nightOn').addEventListener('click',()=>{unfocus();camera.position.set(0,.24,1.65);controls.target.set(0,.22,0);controls.update()});
 new WorkspaceResizeObserver(()=>{renderRequested=true;setResponsiveAspect(camera,controls,viewWidth(),viewHeight());renderer.setSize(viewWidth(),viewHeight())}).observe(stage);
 renderer.setAnimationLoop(t=>{
