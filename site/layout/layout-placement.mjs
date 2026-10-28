@@ -1,6 +1,6 @@
 // Pure placement transactions for static planning envelopes, never CAD fit proofs.
 import {LIMITS, createCatalog, createDesk, createShelf, createPopStation, resolvePrinterEquipment, applyAction, validateState,
-  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=aaf3e2a50f2b27f89723';
+  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=6b7e952ddb2a17f3de3d';
 import {rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 
 const MAGNET_MM = 14;

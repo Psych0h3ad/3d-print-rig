@@ -1,18 +1,19 @@
-import {createOpeningInteraction} from './layout-opening-interaction.mjs?v=2558eb71adb781378cdc';
-import {wallFrame,openingFrame} from './layout-openings.mjs?v=8fab3154ec519f37f666';
+import {createOpeningInteraction} from './layout-opening-interaction.mjs?v=61eeab9ab05276bd5757';
+import {wallFrame,openingFrame} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=aaf3e2a50f2b27f89723';
+import {deriveScene} from './layout-state.mjs?v=6b7e952ddb2a17f3de3d';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {printerSilhouetteParts,printerSilhouetteSourceRoles} from './layout-printer-shapes.mjs?v=4908029ca70fd9b43559';
 import {createPrinterPreviewMeshCache} from './layout-printer-preview-mesh.mjs?v=13f907586c6d381eb6d4';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=34c055f72b5b436bbb49';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=02f4ab1db50255ef7472';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=81ae2cf27403863696cc';
-import {createLayoutOpeningRenderer,drawOpeningPlan} from './layout-opening-renderer.mjs?v=4dfa9d48987d82ebb43d';
+import {createLayoutOpeningRenderer,drawOpeningPlan,openingPlanPrimitives} from './layout-opening-renderer.mjs?v=b035a46e0d76f7c9b6df';
+import {pickPlanOpening} from './layout-opening-picking.mjs?v=7fb5b88e49bcd5be6497';
 
 const MM = .001;
 const disposableMaterial = new THREE.MeshBasicMaterial({visible:false});
@@ -724,11 +725,9 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       for(const hit of raycaster.intersectObjects(roomGroup.children,true)){let visible=true;for(let o=hit.object;o;o=o.parent)if(!o.visible)visible=false;if(visible)return hit.object.userData.openingId??null;}
       return null;
     }
-    camera.updateMatrixWorld(true);let best=null;
-    for(const o of current.room.openings??[]){
-      const f=openingFrame(current.room,o),a=screenPoint(new THREE.Vector3(f.startMm[0]*MM,0,f.startMm[1]*MM)),b=screenPoint(new THREE.Vector3(f.endMm[0]*MM,0,f.endMm[1]*MM));
-      const hit=screenSpan(event,a,b);if(hit.distance<=14&&(!best||hit.distance<best.distance))best={id:o.id,distance:hit.distance};
-    }return best?.id??null;
+    camera.updateMatrixWorld(true);
+    const project=([x,z])=>screenPoint(new THREE.Vector3(x*MM,0,z*MM));
+    return pickPlanOpening(current.room,[event.clientX,event.clientY],project,openingPlanPrimitives(current.room));
   }
   openingInteraction=createOpeningInteraction({room:()=>current.room,locate:locateOpeningWall,pick:pickOpening,
     preview(value,selected){openingFeedbackValue=value;openingSelection=selected;draw();},

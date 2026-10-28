@@ -68,10 +68,11 @@ These are outside-dimension planning envelopes, so allow extra working space.
 Older plans with overlaps still open and show the affected objects; move them
 apart before rotating or arranging them further.
 
-The scene toolbar provides Select, Printers, Desk, Shelf, Window, Hinged and
-Sliding tools. Use **1–7** outside text fields to switch tools, or click their
-buttons. Furniture and opening tools start a preview; nothing is added until
-you click a valid position. **Printers** opens the searchable catalog.
+The scene toolbar provides Select, Printers, Desk, Shelf, Window, Hinged,
+Sliding and Ventilation fan tools. Use **1–8** outside text fields to switch
+tools, or click their buttons. Furniture and opening tools start a preview;
+nothing is added until you click a valid position. **Printers** opens the
+searchable catalog.
 
 The settings panel keeps four tabs at the top: **Selected**, **Add**, **Room**
 and **Output**. The item list is a collapsible drawer at the bottom, leaving the main area for
@@ -82,11 +83,11 @@ by name or unit letter. Press **/** outside a text field to focus the search.
 Tab changes preserve unfinished form entries; selecting another object opens
 **Selected**.
 
-## Windows and doors
+## Windows, doors and ventilation fans
 
-Choose **Window**, **Hinged** or **Sliding** from the scene toolbar, or under
-**Room → Windows and doors**. Starting placement opens a 2D plan fitted to the
-room. Switching between opening types keeps the working view. **Fit room**
+Choose **Window**, **Hinged**, **Sliding** or **Ventilation fan** from the scene
+toolbar, or under **Room → Windows, doors and fans**. Starting placement opens a
+2D plan fitted to the room. Switching between opening types keeps the working view. **Fit room**
 reframes the plan without leaving the tool. Point near a wall to see a green preview and click to place;
 a red preview means that no free span fits. Corners and existing openings clamp
 the preview to an available span. Press **Esc** to cancel without changing the plan.
@@ -95,21 +96,27 @@ Click an opening in the plan to edit its properties under **Selected**. Drag it 
 its wall to preview a new position, then release to apply one undoable edit.
 Dragging stops at corners and neighbouring openings; it cannot pass through
 another opening with overlapping height. **Esc** cancels the drag. In 3D, click
-or drag the visible frame, pane or door leaf to select or move that opening.
-The preview does not change the saved wall cutout until release.
+or drag the visible frame, pane, door leaf or fan marker to select or move that
+opening. The preview does not change the saved wall cutout until release.
 
-The selected opening's editor includes dimension presets and immediate width,
-height and door-opening controls. Drag to position it, or expand **Position on
-wall** for a wall number and offset. **Center on wall** provides quick alignment.
+The **Selected** inspector includes editable width and height for every opening,
+window sill height, fan lower-edge height above the floor, dimension presets and
+door-opening controls. Drag to position it, or expand **Wall position** for a
+wall number and offset. **Center on wall** provides quick alignment.
 
-The numbered-wall **Add window** and **Add door** controls under **Place by wall number** remain available for
-precise form-based placement. Set the width, height and distance from the start
-of the wall in the selected opening's editor. Windows
-also have a sill height. Choose a hinged or sliding door. Hinged doors have
+The numbered-wall **Add window**, **Add door** and **Add ventilation fan** controls
+under **Place by wall number** remain available for precise form-based placement.
+Set the dimensions and distance from the start of the wall in **Selected**.
+Choose a hinged or sliding door. Hinged doors have
 left/right hinges and an opening angle; single-panel sliding doors move along
 the wall with a chosen direction and opening percentage.
 The selected wall's length is shown in millimetres. Openings cut through the
 wall in 3D and have symbols in the 2D plan and exported images.
+
+Ventilation fans start at 300 × 300 mm with their lower edge at 1800 mm, lowered
+as needed to fit the wall. Choose 150, 200 or 300 mm square presets, or edit the
+dimensions in **Selected**. The fan is a planning marker for its wall location
+and size. Fan settings are included in browser saves, layout JSON and undo/redo.
 
 An opening must fit within its wall and cannot overlap another opening.
 Changes that would remove its wall or make it too small are rejected; move or

@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=aaf3e2a50f2b27f89723';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=6b7e952ddb2a17f3de3d';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
@@ -33,6 +33,7 @@ const PATHS = {
   minus: 'M5 12h14',
   source:'M14 3h7v7M21 3l-9 9M10 3H3v18h18v-7',
   window:'M4 4h16v16H4ZM12 4v16M4 12h16',
+  vent:'M3 3h18v18H3ZM12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM12 10C7 5 17 4 14 10M14 12c5-5 6 5 0 2M12 14c5 5-5 6-2 0M10 12c-5 5-6-5 0-2',
   door:'M5 21V3h14v18M5 3l10 3v15M11 12h1',
   edit:'m15 4 5 5M4 15l-1 6 6-1L21 8l-5-5Z',
   group:'M3 3h7v7H3Zm11 0h7v7h-7ZM3 14h7v7H3Zm11 0h7v7h-7Z',
@@ -296,7 +297,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   openingSelect.id='layout-opening-select-mode';openingSelect.setAttribute('aria-pressed','true');
   const openingMode=el('p','layout-help layout-opening-mode');openingMode.id='layout-opening-mode';openingMode.setAttribute('role','status');openingMode.setAttribute('aria-live','polite');
   const placeOpeningActions=el('div','layout-opening-actions layout-opening-presets'),openingTools=new Map();
-  for(const [key,kind,motion]of [['window','window',null],['hinged','door','hinged'],['sliding','door','sliding']]){
+  for(const [key,kind,motion]of [['window','window',null],['hinged','door','hinged'],['sliding','door','sliding'],['vent','vent',null]]){
     const tool=button(`layout.openings.${key}`,()=>{if(!status.busy)emit({type:'room-opening-place',kind,...(motion?{motion}:{})});},kind);
     tool.dataset.openingTool=key;tool.setAttribute('aria-pressed','false');tool.setAttribute('aria-describedby',openingMode.id);openingTools.set(key,tool);placeOpeningActions.append(tool);
   }
@@ -314,7 +315,8 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     emit({type:'room-opening-add',kind,wallIndex});
   };
   const addWindow=button('layout.openings.addWindow',()=>addOpening('window'),'window');
-  const addDoor=button('layout.openings.addDoor',()=>addOpening('door'),'door');openingActions.append(addWindow,addDoor);manualOpening.append(openingActions);
+  const addDoor=button('layout.openings.addDoor',()=>addOpening('door'),'door');
+  const addVent=button('layout.openings.addVent',()=>addOpening('vent'),'vent');openingActions.append(addWindow,addDoor,addVent);manualOpening.append(openingActions);
   const openingEmpty=copy(el('p','layout-help'),'layout.openings.empty'),openingList=el('ul','layout-opening-list');openingList.id='layout-opening-list';
   const openingEditor=el('div','layout-opening-editor');openingEditor.id='layout-opening-editor';
   const openingInventory=el('details','layout-opening-inventory'),openingInventoryTitle=el('summary');openingInventory.append(openingInventoryTitle,openingList);
@@ -350,7 +352,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   }
   function patchOpening(id,patch){if(selectedOpening()?.id===id)emit({type:'UPDATE_ROOM_OPENING',id,patch});}
   function openingGroup(key){const group=el('fieldset','layout-opening-group');group.append(copy(el('legend'),key));openingEditor.append(group);return group;}
-  function openingSizes(o){return (o.type==='window'?[[600,600],[1200,1000],[1800,1200]]:[[800,2100],[900,2100],[1600,2100]]);}
+  function openingSizes(o){return o.type==='vent'?[[150,150],[200,200],[300,300]]:o.type==='window'?[[600,600],[1200,1000],[1800,1200]]:[[800,2100],[900,2100],[1600,2100]];}
   function buildOpeningEditor(){
     const o=selectedOpening(),key=o?JSON.stringify([o.id,o.type,o.type==='door'?openingMotion(o):null]):'';if(key===openingEditorKey)return;
     openingEditorKey=key;
@@ -364,7 +366,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     sizeLabel.append(sizePreset);sizeGroup.append(sizeLabel);
     listen(sizePreset,'change',()=>{const current=selectedOpening(),size=openingSizes(o).find(([w,h])=>`${w}x${h}`===sizePreset.value);if(!status.busy&&current?.id===o.id&&size&&(size[0]!==current.widthMm||size[1]!==current.heightMm))patchOpening(o.id,{widthMm:size[0],heightMm:size[1]});});
     const dimensions=el('div','layout-opening-fields');sizeGroup.append(dimensions);
-    for(const [prop,label,min]of [['widthMm','width',1],['heightMm','height',1],...(o.type==='window'?[['sillMm','sill',0]]:[])])numberField(dimensions,`layout.openings.${label}`,`opening-${prop}`,{min,action:v=>patchOpening(o.id,{[prop]:v})});
+    for(const [prop,label,min]of [['widthMm','width',1],['heightMm','height',1],...(o.type==='window'?[['sillMm','sill',0]]:o.type==='vent'?[['sillMm','lowerEdgeHeight',0]]:[])])numberField(dimensions,`layout.openings.${label}`,`opening-${prop}`,{min,action:v=>patchOpening(o.id,{[prop]:v})});
     const positionGroup=el('details','layout-opening-position');positionGroup.id='layout-opening-position';positionGroup.append(copy(el('summary'),'layout.openings.position'));
     const wallLabel=el('label','layout-field');wallLabel.append(copy(el('span'),'layout.openings.wallLabel'));
     const wall=el('select');wall.id='layout-opening-wall';fillOpeningWalls(wall,o.wallIndex);wallLabel.append(wall);positionGroup.append(wallLabel);
@@ -398,7 +400,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   }
   function refreshOpeningValues(){
     const o=selectedOpening();if(!o)return;
-    for(const prop of ['offsetMm','widthMm','heightMm',...(o.type==='window'?['sillMm']:openingMotion(o)==='sliding'?['openPercent']:['openAngleDeg'])])value(`opening-${prop}`,o[prop]);
+    for(const prop of ['offsetMm','widthMm','heightMm',...(o.type==='door'?(openingMotion(o)==='sliding'?['openPercent']:['openAngleDeg']):['sillMm'])])value(`opening-${prop}`,o[prop]);
     const wall=openingEditor.querySelector('#layout-opening-wall');if(wall)wall.value=String(o.wallIndex);
     const hint=openingEditor.querySelector('#layout-opening-edit-wall-coordinates');if(hint)hint.textContent=openingWallCoordinates(o.wallIndex);
     const hinge=openingEditor.querySelector('#layout-opening-hinge');if(hinge)hinge.value=o.hinge;
@@ -425,7 +427,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     if(addedSelection)revealOpening();
   }
   function refreshOpeningMode(){
-    const key=openingTool?(openingTool.kind==='window'?'window':openingTool.motion):null;
+    const key=openingTool?(openingTool.kind==='door'?openingTool.motion:openingTool.kind):null;
     const compact=!!selectedOpening()&&!openingTool,paletteKey=compact?`selected:${openingId}`:'expanded';
     // Keep a deliberately reopened palette open during value-only mirrors.
     if(paletteKey!==openingPaletteKey){openingToolOptions.open=!compact;openingPaletteKey=paletteKey;}
@@ -889,7 +891,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
   function refreshStatus(){
     if(pendingSelectionPanel&&!status.busy){pendingSelectionPanel=false;if(selected()){showPanel('selection');panelHost.scrollTop=0;}}
     for(const n of root.querySelectorAll('button,input,select,textarea'))n.disabled=!!status.busy;
-    for(const n of [...placeOpeningActions.querySelectorAll('button'),addWindow,addDoor])n.disabled=!!status.busy||!state||!openingWalls.length||roomOpenings().length>=64;
+    for(const n of [...placeOpeningActions.querySelectorAll('button'),addWindow,addDoor,addVent])n.disabled=!!status.busy||!state||!openingWalls.length||roomOpenings().length>=64;
     for(const n of root.querySelectorAll('[data-mount-locked]'))n.disabled=true;
     for(const [id,check]of memberChecks){check.disabled=!!status.busy;check.checked=pickedRoots.has(id);}
     refreshGroupDraft();

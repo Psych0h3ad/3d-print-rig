@@ -7,7 +7,7 @@ import crypto from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const siteOption=process.argv.indexOf('--site'),site=siteOption<0?path.join(root,'site'):path.resolve(process.argv[siteOption+1]);
-const files=['layout/layout-opening-interaction.mjs','layout/layout-printer-shapes.mjs','layout/layout-printer-preview-mesh.mjs','layout/layout-renderer.mjs','layout/layout-opening-renderer.mjs','layout/layout-openings.mjs','layout/layout-geometry.mjs','layout/layout-surfaces.mjs','layout/layout-finishes.mjs','layout/layout-plan-measurements.mjs','viewer/vendor-r180/three.module.js','viewer/vendor-r180/three.core.js'];
+const files=['layout/layout-opening-interaction.mjs','layout/layout-opening-picking.mjs','layout/layout-printer-shapes.mjs','layout/layout-printer-preview-mesh.mjs','layout/layout-renderer.mjs','layout/layout-opening-renderer.mjs','layout/layout-openings.mjs','layout/layout-geometry.mjs','layout/layout-surfaces.mjs','layout/layout-finishes.mjs','layout/layout-plan-measurements.mjs','viewer/vendor-r180/three.module.js','viewer/vendor-r180/three.core.js'];
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const inputs=files.map(file=>{const b=fs.readFileSync(path.join(site,file));return {path:file,bytes:b.length,sha256:sha(b)};});
 const load=file=>import(pathToFileURL(path.join(site,file)));
@@ -15,6 +15,7 @@ const THREE=await load('viewer/vendor-r180/three.module.js');
 const {createOpeningInteraction}=await load('layout/layout-opening-interaction.mjs');
 const {wallFrame,openingFrame,doorPlan,openingProblems}=await load('layout/layout-openings.mjs');
 const {createLayoutOpeningRenderer,openingPlanPrimitives,drawOpeningPlan}=await load('layout/layout-opening-renderer.mjs');
+const {pickPlanOpening}=await load('layout/layout-opening-picking.mjs');
 const {createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry}=await load('layout/layout-surfaces.mjs');
 const {drawPlanMeasurements}=await load('layout/layout-plan-measurements.mjs');
 const {printerSilhouetteParts,printerSilhouetteSourceRoles}=await load('layout/layout-printer-shapes.mjs');
@@ -25,6 +26,7 @@ const vecNear=(a,b,tol)=>{assert.equal(a.length,b.length);a.forEach((v,i)=>near(
 const windowOpening=(wallIndex=0)=>({id:'window-a',type:'window',wallIndex,offsetMm:700,widthMm:1200,heightMm:1000,sillMm:900});
 const doorOpening=(wallIndex=1,hinge='left',openAngleDeg=90)=>({id:'door-a',type:'door',wallIndex,offsetMm:550,widthMm:900,heightMm:2100,sillMm:0,hinge,openAngleDeg});
 const slidingOpening=(wallIndex=1,slideDirection='left',openPercent=50)=>({id:'door-a',type:'door',wallIndex,offsetMm:550,widthMm:900,heightMm:2100,sillMm:0,motion:'sliding',slideDirection,openPercent});
+const ventOpening=(wallIndex=0)=>({id:'vent-a',type:'vent',wallIndex,offsetMm:2600,widthMm:300,heightMm:300,sillMm:1800});
 const roomBase={polygonMm:[[0,0],[4000,0],[4000,3000],[0,3000]],wallHeightMm:2600};
 const withOpenings=(room=roomBase)=>({...room,openings:[windowOpening(),doorOpening()]});
 function meshes(root,role){const result=[];root.traverse(o=>{if(o.isMesh&&(!role||o.userData.openingRole===role))result.push(o);});return result;}
@@ -114,6 +116,62 @@ for(const reversed of [false,true])for(const wallIndex of [0,1,2,3])for(const di
   owner.clear();owner.clear();assert.equal(railDisposals,1);assert.equal(leafDisposals,1);assert.equal(frameDisposals,0);owner.dispose();owner.dispose();assert.equal(railDisposals,1);assert.equal(leafDisposals,1);assert.equal(frameDisposals,1);surfaces.dispose();
   passed.push(`Sliding panel/track/plan/disposal ${reversed?'CW':'CCW'}/wall${wallIndex}/${direction}/${percent}`);
 }
+// Vent datums are checked in wall coordinates, independently of mesh yaw or
+// polygon winding. Narrow/tall panels keep a round fan inside their own bounds.
+for(const reversed of [false,true])for(const diagonal of [false,true])for(const wallIndex of [0,1,2,3]){
+  const polygon=roomBase.polygonMm.map(([x,z])=>diagonal?[x*.8-z*.6,x*.6+z*.8]:[x,z]);if(reversed)polygon.reverse();
+  const base={...roomBase,polygonMm:polygon},f=wallFrame(base,wallIndex),surfaces=createLayoutSurfaces(),owner=createLayoutOpeningRenderer({surfaces});
+  const fixtures=[{widthMm:300,heightMm:300,sillMm:1800,offsetMm:700},{widthMm:600,heightMm:180,sillMm:400,offsetMm:0},
+    {widthMm:180,heightMm:600,sillMm:2000,offsetMm:f.lengthMm-180},{widthMm:1,heightMm:1,sillMm:0,offsetMm:f.lengthMm/2}];
+  for(const dimensions of fixtures){
+    const o={...ventOpening(wallIndex),...dimensions},room={...base,openings:[o]},wall=owner.makeWall(room,wallIndex,surfaces.finish('paint'));
+    const parts=meshes(wall).filter(m=>m.userData.openingId===o.id),fans=parts.filter(m=>m.userData.openingRole.startsWith('vent-'));
+    assert.equal(meshes(wall,'vent-panel').length,1);assert.equal(meshes(wall,'vent-ring').length,2);assert.equal(meshes(wall,'vent-blade').length,8);assert.equal(meshes(wall,'vent-hub').length,2);
+    assert.equal(meshes(wall,'frame-sill').length,1);assert.equal(meshes(wall,'frame-jamb').length,2);assert.equal(meshes(wall,'frame-head').length,1);
+    assert.ok(!parts.some(m=>m.userData.openingRole.startsWith('door-')||m.userData.openingRole==='window-glass'));
+    assert.ok(parts.every(m=>!Object.hasOwn(m.userData,'doorMotion')&&!Object.hasOwn(m.userData,'hingeMm')));
+    assert.equal(new Set(fans.map(m=>m.geometry)).size,4,'One shared box and three shared procedural fan geometries');
+    assert.ok(fans.every(m=>m.material.map===null&&!m.material.transparent));
+    assert.ok(fans.reduce((sum,m)=>sum+(m.geometry.index?.count??m.geometry.attributes.position.count)/3,0)<2000,'Keep the static planning fan lightweight');
+    checkNormals(wall);
+    const vertices=parts.flatMap(m=>triangles(m).flat().map(p=>wallLocal(f,p)));
+    for(const [axis,lo,hi]of [[0,o.offsetMm,o.offsetMm+o.widthMm],[1,o.sillMm,o.sillMm+o.heightMm],[2,-54,4]]){
+      near(Math.min(...vertices.map(p=>p[axis])),lo,.0006);near(Math.max(...vertices.map(p=>p[axis])),hi,.0006);
+    }
+    const radius=(Math.min(o.widthMm,o.heightMm)-2*Math.min(35,o.widthMm*.1,o.heightMm*.1))*.44;
+    for(const ring of meshes(wall,'vent-ring')){
+      const pts=triangles(ring).flat().map(p=>wallLocal(f,p));
+      near(Math.min(...pts.map(p=>p[0])),o.offsetMm+o.widthMm/2-radius,.0006);near(Math.max(...pts.map(p=>p[0])),o.offsetMm+o.widthMm/2+radius,.0006);
+      near(Math.min(...pts.map(p=>p[1])),o.sillMm+o.heightMm/2-radius,.0006);near(Math.max(...pts.map(p=>p[1])),o.sillMm+o.heightMm/2+radius,.0006);
+    }
+    let volume=0;for(const panel of meshes(wall,'wall-panel'))volume+=panel.scale.x*panel.scale.y*panel.scale.z;
+    near(volume,(f.lengthMm*room.wallHeightMm-o.widthMm*o.heightMm)*50e-9,1e-9);
+    for(const u of [.2,.5,.8])for(const v of [.2,.5,.8])assert.equal(rayHits(wall,f,o.offsetMm+o.widthMm*u,o.sillMm+o.heightMm*v).length,0,'Actual wall panels leave the vent aperture open');
+    // Raycast all real meshes from each side, including the opaque insert.
+    wall.updateMatrixWorld(true);
+    for(const side of [-1,1])for(const u of [.08,.5,.92]){
+      const distance=o.offsetMm+o.widthMm*u,origin=new THREE.Vector3((f.startMm[0]+f.along[0]*distance+f.inward[0]*100*side)*.001,(o.sillMm+o.heightMm/2)*.001,(f.startMm[1]+f.along[1]*distance+f.inward[1]*100*side)*.001);
+      const hits=new THREE.Raycaster(origin,new THREE.Vector3(-f.inward[0]*side,0,-f.inward[1]*side),0,.3).intersectObjects(wall.children,true);
+      assert.ok(hits.length);assert.equal(hits[0].object.userData.openingId,o.id,'Visible vent surfaces must really pick the opening');
+    }
+    const paths=openingPlanPrimitives(room),symbol=paths.filter(p=>p.role.startsWith('vent-'));
+    assert.equal(symbol.length,7);assert.equal(symbol.filter(p=>p.role==='vent-blade').length,4);assert.ok(symbol.every(p=>p.openingId===o.id&&p.closed));
+    assert.ok(!paths.some(p=>p.role.startsWith('door-')||p.role==='window-line'));
+    const planLocal=([x,z])=>wallLocal(f,new THREE.Vector3(x*.001,0,z*.001));
+    const panel=paths.find(p=>p.role==='vent-panel').pointsMm.map(planLocal);
+    near(Math.min(...panel.map(p=>p[0])),o.offsetMm);near(Math.max(...panel.map(p=>p[0])),o.offsetMm+o.widthMm);near(Math.min(...panel.map(p=>p[2])),-50);near(Math.max(...panel.map(p=>p[2])),0);
+    for(const p of symbol.flatMap(p=>p.pointsMm).map(planLocal))assert.ok(p[0]>=o.offsetMm-1e-6&&p[0]<=o.offsetMm+o.widthMm+1e-6,'Fan badge stays within the opening span');
+    const hub=paths.find(p=>p.role==='vent-hub').pointsMm.map(planLocal),average=axis=>hub.reduce((s,p)=>s+p[axis],0)/hub.length;
+    near(average(0),o.offsetMm+o.widthMm/2);near(average(2),-25);
+    for(const dark of [false,true])for(const pixelScale of [1,3]){
+      const ctx=context2D();assert.deepEqual(drawOpeningPlan(ctx,{room,project:(x,z)=>[x*.1+3,z*.2-7],dark,pixelScale}),paths);
+      assert.equal(ctx.paths.length,paths.length);assert.equal(ctx.saves,ctx.restores);assert.ok(ctx.paths.every(p=>p.points.flat().every(v=>typeof v==='string'||Number.isFinite(v))));
+      const ringFill=ctx.fills.find(p=>p.points.length===33&&p.color==='#23343d'),blades=ctx.fills.filter(p=>p.color==='#80939d');assert.ok(ringFill);assert.equal(blades.length,4,'Both themes and export scales retain contrasting blades');
+    }
+    owner.clear();passed.push(`Vent bounds, round fan, real slab cut/picks and plan motif ${reversed?'CW':'CCW'}/${diagonal?'diagonal':'axis'}/wall${wallIndex}/${o.widthMm}x${o.heightMm}`);
+  }
+  owner.dispose();surfaces.dispose();
+}
 // Stacked and adjacent apertures cannot silently become one filled rectangle.
 {
   const room={...roomBase,openings:[{...windowOpening(),offsetMm:900,heightMm:600,sillMm:500},{...windowOpening(),id:'upper',offsetMm:900,heightMm:500,sillMm:1600},doorOpening(0)]};room.openings[2].offsetMm=2500;
@@ -123,8 +181,8 @@ for(const reversed of [false,true])for(const wallIndex of [0,1,2,3])for(const di
   owner.dispose();surfaces.dispose();passed.push('Stacked windows, adjacent door, retained lintel and merged plan wall gaps');
 }
 function context2D(){
-  const ctx={paths:[],fills:[],current:[],font:'',strokeStyle:'',fillStyle:'',lineWidth:1,
-    save(){},restore(){},setTransform(){},clearRect(){this.paths=[];this.fills=[];},fillRect(){},beginPath(){this.current=[];},moveTo(...p){this.current.push(['M',...p]);},lineTo(...p){this.current.push(['L',...p]);},closePath(){this.current.push(['Z']);},
+  const ctx={paths:[],fills:[],current:[],font:'',strokeStyle:'',fillStyle:'',lineWidth:1,saves:0,restores:0,
+    save(){this.saves++;},restore(){this.restores++;},setTransform(){},clearRect(){this.paths=[];this.fills=[];},fillRect(){},beginPath(){this.current=[];},moveTo(...p){this.current.push(['M',...p]);},lineTo(...p){this.current.push(['L',...p]);},closePath(){this.current.push(['Z']);},
     stroke(){this.paths.push({points:structuredClone(this.current),color:this.strokeStyle,width:this.lineWidth});},fill(){this.fills.push({points:structuredClone(this.current),color:this.fillStyle});},clip(){},fillText(){},measureText(s){return {width:s.length*7};},
     createImageData(w,h){return {data:new Uint8ClampedArray(w*h*4)};},putImageData(){}};return ctx;
 }
@@ -144,14 +202,30 @@ function context2D(){
   owner.dispose();owner.dispose();for(const [resource,count]of counts)assert.equal(count,resource===borrowed||resource===trim?0:1);
   assert.throws(()=>owner.makeWall(room,0,borrowed),/disposed/);surfaces.dispose();passed.push('Opening geometry, shared glass/frame and borrowed wall-finish disposal ownership');
 }
+{
+  const surfaces=createLayoutSurfaces(),owner=createLayoutOpeningRenderer({surfaces}),room={...roomBase,openings:[ventOpening()]},borrowed=surfaces.finish('paint'),trim=surfaces.trim();
+  const wall=owner.makeWall(room,0,borrowed),counts=new Map(),track=resource=>{if(!counts.has(resource)){counts.set(resource,0);resource.addEventListener('dispose',()=>counts.set(resource,counts.get(resource)+1));}};
+  for(const m of meshes(wall)){track(m.geometry);track(m.material);}track(borrowed.map);
+  const fans=meshes(wall).filter(m=>m.userData.openingRole.startsWith('vent-')),shared=new Set(fans.flatMap(m=>[m.geometry,m.material]));
+  owner.clear();owner.clear();for(const resource of shared)assert.equal(counts.get(resource),0,'Shared fan resources survive room rebuilds');
+  for(const resource of [borrowed,trim,borrowed.map])assert.equal(counts.get(resource),0);
+  const rebuilt=owner.makeWall(room,0,borrowed),fresh=meshes(rebuilt).filter(m=>m.userData.openingRole.startsWith('vent-'));
+  fresh.forEach((m,i)=>{assert.notEqual(m,fans[i]);assert.equal(m.geometry,fans[i].geometry);assert.equal(m.material,fans[i].material);});
+  owner.dispose();owner.dispose();for(const [resource,count]of counts)assert.equal(count,[borrowed,trim,borrowed.map].includes(resource)?0:1);
+  assert.throws(()=>owner.makeWall(room,0,borrowed),/disposed/);surfaces.dispose();for(const resource of [borrowed,trim,borrowed.map])assert.equal(counts.get(resource),1,'Only the surface owner releases borrowed resources');
+  const ctx=context2D();assert.throws(()=>drawOpeningPlan(ctx,{room,project:()=>[NaN,1]}),/Invalid opening plan projection/);assert.equal(ctx.saves,1);assert.equal(ctx.restores,1,'Projection failure restores the canvas context');
+  passed.push('Vent shared geometry/material reuse, idempotent cleanup, borrowed surface/texture preservation and failed plan projection cleanup');
+}
 
 // Run the complete current renderer body, changing only its WebGL/DOM/controls
 // ports. Actual room, opening, cutaway and export functions remain unchanged.
 const source=fs.readFileSync(path.join(site,'layout/layout-renderer.mjs'),'utf8');
 const renderers=[],controls=[],canvases=[],planCalls=[];let rafId=0;const frames=new Map();
 function node(tag){
-  const ctx=context2D(),n={tagName:tag.toUpperCase(),style:{},dataset:{},children:[],hidden:false,width:0,height:0,
-    append(...children){for(const c of children){c.parent=this;this.children.push(c);}},replaceChildren(...children){this.children=[];this.append(...children);},setAttribute(){},addEventListener(){},removeEventListener(){},remove(){this.removed=true;},
+  const ctx=context2D(),captures=new Set(),n={tagName:tag.toUpperCase(),style:{},dataset:{},children:[],hidden:false,width:0,height:0,listeners:new Map(),
+    append(...children){for(const c of children){c.parent=this;this.children.push(c);}},replaceChildren(...children){this.children=[];this.append(...children);},setAttribute(){},
+    addEventListener(type,handler){this.listeners.set(type,handler);},removeEventListener(type,handler){if(this.listeners.get(type)===handler)this.listeners.delete(type);},remove(){this.removed=true;},
+    setPointerCapture(id){captures.add(id);},hasPointerCapture(id){return captures.has(id);},releasePointerCapture(id){captures.delete(id);},
     getBoundingClientRect:()=>({width:400,height:300,left:0,top:0}),getContext:()=>ctx,toBlob:f=>f(new Blob(['CPU PNG placeholder'],{type:'image/png'})),focus(){},reviewContext:ctx,
     ownerDocument:{defaultView:{addEventListener(){},removeEventListener(){}}}};
   if(tag==='canvas')canvases.push(n);return n;
@@ -169,7 +243,7 @@ class Renderer{
 }
 class PMREM{fromScene(){const texture=new THREE.Texture();return {texture,dispose(){texture.dispose();}};}dispose(){}}
 class Environment extends THREE.Scene{dispose(){}}
-const ports={createOpeningInteraction,wallFrame,openingFrame,printerSilhouetteParts,printerSilhouetteSourceRoles,createPrinterPreviewMeshCache,THREE:{...THREE,WebGLRenderer:Renderer,PMREMGenerator:PMREM},OrbitControls:Controls,RoomEnvironment:Environment,
+const ports={createOpeningInteraction,wallFrame,openingFrame,pickPlanOpening,openingPlanPrimitives,printerSilhouetteParts,printerSilhouetteSourceRoles,createPrinterPreviewMeshCache,THREE:{...THREE,WebGLRenderer:Renderer,PMREMGenerator:PMREM},OrbitControls:Controls,RoomEnvironment:Environment,
   deriveScene:()=>({furniture:[],printers:[],surfaces:[]}),document:{createElement:node,createElementNS:(_,tag)=>node(tag)},devicePixelRatio:1,
   requestAnimationFrame:f=>{frames.set(++rafId,f);return rafId;},cancelAnimationFrame:id=>frames.delete(id),ResizeObserver:class{observe(){}disconnect(){}},
   createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,groupInfo(){},groupingForEntity(){},groupLabel(){},getLayoutEquipment(){},resolveLayoutEquipment(){},createEquipmentMeshCache:()=>({dispose(){}}),createLayoutOpeningRenderer,
@@ -177,7 +251,7 @@ const ports={createOpeningInteraction,wallFrame,openingFrame,printerSilhouettePa
 const body=source.replace(/^import [^\n]+;\r?\n/gm,'').replace('export function createLayoutRenderer(','function createLayoutRenderer(');
 const createRenderer=new Function(...Object.keys(ports),body+'\nreturn createLayoutRenderer;')(...Object.values(ports));
 function flush(){for(let n=0;frames.size;n++){assert.ok(n<20,'Bounded draw queue');const callbacks=[...frames.values()];frames.clear();for(const f of callbacks)f();}}
-function setup(room){const container=node('div'),api=createRenderer({container,catalog:[]}),renderer=renderers.at(-1);api.setState({room,groups:[]},null);api.view('perspective');flush();return {container,api,renderer};}
+function setup(room,options={}){const container=node('div'),api=createRenderer({container,catalog:[],...options}),renderer=renderers.at(-1);api.setState({room,groups:[]},null);api.view('perspective');flush();return {container,api,renderer};}
 // Entering wall placement must recover from a previously zoomed small room.
 // Switching opening types preserves the working view; Fit keeps the tool live.
 {
@@ -196,14 +270,17 @@ function setup(room){const container=node('div'),api=createRenderer({container,c
   api.dispose();passed.push('Opening placement refits a changed room, preserves type-switch zoom and keeps the tool during Fit');
 }
 for(const motion of ['hinged','sliding']){
-  const room=withOpenings();if(motion==='sliding')room.openings[1]=slidingOpening();
+  const room=withOpenings();room.openings.push(ventOpening());if(motion==='sliding')room.openings[1]=slidingOpening();
   const {api,renderer,container}=setup(room),scene=renderer.lastScene,wallGroups=scene.children.flatMap(o=>o.children).flatMap(o=>o.children).filter(o=>o.userData.openingWall);
   assert.equal(wallGroups.length,2);const pane=meshes(scene,'window-glass')[0],leaf=meshes(scene,'door-leaf')[0];assert.ok(pane&&leaf);const paneParent=pane.parent;
+  const ventParts=meshes(scene).filter(m=>m.userData.openingRole?.startsWith('vent-')),ventResources=new Map();assert.equal(ventParts.length,13);
+  for(const m of ventParts)for(const resource of [m.geometry,m.material])if(!ventResources.has(resource)){ventResources.set(resource,0);resource.addEventListener('dispose',()=>ventResources.set(resource,ventResources.get(resource)+1));}
   assert.equal(meshes(scene,'door-track').length,motion==='sliding'?1:0);
   const perspective=controls.at(-1),camera=perspective.object;camera.position.set(2,1.2,1.5);camera.lookAt(2,1.2,0);perspective.change();flush();assert.ok(wallGroups.every(w=>w.visible));
   api.setOptions({walls:false});flush();assert.ok(wallGroups.every(w=>!w.visible));assert.ok(!renderer.calls.at(-1).all.some(o=>o.id),'Frames, panes and leaves all follow wall toggle');
   api.view('top');flush();const overlay=container.children.find(n=>n.className==='layout-plan-measurements');assert.equal(overlay.hidden,false,'Plan symbols do not require measurements or 3D walls');
   const live=planCalls.at(-1);assert.equal(live.ctx,overlay.reviewContext);assert.deepEqual(live.paths,openingPlanPrimitives(room));
+  assert.equal(live.paths.filter(p=>p.role==='vent-blade'&&p.openingId==='vent-a').length,4);
   const before=planCalls.length,result=await api.exportImage({width:400});assert.equal(result.projection,'orthographic-floorplan');const png=planCalls.slice(before).find(c=>c.ctx!==live.ctx);assert.ok(png);assert.equal(png.room,room);assert.deepEqual(png.paths,live.paths,'PNG and live plan must share exact source-mm symbols');
   api.setOptions({walls:true,dark:true});api.view('perspective');camera.position.set(2,1.2,1.5);camera.lookAt(2,1.2,0);perspective.change();flush();assert.ok(wallGroups.every(w=>w.visible));
   const preview=renderer.calls.at(-1).all,paneSnapshot=preview.find(o=>o.role==='window-glass');assert.ok(paneSnapshot);let paneDisposals=0;pane.geometry.addEventListener('dispose',()=>paneDisposals++);pane.material.addEventListener('dispose',()=>paneDisposals++);
@@ -213,11 +290,50 @@ for(const motion of ['hinged','sliding']){
   assert.equal(transparent.all.find(o=>o.role==='window-glass').object,pane);assert.equal(pane.parent,paneParent);assert.equal(paneDisposals,0,'Borrowed panes cannot be disposed by PNG cleanup');
   for(const p of preview){const actual=exportCalls.flatMap(c=>c.all).find(o=>o.object===p.object);assert.ok(actual,'Full PNG uses the same actual opening meshes');assert.equal(actual.geometry,p.geometry);assert.equal(actual.material,p.material);vecNear(actual.matrix,p.matrix,1e-12);}
   renderer.failBase=true;await assert.rejects(api.exportImage({width:400}),/fixture render failure/);flush();assert.equal(pane.parent,paneParent);assert.equal(paneDisposals,0);
+  for(const count of ventResources.values())assert.equal(count,0,'Successful and failed PNG export borrow the live vent resources');
   camera.position.set(2,1.2,-1);camera.lookAt(2,1.2,0);perspective.change();flush();const windowWall=wallGroups.find(w=>w.userData.wallIndex===0);assert.equal(windowWall.visible,false);assert.ok(!renderer.calls.at(-1).all.some(o=>o.id==='window-a'),'Window frame and pane share the wall cutaway');
   api.setOptions({walls:false,dark:false});api.view('top');flush();assert.equal(overlay.hidden,false);assert.equal(planCalls.at(-1).options.dark,false);
-  api.setState({room:{...room,openings:[]},groups:[]},null);flush();assert.equal(overlay.hidden,true);assert.equal(meshes(scene,'door-leaf').length,0);assert.equal(paneDisposals,0,'Shared geometry and material live until renderer teardown');
-  api.setState({room,groups:[]},null);flush();assert.equal(meshes(scene,'door-leaf').length,1,'A-to-empty-to-A does not duplicate openings');assert.equal(meshes(scene,'door-track').length,motion==='sliding'?1:0);api.dispose();api.dispose();assert.equal(paneDisposals,2);assert.equal(frames.size,0);
-  passed.push(`Actual ${motion} renderer lifecycle: cutaway/toggle, top symbols, both PNG paths, transparent order/failure restoration, A-empty-A and disposal`);
+  api.setState({room:{...room,openings:[]},groups:[]},null);flush();assert.equal(overlay.hidden,true);assert.equal(meshes(scene,'door-leaf').length,0);assert.equal(meshes(scene,'vent-panel').length,0);assert.equal(paneDisposals,0,'Shared geometry and material live until renderer teardown');
+  api.setState({room,groups:[]},null);flush();assert.equal(meshes(scene,'door-leaf').length,1,'A-to-empty-to-A does not duplicate openings');assert.equal(meshes(scene,'door-track').length,motion==='sliding'?1:0);assert.equal(meshes(scene,'vent-panel').length,1);api.dispose();api.dispose();assert.equal(paneDisposals,2);assert.equal(frames.size,0);
+  for(const count of ventResources.values())assert.equal(count,1,'Actual renderer teardown releases each owned vent resource exactly once');
+  passed.push(`Actual ${motion}/window/vent renderer lifecycle: cutaway/toggle, top symbols, both PNG paths, transparent order/failure restoration, A-empty-A and disposal`);
+}
+// Exercise actual production pointer handlers, with real Three.js raycasting
+// and camera projection. The DOM/WebGL ports supply no pick IDs or hit results.
+for(const reversed of [false,true])for(const diagonal of [false,true])for(const wallIndex of [0,1,2,3]){
+  const polygon=roomBase.polygonMm.map(([x,z])=>diagonal?[x*.8-z*.6,x*.6+z*.8]:[x,z]);if(reversed)polygon.reverse();
+  const o={...ventOpening(wallIndex),offsetMm:700},room={...roomBase,polygonMm:polygon,openings:[o]},selected=[];
+  const {api,renderer,container}=setup(room,{onOpeningSelect:id=>selected.push(id)}),f=wallFrame(room,wallIndex),perspective=controls.at(-1),camera=perspective.object;
+  const center=[f.startMm[0]+f.along[0]*(o.offsetMm+o.widthMm/2),f.startMm[1]+f.along[1]*(o.offsetMm+o.widthMm/2)],height=(o.sillMm+o.heightMm/2)*.001;
+  camera.position.set((center[0]+f.inward[0]*1200)*.001,height,(center[1]+f.inward[1]*1200)*.001);camera.lookAt(center[0]*.001,height,center[1]*.001);perspective.change();flush();
+  function clickWorld(point){
+    const p=point.clone().project(renderer.lastCamera),before=selected.length,event={clientX:(p.x+1)*200,clientY:(1-p.y)*150,pointerId:71,button:0,isPrimary:true,stopImmediatePropagation(){},preventDefault(){}};
+    api.canvas.listeners.get('pointerdown')(event);api.canvas.listeners.get('pointerup')(event);flush();assert.equal(selected.length,before+1);assert.equal(selected.at(-1),o.id);assert.equal(api.canvas.hasPointerCapture(71),false);
+  }
+  clickWorld(new THREE.Vector3(center[0]*.001,height,center[1]*.001));
+  for(const dark of [false,true]){
+    api.setOptions({walls:false,dark});api.view('top');flush();
+    const overlay=container.children.find(n=>n.className==='layout-plan-measurements');assert.equal(overlay.hidden,false);
+    const symbol=openingPlanPrimitives(room).filter(p=>p.role==='vent-blade'||p.role==='vent-hub');
+    for(const primitive of symbol){const p=primitive.pointsMm.reduce((s,p)=>[s[0]+p[0]/primitive.pointsMm.length,s[1]+p[1]/primitive.pointsMm.length],[0,0]);clickWorld(new THREE.Vector3(p[0]*.001,0,p[1]*.001));}
+    const live=planCalls.at(-1),start=planCalls.length,result=await api.exportImage({width:400});assert.equal(result.projection,'orthographic-floorplan');
+    const png=planCalls.slice(start).find(c=>c.ctx!==live.ctx);assert.ok(png);assert.deepEqual(png.paths,live.paths);assert.equal(png.options.dark,dark);
+  }
+  if(!reversed&&!diagonal&&wallIndex===0){
+    const original=meshes(renderer.lastScene).filter(m=>m.userData.openingRole?.startsWith('vent-')),snapshot=original.map(m=>({geometry:m.geometry,material:m.material,matrix:m.matrixWorld.toArray()}));
+    const changes=[{...o,widthMm:600,heightMm:180,sillMm:1100},{...doorOpening(0),id:o.id},{...windowOpening(0),id:o.id}];
+    for(const next of changes){
+      api.setState({room:{...room,openings:[next]},groups:[]},null);flush();
+      assert.equal(meshes(renderer.lastScene,'vent-panel').length,next.type==='vent'?1:0);assert.equal(meshes(renderer.lastScene,'door-leaf').length,next.type==='door'?1:0);assert.equal(meshes(renderer.lastScene,'window-glass').length,next.type==='window'?1:0);
+      assert.equal(planCalls.at(-1).paths.some(p=>p.role==='vent-hub'),next.type==='vent');
+    }
+    api.setState({room:JSON.parse(JSON.stringify(room)),groups:[]},null);flush();
+    const restored=meshes(renderer.lastScene).filter(m=>m.userData.openingRole?.startsWith('vent-'));assert.equal(restored.length,original.length);
+    restored.forEach((m,i)=>{assert.equal(m.geometry,snapshot[i].geometry);assert.equal(m.material,snapshot[i].material);vecNear(m.matrixWorld.toArray(),snapshot[i].matrix,1e-12);});
+    assert.equal(meshes(renderer.lastScene,'door-leaf').length,0);assert.equal(meshes(renderer.lastScene,'window-glass').length,0);
+    assert.ok(!planCalls.at(-1).paths.some(p=>p.role.startsWith('door-')||p.role==='window-line'));
+  }
+  api.dispose();assert.equal(frames.size,0);passed.push(`Actual vent pointer selection in 3D and both themed plans, matching PNG ${reversed?'CW':'CCW'}/${diagonal?'diagonal':'axis'}/wall${wallIndex}`);
 }
 // Geometry edits invalidate makeRoom even when polygon and finishes are equal.
 {

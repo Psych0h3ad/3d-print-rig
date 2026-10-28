@@ -1,5 +1,5 @@
 import * as THREE from '../viewer/vendor-r180/three.module.js';
-import {wallFrame,openingFrame,wallPanels,doorPlan} from './layout-openings.mjs?v=8fab3154ec519f37f666';
+import {wallFrame,openingFrame,wallPanels,doorPlan} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
 import {wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 
 // Architectural planning geometry, in metres. The room polygon is the clear
@@ -7,12 +7,19 @@ import {wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844'
 const MM=.001,DEPTH=50;
 const point=(f,d,n=0)=>[f.startMm[0]+f.along[0]*d+f.inward[0]*n,f.startMm[1]+f.along[1]*d+f.inward[1]*n];
 const frameWidth=o=>Math.min(35,o.widthMm*.1,o.heightMm*.1);
+// The same static four-blade motif supplies the wall mesh and plan/PNG symbol.
+// This is a generic planning representation, with no airflow or product data.
+const fanBlade=[[.16,-.08],[.43,-.23],[.75,-.16],[.81,.1],[.54,.3],[.17,.16]];
+const circle=(radius,segments=32)=>Array.from({length:segments},(_,i)=>{const a=i*Math.PI*2/segments;return [Math.cos(a)*radius,Math.sin(a)*radius];});
+const rotate=([x,y],angle)=>[x*Math.cos(angle)-y*Math.sin(angle),x*Math.sin(angle)+y*Math.cos(angle)];
 
 export function createLayoutOpeningRenderer({surfaces}){
-  const boxGeometry=new THREE.BoxGeometry(1,1,1),geometries=new Set();let disposed=false;
+  const boxGeometry=new THREE.BoxGeometry(1,1,1),geometries=new Set(),ventGeometries=new Map();let disposed=false;
   const frame=new THREE.MeshStandardMaterial({color:'#deded7',roughness:.76,metalness:.05});frame.name='layout-opening-frame';
   const leaf=new THREE.MeshStandardMaterial({color:'#ad9475',roughness:.78});leaf.name='layout-door-leaf';
   const glass=new THREE.MeshStandardMaterial({color:'#a9c9d5',roughness:.18,metalness:0,transparent:true,opacity:.28,depthWrite:false});glass.name='layout-window-glass';
+  const ventRecess=new THREE.MeshStandardMaterial({color:'#23343d',roughness:.85});ventRecess.name='layout-vent-recess';
+  const ventBlade=new THREE.MeshStandardMaterial({color:'#80939d',roughness:.66,metalness:.12});ventBlade.name='layout-vent-blade';
   function box(root,f,offset,bottom,width,height,depth,normal,mat,role,id){
     const mesh=new THREE.Mesh(boxGeometry,mat),p=point(f,offset+width/2,normal);
     mesh.position.set(p[0]*MM,(bottom+height/2)*MM,p[1]*MM);mesh.rotation.y=-Math.atan2(f.along[1],f.along[0]);mesh.scale.set(width*MM,height*MM,depth*MM);
@@ -22,6 +29,34 @@ export function createLayoutOpeningRenderer({surfaces}){
     const shape=new THREE.Shape(polygon.map(([x,z])=>new THREE.Vector2(x*MM,-z*MM)));
     const geometry=new THREE.ExtrudeGeometry(shape,{depth:height*MM,bevelEnabled:false,steps:1,curveSegments:1});geometry.rotateX(-Math.PI/2);geometries.add(geometry);
     const mesh=new THREE.Mesh(geometry,mat);mesh.position.y=bottom*MM;mesh.userData.openingId=id;mesh.userData.openingRole=role;mesh.receiveShadow=true;root.add(mesh);return mesh;
+  }
+  function ventGeometry(role){
+    if(!ventGeometries.has(role)){
+      const contour=role==='vent-blade'?fanBlade:circle(role==='vent-hub'?.2:1);
+      const shape=new THREE.Shape(contour.map(p=>new THREE.Vector2(...p)));
+      if(role==='vent-ring')shape.holes.push(new THREE.Path(circle(.89).reverse().map(p=>new THREE.Vector2(...p))));
+      const geometry=new THREE.ExtrudeGeometry(shape,{depth:1,bevelEnabled:false,steps:1,curveSegments:1});geometry.translate(0,0,-.5);
+      ventGeometries.set(role,geometry);
+    }
+    return ventGeometries.get(role);
+  }
+  function vent(root,f,o,w){
+    const width=o.widthMm-2*w,height=o.heightMm-2*w,radius=Math.min(width,height)*.44;
+    box(root,f,w,o.sillMm+w,width,height,DEPTH,-25,ventRecess,'vent-panel',o.id);
+    // Both faces remain recognizable. Symmetric extrusion depth avoids a
+    // reflected mesh or negative scale when the room winding is reversed.
+    for(const normal of [1,-DEPTH-1]){
+      const p=point(f,o.widthMm/2,normal);
+      const add=(role,mat,depth,angle=0)=>{
+        const mesh=new THREE.Mesh(ventGeometry(role),mat);
+        mesh.position.set(p[0]*MM,(o.sillMm+o.heightMm/2)*MM,p[1]*MM);
+        mesh.rotation.y=-Math.atan2(f.along[1],f.along[0]);mesh.rotateZ(angle);mesh.scale.set(radius*MM,radius*MM,depth*MM);
+        mesh.userData.openingId=o.id;mesh.userData.openingRole=role;mesh.receiveShadow=true;root.add(mesh);
+      };
+      add('vent-ring',frame,4);
+      for(let i=0;i<4;i++)add('vent-blade',ventBlade,3,i*Math.PI/2);
+      add('vent-hub',frame,6);
+    }
   }
   function makeWall(room,index,finish){
     if(disposed)throw Error('Layout opening renderer disposed');
@@ -45,6 +80,9 @@ export function createLayoutOpeningRenderer({surfaces}){
       if(o.type==='window'){
         box(root,f,w,s,o.widthMm-2*w,w,DEPTH,-25,frame,'frame-sill',o.id);
         box(root,f,w,s+w,o.widthMm-2*w,h-2*w,6,-25,glass,'window-glass',o.id);
+      }else if(o.type==='vent'){
+        box(root,f,w,s,o.widthMm-2*w,w,DEPTH,-25,frame,'frame-sill',o.id);
+        vent(root,f,o,w);
       }else{
         const plan=doorPlan(room,o),mesh=prism(root,plan.leafPolygonMm,0,h-plan.frameMm,leaf,'door-leaf',o.id);
         mesh.userData.doorMotion=plan.motion??'hinged';
@@ -55,7 +93,7 @@ export function createLayoutOpeningRenderer({surfaces}){
     return root;
   }
   function clear(){for(const g of geometries)g.dispose();geometries.clear();}
-  return {makeWall,clear,dispose(){if(disposed)return;disposed=true;clear();boxGeometry.dispose();frame.dispose();leaf.dispose();glass.dispose();}};
+  return {makeWall,clear,dispose(){if(disposed)return;disposed=true;clear();for(const g of ventGeometries.values())g.dispose();ventGeometries.clear();boxGeometry.dispose();frame.dispose();leaf.dispose();glass.dispose();ventRecess.dispose();ventBlade.dispose();}};
 }
 
 // Both native top view and flat PNG use these same source-mm paths. Symbols
@@ -75,6 +113,14 @@ export function openingPlanPrimitives(room){
     for(const x of [0,o.widthMm-w])add('frame',[point(f,x),point(f,x+w),point(f,x+w,-DEPTH),point(f,x,-DEPTH)],o.id,true);
     if(o.type==='window'){
       for(const n of [-19,-31])add('window-line',[point(f,w,n),point(f,o.widthMm-w,n)],o.id);
+    }else if(o.type==='vent'){
+      add('vent-panel',[point(f,0),point(f,o.widthMm),point(f,o.widthMm,-DEPTH),point(f,0,-DEPTH)],o.id,true);
+      // A conventional face-on fan badge identifies the elevated wall vent in
+      // top view. Its centre stays on the opening's selectable wall span.
+      const radius=Math.min(100,(o.widthMm-2*w)*.44),at=([x,y])=>point(f,o.widthMm/2+x*radius,-DEPTH/2+y*radius);
+      add('vent-ring',circle(1).map(at),o.id,true);
+      for(let i=0;i<4;i++)add('vent-blade',fanBlade.map(p=>at(rotate(p,i*Math.PI/2))),o.id,true);
+      add('vent-hub',circle(.2).map(at),o.id,true);
     }else{
       const p=doorPlan(room,o);add('door-leaf',p.leafPolygonMm,o.id,true);
       if(p.motion==='sliding'){
@@ -92,10 +138,12 @@ export function openingPlanPrimitives(room){
 export function drawOpeningPlan(ctx,{room,project,dark=false,pixelScale=1}){
   const paths=openingPlanPrimitives(room),scale=Math.max(1,Math.min(8,pixelScale));
   ctx.save();
-  for(const p of paths){
-    ctx.beginPath();p.pointsMm.forEach((v,i)=>{const xy=project(...v);if(!xy.every(Number.isFinite))throw Error('Invalid opening plan projection');i?ctx.lineTo(...xy):ctx.moveTo(...xy);});if(p.closed)ctx.closePath();
-    ctx.strokeStyle=dark?'#d2e2e8':'#344c5a';ctx.lineWidth=(p.role==='wall'?1.5:1)*scale;
-    if(p.closed){ctx.fillStyle=p.role==='door-leaf'?'#ad9475':dark?'#69808b':'#deded7';ctx.fill();}ctx.stroke();
-  }
-  ctx.restore();return paths;
+  try{
+    for(const p of paths){
+      ctx.beginPath();p.pointsMm.forEach((v,i)=>{const xy=project(...v);if(!xy.every(Number.isFinite))throw Error('Invalid opening plan projection');i?ctx.lineTo(...xy):ctx.moveTo(...xy);});if(p.closed)ctx.closePath();
+      ctx.strokeStyle=dark?'#d2e2e8':'#344c5a';ctx.lineWidth=(p.role==='wall'?1.5:1)*scale;
+      if(p.closed){ctx.fillStyle=p.role==='door-leaf'?'#ad9475':p.role==='vent-ring'?'#23343d':p.role==='vent-blade'?'#80939d':dark?'#69808b':'#deded7';ctx.fill();}ctx.stroke();
+    }
+    return paths;
+  }finally{ctx.restore();}
 }

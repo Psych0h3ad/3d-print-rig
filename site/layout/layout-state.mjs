@@ -6,7 +6,7 @@ import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-c
 import {getLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
 import {isGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
-import {openingProblems,retainRoomOpenings,doorPlan,doorWallConflicts,withDoorMotion} from './layout-openings.mjs?v=8fab3154ec519f37f666';
+import {openingProblems,retainRoomOpenings,doorPlan,doorWallConflicts,withDoorMotion} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
 
 export const LIMITS = Object.freeze({maxFurniture: 64, maxPrinters: 128, maxRoomVertices: 32,
   maxFootprintVertices: 32, maxLevels: 32, maxCoordinateMm: 1000000, maxDimensionMm: 100000,

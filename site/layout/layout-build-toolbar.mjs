@@ -6,7 +6,8 @@ const tools=[
 ['shelf','layout.shelf','M4 3h16v18H4ZM4 9h16M4 15h16'],
 ['window','layout.openings.window','M4 4h16v16H4ZM12 4v16M4 12h16'],
 ['hinged','layout.openings.hinged','M5 21V3h14v18M5 3l10 3v15M11 12h1'],
-['sliding','layout.openings.sliding','M3 4h18v16H3ZM12 4v16M5 12h5m-2-2 2 2-2 2M19 12h-5m2-2-2 2 2 2']
+['sliding','layout.openings.sliding','M3 4h18v16H3ZM12 4v16M5 12h5m-2-2 2 2-2 2M19 12h-5m2-2-2 2 2 2'],
+['vent','layout.openings.vent','M3 3h18v18H3ZM12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM12 10C7 5 17 4 14 10M14 12c5-5 6 5 0 2M12 14c5 5-5 6-2 0M10 12c-5 5-6-5 0-2']
 ];
 export function createLayoutBuildToolbar({container,onAction,t}){
 if(!container?.ownerDocument||typeof onAction!=='function'||typeof t!=='function')throw TypeError('Layout build toolbar requires a container, actions and translations');
@@ -19,7 +20,8 @@ if(disposed||disabled)return;
 if(kind==='select')onAction({type:'select-tool'});
 else if(kind==='printer')onAction({type:'open-printer-catalog'});
 else if(kind==='desk'||kind==='shelf')onAction({type:'add',kind});
-else onAction({type:'room-opening-place',kind:kind==='window'?'window':'door',...(kind==='window'?{}:{motion:kind})});
+else if(kind==='window'||kind==='vent')onAction({type:'room-opening-place',kind});
+else onAction({type:'room-opening-place',kind:'door',motion:kind});
 }
 for(const [index,[kind,key,path]]of tools.entries()){
 const button=doc.createElement('button');button.type='button';button.dataset.layoutBuild=kind;
@@ -48,14 +50,14 @@ container.replaceChildren(root);container.hidden=false;refresh();
 return Object.freeze({
 setState({busy=false,roomEditing=false,placementKind=null,openingTool=null}={}){
 if(disposed)return;
-const nextDisabled=!!(busy||roomEditing),next=openingTool?(openingTool.kind==='window'?'window':openingTool.motion||'hinged'):placementKind||'select';
+const nextDisabled=!!(busy||roomEditing),next=openingTool?(openingTool.kind==='door'?openingTool.motion||'hinged':openingTool.kind):placementKind||'select';
 if(disabled===nextDisabled&&active===next)return;
 disabled=nextDisabled;active=next;const index=tools.findIndex(row=>row[0]===active);if(index>=0)tab=index;refresh();
 },
 setLocale(t){if(disposed)return;translate=t;refresh();},
 handleKey(event){
 if(disposed||disabled||event.defaultPrevented||event.repeat||event.isComposing||event.altKey||event.ctrlKey||event.metaKey||event.shiftKey||event.target?.closest?.('input,textarea,select,[contenteditable]:not([contenteditable="false"]),dialog'))return false;
-const index=Number(event.key)-1;if(!/^[1-7]$/.test(event.key)||!tools[index])return false;
+const index=Number(event.key)-1;if(!/^[1-8]$/.test(event.key)||!tools[index])return false;
 event.preventDefault();run(tools[index][0]);return true;
 },
 dispose(){if(disposed)return;disposed=true;for(const cleanup of cleanups)cleanup();root.remove();container.hidden=true;}
