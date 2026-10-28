@@ -24,7 +24,7 @@ test('legacy absent property stays absent and version1 roundtrip',()=>{
   assert.deepEqual(S.parseLayout(S.serializeLayout(valid([window,door]))),valid([window,door]));
 });
 test('strict schema rejects invalid entries, foreign keys and nonfinite values',()=>{
-  for(const patch of [{type:'vent'},{id:'__proto__'},{widthMm:0},{widthMm:-1},{offsetMm:-1},{sillMm:-1},
+  for(const patch of [{type:'unsupported-opening'},{id:'__proto__'},{widthMm:0},{widthMm:-1},{offsetMm:-1},{sillMm:-1},
     {wallIndex:.5},{wallIndex:4},{wallIndex:-1},{heightMm:3000},{offsetMm:3500},{widthMm:Infinity},{heightMm:NaN},{extra:true},
     {hinge:'left'},{openAngleDeg:90},{id:'bad id'},{widthMm:'100'},{widthMm:Number.MIN_VALUE},{heightMm:.1}])assert.equal(S.validateState({...base,room:{...room,openings:[{...window,...patch}]}}).ok,false);
   for(const patch of [{sillMm:1},{hinge:'both'},{openAngleDeg:-1},{openAngleDeg:121},{openAngleDeg:NaN}])assert.equal(S.validateState({...base,room:{...room,openings:[{...door,...patch}]}}).ok,false);

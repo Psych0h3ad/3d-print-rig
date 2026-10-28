@@ -1,5 +1,5 @@
 // Present existing placement findings without changing the placement decision.
-import {hasMessage} from './layout-i18n.mjs?v=885e0097f16440806cca';
+import {hasMessage} from './layout-i18n.mjs?v=fa46ae57fe7804c8585a';
 export function placementStatus(proposal,t){
   if(proposal?.valid)return t('layout.place.ready');
   const fallback=t('layout.place.blocked');

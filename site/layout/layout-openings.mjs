@@ -34,7 +34,7 @@ export function openingProblems(room){
     const path=`room.openings[${i}]`;
     if(!plain(o)){add('OPENING_INVALID',path);return;}
     const motion=o.motion??'hinged',allowed=o.type==='door'?[...common,...(motion==='sliding'?slidingFields:hingedFields)]:common;
-    if(!['window','door'].includes(o.type)||Object.keys(o).some(k=>!allowed.includes(k))||!safeId(o.id)
+    if(!['window','door','vent'].includes(o.type)||Object.keys(o).some(k=>!allowed.includes(k))||!safeId(o.id)
       ||!['offsetMm','widthMm','heightMm','sillMm'].every(k=>finite(o[k]))
       ||o.widthMm<1||o.heightMm<1||o.offsetMm<0||o.sillMm<0
       ||(o.type==='door'&&(o.sillMm!==0||(Object.hasOwn(o,'motion')&&!['hinged','sliding'].includes(o.motion))||!['hinged','sliding'].includes(motion)
@@ -117,15 +117,15 @@ export function withDoorMotion(opening,motion){
   return {...result,motion,...(motion==='sliding'?{slideDirection:'left',openPercent:0}:{hinge:'left',openAngleDeg:90})};
 }
 export function newRoomOpening(room,{id,type,wallIndex}){
-  if(!['door','window'].includes(type)||!safeId(id))throw Object.assign(new Error('Invalid opening'),{code:'OPENING_INVALID'});
+  if(!['door','window','vent'].includes(type)||!safeId(id))throw Object.assign(new Error('Invalid opening'),{code:'OPENING_INVALID'});
   if(!Number.isInteger(wallIndex)||wallIndex<0||wallIndex>=room.polygonMm.length)throw Object.assign(new Error('Invalid wall'),{code:'OPENING_WALL'});
-  const frame=wallFrame(room,wallIndex),heightMm=Math.min(type==='door'?2100:1000,room.wallHeightMm),sillMm=type==='door'?0:Math.min(900,room.wallHeightMm-heightMm);
+  const frame=wallFrame(room,wallIndex),heightMm=Math.min(type==='door'?2100:type==='vent'?300:1000,room.wallHeightMm),sillMm=type==='door'?0:Math.min(type==='vent'?1800:900,room.wallHeightMm-heightMm);
   const occupied=(room.openings??[]).filter(o=>o.wallIndex===wallIndex&&Math.max(o.sillMm,sillMm)<Math.min(o.sillMm+o.heightMm,sillMm+heightMm)).map(o=>[o.offsetMm,o.offsetMm+o.widthMm]).sort((a,b)=>a[0]-b[0]);
   let last=0;const gaps=[];
   for(const [a,b] of occupied){if(a>last)gaps.push([last,a]);last=Math.max(last,b);}if(last<frame.lengthMm)gaps.push([last,frame.lengthMm]);
   gaps.sort((a,b)=>(b[1]-b[0])-(a[1]-a[0]));const gap=gaps[0];
   if(!gap||gap[1]-gap[0]<100)throw Object.assign(new Error('Wall has no free span'),{code:'OPENING_NO_SPACE'});
-  const widthMm=Math.min(type==='door'?900:1200,gap[1]-gap[0]);
+  const widthMm=Math.min(type==='door'?900:type==='vent'?300:1200,gap[1]-gap[0]);
   return {id,type,wallIndex,offsetMm:gap[0]+(gap[1]-gap[0]-widthMm)/2,widthMm,heightMm,sillMm,...(type==='door'?{hinge:'left',openAngleDeg:90}:{})};
 }
 export function doorWallConflicts(room,opening){

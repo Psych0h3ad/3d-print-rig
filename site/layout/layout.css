@@ -377,9 +377,11 @@ input[aria-invalid="true"] { border-color: var(--layout-error); }
 .layout-opening-actions, .layout-opening-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .layout-opening-actions { margin: 10px 0; }
 .layout-opening-actions button { justify-content: center; min-width: 0; }
-.layout-opening-presets { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin: 6px 0; }
+.layout-opening-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; margin: 6px 0; }
 .layout-opening-presets button { flex-direction: column; gap: 4px; min-height: 50px; padding: 6px 3px; font-size: 11px; overflow-wrap: anywhere; }
 .layout-opening-presets button span { min-width: 0; }
+.layout-page .layout-build-toolbar { flex-wrap: wrap; }
+.layout-page .layout-build-toolbar button { flex: 1 0 64px; }
 .layout-opening-manual, .layout-opening-inventory, .layout-room-settings { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
 .layout-opening-manual > summary, .layout-opening-inventory > summary, .layout-room-settings > summary { padding: 5px 0; color: var(--ink); cursor: pointer; font-size: 12px; font-weight: 600; }
 .layout-room-settings[open] > summary { margin-bottom: 10px; }

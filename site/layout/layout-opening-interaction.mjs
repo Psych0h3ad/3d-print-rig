@@ -1,4 +1,4 @@
-import {wallFrame,newRoomOpening,withDoorMotion,MAX_ROOM_OPENINGS,openingProblems} from './layout-openings.mjs?v=8fab3154ec519f37f666';
+import {wallFrame,newRoomOpening,withDoorMotion,MAX_ROOM_OPENINGS,openingProblems} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
 
 // Free spans respect vertical overlap, just like the saved room contract.
 export function openingSpans(room,opening){
