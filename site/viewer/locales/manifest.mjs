@@ -1,3 +1,3 @@
 // Generated locale revisions; no online translation at runtime.
-export {definitions} from './catalog.mjs?v=d0e310fea38878a960dd';
-export const localeLoaders={es:()=>import('./es.mjs?v=cdb7177cb937a8f18847'),ko:()=>import('./ko.mjs?v=60210f8d42f08be25c09'),ru:()=>import('./ru.mjs?v=395279ce7f63fe8e483c'),de:()=>import('./de.mjs?v=9b7b89acfa91f81aa5b9')};
+export {definitions} from './catalog.mjs?v=11d16234c67036162528';
+export const localeLoaders={es:()=>import('./es.mjs?v=831f69b3224bf522ac20'),ko:()=>import('./ko.mjs?v=7ef2121afbe030a6706a'),ru:()=>import('./ru.mjs?v=db650bf9e28d1faa9d9f'),de:()=>import('./de.mjs?v=474ca5a41ee2c3314c59')};

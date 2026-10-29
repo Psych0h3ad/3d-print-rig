@@ -4,10 +4,10 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {loadMonolithData} from './monolith-machine.js?v=d3d264afdf035272955f';
+import {loadMonolithData} from './monolith-machine.js?v=924ab920ed898effe9fa';
 import {setupChangerBank} from './changer-bank.js?v=f5029fbbdd962cbe2c85';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=8f7eaf634125babd0b9a';
-import {headPrinterLink} from './head-navigation.mjs?v=d50a22ffaa747b8d81fb';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=586d3d236d03bc788d5a';
+import {headPrinterLink} from './head-navigation.mjs?v=a6f81970a700cc593529';
 import {headBuilderDimensions} from './configuration-model.js?v=ffcb5378701b391d2cab';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {headPrintedCounts,visibleInAsset} from './head-printed-parts.mjs?v=8f8ed3d5c06ff2b0f6c8';
@@ -16,8 +16,8 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {setupConfigurations} from './configurations.js?v=736bb956916c1a374439';
-import {setupPublicInfo} from './public-info.js?v=b8378223211086a386b7';
+import {setupConfigurations} from './configurations.js?v=655ad6ba014e5bea77b7';
+import {setupPublicInfo} from './public-info.js?v=7abd99f8923ec2734d96';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
@@ -26,8 +26,9 @@ import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=53686dc5507631f3c2e4';
+import {setupHeadBuilder} from './builder-ui.mjs?v=4f1798463546a6e64fcc';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=7177100fadcc7fdc8975';
+import {setupSurfaceStep} from './step-surface-ui.mjs?v=a52ee76683f66c275493';
 import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 export async function mount(scope){
 let machineRegistry,toolBank,bankRig;
@@ -241,6 +242,7 @@ try{
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
  let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=39077ecd2fb888ab969b');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:()=>toolBank.options.getExtras(),pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
+ setupSurfaceStep({button:$('#buildSurfaceStep'),scope,isBusy:()=>controller.busy,getSnapshot:()=>({cached,bench,THREE,catalog,href:location.href,configuration:currentVariant.id,bankEnabled:toolBank.options.getExtras().tool_bank?.enabled===true})});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}
 
 setupSceneDisplay(scene,renderer,camera,scope,THREE);

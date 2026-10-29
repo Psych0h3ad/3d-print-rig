@@ -334,6 +334,12 @@ def validate_mounting_evidence(target):
 
 
 def _audit_built_runtime(target):
+    # Selected-surface STEP is independently audited against the admitted real
+    # delivered head meshes. It never qualifies the unfinished native producer.
+    subprocess.run(['node', '--max-old-space-size=384',
+                    '--experimental-loader', './scripts/three-test-loader.mjs',
+                    str(ROOT/'scripts/audit_step_surface_assets.mjs'), str(target)],
+                   cwd=ROOT, check=True, timeout=120)
     # Require genuine UHF rear5 author geometry and every current Yavoth
     # consumer. Internal diagnostic reports are temporary, never site payload.
     with tempfile.TemporaryDirectory(prefix='yavoth-source-release-') as folder:

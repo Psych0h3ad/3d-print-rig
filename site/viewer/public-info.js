@@ -1,7 +1,7 @@
 import {workspaceTask,workspaceListen,WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setupProductDirectory} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=882003138e8f3ee3b5fd';
-import {messageSource} from './i18n.mjs?v=631b4aa663eb7a31366f';
+import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=15a119ebbec235b0f98c';
+import {messageSource} from './i18n.mjs?v=0848a410daf1b9fdb11b';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
@@ -26,7 +26,7 @@ export async function setupPublicInfo({includeDownloads=true,machineId=null}={})
  appendPressThanks(sb);
  let entries=[];
  const currentMachine=()=>document.body.dataset.workspaceKind==='printer'?(document.body.dataset.machineId||machineId):null;
- const openDownloads=()=>{mountStepDownloadLibrary(db,entries,currentMachine());const credits=node('button','出典・ライセンス');credits.onclick=()=>{downloads.close();sources.showModal()};db.append(credits);downloads.showModal()};
+ const openDownloads=()=>{mountStepDownloadLibrary(db,entries,currentMachine());const custom=$('#buildSurfaceStep');if(custom&&!custom.disabled){const action=node('button',messageSource('surface.open'));action.dataset.i18nId='surface.open';action.onclick=()=>{downloads.close();custom.click()};db.prepend(action)}const credits=node('button','出典・ライセンス');credits.onclick=()=>{downloads.close();sources.showModal()};db.append(credits);downloads.showModal()};
  downloadButton.onclick=openDownloads;
  const updateShortcut=()=>{const shortcut=$('#machineStepDownloads');if(shortcut){shortcut.hidden=!entries.some(item=>item.id===currentMachine());shortcut.setAttribute('aria-haspopup','dialog');shortcut.onclick=openDownloads}};
  new WorkspaceMutationObserver(updateShortcut).observe(document.body,{attributes:true,attributeFilter:['data-machine-id']});

@@ -11349,6 +11349,78 @@
     "e3ng.mods.hex": {
       "source_revision": "f55d2d7ba1e52d1c087f",
       "text": "Sechseckmuster"
+    },
+    "surface.open": {
+      "source_revision": "acbe3fd26b5cb5816a46",
+      "text": "Benutzerdefinierte STEP-Flächen"
+    },
+    "surface.title": {
+      "source_revision": "49b858ffe6955f3f7b40",
+      "text": "Angezeigte Druckteile exportieren"
+    },
+    "surface.scope": {
+      "source_revision": "2445b537596c55a03b6d",
+      "text": "Facettierte STEP-Flächen aus den angezeigten Netzen. Native Volumenkörper sind nicht enthalten. Ausgelassene Teile und Quellen stehen unten."
+    },
+    "surface.counts": {
+      "source_revision": "b350ffc2a059b0376bcb",
+      "text": "{0} von {1} Teilen enthalten · {2} ausgelassen"
+    },
+    "surface.included": {
+      "source_revision": "7801f5f1da13d80d9ea0",
+      "text": "Enthaltene Teile"
+    },
+    "surface.omissions": {
+      "source_revision": "086986a5c0eb51dc65f9",
+      "text": "Separat herunterzuladende Teile"
+    },
+    "surface.checking": {
+      "source_revision": "22f684d05871e22108d6",
+      "text": "Ausgewählte Teile werden geprüft…"
+    },
+    "surface.working": {
+      "source_revision": "0fd6a62396da5b5e751f",
+      "text": "STEP und Quelldaten werden vorbereitet…"
+    },
+    "surface.download": {
+      "source_revision": "7d8fb134844ad7401450",
+      "text": "STEP-Paket herunterladen"
+    },
+    "surface.saved": {
+      "source_revision": "799794a17099825216f5",
+      "text": "STEP-Paket heruntergeladen."
+    },
+    "surface.error": {
+      "source_revision": "761f13731bd93b01c3e8",
+      "text": "Export fehlgeschlagen. Schließen Sie dieses Fenster und versuchen Sie es erneut."
+    },
+    "surface.source": {
+      "source_revision": "6d827c88d5e07360635a",
+      "text": "Originalquelle"
+    },
+    "surface.no_parts": {
+      "source_revision": "b34bb525e26cc62bf41e",
+      "text": "Für die ausgewählten Teile ist noch keine freigegebene Quellgeometrie für diesen Export vorhanden."
+    },
+    "surface.zero_area": {
+      "source_revision": "d24b4426d373ed34019a",
+      "text": "{0} Dreiecke ohne Fläche ausgelassen; Flächennummern sind enthalten."
+    },
+    "surface.reference": {
+      "source_revision": "ad44354c7d05f7cf0b7d",
+      "text": "Referenz der Baugruppe"
+    },
+    "surface.unresolved_origin": {
+      "source_revision": "241edfc8f971dc88675c",
+      "text": "Teilequelle oder STEP-Freigabe unbestätigt."
+    },
+    "surface.changed_geometry": {
+      "source_revision": "2e3638a7964b4abff36d",
+      "text": "Geometrie weicht von der Quelle ab."
+    },
+    "surface.unsupported_geometry": {
+      "source_revision": "df1a50770135b2b088fe",
+      "text": "Diese angezeigte Geometrie wird beim Export nicht unterstützt."
     }
   }
 }

@@ -23,6 +23,8 @@ Guides for using and contributing to 3D Print Rig.
 
 Use **STEP** in the viewer header to choose a standard printer assembly. Each download uses the configuration named in that panel.
 
+The Toolhead page also offers [Custom STEP surfaces](CUSTOM_STEP.md) under **Parts list and sharing**. It exports the admitted displayed print parts in their current positions and colors as faceted surface models, with source data and an explicit list of omitted parts.
+
 ## Printers, toolheads and Mods
 
 | Subject | Guides |
