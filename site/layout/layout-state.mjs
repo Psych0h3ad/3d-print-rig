@@ -1,9 +1,10 @@
+import {BIQU_POPSTATION_CAD} from './layout-biqu-popstation.mjs?v=0a8899673b99fcdc2eb5';
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
-import {getLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
 import {isGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 import {openingProblems,retainRoomOpenings,doorPlan,doorWallConflicts,withDoorMotion} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
@@ -75,10 +76,11 @@ function furnitureCheck(f, path, errors) {
   if (!plain(f)) { issue(errors, 'EXPECTED_OBJECT', path); return; }
   const allowed = ['id', 'type', 'widthMm', 'depthMm', 'heightMm', 'pose', ...(f.type === 'desk' ? ['topThicknessMm'] : f.type === 'shelf' ? ['boardThicknessMm', 'levels'] : [])];
   keys(f, allowed, path, errors); identifier(f.id, `${path}.id`, errors);
-  if (!['desk', 'shelf', 'popstation_mini'].includes(f.type)) issue(errors, 'UNKNOWN_FURNITURE_TYPE', `${path}.type`);
+  if (!['desk', 'shelf', 'popstation_mini', 'popstation_mini_biqu_v1'].includes(f.type)) issue(errors, 'UNKNOWN_FURNITURE_TYPE', `${path}.type`);
   for (const axis of ['widthMm', 'depthMm', 'heightMm']) num(f[axis], 30, LIMITS.maxDimensionMm, `${path}.${axis}`, errors);
   poseCheck(f.pose, `${path}.pose`, errors);
-  if (f.type === 'popstation_mini' && ['widthMm','depthMm','heightMm'].some(key=>f[key]!==POPSTATION_MINI[key]))
+  const fixed = f.type==='popstation_mini'?POPSTATION_MINI:f.type==='popstation_mini_biqu_v1'?{widthMm:BIQU_POPSTATION_CAD.dimensionsMm.width,depthMm:BIQU_POPSTATION_CAD.dimensionsMm.depth,heightMm:BIQU_POPSTATION_CAD.dimensionsMm.height}:null;
+  if (fixed && ['widthMm','depthMm','heightMm'].some(key=>f[key]!==fixed[key]))
     issue(errors,'POPSTATION_FIXED_DIMENSIONS',path);
   if (f.type === 'desk' && f.topThicknessMm !== 30) issue(errors, 'DESK_TOP_FIXED_30_MM', `${path}.topThicknessMm`);
   if (f.type === 'shelf') {
@@ -104,6 +106,7 @@ function attachmentCheck(a, path, furniture, errors, machineId) {
   identifier(a.parentId, `${path}.parentId`, errors); identifier(a.surfaceId, `${path}.surfaceId`, errors);
   const parent = furniture.find(f => f?.id === a.parentId);
   if (!parent) { issue(errors, 'UNKNOWN_PARENT', `${path}.parentId`, {parentId: a.parentId}); return; }
+  if (parent.type === 'popstation_mini_biqu_v1') { issue(errors,'UNKNOWN_SURFACE',`${path}.surfaceId`,{surfaceId:a.surfaceId}); return; }
   if (parent.type === 'popstation_mini') {
     if(a.surfaceId!=='top')issue(errors,'UNKNOWN_SURFACE',`${path}.surfaceId`,{surfaceId:a.surfaceId});
     if(machineId!==U1_LAYOUT_MACHINE_ID)issue(errors,'POPSTATION_U1_ONLY',path);
@@ -252,6 +255,10 @@ const defaultPose = () => ({xMm: 0, zMm: 0, yawDeg: 0});
 export function createDesk({id = 'desk-1', widthMm = 1200, depthMm = 600, heightMm = 750, pose = defaultPose()} = {}) {
   return assertFurniture({id, type: 'desk', widthMm, depthMm, heightMm, topThicknessMm: 30, pose});
 }
+export function createBiquPopStation({id='biqu-popstation-1',pose=defaultPose()}={}) {
+  const d=BIQU_POPSTATION_CAD.dimensionsMm;
+  return assertFurniture({id,type:'popstation_mini_biqu_v1',widthMm:d.width,depthMm:d.depth,heightMm:d.height,pose});
+}
 export function createPopStation({id='popstation-1',pose=defaultPose()}={}) {
   return assertFurniture({id,type:'popstation_mini',widthMm:POPSTATION_MINI.widthMm,
     depthMm:POPSTATION_MINI.depthMm,heightMm:POPSTATION_MINI.heightMm,pose});
@@ -314,7 +321,8 @@ export function applyAction(state, action, catalog = []) {
     case 'UPDATE_FURNITURE': {
       const f = requireEntity(next.furniture, action.id, 'action.id');
       patchCheck(action.patch, ['widthMm', 'depthMm', 'heightMm', 'pose', ...(f.type === 'shelf' ? ['boardThicknessMm', 'levels'] : [])]);
-      if(f.type==='popstation_mini'&&['widthMm','depthMm','heightMm'].some(key=>Object.hasOwn(action.patch,key)&&action.patch[key]!==POPSTATION_MINI[key]))fail('POPSTATION_FIXED_DIMENSIONS','action.patch');
+      const fixed=f.type==='popstation_mini'?POPSTATION_MINI:f.type==='popstation_mini_biqu_v1'?{widthMm:BIQU_POPSTATION_CAD.dimensionsMm.width,depthMm:BIQU_POPSTATION_CAD.dimensionsMm.depth,heightMm:BIQU_POPSTATION_CAD.dimensionsMm.height}:null;
+      if(fixed&&['widthMm','depthMm','heightMm'].some(key=>Object.hasOwn(action.patch,key)&&action.patch[key]!==fixed[key]))fail('POPSTATION_FIXED_DIMENSIONS','action.patch');
       const oldHeight = f.heightMm, oldThickness = f.boardThicknessMm, oldPose = f.pose;
       Object.assign(f, copy(action.patch));
       if (Object.hasOwn(action.patch, 'pose')) { patchCheck(action.patch.pose, ['xMm', 'zMm', 'yawDeg']); f.pose = {...oldPose, ...action.patch.pose}; }
@@ -869,7 +877,7 @@ export function deriveScene(state, catalog = []) {
   assertState(state, machines);
   const surfaces = [surfaceUnchecked(state, null, 'floor')];
   const furniture = state.furniture.map(f => {
-    const boards = (f.type === 'desk' ? [{id: 'top', topMm: f.heightMm}] : f.type==='popstation_mini'?[{id:'top',topMm:POPSTATION_MINI.topMm}]:f.levels).map(l => {
+    const boards = (f.type === 'desk' ? [{id: 'top', topMm: f.heightMm}] : f.type==='popstation_mini'?[{id:'top',topMm:POPSTATION_MINI.topMm}]:f.type==='popstation_mini_biqu_v1'?[]:f.levels).map(l => {
       if(f.type==='popstation_mini'){
         surfaces.push(surfaceUnchecked(state,f.id,'top'));
         // A zero-thickness picking surface, not a procedural furniture board.
@@ -881,6 +889,7 @@ export function deriveScene(state, catalog = []) {
         localCenterYM: (l.topMm - thicknessMm / 2) / 1000, topYM: l.topMm / 1000};
     });
     return {id: f.id, type: f.type, ...f.pose, widthMm: f.widthMm, depthMm: f.depthMm, heightMm: f.heightMm,
+      ...(f.type==='popstation_mini_biqu_v1'?{equipmentVariant:'supplied'}:{}),
       ...(f.type==='popstation_mini'?{equipmentVariant:state.printers.some(p=>p.machineId===U1_LAYOUT_MACHINE_ID&&p.attachment.parentId===f.id)?'loaded':'empty'}:{}),
       widthM: f.widthMm / 1000, depthM: f.depthMm / 1000, heightM: f.heightMm / 1000,
       positionM: {x: f.pose.xMm / 1000, y: 0, z: f.pose.zMm / 1000}, yawRad: f.pose.yawDeg * Math.PI / 180,

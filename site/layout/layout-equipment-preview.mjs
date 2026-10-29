@@ -1,8 +1,9 @@
+import {prepareBiquPreview,isBiquPreviewPrepared,needsBiquPreview} from './layout-biqu-popstation.mjs?v=0a8899673b99fcdc2eb5';
 // Explicit, fixed-host preparation of JSON data only. Import performs no I/O.
-import {downloadEquipmentPreviewGeometry} from './layout-equipment-transfer.mjs?v=de9f49cd911bf7a2e5e5';
+import {downloadEquipmentPreviewGeometry} from './layout-equipment-transfer.mjs?v=b1d4cb920a44e4e6f8dd';
 import {LAYOUT_EQUIPMENT_PREVIEW,LAYOUT_EQUIPMENT_PREVIEW_MODEL,createLayoutEquipmentPreviewCache,
   getLayoutEquipmentPreviewGeometry,isLayoutEquipmentPreviewPrepared,
-  installLayoutEquipmentPreviewGeometry} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
+  installLayoutEquipmentPreviewGeometry} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
 
 function preparer(download,cache) {
   let active = null;
@@ -86,20 +87,38 @@ export function createLayoutEquipmentPreviewPreparer({download=downloadEquipment
 
 // All production consumers share one validated immutable cache. Each invocation
 // owns its abort/progress subscription; only the last departure cancels the job.
-export const prepareLayoutEquipmentPreview = preparer(downloadEquipmentPreviewGeometry,{
+const prepareLegacyPreview = preparer(downloadEquipmentPreviewGeometry,{
   getGeometry:getLayoutEquipmentPreviewGeometry,isPrepared:isLayoutEquipmentPreviewPrepared,
   install:installLayoutEquipmentPreviewGeometry
 });
 
 // Examine only Layout DTO fields, never walk geometry arrays or catalog data.
-export function needsEquipmentPreview(value) {
+export function needsEquipmentPreview(value,legacyOnly=false) {
   const pending=[value],seen=new Set();
   for(let i=0;i<pending.length;i++){
     const item=pending[i];if(!item||typeof item!=='object'||seen.has(item))continue;seen.add(item);
     if(item.kind==='popstation_mini'||item.type==='popstation_mini'
-      ||item.machineId==='snapmaker_u1_layout_reference')return true;
+      ||item.machineId==='snapmaker_u1_layout_reference'
+      ||(!legacyOnly&&(item.kind==='popstation_mini_biqu_v1'||item.type==='popstation_mini_biqu_v1')))return true;
     if(item.template)pending.push(item.template);
     for(const key of ['printers','furniture'])if(Array.isArray(item[key]))pending.push(...item[key]);
   }
   return false;
+}
+
+function needsLegacyEquipmentPreview(value){return needsEquipmentPreview(value,true);}
+export function isEquipmentPreviewPreparedFor(value){
+  if(value===undefined)return isLayoutEquipmentPreviewPrepared();
+  return (!needsLegacyEquipmentPreview(value)||isLayoutEquipmentPreviewPrepared())&&(!needsBiquPreview(value)||isBiquPreviewPrepared());
+}
+export async function prepareLayoutEquipmentPreview({value,signal,onProgress}={}){
+  if(value===undefined)return prepareLegacyPreview({signal,onProgress});
+  const tasks=[];
+  if(needsLegacyEquipmentPreview(value))tasks.push(prepareLegacyPreview);
+  if(needsBiquPreview(value))tasks.push(prepareBiquPreview);
+  for(let i=0;i<tasks.length;i++){
+    signal?.throwIfAborted();
+    await tasks[i]({signal,onProgress:event=>onProgress?.({...event,percent:(i+Math.min(100,Math.max(0,Number(event.percent)||0))/100)/tasks.length*100})});
+  }
+  return LAYOUT_EQUIPMENT_PREVIEW;
 }

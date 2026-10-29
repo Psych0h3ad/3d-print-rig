@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=6b7e952ddb2a17f3de3d';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=5bf92464eadb27075614';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
@@ -451,6 +451,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
   const addSection = section('layout.add');
   const furnitureAdd = el('div', 'layout-add-furniture');
   furnitureAdd.append(button('layout.addDesk',()=>emit({type:'add',kind:'desk'}),'desk'),button('layout.addShelf',()=>emit({type:'add',kind:'shelf'}),'shelf'));
+  furnitureAdd.append(button('layout.addBiquPopStation',()=>emit({type:'add',kind:'popstation_mini_biqu_v1'}),'popstation_mini'));
   furnitureAdd.append(button('layout.addPopStation',()=>emit({type:'add',kind:'popstation_mini'}),'popstation_mini'));
   addSection.append(furnitureAdd);
   const search = el('input', 'layout-catalog-search'); search.type = 'search';search.id='layout-catalog-search';
@@ -638,6 +639,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
   function title(e) {
     if(isGroup(e))return String(e.name);
     if ('machineId' in e) return machineLabel(byMachine.get(e.machineId)) || e.machineId;
+    if(e.type==='popstation_mini_biqu_v1')return 'PopStation Mini '+(state.furniture.filter(f=>f.type===e.type).findIndex(f=>f.id===e.id)+1);
     if(e.type==='popstation_mini')return 'BIQU PopStation Mini';
     const same=(state.furniture||[]).filter(v=>v.type===e.type), number=same.findIndex(v=>v.id===e.id)+1;
     return tr(e.type==='desk'?'layout.deskName':'layout.shelfName',{number});
@@ -750,7 +752,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
     if(group){buildGroupEditor(e);return;}
     editor.append(el('p','layout-editor-subtitle',title(e)));
     const isPrinter='machineId' in e;
-    if(!isPrinter&&e.type!=='popstation_mini'){
+    if(!isPrinter&&!['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
       const dims=el('div','layout-fields');editor.append(dims);
       for(const [key,prop] of [['layout.width','widthMm'],['layout.depth','depthMm'],['layout.height','heightMm']])numberField(dims,key,prop,{min:1,action:v=>patchEntity(e,{[prop]:v})});
       const thick=el('div','layout-fields layout-two');editor.append(thick);
@@ -766,7 +768,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
         if(f.type==='desk')addOption(f.id,'top',tr('layout.deskTop',{name:title(f)}));
         else if(f.type==='popstation_mini'){
           if(e.machineId==='snapmaker_u1_layout_reference'&&!state.printers.some(p=>p.id!==e.id&&p.attachment.parentId===f.id))addOption(f.id,'top',title(f));
-        }else for(const [index,l]of f.levels.entries())addOption(f.id,l.id,tr('layout.shelfBoard',{name:title(f),number:index+1}));
+        }else if(f.type==='shelf')for(const [index,l]of f.levels.entries())addOption(f.id,l.id,tr('layout.shelfBoard',{name:title(f),number:index+1}));
       }
       supportLabel.append(supports);editor.append(supportLabel);
       listen(supports,'change',()=>{
@@ -787,7 +789,8 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
       }
     }
     if(e.type==='popstation_mini')editor.append(el('p','layout-help','422 × 456 × 428 mm'),copy(el('p','layout-help'),'layout.popStationHelp'));
-    if(e.machineId==='snapmaker_u1_layout_reference'||e.type==='popstation_mini'){
+    if(e.type==='popstation_mini_biqu_v1')editor.append(el('p','layout-help',`${fixedOne(e.widthMm)} × ${fixedOne(e.depthMm)} × ${fixedOne(e.heightMm)} mm`),copy(el('p','layout-help'),'layout.biquPopStationHelp'));
+    if(e.machineId==='snapmaker_u1_layout_reference'||['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
       const link=el('a','layout-printer-source-link');link.href='https://github.com/Psych0h3ad/3d-print-rig/blob/main/docs/LAYOUT_EQUIPMENT.md';link.target='_blank';link.rel='noopener noreferrer';
       link.append(icon('source'),copy(el('span'),'layout.equipmentSources'));editor.append(link);
     }
@@ -900,7 +903,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
     const needsDetach=editor.querySelector('[data-requires-detach]');if(needsDetach)needsDetach.disabled=status.busy||!editor.querySelector('#layout-detach')?.checked;
     const boundaryInvalid=currentIssues.some(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG');
     boundsNotice.hidden=!boundaryInvalid;
-    renderButton.disabled=status.busy||!state||(!floorplan&&(boundaryInvalid||(!state.printers?.length&&!state.furniture?.some(f=>f.type==='popstation_mini'))));
+    renderButton.disabled=status.busy||!state||(!floorplan&&(boundaryInvalid||(!state.printers?.length&&!state.furniture?.some(f=>['popstation_mini','popstation_mini_biqu_v1'].includes(f.type)))));
     cancel.hidden=!status.busy;cancel.disabled=false;
     busyArea.hidden=!status.busy;
     progress.hidden=!status.busy;

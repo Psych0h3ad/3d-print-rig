@@ -90,6 +90,6 @@ assert.match(source,/state=startEmpty\?createDefaultLayout\(\):makeDefault\(\);/
 assert.match(source,/if\(!startEmpty\)try\{const saved=readSavedLayout\(\)/);
 assert.match(source,/if\(!await ensureEquipmentPreview\(state\)\|\|disposed\)return;/);
 assert.match(source,/if\(!await ensureEquipmentPreview\(next\)/);
-assert.match(source,/if\(needsEquipmentPreview\(spec\)&&!isLayoutEquipmentPreviewPrepared\(\)\)/);
+assert.match(source,/if\(needsEquipmentPreview\(spec\)&&!isLayoutEquipmentPreviewPrepared\(spec\)\)/);
 assert.match(source,/if\(event.persisted&&!disposed&&!view\)window.location.reload\(\)/);
 console.log(JSON.stringify({passed:true,cases:cases.length,liveRequests:0,scope:'Production application readiness body with controlled async transport and DOM observation sinks; bootstrap/import/placement call-site witnesses. Real geometry hashes and browser behavior have separate gates.'}));

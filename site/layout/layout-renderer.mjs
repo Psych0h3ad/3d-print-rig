@@ -4,15 +4,15 @@ import {wallFrame,openingFrame} from './layout-openings.mjs?v=205557f45ffa9cc712
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=6b7e952ddb2a17f3de3d';
+import {deriveScene} from './layout-state.mjs?v=5bf92464eadb27075614';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {printerSilhouetteParts,printerSilhouetteSourceRoles} from './layout-printer-shapes.mjs?v=4908029ca70fd9b43559';
 import {createPrinterPreviewMeshCache} from './layout-printer-preview-mesh.mjs?v=13f907586c6d381eb6d4';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=02f4ab1db50255ef7472';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=40475a465160bdbbbaa5';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
-import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
-import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=81ae2cf27403863696cc';
+import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
+import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=77286c52ec71afda7379';
 import {createLayoutOpeningRenderer,drawOpeningPlan,openingPlanPrimitives} from './layout-opening-renderer.mjs?v=b035a46e0d76f7c9b6df';
 import {pickPlanOpening} from './layout-opening-picking.mjs?v=7fb5b88e49bcd5be6497';
 
@@ -177,12 +177,15 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const planFloorMaterial=new THREE.MeshStandardMaterial({color:'#d9dfe1',roughness:.94,side:THREE.DoubleSide});
   const roomGeometries=new Set(),contactGeometries=new Set(),contacts=new Map(),contactPlaneGeometry=new THREE.PlaneGeometry(1,1);
   let roomKey=null,shadowRoomKey=null;
-  const material=(color,opacity=1)=>{const key=opacity===1?color:`${color}:${opacity}`;if(!palette.has(key))palette.set(key,new THREE.MeshStandardMaterial({color,roughness:.82,metalness:.02,opacity,transparent:opacity<1,depthWrite:opacity===1}));return palette.get(key);};
+  const material=(color,opacity=1,doubleSided=false)=>{const key=(opacity===1?color:`${color}:${opacity}`)+(doubleSided?':double':'');if(!palette.has(key))palette.set(key,new THREE.MeshStandardMaterial({color,roughness:.82,metalness:.02,opacity,transparent:opacity<1,depthWrite:opacity===1,side:doubleSided?THREE.DoubleSide:THREE.FrontSide}));return palette.get(key);};
   function box(parent,size,position,color){const m=new THREE.Mesh(boxGeometry,material(color));m.scale.set(...size);m.position.set(...position);m.castShadow=m.receiveShadow=true;parent.add(m);return m;}
   function previewPart(parent,p,override){
-    const mat=override||material(p.color||'#465258',p.opacity??1);
+    const mat=override||material(p.color||'#465258',p.opacity??1,p.doubleSided===true);
     let part;
-    if(p.shape==='mesh')part=new THREE.Mesh(equipmentMeshCache.get(p),mat);
+    if(p.shape==='mesh'){
+      if(p.geometryId?.startsWith('biqu-popstation-')&&typeof equipmentMeshCache.displayMaterials!=='function')throw Error('BIQU display policy unavailable');
+      part=new THREE.Mesh(equipmentMeshCache.get(p),equipmentMeshCache.displayMaterials?.(p,mat)??mat);
+    }
     else if(p.wireframe){part=new THREE.LineSegments(wireGeometry,override?ghostLineMaterial:wireMaterial);part.scale.set(...p.sizeM);}
     else if(p.shape==='tube'){
       const key=JSON.stringify([p.pointsM,p.radiusM]);
@@ -236,10 +239,11 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const observer=new ResizeObserver(resize);observer.observe(container);
   function resetGroup(g){for(const o of [...g.children])g.remove(o);}
   function record(e,g){g.userData.entityId=e.id;g.position.set(e.positionM.x,e.positionM.y,e.positionM.z);g.rotation.y=e.yawRad;objects.set(e.id,g);}
+  function cabinetRow(e){return getLayoutEquipment(e.type==='popstation_mini_biqu_v1'?'biqu_popstation_mini_cad_v1':'biqu_pop_station_mini_layout_reference',e.equipmentVariant||(e.type==='popstation_mini_biqu_v1'?'supplied':'empty'));}
   function makeFurniture(e){
     const g=new THREE.Group();furnitureGroup.add(g);record(e,g);
-    if(e.type==='popstation_mini'){
-      const row=getLayoutEquipment('biqu_pop_station_mini_layout_reference',e.equipmentVariant||'empty');
+    if(['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
+      const row=cabinetRow(e);
       for(const p of row.proxy.parts)previewPart(g,p);
       g.userData.equipment=true;return g;
     }
@@ -258,8 +262,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const c=Math.cos(e.yawRad||0),s=Math.sin(e.yawRad||0);
     return [[-w/2,-d/2],[w/2,-d/2],[w/2,d/2],[-w/2,d/2]].map(([px,pz])=>[c*px+s*pz,-s*px+c*pz]);
   }
-  function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:e.type==='popstation_mini'?'BIQU PopStation Mini':['desk','shelf'].includes(e.type)?selectedLabel(e):e.id;}
-  function selectedLabel(e){if(e.type==='group')return `${groupLabel(current,e.id)} · ${e.name||e.id}`;if(e.machineId||e.type==='popstation_mini')return planLabel(e);const same=(current.furniture||derived.furniture||[]).filter(f=>f.type===e.type);return t(e.type==='desk'?'layout.deskName':'layout.shelfName',{number:same.findIndex(f=>f.id===e.id)+1});}
+  function planLabel(e){const row=e.machineId?catalogMachine(e.machineId):null;return typeof row?.label==='string'?row.label:['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)?'BIQU PopStation Mini':['desk','shelf'].includes(e.type)?selectedLabel(e):e.id;}
+  function selectedLabel(e){if(e.type==='group')return `${groupLabel(current,e.id)} · ${e.name||e.id}`;if(e.machineId||['popstation_mini','popstation_mini_biqu_v1'].includes(e.type))return planLabel(e);const same=(current.furniture||derived.furniture||[]).filter(f=>f.type===e.type);return t(e.type==='desk'?'layout.deskName':'layout.shelfName',{number:same.findIndex(f=>f.id===e.id)+1});}
   function makePlan(e,warning){
     const points=footprint(e),g=new THREE.Group();g.userData.entityId=e.id;g.userData.planProjection=true;g.userData.planPoints=points;g.userData.planLabel=planLabel(e);g.userData.planColor=warning?'#bf6d48':e.type==='printer'?'#6489a3':'#c2a379';
     g.userData.planLabelSuppressed=derived.printers.some(p=>p.parentId===e.id);
@@ -435,7 +439,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     contactGeometries.add(geometry);
     const mesh=new THREE.Mesh(geometry,surfaces.occlusion(e.type==='printer'?'printer':'furniture'));
     mesh.rotation.x=-Math.PI/2;mesh.position.y=.0006;mesh.renderOrder=2;g.add(mesh);
-    if(e.type!=='printer'&&e.type!=='popstation_mini'){
+    if(e.type!=='printer'&&!['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
       const leg=e.type==='desk'?.045:.035;
       for(const x of [-1,1])for(const z of [-1,1]){
         const foot=new THREE.Mesh(contactPlaneGeometry,surfaces.occlusion('foot'));
@@ -625,8 +629,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
             if(e.type==='printer'){
               const row=resolveLayoutEquipment(catalogMachine(e.machineId),e.equipmentVariant);if(!row)throw Error('Unknown group placement printer');
               addPrinterPreview(node,row,true);
-            }else if(e.type==='popstation_mini'){
-              for(const part of getLayoutEquipment('biqu_pop_station_mini_layout_reference',e.equipmentVariant||'empty').proxy.parts)previewPart(node,part,ghostMaterial);
+            }else if(['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
+              for(const part of cabinetRow(e).proxy.parts)previewPart(node,part,ghostMaterial);
             }else{
               for(const board of e.boards)addPart(node,[board.widthM,board.thicknessM,board.depthM],[0,board.localCenterYM,0]);
               const leg=e.type==='desk'?.045:.035;
@@ -636,8 +640,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
         }catch(error){for(const child of [...placementBody.children])if(child!==ghostOutline)placementBody.remove(child);placing=null;placementBounds=null;value=null;onError(error);}
       }else if(value.kind==='printer'){
         const row=catalogMachine(value.machineId);if(row)addPrinterPreview(placementBody,row,true);
-      }else if(value.kind==='popstation_mini'){
-        for(const part of getLayoutEquipment('biqu_pop_station_mini_layout_reference','empty').proxy.parts)previewPart(placementBody,part,ghostMaterial);
+      }else if(['popstation_mini','popstation_mini_biqu_v1'].includes(value.kind)){
+        for(const part of cabinetRow({type:value.kind}).proxy.parts)previewPart(placementBody,part,ghostMaterial);
       }else{
         const w=dims.width*MM,h=dims.height*MM,d=dims.depth*MM;
         const levels=value.kind==='shelf'?(value.copy?.levels?.map(l=>l.topMm*MM)||[.1,.65,1.2,h]):[h];
@@ -887,7 +891,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(!renderer.extensions.has('EXT_color_buffer_float'))throw Object.assign(Error('HDR image output is unavailable'),{code:'RENDER_UNSUPPORTED'});
     const externalSignal=signal,controller=new AbortController(),forwardAbort=()=>controller.abort();exportAbort=controller;
     if(signal?.aborted)controller.abort();else signal?.addEventListener('abort',forwardAbort,{once:true});signal=controller.signal;
-    const snapshot=[...derived.printers,...derived.furniture.filter(e=>e.type==='popstation_mini').map(e=>({...e,machineId:'biqu_pop_station_mini_layout_reference'}))].map(p=>({...p,positionM:{...p.positionM}}));
+    const snapshot=[...derived.printers,...derived.furniture.filter(e=>['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)).map(e=>({...e,machineId:e.type==='popstation_mini_biqu_v1'?'biqu_popstation_mini_cad_v1':'biqu_pop_station_mini_layout_reference'}))].map(p=>({...p,positionM:{...p.positionM}}));
     const streamedFurniture=[...furnitureGroup.children].filter(g=>g.userData.equipment),furnitureVisibility=streamedFurniture.map(g=>g.visible);
     const limit=Math.min(renderer.capabilities.maxTextureSize,2560),long=Math.max(320,Math.min(limit,width)),aspect=lastWidth/Math.max(1,lastHeight),w=Math.max(1,Math.round(aspect>=1?long:long*aspect)),h=Math.max(1,Math.round(aspect>=1?long/aspect:long));
     let target,outputTarget,outputGeometry,outputMaterial;const oldTarget=renderer.getRenderTarget(),oldAuto=renderer.autoClear,oldBackground=scene.background,oldShaderError=renderer.debug.onShaderError,transparentRoot=new THREE.Group(),previewVisible=placementGroup.visible,guidesVisible=placementGuides.visible;

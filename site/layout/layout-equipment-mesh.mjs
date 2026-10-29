@@ -1,6 +1,8 @@
+import {configureBiquPreviewGroups,createBiquLayerMaterial} from './layout-biqu-display.mjs?v=58992b18f1b355de3f74';
+import {BIQU_POPSTATION_PREVIEW} from './layout-biqu-popstation.mjs?v=0a8899673b99fcdc2eb5';
 // Prepared mesh coordinates already use the shared floor datum. Bounding-box
 // centerM/sizeM describe the part; they are not a second object transform.
-import {LAYOUT_EQUIPMENT_PREVIEW} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
+import {LAYOUT_EQUIPMENT_PREVIEW} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
 // Exact prepared intrinsic closure; this branch never constructs a second cap.
 export const U1_INTRINSIC_BOTTOM_SOURCE=Object.freeze({
   name:'bottom_closure / closed bottom display plate',
@@ -165,7 +167,7 @@ export function addU1BottomClosure(THREE,root,row){
 }
 
 export function createEquipmentMeshCache(THREE) {
-  const entries=new Map();let disposed=false;
+  const entries=new Map(),layerMaterials=new Map();let disposed=false;
   const fail=message=>Object.assign(new Error(message),{code:'LAYOUT_EQUIPMENT_PREVIEW_GEOMETRY'});
   return Object.freeze({
     get(part){
@@ -189,8 +191,15 @@ export function createEquipmentMeshCache(THREE) {
           [...indices,...cap.indices.map(i=>i+offset)]);
         geometry.userData.layoutEquipmentDerivative={...cap.receipt,sourceGeometryId:geometryId};
       }else geometry=bufferGeometry(THREE,positionsM,normals,indices);
+      configureBiquPreviewGroups(geometry,part);
       entries.set(geometryId,{positionsM,normals,indices,geometry});return geometry;
     },
-    dispose(){if(disposed)return;disposed=true;for(const {geometry}of entries.values())geometry.dispose();entries.clear();}
+    displayMaterials(part,material){
+      if(disposed)throw fail('Equipment geometry cache is disposed');
+      if(part.geometryId!==BIQU_POPSTATION_PREVIEW.geometryId)return material;
+      if(!layerMaterials.has(material))layerMaterials.set(material,createBiquLayerMaterial(material));
+      return [material,layerMaterials.get(material)];
+    },
+    dispose(){if(disposed)return;disposed=true;for(const {geometry}of entries.values())geometry.dispose();entries.clear();for(const material of layerMaterials.values())material.dispose();layerMaterials.clear();}
   });
 }

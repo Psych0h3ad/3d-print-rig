@@ -1,3 +1,4 @@
+import {BIQU_POPSTATION_CAD,getBiquPopStation} from './layout-biqu-popstation.mjs?v=0a8899673b99fcdc2eb5';
 // Static simplified exterior references. All variants retain their shared assembly datum.
 // Import is metadata only. Preview data is installed explicitly after exact receipt checks.
 const freeze = value => { if(value && typeof value === "object" && !Object.isFrozen(value)) { Object.values(value).forEach(freeze); Object.freeze(value); } return value; };
@@ -127,6 +128,7 @@ function previewPart(part) {
 
 /** Resolve authored state without changing the asset datum or unknown rows. */
 export function resolveLayoutEquipment(row,equipmentVariant) {
+  if(row?.id===BIQU_POPSTATION_CAD.id)return getBiquPopStation(equipmentVariant);
   const definition = row && definitions.get(row.id);
   if(!definition) return row;
   const key = equipmentVariant ?? definition.defaultEquipmentVariant;
@@ -144,6 +146,7 @@ export function resolveLayoutEquipment(row,equipmentVariant) {
     equipmentVariants:Object.keys(definition.variants),manufacturerCAD:false,isLayoutEquipment:true};
 }
 export function getLayoutEquipment(id,equipmentVariant) {
+  if(id===BIQU_POPSTATION_CAD.id)return getBiquPopStation(equipmentVariant);
   const row = definitions.get(id);
   return row ? resolveLayoutEquipment(row,equipmentVariant) : null;
 }
