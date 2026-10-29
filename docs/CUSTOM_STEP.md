@@ -14,8 +14,11 @@ It does not reconstruct parametric CAD, stitch watertight solids or certify
 clearance. Existing native STEP assembly downloads remain available from the
 header's **STEP** button and retain their own baseline configurations.
 
-The initial source allowlist covers 14 authored Stealthburner/Revo Voron and
-Clockwork 2 printed leaves from the pinned VORON source revision. Each part is
+The source allowlist covers 14 distinct authored Stealthburner/Revo Voron and
+Clockwork 2 printed bodies from the pinned VORON source revision. The V6 setup
+also includes the shared Stealthburner body, LED diffuser, mask and carrier.
+Its V6-specific mounts, hotend and purchased parts remain listed as omissions.
+Each part is
 matched by asset identity and complete position/index buffer hashes. Only parts
 actually present in the displayed configuration are included. An altered cover,
 unregistered body, manufacturer component or web-mesh-only permission does not

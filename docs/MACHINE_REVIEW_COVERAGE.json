@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "review_revision": "biqu-popstation-cabinet-v1",
-  "reviewed_on": "2026-10-29",
+  "review_revision": "step-surface-v6-common-front-v1",
+  "reviewed_on": "2026-10-30",
   "input_sha256": {
     ".github/workflows/pages.yml": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b",
     ".github/workflows/source-check.yml": "c06591ae7325e6a74118ffbddbcc197b0c1d245296266aa6ec5de9d0cceae241",
@@ -44,7 +44,8 @@
     "scripts/audit_source_printed_colors.mjs": "0886207d2db88a28157cba94e8c2d4bc01cf70677a10a44d4d7c2d21f2adcba0",
     "scripts/audit_source47_service_hosts.mjs": "4aafb8f88e57e18ce8fbdc7e953436619e3d4da946ed256de6fe9450c4742997",
     "scripts/audit_stealthburner_cutaway.mjs": "d9b327b8a550f4b27aecdf875d04698dfb1df25c082d200bfde137f04153e49b",
-    "scripts/audit_step_surface_assets.mjs": "1554b0340c8ee5cbfe8c0cdc332cd283ed61d67a4813445f34fa92d8895be3c0",
+    "scripts/audit_step_surface_assets.mjs": "c2018e65289a05fdffbfd40d288984e0e05e32a96e08c93a1664a52946ae40fc",
+    "scripts/audit_step_surface_v6.mjs": "cb306e4d103f9a6d0e0c9082233f3135817c476f7f914ae3d3277c754c2ab9a5",
     "scripts/audit_toolchanger_assets.mjs": "c278ec88d02ff7e5fbd5fbe970fc8298a7c8a1015213948cd691a17d9fb435d9",
     "scripts/audit_trident_half_ptfe.mjs": "53c76001750f079f060335264920a0adc40927eeb27bdcd1598607117379feb6",
     "scripts/audit_trident_sizes.mjs": "7b2c1a0c4f816e1392822ac037a74516ac961353fea9a030de2857989e8e3282",
@@ -396,7 +397,7 @@
     "scripts/test_stealthburner_cutaway.mjs": "db81ac2c51b6758f881a688115663f8f63f721931bf5e04aedfcbd59c8603781",
     "scripts/test_step_download_admission.mjs": "dfc1547c5017463913210deb4c9290bb4d95901da748cd559a767defb9d37677",
     "scripts/test_step_surface_rebuild.mjs": "dc7f8205e2f8af885579ef60e6bd2932fb46c70bf578def24ab0cf38060d7b4f",
-    "scripts/test_step_surface_selection.mjs": "fe574bc86dfe88d7ed595da107acdd7fc9a6c66e0b4d3b5164cf28f9235abc66",
+    "scripts/test_step_surface_selection.mjs": "7a8905724f221a468182bcb10cfe9137853f6c21d9f2519f50120e8cc563691b",
     "scripts/test_step_surface_writer.mjs": "5b608f7911b5f801280f88ab95a63c0424cdf1b6c1d0abc58e172d03fc537432",
     "scripts/test_stinger.mjs": "a99aed69b14375787bccbe64ba6b67f9a73bca80c32ccf1cfb5926adff038cfe",
     "scripts/test_support_catalog.mjs": "9f54e4f6c4facaafb8a93b047dc6de4af01931766df231acfea606ec28abc2d4",
@@ -855,7 +856,7 @@
     "site/viewer/step-surface-package.mjs": "b63b0399885fe7eec67d8c20189d5faf37ee30f91ab99d480ec60b74a9bd9074",
     "site/viewer/step-surface-rebuild.mjs": "bb5a8955d9e35f1b126477e7b1592036bfc468660a2a686f92e546159165ddc2",
     "site/viewer/step-surface-selection.mjs": "963ac403b94d21cddba3a257e9e36f76a49c57da376f931678ba207733cecd07",
-    "site/viewer/step-surface-sources.json": "816cbd4599cc1e39036aae88d6670cb6b955fea6a3de7751e9c1f4533d99a992",
+    "site/viewer/step-surface-sources.json": "1cc7ebb01b0a8e5d4a83c53891a20e2e36eedfa8b1e8fc04a264d69f4486735e",
     "site/viewer/step-surface-ui.mjs": "a52ee76683f66c275493e332c06463d357c7f7e3b8f064495ce9cd01d84f926b",
     "site/viewer/step-surface-writer.mjs": "4d714d06ec9ba241a3a9a57cb4cd5c7d1c07372f958bdded2d2db3789fef8fb7",
     "site/viewer/step-surface-zero-area.mjs": "1893343a3b079290421469c78c930eea074abf52567622b684c0d48d61ac10c5",
@@ -20359,5 +20360,26 @@
     "machine_rows_retained": 73,
     "new_native_clearance_certificate": false,
     "scope_limits": "Cabinet envelope/actual Web meshes and source-specific display policy. No installed feet, U1 contact/load or new machine fit qualification."
+  },
+  "current_step_surface_v6_review": {
+    "scope": "Four exact aliases of already admitted authored SB front geometry in the existing V6 module. Source product IDs, complete buffer pins and GPL-3.0 retained; no V6 mounts or purchased/hotend leaves admitted.",
+    "source_revision": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+    "actual_inputs": {
+      "modules/sb_v6.glb.gz": "374cc32c736fdc89a679eae3dae5c0e166ee7a710fd365637785e884d051267e",
+      "modules/sb_v6.json": "48d6557fab77ba5d5ec6a0d09501c0eae691949084ea3edc6f7a93d6ddaa33d4",
+      "modules/sb_revo_voron.glb.gz": "83a89541124060982708c814493933b082c9089c1a7dbf77ec476611bd6db8c3",
+      "modules/sb_revo_voron.json": "bae72e31c97691400f73b3e00a23ed097e44756144f5aa0710cbfd9ba5a06d07"
+    },
+    "actual_configurations": 44,
+    "pose_states_per_configuration": 4,
+    "palette_states_per_configuration": 3,
+    "required_release_audits": [
+      "audit_step_surface_assets.mjs",
+      "audit_step_surface_v6.mjs"
+    ],
+    "machine_rows_retained": 73,
+    "new_native_solids": 0,
+    "full_physical_fit_certified": false,
+    "scope_limits": "Exact selected surface serialization and source permission only. No native14/S266 repair, whole-machine STEP or new installation qualification."
   }
 }
