@@ -265,8 +265,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1225494,
-      "sha256": "879fb8982999b6674a29c498ca57649aeb76aedbd1035a3f559d3307d4c480a1"
+      "bytes": 1226423,
+      "sha256": "5d11083af769f7d1c8449cc4eeea7c903d3ace6376aa9cbafe1bb030ca09a178"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -1109,6 +1109,11 @@
       "sha256": "704eda800d0a8d63d2653eff54ee3adcc7b059048c90f053857a3a93a1b273a1"
     },
     {
+      "path": "scripts/fixtures/head_depth_precision.json",
+      "bytes": 2836,
+      "sha256": "91d3efd709c296c01bfe623e8c5cd8c4357f3fd8ec5c8a0b7b791e9b36051150"
+    },
+    {
       "path": "scripts/fixtures/layout_ratrig_belts.json",
       "bytes": 39160,
       "sha256": "14f7ac91dd6aadc528626578f0a2c5b14ca838e086167d8fee53fcd00590fbfd"
@@ -1782,6 +1787,11 @@
       "path": "scripts/test_head_camera.mjs",
       "bytes": 2229,
       "sha256": "e66bcec5c9d20b869c80f81a8c69352bca644f42d0c7afb5759daaa45433f47d"
+    },
+    {
+      "path": "scripts/test_head_camera_precision.mjs",
+      "bytes": 10414,
+      "sha256": "f1c8e899b9b5687036bccaf06553700e252f916b007fd4a0cf24da1d7a8af56f"
     },
     {
       "path": "scripts/test_head_combination_coverage.mjs",
@@ -7030,8 +7040,8 @@
     },
     {
       "path": "site/viewer/head-camera.mjs",
-      "bytes": 2147,
-      "sha256": "2c375a81d7b329401bfc460a93583f080699345166a3ad642f9fbf91051782de"
+      "bytes": 4601,
+      "sha256": "dff80d4ea324eedaae9aaf7823c913e40c3f429df008a6bb8c9328a8829f6a72"
     },
     {
       "path": "site/viewer/head-companion-presets.mjs",
@@ -8056,12 +8066,12 @@
     {
       "path": "site/viewer/toolheads.html",
       "bytes": 11546,
-      "sha256": "08e66afb24fdd929d92dfd15e47e9a158e77636d01153a74bf04cf435b594fa3"
+      "sha256": "69c2d5bc2ba17a29cc9e527d8d82f96fdf1d1b2375bc500b0db2db7090722a5f"
     },
     {
       "path": "site/viewer/toolheads.js",
-      "bytes": 23040,
-      "sha256": "b8fda14af75a9529e64906db0e3c57e02b55fedccbd5ca4e8326a0867b64257d"
+      "bytes": 23438,
+      "sha256": "78e8e7919023e1a99a688b566f46a204d6c476b85db8874e5de423b0a5d93b46"
     },
     {
       "path": "site/viewer/translation-engine.mjs",

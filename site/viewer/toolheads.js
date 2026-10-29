@@ -11,7 +11,7 @@ import {headPrinterLink} from './head-navigation.mjs?v=d50a22ffaa747b8d81fb';
 import {headBuilderDimensions} from './configuration-model.js?v=ffcb5378701b391d2cab';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {headPrintedCounts,visibleInAsset} from './head-printed-parts.mjs?v=8f8ed3d5c06ff2b0f6c8';
-import {frameHeadBounds} from './head-camera.mjs';
+import {frameHeadBounds,updateHeadClipping} from './head-camera.mjs?v=dff80d4ea324eedaae9a';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
@@ -218,8 +218,15 @@ for(const id of ['headShowDock','headShowRail'])$('#'+id).onchange=()=>{changerD
 function resize(){const width=Math.max(stage.clientWidth,1),height=Math.max(stage.clientHeight,1);renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();if(ready)fit();dirty=true}
 new WorkspaceResizeObserver(resize).observe(stage);resize();
 controls.addEventListener('start',()=>{view='custom'});controls.addEventListener('change',()=>{dirty=true});
-renderer.setAnimationLoop(()=>{controls.update();if(dirty){renderer.render(scene,camera);dirty=false}});
-setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',afterRender:()=>{dirty=true}});
+const renderBounds=new THREE.Box3();
+function prepareHeadCamera(renderCamera){
+ if(!ready)return;
+ bench.updateWorldMatrix(true,true);renderBounds.makeEmpty();
+ bench.traverseVisible(object=>{if(object.isMesh)renderBounds.expandByObject(object)});
+ updateHeadClipping(renderCamera,renderBounds);
+}
+renderer.setAnimationLoop(()=>{controls.update();if(dirty){prepareHeadCamera(camera);renderer.render(scene,camera);dirty=false}});
+setupRenderExport({renderer,scene,camera,controls,name:'3D_Print_Rig_Toolhead',prepareCamera:prepareHeadCamera,afterRender:()=>{dirty=true}});
 setupPublicInfo({includeDownloads:false});
 try{
  const headData=await loadMachineHeadCatalog();catalog=headData.heads;machineRegistry=headData.registry;const monolithData=await loadMonolithData().catch(()=>null);if(monolithData){const [gantries,registrations]=monolithData;machineRegistry.monolith={gantries,registrations}}
