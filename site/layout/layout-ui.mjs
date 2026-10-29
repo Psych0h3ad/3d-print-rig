@@ -41,7 +41,7 @@ const PATHS = {
   ungroup:'M3 8V3h5m8 0h5v5M3 16v5h5m8 0h5v-5M8 8h8v8H8Z'
 };
 
-export function createLayoutUI({container, onAction, t, catalog = [], onObjectSearchEscape = () => {}, onPickedChange = (ids) => {}, onOpeningSelect = () => {}, onToolsRefresh = () => {}, onBuildToolKey = () => false}) {
+export function createLayoutUI({container, onAction, t, catalog = [], onReveal = () => {}, onObjectSearchEscape = () => {}, onPickedChange = (ids) => {}, onOpeningSelect = () => {}, onToolsRefresh = () => {}, onBuildToolKey = () => false}) {
   if (!container?.ownerDocument || typeof onAction !== 'function' || typeof t !== 'function') {
     throw new TypeError('createLayoutUI requires container, onAction and t');
   }
@@ -944,10 +944,11 @@ export function createLayoutUI({container, onAction, t, catalog = [], onObjectSe
     releaseDetachedControls();
   }
   function dispose(){if(disposed)return;disposed=true;for(const remove of cleanups)remove();fields.clear();pickedRoots.clear();root.remove();state=null;}
-  function focusObjectSearch(){if(disposed||status.busy)return false;setBrowserExpanded(true);objectSearch.focus();objectSearch.select?.();return true;}
+  function focusObjectSearch(){if(disposed||status.busy)return false;onReveal();setBrowserExpanded(true);objectSearch.focus();objectSearch.select?.();return true;}
   function focusSelection(){if(disposed||status.busy||(!selected()&&!selectedOpening()))return false;showPanel('selection');panelHost.scrollTop=0;return true;}
   function openPrinterCatalog(){
     if(disposed||status.busy)return false;
+    onReveal();
     showPanel('add');search.scrollIntoView?.({block:'nearest'});search.focus({preventScroll:true});return true;
   }
   populateMachines();refreshStatus();

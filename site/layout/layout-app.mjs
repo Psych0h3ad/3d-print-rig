@@ -1,16 +1,17 @@
 import {createDefaultLayout,createDesk,createShelf,createPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,resolveSupportedPrinterRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout} from './layout-state.mjs?v=6b7e952ddb2a17f3de3d';
 import {equipmentRows,isLayoutEquipmentPreviewPrepared} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview} from './layout-equipment-preview.mjs?v=aface112775d91937ff3';
-import {createLayoutUI} from './layout-ui.mjs?v=cc0b172bfaf1b34a4d09';
-import {setupLayoutLanguage} from './layout-language.mjs?v=63beaaa6ec4ea2198585';
+import {createLayoutUI} from './layout-ui.mjs?v=d953a4d22d82df9227b8';
+import {setupLayoutLanguage} from './layout-language.mjs?v=564c21f0a41a78db1622';
 import {proposePlacement} from './layout-placement.mjs?v=5380485dad67613877fa';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
   captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=02f4ab1db50255ef7472';
 import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=2c141445f4c1acf1af9a';
-import {placementStatus} from './layout-placement-feedback.mjs?v=0a82295e4c8a198375a0';
+import {placementStatus} from './layout-placement-feedback.mjs?v=9b47680d5ed6d03133fa';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {createLayoutBuildToolbar} from './layout-build-toolbar.mjs?v=2b5ab25b637195f494e3';
 import {newRoomOpening} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
+import {setupLayoutPanel} from './layout-panel-layout.mjs?v=c906e5c42cb851e1813e';
 
 const storageKey='3d-print-rig-layout-v2',legacyStorageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
 const groupLibraryKey='3d-print-rig-layout-sets-v1';let groupLibrary=[];
@@ -18,7 +19,7 @@ const $=selector=>document.querySelector(selector);
 let state,catalog,rows,ui,view,language,selected=null,busy=false,roomEditing=false,operation=null,disposed=false,renderURL=null;
 let interactionGeneration=0;
 let startEmpty=false;
-let placement=null,lastPlacementTarget=null,buildTools=null,activeOpeningTool=null;
+let placement=null,lastPlacementTarget=null,buildTools=null,activeOpeningTool=null,panelLayout=null;
 let clipboardText='';
 const past=[],future=[];let nextId=1;
 const id=prefix=>{let value;do value=`${prefix}-${nextId++}`;while([...state.furniture,...state.printers,...(state.groups??[]),...groupLibrary,...state.room.openings??[]].some(e=>e.id===value||e.id.startsWith(value+':')));return value;};
@@ -72,7 +73,7 @@ function changeOpening({type,opening}){
   if(busy||roomEditing)return;
   try{
     const o=type==='add'?{...opening,id:id(opening.type)}:opening;
-    commit(applyAction(state,type==='add'?{type:'ADD_ROOM_OPENING',opening:o}:{type:'UPDATE_ROOM_OPENING',id:o.id,patch:{offsetMm:o.offsetMm}},catalog),{selection:null});
+    commit(applyAction(state,type==='add'?{type:'ADD_ROOM_OPENING',opening:o}:{type:'UPDATE_ROOM_OPENING',id:o.id,patch:{offsetMm:o.offsetMm,...(type==='resize'?{widthMm:o.widthMm}:{})}},catalog),{selection:null});
     selectOpening(o.id);
   }catch(error){message(()=>humanError(error),true);}
 }
@@ -482,7 +483,7 @@ function updateViewPresentation({mode='perspective',projection='perspective-3d'}
   for(const element of document.querySelectorAll('[data-layout-view]'))if(element.dataset.layoutView!=='fit')element.setAttribute('aria-pressed',String(element.dataset.layoutView===mode));
 }
 function updateLanguage(){
-  ui?.setLocale(language.t);buildTools?.setLocale(language.t);if(ui)sync();
+  ui?.setLocale(language.t);buildTools?.setLocale(language.t);panelLayout?.refreshLanguage(language.t);if(ui)sync();
   const node=$('#layout-status');if(node?._layoutMessage&&!node.hidden){const text=String(node._layoutMessage.format());node.textContent=text;ui?.setStatus({message:text,error:node._layoutMessage.error});}
   language.refresh();
   if(placement)updatePlacementBar(lastPlacementTarget?previewPlacement(lastPlacementTarget):null);
@@ -552,8 +553,9 @@ async function start(){
   if(!startEmpty)try{const saved=readSavedLayout();if(saved&&saved.length<=maxFileBytes){state=parseLayout(saved,catalog);store();}}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=c58d4fa31c5d994451d6');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=f875cfa39ec2bb452989');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows,
+    onReveal:()=>panelLayout?.reveal(),
     onToolsRefresh:()=>buildTools?.setState({busy,roomEditing,placementKind:placement?.kind,openingTool:activeOpeningTool}),
     onBuildToolKey:event=>buildTools?.handleKey(event)??false,onPickedChange:ids=>{
     interactionGeneration++;
@@ -561,6 +563,7 @@ async function start(){
     view?.setPickedRoots?.(ids);
   },onOpeningSelect:id=>selectOpening(id),onObjectSearchEscape:()=>view?.canvas.focus()});
   ui.setStatus({canPaste:true});
+  panelLayout=setupLayoutPanel({document,window,t:language.t});
   refreshGroupLibrary();
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onPick:pick,onOpeningSelect:id=>selectOpening(id),onOpeningCommit:change=>changeOpening(change),onOpeningToolChange:tool=>{activeOpeningTool=tool;ui?.setOpeningTool?.(tool);ui?.refreshBuildTools?.();},onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   if($('#layout-build-tools'))buildTools=createLayoutBuildToolbar({container:$('#layout-build-tools'),onAction:act,t:language.t});
@@ -587,7 +590,7 @@ function pageHide(event){
   cancelPlacement();operation?.abort();
   // A back/forward cache entry resumes this same document and its controls.
   if(event.persisted)return;
-  disposed=true;document.removeEventListener('keydown',historyKey);document.removeEventListener('keydown',placementKey);document.removeEventListener('copy',copyEvent);document.removeEventListener('paste',pasteEvent);view?.dispose();ui?.dispose();buildTools?.dispose();language?.disconnect();if(renderURL)URL.revokeObjectURL(renderURL);
+  disposed=true;document.removeEventListener('keydown',historyKey);document.removeEventListener('keydown',placementKey);document.removeEventListener('copy',copyEvent);document.removeEventListener('paste',pasteEvent);view?.dispose();ui?.dispose();buildTools?.dispose();panelLayout?.dispose();language?.disconnect();if(renderURL)URL.revokeObjectURL(renderURL);
 }
 window.addEventListener('pagehide',pageHide);
 window.addEventListener('pageshow',event=>{

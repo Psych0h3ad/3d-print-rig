@@ -181,31 +181,38 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
 
   const {createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout}=deps;
   const {groupTemplateInfo,parseGroupLibrary}=deps.G;
-  const document=deps.doc,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
+  const document=deps.doc,window=deps.win,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
+  const setupLayoutPanel=deps.setupLayoutPanel;
   const storageKey='test',legacyStorageKey='legacy-test',groupLibraryKey='sets-test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});let groupLibrary=[];
-  let state,catalog,rows,ui,view,selected=null,busy=false,roomEditing=false,disposed=false,placement=null,startEmpty=false;const past=[],future=[];
+  let state,catalog,rows,ui,view,panelLayout=null,selected=null,busy=false,roomEditing=false,disposed=false,placement=null,startEmpty=false;const past=[],future=[];
   const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},pick=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,previewPlacement=()=>null,placeProposal=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},message=()=>{},humanError=()=> 'error';
   const calls={sync:0,language:0,views:[],presentations:[],options:[],libraries:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
   const updateViewPresentation=value=>calls.presentations.push(value);
-  const createLayoutUI=()=>({fixture:true,setStatus:value=>calls.status=value,setGroupLibrary:items=>calls.libraries.push(items)});
+  const createLayoutUI=options=>{calls.uiOptions=options;return {fixture:true,setStatus:value=>calls.status=value,setGroupLibrary:items=>calls.libraries.push(items)};};
   ${unique(app,'function readSavedLayout(){','\nfunction message(')}
   ${librarySource}
   ${defaultSource}
   ${historySource}
   ${source}
-  return {ready:document.body.dataset.layoutReady,state,calls,view};`);
+  return {ready:document.body.dataset.layoutReady,state,calls,view,panelLayout};`);
  const rotationPorts={onRotate:()=>{},constrainRotate:()=>false};
  const rendererModule={createLayoutRenderer:options=>{
   assert.equal(options.onRotate,rotationPorts.onRotate);assert.equal(options.constrainRotate,rotationPorts.constrainRotate);
   assert.equal(typeof options.onMove,'function');assert.equal(typeof options.constrainMove,'function');assert.equal(typeof options.onViewChange,'function');
   return {canvas:new E('canvas'),view:()=>{},getView:()=>({mode:'perspective',projection:'perspective-3d'}),setOptions:()=>{}};
  }};
- const result=await run({doc:e.doc,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule,rotationPorts,G});
+ const panelSetups=[],panel={reveals:0,reveal(){this.reveals++;return true;}};
+ const result=await run({doc:e.doc,win:e.win,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule,rotationPorts,G,
+  setupLayoutPanel:options=>{panelSetups.push(options);return panel;}});
  assert.equal(result.ready,'true');assert.equal(result.state.furniture.length,1);assert.equal(result.state.printers.length,1);assert.equal(result.calls.sync,1);assert.equal(result.calls.language,1);
  assert.deepEqual(result.calls.presentations,[{mode:'perspective',projection:'perspective-3d'}]);
  assert.deepEqual(result.calls.libraries,[[]],'Actual startup initializes saved-set controls without fetching printer models');
  assert.equal(result.calls.status.canPaste,true,'Fresh tabs can request the system clipboard');
+ assert.equal(panelSetups.length,1,'Desktop startup creates one panel controller');assert.strictEqual(result.panelLayout,panel);
+ assert.strictEqual(panelSetups[0].document,e.doc);assert.strictEqual(panelSetups[0].window,e.win);assert.strictEqual(panelSetups[0].t,result.calls.uiOptions.t);
+ assert.equal(typeof result.calls.uiOptions.onReveal,'function');assert.equal(panel.reveals,0,'Startup must not request an unsolicited reveal');
+ assert.equal(result.calls.uiOptions.onReveal(),true);assert.equal(panel.reveals,1,'Actual UI construction delegates reveal to the initialized panel');
  assert.equal(e.documentListeners.get('keydown')?.length,2,'Actual startup binds history and placement shortcuts');
  assert.equal(e.documentListeners.get('copy')?.length,1);assert.equal(e.documentListeners.get('paste')?.length,1);
 });
@@ -573,9 +580,11 @@ const ui=null,{placementStatus}=deps;let placement={kind:'desk',name:'Desk',yawD
 });
 await test('back-forward-cache-preserves-live-controls-and-real-unload-disposes',()=>{
  const source=unique(app,'function pageHide(event){',"\nwindow.addEventListener('pagehide'");
- const effects=[],factory=new Function('effects',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},buildTools={dispose:()=>effects.push('build-tools')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
- const r=factory(effects);r.pageHide({persisted:true});r.pageHide({persisted:true});assert.equal(r.isDisposed(),false);assert.deepEqual(effects,['cancel','abort','cancel','abort']);
- r.pageHide({persisted:false});assert.equal(r.isDisposed(),true);assert.deepEqual(effects.slice(4),['cancel','abort','remove','remove','remove','remove','view','ui','build-tools','language','url']);
+ const effects=[],factory=new Function('effects','panelLayout',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},buildTools={dispose:()=>effects.push('build-tools')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
+ const r=factory(effects,{dispose:()=>effects.push('panel-layout')});r.pageHide({persisted:true});r.pageHide({persisted:true});assert.equal(r.isDisposed(),false);assert.deepEqual(effects,['cancel','abort','cancel','abort']);
+ r.pageHide({persisted:false});assert.equal(r.isDisposed(),true);assert.deepEqual(effects.slice(4),['cancel','abort','remove','remove','remove','remove','view','ui','build-tools','panel-layout','language','url']);
+ const earlyEffects=[],early=factory(earlyEffects,null);early.pageHide({persisted:false});assert.equal(early.isDisposed(),true);
+ assert.deepEqual(earlyEffects,['cancel','abort','remove','remove','remove','remove','view','ui','build-tools','language','url'],'Unload also tolerates a panel not yet initialized');
  assert(app.includes("window.addEventListener('pagehide',pageHide)"));
 });
 for(const [rel,h]of Object.entries(consumed))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(site,rel))).digest('hex'),h,'Source changed: '+rel);

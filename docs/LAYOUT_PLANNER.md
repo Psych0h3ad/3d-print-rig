@@ -74,6 +74,14 @@ tools, or click their buttons. Furniture and opening tools start a preview;
 nothing is added until you click a valid position. **Printers** opens the
 searchable catalog.
 
+Drag the divider beside the settings panel to change its width, or use the
+button on the scene’s right edge to hide and reopen it. The divider also accepts
+Left/Right (16 px), Shift+Left/Right (64 px), Home and End. Escape cancels a
+divider drag. Panel width and visibility are saved separately from the room plan;
+they do not add undo steps. The settings skip link, object search and printer
+catalog reopen the panel before focusing their controls. Narrow desktop windows
+retain their existing layout.
+
 The settings panel keeps four tabs at the top: **Selected**, **Add**, **Room**
 and **Output**. The item list is a collapsible drawer at the bottom, leaving the main area for
 the current settings. **Show items** opens it; its search, checkboxes and group
@@ -98,6 +106,14 @@ Dragging stops at corners and neighbouring openings; it cannot pass through
 another opening with overlapping height. **Esc** cancels the drag. In 3D, click
 or drag the visible frame, pane, door leaf or fan marker to select or move that
 opening. The preview does not change the saved wall cutout until release.
+
+In **2D plan**, select an opening to show two end handles and its current width.
+Drag either handle to resize it while keeping the opposite end in place. The
+handle stops at wall ends and vertically overlapping neighbouring openings.
+Arrow keys on a focused handle move that end by 10 mm, or 100 mm with Shift.
+Each completed drag is one undo step. Escape, pointer cancellation, a changed
+room or a resized view cancels the preview. These handles do not appear in PNG
+exports. Height and lower-edge height remain editable in **Selected**.
 
 The **Selected** inspector includes editable width and height for every opening,
 window sill height, fan lower-edge height above the floor, dimension presets and

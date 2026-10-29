@@ -13,6 +13,17 @@ export function resolveLayoutLanguage({href, stored} = {}) {
 // Each row is [id, English, Japanese, Spanish, Korean, Russian, German].
 // Names and dimensions supplied by the catalog are values, never translated IDs.
 const rows = [
+  ["layout.panel.collapse", "Hide settings panel", "設定パネルを閉じる", "Ocultar el panel de ajustes", "설정 패널 숨기기", "Скрыть панель настроек", "Einstellungsbereich ausblenden"],
+  ["layout.panel.expand", "Show settings panel", "設定パネルを開く", "Mostrar el panel de ajustes", "설정 패널 표시", "Показать панель настроек", "Einstellungsbereich anzeigen"],
+  ["layout.panel.resize", "Settings panel width", "設定パネルの幅", "Ancho del panel de ajustes", "설정 패널 너비", "Ширина панели настроек", "Breite des Einstellungsbereichs"],
+  ["layout.panel.resizeHelp", "Drag to resize. Left: wider; Right: narrower. Home: minimum; End: maximum. Escape: cancel resizing.", "ドラッグで幅を変更。左矢印：広げる、右矢印：狭める。Home：最小、End：最大。Escape：幅の変更を取り消す。", "Arrastra para cambiar el ancho. Izquierda: ampliar; Derecha: reducir. Home: mínimo; End: máximo. Escape: cancelar el cambio de ancho.", "드래그하여 너비를 조절합니다. 왼쪽: 넓게, 오른쪽: 좁게. Home: 최소, End: 최대. Escape: 너비 조절 취소.", "Перетащите для изменения ширины. Влево: шире; вправо: уже. Home: минимум; End: максимум. Escape: отменить изменение ширины.", "Zum Ändern der Breite ziehen. Links: breiter; Rechts: schmaler. Home: Minimum; End: Maximum. Escape: Breitenänderung abbrechen."],
+  ["layout.panel.width", "{width} pixels", "{width} ピクセル", "{width} píxeles", "{width}픽셀", "{width} пикс.", "{width} Pixel"],
+
+  ["layout.openings.resizeStart", "Resize width from start", "始点側から幅を変更", "Cambiar ancho desde el inicio", "시작점에서 너비 조정", "Изменить ширину с начала", "Breite am Anfang ändern"],
+  ["layout.openings.resizeEnd", "Resize width from end", "終点側から幅を変更", "Cambiar ancho desde el final", "끝점에서 너비 조정", "Изменить ширину с конца", "Breite am Ende ändern"],
+  ["layout.openings.resizeHint", "Drag to change width. Arrow keys: 10 mm; Shift: 100 mm.", "ドラッグで幅を変更。矢印キー：10 mm、Shift併用：100 mm。", "Arrastra para cambiar el ancho. Flechas: 10 mm; Mayús: 100 mm.", "드래그하여 너비 변경. 방향키: 10 mm, Shift: 100 mm.", "Перетащите для изменения ширины. Стрелки: 10 мм; Shift: 100 мм.", "Zum Ändern der Breite ziehen. Pfeiltasten: 10 mm; Umschalt: 100 mm."],
+  ["layout.openings.resizeValue", "{width} mm", "{width} mm", "{width} mm", "{width} mm", "{width} мм", "{width} mm"],
+
   ['layout.tools.title','Build tools','配置ツール','Herramientas de colocación','배치 도구','Инструменты размещения','Platzierungswerkzeuge'],
   ['layout.tools.select','Select','選択','Seleccionar','선택','Выбрать','Auswählen'],
   ['layout.browser.showItems','Show items','一覧を開く','Mostrar elementos','항목 표시','Показать объекты','Objekte anzeigen'],
@@ -21,7 +32,7 @@ const rows = [
   ["layout.openings.selectHelp","Click an opening to edit it. Choose a type below to place a new one.","開口部をクリックして編集します。新しく配置する場合は下で種類を選びます。","Haz clic en un hueco para editarlo. Elige un tipo debajo para colocar uno nuevo.","개구부를 클릭하여 편집하세요. 새로 배치하려면 아래에서 종류를 선택하세요.","Нажмите на проём для редактирования. Для нового проёма выберите тип ниже.","Eine Öffnung zum Bearbeiten anklicken. Zum Platzieren unten einen Typ wählen."],
   ['layout.openings.placing','Place: {type} · Click a wall · Esc: cancel','配置中: {type} · 壁をクリック · Esc: キャンセル','Colocar: {type} · Clic en una pared · Esc: cancelar','배치: {type} · 벽 클릭 · Esc: 취소','Размещение: {type} · Нажмите на стену · Esc: отмена','Platzieren: {type} · Wand anklicken · Esc: abbrechen'],
   ['layout.openings.manualPlacement','Place by wall number','壁番号を指定して配置','Colocar por número de pared','벽 번호로 배치','Разместить по номеру стены','Nach Wandnummer platzieren'],
-  ['layout.openings.dragHelp','Drag along the wall to move. Sizes apply immediately.','壁に沿ってドラッグすると移動します。寸法の変更はすぐに反映されます。','Arrastra por la pared para mover. Las medidas se aplican al momento.','벽을 따라 끌어 이동하세요. 치수 변경은 즉시 적용됩니다.','Для перемещения тяните вдоль стены. Размеры применяются сразу.','Zum Verschieben entlang der Wand ziehen. Maße werden sofort übernommen.'],
+  ["layout.openings.dragHelp", "Drag to move; drag either end in the 2D plan to change width.", "本体をドラッグして移動。平面図では両端をドラッグして幅を変えられます。", "Arrastra para mover; arrastra un extremo en el plano 2D para cambiar el ancho.", "드래그하여 이동하고, 2D 평면도에서 양 끝을 드래그하여 너비를 조절하세요.", "Перетаскивайте для перемещения; тяните за край на 2D-плане для изменения ширины.", "Zum Verschieben ziehen; im 2D-Plan ein Ende ziehen, um die Breite zu ändern."],
   ['layout.openings.size','Size','寸法','Medidas','치수','Размеры','Maße'],
   ['layout.openings.sizePreset','Size preset','寸法プリセット','Medidas predefinidas','치수 프리셋','Готовый размер','Maßvorlage'],
   ['layout.openings.customSize','Custom size','寸法を指定','Medidas personalizadas','사용자 지정 치수','Другой размер','Eigene Maße'],

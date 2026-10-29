@@ -1,4 +1,4 @@
-import {normalizeLanguage, chooseLanguage, languageURL, languageStorageKey, t} from '../layout/layout-i18n.mjs?v=fa46ae57fe7804c8585a';
+import {normalizeLanguage, chooseLanguage, languageURL, languageStorageKey, t} from '../layout/layout-i18n.mjs?v=658ef5d2a9a5a833edbd';
 
 // Called by the real shared workspace and the separate Machines gallery.
 // The link leaves the CAD workspace router by using a separate /layout/ route.

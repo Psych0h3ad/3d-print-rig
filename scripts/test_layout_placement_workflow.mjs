@@ -196,10 +196,11 @@ await test('newer toolbar read wins out-of-order completion',async()=>{
 });
 await test('production startup enables toolbar Paste without cache',()=>{
  const start=source.indexOf('ui=createLayoutUI('),end=source.indexOf('refreshGroupLibrary();',start);assert(start>=0&&end>start);
- const statuses=[],ui={setStatus:v=>statuses.push(v)};
- new Function('deps','const {createLayoutUI,$,act,language,rows,view}=deps;let ui;'+source.slice(start,end)+';return ui;')({
-  createLayoutUI:()=>ui,$:()=>({}),act(){},language:{t:k=>k},rows:[],view:{canvas:{focus(){}}}});
+ const statuses=[],ui={setStatus:v=>statuses.push(v)},document={},window={};let panelCalls=0;
+ new Function('deps','const {createLayoutUI,setupLayoutPanel,document,window,$,act,language,rows,view}=deps;let ui,panelLayout;'+source.slice(start,end)+';return ui;')({
+  createLayoutUI:()=>ui,setupLayoutPanel:options=>{assert.equal(options.document,document);assert.equal(options.window,window);assert.equal(typeof options.t,'function');panelCalls++;return {dispose(){}};},document,window,$:()=>({}),act(){},language:{t:k=>k},rows:[],view:{canvas:{focus(){}}}});
  assert(statuses.some(s=>s.canPaste===true));
+ assert.equal(panelCalls,1);
 });
 for(const [checkbox,shift] of [[false,false],[true,false],[false,true],[true,true]])
  await test('one valid commit; repeat OR semantics '+checkbox+'/'+shift,()=>{
