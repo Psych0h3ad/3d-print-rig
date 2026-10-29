@@ -14295,6 +14295,96 @@
       "kind": "message",
       "ja": "六角形パターン",
       "en": "Hexagon pattern"
+    },
+    "surface.open": {
+      "kind": "message",
+      "ja": "表示形状をSTEPへ",
+      "en": "Custom STEP surfaces"
+    },
+    "surface.title": {
+      "kind": "message",
+      "ja": "表示中のプリント部品を書き出す",
+      "en": "Export displayed print parts"
+    },
+    "surface.scope": {
+      "kind": "message",
+      "ja": "表示メッシュからSTEP面モデルを作ります。ネイティブソリッドは含みません。省かれる部品と元データは下に表示します。",
+      "en": "Faceted STEP surfaces from the displayed meshes. Native solids are not included. Omitted parts and original sources are listed below."
+    },
+    "surface.counts": {
+      "kind": "template",
+      "ja": "{1}部品中{0}部品を収録・{2}部品を除外",
+      "en": "{0} of {1} parts included · {2} omitted"
+    },
+    "surface.included": {
+      "kind": "message",
+      "ja": "収録する部品",
+      "en": "Included parts"
+    },
+    "surface.omissions": {
+      "kind": "message",
+      "ja": "別途取得する部品",
+      "en": "Parts to download separately"
+    },
+    "surface.checking": {
+      "kind": "message",
+      "ja": "選択部品を確認中…",
+      "en": "Checking selected parts…"
+    },
+    "surface.working": {
+      "kind": "message",
+      "ja": "STEPと出典データを作成中…",
+      "en": "Preparing STEP and source package…"
+    },
+    "surface.download": {
+      "kind": "message",
+      "ja": "STEPパッケージをダウンロード",
+      "en": "Download STEP package"
+    },
+    "surface.saved": {
+      "kind": "message",
+      "ja": "STEPパッケージを書き出しました。",
+      "en": "STEP package downloaded."
+    },
+    "surface.error": {
+      "kind": "message",
+      "ja": "書き出せませんでした。この画面を閉じて再度お試しください。",
+      "en": "Export could not be completed. Close this dialog and try again."
+    },
+    "surface.source": {
+      "kind": "message",
+      "ja": "元データ",
+      "en": "Original source"
+    },
+    "surface.no_parts": {
+      "kind": "message",
+      "ja": "選択中の部品に、この出力で扱える出典・形状がまだ登録されていません。",
+      "en": "No selected parts have an approved source geometry for this export yet."
+    },
+    "surface.zero_area": {
+      "kind": "template",
+      "ja": "面積ゼロの{0}三角形を除外（面番号を同梱）。",
+      "en": "{0} zero-area triangles excluded; face numbers are included."
+    },
+    "surface.reference": {
+      "kind": "message",
+      "ja": "組立元の資料",
+      "en": "Assembly reference"
+    },
+    "surface.unresolved_origin": {
+      "kind": "message",
+      "ja": "部品の元データ・STEP再配布は未確認。",
+      "en": "Component source or STEP permission unconfirmed."
+    },
+    "surface.changed_geometry": {
+      "kind": "message",
+      "ja": "元の形状データと異なります。",
+      "en": "Source geometry differs."
+    },
+    "surface.unsupported_geometry": {
+      "kind": "message",
+      "ja": "この表示形状は書き出し未対応です。",
+      "en": "This displayed geometry is not supported for export."
     }
   }
 }

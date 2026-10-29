@@ -1,0 +1,391 @@
+{
+  "schema": "3d-print-rig-surface-step-sources-v1",
+  "representation": "faceted-open-shell-reference",
+  "source": {
+    "id": "voron-sb-cw2-authored-leaves",
+    "license": "GPL-3.0",
+    "repository": "VoronDesign/Voron-Stealthburner",
+    "revision": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+    "sourceSha256": "526fe18bd11c046deba0a2b193fa3874e8f6d6e5a282fbdc25f06fe5acb3021d",
+    "sourceURL": "https://github.com/VoronDesign/Voron-Stealthburner/blob/8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b/CAD/Stealthburner_CW2_Assembly.step",
+    "officialURL": "https://github.com/VoronDesign/Voron-Stealthburner/blob/8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b/CAD/Stealthburner_CW2_Assembly.step"
+  },
+  "parts": [
+    {
+      "key": "sb_revo_voron_6",
+      "asset": "sb_revo_voron",
+      "displayName": "Stealthburner_Body",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362184",
+        "productId": "362451",
+        "label": "Stealthburner_Body"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "bf67af8f4532e705740ce838bf68971c85fb944589ba32d900068eec1b8d56d2",
+          "count": 31347,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "ae2fe64afff4091ef60ef339c29fdaa6f9054be584cac242a722ce1ca78ec9d5",
+          "count": 119013,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "sb_revo_voron_9",
+      "asset": "sb_revo_voron",
+      "displayName": "LED_Diffuser",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362187",
+        "productId": "362454",
+        "label": "LED_Diffuser"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "c9b02435a6b368a4b1c5548883731a83d3bb1a7f34a256fbbf751fcb623b78b3",
+          "count": 1000,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "abe7806323d2fc41698adbfe03bb6c7ef394544aea5986a2de9e1e3b4e768a0a",
+          "count": 3246,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "sb_revo_voron_10",
+      "asset": "sb_revo_voron",
+      "displayName": "LED_Diffuser_Mask",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362188",
+        "productId": "362455",
+        "label": "LED_Diffuser_Mask"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "c8ba8e632aea6145ae922ccd9c35077304314a890821ecefb2ad11fe93b33cf9",
+          "count": 866,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "8a0637331936fe75bcc9e1d0da93b9614f2d2d97c3d5f9ddb378dd4406bb1909",
+          "count": 2964,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "sb_revo_voron_11",
+      "asset": "sb_revo_voron",
+      "displayName": "LED_Carrier",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362189",
+        "productId": "362456",
+        "label": "LED_Carrier"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "f0db02ac612041844d01d138170485463c3da4e533857b51f16e7a867a009f12",
+          "count": 1544,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "0c7c80b175b0f7a3b29df6724bdaec8b37fd0653d449eb45075e1a29a008560f",
+          "count": 3978,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "sb_revo_voron_82",
+      "asset": "sb_revo_voron",
+      "displayName": "Toolhead Revo Voron Rear",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362244",
+        "productId": "362511",
+        "label": "Toolhead Revo Voron Rear"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "8c2e5d31ad6b9e30c2d273e944f7bee148df64f747fb1510e26057edf6538345",
+          "count": 8072,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "ec9aca909f3b4f3b84023e012e71aaaeddd27f3c9b94629559a4cb9f91e5bb39",
+          "count": 21726,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "sb_revo_voron_83",
+      "asset": "sb_revo_voron",
+      "displayName": "Toolhead Revo Voron Front",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362245",
+        "productId": "362512",
+        "label": "Toolhead Revo Voron Front"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "c337d3ee694edf079ac45266ade38b40f0681c0f28c00aea602af4636564ea2f",
+          "count": 22731,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "877d5305897cb591a3a5c8004291496e41ed1db7f750ef12a55cee7e20f5db60",
+          "count": 83724,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "head_sb_cw2_17",
+      "asset": "head_sb_cw2",
+      "displayName": "Motor_Plate",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362199",
+        "productId": "362466",
+        "label": "Motor_Plate"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "de55894999a9fb5f9d80fd80bb0d7c2b09dbc887c3629846d35fdb20c24a1bb5",
+          "count": 8573,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "0a61aef6acbe4295a6f362b489ae710a3cbb39b5757c57e264cb73ab48cdc734",
+          "count": 25128,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "head_sb_cw2_18",
+      "asset": "head_sb_cw2",
+      "displayName": "Latch",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362200",
+        "productId": "362467",
+        "label": "Latch"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "b2d07150c4030883689d5d5590f852de32d67dc9e4c25f5769e10f25b3fcfb63",
+          "count": 1925,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "1a0d785905fd880a570b3c7079331a351ea5be67fcecd50941e4596d2e49f377",
+          "count": 5409,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "head_sb_cw2_19",
+      "asset": "head_sb_cw2",
+      "displayName": "Main_Body",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362201",
+        "productId": "362468",
+        "label": "Main_Body"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "3e1d956e826fd0ba3dee077827abfa18ed57d20badf7d4daa50c01d4c447a07d",
+          "count": 11668,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "c1bcf60b52b0ec818623c1a75e4456097babbd3dcf1f02b6e1a28d418a6fef83",
+          "count": 34008,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "head_sb_cw2_20",
+      "asset": "head_sb_cw2",
+      "displayName": "PCB_Spacer",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362202",
+        "productId": "362469",
+        "label": "PCB_Spacer"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "4535c9cf7490a39d1d3437a89756a0b81e3a5b6cdeda7cc439edb48979658c58",
+          "count": 858,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "47fda0a015da70209f515f2bcd07206e733ce0e2edb9ade93afa600ccdd79334",
+          "count": 2490,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "head_sb_cw2_21",
+      "asset": "head_sb_cw2",
+      "displayName": "Guilder_A",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362203",
+        "productId": "362470",
+        "label": "Guilder_A"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "4c2f27f63fe58165de868225351bc20e32a07ab25ea8dc952676a2e3451e18c6",
+          "count": 3634,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "02b8e8683616727ab20dea3fb746dec3246b3b2e9f8b985db1526bc7e4070ef0",
+          "count": 10362,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "head_sb_cw2_23",
+      "asset": "head_sb_cw2",
+      "displayName": "Shuttle",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362205",
+        "productId": "362472",
+        "label": "Shuttle"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "c87a0d9f93be9a28011110d38ea7b013c96cddf3a18fe0818810b0da965898c9",
+          "count": 1587,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "f38acba6662b80d950d951e237efea486855593593224824e1e92e29095de178",
+          "count": 4515,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "head_sb_cw2_25",
+      "asset": "head_sb_cw2",
+      "displayName": "Cable_Cover",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362207",
+        "productId": "362474",
+        "label": "Cable_Cover"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "3d2a1bbef6b874e0a11c41ff1f88cc91b78a6f353539fb83926abec67b46eb37",
+          "count": 1330,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "a345a25081d6a90508f7bc270f5e05c4510e355e129ee7375f4a58c8786d8c6e",
+          "count": 3450,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    },
+    {
+      "key": "head_sb_cw2_26",
+      "asset": "head_sb_cw2",
+      "displayName": "Chain_Anchor_3_Hole_V2_Trident",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362209",
+        "productId": "362476",
+        "label": "Chain_Anchor_3_Hole_V2_Trident"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "3f1b93e68a869aa380fa1a09d56fa911b1acdea1d2e4c6b6f3ffb9acc06be7d8",
+          "count": 1374,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "8ad910132be9131bd3534afeff8924916af3270a740fe556c99cf43820eb1609",
+          "count": 3888,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      }
+    }
+  ],
+  "generator": [
+    {
+      "name": "step-surface-writer.mjs",
+      "path": "./step-surface-writer.mjs",
+      "sha256": "4d714d06ec9ba241a3a9a57cb4cd5c7d1c07372f958bdded2d2db3789fef8fb7"
+    },
+    {
+      "name": "step-surface-zero-area.mjs",
+      "path": "./step-surface-zero-area.mjs",
+      "sha256": "1893343a3b079290421469c78c930eea074abf52567622b684c0d48d61ac10c5"
+    },
+    {
+      "name": "step-surface-rebuild.mjs",
+      "path": "./step-surface-rebuild.mjs",
+      "sha256": "bb5a8955d9e35f1b126477e7b1592036bfc468660a2a686f92e546159165ddc2"
+    },
+    {
+      "name": "CODE_LICENSE.txt",
+      "path": "../licenses/step-surface-code-mit.txt",
+      "sha256": "12dd5d3bbb23bc59961188775f7ffe0df63acb168f065edcf68d9d8ab5a3697e"
+    }
+  ],
+  "license": {
+    "path": "../licenses/step-surface-gpl-3.0.txt",
+    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  }
+}

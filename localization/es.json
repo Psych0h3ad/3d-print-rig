@@ -11349,6 +11349,78 @@
     "e3ng.mods.hex": {
       "source_revision": "f55d2d7ba1e52d1c087f",
       "text": "Patrón hexagonal"
+    },
+    "surface.open": {
+      "source_revision": "acbe3fd26b5cb5816a46",
+      "text": "Superficies STEP personalizadas"
+    },
+    "surface.title": {
+      "source_revision": "49b858ffe6955f3f7b40",
+      "text": "Exportar piezas impresas visibles"
+    },
+    "surface.scope": {
+      "source_revision": "2445b537596c55a03b6d",
+      "text": "Superficies STEP facetadas de las mallas visibles. No incluye sólidos nativos. Las piezas omitidas y sus fuentes se indican abajo."
+    },
+    "surface.counts": {
+      "source_revision": "b350ffc2a059b0376bcb",
+      "text": "{0} de {1} piezas incluidas · {2} omitidas"
+    },
+    "surface.included": {
+      "source_revision": "7801f5f1da13d80d9ea0",
+      "text": "Piezas incluidas"
+    },
+    "surface.omissions": {
+      "source_revision": "086986a5c0eb51dc65f9",
+      "text": "Piezas para descargar por separado"
+    },
+    "surface.checking": {
+      "source_revision": "22f684d05871e22108d6",
+      "text": "Comprobando piezas seleccionadas…"
+    },
+    "surface.working": {
+      "source_revision": "0fd6a62396da5b5e751f",
+      "text": "Preparando STEP y fuentes…"
+    },
+    "surface.download": {
+      "source_revision": "7d8fb134844ad7401450",
+      "text": "Descargar paquete STEP"
+    },
+    "surface.saved": {
+      "source_revision": "799794a17099825216f5",
+      "text": "Paquete STEP descargado."
+    },
+    "surface.error": {
+      "source_revision": "761f13731bd93b01c3e8",
+      "text": "No se pudo exportar. Cierra este diálogo e inténtalo de nuevo."
+    },
+    "surface.source": {
+      "source_revision": "6d827c88d5e07360635a",
+      "text": "Fuente original"
+    },
+    "surface.no_parts": {
+      "source_revision": "b34bb525e26cc62bf41e",
+      "text": "Aún no hay piezas seleccionadas con geometría de origen aprobada para esta exportación."
+    },
+    "surface.zero_area": {
+      "source_revision": "d24b4426d373ed34019a",
+      "text": "Se excluyen {0} triángulos de área cero; se incluyen sus números de cara."
+    },
+    "surface.reference": {
+      "source_revision": "ad44354c7d05f7cf0b7d",
+      "text": "Referencia del conjunto"
+    },
+    "surface.unresolved_origin": {
+      "source_revision": "241edfc8f971dc88675c",
+      "text": "Origen de la pieza o permiso STEP sin confirmar."
+    },
+    "surface.changed_geometry": {
+      "source_revision": "2e3638a7964b4abff36d",
+      "text": "La geometría difiere del original."
+    },
+    "surface.unsupported_geometry": {
+      "source_revision": "df1a50770135b2b088fe",
+      "text": "Esta geometría visible no se puede exportar."
     }
   }
 }

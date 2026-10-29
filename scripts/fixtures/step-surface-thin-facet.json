@@ -1,0 +1,42 @@
+{
+  "source": {
+    "asset": "head_sb_cw2",
+    "key": "head_sb_cw2_21",
+    "license": "GPL-3.0",
+    "revision": "8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b",
+    "url": "https://github.com/VoronDesign/Voron-Stealthburner/blob/8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b/CAD/Stealthburner_CW2_Assembly.step",
+    "positionSha256": "4c2f27f63fe58165de868225351bc20e32a07ab25ea8dc952676a2e3451e18c6",
+    "indexSha256": "02b8e8683616727ab20dea3fb746dec3246b3b2e9f8b985db1526bc7e4070ef0",
+    "originalTriangleOrdinal": 170
+  },
+  "positions": [
+    -0.002240861766040325,
+    0.3963164985179901,
+    0.014726669527590275,
+    -0.0024810705799609423,
+    0.3964323103427887,
+    0.01446000300347805,
+    -0.0023609662894159555,
+    0.3963744044303894,
+    0.01459333673119545
+  ],
+  "matrixCAD": [
+    1000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1000,
+    0,
+    0,
+    -1000,
+    0,
+    0,
+    0.20060005200070566,
+    2.4066003706863293,
+    -353.04620000000006,
+    1
+  ],
+  "scope": "Three actual exported Float32 vertices of a thin authored Guilder A facet. Plane reference direction projection must not move the origin, normal or facet coordinates."
+}

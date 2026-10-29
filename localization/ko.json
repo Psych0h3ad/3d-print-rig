@@ -11349,6 +11349,78 @@
     "e3ng.mods.hex": {
       "source_revision": "f55d2d7ba1e52d1c087f",
       "text": "육각형 패턴"
+    },
+    "surface.open": {
+      "source_revision": "acbe3fd26b5cb5816a46",
+      "text": "사용자 정의 STEP 표면"
+    },
+    "surface.title": {
+      "source_revision": "49b858ffe6955f3f7b40",
+      "text": "표시된 출력 부품 내보내기"
+    },
+    "surface.scope": {
+      "source_revision": "2445b537596c55a03b6d",
+      "text": "표시된 메시에서 STEP 표면 모델을 만듭니다. 네이티브 솔리드는 포함하지 않습니다. 제외 부품과 원본 출처는 아래에 표시됩니다."
+    },
+    "surface.counts": {
+      "source_revision": "b350ffc2a059b0376bcb",
+      "text": "{1}개 중 {0}개 포함 · {2}개 제외"
+    },
+    "surface.included": {
+      "source_revision": "7801f5f1da13d80d9ea0",
+      "text": "포함 부품"
+    },
+    "surface.omissions": {
+      "source_revision": "086986a5c0eb51dc65f9",
+      "text": "별도로 받을 부품"
+    },
+    "surface.checking": {
+      "source_revision": "22f684d05871e22108d6",
+      "text": "선택 부품 확인 중…"
+    },
+    "surface.working": {
+      "source_revision": "0fd6a62396da5b5e751f",
+      "text": "STEP 및 원본 패키지 준비 중…"
+    },
+    "surface.download": {
+      "source_revision": "7d8fb134844ad7401450",
+      "text": "STEP 패키지 다운로드"
+    },
+    "surface.saved": {
+      "source_revision": "799794a17099825216f5",
+      "text": "STEP 패키지를 다운로드했습니다."
+    },
+    "surface.error": {
+      "source_revision": "761f13731bd93b01c3e8",
+      "text": "내보내지 못했습니다. 이 창을 닫고 다시 시도하세요."
+    },
+    "surface.source": {
+      "source_revision": "6d827c88d5e07360635a",
+      "text": "원본 출처"
+    },
+    "surface.no_parts": {
+      "source_revision": "b34bb525e26cc62bf41e",
+      "text": "선택된 부품에 이 내보내기용으로 승인된 원본 형상이 아직 없습니다."
+    },
+    "surface.zero_area": {
+      "source_revision": "d24b4426d373ed34019a",
+      "text": "면적이 0인 삼각형 {0}개 제외. 면 번호를 포함합니다."
+    },
+    "surface.reference": {
+      "source_revision": "ad44354c7d05f7cf0b7d",
+      "text": "조립 원본 참고"
+    },
+    "surface.unresolved_origin": {
+      "source_revision": "241edfc8f971dc88675c",
+      "text": "부품 원본 또는 STEP 재배포 권한 미확인."
+    },
+    "surface.changed_geometry": {
+      "source_revision": "2e3638a7964b4abff36d",
+      "text": "원본 형상과 다릅니다."
+    },
+    "surface.unsupported_geometry": {
+      "source_revision": "df1a50770135b2b088fe",
+      "text": "이 표시 형상은 내보내기를 지원하지 않습니다."
     }
   }
 }

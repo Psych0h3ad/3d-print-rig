@@ -12,10 +12,10 @@ Compare toolheads, hotends, extruders, probes, gantries and Mods on a printer, o
 - Set colors for printed parts, frames and CNC parts.
 - Preview axis movement, toolchangers and lighting on supported models.
 - Save a configuration, share a link, or export an image from your chosen angle.
-- Download available standard printer assemblies as STEP files using the **STEP** button.
+- Download available standard printer assemblies with **STEP**, or export admitted printed toolhead parts as [custom STEP surfaces](docs/CUSTOM_STEP.md).
 - Follow the official V0.2 / V0.2r1 assembly steps with the 3D model.
 
-[Available combinations](https://psych0h3ad.github.io/3d-print-rig/support/) lists the options for each printer. STEP downloads contain the listed assembly; they do not include your custom configuration. The viewer is a CAD preview, and a displayed combination does not guarantee that a physical build will fit or complete its full travel.
+[Available combinations](https://psych0h3ad.github.io/3d-print-rig/support/) lists the options for each printer. Standard STEP downloads contain the listed baseline assembly. The toolhead's separate custom export contains only the admitted displayed parts as faceted surface models and lists every omission. The viewer is a CAD preview, and a displayed combination does not guarantee that a physical build will fit or complete its full travel.
 
 [English](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=en) · [日本語](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ja) · [Español](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=es) · [한국어](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ko) · [Русский](https://psych0h3ad.github.io/3d-print-rig/viewer/?lang=ru)
 
