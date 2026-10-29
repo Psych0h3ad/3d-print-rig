@@ -12,8 +12,10 @@ import {headPlan,partKey} from '../site/viewer/head-assembly.js';
 import {snapshotHeadSurfaces,planSurfaceSelection} from '../site/viewer/step-surface-selection.mjs';
 import {writeSurfaceStep} from '../site/viewer/step-surface-writer.mjs';
 import {packageSurfaceStep} from '../site/viewer/step-surface-package.mjs';
+import {auditV6Surfaces} from './audit_step_surface_v6.mjs';
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 export async function auditSurfaceAssets(root,{output}={}){
+ if(output){await fs.mkdir(output);await fs.writeFile(path.join(output,'actual-step-surface.json'),JSON.stringify({passed:false,status:'RUNNING'}))}
  const read=async n=>JSON.parse(await fs.readFile(path.join(root,n),'utf8'));
  const catalog=await read('TOOLHEAD_CONFIGURATIONS.json'),policy=await read('viewer/step-surface-sources.json');
  const variant=catalog.variants.find(v=>v.id==='head__sc__standard_6__stealthburner__revo_voron__cw2');assert(variant);
@@ -55,8 +57,10 @@ export async function auditSurfaceAssets(root,{output}={}){
  const changed=snapshot(),candidate=changed.find(p=>p.id===policy.parts[0].key);candidate.index[0]=(candidate.index[0]+1)%(candidate.positions.length/3);
  const rejected=await planSurfaceSelection(changed,policy);assert.equal(rejected.included.length,13);assert(rejected.omitted.some(p=>p.id===candidate.id&&p.reason==='source-geometry-changed'));
  const report={passed:true,inputs:pins,configuration:variant.id,counts:plan.counts,triangles:outputStep.triangles,stepBytes:outputStep.blob.size,packageBytes:pkg.blob.size,framingMatrixChecks:checks,poseAndPaletteStates:7,newNativeSolids:0,scope:'Exact admitted exported mesh triangle surface STEP only. No native BRep repair, closed-solid or physical-fit qualification.'};
- if(output){await fs.mkdir(output,{recursive:true});await fs.writeFile(path.join(output,'actual-surfaces.step'),Buffer.from(await outputStep.blob.arrayBuffer()));await fs.writeFile(path.join(output,'actual-package.zip'),Buffer.from(await pkg.blob.arrayBuffer()));await fs.writeFile(path.join(output,'actual-step-surface.json'),JSON.stringify(report,null,2));
+ report.v6CommonFront=await auditV6Surfaces(root,{catalog,policy});
+ if(output){await fs.writeFile(path.join(output,'actual-surfaces.step'),Buffer.from(await outputStep.blob.arrayBuffer()));await fs.writeFile(path.join(output,'actual-package.zip'),Buffer.from(await pkg.blob.arrayBuffer()));
   const sample=plan.included.filter(p=>['sb_revo_voron_10','head_sb_cw2_20'].includes(p.id));const s=await writeSurfaceStep(sample);await fs.writeFile(path.join(output,'native-readback-sample.step'),Buffer.from(await s.blob.arrayBuffer()));await fs.writeFile(path.join(output,'source-manifest.json'),JSON.stringify(pkg.manifest,null,2));}
+ if(output){const receipt=path.join(output,'actual-step-surface.json');await fs.writeFile(receipt+'.tmp',JSON.stringify(report,null,2));await fs.rename(receipt+'.tmp',receipt)}
  return report;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){const root=path.resolve(process.argv[2]),out=process.argv[3]?path.resolve(process.argv[3]):undefined;console.log(JSON.stringify(await auditSurfaceAssets(root,{output:out})))}

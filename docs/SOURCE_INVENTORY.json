@@ -115,8 +115,8 @@
     },
     {
       "path": "docs/CUSTOM_STEP.md",
-      "bytes": 3259,
-      "sha256": "ed9e7bf3cde76a74ff06ad8eafa7dbbb3f099240582ec7eae36ef5f83d0f7413"
+      "bytes": 3429,
+      "sha256": "5f44feb919a32eb997bd07ec1a9fda277a2ed53219eec09551d2259e8a0db63b"
     },
     {
       "path": "docs/CUSTOM_VORON.md",
@@ -270,8 +270,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1232274,
-      "sha256": "3c223decd8e613f5569ce0d9a179e8e585c1d253c0ca62abd4f969f69b6a5338"
+      "bytes": 1233651,
+      "sha256": "23fe97c77c72f40d90a838cd075a8c01dab3ae2c4a8f8e744b60006ab5bff1f3"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -840,8 +840,13 @@
     },
     {
       "path": "scripts/audit_step_surface_assets.mjs",
-      "bytes": 6968,
-      "sha256": "1554b0340c8ee5cbfe8c0cdc332cd283ed61d67a4813445f34fa92d8895be3c0"
+      "bytes": 7288,
+      "sha256": "c2018e65289a05fdffbfd40d288984e0e05e32a96e08c93a1664a52946ae40fc"
+    },
+    {
+      "path": "scripts/audit_step_surface_v6.mjs",
+      "bytes": 8690,
+      "sha256": "cb306e4d103f9a6d0e0c9082233f3135817c476f7f914ae3d3277c754c2ab9a5"
     },
     {
       "path": "scripts/audit_toolchanger_assets.mjs",
@@ -2600,8 +2605,8 @@
     },
     {
       "path": "scripts/test_step_surface_selection.mjs",
-      "bytes": 7297,
-      "sha256": "fe574bc86dfe88d7ed595da107acdd7fc9a6c66e0b4d3b5164cf28f9235abc66"
+      "bytes": 7911,
+      "sha256": "7a8905724f221a468182bcb10cfe9137853f6c21d9f2519f50120e8cc563691b"
     },
     {
       "path": "scripts/test_step_surface_writer.mjs",
@@ -8135,8 +8140,8 @@
     },
     {
       "path": "site/viewer/step-surface-sources.json",
-      "bytes": 11602,
-      "sha256": "816cbd4599cc1e39036aae88d6670cb6b955fea6a3de7751e9c1f4533d99a992"
+      "bytes": 15308,
+      "sha256": "1cc7ebb01b0a8e5d4a83c53891a20e2e36eedfa8b1e8fc04a264d69f4486735e"
     },
     {
       "path": "site/viewer/step-surface-ui.mjs",
