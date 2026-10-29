@@ -1,7 +1,8 @@
+import {applyBiquSurfaceDisplay} from './layout-biqu-display.mjs?v=58992b18f1b355de3f74';
 import * as THREE from '../viewer/vendor-r180/three.module.js';
-import {getLayoutEquipment} from './layout-equipment.mjs?v=bd8e2772cabd6fd2564b';
-import {downloadEquipmentModel,verifyEquipmentModelBytes,equipmentTransferIdentity} from './layout-equipment-transfer.mjs?v=de9f49cd911bf7a2e5e5';
-import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=81ae2cf27403863696cc';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
+import {downloadEquipmentModel,verifyEquipmentModelBytes,equipmentTransferIdentity} from './layout-equipment-transfer.mjs?v=b1d4cb920a44e4e6f8dd';
+import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=77286c52ec71afda7379';
 export {layoutMachineRecipes} from '../viewer/layout-machine-recipes.mjs';
 
 const abort = signal => signal?.throwIfAborted();
@@ -88,14 +89,15 @@ export function createLayoutEquipmentLoader({getEquipment=getLayoutEquipment,
       abort(signal);
       const dimensions=actualDimensions(root,row);
       const closure=addU1BottomClosure(THREE,root,row);
+      const displayPolicy=applyBiquSurfaceDisplay(root,row);
       const provenance={};
       for(const key of ['publicSourcesOnly','manufacturerCAD','privateSourceDerived','purchasedSourceDerived'])
         if(typeof row[key]==='boolean')provenance[key]=row[key];
-      root.userData.layoutEquipment={id,equipmentVariant:row.equipmentVariant,...provenance,...(closure?{derivatives:[closure]}:{})};
+      root.userData.layoutEquipment={id,equipmentVariant:row.equipmentVariant,...provenance,...(closure?{derivatives:[closure]}:{}),...(displayPolicy?{displayPolicy}:{})};
       // Geometry already has the common variant/floor datum. Do not normalize,
       // recenter, rescale, reorient or replace any component matrix here.
-      const source={machineId:id,category:row.privateSourceDerived?'scan-derived-layout-equipment':'public-layout-equipment',equipmentVariant:row.equipmentVariant,
-        assetPath:row.model.path,sha256:hash,...provenance,...(closure?{derivatives:[closure]}:{}),
+      const source={machineId:id,category:row.manufacturerCAD?'manufacturer-layout-equipment':row.privateSourceDerived?'scan-derived-layout-equipment':'public-layout-equipment',equipmentVariant:row.equipmentVariant,
+        assetPath:row.model.path,sha256:hash,...provenance,...(closure?{derivatives:[closure]}:{}),...(displayPolicy?{displayPolicy}:{}),
         normalization:{unit:'m',up:'+Y',front:'+Z',translation:[0,0,0],
           individual_source_matrices_unchanged:true,shared_authored_variant_datum:true}};
       emit({phase:'ready',percent:100});

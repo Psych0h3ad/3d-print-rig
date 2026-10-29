@@ -1,7 +1,7 @@
 // Farm units use the same static planning envelopes as individual objects.
 // A group never duplicates source CAD or changes printer/support attachments.
 import {LIMITS,LayoutValidationError,createDefaultLayout,deriveScene,resolvePrinterEquipment,
-  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=6b7e952ddb2a17f3de3d';
+  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=5bf92464eadb27075614';
 import {rootPose,groupRootPose} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {bounds,rectangle,rotateXZ,transformPolygon,polygonContains,orient} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';

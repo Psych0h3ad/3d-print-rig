@@ -2,6 +2,19 @@
 // Shared by the browser loader and actual-body CLI audits. No work on import.
 export const MAX_LAYOUT_EQUIPMENT_BYTES=16*1024*1024;
 export const LAYOUT_EQUIPMENT_TRANSFER_BASE='https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/da1f857f0c48606ed818/';
+// Separate immutable receipt. It does not expand the legacy U1 path/base pairs.
+export const BIQU_POPSTATION_TRANSFER_BASE='https://psych0h3ad.github.io/3d-print-rig-extra-models/layout-references/biqu-popstation-0759dac8fdee8cf20c6c/';
+const BIQU_DIRECTORY='layout/assets/equipment/biqu-popstation-cad-v1/';
+const biquIdentity=(name,bytes,sha256,wireBytes,wireSHA256)=>Object.freeze({
+  path:BIQU_DIRECTORY+name,bytes,sha256,transfer:Object.freeze({
+    path:BIQU_DIRECTORY+name+'.gz',bytes:wireBytes,sha256:wireSHA256,
+    encoding:'gzip',baseURL:BIQU_POPSTATION_TRANSFER_BASE})});
+export const BIQU_POPSTATION_MODEL_IDENTITY=biquIdentity('PopStationMini_source_empty.glb',1347856,
+  'cd531f04bf1db39af6826aa658fe30a2e9efaafd1209e5d61ff4548c4970c83b',437640,
+  'e3125f9042d4dafdb33534709c7098acac8f0c634f6a95f1ff284e5b79b7da75');
+export const BIQU_POPSTATION_PREVIEW_IDENTITY=biquIdentity('PopStationMini_preview_geometry.json',9549487,
+  'f7ae02fccb83c655c4784af5736eec59fb4064ca4e5f714846f7b88f34f3ab6c',1451459,
+  '93f69bed29fb42022d3bd5535830c8579b778c63017206308890552793346ca2');
 const HASH=/^[a-f0-9]{64}$/;
 const EXTERNAL_MODELS=new Set([
   'layout/assets/equipment/u1-exterior/U1_exterior_standalone_loaded.glb',
@@ -17,6 +30,13 @@ const GZIP_MODELS=new Set([
 const fail=message=>Object.assign(new Error(message),{code:'LAYOUT_EQUIPMENT_INTEGRITY'});
 const abort=signal=>signal?.throwIfAborted();
 
+function exactBiquTransfer(model,pin) {
+  if(!['path','bytes','sha256'].every(key=>model[key]===pin[key])||
+    !model.transfer||!['path','bytes','sha256','encoding','baseURL'].every(key=>model.transfer[key]===pin.transfer[key]))
+    throw fail('Unexpected BIQU immutable model or preview identity');
+  return {...pin.transfer};
+}
+
 function checkIdentity(ref) {
   if(!Number.isSafeInteger(ref?.bytes)||ref.bytes<=0||ref.bytes>MAX_LAYOUT_EQUIPMENT_BYTES||
     typeof ref.sha256!=='string'||!HASH.test(ref.sha256))
@@ -26,6 +46,7 @@ function checkIdentity(ref) {
 /** Snapshot pins before any asynchronous work; never infer an encoding from a URL. */
 export function equipmentTransferIdentity(model) {
   checkIdentity(model);
+  if(model.path?.startsWith(BIQU_DIRECTORY))return exactBiquTransfer(model,BIQU_POPSTATION_MODEL_IDENTITY);
   if(typeof model.path!=='string'||!/^([A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.glb$/.test(model.path)||
     model.path.split('/').some(part=>part==='.'||part==='..'))throw fail('Invalid equipment model path');
   if(model.transfer===undefined)return {path:model.path,bytes:model.bytes,sha256:model.sha256};
@@ -42,6 +63,7 @@ export function equipmentTransferIdentity(model) {
 /** Separate JSON contract; it cannot widen the GLB model allowlist. */
 export function equipmentPreviewGeometryTransferIdentity(model) {
   checkIdentity(model);
+  if(model.path?.startsWith(BIQU_DIRECTORY))return exactBiquTransfer(model,BIQU_POPSTATION_PREVIEW_IDENTITY);
   const transfer=model.transfer;checkIdentity(transfer);
   if(model.path!=='layout/assets/equipment/u1-exterior/U1_preview_geometry.json'||
     transfer.path!==model.path+'.gz'||transfer.encoding!=='gzip'||

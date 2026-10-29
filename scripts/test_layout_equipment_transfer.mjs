@@ -382,7 +382,7 @@ await test('both-real-audit-entrypoints-require-exact-cache-bodies-before-geomet
  const site=path.join(tmp,'site'),cache=path.join(tmp,'private-cache'),repo=fileURLToPath(new URL('../',import.meta.url));
  fs.mkdirSync(path.join(site,'layout'),{recursive:true});fs.mkdirSync(path.join(site,'viewer'),{recursive:true});fs.mkdirSync(cache);
  try{
-  for(const name of ['layout/layout-machine-loader.mjs','layout/layout-equipment-transfer.mjs','layout/layout-geometry.mjs',
+  for(const name of ['layout/layout-biqu-popstation.mjs','layout/layout-biqu-display.mjs','layout/layout-machine-loader.mjs','layout/layout-equipment-transfer.mjs','layout/layout-geometry.mjs',
    'layout/layout-equipment-mesh.mjs','layout/layout-renderer.mjs','viewer/layout-machine-recipes.mjs',
    'viewer/source-assembly-registry.mjs'])
    fs.copyFileSync(path.join(repo,'site',name),path.join(site,name));

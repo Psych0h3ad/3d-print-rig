@@ -113,10 +113,11 @@ try {
     for(const key of ['access','lstat','stat','realpath','open','readFile','writeFile','mkdir','mkdtemp','opendir','readdir','rename','rm'])block(fsp,key);
     for(const key of ['createReadStream','writeFileSync'])block(fs,key);
     // Node 24 may synchronously load ESM source through this public function.
-    // Permit only the three module-source reads, and only from Node's loader;
+    // Permit only the four module-source reads, and only from Node's loader;
     // application reads of these same files still fail the import test.
     const sourceReads=new Set([sourceURL,new URL('../site/layout/layout-equipment.mjs',import.meta.url),
-      new URL('../site/layout/layout-equipment-transfer.mjs',import.meta.url)].map(url=>fileURLToPath(url)));
+      new URL('../site/layout/layout-equipment-transfer.mjs',import.meta.url),
+      new URL('../site/layout/layout-biqu-popstation.mjs',import.meta.url)].map(url=>fileURLToPath(url)));
     const readSource=fs.readFileSync;
     fs.readFileSync=function(file,...args) {
       const name=file instanceof URL?fileURLToPath(file):path.resolve(String(file));

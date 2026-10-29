@@ -294,7 +294,8 @@ class EquipmentInputOrchestration(unittest.TestCase):
         # must fail; this is not an actual preview/mesh/host success certificate.
         shutil.copyfile(self.source_root / 'scripts/test_layout_equipment_preview.mjs',
                         self.root / 'scripts/test_layout_equipment_preview.mjs')
-        for name in ['layout-equipment.mjs', 'layout-equipment-preview.mjs']:
+        for name in ['layout-equipment.mjs', 'layout-equipment-preview.mjs',
+                     'layout-biqu-popstation.mjs', 'layout-biqu-display.mjs']:
             shutil.copyfile(self.source_root / 'site/layout' / name, self.root / 'site/layout' / name)
         for arguments, folder in [([], self.payload / EQUIPMENT_PREFIX),
                                   (['--prepared-dir', str(self.root / 'explicit-prepared')],

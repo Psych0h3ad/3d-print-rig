@@ -30,7 +30,7 @@ const factory=new Function('THREE','getLayoutEquipment',`
   const furnitureGroup=new THREE.Group(),objects=new Map(),palette=new Map();
   const boxGeometry=new THREE.BoxGeometry(1,1,1),previewCalls=[];
   const previewPart=(parent,part)=>{previewCalls.push(part);parent.add(new THREE.Group());};
-  ${section('const material=(color,opacity=1)=>','function previewPart(')}
+  ${section('const material=(color,opacity=1,doubleSided=false)=>','function previewPart(')}
   ${section('function record(e,g){','function catalogMachine(')}
   return {makeFurniture,objects,previewCalls,dispose(){boxGeometry.dispose();for(const m of palette.values())m.dispose();}};
 `);

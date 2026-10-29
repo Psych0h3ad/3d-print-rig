@@ -1,6 +1,6 @@
 // Pure placement transactions for static planning envelopes, never CAD fit proofs.
-import {LIMITS, createCatalog, createDesk, createShelf, createPopStation, resolvePrinterEquipment, applyAction, validateState,
-  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=6b7e952ddb2a17f3de3d';
+import {LIMITS, createCatalog, createDesk, createShelf, createPopStation, createBiquPopStation, resolvePrinterEquipment, applyAction, validateState,
+  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=5bf92464eadb27075614';
 import {rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 
 const MAGNET_MM = 14;
@@ -49,16 +49,16 @@ export function proposePlacement(state, input, catalog) {
   const issues = [];
   let sizeMm = {width: 0, depth: 0, height: 0}, furniture, machines, surface, equipment;
   const rejected = (problems = issues, pose = world) => ({valid: false, state: null, id, world: {...pose}, sizeMm, issues: problems, guides: []});
-  if (!['desk', 'shelf', 'popstation_mini', 'printer'].includes(kind)) issues.push(error('UNKNOWN_PLACEMENT_KIND', 'placement.kind'));
+  if (!['desk', 'shelf', 'popstation_mini', 'popstation_mini_biqu_v1', 'printer'].includes(kind)) issues.push(error('UNKNOWN_PLACEMENT_KIND', 'placement.kind'));
   for (const key of ['xMm', 'zMm', 'yawDeg']) if (!finite(request[key], key === 'yawDeg' ? LIMITS.maxYawDeg : LIMITS.maxCoordinateMm))
     issues.push(error('NUMBER_OUT_OF_RANGE', `placement.${key}`));
   if (snapMm !== 0 && snapMm !== 10) issues.push(error('NUMBER_OUT_OF_RANGE', 'placement.snapMm'));
   if (template !== undefined && (!template || typeof template !== 'object' || Array.isArray(template)
     || (kind === 'printer' ? !Object.hasOwn(template, 'machineId') : template.type !== kind)))
     issues.push(error('COPY_KIND_MISMATCH', 'placement.copy'));
-  if (kind === 'desk' || kind === 'shelf' || kind==='popstation_mini') {
+  if (kind === 'desk' || kind === 'shelf' || kind==='popstation_mini'||kind==='popstation_mini_biqu_v1') {
     try {
-      furniture = template === undefined ? (kind === 'desk' ? createDesk({id}) : kind==='shelf'?createShelf({id}):createPopStation({id})) : {...template, id};
+      furniture = template === undefined ? (kind === 'desk' ? createDesk({id}) : kind==='shelf'?createShelf({id}):kind==='popstation_mini'?createPopStation({id}):createBiquPopStation({id})) : {...template, id};
       sizeMm = sizeOf(furniture);
     } catch (e) { issues.push(...errorsOf(e)); }
     if (parentId !== null || surfaceId !== 'floor') issues.push(error('FLOOR_SURFACE_REQUIRED', 'placement.surfaceId'));

@@ -42,3 +42,13 @@ models do not establish manufacturer mounting dimensions or load ratings.
 
 All supplied notices are preserved in the
 [reference notices](../site/layout/assets/equipment/u1-exterior/U1_exterior_notices.json).
+
+## BIQU PopStation Mini cabinet
+
+The **PopStation Mini · BIQU** entry uses cabinet CAD supplied by BIQU, with permission to distribute a Web mesh. The original STEP is not included in the site, downloads or export packages.
+
+This reference retains the 70 source occurrences. Its displayed envelope is 423.100 × 478.283 × 417.400 mm, including the handle. The bottom of the modeled housing is the floor datum. The supplied assembly has no spools, feeder assemblies, protruding feet or casters. Its neutral gray is a display material; the source does not specify colors.
+
+The cabinet is a separate versioned layout item. Existing PopStation Mini references, U1 sets and saved placements keep their previous dimensions and support datum. The supplied cabinet's upper deck has cutouts; it is not offered as an automatically verified U1 mounting surface. The existing U1 reference remains available for that layout arrangement.
+
+Placement preview shares one merged mesh between copies. Detailed image output loads the original 70 occurrences. Both derive from the supplied geometry without resizing it to match the older reference. Room and furniture envelopes remain planning checks, not load ratings or native-solid clearance certification.

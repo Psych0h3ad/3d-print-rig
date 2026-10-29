@@ -1,3 +1,5 @@
+import {configureBiquPreviewGroups,createBiquLayerMaterial} from '../site/layout/layout-biqu-display.mjs';
+import {BIQU_POPSTATION_PREVIEW} from '../site/layout/layout-biqu-popstation.mjs';
 // Separate legacy derivation witnesses and current intrinsic-plate fixtures.
 // Actual exported V6 evidence is produced separately by the equipment audits.
 import assert from 'node:assert/strict';
@@ -35,11 +37,11 @@ const raw=annulus(60,512),preview=annulus(32,288),objects=[];
 const meshSource=fs.readFileSync(new URL('../site/layout/layout-equipment-mesh.mjs',import.meta.url),'utf8');
 function sourceSection(a,b){const from=meshSource.indexOf(a),to=meshSource.indexOf(b,from+a.length);assert.ok(from>=0&&to>from,a);return meshSource.slice(from,to);}
 const cacheSourceAt=meshSource.indexOf('export function createEquipmentMeshCache(');assert.ok(cacheSourceAt>=0);
-const fixtureCache=new Function('THREE','LAYOUT_EQUIPMENT_PREVIEW','U1_BOTTOM_SOURCE','U1_INTRINSIC_BOTTOM_SOURCE','deriveU1Bottom',
+const fixtureCache=new Function('configureBiquPreviewGroups','createBiquLayerMaterial','BIQU_POPSTATION_PREVIEW','THREE','LAYOUT_EQUIPMENT_PREVIEW','U1_BOTTOM_SOURCE','U1_INTRINSIC_BOTTOM_SOURCE','deriveU1Bottom',
  sourceSection('function deriveLegacyPreviewBottom(){','export const U1_BOTTOM_SOURCE=')+
  sourceSection('const bottomFail=','const area=')+
  sourceSection('function bufferGeometry(','/** The full reference')+
- meshSource.slice(cacheSourceAt).replace('export function createEquipmentMeshCache(','function createEquipmentMeshCache(')+';return createEquipmentMeshCache(THREE);');
+ meshSource.slice(cacheSourceAt).replace('export function createEquipmentMeshCache(','function createEquipmentMeshCache(')+';return createEquipmentMeshCache(THREE);').bind(null,configureBiquPreviewGroups,createBiquLayerMaterial,BIQU_POPSTATION_PREVIEW);
 const rimPart=()=>({geometryId:U1_BOTTOM_SOURCE.previewGeometryId,positionsM:Array.from(preview.positions),normals:Array.from(preview.normals),indices:Array.from(preview.indices)});
 const cacheFor=descriptor=>fixtureCache(THREE,descriptor,U1_BOTTOM_SOURCE,U1_INTRINSIC_BOTTOM_SOURCE,deriveU1Bottom);
 function capGeometry(data=raw){const cap=deriveU1Bottom(THREE,data.positions,data.indices),g=geometry(cap.positionsM,cap.normals,cap.indices);g.userData.layoutEquipmentDerivative=cap.receipt;objects.push(g);return g;}
