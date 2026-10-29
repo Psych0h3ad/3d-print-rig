@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "review_revision": "a4t-integrated-hardware-selection",
-  "reviewed_on": "2026-10-28",
+  "review_revision": "toolhead-depth-precision",
+  "reviewed_on": "2026-10-29",
   "input_sha256": {
     ".github/workflows/pages.yml": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b",
     ".github/workflows/source-check.yml": "c06591ae7325e6a74118ffbddbcc197b0c1d245296266aa6ec5de9d0cceae241",
@@ -99,6 +99,7 @@
     "scripts/fixtures/e3ng-mod-source.json": "3aa4744d32e552022badfdd23d0bb59e8eec2566c012e996abfc408df387f87e",
     "scripts/fixtures/e3ng-panel-source.json": "05ce469db65b0a12a6906d5e775ce3582236ac83a30307fb25b6808302951bbf",
     "scripts/fixtures/e3ng-skirt-fasteners-source.json": "704eda800d0a8d63d2653eff54ee3adcc7b059048c90f053857a3a93a1b273a1",
+    "scripts/fixtures/head_depth_precision.json": "91d3efd709c296c01bfe623e8c5cd8c4357f3fd8ec5c8a0b7b791e9b36051150",
     "scripts/fixtures/layout_ratrig_belts.json": "14f7ac91dd6aadc528626578f0a2c5b14ca838e086167d8fee53fcd00590fbfd",
     "scripts/fixtures/layout_room_dom.mjs": "33f263b862639bb38583b98cc29178e641ade667d18898a9a320d59ebeaff41b",
     "scripts/fixtures/layout_short_number_room.json": "5b1518688881e4b2774114bd666d29488e08158a81b3692d819e40ebea919c24",
@@ -233,6 +234,7 @@
     "scripts/test_head_additions.mjs": "febdb2dc7828ee47e76870938cdcfadf59a84e453b7d9d1db5bad063a040f399",
     "scripts/test_head_builder.mjs": "0d8473f8e04145da9f9b2459dd3516c8b17cebc785113bb4e598f12632e9ca35",
     "scripts/test_head_cache_consumers.mjs": "821ce5b560ece310b17b0120f54e628fd80d45d690e4cd80e737f9c4b2da2616",
+    "scripts/test_head_camera_precision.mjs": "f1c8e899b9b5687036bccaf06553700e252f916b007fd4a0cf24da1d7a8af56f",
     "scripts/test_head_camera.mjs": "e66bcec5c9d20b869c80f81a8c69352bca644f42d0c7afb5759daaa45433f47d",
     "scripts/test_head_combination_coverage.mjs": "cb46c50e2ca7df62f33aeb0915b9c4d50c8d80b601ab5ece789cc96a6737cf41",
     "scripts/test_head_companion_presets.mjs": "0420d4437d72245f693a5c4b201ae0d4c48fe46e726ba75d0a0a6a291e659f20",
@@ -655,7 +657,7 @@
     "site/viewer/grid-control.js": "44e2e88530fbb5820a7dfc1475d281023b1e2a72b3953205f42b4a766cca5732",
     "site/viewer/head-additions.mjs": "a1cfc8aca74dc421ee1a345e4e4d7d0afca2d78d06c1e7c4df196b0204bb4fe5",
     "site/viewer/head-assembly.js": "57baf4e831295fef0f28b9f1442ea8a23e23a8f6a56b91f0cf9be6da6b1dcb62",
-    "site/viewer/head-camera.mjs": "2c375a81d7b329401bfc460a93583f080699345166a3ad642f9fbf91051782de",
+    "site/viewer/head-camera.mjs": "dff80d4ea324eedaae9aaf7823c913e40c3f429df008a6bb8c9328a8829f6a72",
     "site/viewer/head-companion-presets.mjs": "142ddcf204a96d847c30d72c36aba2df115cc3c8394639a336090f247824ab68",
     "site/viewer/head-markers.mjs": "ecb2d72d7d41cc8055e4708bfbba02683a246304453d3e64a5b70dbcfdec818f",
     "site/viewer/head-navigation.mjs": "d50a22ffaa747b8d81fbaf345658f0ca823c5fbdceb602525b969f94e88fe5e9",
@@ -842,8 +844,8 @@
     "site/viewer/toolhead-led-identities.mjs": "5cd13006c9b761a9594ff10aa66c1b32e64ed5b45807ca377bb67be184c29808",
     "site/viewer/toolhead-lighting.mjs": "b1b7fd7dbb41511786d5cee80bfbe9edffd0d5ad5c0e57927985acf51841992b",
     "site/viewer/toolheads.css": "5980047d16c1dadb3a63ea9d656c03261a3af30b2748d879158d97aea40a011f",
-    "site/viewer/toolheads.html": "08e66afb24fdd929d92dfd15e47e9a158e77636d01153a74bf04cf435b594fa3",
-    "site/viewer/toolheads.js": "b8fda14af75a9529e64906db0e3c57e02b55fedccbd5ca4e8326a0867b64257d",
+    "site/viewer/toolheads.html": "69c2d5bc2ba17a29cc9e527d8d82f96fdf1d1b2375bc500b0db2db7090722a5f",
+    "site/viewer/toolheads.js": "78e8e7919023e1a99a688b566f46a204d6c476b85db8874e5de423b0a5d93b46",
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-bed-registration.mjs": "17201d090ac06e795be090c94f875e677d4e80054ed8ad16d57a25bb4eddd4fd",
     "site/viewer/trident-belts.mjs": "36cbfcd85e770a25e8220665ee8b44e47c202523f588b9dd2e8e8aa944146511",
@@ -20267,5 +20269,18 @@
     "new_native_clearance": false,
     "airflow_simulated": false,
     "full_physical_fit_certified": false
+  },
+  "current_toolhead_depth_review": {
+    "scope": "Standalone toolhead camera clipping during interactive views and PNG export. Model geometry, hardware placement, materials and machine registrations unchanged.",
+    "regressions": [
+      "test_head_camera_precision.mjs",
+      "test_head_camera.mjs",
+      "test_export_camera.mjs"
+    ],
+    "source_surface_fixture": "scripts/fixtures/head_depth_precision.json",
+    "actual_asset_build": "Normal approved build and required actual exported-model audits passed.",
+    "machine_rows_retained": 73,
+    "new_native_clearance_certificate": false,
+    "browser_scope": "Selected toolheads and views; no all-machine or cross-browser GPU certificate."
   }
 }
