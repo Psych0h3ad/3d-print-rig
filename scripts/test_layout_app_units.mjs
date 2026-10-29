@@ -1,5 +1,5 @@
 // Execute the production app's storage/startup/recovery/keyboard/select bodies.
-// Storage, download, renderer and DOM are ports; the schema, UI and callbacks
+// Storage, download, renderer, panel layout and DOM are ports; the schema, UI and callbacks
 // are current source. No live browser, model, mesh, native or full-build job.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -68,7 +68,7 @@ const factory=new Function('deps',`"use strict";
   createDefaultLayout,applyAction,applyWorldMove,worldTransform,renameGroup,ungroup,removeGroup,transformGroup,
   captureLayoutClipboard,regroupLayoutSelection}=deps;
  ${keys}
- let state=deps.initial,catalog=deps.catalog,rows=deps.catalog,ui,view=deps.view,selected='unit-a';
+ let state=deps.initial,catalog=deps.catalog,rows=deps.catalog,ui,view=deps.view,panelLayout=deps.panelLayout,selected='unit-a';
  let disposed=false,busy=false,buildTools=null,activeOpeningTool=null,roomEditing=false,startEmpty=false,placement=null,interactionGeneration=0,operation=null;
  let groupLibrary=[],nextId=1,rendererOptions;
  ${idBody}
@@ -101,7 +101,7 @@ const factory=new Function('deps',`"use strict";
   actions,rotations,messages,downloads,placementCommands,keys:{storageKey,legacyStorageKey,maxFileBytes},
   rendererOptions:()=>rendererOptions,selected:()=>selected,generation:()=>interactionGeneration,
   history:()=>({past:past.length,future:future.length}),settle:()=>Promise.all(pending),
-  state:()=>state,setState:s=>{state=s;},setView:v=>{view=v;},
+  state:()=>state,setState:s=>{state=s;},setView:v=>{view=v;},setPanelLayout:value=>{panelLayout=value;},
   flags:value=>{busy=!!value.busy;roomEditing=!!value.roomEditing;disposed=!!value.disposed;startEmpty=!!value.startEmpty;},
   setPlacement:value=>{placement=value;},getPlacement:()=>placement,
   seedHistory:()=>{past.push(state);future.push(state);},
@@ -109,13 +109,14 @@ const factory=new Function('deps',`"use strict";
 function app(storage=new StoragePort(),initial=empty(),transactions=false){
  const document=new TestDocument(),container=document.createElement('aside'),canvas=document.createElement('canvas'),status=document.createElement('p');
  container.id='layout-sidebar';status.id='layout-status';document.body.append(container,canvas,status);
+ const panelLayout={revealCalls:[],reveal(){this.revealCalls.push(document.activeElement);return true;}};
  const view={canvas,pickCalls:[],stateCalls:[],focusCalls:0,cancelCalls:0,gesture:false,
   setPickedRoots(ids){this.pickCalls.push([...ids]);},setState(...args){this.stateCalls.push(args);},
   cancelGesture(){this.cancelCalls++;const active=this.gesture;this.gesture=false;return active;},
   focusSelected(){this.focusCalls++;return true;},view(){}};
- const a=factory({localStorage:storage,initial,catalog,document,canvas,container,view,createLayoutUI,
+ const a=factory({localStorage:storage,initial,catalog,document,canvas,container,view,panelLayout,createLayoutUI,
   ...S,...G,...H,transactions,translate:createLayoutTranslator('en')});
- apps.push(a);return {...a,document,container,canvas,storage,view};
+ apps.push(a);return {...a,document,container,canvas,storage,view,panelLayout};
 }
 // Legacy tabs execute the exact same unconditional production writer body,
 // bound to their old key and old unlabeled snapshot. They cannot write v2.
@@ -209,9 +210,20 @@ await test('actual recovery callback exports the authoritative raw document with
 await test('slash and two-stage Escape execute actual app UI wiring and return native focus to canvas',()=>{
  const a=app(new StoragePort(),labeled),saved=encode(a.state());a.canvas.focus();const slash=key(a,a.canvas,'/');
  const search=a.container.querySelector('#layout-object-search');assert.equal(slash.prevented,1);assert.strictEqual(a.document.activeElement,search);
+ assert.deepEqual(a.panelLayout.revealCalls,[a.canvas],'Reveal the inspector before focusing its search');
  search.value='B';search.dispatch('input');const first=key(a,search,'Escape');assert.equal(first.prevented,1);assert.equal(search.value,'');assert.strictEqual(a.document.activeElement,search);
  const second=key(a,search,'Escape');assert.equal(second.prevented,1);assert.strictEqual(a.document.activeElement,a.canvas);
+ assert.deepEqual(a.panelLayout.revealCalls,[a.canvas],'Escape must not reveal the inspector again');
  assert.equal(encode(a.state()),saved);assert.deepEqual(a.actions,[]);assert.deepEqual(a.rotations,[]);assert.deepEqual(a.storage.writes,[]);
+});
+await test('actual reveal callback tolerates an unbound panel and follows its later binding for search and catalog',()=>{
+ const a=app(new StoragePort(),labeled),saved=encode(a.state());a.setPanelLayout(null);a.canvas.focus();
+ assert.equal(key(a,a.canvas,'/').prevented,1);assert.strictEqual(a.document.activeElement,a.container.querySelector('#layout-object-search'));
+ assert.deepEqual(a.panelLayout.revealCalls,[]);a.setPanelLayout(a.panelLayout);a.canvas.focus();
+ assert.equal(key(a,a.canvas,'/').prevented,1);assert.deepEqual(a.panelLayout.revealCalls,[a.canvas]);
+ a.canvas.focus();assert.equal(a.ui.openPrinterCatalog(),true);
+ assert.deepEqual(a.panelLayout.revealCalls,[a.canvas,a.canvas]);assert.strictEqual(a.document.activeElement,a.container.querySelector('#layout-catalog-search'));
+ assert.equal(encode(a.state()),saved);assert.deepEqual(a.actions,[]);assert.deepEqual(a.storage.writes,[]);
 });
 await test('actual search escape callback tolerates a not-yet-created view and follows its later binding',()=>{
  const a=app(new StoragePort(),labeled),search=a.container.querySelector('#layout-object-search');a.setView(null);search.focus();assert.doesNotThrow(()=>key(a,search,'Escape'));
@@ -226,6 +238,7 @@ await test('native input/select/textarea/contenteditable/dialog targets keep typ
   node.focus();const e=event(k,node,extra);a.placementKey(e);a.historyKey(e);assert.equal(e.prevented,0,k+' in '+node.tagName);assert.strictEqual(a.document.activeElement,node);
  }
  assert.deepEqual(a.actions,[]);assert.deepEqual(a.rotations,[]);assert.deepEqual(a.storage.writes,[]);
+ assert.deepEqual(a.panelLayout.revealCalls,[],'Typing and native shortcuts must not reveal the inspector');
 });
 await test('busy/disposed/room editing, modifiers, repeat and consumed key events do not steal slash',()=>{
  const a=app(new StoragePort(),labeled);
@@ -235,6 +248,7 @@ await test('busy/disposed/room editing, modifiers, repeat and consumed key event
   a.canvas.focus();assert.equal(key(a,a.canvas,'/',extra).prevented,0);assert.strictEqual(a.document.activeElement,a.canvas);
  }
  a.ui.setStatus({busy:true});a.canvas.focus();assert.equal(key(a,a.canvas,'/').prevented,0);assert.strictEqual(a.document.activeElement,a.canvas);assert.deepEqual(a.actions,[]);
+ assert.deepEqual(a.panelLayout.revealCalls,[],'Guarded shortcuts must not reveal the inspector');
 });
 await test('placement and history shortcuts retain their existing command paths outside native inputs',()=>{
  const a=app(new StoragePort(),labeled);a.seedHistory();a.setPlacement({kind:'group'});a.canvas.focus();
@@ -431,6 +445,6 @@ await test('placing a copy makes its new primary selection replace the source ch
 assert.deepEqual(hashes(),before,'App/unit source changed during focused replay');
 const report={passed:results.every(r=>r.passed),checks:results.length,results,source_sha256:before,
  actualAppBindings:['store','readSavedLayout','saved-layout startup branch','recovery download callback','placementKey','historyKey','canvas arrow listener','sync','commit','select','pick','selectionIds','act','createLayoutUI construction including onPickedChange','createLayoutRenderer construction including onPick/onSelect'],
- scope:'Actual source storage/read/migration/recovery, pick/select/UI callback, action/commit and keyboard bindings. Integration cases execute production regroup and clipboard capture through real imported state/group/clipboard/UI modules. Renderer, placement preview, rotation, file text, storage and download are recording ports. Legacy writer reuses the production writer bound to v1. No renderer hit-testing/marquee geometry, full startup/network, browser pixels, CAD/native or model validation claim.'};
+ scope:'Actual source storage/read/migration/recovery, pick/select/UI callback, action/commit and keyboard bindings. Integration cases execute production regroup and clipboard capture through real imported state/group/clipboard/UI modules. Renderer, panel reveal, placement preview, rotation, file text, storage and download are recording ports. Legacy writer reuses the production writer bound to v1. No renderer hit-testing/marquee geometry, full startup/network, browser pixels, CAD/native or model validation claim.'};
 const reportAt=process.argv.indexOf('--report');if(reportAt>=0)fs.writeFileSync(path.resolve(process.argv[reportAt+1]),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report));assert.equal(report.passed,true,'Layout app unit regressions');

@@ -1,4 +1,5 @@
-import {createOpeningInteraction} from './layout-opening-interaction.mjs?v=61eeab9ab05276bd5757';
+import {createOpeningInteraction} from './layout-opening-interaction.mjs?v=311c211226edb996ec77';
+import {createOpeningHandles} from './layout-opening-handles.mjs?v=51cfd40ea1f9a7739c30';
 import {wallFrame,openingFrame} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
@@ -119,6 +120,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const selectedName=document.createElement('strong'),selectedSize=document.createElement('span');selectedSummary.append(selectedName,selectedSize);objectTools.append(selectedSummary);
   const toolListeners=[];
   const listen=(element,type,handler)=>{element.addEventListener(type,handler);toolListeners.push([element,type,handler]);};
+  const openingHandles=createOpeningHandles({container,t,onDown:event=>openingEvent(event,'down'),onResizeKey:(edge,delta)=>!disposed&&!exporting&&!placing&&!drag&&openingInteraction.resizeBy(edge,delta)});
   function rotateButton(name,path,attribute='data-layout-rotation'){
     const b=document.createElement('button');b.type='button';b.setAttribute(attribute,name);
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
@@ -196,7 +198,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   }
   function isPlan(){return viewMode==='top';}
   function getView(){return {mode:viewMode,projection:isPlan()?'orthographic-floorplan':'perspective-3d'};}
-  function enableControls(){const manipulating=openingInteraction?.dragging||openingInteraction?.active||['object','rotate','pick'].includes(drag?.kind);perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&!manipulating;planControls.enabled=!exporting&&!disposed&&isPlan()&&!manipulating;if(exporting||disposed){objectTools.hidden=true;unitLabels.hidden=true;}}
+  function enableControls(){const manipulating=openingInteraction?.dragging||openingInteraction?.active||['object','rotate','pick'].includes(drag?.kind);perspectiveControls.enabled=!exporting&&!disposed&&!isPlan()&&!manipulating;planControls.enabled=!exporting&&!disposed&&isPlan()&&!manipulating;if(exporting||disposed){objectTools.hidden=true;unitLabels.hidden=true;openingHandles.hide();}}
   function refreshWalls(forCamera=camera){
     const show=!isPlan()&&wallsVisible;
     if(show)forCamera.updateMatrixWorld(true);
@@ -230,7 +232,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function draw(){if(disposed||frame||exporting)return;frame=requestAnimationFrame(()=>{frame=0;if(disposed||exporting)return;refreshWalls();refreshOpeningFeedback();syncContacts();if(isPlan())updatePlanLabels();updateObjectTools();updateUnitMarkers();renderer.render(scene,camera);updateMeasurements();});}
   const cameraChange=()=>{if(placing&&placementEvent)queuePlacement(placementEvent);draw();};
   perspectiveControls.addEventListener('change',cameraChange);planControls.addEventListener('change',cameraChange);
-  function resize(){if(disposed||exporting)return;const r=container.getBoundingClientRect();if(!r.width||!r.height)return;lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);perspectiveCamera.aspect=r.width/r.height;perspectiveCamera.updateProjectionMatrix();planCamera.left=-planHalfHeight*r.width/r.height;planCamera.right=-planCamera.left;planCamera.top=planHalfHeight;planCamera.bottom=-planHalfHeight;planCamera.updateProjectionMatrix();draw();}
+  function resize(){if(disposed||exporting)return;const r=container.getBoundingClientRect();if(!r.width||!r.height)return;if((r.width!==lastWidth||r.height!==lastHeight)&&openingInteraction?.dragging)openingInteraction.cancel();lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);perspectiveCamera.aspect=r.width/r.height;perspectiveCamera.updateProjectionMatrix();planCamera.left=-planHalfHeight*r.width/r.height;planCamera.right=-planCamera.left;planCamera.top=planHalfHeight;planCamera.bottom=-planHalfHeight;planCamera.updateProjectionMatrix();draw();}
   const observer=new ResizeObserver(resize);observer.observe(container);
   function resetGroup(g){for(const o of [...g.children])g.remove(o);}
   function record(e,g){g.userData.entityId=e.id;g.position.set(e.positionM.x,e.positionM.y,e.positionM.z);g.rotation.y=e.yawRad;objects.set(e.id,g);}
@@ -687,17 +689,21 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   function refreshOpeningFeedback(){
     for(const child of [...openingFeedback.children]){child.geometry.dispose();openingFeedback.remove(child);}
     openingFeedback.visible=!exporting;
-    const o=openingFeedbackValue?.opening??current?.room.openings?.find(o=>o.id===openingSelection);if(!o)return;
+    const o=openingFeedbackValue?.opening??current?.room.openings?.find(o=>o.id===openingSelection);if(!o){openingHandles.hide();return;}
     const f=openingFrame(current.room,o),plan=isPlan(),bottom=plan?10:o.sillMm,top=plan?10:o.sillMm+o.heightMm;
+    if(plan&&!exporting&&!disposed&&!openingInteraction.active){
+      const rect=container.getBoundingClientRect(),point=([x,z])=>{const p=screenPoint(new THREE.Vector3(x*MM,0,z*MM));return [p[0]-rect.left,p[1]-rect.top];};
+      openingHandles.update({visible:true,start:point(f.startMm),end:point(f.endMm),widthMm:o.widthMm});
+    }else openingHandles.hide();
     const at=(distance,y,normal)=>new THREE.Vector3((f.startMm[0]+f.along[0]*distance+f.inward[0]*normal)*MM,y*MM,(f.startMm[1]+f.along[1]*distance+f.inward[1]*normal)*MM);
     const points=plan?[at(0,bottom,-65),at(o.widthMm,bottom,-65),at(o.widthMm,top,40),at(0,top,40)]:[at(0,bottom,3),at(o.widthMm,bottom,3),at(o.widthMm,top,3),at(0,top,3)];
     openingLineMaterial.color.set(openingFeedbackValue?.valid===false?'#d43b3b':openingFeedbackValue?'#16845c':'#008d9b');
     const line=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points),openingLineMaterial);line.renderOrder=100;openingFeedback.add(line);
   }
   function screenPoint(point){const r=canvas.getBoundingClientRect(),p=point.clone().project(camera);return [(p.x+1)*r.width/2+r.left,(1-p.y)*r.height/2+r.top,p.z];}
-  function screenSpan(event,a,b){
+  function screenSpan(event,a,b,clamp=true){
     const dx=b[0]-a[0],dy=b[1]-a[1],length=dx*dx+dy*dy;
-    const u=length?Math.max(0,Math.min(1,((event.clientX-a[0])*dx+(event.clientY-a[1])*dy)/length)):0;
+    const raw=length?((event.clientX-a[0])*dx+(event.clientY-a[1])*dy)/length:0,u=clamp?Math.max(0,Math.min(1,raw)):raw;
     return {u,distance:Math.hypot(event.clientX-a[0]-dx*u,event.clientY-a[1]-dy*u)};
   }
   function locateOpeningWall(event,locked){
@@ -715,7 +721,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     for(let i=0;i<current.room.polygonMm.length;i++){
       if(locked!==undefined&&i!==locked)continue;
       const f=wallFrame(current.room,i),a=screenPoint(new THREE.Vector3(f.startMm[0]*MM,0,f.startMm[1]*MM)),b=screenPoint(new THREE.Vector3(f.endMm[0]*MM,0,f.endMm[1]*MM));
-      const hit=screenSpan(event,a,b);
+      const hit=screenSpan(event,a,b,locked===undefined);
       if((locked!==undefined||hit.distance<=24)&&(!best||hit.distance<best.distance))best={wallIndex:i,alongMm:hit.u*f.lengthMm,distance:hit.distance};
     }return best;
   }
@@ -729,7 +735,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     const project=([x,z])=>screenPoint(new THREE.Vector3(x*MM,0,z*MM));
     return pickPlanOpening(current.room,[event.clientX,event.clientY],project,openingPlanPrimitives(current.room));
   }
-  openingInteraction=createOpeningInteraction({room:()=>current.room,locate:locateOpeningWall,pick:pickOpening,
+  openingInteraction=createOpeningInteraction({room:()=>current.room,locate:locateOpeningWall,pick:pickOpening,pickResize:event=>isPlan()?openingHandles.hit(event):null,
     preview(value,selected){openingFeedbackValue=value;openingSelection=selected;draw();},
     select:onOpeningSelect,commit:onOpeningCommit,changed(){if(!openingInteraction.dragging&&openingPointer!==null){const pointer=openingPointer;openingPointer=null;if(canvas.hasPointerCapture(pointer))canvas.releasePointerCapture(pointer);}enableControls();canvas.style.cursor=openingInteraction.active?'crosshair':'grab';onOpeningToolChange(openingInteraction.tool);}});
   function beginOpening(kind,options={}){if(disposed||exporting)return false;cancel();setPlacement(null);view('top');if(options.frameRoom!==false)view('fit');openingInteraction.begin(kind,options);canvas.focus({preventScroll:true});return true;}
@@ -890,7 +896,8 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     // models use ordinary lighting; no additional maps or CAD floor projection.
     for(const l of scene.children.filter(c=>c.isLight)){const copy=l.clone();copy.castShadow=false;opaqueScene.add(copy);if(copy.target)opaqueScene.add(copy.target);}
     let transparentBytes=0,active=null;const openingGlass=[];
-    exporting=true;renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;pickedSolid.visible=pickedPlan.visible=false;printersGroup.visible=false;for(const g of streamedFurniture)g.visible=false;placementGroup.visible=placementGuides.visible=false;
+    const openingFeedbackWasVisible=openingFeedback.visible;
+    exporting=true;openingFeedback.visible=false;openingHandles.hide();renderer.debug.onShaderError=()=>{throw Object.assign(Error('Image shader compilation failed'),{code:'RENDER_SHADER_FAILED'});};if(frame){cancelAnimationFrame(frame);frame=0;}controls.enabled=false;selectionBox.visible=false;pickedSolid.visible=pickedPlan.visible=false;printersGroup.visible=false;for(const g of streamedFurniture)g.visible=false;placementGroup.visible=placementGuides.visible=false;
     const exportCamera=camera.clone();exportCamera.aspect=w/h;exportCamera.updateProjectionMatrix();
     try{
       aborted(signal);target=new THREE.WebGLRenderTarget(w,h,{samples:0,format:THREE.RGBAFormat,type:THREE.HalfFloatType});target.texture.colorSpace=THREE.LinearSRGBColorSpace;
@@ -953,10 +960,10 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       return {blob,width:w,height:h,machines:snapshot.map(p=>p.machineId),projection:'perspective-3d',camera:'current-camera',rendering:'streamed-browser-raster'};
     }finally{
       active?.dispose();for(const [pane,parent]of openingGlass)parent.attach(pane);disposeTree(transparentRoot);target?.dispose();outputTarget?.dispose();outputGeometry?.dispose();outputMaterial?.dispose();renderer.setRenderTarget(oldTarget);renderer.autoClear=oldAuto;renderer.debug.onShaderError=oldShaderError;scene.background=oldBackground;printersGroup.visible=true;streamedFurniture.forEach((g,i)=>g.visible=furnitureVisibility[i]);placementGroup.visible=previewVisible;placementGuides.visible=guidesVisible;refreshWalls();
-      exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
+      openingFeedback.visible=openingFeedbackWasVisible;exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }
   function releaseResources(){if(resourcesDisposed)return;for(const child of openingFeedback.children)child.geometry.dispose();openingLineMaterial.dispose();resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();pickedSolid.geometry.dispose();pickedPlan.geometry.dispose();pickedMaterial.dispose();clearRoom();openingRenderer.dispose();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();printerMeshCache.dispose();printerPreviews.clear();printerMaterial.dispose();printerGlassMaterial.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
-  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);if(placementFrame)cancelAnimationFrame(placementFrame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);clearUnitMarkers();unitLabels.remove();marquee.remove();objectTools.remove();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
+  function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);if(placementFrame)cancelAnimationFrame(placementFrame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);clearUnitMarkers();unitLabels.remove();marquee.remove();objectTools.remove();openingHandles.dispose();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
   resize();setTool();return {beginOpening,setOpeningSelection,cancelOpening:()=>openingInteraction.cancel(),setState,setPickedRoots,cancelGesture:()=>{if(openingInteraction.cancel())return true;if(!drag)return false;cancel();return true;},setTool,setOptions,setPlacement,refreshPlacement:()=>updatePlacement(),view,getView,focusSelected,exportImage,dispose,canvas,getPreviewMetrics:()=>({cache:printerMeshCache.stats(),render:{...renderer.info?.render},memory:{...renderer.info?.memory}})};
 }

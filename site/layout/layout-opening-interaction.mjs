@@ -20,16 +20,43 @@ export function openingAt(room,opening,offsetMm,{drag=false}={}){
   return best;
 }
 
+// Keep the opposite jamb fixed and stop at the first vertically overlapping
+// neighbour. Resizing never jumps across another opening or changes its height.
+export function resizeOpeningAt(room,opening,edge,alongMm){
+  if(!['start','end'].includes(edge)||!Number.isFinite(alongMm))return null;
+  const length=wallFrame(room,opening.wallIndex).lengthMm,start=opening.offsetMm,end=start+opening.widthMm;
+  const anchor=edge==='start'?start:end;
+  alongMm=anchor+Math.round(alongMm-anchor);
+  let lower=0,upper=length;
+  for(const other of room.openings??[]){
+    if(other.id===opening.id||other.wallIndex!==opening.wallIndex||Math.max(other.sillMm,opening.sillMm)>=Math.min(other.sillMm+other.heightMm,opening.sillMm+opening.heightMm))continue;
+    if(other.offsetMm+other.widthMm<=start)lower=Math.max(lower,other.offsetMm+other.widthMm);
+    else if(other.offsetMm>=end)upper=Math.min(upper,other.offsetMm);
+    else return null;
+  }
+  if(edge==='start'){
+    if(end-lower<1)return null;
+    const offsetMm=Math.max(lower,Math.min(end-1,alongMm));
+    if(offsetMm===start)return opening;
+    return {...opening,offsetMm,widthMm:opening.widthMm-(offsetMm-start)};
+  }
+  if(upper-start<1)return null;
+  const nextEnd=Math.max(start+1,Math.min(upper,alongMm));
+  if(nextEnd===end)return opening;
+  return {...opening,widthMm:opening.widthMm+(nextEnd-end)};
+}
+
 // Event transaction controller. The renderer supplies screen/ray picking and a
 // disposable visual preview. Only pointer-up writes to application history.
-export function createOpeningInteraction({room,locate,pick,preview,select,commit,changed=()=>{}}){
+export function createOpeningInteraction({room,locate,pick,pickResize=()=>null,preview,select,commit,changed=()=>{}}){
   let type=null,motion='hinged',gesture=null,shown=null,selected=null;
   const show=value=>{shown=value;preview(value,selected);};
   function update(event){
+    if(gesture?.room&&room()!==gesture.room){cancel();return null;}
     const r=room(),wall=locate(event,gesture?.opening?.wallIndex);
     if(!wall){show(null);return null;}
     let o=gesture?.opening;
-    if(o){o=openingAt(r,o,wall.alongMm-gesture.grabMm,{drag:true});}
+    if(o){o=gesture.kind==='resize'?resizeOpeningAt(r,o,gesture.edge,wall.alongMm-gesture.grabMm):openingAt(r,o,wall.alongMm-gesture.grabMm,{drag:true});}
     else if(type){
       try{o=newRoomOpening({...r,openings:[]},{id:'opening-preview',type,wallIndex:wall.wallIndex});if(type==='door'&&motion==='sliding')o=withDoorMotion(o,motion);}
       catch(error){
@@ -53,22 +80,30 @@ export function createOpeningInteraction({room,locate,pick,preview,select,commit
     get active(){return !!type;},get dragging(){return !!gesture;},
     down(event){
       if(event.button!==0||event.isPrimary===false)return false;
-      if(type){gesture={kind:'place',pointerId:event.pointerId,x:event.clientX,y:event.clientY};update(event);changed();return true;}
+      if(type){gesture={kind:'place',room:room(),pointerId:event.pointerId,x:event.clientX,y:event.clientY};update(event);changed();return true;}
       if(event.shiftKey)return false;
-      const id=pick(event),o=room().openings?.find(o=>o.id===id);if(!o)return false;
+      const edge=pickResize(event,selected),id=edge?selected:pick(event),r=room(),o=r.openings?.find(o=>o.id===id);if(!o)return false;
       const wall=locate(event,o.wallIndex);if(!wall)return false;
-      selected=id;select(id);gesture={kind:'move',opening:o,grabMm:wall.alongMm-o.offsetMm,pointerId:event.pointerId,x:event.clientX,y:event.clientY};show({opening:o,valid:true});changed();return true;
+      selected=id;select(id);gesture={kind:edge?'resize':'move',edge,room:r,opening:o,grabMm:wall.alongMm-(edge==='end'?o.offsetMm+o.widthMm:o.offsetMm),pointerId:event.pointerId,x:event.clientX,y:event.clientY};show({opening:o,valid:true});changed();return true;
     },
     move(event){if(gesture&&event.pointerId!==gesture.pointerId)return false;if(!type&&!gesture)return false;update(event);return true;},
     up(event){
       if(!gesture||event.pointerId!==gesture.pointerId)return false;
       const g=gesture,o=update(event),click=Math.hypot(event.clientX-g.x,event.clientY-g.y)<=4;gesture=null;
-      if(o&&(g.kind==='move'||click)){
+      if(o&&(g.kind==='move'||g.kind==='resize'||click)){
         if(g.kind==='place'){type=null;show(null);commit({type:'add',opening:o});}
-        else{show(null);if(o.offsetMm!==g.opening.offsetMm)commit({type:'move',opening:o});}
+        else{show(null);if(o.offsetMm!==g.opening.offsetMm||o.widthMm!==g.opening.widthMm)commit({type:g.kind,opening:o});}
       }else show(null);
       changed();return true;
     },cancel,
-    refresh(){if(selected&&!room().openings?.some(o=>o.id===selected))selected=null;show(shown);},
+    resizeBy(edge,deltaMm){
+      if(type||gesture||!Number.isFinite(deltaMm)||!['start','end'].includes(edge))return false;
+      const r=room(),o=r.openings?.find(o=>o.id===selected);if(!o)return false;
+      const at=(edge==='start'?o.offsetMm:o.offsetMm+o.widthMm)+deltaMm,next=resizeOpeningAt(r,o,edge,at);
+      if(!next)return false;
+      if(next.offsetMm!==o.offsetMm||next.widthMm!==o.widthMm)commit({type:'resize',opening:next});
+      changed();return true;
+    },
+    refresh(){if(gesture?.room&&room()!==gesture.room){cancel();return;}if(selected&&!room().openings?.some(o=>o.id===selected))selected=null;show(shown);},
   };
 }

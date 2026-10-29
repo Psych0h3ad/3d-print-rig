@@ -1,5 +1,5 @@
 import {supportedLanguages, languageNames, languageStorageKey, normalizeLanguage,
-  chooseLanguage, languageURL, t} from './layout-i18n.mjs?v=fa46ae57fe7804c8585a';
+  chooseLanguage, languageURL, t} from './layout-i18n.mjs?v=658ef5d2a9a5a833edbd';
 
 // Browser effects stay here; the message module can also be used in pure tests.
 export function setupLayoutLanguage({document = globalThis.document, window = globalThis.window,

@@ -1,0 +1,55 @@
+/* Linked independently; all layout overrides require an active desktop panel. */
+.layout-panel-toggle, .layout-panel-divider { display: none; }
+@media (min-width: 681px) {
+  .layout-workspace[data-layout-panel-active="true"] {
+    grid-template-columns: minmax(0, 1fr) 10px var(--layout-panel-width, 400px);
+  }
+  .layout-workspace[data-layout-panel-active="true"] > .layout-stage { grid-column: 1; grid-row: 1; }
+  .layout-workspace[data-layout-panel-active="true"] > .layout-sidebar { grid-column: 3; grid-row: 1; }
+  .layout-workspace[data-layout-panel-active="true"][data-layout-panel-collapsed="true"] {
+    grid-template-columns: minmax(0, 1fr) 0 0;
+  }
+  .layout-workspace[data-layout-panel-active="true"] .layout-panel-toggle {
+    display: inline-flex;
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 32px;
+    min-height: 40px;
+    padding: 6px;
+    color: var(--muted);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: var(--layout-shadow);
+  }
+  .layout-workspace[data-layout-panel-active="true"] .layout-panel-toggle:hover,
+  .layout-workspace[data-layout-panel-active="true"] .layout-panel-toggle:focus-visible {
+    color: var(--accent);
+    background: var(--layout-soft);
+  }
+  .layout-workspace[data-layout-panel-active="true"] > .layout-panel-divider {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    min-width: 0;
+    cursor: col-resize;
+    touch-action: none;
+    user-select: none;
+    background: var(--layout-soft);
+    outline-offset: -2px;
+  }
+  .layout-panel-divider::before, .layout-panel-divider::after {
+    content: '';
+    position: absolute;
+    background: var(--line);
+    pointer-events: none;
+  }
+  .layout-panel-divider::before { left: 4px; top: 0; bottom: 0; width: 1px; }
+  .layout-panel-divider::after { left: 3px; top: calc(50% - 19px); height: 38px; width: 3px; border-radius: 2px; }
+  .layout-panel-divider:hover::after, .layout-panel-divider:focus-visible::after,
+  [data-layout-panel-resizing="true"] > .layout-panel-divider::after { background: var(--accent); }
+  .layout-workspace[data-layout-panel-resizing="true"] { cursor: col-resize; user-select: none; }
+}
