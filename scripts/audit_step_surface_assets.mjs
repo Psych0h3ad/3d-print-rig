@@ -13,6 +13,7 @@ import {snapshotHeadSurfaces,planSurfaceSelection} from '../site/viewer/step-sur
 import {writeSurfaceStep} from '../site/viewer/step-surface-writer.mjs';
 import {packageSurfaceStep} from '../site/viewer/step-surface-package.mjs';
 import {auditV6Surfaces} from './audit_step_surface_v6.mjs';
+import {auditDragonSurfaces} from './audit_step_surface_dragon.mjs';
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 export async function auditSurfaceAssets(root,{output}={}){
  if(output){await fs.mkdir(output);await fs.writeFile(path.join(output,'actual-step-surface.json'),JSON.stringify({passed:false,status:'RUNNING'}))}
@@ -58,6 +59,7 @@ export async function auditSurfaceAssets(root,{output}={}){
  const rejected=await planSurfaceSelection(changed,policy);assert.equal(rejected.included.length,13);assert(rejected.omitted.some(p=>p.id===candidate.id&&p.reason==='source-geometry-changed'));
  const report={passed:true,inputs:pins,configuration:variant.id,counts:plan.counts,triangles:outputStep.triangles,stepBytes:outputStep.blob.size,packageBytes:pkg.blob.size,framingMatrixChecks:checks,poseAndPaletteStates:7,newNativeSolids:0,scope:'Exact admitted exported mesh triangle surface STEP only. No native BRep repair, closed-solid or physical-fit qualification.'};
  report.v6CommonFront=await auditV6Surfaces(root,{catalog,policy});
+ report.dragonCommonFront=await auditDragonSurfaces(root,{catalog,policy});
  if(output){await fs.writeFile(path.join(output,'actual-surfaces.step'),Buffer.from(await outputStep.blob.arrayBuffer()));await fs.writeFile(path.join(output,'actual-package.zip'),Buffer.from(await pkg.blob.arrayBuffer()));
   const sample=plan.included.filter(p=>['sb_revo_voron_10','head_sb_cw2_20'].includes(p.id));const s=await writeSurfaceStep(sample);await fs.writeFile(path.join(output,'native-readback-sample.step'),Buffer.from(await s.blob.arrayBuffer()));await fs.writeFile(path.join(output,'source-manifest.json'),JSON.stringify(pkg.manifest,null,2));}
  if(output){const receipt=path.join(output,'actual-step-surface.json');await fs.writeFile(receipt+'.tmp',JSON.stringify(report,null,2));await fs.rename(receipt+'.tmp',receipt)}

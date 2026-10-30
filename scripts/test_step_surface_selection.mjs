@@ -27,8 +27,25 @@ const collinear=new Float32Array([1,2,4,2,4,8,3,6,12]);assert.deepEqual((await r
 const bench=new THREE.Group(),root=new THREE.Group(),mesh=new THREE.Mesh(new THREE.BufferGeometry(),new THREE.MeshBasicMaterial({color:'#fe3500'}));bench.add(root);root.add(mesh);mesh.geometry.setAttribute('position',new THREE.BufferAttribute(p,3));mesh.geometry.setIndex(new THREE.BufferAttribute(i,1));const cached=new Map([['fixture',{loaded:{root,meta:{parts:[{key:'fixture_4',name:'triangle'}]},meshes:[{key:'fixture_4',mesh}]}}]]);
 const snap=()=>snapshotHeadSurfaces({cached,bench,THREE,policy});assert.equal(snap().length,1);root.remove(mesh);assert.equal(snap().length,0);root.add(mesh);mesh.visible=false;assert.equal(snap().length,0);mesh.visible=true;
 const a=snap()[0].matrixCAD;bench.position.set(10,-3,7);bench.rotation.set(.2,.4,-.8);const b=snap()[0].matrixCAD;assert(a.every((x,j)=>Math.abs(x-b[j])<1e-10));
+// Purchased source parts can be split into several differently colored meshes.
+// Keep all omissions and their CAD identity; do not admit either fragment.
+const loaded=cached.get('fixture').loaded,fragments=[];
+for(const [key,names]of [['480',['Switch_Lever','Switch_Housing']],['546',['motor_body','steel_endcaps_and_shaft']]]){
+ for(const name of names){const child=mesh.clone();child.name='P'+key+'__'+name;root.add(child);const r={key,mesh:child};loaded.meshes.push(r);fragments.push(r)}
+ loaded.meta.parts.push({key,name:key==='480'?'Switch':'Motor'});
+}
+const partitioned=snap(),omissions=(await planSurfaceSelection(partitioned,policy)).omitted;
+assert.equal(omissions.length,4);assert.equal(new Set(omissions.map(r=>r.id)).size,4);
+for(const r of omissions){assert.equal(r.reason,'source-not-admitted');assert.equal(r.sourcePart.asset,'fixture');assert(['480','546'].includes(r.sourcePart.key));assert.equal(r.sourcePart.displayMeshCount,2)}
+const visibleID=partitioned.find(r=>r.sourcePart?.displayMeshName==='P480__Switch_Housing').id;
+fragments[0].mesh.visible=false;assert.equal(snap().find(r=>r.sourcePart?.displayMeshName==='P480__Switch_Housing').id,visibleID);fragments[0].mesh.visible=true;
+const captures=snap(),pending=planSurfaceSelection(captures,policy);captures.find(r=>r.sourcePart).sourcePart.key='changed-after-yield';assert.equal((await pending).omitted[0].sourcePart.key,'480');
+loaded.meshes.push(fragments[0]);assert.throws(snap,/Duplicate selected mesh reference/);loaded.meshes.pop();
+const extra=mesh.clone();root.add(extra);loaded.meshes.push({key:'fixture_4',mesh:extra});await assert.rejects(planSurfaceSelection(snap(),policy),/Duplicate selected part/);loaded.meshes.pop();root.remove(extra);
+for(const r of fragments){assert.deepEqual(r.mesh.geometry.getAttribute('position').array,p);assert.deepEqual(r.mesh.geometry.index.array,i);root.remove(r.mesh)}loaded.meshes.splice(1);
 const output=await writeSurfaceStep(plan.included),codeFiles=[{name:'generator.mjs',blob:new Blob([code])}];
 const pkg=await packageSurfaceStep(plan,output,{configuration:'fixture-selection',policy,license,codeFiles});assert.equal(pkg.manifest.excludedExactZeroAreaTriangles,1);assert.equal(pkg.manifest.geometry[0].indicesSha256,sha(i));assert.equal(pkg.manifest.counts.included,1);assert(pkg.blob.size>output.blob.size);
+assert((await pkg.blob.text()).includes('Included 1 of 1 selected display meshes. Omitted 0.'));
 await assert.rejects(packageSurfaceStep(plan,output,{configuration:'fixture-selection',policy,license:'Wrong terms',codeFiles}),/license/);
 await assert.rejects(packageSurfaceStep(plan,output,{configuration:'fixture-selection',policy,license,codeFiles:[]}),/generator/);
 await assert.rejects(surfaceZip([{name:'../bad',blob:new Blob(['x'])}]),/Invalid/);
@@ -36,7 +53,7 @@ await assert.rejects(surfaceZip([{name:'a',blob:new Blob(['x'])},{name:'A',blob:
 await assert.rejects(surfaceZip([{name:'a',blob:new Blob(['xx'])}],{maxBytes:1}),/limit/);
 await assert.rejects(surfaceZip([{name:'a',blob:new Blob(['xx'])}],{signal:controller.signal}),{name:'AbortError'});
 // Model scope is explicitly source-specific: no inherited manufacturer grants.
-const sourcePolicy=JSON.parse(fs.readFileSync(new URL('../site/viewer/step-surface-sources.json',import.meta.url),'utf8'));assert.equal(sourcePolicy.parts.length,18);assert.equal(new Set(sourcePolicy.parts.map(p=>p.sourceSelector.id)).size,14);assert(sourcePolicy.parts.every(p=>!/^microswiss/u.test(p.asset)));assert.equal(sourcePolicy.source.revision,'8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b');
+const sourcePolicy=JSON.parse(fs.readFileSync(new URL('../site/viewer/step-surface-sources.json',import.meta.url),'utf8'));assert.equal(sourcePolicy.parts.length,26);assert.equal(new Set(sourcePolicy.parts.map(p=>p.sourceSelector.id)).size,14);assert(sourcePolicy.parts.every(p=>!/^microswiss/u.test(p.asset)));assert.equal(sourcePolicy.source.revision,'8bcb9c246fac19d8ac03931ef97fa07c5e5f0f2b');
 for(const n of [6,9,10,11]){const alias=surfaceRule(sourcePolicy,'sb_v6','sb_v6_front_'+n),canonical=surfaceRule(sourcePolicy,'sb_revo_voron',String(n));assert(alias&&canonical);assert.deepEqual(alias.geometry,canonical.geometry);assert.deepEqual(alias.sourceSelector,canonical.sourceSelector);assert.equal(alias.sourceAlias.key,canonical.key)}
 for(const key of ['front_7','front_13','mount_0','mount_1','hot_83'])assert.equal(surfaceRule(sourcePolicy,'sb_v6',key),undefined,'Copied hardware and unreviewed V6 parts remain excluded.');
 const thin=JSON.parse(fs.readFileSync(new URL('./fixtures/step-surface-thin-facet.json',import.meta.url),'utf8')),thinRule=sourcePolicy.parts.find(p=>p.key===thin.source.key);assert.equal(thinRule.geometry.position.sha256,thin.source.positionSha256);assert.equal(thinRule.geometry.index.sha256,thin.source.indexSha256);

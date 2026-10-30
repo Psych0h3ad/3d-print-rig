@@ -78,6 +78,7 @@ async function cacheReferences(outputs){
  // Layout owns its message dictionary; include its source importers in cache propagation.
  await scan(resolve(viewer,'../layout'));
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
+ for(const name of ['step-surface-selection.mjs','step-surface-package.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['yavoth-cowl-assets.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['usage-analytics.mjs','usage-analytics-config.mjs','usage-statistics.mjs','usage-statistics.css','privacy.mjs','privacy.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  const layoutRoot=resolve(viewer,'../layout');
