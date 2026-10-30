@@ -32,6 +32,9 @@ const keys=section('const storageKey=','const groupLibraryKey=');
 const storeBody=section('function store(){','function readSavedLayout(){');
 const readBody=section('function readSavedLayout(){','function message(');
 const loadBody=section('  if(!startEmpty)try{const saved=readSavedLayout();','  try{const saved=localStorage.getItem(groupLibraryKey)');
+const postReadySave=onlyLine(l=>l.includes('if(loadedSaved)store();'),'One post-readiness save');
+assert(source.indexOf(postReadySave)>source.indexOf('if(!await ensureEquipmentPreview(state)||disposed)return;'));
+assert(source.indexOf(postReadySave)>source.indexOf("sync();if(getPopStationMigrations(state).length)"));
 const syncSelect=section('function sync(){','async function ensureEquipmentPreview(');
 const shortcuts=section('function placementKey(event){','async function start(){');
 const selectionIds=section('function selectionIds(){','function copySelection(');
@@ -41,7 +44,7 @@ const canvasKeys=section("  view.canvas.addEventListener('keydown',event=>{","  
 // Bound complete constructor statements by their following startup statements;
 // callbacks may span lines and contain their own nested calls and semicolons.
 const uiConstruction=section('  ui=createLayoutUI(','  ui.setStatus({canPaste:true});');
-const rendererConstruction=section('  view=createLayoutRenderer(',"  sync();view.view('perspective');");
+const rendererConstruction=section('  view=createLayoutRenderer(','  sync();');
 const recovery=onlyLine(l=>l.includes('readSavedLayout()')&&l.includes('download(new Blob'),'One actual recovery download');
 const catalog=[{id:'app-unit-fixture',label:'Source test printer',widthMm:200,depthMm:180,heightMm:300}];
 const pose=(xMm=0,zMm=0,yawDeg=0)=>({xMm,zMm,yawDeg});
@@ -65,12 +68,12 @@ class StoragePort{
 
 const factory=new Function('deps',`"use strict";
  const {localStorage,document,canvas,container,createLayoutUI,serializeLayout,parseLayout,validatePlacement,
-  createDefaultLayout,applyAction,applyWorldMove,worldTransform,renameGroup,ungroup,removeGroup,transformGroup,
+  createDefaultLayout,applyAction,applyWorldMove,worldTransform,getPopStationMigrations,renameGroup,ungroup,removeGroup,transformGroup,
   captureLayoutClipboard,regroupLayoutSelection}=deps;
  ${keys}
  let state=deps.initial,catalog=deps.catalog,rows=deps.catalog,ui,view=deps.view,panelLayout=deps.panelLayout,selected='unit-a';
  let disposed=false,busy=false,buildTools=null,activeOpeningTool=null,roomEditing=false,startEmpty=false,placement=null,interactionGeneration=0,operation=null;
- let groupLibrary=[],nextId=1,rendererOptions;
+ let groupLibrary=[],nextId=1,rendererOptions,loadedSaved=false;
  ${idBody}
  const past=[],future=[],actions=[],rotations=[],messages=[],downloads=[],placementCommands=[],pending=[];
  const $=selector=>document.body.querySelector(selector),t=deps.translate,language={t};
@@ -91,7 +94,7 @@ const factory=new Function('deps',`"use strict";
  ${syncSelect}
  ${selectionIds}
  ${shortcuts}
- function load(){${loadBody}}
+ function load(){loadedSaved=false;${loadBody};${postReadySave}}
  function recover(){${recovery}}
  ${uiConstruction}
  ${rendererConstruction}

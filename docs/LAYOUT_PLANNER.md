@@ -331,3 +331,22 @@ operation. Allow additional space for moving beds, doors, spool holders,
 cables, ventilation and maintenance. Select a printer and use **Open printer / sources** to reach its existing
 viewer and References for the exact source versions, licenses, configuration
 and model limitations.
+
+## PopStation Mini cabinet
+
+The selectable PopStation Mini uses BIQU's supplied 70-part cabinet mesh.
+Its source STEP is not distributed. Four separately identified rubber-pad
+exterior references follow BIQU's official installation images; their detailed
+profile, bore, placement and fastening are estimates. The source cabinet is
+translated rigidly above those references; its component matrices and source
+triangles are unchanged. The cabinet has no added spools, holders or feeders.
+
+Older cabinet selections, saved groups and clipboard units migrate to this
+model while retaining object IDs, X/Z positions, rotations and attachments.
+The cabinet's measured depth differs from the former approximate reference;
+existing boundary conflicts are reported rather than moving objects silently.
+The U1 planning support follows the supplied deck at the composed height.
+Small differences between the four reference foot heights remain; this is not
+a load, fastening or native-solid mounting qualification.
+
+Pad references: [BIQU installation and dimensions](https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/).

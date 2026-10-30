@@ -1,10 +1,10 @@
-import {BIQU_POPSTATION_CAD} from './layout-biqu-popstation.mjs?v=979382e048e443397362';
+import {BIQU_POPSTATION_CAD,BIQU_POPSTATION_STANDARD} from './layout-biqu-popstation.mjs?v=49c41d6d1cb8cb8f58d0';
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
-import {getLayoutEquipment} from './layout-equipment.mjs?v=5ff56945f8c773e3dcdd';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=1a44b9490add3138ce6b';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
 import {isGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 import {openingProblems,retainRoomOpenings,doorPlan,doorWallConflicts,withDoorMotion} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
@@ -20,10 +20,28 @@ export const U1_OPERATING_HEIGHT_MM = 730;
 const cabinet=getLayoutEquipment('biqu_pop_station_mini_layout_reference','empty'),mount=cabinet.mount;
 const [[deckMinX,deckMinZ],[deckMaxX,deckMaxZ]]=mount.support.contactPatch.boundsXZ_M;
 export const POPSTATION_MINI = Object.freeze({type:'popstation_mini',
-  widthMm:mount.nominalDimensionsMm.width,depthMm:mount.nominalDimensionsMm.depth,heightMm:mount.nominalDimensionsMm.height,
-  surfaceId:'top',topMm:mount.support.topYM*1000,mountMachineId:U1_LAYOUT_MACHINE_ID,
+  widthMm:BIQU_POPSTATION_STANDARD.dimensionsMm.width,depthMm:BIQU_POPSTATION_STANDARD.dimensionsMm.depth,heightMm:BIQU_POPSTATION_STANDARD.dimensionsMm.height,
+  surfaceId:'top',topMm:BIQU_POPSTATION_STANDARD.supportYM*1000,mountMachineId:U1_LAYOUT_MACHINE_ID,
   supportPolygonMm:Object.freeze([[deckMinX,deckMinZ],[deckMaxX,deckMinZ],[deckMaxX,deckMaxZ],[deckMinX,deckMaxZ]].map(p=>Object.freeze(p.map(v=>v*1000)))),
   u1SupportFootprintMm:Object.freeze(getLayoutEquipment(U1_LAYOUT_MACHINE_ID,'docked').supportFootprintMm.map(p=>Object.freeze([...p])))});
+// Old source records remain readable; live cabinet rendering always uses the
+// supplied BIQU mesh. This migrates data, never scales or edits its triangles.
+const popStationMigrations=new WeakMap();
+export const getPopStationMigrations=state=>popStationMigrations.get(state)??Object.freeze([]);
+export function migratePopStationFurniture(furniture){
+ if(!Array.isArray(furniture))return furniture;
+ return furniture.map(f=>{
+  if(!f||typeof f!=='object'||Array.isArray(f))return f;
+  const legacy=f.type==='popstation_mini'&&f.widthMm===422&&f.depthMm===456&&f.heightMm===428;
+  const supplied=f.type==='popstation_mini_biqu_v1'&&f.widthMm===BIQU_POPSTATION_CAD.dimensionsMm.width&&f.depthMm===BIQU_POPSTATION_CAD.dimensionsMm.depth&&f.heightMm===BIQU_POPSTATION_CAD.dimensionsMm.height;
+  return legacy||supplied?{...f,type:'popstation_mini',widthMm:POPSTATION_MINI.widthMm,depthMm:POPSTATION_MINI.depthMm,heightMm:POPSTATION_MINI.heightMm}:f;
+ });
+}
+function recordPopStationMigration(state,before,after){
+ const ids=Array.isArray(before)&&Array.isArray(after)?before.flatMap((f,i)=>f!==after[i]?[f.id]:[]):[];
+ if(ids.length)popStationMigrations.set(state,Object.freeze(ids));
+ return state;
+}
 export class LayoutValidationError extends Error {
   constructor(errors) { super(errors.map(e => `${e.code} (${e.path})`).join('; ')); this.name = 'LayoutValidationError'; this.errors = errors; }
 }
@@ -256,8 +274,7 @@ export function createDesk({id = 'desk-1', widthMm = 1200, depthMm = 600, height
   return assertFurniture({id, type: 'desk', widthMm, depthMm, heightMm, topThicknessMm: 30, pose});
 }
 export function createBiquPopStation({id='biqu-popstation-1',pose=defaultPose()}={}) {
-  const d=BIQU_POPSTATION_CAD.dimensionsMm;
-  return assertFurniture({id,type:'popstation_mini_biqu_v1',widthMm:d.width,depthMm:d.depth,heightMm:d.height,pose});
+  return createPopStation({id,pose});
 }
 export function createPopStation({id='popstation-1',pose=defaultPose()}={}) {
   return assertFurniture({id,type:'popstation_mini',widthMm:POPSTATION_MINI.widthMm,
@@ -271,8 +288,9 @@ export function createShelf({id = 'shelf-1', widthMm = 900, depthMm = 450, heigh
   return assertFurniture({id, type: 'shelf', widthMm, depthMm, heightMm, boardThicknessMm, levels, pose});
 }
 export function createDefaultLayout({room = createRoomRect(), furniture = [], printers = [], groups} = {}, catalog = []) {
+  const originalFurniture=furniture;furniture=migratePopStationFurniture(furniture);
   const state = {format: '3d-print-rig-layout', version: 1, units: 'mm', room, furniture, printers, ...(groups===undefined?{}:{groups})};
-  assertState(state, catalog); return freeze(copy({...state, room: roomWithAppearance(room)}));
+  assertState(state, catalog); return recordPopStationMigration(freeze(copy({...state, room: roomWithAppearance(room)})),originalFurniture,furniture);
 }
 function fail(code, path, params = {}) { throw new LayoutValidationError([{code, path, params}]); }
 function requireEntity(list, id, path) { const item = list.find(v => v.id === id); if (!item) fail('UNKNOWN_ENTITY', path, {id}); return item; }
@@ -316,7 +334,7 @@ export function applyAction(state, action, catalog = []) {
       if(!next.room.openings?.some(o=>o.id===action.id))fail('OPENING_NOT_FOUND','action.id');
       next.room.openings=next.room.openings.filter(o=>o.id!==action.id);break;
     }
-    case 'ADD_FURNITURE': next.furniture.push(copy(action.furniture)); break;
+    case 'ADD_FURNITURE': next.furniture.push(copy(migratePopStationFurniture([action.furniture])[0])); break;
     case 'ADD_PRINTER': next.printers.push(copy(action.printer)); break;
     case 'UPDATE_FURNITURE': {
       const f = requireEntity(next.furniture, action.id, 'action.id');
@@ -881,7 +899,7 @@ export function deriveScene(state, catalog = []) {
       if(f.type==='popstation_mini'){
         surfaces.push(surfaceUnchecked(state,f.id,'top'));
         // A zero-thickness picking surface, not a procedural furniture board.
-        return {id:'top',widthM:.382,depthM:.426,thicknessM:0,localCenterXM:0,localCenterYM:.4174,localCenterZM:-.002,topYM:.4174};
+        return {id:'top',widthM:.382,depthM:.426,thicknessM:0,localCenterXM:0,localCenterYM:POPSTATION_MINI.topMm/1000,localCenterZM:-.002,topYM:POPSTATION_MINI.topMm/1000};
       }
       const thicknessMm = f.type === 'desk' ? 30 : f.boardThicknessMm;
       surfaces.push(surfaceUnchecked(state, f.id, l.id));
@@ -890,7 +908,7 @@ export function deriveScene(state, catalog = []) {
     });
     return {id: f.id, type: f.type, ...f.pose, widthMm: f.widthMm, depthMm: f.depthMm, heightMm: f.heightMm,
       ...(f.type==='popstation_mini_biqu_v1'?{equipmentVariant:'supplied'}:{}),
-      ...(f.type==='popstation_mini'?{equipmentVariant:state.printers.some(p=>p.machineId===U1_LAYOUT_MACHINE_ID&&p.attachment.parentId===f.id)?'loaded':'empty'}:{}),
+      ...(f.type==='popstation_mini'?{equipmentVariant:'standard-feet'}:{}),
       widthM: f.widthMm / 1000, depthM: f.depthMm / 1000, heightM: f.heightMm / 1000,
       positionM: {x: f.pose.xMm / 1000, y: 0, z: f.pose.zMm / 1000}, yawRad: f.pose.yawDeg * Math.PI / 180,
       worldEnvelopeMm: transformPolygon(rectangle(f.widthMm, f.depthMm), f.pose), verticalRangeMm: [0, f.heightMm], boards};
@@ -950,5 +968,7 @@ export function serializeLayout(state, catalog = []) {
 export function parseLayout(text, catalog = []) {
   if (typeof text !== 'string' || text.length > LIMITS.maxJsonChars) fail('JSON_SIZE_LIMIT', 'json');
   let state; try { state = JSON.parse(text); } catch { fail('JSON_PARSE_ERROR', 'json'); }
-  assertState(state, catalog); return freeze({...state, room: roomWithAppearance(state.room)});
+  const before=state?.furniture;
+  if(state&&typeof state==='object'&&!Array.isArray(state))state={...state,furniture:migratePopStationFurniture(before)};
+  assertState(state, catalog); return recordPopStationMigration(freeze({...state, room: roomWithAppearance(state.room)}),before,state.furniture);
 }

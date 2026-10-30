@@ -21,6 +21,10 @@ assert.equal(homeDestination('https://example.org/',current,'ja'),'https://examp
 for(const href of [...html.matchAll(/(?:href|src)="(\.\/[^"?#]+)(?:[^"\s]*)"/gu)].map(m=>m[1])){
  const name=href.slice(2);assert(fs.existsSync(new URL(name.endsWith('/')?name+'index.html':name,root)),name);
 }
+
+assert(html.includes('./home/trident-render.webp'));
+assert(!html.includes('03-trident-paper-3840x2160.webp'));
+assert.equal(createHash('sha256').update(fs.readFileSync(new URL('home/trident-render.webp',root))).digest('hex'),'f10dab7a570a9b2afc5c0abd47ce0727fcf69ff90eb8a5f27a35d9267c268291');
 const gallery=JSON.parse(read('assets/machines/index.json'));
 const thumb=gallery.machines.find(r=>r.id==='voron_trident_350');
 assert.equal(createHash('sha256').update(fs.readFileSync(new URL('assets/machines/'+thumb.thumbnail,root))).digest('hex'),thumb.thumbnail_sha256);

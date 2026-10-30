@@ -1,8 +1,10 @@
-import {applyBiquSurfaceDisplay} from './layout-biqu-display.mjs?v=59e272326918176cf7f2';
+import {BIQU_POPSTATION_CAD} from './layout-biqu-popstation.mjs?v=49c41d6d1cb8cb8f58d0';
+import {assemblePopStationStandardFeet} from './layout-popstation-feet.mjs?v=1aa06f6a006f30cac556';
+import {applyBiquSurfaceDisplay} from './layout-biqu-display.mjs?v=e3cd65f8c1a727ffcf79';
 import * as THREE from '../viewer/vendor-r180/three.module.js';
-import {getLayoutEquipment} from './layout-equipment.mjs?v=5ff56945f8c773e3dcdd';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=1a44b9490add3138ce6b';
 import {downloadEquipmentModel,verifyEquipmentModelBytes,equipmentTransferIdentity} from './layout-equipment-transfer.mjs?v=b1d4cb920a44e4e6f8dd';
-import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=c68df6898f8efb6e5acc';
+import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=c63f25577f494294ee53';
 export {layoutMachineRecipes} from '../viewer/layout-machine-recipes.mjs';
 
 const abort = signal => signal?.throwIfAborted();
@@ -87,19 +89,22 @@ export function createLayoutEquipmentLoader({getEquipment=getLayoutEquipment,
       const gltf=await parse(bytes,row);root=gltf?.scene;
       if(!root?.isObject3D)throw fail('Equipment model has no scene','LAYOUT_EQUIPMENT_GEOMETRY');
       abort(signal);
-      const dimensions=actualDimensions(root,row);
+      let dimensions=actualDimensions(root,row.equipmentVariant==='standard-feet'?BIQU_POPSTATION_CAD:row);
       const closure=addU1BottomClosure(THREE,root,row);
       const displayPolicy=applyBiquSurfaceDisplay(root,row);
+      const assembled=assemblePopStationStandardFeet(THREE,root,row);
+      if(assembled){root=assembled;dimensions=actualDimensions(root,row);}
       const provenance={};
       for(const key of ['publicSourcesOnly','manufacturerCAD','privateSourceDerived','purchasedSourceDerived'])
         if(typeof row[key]==='boolean')provenance[key]=row[key];
       root.userData.layoutEquipment={id,equipmentVariant:row.equipmentVariant,...provenance,...(closure?{derivatives:[closure]}:{}),...(displayPolicy?{displayPolicy}:{})};
       // Geometry already has the common variant/floor datum. Do not normalize,
       // recenter, rescale, reorient or replace any component matrix here.
-      const source={machineId:id,category:row.manufacturerCAD?'manufacturer-layout-equipment':row.privateSourceDerived?'scan-derived-layout-equipment':'public-layout-equipment',equipmentVariant:row.equipmentVariant,
+      const source={machineId:id,category:row.manufacturerBodyCAD?'manufacturer-layout-equipment-with-reference-pads':row.manufacturerCAD?'manufacturer-layout-equipment':row.privateSourceDerived?'layout-reference-equipment':'public-layout-equipment',equipmentVariant:row.equipmentVariant,
         assetPath:row.model.path,sha256:hash,...provenance,...(closure?{derivatives:[closure]}:{}),...(displayPolicy?{displayPolicy}:{}),
         normalization:{unit:'m',up:'+Y',front:'+Z',translation:[0,0,0],
-          individual_source_matrices_unchanged:true,shared_authored_variant_datum:true}};
+          individual_source_matrices_unchanged:true,shared_authored_variant_datum:!assembled,
+          ...(assembled?{sourceBodyTranslationM:[0,row.footReference.bodyLiftM,0],referencePads:4}:{})}};
       emit({phase:'ready',percent:100});
       return {root,dimensions,source,manifest:row,profile:null,dispose};
     } catch(error){dispose();throw error}

@@ -22,7 +22,7 @@ const {proposePlacement}=await import(pathToFileURL(path.join(site,'layout/layou
 read('layout/layout-placement-feedback.mjs');
 const {placementStatus}=await import(pathToFileURL(path.join(site,'layout/layout-placement-feedback.mjs')));
 consumed['layout/layout-placement.mjs']=crypto.createHash('sha256').update(fs.readFileSync(path.join(site,'layout/layout-placement.mjs'))).digest('hex');
-const {createDefaultLayout,createRoomRect,createDesk,createCatalog,applyAction,serializeLayout,parseLayout}=S;
+const {createDefaultLayout,createRoomRect,createDesk,createCatalog,applyAction,serializeLayout,parseLayout,getPopStationMigrations}=S;
 const {setupLayoutLanguage}=await import(pathToFileURL(path.join(site,'layout/layout-language.mjs')));
 const {supportedLanguages,t}=await import(pathToFileURL(path.join(site,'layout/layout-i18n.mjs')));
 const tests=[];async function test(id,fn){await fn();tests.push({id,status:'PASS'})}
@@ -114,7 +114,7 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
  const factory=new Function('deps',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
 
-  const {createDefaultLayout,applyAction,serializeLayout,parseLayout}=deps,catalog=[];
+  const {createDefaultLayout,applyAction,serializeLayout,parseLayout,getPopStationMigrations}=deps,catalog=[];
   let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,placement=null,lastPlacementTarget=null;
   const past=[],future=[],maxFileBytes=2097152,messages=[],views=[];
   const sync=()=>{},store=()=>{},humanError=()=> 'error',t=k=>k;
@@ -123,7 +123,7 @@ await test('deferred-layout-import-never-overwrites-newer-commands-or-disposed-p
   ${messageSource}\n${commitSource}\n${selectSource}\n${actSource}
   return {act,select,get:()=>state,dispose:()=>disposed=true,messages,views,statusNode,uiStatuses};`);
  const room=width=>applyAction(createDefaultLayout(),{type:'SET_ROOM',room:createRoomRect({widthMm:width,depthMm:4000})},[]);
- const make=(initial=room(6000))=>factory({initial,createDefaultLayout,applyAction,serializeLayout,parseLayout});
+ const make=(initial=room(6000))=>factory({initial,createDefaultLayout,applyAction,serializeLayout,parseLayout,getPopStationMigrations});
  const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {file:{size:100,text:()=>promise},resolve,reject}};
  const text=serializeLayout(room(8000),[]),latestText=serializeLayout(room(9000),[]);
  assert.notEqual(text,latestText,'Newer import fixture must contain a different room');
@@ -179,7 +179,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
  const run=new AsyncFunction('deps',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,ensureEquipmentPreview=async v=>{if(needsEquipmentPreview(v))throw Error('Unexpected equipment in native-only bootstrap fixture');return true;};const equipmentRows=[];
 
-  const {createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout}=deps;
+  const {createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,getPopStationMigrations}=deps;
   const {groupTemplateInfo,parseGroupLibrary}=deps.G;
   const document=deps.doc,window=deps.win,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
   const setupLayoutPanel=deps.setupLayoutPanel;
@@ -203,7 +203,7 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   return {canvas:new E('canvas'),view:()=>{},getView:()=>({mode:'perspective',projection:'perspective-3d'}),setOptions:()=>{}};
  }};
  const panelSetups=[],panel={reveals:0,reveal(){this.reveals++;return true;}};
- const result=await run({doc:e.doc,win:e.win,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,rendererModule,rotationPorts,G,
+ const result=await run({doc:e.doc,win:e.win,catalogData,createDefaultLayout,createDesk,createCatalog,applyAction,parseLayout,getPopStationMigrations,rendererModule,rotationPorts,G,
   setupLayoutPanel:options=>{panelSetups.push(options);return panel;}});
  assert.equal(result.ready,'true');assert.equal(result.state.furniture.length,1);assert.equal(result.state.printers.length,1);assert.equal(result.calls.sync,1);assert.equal(result.calls.language,1);
  assert.deepEqual(result.calls.presentations,[{mode:'perspective',projection:'perspective-3d'}]);
@@ -225,7 +225,7 @@ await test('actual-app-failed-noop-and-successful-commit-status-lifecycle',async
  const factory=new Function('deps',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
 
-  const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,worldTransform,serializeLayout,parseLayout,createDefaultLayout,validatePlacement,resolveSupportedPrinterRotation}=deps.S;
+  const {applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,worldTransform,serializeLayout,parseLayout,getPopStationMigrations,createDefaultLayout,validatePlacement,resolveSupportedPrinterRotation}=deps.S;
   const catalog=[],past=[],future=[],writes=[],updates=[],maxFileBytes=2097152,document={body:{dataset:{}}};
   let state=deps.initial,selected='status-desk',busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,placement=null,lastPlacementTarget=null;
   const status={hidden:true,textContent:''},uiState={message:'',error:false},$=selector=>{if(selector!=='#layout-status')throw Error('Unexpected status selector');return status};
@@ -306,7 +306,7 @@ function replayCommands(initial,selection){
  const engine=new Function('S','G','H','initial','selection','rows','catalog','proposePlacement',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
 
-  const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,validatePlacement,resolveSupportedPrinterRotation}=S;
+  const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,deriveScene,worldTransform,serializeLayout,parseLayout,getPopStationMigrations,validatePlacement,resolveSupportedPrinterRotation}=S;
   const {createGroup,renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT}=G;
   const {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection}=H;
   let state=initial,selected=selection,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null,clipboardText='';
@@ -516,7 +516,7 @@ await test('translated-room-load-reset-and-applied-outline-refit-only-after-acce
  const factory=new Function('deps',`
  const needsEquipmentPreview=${needsEquipmentPreview.toString()},isLayoutEquipmentPreviewPrepared=()=>false,prepareLayoutEquipmentPreview=()=>{throw Error('Unexpected equipment request in native-only fixture');};const equipmentRows=[];
 
-  const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,deriveScene,serializeLayout,parseLayout,validatePlacement}=deps.S;
+  const {createDefaultLayout,createDesk,createShelf,applyAction,applyWorldMove,deriveScene,serializeLayout,parseLayout,getPopStationMigrations,validatePlacement}=deps.S;
   const rows=deps.rows,catalog=deps.catalog,past=[],future=[],writes=[],views=[],document={body:{dataset:{}}};
   let state=deps.initial,selected=null,busy=false,roomEditing=false,disposed=false,interactionGeneration=0,operation=null,nextId=1,placement=null,lastPlacementTarget=null;
   const maxFileBytes=2097152,storageKey='fixture',status={hidden:true,textContent:''},$=()=>status;

@@ -1,3 +1,4 @@
+import {POPSTATION_STANDARD_FEET} from './layout-popstation-feet.mjs?v=1aa06f6a006f30cac556';
 // Metadata on import. Explicit preparation authenticates one shared, immutable
 // mesh; no Three, CAD, fetch, decoding or geometry allocation runs on import.
 import {downloadEquipmentPreviewGeometry,BIQU_POPSTATION_MODEL_IDENTITY,
@@ -189,9 +190,17 @@ export const BIQU_POPSTATION_CAD=freeze({id:'biqu_popstation_mini_cad_v1',type:'
     notes:'All 70 source leaves retained with original rigid matrices; display finishes follow official product photographs, with neutral interiors where finish is unconfirmed.'}});
 
 /** Only variant selection is accepted; caller provenance/descriptors never merge. */
+export const BIQU_POPSTATION_STANDARD=freeze({...BIQU_POPSTATION_CAD,
+ equipmentVariant:'standard-feet',equipmentVariants:['standard-feet'],
+ dimensionsMm:{...BIQU_POPSTATION_CAD.dimensionsMm,height:BIQU_POPSTATION_CAD.dimensionsMm.height+POPSTATION_STANDARD_FEET.bodyLiftM*1000},
+ supportYM:BIQU_POPSTATION_CAD.supportYM+POPSTATION_STANDARD_FEET.bodyLiftM,
+ manufacturerCAD:false,manufacturerBodyCAD:true,footReference:POPSTATION_STANDARD_FEET,
+ fullScene:{...BIQU_POPSTATION_CAD.fullScene,notes:'Original 70 source cabinet leaves and four separately identified photo-based pad references; only a rigid source-body lift is applied.'},
+ notes:'BIQU source cabinet plus four original exterior pad references. No loaded CAD. Pad profile and fastening are not manufacturer-qualified.'});
 export function getBiquPopStation(variant){
-  if(variant!==undefined&&variant!=='supplied')throw Object.assign(new Error('Unknown BIQU PopStation variant'),{code:'LAYOUT_UNKNOWN_EQUIPMENT_VARIANT'});
-  return BIQU_POPSTATION_CAD;
+ if(variant==='standard-feet')return BIQU_POPSTATION_STANDARD;
+ if(variant!==undefined&&variant!=='supplied')throw Object.assign(new Error('Unknown BIQU PopStation variant'),{code:'LAYOUT_UNKNOWN_EQUIPMENT_VARIANT'});
+ return BIQU_POPSTATION_CAD;
 }
 
 /** Layouts, placements, clipboard groups and nested group templates; cycles are
@@ -203,7 +212,7 @@ export function needsBiquPreview(value){
     seen.add(item);
     for(const [key,d]of Object.entries(Object.getOwnPropertyDescriptors(item))){
       if(!Object.hasOwn(d,'value'))continue;
-      if((key==='type'||key==='kind')&&d.value===BIQU_POPSTATION_CAD.type||key==='id'&&d.value===BIQU_POPSTATION_CAD.id)return true;
+      if((key==='type'||key==='kind')&&['popstation_mini',BIQU_POPSTATION_CAD.type].includes(d.value)||key==='id'&&[BIQU_POPSTATION_CAD.id,'biqu_pop_station_mini_layout_reference'].includes(d.value))return true;
       if(d.value&&typeof d.value==='object')pending.push(d.value);
     }
   }return false;

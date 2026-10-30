@@ -1,9 +1,9 @@
-import {prepareBiquPreview,isBiquPreviewPrepared,needsBiquPreview} from './layout-biqu-popstation.mjs?v=979382e048e443397362';
+import {prepareBiquPreview,isBiquPreviewPrepared,needsBiquPreview} from './layout-biqu-popstation.mjs?v=49c41d6d1cb8cb8f58d0';
 // Explicit, fixed-host preparation of JSON data only. Import performs no I/O.
 import {downloadEquipmentPreviewGeometry} from './layout-equipment-transfer.mjs?v=b1d4cb920a44e4e6f8dd';
 import {LAYOUT_EQUIPMENT_PREVIEW,LAYOUT_EQUIPMENT_PREVIEW_MODEL,createLayoutEquipmentPreviewCache,
   getLayoutEquipmentPreviewGeometry,isLayoutEquipmentPreviewPrepared,
-  installLayoutEquipmentPreviewGeometry} from './layout-equipment.mjs?v=5ff56945f8c773e3dcdd';
+  installLayoutEquipmentPreviewGeometry} from './layout-equipment.mjs?v=1a44b9490add3138ce6b';
 
 function preparer(download,cache) {
   let active = null;
@@ -97,9 +97,8 @@ export function needsEquipmentPreview(value,legacyOnly=false) {
   const pending=[value],seen=new Set();
   for(let i=0;i<pending.length;i++){
     const item=pending[i];if(!item||typeof item!=='object'||seen.has(item))continue;seen.add(item);
-    if(item.kind==='popstation_mini'||item.type==='popstation_mini'
-      ||item.machineId==='snapmaker_u1_layout_reference'
-      ||(!legacyOnly&&(item.kind==='popstation_mini_biqu_v1'||item.type==='popstation_mini_biqu_v1')))return true;
+    if(item.machineId==='snapmaker_u1_layout_reference'
+      ||(!legacyOnly&&(['popstation_mini','popstation_mini_biqu_v1'].includes(item.kind)||['popstation_mini','popstation_mini_biqu_v1'].includes(item.type))))return true;
     if(item.template)pending.push(item.template);
     for(const key of ['printers','furniture'])if(Array.isArray(item[key]))pending.push(...item[key]);
   }

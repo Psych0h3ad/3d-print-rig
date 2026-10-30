@@ -1,0 +1,21 @@
+{
+  "machine": "voron_trident_350",
+  "configuration": "trident_r2__stealthburner__revo_voron__cw2",
+  "renderer": "production viewer PNG export, WebGL",
+  "sourceRevision": "c4026e198e4fb2aae958aecf3c8d44a20b0ebd9c",
+  "camera": {
+    "azimuth": 35,
+    "elevation": 22,
+    "roll": 0,
+    "distanceMm": 1814.52
+  },
+  "process": "Alpha-bound crop, 60px horizontal/50px vertical padding, WebP encoding. No generative image edits.",
+  "outputSha256": "f10dab7a570a9b2afc5c0abd47ce0727fcf69ff90eb8a5f27a35d9267c268291",
+  "dimensions": [
+    961,
+    995
+  ],
+  "modelSHA256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4",
+  "source": "https://github.com/VoronDesign/Voron-Trident",
+  "scope": "A rendered reference model, not a new mounting or physical-fit qualification."
+}
