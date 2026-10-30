@@ -20,7 +20,7 @@ const funSource=args.length?await fs.readFile(args[1],'utf8'):shippedFun;
 const lifecycleReference=workspaceSource.match(/from '(\.\/workspace-lifecycle\.mjs\?v=[^']+)'/);
 assert(lifecycleReference,'Workspace imports its versioned lifecycle module');
 const {activateScope,WorkspaceScope}=await import(new URL(lifecycleReference[1],new URL('../site/viewer/workspace-ui.mjs',import.meta.url)));
-assert.match(workspaceSource,/setupLanguage\(\);\s*setupLayoutNavigation\(navigation,\s*\{listen:\s*workspaceListen\}\);\s*setupWorkspaceDestinationLanguages\(\[\.\.\.navigation\.querySelectorAll\('a'\),\s*\.\.\.menu\.querySelectorAll\('a'\),\s*credits\]\)/,
+assert.match(workspaceSource,/setupLanguage\(\);\s*setupLayoutNavigation\(navigation,\s*\{listen:\s*workspaceListen\}\);\s*setupWorkspaceDestinationLanguages\(\[\.\.\.navigation\.querySelectorAll\('a'\),\s*\.\.\.menu\.querySelectorAll\('a'\),\s*credits,\s*\$\('\.brand'\)\]\.filter\(Boolean\)\)/,
   'Bind every navigation/menu destination and credits after the initial language is chosen');
 
 const pending=[];
@@ -49,6 +49,7 @@ class Element extends EventTarget {
 function select(values,base){const element=new Element('select',base);for(const value of values){const option=new Element('option',base);option.value=value;element.append(option)}return element}
 const root='https://example.test/3d-print-rig/',viewer=root+'viewer/';
 const destinations=[
+  ['home','../'],
   ['printer','./trident.html?machine=siboor_trident_350&configuration=installed&lang=ja#assembly'],
   ['toolhead','./toolheads.html?configuration=xol_rapido&return_machine=siboor_trident_350&return_configuration=installed#head'],
   ['gantry','./gantries.html'],['fun','../fun/'],['support','../support/?machine=siboor_trident_350'],
@@ -102,12 +103,13 @@ for(const [query,documentLanguage,expected]of [['','es-MX','es'],['lang=invalid'
 async function gallery(source,{href,stored,browser='ja-JP',blockedStorage=false}={}){
   const loc={href:href||root+'fun/?format=phone&palette=graphite&kind=section#collection',get search(){return new URL(this.href).search}};
   const base=()=>loc.href,elements=new Map(),anchors=Array.from({length:3},()=>{const link=new Element('a',base);link.href='../viewer/';return link});
+  const home=new Element('a',base);home.href='../';home.setAttribute('class','brand');anchors.push(home);
   const picker=select([...funHTML.match(/<select id="language"[^>]*>([\s\S]*?)<\/select>/)[1].matchAll(/<option value="([^"]+)"/g)].map(match=>match[1]),base);
   elements.set('language',picker);
   const form=new Element('form',base);form.elements={format:select(['phone','desktop','ultrawide'],base),palette:select(['paper','blueprint','graphite'],base),kind:select(['all','collection','pattern','assembly','exploded','section'],base)};elements.set('filters',form);
   const doc={documentElement:{lang:'en'},getElementById(id){if(!elements.has(id))elements.set(id,new Element('div',base));return elements.get(id)},
     createElement:tag=>new Element(tag,base),createTextNode:text=>({nodeType:3,textContent:text}),createDocumentFragment:()=>new Element('fragment',base),querySelector:()=>new Element('nav',base),
-    querySelectorAll:selector=>selector==='a[href="../viewer/"]'?anchors.filter(link=>link.getAttribute('href')==='../viewer/'):[]};
+    querySelectorAll:selector=>selector==='a[href="../viewer/"], a.brand[href="../"]'?anchors.filter(link=>link.getAttribute('href')==='../viewer/'||(link.getAttribute('class')==='brand'&&link.getAttribute('href')==='../')):selector==='a[href="../viewer/"]'?anchors.filter(link=>link.getAttribute('href')==='../viewer/'):[]};
   doc.getElementById('back').textContent='Open viewer ↗';doc.getElementById('error').hidden=true;
   let preference=stored;const writes=[];
   const win={localStorage:{getItem(){if(blockedStorage)throw Error('Storage blocked');return preference},setItem(key,value){if(blockedStorage)throw Error('Storage blocked');preference=value;writes.push([key,value])}},addEventListener(){}};
@@ -140,7 +142,7 @@ function checkGallery(page,language){
   const cards=page.doc.getElementById('grid').children.flatMap(node=>node.tagName==='FRAGMENT'?node.children:[node]);
   assert.equal(page.doc.getElementById('count').textContent,formatFunMessage('count',{0:cards.length},language));
   assert.equal(page.picker.getAttribute('aria-label'),words.language);
-  for(const link of page.anchors){assert.equal(new URL(link.href).pathname,'/3d-print-rig/viewer/');assert.equal(new URL(link.href).searchParams.get('lang'),language);galleryChecks++}
+  for(const link of page.anchors){assert.equal(new URL(link.href).pathname,link.getAttribute('class')==='brand'?'/3d-print-rig/':'/3d-print-rig/viewer/');assert.equal(new URL(link.href).searchParams.get('lang'),language);galleryChecks++}
 }
 for(const language of supportedLanguages){
   let page=await gallery(funSource,{href:root+'fun/?lang='+language+'&format=phone&palette=graphite&kind=section#collection',stored:'ja'});

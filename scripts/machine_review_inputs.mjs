@@ -24,6 +24,8 @@ export function machineReviewInputs(reviewRoot=root){
  }
  visit('site/viewer');
  visit('site/layout');
+ visit('site/home');
+ pin('site/index.html');
  for(const name of fs.readdirSync(path.join(reviewRoot,'site')).filter(n=>n.endsWith('.json'))){
   pin('site/'+name);
  }

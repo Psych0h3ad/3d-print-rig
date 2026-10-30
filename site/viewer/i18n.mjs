@@ -1,7 +1,7 @@
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {WorkspaceMutationObserver,workspaceListen,onWorkspaceDispose} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {supportedLanguages,languageNames,normalizeLanguage,chooseLanguage,languageURL} from './languages.mjs?v=2e376566920474c0f57c';
-import {definitions,localeLoaders} from './locales/manifest.mjs?v=d8909135cfbd8913100b';
+import {definitions,localeLoaders} from './locales/manifest.mjs?v=dfcf0c0b4a697ca6d04e';
 import {createTranslator} from './translation-engine.mjs?v=ad5021536c774dab7b4d';
 export {supportedLanguages,chooseLanguage,languageURL} from './languages.mjs?v=2e376566920474c0f57c';
 
@@ -48,7 +48,8 @@ export function setupLanguage({document=globalThis.document,window=globalThis.wi
   if(element.tagName!=='A'||!element.hasAttribute('href')||element.hasAttribute('download'))return;
   const href=element.getAttribute('href');if(!href||href.startsWith('#'))return;
   let url;try{url=new URL(href,window.location.href)}catch{return}
-  if(url.origin!==window.location.origin||!url.pathname.includes('/viewer/')||!(url.pathname.endsWith('/')||url.pathname.endsWith('.html')))return;
+  const homePath=new URL('../',import.meta.url).pathname;
+  if(url.origin!==window.location.origin||(!url.pathname.includes('/viewer/')&&url.pathname!==homePath&&url.pathname!==homePath+'index.html')||!(url.pathname.endsWith('/')||url.pathname.endsWith('.html')))return;
   if(url.searchParams.get('lang')!==language)element.setAttribute('href',languageURL(url.href,language));
  }
  function visit(element){

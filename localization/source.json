@@ -13923,8 +13923,8 @@
     },
     "privacy.data": {
       "kind": "message",
-      "ja": "同意後、Google Analytics 4にはビューアーのページパス、固定のページタイトル、Cookieによる識別子、ブラウザー・端末・言語などの技術情報が送信されます。通信時にはGoogleにIPアドレスも伝わり、おおよその位置情報の推定に利用されることがあります。URLのクエリ文字列・フラグメント、参照元の詳細、保存した構成、取り込んだモデルファイルは当サイトの解析イベントに含めません。",
-      "en": "After opt-in, Google Analytics 4 receives viewer page paths, a fixed page title, cookie-based identifiers and technical information such as browser, device and language. Network requests also disclose an IP address to Google, which can derive approximate location. Query strings, fragments, referrer details, saved configurations and imported model files are not included in our analytics events."
+      "ja": "同意後、Google Analytics 4にはトップページまたはビューアーのページパス、固定のページタイトル、Cookieによる識別子、ブラウザー・端末・言語などの技術情報が送信されます。通信時にはGoogleにIPアドレスも伝わり、おおよその位置情報の推定に利用されることがあります。URLのクエリ文字列・フラグメント、参照元の詳細、保存した構成、取り込んだモデルファイルは当サイトの解析イベントに含めません。",
+      "en": "After opt-in, Google Analytics 4 receives the home or viewer page path, a fixed page title, cookie-based identifiers and technical information such as browser, device and language. Network requests also disclose an IP address to Google, which can derive approximate location. Query strings, fragments, referrer details, saved configurations and imported model files are not included in our analytics events."
     },
     "privacy.purpose": {
       "kind": "message",

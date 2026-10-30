@@ -8,6 +8,7 @@ Guides for using and contributing to 3D Print Rig.
 
 | Task | Guide |
 | --- | --- |
+| Start with printers, room layout or parts | [Home page](HOMEPAGE.md) |
 | Find the combinations offered for a printer, head or gantry | [Live combination support](https://psych0h3ad.github.io/3d-print-rig/support/) · [How support is listed](COMBINATION_SUPPORT.md) |
 | Choose parts, apply or undo changes, use the mobile layout, save a configuration and export an image | [Viewer controls](UI_WORKSPACE.md) |
 | Plan a room on desktop, draw or import its outline, place furniture and printers, and render a PNG | [Layout planner](LAYOUT_PLANNER.md) |

@@ -15,7 +15,7 @@ const image=base+'assets/social/3d-print-rig-preview.png?v='+createHash('sha256'
 const sitemap=await fs.readFile(new URL('sitemap.xml',site),'utf8');
 const locations=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/gu)].map(m=>m[1]);
 assert.equal(new Set(locations).size,locations.length,'No duplicate index or query variants in sitemap');
-assert(!locations.includes(base));assert(!locations.includes(base+'embed/'));
+assert(locations.includes(base));assert(!locations.includes(base+'embed/'));
 assert(locations.every(url=>url.startsWith(base)&&!url.includes('?')&&!url.includes('#')));
 const canonicalURLs=new Set();
 for(const file of files){
@@ -29,7 +29,7 @@ for(const file of files){
  assert(metas.get('description').length>=70&&metas.get('description').length<=220);
  const canonical=[...head.matchAll(/<link rel="canonical" href="([^"]+)">/gu)];assert.equal(canonical.length,1);assert.equal(canonical[0][1],metas.get('og:url'));
  assert(!canonical[0][1].includes('?'));assert(!canonical[0][1].includes('#'));
- const target=name==='index.html'?'viewer/index.html':name;assert.equal(canonical[0][1],base+(target.endsWith('index.html')?target.slice(0,-10):target));
+ const target=name;assert.equal(canonical[0][1],base+(target.endsWith('index.html')?target.slice(0,-10):target));
  const json=[...head.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gu)];assert.equal(json.length,1);
  const schema=JSON.parse(json[0][1]);assert.equal(schema['@context'],'https://schema.org');assert.equal(schema.url,canonical[0][1]);assert.equal(schema['@type'],'WebPage');assert.equal(schema.isPartOf.url,base);
  assert(!schema.aggregateRating,'Do not invent search ratings');

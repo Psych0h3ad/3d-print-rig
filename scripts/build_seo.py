@@ -17,9 +17,8 @@ PAGES = {'layout/index.html': ('Layout planner · 3D Print Rig',
                          'How 3D Print Rig handles optional analytics, cookies, public usage statistics and privacy requests.'),
  'viewer/machines.html': ('3D printer gallery · 3D Print Rig',
                           'Choose a 3D printer by model and size. Open its 3D viewer from the thumbnail gallery.'),
- 'index.html': ('3D Print Rig · 3D printer CAD configurator',
-                'Choose a printer, combine toolheads, hotends, extruders and Mods, and compare the assembled model in '
-                '3D. Save and share configurations, export images and download available STEP assemblies.'),
+ 'index.html': ('3D Print Rig · Plan your next build',
+                'Explore 3D printers, compare toolheads and Mods, and plan your workspace. A browser workbench for printer configurations, components and room layouts.'),
  'viewer/index.html': ('3D Print Rig · 3D printer CAD configurator',
                        'Choose a printer, combine toolheads, hotends, extruders and Mods, and compare the assembled '
                        'model in 3D. Save and share configurations, export images and download available STEP '
@@ -101,7 +100,6 @@ IMAGE_ALT = '3D Print Rig, a browser CAD configurator, alongside original VORON 
 
 
 def canonical(name):
-    name = 'viewer/index.html' if name == 'index.html' else name
     return BASE + (name[:-10] if name.endswith('index.html') else name)
 
 
@@ -194,7 +192,7 @@ def outputs():
     digest = hashlib.sha256(image.read_bytes()).hexdigest()[:20]
     image_url = BASE + 'assets/social/3d-print-rig-preview.png?v=' + digest
     result = {SITE / name: update_page((SITE / name).read_text(encoding='utf8'), name, image_url) for name in PAGES}
-    urls = sorted({canonical(name) for name in PAGES if name not in ('index.html', 'embed/index.html')})
+    urls = sorted({canonical(name) for name in PAGES if name != 'embed/index.html'})
     result[SITE / 'sitemap.xml'] = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{url}</loc></url>\n' for url in urls) + '</urlset>\n'
     return result
 
@@ -218,7 +216,7 @@ def main():
     else:
         for path, value in result.items():
             path.write_text(value, encoding='utf8', newline='\n')
-    print(f'{len(PAGES)} pages / {len(PAGES) - 2} sitemap URLs: ' + ('checked' if args.check else 'updated'))
+    print(f'{len(PAGES)} pages / {len(PAGES) - 1} sitemap URLs: ' + ('checked' if args.check else 'updated'))
 
 
 if __name__ == '__main__':

@@ -11051,8 +11051,8 @@
       "text": "Información que recibe el análisis"
     },
     "privacy.data": {
-      "source_revision": "9f21c7f0203732bf0759",
-      "text": "Tras aceptar, Google Analytics 4 recibe rutas del visor, un título fijo, identificadores de cookies e información técnica del navegador, dispositivo e idioma. Las solicitudes también comunican una dirección IP a Google, que puede estimar la ubicación aproximada. Nuestros eventos no incluyen consultas ni fragmentos de URL, detalles del referente, configuraciones guardadas ni archivos de modelos importados."
+      "source_revision": "3d036b9206ec3c2e1309",
+      "text": "Tras aceptar, Google Analytics 4 recibe la ruta de la página de inicio o del visor, un título fijo, identificadores de cookies e información técnica del navegador, dispositivo e idioma. Las solicitudes también comunican una dirección IP a Google, que puede estimar la ubicación aproximada. Nuestros eventos no incluyen consultas ni fragmentos de URL, detalles del referente, configuraciones guardadas ni archivos de modelos importados."
     },
     "privacy.purpose": {
       "source_revision": "06c1b5e11d92a60b6d2a",
