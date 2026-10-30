@@ -1,12 +1,10 @@
-import {createUsageAnalytics} from './usage-analytics.mjs?v=360195b80a0e6bca237d';
+import {createUsageAnalytics} from './usage-analytics.mjs?v=a686f7c8e70e907ce276';
 import {usageAnalyticsConfig} from './usage-analytics-config.mjs?v=54e6c921795b1e6b18ff';
-import {messageSource} from './i18n.mjs?v=9c850c3b2b5f5a26b1bc';
+import {messageSource} from './i18n.mjs?v=4c2e6b3d25b8ba4c8d87';
 import {onWorkspaceDispose, workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 
-export const statisticsConsentKey = '3d-print-rig-analytics-consent-v1';
-export const statisticsReviewKey = '3d-print-rig-analytics-review';
-export const statisticsConsentVersion = '2026-10-23';
-export const statisticsConsentLifetime = 180 * 86400000;
+import {statisticsConsentKey,statisticsReviewKey,statisticsPreference,storeStatisticsConsent} from './statistics-preference.mjs?v=bee995128ef463ee128f';
+export {statisticsConsentKey,statisticsReviewKey,statisticsConsentVersion,statisticsConsentLifetime,statisticsPreference,statisticsConsent,storeStatisticsConsent} from './statistics-preference.mjs?v=bee995128ef463ee128f';
 let tracker;
 let sessionRecord = null, prompted = false;
 
@@ -19,23 +17,6 @@ export function publicStatisticsURL(value) {
       || url.search || url.hash) return null;
     return url.href;
   } catch { return null; }
-}
-
-export function statisticsPreference(storage, now = Date.now()) {
-  try {
-    const record = JSON.parse(storage.getItem(statisticsConsentKey));
-    return record?.version === statisticsConsentVersion && ['granted', 'denied'].includes(record.choice)
-      && Number.isFinite(record.createdAt) && record.createdAt <= now
-      && record.expiresAt === record.createdAt + statisticsConsentLifetime && record.expiresAt > now ? record : null;
-  } catch { return null; }
-}
-export const statisticsConsent = (storage, now) => statisticsPreference(storage, now)?.choice ?? null;
-
-export function storeStatisticsConsent(storage, value, now = Date.now()) {
-  if (!['granted', 'denied'].includes(value)) throw Error('Invalid statistics preference');
-  const record = {version: statisticsConsentVersion, choice: value, createdAt: now, expiresAt: now + statisticsConsentLifetime};
-  try { storage.setItem(statisticsConsentKey, JSON.stringify(record)); } catch { /* This visit still respects the choice. */ }
-  return record;
 }
 
 function element(document, tag, id) {

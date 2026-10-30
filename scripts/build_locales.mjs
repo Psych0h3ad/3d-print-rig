@@ -77,10 +77,14 @@ async function cacheReferences(outputs){
  await scan(viewer);await scan(resolve(viewer,'../fun'));await scan(resolve(viewer,'../support'));
  // Layout owns its message dictionary; include its source importers in cache propagation.
  await scan(resolve(viewer,'../layout'));
+ await scan(resolve(viewer,'../home'));
+ const homeIndex=resolve(viewer,'../index.html');files.set(homeIndex,await fs.readFile(homeIndex,'utf8'));
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
  for(const name of ['step-surface-selection.mjs','step-surface-package.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['yavoth-cowl-assets.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['usage-analytics.mjs','usage-analytics-config.mjs','usage-statistics.mjs','usage-statistics.css','privacy.mjs','privacy.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
+ for(const [path,text]of files)if(path.startsWith(resolve(viewer,'../home')+sep))changed.set(path,text);
+ const preference=resolve(viewer,'statistics-preference.mjs');changed.set(preference,await fs.readFile(preference,'utf8'));
  const layoutRoot=resolve(viewer,'../layout');
  for(const [path,text]of files)if(path.startsWith(layoutRoot+sep)||path===resolve(viewer,'layout-nav.mjs'))changed.set(path,text);
  for(const name of ['source-assembly.mjs','source-assembly-messages.mjs','source-assembly-ui-text.mjs','source-assembly-configuration-ui.mjs','source-assembly-runtime/loading.mjs','source-assembly-runtime/state.mjs','source-assembly-runtime/source_XY309.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}

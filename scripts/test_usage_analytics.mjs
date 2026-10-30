@@ -158,7 +158,7 @@ test('every admitted top-level viewer route uses an explicit known name',()=>{
  assert.deepEqual(f.events().slice(1).map(x=>x[2].page_location),expected.map(n=>ORIGIN+path(n)));f.core.dispose();
 });
 test('outside viewer root, static assets, credentials and unknown pages are ignored',()=>{
- const f=ready();for(const url of [ORIGIN+BASE,ORIGIN+BASE+'support/',ORIGIN+ROOT+'file.glb',ORIGIN+ROOT+'profile.json',ORIGIN+ROOT+'community.mjs',ORIGIN+ROOT+'unknown.html',ORIGIN+ROOT+'art/credits.html',ORIGIN+ROOT+'community.html/secret','https://other.invalid'+path(),'https://name:password@psych0h3ad.github.io'+path(),'javascript:alert(1)',null,{},'/3d-print-rig/viewer/%63ommunity.html'])assert.equal(f.core.page(url),false);
+ const f=ready();for(const url of [ORIGIN+BASE+'support/',ORIGIN+ROOT+'file.glb',ORIGIN+ROOT+'profile.json',ORIGIN+ROOT+'community.mjs',ORIGIN+ROOT+'unknown.html',ORIGIN+ROOT+'art/credits.html',ORIGIN+ROOT+'community.html/secret','https://other.invalid'+path(),'https://name:password@psych0h3ad.github.io'+path(),'javascript:alert(1)',null,{},'/3d-print-rig/viewer/%63ommunity.html'])assert.equal(f.core.page(url),false);
  assert.equal(f.events().length,1);f.core.page(ORIGIN+path());assert.equal(f.events().length,1);f.core.dispose();
  const outside=fixture({href:ORIGIN+BASE+'support/'}),a=outside.create();assert.equal(a.allow(),false);assert.equal(a.status,'disabled-path');assert.equal(outside.requests.length,0);
 });
@@ -234,6 +234,14 @@ test('custom canonical project path keeps cookies and page context inside that p
 });
 test('later replacement of public tag globals fails closed without deleting replacement',()=>{
  const f=ready(),other=()=>{};f.win.gtag=other;assert.equal(f.core.page(ORIGIN+path('v0')),false);assert.equal(f.core.status,'disabled-existing-tag');assert.equal(f.win[DISABLE],true);f.core.dispose();assert.equal(f.win.gtag,other);
+});
+
+test('home aliases send a fixed root title/path without language, query or fragment',()=>{
+ const f=fixture({href:ORIGIN+BASE+'?lang=ja&configuration=private#room'}),a=f.create();
+ assert.equal(a.allow(),true);f.load();
+ assert.equal(f.events()[0][2].page_location,ORIGIN+BASE);
+ assert.equal(f.events()[0][2].page_title,'3D Print Rig');
+ assert.equal(a.page(ORIGIN+BASE+'index.html?other=secret'),true);assert.equal(f.events().length,1);a.dispose();
 });
 
 assert.equal(unexpectedNetwork,0);globalThis.fetch=oldFetch;

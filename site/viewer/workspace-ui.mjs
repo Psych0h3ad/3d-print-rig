@@ -1,18 +1,18 @@
-import {setupUsageStatistics} from './usage-statistics.mjs?v=438c6e49f853575e4648';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=201ecb44ae83e205b750';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 import {setupLayoutNavigation} from './layout-nav.mjs?v=e20c7e8f5e0810772166';
 ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=9c850c3b2b5f5a26b1bc';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=4c2e6b3d25b8ba4c8d87';
 import {normalizeLanguage,languageURL} from './languages.mjs?v=2e376566920474c0f57c';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=ae42ffadba4c105fe02e';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=36f449afd7a9a7773743';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=c4f31b357c7be88d3e00';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=cce97ff696880d3b2028';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=47b0982fcde7eae7965d';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=2af3804913b4d3039f34';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
@@ -128,6 +128,8 @@ export function setupWorkspace() {
   }
   header.insertBefore(navigation, $('.header-actions'));
   if ($('.brand small')) $('.brand small').hidden = true;
+  const brand=$('.brand');
+  if(brand&&brand.tagName!=='A'){const home=node('a','brand');home.href='../';home.setAttribute('aria-label','3D Print Rig');home.append(...brand.childNodes);brand.replaceWith(home);}
   function rememberPrinter() {
     let remembered;
     try {
@@ -432,5 +434,5 @@ export function setupWorkspace() {
   setupHeaderThemeToggle(actions);
   setupLanguage();
   setupLayoutNavigation(navigation, {listen: workspaceListen});
-  setupWorkspaceDestinationLanguages([...navigation.querySelectorAll('a'), ...menu.querySelectorAll('a'), credits]);
+  setupWorkspaceDestinationLanguages([...navigation.querySelectorAll('a'), ...menu.querySelectorAll('a'), credits, $('.brand')].filter(Boolean));
 }

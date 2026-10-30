@@ -31,7 +31,7 @@ picker.onchange=()=>{
   try{window.localStorage.setItem('3d-print-rig-language',next)}catch{}
   location.href=languageURL(location.href,next);
 };
-for(const a of document.querySelectorAll('a[href="../viewer/"]'))a.href=languageURL(new URL(a.getAttribute('href'),location.href).href,language);
+for(const a of document.querySelectorAll('a[href="../viewer/"], a.brand[href="../"]'))a.href=languageURL(new URL(a.getAttribute('href'),location.href).href,language);
 form.elements.format.value=query.get('format') || (matchMedia('(max-width:600px)').matches?'phone':'desktop');
 form.elements.palette.value=query.get('palette') || 'paper';form.elements.kind.value=query.get('kind') || 'all';
 for(const name of ['format','palette','kind'])if(!form.elements[name].value)form.elements[name].selectedIndex=0;

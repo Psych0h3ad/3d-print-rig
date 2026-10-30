@@ -4,7 +4,7 @@ Choose a 3D printer, swap its parts, and see the result in your browser.
 
 Compare toolheads, hotends, extruders, probes, gantries and Mods on a printer, or view a toolhead or gantry on its own. Change colors, look around the assembly, and try the motion and lighting controls available for that model.
 
-**[Open the viewer](https://psych0h3ad.github.io/3d-print-rig/viewer/)** · [Choose a printer](https://psych0h3ad.github.io/3d-print-rig/viewer/machines.html) · [Build a toolhead](https://psych0h3ad.github.io/3d-print-rig/viewer/toolheads.html) · [Build a gantry](https://psych0h3ad.github.io/3d-print-rig/viewer/gantries.html)
+**[Start here](https://psych0h3ad.github.io/3d-print-rig/)** · [Open the viewer](https://psych0h3ad.github.io/3d-print-rig/viewer/) · [Choose a printer](https://psych0h3ad.github.io/3d-print-rig/viewer/machines.html) · [Build a toolhead](https://psych0h3ad.github.io/3d-print-rig/viewer/toolheads.html) · [Build a gantry](https://psych0h3ad.github.io/3d-print-rig/viewer/gantries.html)
 
 ## What you can do
 

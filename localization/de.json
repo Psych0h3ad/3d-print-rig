@@ -11051,8 +11051,8 @@
       "text": "Welche Daten die Nutzungsanalyse erhält"
     },
     "privacy.data": {
-      "source_revision": "9f21c7f0203732bf0759",
-      "text": "Nach der Einwilligung erhält Google Analytics 4 Seitenpfade des Viewers, einen festen Seitentitel, cookiebasierte Kennungen und technische Angaben wie Browser, Gerät und Sprache. Netzwerkanfragen übermitteln Google außerdem eine IP-Adresse, aus der sich ein ungefährer Standort ableiten lässt. Abfrageparameter, URL-Fragmente, Verweisinformationen, gespeicherte Konfigurationen und importierte Modelldateien sind nicht in unseren Analyseereignissen enthalten."
+      "source_revision": "3d036b9206ec3c2e1309",
+      "text": "Nach der Einwilligung erhält Google Analytics 4 den Pfad der Startseite oder einer Viewer-Seite, einen festen Seitentitel, cookiebasierte Kennungen und technische Angaben wie Browser, Gerät und Sprache. Netzwerkanfragen übermitteln Google außerdem eine IP-Adresse, aus der sich ein ungefährer Standort ableiten lässt. Abfrageparameter, URL-Fragmente, Verweisinformationen, gespeicherte Konfigurationen und importierte Modelldateien sind nicht in unseren Analyseereignissen enthalten."
     },
     "privacy.purpose": {
       "source_revision": "06c1b5e11d92a60b6d2a",

@@ -55,6 +55,7 @@ export function createUsageAnalytics({measurementId,productionOrigin=ORIGIN,base
    const u=new URL(value,win.location.href);
    if(u.origin!==origin||u.username||u.password)return null;
    if(u.pathname===viewerRoot.slice(0,-1)||u.pathname===viewerRoot||u.pathname===viewerRoot+'index.html')return viewerRoot;
+   if(u.pathname===basePath||u.pathname===basePath+'index.html')return basePath;
    if(!u.pathname.startsWith(viewerRoot))return null;
    const leaf=u.pathname.slice(viewerRoot.length);
    return leaf.endsWith('.html')&&VIEWERS.has(leaf.slice(0,-5))?viewerRoot+leaf:null;
@@ -82,7 +83,7 @@ export function createUsageAnalytics({measurementId,productionOrigin=ORIGIN,base
   if(!ownsGlobals()){revoke('disabled-existing-tag');return false}
   return true;
  }
- function fields(path){return {page_location:origin+path,page_referrer:'',page_title:TITLE}}
+ function fields(path){return {page_location:origin+path,page_referrer:'',page_title:path===basePath?'3D Print Rig':TITLE}}
  function flush(){
   if(disposed||!allowed||!loaded||!check()||!pending)return;
   const path=pending;pending=null;

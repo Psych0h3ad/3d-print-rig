@@ -38,9 +38,9 @@ async function documentFixture({tail='community.html',local=store(),session=stor
  const win=new EventTarget();win.self=win;win.top=win;win.document=doc;win.navigator={webdriver:false,sendBeacon(){forbiddenNetwork++;throw Error('No beacon allowed')}};win.location={href:ORIGIN+VIEW+tail};win.sessionStorage=session;win.localStorage=bus?bus.attach(win):local;win.fetch=globalThis.fetch;
  const timers=new Map();let timerSequence=0;win.setTimeout=(callback,delay)=>{const id=++timerSequence;timers.set(id,{callback,delay});return id};win.clearTimeout=id=>timers.delete(id);
  const lifecycleURL=data(lifecycle,nonce),life=await import(lifecycleURL);
- const imports={'usage-analytics':data(core,nonce),'usage-analytics-config':data(configSource,nonce),'i18n':data('export const messageSource=id=>id;',nonce),'workspace-lifecycle':lifecycleURL};
+ const imports={'usage-analytics':data(core,nonce),'usage-analytics-config':data(configSource,nonce),'statistics-preference':data(read('site/viewer/statistics-preference.mjs'),nonce),'i18n':data('export const messageSource=id=>id;',nonce),'workspace-lifecycle':lifecycleURL};
  let transformed=uiSource;
- for(const [name,url]of Object.entries(imports)){const pattern=new RegExp(`from\\s*(['"])\\./${name}\\.mjs(?:\\?[^'"]*)?\\1`,'u');assert(pattern.test(transformed),'Expected actual UI import: '+name);transformed=transformed.replace(pattern,()=>"from '"+url+"'")}
+ for(const [name,url]of Object.entries(imports)){const pattern=new RegExp(`from\\s*(['"])\\./${name}\\.mjs(?:\\?[^'"]*)?\\1`,'u');assert(pattern.test(transformed),'Expected actual UI import: '+name);transformed=transformed.replace(new RegExp(pattern.source,'gu'),()=>"from '"+url+"'")}
  transformed=transformed.replaceAll('import.meta.url',JSON.stringify(pathToFileURL(path.join(project,'site/viewer/usage-statistics.mjs')).href));
  const ui=await import(data(transformed,nonce)),{createUsageAnalytics}=await import(imports['usage-analytics']);let scope;
  // Seed an earlier valid grant through the actual current persistence API,

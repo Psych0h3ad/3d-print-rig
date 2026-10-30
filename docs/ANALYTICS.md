@@ -26,6 +26,11 @@ the Google tag. No API credential belongs in this file or the browser.
    measurement. Verify changing axes, colors, language or configuration on the
    same viewer route does not create extra page views.
 
+The home page honors an existing, unexpired opt-in using the same consent record.
+New visitors can choose on the linked privacy page or in the viewer; until then,
+the home page sends nothing. The home route is reduced to the canonical project
+root and a fixed title.
+
 The tag receives approved viewer paths without query strings or fragments and
 a fixed title. Referrer details and advertising features are disabled. The
 preference is stored locally, and the statistics dialog lets visitors change
