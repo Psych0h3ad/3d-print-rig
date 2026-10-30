@@ -1,18 +1,19 @@
+import {POPSTATION_STANDARD_FEET,createPopStationFootGeometry,addPopStationFootPads} from './layout-popstation-feet.mjs?v=1aa06f6a006f30cac556';
 import {createOpeningInteraction} from './layout-opening-interaction.mjs?v=311c211226edb996ec77';
 import {createOpeningHandles} from './layout-opening-handles.mjs?v=51cfd40ea1f9a7739c30';
 import {wallFrame,openingFrame} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=7d8a03ac9d134b7f69db';
+import {deriveScene} from './layout-state.mjs?v=2dc1141b4d0cc422359d';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {printerSilhouetteParts,printerSilhouetteSourceRoles} from './layout-printer-shapes.mjs?v=4908029ca70fd9b43559';
 import {createPrinterPreviewMeshCache} from './layout-printer-preview-mesh.mjs?v=13f907586c6d381eb6d4';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=98ba2637deeeafba270b';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=3bdc5f2d8f82e416b7eb';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
-import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=5ff56945f8c773e3dcdd';
-import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=c68df6898f8efb6e5acc';
+import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=1a44b9490add3138ce6b';
+import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=c63f25577f494294ee53';
 import {createLayoutOpeningRenderer,drawOpeningPlan,openingPlanPrimitives} from './layout-opening-renderer.mjs?v=b035a46e0d76f7c9b6df';
 import {pickPlanOpening} from './layout-opening-picking.mjs?v=7fb5b88e49bcd5be6497';
 
@@ -159,6 +160,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const cylinderGeometry=new THREE.CylinderGeometry(.5,.5,1,24);
   const equipmentTubeGeometries=new Map();
   const equipmentMeshCache=createEquipmentMeshCache(THREE);
+  let popStationFootGeometry,popStationFootMaterial;
   const printerMeshCache=createPrinterPreviewMeshCache(THREE),printerPreviews=new Map();
   const printerMaterial=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.74,metalness:.04});
   const printerGlassMaterial=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.38,metalness:.03,transparent:true,opacity:.18,depthWrite:false});
@@ -239,12 +241,18 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
   const observer=new ResizeObserver(resize);observer.observe(container);
   function resetGroup(g){for(const o of [...g.children])g.remove(o);}
   function record(e,g){g.userData.entityId=e.id;g.position.set(e.positionM.x,e.positionM.y,e.positionM.z);g.rotation.y=e.yawRad;objects.set(e.id,g);}
-  function cabinetRow(e){return getLayoutEquipment(e.type==='popstation_mini_biqu_v1'?'biqu_popstation_mini_cad_v1':'biqu_pop_station_mini_layout_reference',e.equipmentVariant||(e.type==='popstation_mini_biqu_v1'?'supplied':'empty'));}
+  function cabinetRow(e){return getLayoutEquipment('biqu_popstation_mini_cad_v1','supplied');}
+  function addPopStationPreview(parent,override){
+    const body=new THREE.Group();body.position.y=POPSTATION_STANDARD_FEET.bodyLiftM;parent.add(body);
+    for(const p of cabinetRow().proxy.parts)previewPart(body,p,override);
+    popStationFootGeometry??=createPopStationFootGeometry(THREE);
+    if(!override)popStationFootMaterial??=new THREE.MeshStandardMaterial({color:'#15191d',roughness:.92,metalness:0});
+    addPopStationFootPads(THREE,parent,{geometry:popStationFootGeometry,material:override||popStationFootMaterial});
+  }
   function makeFurniture(e){
     const g=new THREE.Group();furnitureGroup.add(g);record(e,g);
     if(['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
-      const row=cabinetRow(e);
-      for(const p of row.proxy.parts)previewPart(g,p);
+      addPopStationPreview(g);
       g.userData.equipment=true;return g;
     }
     const w=e.widthMm*MM,d=e.depthMm*MM,h=e.heightMm*MM;
@@ -630,7 +638,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
               const row=resolveLayoutEquipment(catalogMachine(e.machineId),e.equipmentVariant);if(!row)throw Error('Unknown group placement printer');
               addPrinterPreview(node,row,true);
             }else if(['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
-              for(const part of cabinetRow(e).proxy.parts)previewPart(node,part,ghostMaterial);
+              addPopStationPreview(node,ghostMaterial);
             }else{
               for(const board of e.boards)addPart(node,[board.widthM,board.thicknessM,board.depthM],[0,board.localCenterYM,0]);
               const leg=e.type==='desk'?.045:.035;
@@ -641,7 +649,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       }else if(value.kind==='printer'){
         const row=catalogMachine(value.machineId);if(row)addPrinterPreview(placementBody,row,true);
       }else if(['popstation_mini','popstation_mini_biqu_v1'].includes(value.kind)){
-        for(const part of cabinetRow({type:value.kind}).proxy.parts)previewPart(placementBody,part,ghostMaterial);
+        addPopStationPreview(placementBody,ghostMaterial);
       }else{
         const w=dims.width*MM,h=dims.height*MM,d=dims.depth*MM;
         const levels=value.kind==='shelf'?(value.copy?.levels?.map(l=>l.topMm*MM)||[.1,.65,1.2,h]):[h];
@@ -891,7 +899,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     if(!renderer.extensions.has('EXT_color_buffer_float'))throw Object.assign(Error('HDR image output is unavailable'),{code:'RENDER_UNSUPPORTED'});
     const externalSignal=signal,controller=new AbortController(),forwardAbort=()=>controller.abort();exportAbort=controller;
     if(signal?.aborted)controller.abort();else signal?.addEventListener('abort',forwardAbort,{once:true});signal=controller.signal;
-    const snapshot=[...derived.printers,...derived.furniture.filter(e=>['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)).map(e=>({...e,machineId:e.type==='popstation_mini_biqu_v1'?'biqu_popstation_mini_cad_v1':'biqu_pop_station_mini_layout_reference'}))].map(p=>({...p,positionM:{...p.positionM}}));
+    const snapshot=[...derived.printers,...derived.furniture.filter(e=>['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)).map(e=>({...e,machineId:'biqu_popstation_mini_cad_v1',equipmentVariant:'standard-feet'}))].map(p=>({...p,positionM:{...p.positionM}}));
     const streamedFurniture=[...furnitureGroup.children].filter(g=>g.userData.equipment),furnitureVisibility=streamedFurniture.map(g=>g.visible);
     const limit=Math.min(renderer.capabilities.maxTextureSize,2560),long=Math.max(320,Math.min(limit,width)),aspect=lastWidth/Math.max(1,lastHeight),w=Math.max(1,Math.round(aspect>=1?long:long*aspect)),h=Math.max(1,Math.round(aspect>=1?long/aspect:long));
     let target,outputTarget,outputGeometry,outputMaterial;const oldTarget=renderer.getRenderTarget(),oldAuto=renderer.autoClear,oldBackground=scene.background,oldShaderError=renderer.debug.onShaderError,transparentRoot=new THREE.Group(),previewVisible=placementGroup.visible,guidesVisible=placementGuides.visible;
@@ -967,7 +975,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
       openingFeedback.visible=openingFeedbackWasVisible;exporting=false;exportAbort=null;externalSignal?.removeEventListener('abort',forwardAbort);presentView();if(disposed)releaseResources();else{resize();draw();}
     }
   }
-  function releaseResources(){if(resourcesDisposed)return;for(const child of openingFeedback.children)child.geometry.dispose();openingLineMaterial.dispose();resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();pickedSolid.geometry.dispose();pickedPlan.geometry.dispose();pickedMaterial.dispose();clearRoom();openingRenderer.dispose();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();printerMeshCache.dispose();printerPreviews.clear();printerMaterial.dispose();printerGlassMaterial.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
+  function releaseResources(){if(resourcesDisposed)return;for(const child of openingFeedback.children)child.geometry.dispose();openingLineMaterial.dispose();resourcesDisposed=true;ghostMaterial.dispose();ghostLineMaterial.dispose();ghostFootprint.geometry.dispose();ghostFootprint.material.dispose();placementGuides.geometry.dispose();disposeTree(planGroup);planSelection.geometry.dispose();planSelection.material.dispose();pickedSolid.geometry.dispose();pickedPlan.geometry.dispose();pickedMaterial.dispose();clearRoom();openingRenderer.dispose();clearContacts();surfaces.dispose();planFloorMaterial.dispose();contactPlaneGeometry.dispose();boxGeometry.dispose();cylinderGeometry.dispose();for(const g of equipmentTubeGeometries.values())g.dispose();equipmentTubeGeometries.clear();equipmentMeshCache.dispose();popStationFootGeometry?.dispose();popStationFootMaterial?.dispose();printerMeshCache.dispose();printerPreviews.clear();printerMaterial.dispose();printerGlassMaterial.dispose();wireGeometry.dispose();wireMaterial.dispose();for(const m of palette.values())m.dispose();grid.geometry.dispose();grid.material.dispose();selectionBox.geometry.dispose();selectionBox.material.dispose();keyLight.shadow.dispose();environment.dispose();renderer.dispose();canvas.remove();}
   function dispose(){if(disposed)return;cancel();disposed=true;exportAbort?.abort();if(frame)cancelAnimationFrame(frame);if(placementFrame)cancelAnimationFrame(placementFrame);observer.disconnect();perspectiveControls.dispose();planControls.dispose();eventWindow?.removeEventListener('blur',cancel);eventWindow?.removeEventListener('keydown',keyCancel);for(const [element,type,handler]of toolListeners)element.removeEventListener(type,handler);clearUnitMarkers();unitLabels.remove();marquee.remove();objectTools.remove();openingHandles.dispose();measurementsCanvas.remove();for(const [type,handler]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',cancel],['lostpointercapture',cancel]])canvas.removeEventListener(type,handler,true);if(!exporting)releaseResources();}
   resize();setTool();return {beginOpening,setOpeningSelection,cancelOpening:()=>openingInteraction.cancel(),setState,setPickedRoots,cancelGesture:()=>{if(openingInteraction.cancel())return true;if(!drag)return false;cancel();return true;},setTool,setOptions,setPlacement,refreshPlacement:()=>updatePlacement(),view,getView,focusSelected,exportImage,dispose,canvas,getPreviewMetrics:()=>({cache:printerMeshCache.stats(),render:{...renderer.info?.render},memory:{...renderer.info?.memory}})};
 }

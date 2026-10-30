@@ -1,19 +1,19 @@
 # Layout reference models
 
-Snapmaker U1 and BIQU PopStation Mini are simplified exterior models for room
+Snapmaker U1 is a simplified exterior reference; PopStation Mini uses BIQU's supplied cabinet mesh with separate approximate rubber-pad references. Both are for room
 and furniture planning. They are available in Layout. Their dimensions describe
 these reference models; leave space for access, cables and moving parts.
 
-The U1 has a standalone view with four spools. Placing it on PopStation moves
-the four spools, holders and two feeders into the cabinet. Moving or rotating
-the cabinet carries the printer with it. Detaching the printer restores its
-standalone appearance.
+The U1 has a standalone view with four spools. Its docked exterior omits
+the spool holders and feeders; those internal parts are not supplied in the
+BIQU cabinet mesh. Moving or rotating the cabinet carries the printer with it.
+Detaching the printer restores its standalone appearance.
 
 | Reference | Width × depth × height |
 | --- | --- |
 | U1, standalone | 582.7 × 514.3 × 441.9 mm |
 | U1, on PopStation | 418.1 × 514.3 × 441.9 mm, above the cabinet |
-| PopStation Mini | 422 × 456 × 428 mm |
+| PopStation Mini, with pad references | 423.1 × 478.3 × 428.0 mm |
 
 [Snapmaker specifies 584 × 499 × 730 mm overall](https://www.snapmaker.com/en-EU/snapmaker-u1/specs),
 including [cables and protrusions](https://forum.snapmaker.com/t/u1-faq-official-info-summary/39648). The reference model shows the body and omits
@@ -47,10 +47,30 @@ All supplied notices are preserved in the
 
 The **PopStation Mini · BIQU** entry uses cabinet CAD supplied by BIQU, with permission to distribute a Web mesh. The original STEP is not included in the site, downloads or export packages.
 
-This reference retains the 70 source occurrences. Its displayed envelope is 423.100 × 478.283 × 417.400 mm, including the handle. The bottom of the modeled housing is the floor datum. The supplied assembly has no spools, feeder assemblies, protruding feet or casters. The white exterior, smoky transparent window, black handle, dark seals and silver hardware follow [BIQU's product photographs](https://biqu.equipment/products/biqu-popstation-mini-sealed-dual-drawer-storage-cabinet-for-4-filament-spools). They are display finishes; the supplied CAD does not specify colors. Unconfirmed interior finishes remain neutral gray. Individual materials within compound source parts have not been established.
+The supplied cabinet retains all 70 source occurrences, with a bare envelope
+of 423.100 × 478.283 × 417.400 mm including the handle. Four separately
+identified rubber-pad references are based on BIQU's official installation
+images. Their profile, bore and placement are estimates, not supplied CAD.
+A rigid 10.6 mm cabinet lift gives a composed height of approximately 428 mm;
+no original component is scaled or deformed. The cabinet has no added spools,
+holders, feeder assemblies or casters.
 
-Both PopStation entries show a [BIQU official store affiliate link](https://psych0h3ad.link/lxbhIoR) in the selected item's panel, with an adjacent affiliate disclosure. The lightweight preview and detailed image export use the same source-based color assignments.
+The white exterior, smoky window, black handle, dark seals and silver hardware
+follow [BIQU's product photographs](https://biqu.equipment/products/biqu-popstation-mini-sealed-dual-drawer-storage-cabinet-for-4-filament-spools).
+They are display finishes; unconfirmed interior finishes stay neutral gray.
+Individual materials within compound source parts have not been established.
+The selected cabinet shows the [BIQU official store affiliate link](https://psych0h3ad.link/lxbhIoR)
+with an adjacent disclosure. Preview and PNG use the same color assignments.
 
-The cabinet is a separate versioned layout item. Existing PopStation Mini references, U1 sets and saved placements keep their previous dimensions and support datum. The supplied cabinet's upper deck has cutouts; it is not offered as an automatically verified U1 mounting surface. The existing U1 reference remains available for that layout arrangement.
+This cabinet replaces the former approximate PopStation selection. Old plans,
+clipboard units and saved groups retain IDs, X/Z, rotation and attachments
+while migrating to the supplied envelope. Changes in the measured depth can
+produce a boundary warning; objects are not silently moved. U1 sets use the
+composed deck height of 422.700 mm. The actual finite deck was checked against
+the four reference footprints at the locked layout pose; small noncoplanar
+foot gaps remain. This is not a fastening, load or native-solid fit certificate.
 
-Placement preview shares one merged mesh between copies. Detailed image output loads the original 70 occurrences. Both derive from the supplied geometry without resizing it to match the older reference. Room and furniture envelopes remain planning checks, not load ratings or native-solid clearance certification.
+The preview shares one cabinet mesh and one pad geometry across copies.
+Detailed PNG output loads all 70 source occurrences plus the four separately
+identified pad references. The source STEP is excluded from both outputs and
+all download packages. Room and furniture envelopes remain planning checks.

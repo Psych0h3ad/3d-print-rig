@@ -1,4 +1,4 @@
-import {BIQU_POPSTATION_CAD,BIQU_POPSTATION_MODEL,BIQU_POPSTATION_PREVIEW} from './layout-biqu-popstation.mjs?v=979382e048e443397362';
+import {BIQU_POPSTATION_CAD,BIQU_POPSTATION_MODEL,BIQU_POPSTATION_PREVIEW} from './layout-biqu-popstation.mjs?v=49c41d6d1cb8cb8f58d0';
 import {BIQU_FINISH_SOURCE,biquFinishLeaf,createBiquFinishMaterial} from './layout-biqu-appearance.mjs?v=4235983a3b0c67dca3c2';
 
 // The supplied CAD contains two open surface sheets coincident with areas of

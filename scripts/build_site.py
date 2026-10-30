@@ -461,6 +461,9 @@ def _audit_built_runtime(target):
         subprocess.run(['node', '--max-old-space-size=384', '--experimental-loader', './scripts/layout-built-three-loader.mjs',
                         str(ROOT/'scripts/audit_layout_biqu_display.mjs'), '--site', str(target),
                         '--report', str(Path(folder)/'biqu-display.json')], cwd=ROOT, check=True, timeout=120)
+        subprocess.run(['node', '--max-old-space-size=384',
+                        str(ROOT/'scripts/test_layout_popstation_feet.mjs'), '--site', str(target)],
+                       cwd=ROOT, check=True, timeout=120)
     # Check the complete page graph after generated inputs (including support
     # data) exist, before the artifact can be uploaded.
     print(json.dumps(verify_entrypoints(target, input_map)))

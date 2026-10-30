@@ -15,9 +15,11 @@ let mounted=S.applyAction(initial,{type:'SET_ATTACHMENT',id:'u1',attachment:atta
 assert.deepEqual(profile(mounted).footprintMm,docked.footprintMm);
 assert.equal(profile(mounted).widthMm,docked.dimensionsMm.width);
 assert.equal(profile(mounted).heightMm,docked.dimensionsMm.height);
-assert.equal(S.worldTransform(mounted,'u1',catalog).verticalRangeMm[1],417.4+730);
+const supportTopMm=422.7002393966562;
+assert.equal(S.POPSTATION_MINI.topMm,supportTopMm);
+assert.equal(S.worldTransform(mounted,'u1',catalog).verticalRangeMm[1],supportTopMm+730);
 assert.deepEqual(S.validatePlacement(mounted,catalog),[]);
-assert.equal(S.worldTransform(mounted,'u1',catalog).positionM.y,.4174);
+assert.equal(S.worldTransform(mounted,'u1',catalog).positionM.y,supportTopMm/1000);
 const template=C.decodeLayoutClipboard(C.encodeLayoutClipboard(C.captureLayoutClipboard(mounted,['pop'],catalog),catalog),catalog);
 assert.equal(template.furniture.length,1);assert.equal(template.printers.length,1);
 assert.equal(template.printers[0].attachment.parentId,template.furniture[0].id);

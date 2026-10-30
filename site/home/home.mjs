@@ -1,4 +1,4 @@
-import {homeMessages} from './locale-data.mjs?v=a5e6ff78ccedcc66b9a5';
+import {homeMessages} from './locale-data.mjs?v=3b846df8b2a43621a029';
 import {chooseLanguage,languageNames} from '../viewer/languages.mjs?v=2e376566920474c0f57c';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {startHomeAnalytics} from './usage.mjs?v=0c49acb3d710bfca61a2';

@@ -1,5 +1,5 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=7d8a03ac9d134b7f69db';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=2dc1141b4d0cc422359d';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
@@ -453,8 +453,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
   const addSection = section('layout.add');
   const furnitureAdd = el('div', 'layout-add-furniture');
   furnitureAdd.append(button('layout.addDesk',()=>emit({type:'add',kind:'desk'}),'desk'),button('layout.addShelf',()=>emit({type:'add',kind:'shelf'}),'shelf'));
-  furnitureAdd.append(button('layout.addBiquPopStation',()=>emit({type:'add',kind:'popstation_mini_biqu_v1'}),'popstation_mini'));
-  furnitureAdd.append(button('layout.addPopStation',()=>emit({type:'add',kind:'popstation_mini'}),'popstation_mini'));
+  furnitureAdd.append(button('layout.addBiquPopStation',()=>emit({type:'add',kind:'popstation_mini'}),'popstation_mini'));
   addSection.append(furnitureAdd);
   const search = el('input', 'layout-catalog-search'); search.type = 'search';search.id='layout-catalog-search';
   search.placeholder = tr('layout.searchPrinters'); search.setAttribute('aria-label', tr('layout.searchPrinters'));
@@ -641,9 +640,8 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
   function title(e) {
     if(isGroup(e))return String(e.name);
     if ('machineId' in e) return machineLabel(byMachine.get(e.machineId)) || e.machineId;
-    if(e.type==='popstation_mini_biqu_v1')return 'PopStation Mini '+(state.furniture.filter(f=>f.type===e.type).findIndex(f=>f.id===e.id)+1);
-    if(e.type==='popstation_mini')return 'BIQU PopStation Mini';
     const same=(state.furniture||[]).filter(v=>v.type===e.type), number=same.findIndex(v=>v.id===e.id)+1;
+    if(e.type==='popstation_mini')return `${tr('layout.addBiquPopStation')} ${number}`;
     return tr(e.type==='desk'?'layout.deskName':'layout.shelfName',{number});
   }
   function refreshList() {
@@ -754,7 +752,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
     if(group){buildGroupEditor(e);return;}
     editor.append(el('p','layout-editor-subtitle',title(e)));
     const isPrinter='machineId' in e;
-    if(!isPrinter&&!['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
+    if(!isPrinter&&e.type!=='popstation_mini'){
       const dims=el('div','layout-fields');editor.append(dims);
       for(const [key,prop] of [['layout.width','widthMm'],['layout.depth','depthMm'],['layout.height','heightMm']])numberField(dims,key,prop,{min:1,action:v=>patchEntity(e,{[prop]:v})});
       const thick=el('div','layout-fields layout-two');editor.append(thick);
@@ -790,16 +788,18 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
         link.dataset.layoutSourceLink='';link.dataset.layoutLink='';link.append(icon('source'),copy(el('span'),'layout.openPrinterSources'));editor.append(link);
       }
     }
-    if(e.type==='popstation_mini')editor.append(el('p','layout-help','422 × 456 × 428 mm'),copy(el('p','layout-help'),'layout.popStationHelp'));
-    if(e.type==='popstation_mini_biqu_v1')editor.append(el('p','layout-help',`${fixedOne(e.widthMm)} × ${fixedOne(e.depthMm)} × ${fixedOne(e.heightMm)} mm`),copy(el('p','layout-help'),'layout.biquPopStationHelp'));
-    if(!isPrinter&&['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
+    if(e.type==='popstation_mini'){
+      const dimensions=el('p','layout-help');dimensions.dataset.layoutPopstationDimensions='';
+      editor.append(dimensions,copy(el('p','layout-help'),'layout.popStationHelp'));
+    }
+    if(!isPrinter&&e.type==='popstation_mini'){
       const link=el('a','layout-printer-source-link');link.href=POPSTATION_AFFILIATE_URL;link.target='_blank';link.rel='sponsored noopener noreferrer';
       link.dataset.layoutAffiliateLink='popstation-mini';link.setAttribute('aria-describedby','layout-popstation-affiliate-disclosure');
       link.append(icon('source'),copy(el('span'),'layout.popstation_affiliate_link'));
       const disclosure=copy(el('small','layout-help'),'layout.popstation_affiliate_disclosure');disclosure.id='layout-popstation-affiliate-disclosure';
       editor.append(link,disclosure);
     }
-    if(e.machineId==='snapmaker_u1_layout_reference'||['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
+    if(e.machineId==='snapmaker_u1_layout_reference'||e.type==='popstation_mini'){
       const link=el('a','layout-printer-source-link');link.href='https://github.com/Psych0h3ad/3d-print-rig/blob/main/docs/LAYOUT_EQUIPMENT.md';link.target='_blank';link.rel='noopener noreferrer';
       link.append(icon('source'),copy(el('span'),'layout.equipmentSources'));editor.append(link);
     }
@@ -886,6 +886,8 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
       return;
     }
     for(const key of ['widthMm','depthMm','heightMm','topThicknessMm','boardThicknessMm'])value(key,e[key]);
+    const popStationDimensions=editor.querySelector('[data-layout-popstation-dimensions]');
+    if(popStationDimensions)copy(popStationDimensions,'layout.machineSize',{width:fixedOne(e.widthMm),depth:fixedOne(e.depthMm),height:fixedOne(e.heightMm)});
     for(const l of e.levels||[])value(`board-${l.id}`,l.topMm);
     const support=editor.querySelector('#layout-support');if(support)support.value=JSON.stringify([e.attachment.parentId,e.attachment.surfaceId]);
     const sourceLink=editor.querySelector('[data-layout-source-link]');if(sourceLink){const href=selectedSourceURL(byMachine.get(e.machineId));if(href)sourceLink.href=href;else sourceLink.remove();}
@@ -912,7 +914,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
     const needsDetach=editor.querySelector('[data-requires-detach]');if(needsDetach)needsDetach.disabled=status.busy||!editor.querySelector('#layout-detach')?.checked;
     const boundaryInvalid=currentIssues.some(issue=>issue.code==='ROOM_OUT_OF_BOUNDS'||issue.code==='SURFACE_OVERHANG');
     boundsNotice.hidden=!boundaryInvalid;
-    renderButton.disabled=status.busy||!state||(!floorplan&&(boundaryInvalid||(!state.printers?.length&&!state.furniture?.some(f=>['popstation_mini','popstation_mini_biqu_v1'].includes(f.type)))));
+    renderButton.disabled=status.busy||!state||(!floorplan&&(boundaryInvalid||(!state.printers?.length&&!state.furniture?.some(f=>f.type==='popstation_mini'))));
     cancel.hidden=!status.busy;cancel.disabled=false;
     busyArea.hidden=!status.busy;
     progress.hidden=!status.busy;

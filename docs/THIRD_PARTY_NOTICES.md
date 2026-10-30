@@ -610,3 +610,19 @@ relicense CAD. These are assembled source heads, not registered printer mounts.
 ## EVA source toolhead assemblies
 
 EVA is by Paweł Kucmus. Complete EVA 2.x V-Minion and EVA 3.x V-Core 3.1 source assemblies are by Rat Rig, distributed under their exact CC BY-NC-SA 4.0 notices. Original component identities and native placements are retained; geometry is tessellated/extracted for viewing, with recorded purchased-polymer material overrides. No identified built-in supports were removed. Exact source CAD revisions, SHA-256 identities and license references are in [EVA sources](../site/EVA_SOURCES.json); assembly scope and unresolved patch versions are in [EVA assemblies](EVA_HEADS.md). Individual upstream components retain their own applicable terms.
+
+### Homepage Trident render
+
+The homepage shows a PNG exported by the registered `voron_trident_350`
+viewer with `trident_r2__stealthburner__revo_voron__cw2`, then cropped to its
+transparent bounds and encoded as WebP. It uses the existing VORON Trident
+model and its original terms; no new model geometry or generative illustration
+is introduced. Original source: [VORON Design](https://github.com/VoronDesign/Voron-Trident).
+
+### PopStation Mini rubber-pad references
+
+The four exterior pad meshes are original, approximate layout references
+based on BIQU's public [installation images and overall dimensions](https://neo.bttwiki.com/en/docs/more-series/pop-module/popstation-mini/).
+They are separate from the supplied cabinet CAD. Their detailed dimensions,
+receiver fit, fastening and load capacity have not been qualified.
+The supplied cabinet STEP remains excluded from downloads and source archives.

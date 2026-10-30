@@ -1,6 +1,6 @@
 // Pure placement transactions for static planning envelopes, never CAD fit proofs.
 import {LIMITS, createCatalog, createDesk, createShelf, createPopStation, createBiquPopStation, resolvePrinterEquipment, applyAction, validateState,
-  validatePlacement, deriveScene, getSurface} from './layout-state.mjs?v=7d8a03ac9d134b7f69db';
+  validatePlacement, deriveScene, getSurface, migratePopStationFurniture} from './layout-state.mjs?v=2dc1141b4d0cc422359d';
 import {rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 
 const MAGNET_MM = 14;
@@ -59,6 +59,7 @@ export function proposePlacement(state, input, catalog) {
   if (kind === 'desk' || kind === 'shelf' || kind==='popstation_mini'||kind==='popstation_mini_biqu_v1') {
     try {
       furniture = template === undefined ? (kind === 'desk' ? createDesk({id}) : kind==='shelf'?createShelf({id}):kind==='popstation_mini'?createPopStation({id}):createBiquPopStation({id})) : {...template, id};
+      [furniture]=migratePopStationFurniture([furniture]);
       sizeMm = sizeOf(furniture);
     } catch (e) { issues.push(...errorsOf(e)); }
     if (parentId !== null || surfaceId !== 'floor') issues.push(error('FLOOR_SURFACE_REQUIRED', 'placement.surfaceId'));

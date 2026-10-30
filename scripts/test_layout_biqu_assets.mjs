@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {BIQU_POPSTATION_CAD as row,BIQU_POPSTATION_PREVIEW as preview,BIQU_POPSTATION_SOURCE,
+import {BIQU_POPSTATION_CAD as row,BIQU_POPSTATION_STANDARD as standard,BIQU_POPSTATION_PREVIEW as preview,BIQU_POPSTATION_SOURCE,
   getBiquPopStation,prepareBiquPreview,isBiquPreviewPrepared,needsBiquPreview,validateBiquPreview,createBiquPreviewCache} from '../site/layout/layout-biqu-popstation.mjs';
 import {BIQU_POPSTATION_TRANSFER_BASE,BIQU_POPSTATION_MODEL_IDENTITY as full,BIQU_POPSTATION_PREVIEW_IDENTITY as json,
   equipmentTransferIdentity,equipmentPreviewGeometryTransferIdentity,downloadEquipmentModel,downloadEquipmentPreviewGeometry} from '../site/layout/layout-equipment-transfer.mjs';
@@ -16,6 +16,12 @@ await test('canonical-metadata-provenance-variant-selection-and-no-import-io',as
   for(const [key,value]of Object.entries({manufacturerCAD:true,isLayoutEquipment:true,publicSourcesOnly:false,
     privateSourceDerived:true,purchasedSourceDerived:false,equipmentVariant:'supplied'}))assert.equal(row[key],value);
   assert.deepEqual(row.dimensionsMm,{width:423.10022712374223,depth:478.28293730922826,height:417.40023949665624});
+  assert.equal(row.supportYM,.4121002393966562);
+  assert.equal(getBiquPopStation('standard-feet'),standard);
+  assert.deepEqual(standard.dimensionsMm,{width:423.10022712374223,depth:478.28293730922826,height:428.00023949665626});
+  assert.equal(standard.supportYM*1000,422.7002393966562);
+  assert.equal(standard.manufacturerCAD,false);assert.equal(standard.manufacturerBodyCAD,true);
+  for(const key of ['model','preview','source','proxy'])assert.equal(standard[key],row[key],'Standard feet retain unchanged supplied source '+key);
   assert.equal(row.model.sha256,full.sha256);assert.equal(BIQU_POPSTATION_SOURCE.sourceInstances,70);
   for(const variant of ['empty','loaded','scan','',null,{},false,{equipmentVariant:'supplied',model:{path:'other.glb'}}])
     assert.throws(()=>getBiquPopStation(variant),e=>e.code==='LAYOUT_UNKNOWN_EQUIPMENT_VARIANT');
@@ -26,12 +32,13 @@ await test('canonical-metadata-provenance-variant-selection-and-no-import-io',as
   assert.equal(requests,0);
 });
 
-await test('recursive-new-type-placement-clipboard-groups-and-cycles',()=>{
-  for(const item of [{type:row.type},{kind:row.type},{id:row.id},
+await test('recursive-canonical-and-input-alias-placement-clipboard-groups-and-cycles',()=>{
+  for(const item of [{type:'popstation_mini'},{kind:'popstation_mini'},{id:'biqu_pop_station_mini_layout_reference'},
+    {type:row.type},{kind:row.type},{id:row.id},
     {layout:{furniture:[{type:row.type}]}},{clipboard:{groups:[{template:{children:[{kind:row.type}]}}]}}])assert(needsBiquPreview(item));
   const cycle={kind:'group',children:[]};cycle.children.push(cycle);assert.equal(needsBiquPreview(cycle),false);
   cycle.children.push({type:row.type});assert(needsBiquPreview(cycle));
-  for(const value of [undefined,null,{},'popstation_mini_biqu_v1',{kind:'popstation_mini'},{type:'printer',machineId:'snapmaker_u1_layout_reference'}])
+  for(const value of [undefined,null,{},'popstation_mini_biqu_v1','popstation_mini',{kind:'popstation_mini_other'},{type:'printer',machineId:'snapmaker_u1_layout_reference'}])
     assert.equal(needsBiquPreview(value),false);
   const accessor={};Object.defineProperty(accessor,'type',{enumerable:true,get(){throw Error('Untrusted getter')}});
   assert.equal(needsBiquPreview(accessor),false);

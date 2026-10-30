@@ -1,7 +1,7 @@
 // Farm units use the same static planning envelopes as individual objects.
 // A group never duplicates source CAD or changes printer/support attachments.
 import {LIMITS,LayoutValidationError,createDefaultLayout,deriveScene,resolvePrinterEquipment,
-  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=7d8a03ac9d134b7f69db';
+  validatePlacement,parseLayout,serializeLayout} from './layout-state.mjs?v=2dc1141b4d0cc422359d';
 import {rootPose,groupRootPose} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {bounds,rectangle,rotateXZ,transformPolygon,polygonContains,orient} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
@@ -279,7 +279,7 @@ export function parseGroupLibrary(text,catalog=[]){
   const ids=new Set();
   for(const item of items){
     if(!item||Object.keys(item).some(k=>!['id','template'].includes(k))||typeof item.id!=='string'||!/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,100}$/.test(item.id)||ids.has(item.id))fail('GROUP_TEMPLATE');
-    ids.add(item.id);validateGroupTemplate(item.template,catalog);
+    ids.add(item.id);const current=validateGroupTemplate(item.template,catalog);item.template={...item.template,furniture:clone(current.furniture)};
   }
   return clone(items);
 }

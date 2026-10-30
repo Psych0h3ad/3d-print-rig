@@ -1,7 +1,7 @@
 // Pure selection transactions. The caller owns clipboard I/O and instantiation.
 import {LIMITS, LayoutValidationError, createDefaultLayout, deriveScene, validatePlacement,
-  parseLayout, serializeLayout} from './layout-state.mjs?v=7d8a03ac9d134b7f69db';
-import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=98ba2637deeeafba270b';
+  parseLayout, serializeLayout} from './layout-state.mjs?v=2dc1141b4d0cc422359d';
+import {createGroup, captureGroupTemplate, validateGroupTemplate} from './layout-groups.mjs?v=3bdc5f2d8f82e416b7eb';
 import {materializeGroupLabels} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 
 const MAX_BYTES = 2 * 1024 * 1024;
@@ -59,8 +59,9 @@ function templateSnapshot(template, catalog) {
   jsonData(template, 'clipboard');
   const text = JSON.stringify(template);
   checkBytes(text);
-  validateGroupTemplate(template, catalog);
-  return JSON.parse(text);
+  const current=validateGroupTemplate(template, catalog),snapshot=JSON.parse(text);
+  snapshot.furniture=JSON.parse(JSON.stringify(current.furniture));
+  return snapshot;
 }
 function checkedState(state, catalog) {
   // serializeLayout checks the native schema; parseLayout returns a detached,
