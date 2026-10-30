@@ -1,5 +1,5 @@
 import {workspaceTask,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {formatMessage} from './i18n.mjs?v=0848a410daf1b9fdb11b';
+import {formatMessage} from './i18n.mjs?v=9c850c3b2b5f5a26b1bc';
 import {importedVariant} from './configuration-model.js?v=ffcb5378701b391d2cab';
 export function accessoryIds(catalog,data={}){
  const ids=data.accessories??[];

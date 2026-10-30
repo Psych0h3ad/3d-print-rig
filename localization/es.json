@@ -11421,6 +11421,14 @@
     "surface.unsupported_geometry": {
       "source_revision": "df1a50770135b2b088fe",
       "text": "Esta geometría visible no se puede exportar."
+    },
+    "layout.popstation_affiliate_link": {
+      "source_revision": "2179a4f7dd133e99569a",
+      "text": "PopStation Mini · tienda oficial de BIQU"
+    },
+    "layout.popstation_affiliate_disclosure": {
+      "source_revision": "0cdf2615b3761e935e6a",
+      "text": "Enlace de afiliado: puedo recibir una comisión por las compras."
     }
   }
 }

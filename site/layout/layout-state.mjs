@@ -1,10 +1,10 @@
-import {BIQU_POPSTATION_CAD} from './layout-biqu-popstation.mjs?v=0a8899673b99fcdc2eb5';
+import {BIQU_POPSTATION_CAD} from './layout-biqu-popstation.mjs?v=979382e048e443397362';
 import {polygonProblems, polygonContains, polygonsOverlap, rectangle, rotateXZ, transformPolygon, bounds} from './layout-geometry.mjs?v=129e07e8d3e2b008fab6';
 import {rigidMotionStaysInside,boundaryTangents} from './layout-constraints.mjs?v=53e33561b2e7ce324016';
 import {WALL_FINISHES, FLOOR_FINISHES, DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {rootPose,groupRootPose,rebaseLayoutGroups} from './layout-group-data.mjs?v=402a86c4c0754fb6e10f';
 import {envelopeOverlaps,envelopeChange,prepareCollisionMotion} from './layout-collision.mjs?v=1a7a6f204f8ed66b33ed';
-import {getLayoutEquipment} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=5ff56945f8c773e3dcdd';
 import {wallRotationCenters} from './layout-wall-rotation.mjs?v=7ae98b15139f328512eb';
 import {isGroupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 import {openingProblems,retainRoomOpenings,doorPlan,doorWallConflicts,withDoorMotion} from './layout-openings.mjs?v=205557f45ffa9cc712d2';

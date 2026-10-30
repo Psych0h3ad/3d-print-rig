@@ -1,4 +1,4 @@
-import {BIQU_POPSTATION_CAD,getBiquPopStation} from './layout-biqu-popstation.mjs?v=0a8899673b99fcdc2eb5';
+import {BIQU_POPSTATION_CAD,getBiquPopStation} from './layout-biqu-popstation.mjs?v=979382e048e443397362';
 // Static simplified exterior references. All variants retain their shared assembly datum.
 // Import is metadata only. Preview data is installed explicitly after exact receipt checks.
 const freeze = value => { if(value && typeof value === "object" && !Object.isFrozen(value)) { Object.values(value).forEach(freeze); Object.freeze(value); } return value; };

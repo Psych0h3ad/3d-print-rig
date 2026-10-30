@@ -1,8 +1,8 @@
-import {applyBiquSurfaceDisplay} from './layout-biqu-display.mjs?v=58992b18f1b355de3f74';
+import {applyBiquSurfaceDisplay} from './layout-biqu-display.mjs?v=59e272326918176cf7f2';
 import * as THREE from '../viewer/vendor-r180/three.module.js';
-import {getLayoutEquipment} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
+import {getLayoutEquipment} from './layout-equipment.mjs?v=5ff56945f8c773e3dcdd';
 import {downloadEquipmentModel,verifyEquipmentModelBytes,equipmentTransferIdentity} from './layout-equipment-transfer.mjs?v=b1d4cb920a44e4e6f8dd';
-import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=77286c52ec71afda7379';
+import {addU1BottomClosure} from './layout-equipment-mesh.mjs?v=c68df6898f8efb6e5acc';
 export {layoutMachineRecipes} from '../viewer/layout-machine-recipes.mjs';
 
 const abort = signal => signal?.throwIfAborted();
@@ -37,7 +37,7 @@ async function parseAsset(bytes,row) {
 }
 
 async function delegateMachine(id,options) {
-  const module=await import('../viewer/layout-machine-loader.mjs?v=baece8ccaff8b49295d3');
+  const module=await import('../viewer/layout-machine-loader.mjs?v=a455da6a929c38e5528b');
   return module.loadLayoutMachine(id,options);
 }
 

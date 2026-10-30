@@ -1,4 +1,4 @@
-import {createRoomPolygon} from './layout-state.mjs?v=5bf92464eadb27075614';
+import {createRoomPolygon} from './layout-state.mjs?v=7d8a03ac9d134b7f69db';
 const NS='http://www.w3.org/2000/svg',clone=p=>p.map(q=>q.slice());
 function bounds(points){const xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);return {minX:Math.min(...xs),maxX:Math.max(...xs),minZ:Math.min(...zs),maxZ:Math.max(...zs)};}
 function closestEdge(points,p){let best={index:points.length-1,distance:Infinity,point:p};for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length],dx=b[0]-a[0],dz=b[1]-a[1],u=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dz)/(dx*dx+dz*dz||1))),q=[a[0]+u*dx,a[1]+u*dz],d=Math.hypot(p[0]-q[0],p[1]-q[1]);if(d<best.distance)best={index:i,distance:d,point:q};}return best;}

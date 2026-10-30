@@ -14385,6 +14385,16 @@
       "kind": "message",
       "ja": "この表示形状は書き出し未対応です。",
       "en": "This displayed geometry is not supported for export."
+    },
+    "layout.popstation_affiliate_link": {
+      "kind": "message",
+      "ja": "PopStation Mini · BIQU公式ストア",
+      "en": "PopStation Mini · BIQU official store"
+    },
+    "layout.popstation_affiliate_disclosure": {
+      "kind": "message",
+      "ja": "アフィリエイトリンク：このリンク経由の購入で私に報酬が入る場合があります。",
+      "en": "Affiliate link: I may earn a commission on purchases."
     }
   }
 }

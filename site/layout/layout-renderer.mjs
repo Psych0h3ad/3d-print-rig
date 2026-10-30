@@ -4,15 +4,15 @@ import {wallFrame,openingFrame} from './layout-openings.mjs?v=205557f45ffa9cc712
 import * as THREE from '../viewer/vendor-r180/three.module.js';
 import {OrbitControls} from '../viewer/vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from '../viewer/vendor-r180/RoomEnvironment.js';
-import {deriveScene} from './layout-state.mjs?v=5bf92464eadb27075614';
+import {deriveScene} from './layout-state.mjs?v=7d8a03ac9d134b7f69db';
 import {createLayoutSurfaces, resolveSurfaceAppearance, wallSurfaceGeometry} from './layout-surfaces.mjs?v=0e7f271c883eb7ec8844';
 import {printerSilhouetteParts,printerSilhouetteSourceRoles} from './layout-printer-shapes.mjs?v=4908029ca70fd9b43559';
 import {createPrinterPreviewMeshCache} from './layout-printer-preview-mesh.mjs?v=13f907586c6d381eb6d4';
 import {drawPlanMeasurements} from './layout-plan-measurements.mjs?v=ccb8d47a212b4279e38a';
-import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=40475a465160bdbbbaa5';
+import {groupInfo, groupingForEntity} from './layout-groups.mjs?v=98ba2637deeeafba270b';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
-import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
-import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=77286c52ec71afda7379';
+import {getLayoutEquipment,resolveLayoutEquipment} from './layout-equipment.mjs?v=5ff56945f8c773e3dcdd';
+import {createEquipmentMeshCache} from './layout-equipment-mesh.mjs?v=c68df6898f8efb6e5acc';
 import {createLayoutOpeningRenderer,drawOpeningPlan,openingPlanPrimitives} from './layout-opening-renderer.mjs?v=b035a46e0d76f7c9b6df';
 import {pickPlanOpening} from './layout-opening-picking.mjs?v=7fb5b88e49bcd5be6497';
 
@@ -184,7 +184,7 @@ export function createLayoutRenderer({container,catalog,t=key=>key,onSelect=()=>
     let part;
     if(p.shape==='mesh'){
       if(p.geometryId?.startsWith('biqu-popstation-')&&typeof equipmentMeshCache.displayMaterials!=='function')throw Error('BIQU display policy unavailable');
-      part=new THREE.Mesh(equipmentMeshCache.get(p),equipmentMeshCache.displayMaterials?.(p,mat)??mat);
+      part=new THREE.Mesh(equipmentMeshCache.get(p),equipmentMeshCache.displayMaterials?.(p,mat,{override:!!override})??mat);
     }
     else if(p.wireframe){part=new THREE.LineSegments(wireGeometry,override?ghostLineMaterial:wireMaterial);part.scale.set(...p.sizeM);}
     else if(p.shape==='tube'){

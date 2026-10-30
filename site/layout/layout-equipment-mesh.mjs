@@ -1,8 +1,8 @@
-import {configureBiquPreviewGroups,createBiquLayerMaterial} from './layout-biqu-display.mjs?v=58992b18f1b355de3f74';
-import {BIQU_POPSTATION_PREVIEW} from './layout-biqu-popstation.mjs?v=0a8899673b99fcdc2eb5';
+import {configureBiquPreviewGroups,createBiquPreviewMaterials} from './layout-biqu-display.mjs?v=59e272326918176cf7f2';
+import {BIQU_POPSTATION_PREVIEW} from './layout-biqu-popstation.mjs?v=979382e048e443397362';
 // Prepared mesh coordinates already use the shared floor datum. Bounding-box
 // centerM/sizeM describe the part; they are not a second object transform.
-import {LAYOUT_EQUIPMENT_PREVIEW} from './layout-equipment.mjs?v=158bc98943454b7e3fd4';
+import {LAYOUT_EQUIPMENT_PREVIEW} from './layout-equipment.mjs?v=5ff56945f8c773e3dcdd';
 // Exact prepared intrinsic closure; this branch never constructs a second cap.
 export const U1_INTRINSIC_BOTTOM_SOURCE=Object.freeze({
   name:'bottom_closure / closed bottom display plate',
@@ -191,15 +191,18 @@ export function createEquipmentMeshCache(THREE) {
           [...indices,...cap.indices.map(i=>i+offset)]);
         geometry.userData.layoutEquipmentDerivative={...cap.receipt,sourceGeometryId:geometryId};
       }else geometry=bufferGeometry(THREE,positionsM,normals,indices);
-      configureBiquPreviewGroups(geometry,part);
+      configureBiquPreviewGroups(geometry,part,THREE);
       entries.set(geometryId,{positionsM,normals,indices,geometry});return geometry;
     },
-    displayMaterials(part,material){
+    displayMaterials(part,material,{override=false}={}){
       if(disposed)throw fail('Equipment geometry cache is disposed');
       if(part.geometryId!==BIQU_POPSTATION_PREVIEW.geometryId)return material;
-      if(!layerMaterials.has(material))layerMaterials.set(material,createBiquLayerMaterial(material));
-      return [material,layerMaterials.get(material)];
+      // Placement owns one live validity material. Preserve its changing tint,
+      // opacity and depth state, and never clone/dispose that caller resource.
+      if(override)return [material,material,material,material];
+      if(!layerMaterials.has(material))layerMaterials.set(material,createBiquPreviewMaterials(material));
+      return layerMaterials.get(material);
     },
-    dispose(){if(disposed)return;disposed=true;for(const {geometry}of entries.values())geometry.dispose();entries.clear();for(const material of layerMaterials.values())material.dispose();layerMaterials.clear();}
+    dispose(){if(disposed)return;disposed=true;for(const {geometry}of entries.values())geometry.dispose();entries.clear();for(const materials of layerMaterials.values())for(const material of materials)material.dispose();layerMaterials.clear();}
   });
 }

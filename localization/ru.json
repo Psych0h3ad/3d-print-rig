@@ -11421,6 +11421,14 @@
     "surface.unsupported_geometry": {
       "source_revision": "df1a50770135b2b088fe",
       "text": "Экспорт этой отображаемой геометрии не поддерживается."
+    },
+    "layout.popstation_affiliate_link": {
+      "source_revision": "2179a4f7dd133e99569a",
+      "text": "PopStation Mini · официальный магазин BIQU"
+    },
+    "layout.popstation_affiliate_disclosure": {
+      "source_revision": "0cdf2615b3761e935e6a",
+      "text": "Партнёрская ссылка: я могу получить комиссию за покупки."
     }
   }
 }
