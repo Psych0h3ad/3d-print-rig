@@ -1,0 +1,99 @@
+{
+  "schema": "3d-print-rig-home-render-scenes-v1",
+  "dimensions": [
+    1200,
+    750
+  ],
+  "background": "#d5d6d7",
+  "process": "Actual registered models and planner scene; crop, uniform fit, shared canvas and WebP encoding. No schematic or generative model illustration.",
+  "scenes": [
+    {
+      "id": "machine",
+      "file": "machine-render.webp",
+      "sha256": "068c484e56c81a7d1cc27989af87d695752957f8d83c8a0cfb5d32abd540afab",
+      "bytes": 29574,
+      "width": 1200,
+      "height": 750,
+      "source_image_sha256": "f10dab7a570a9b2afc5c0abd47ce0727fcf69ff90eb8a5f27a35d9267c268291",
+      "source_image_dimensions": [
+        961,
+        995
+      ],
+      "crop": [
+        60,
+        50,
+        901,
+        945
+      ],
+      "fit_dimensions": [
+        554,
+        590
+      ],
+      "renderer": "Production WebGL PNG export",
+      "source_revision": "c4026e198e4fb2aae958aecf3c8d44a20b0ebd9c",
+      "machine_ids": [
+        "voron_trident_350"
+      ],
+      "configuration": "trident_r2__stealthburner__revo_voron__cw2"
+    },
+    {
+      "id": "layout",
+      "file": "layout-render.webp",
+      "sha256": "4ca7b478bdb524fc721cfad8a6f5c93b5d05075ac393b588b5509bc65b86a5c7",
+      "bytes": 19660,
+      "width": 1200,
+      "height": 750,
+      "source_image_sha256": "1fc870941d766b676fef73d7ff98769624cac64d65b1008881429b155aa89e72",
+      "source_image_dimensions": [
+        1920,
+        1076
+      ],
+      "crop": [
+        440,
+        132,
+        1469,
+        969
+      ],
+      "fit_dimensions": [
+        725,
+        590
+      ],
+      "renderer": "Production WebGL PNG export",
+      "source_revision": "4e88372eb907c675b4c238bd672867b4beef2fd8",
+      "machine_ids": [
+        "voron_trident_350"
+      ],
+      "printers": 2,
+      "furniture": 3,
+      "scope": "Actual planner full-model export of an example room"
+    },
+    {
+      "id": "toolhead",
+      "file": "toolhead-render.webp",
+      "sha256": "fa6cfa34528d6355011e498c5d7170ec91b9c1a6557a28e2f2d3319209377c74",
+      "bytes": 18238,
+      "width": 1200,
+      "height": 750,
+      "source_image_sha256": "d091283b427f7fc6b62d8bb5b81c29a3729b873680d2c2c3b8c62957e001285a",
+      "source_image_dimensions": [
+        1920,
+        1368
+      ],
+      "crop": [
+        603,
+        220,
+        1243,
+        1200
+      ],
+      "fit_dimensions": [
+        385,
+        590
+      ],
+      "renderer": "Production WebGL PNG export",
+      "source_revision": "4e88372eb907c675b4c238bd672867b4beef2fd8",
+      "configuration": "head__sc__standard_6__stealthburner__v6__cw2",
+      "source": "VORON Stealthburner / Clockwork 2 / V6"
+    }
+  ],
+  "notices": "Model sources and individual terms are listed in the linked viewers. These images add no mechanical fit or installation qualification."
+}

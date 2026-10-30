@@ -13,6 +13,7 @@ export function resolveLayoutLanguage({href, stored} = {}) {
 // Each row is [id, English, Japanese, Spanish, Korean, Russian, German].
 // Names and dimensions supplied by the catalog are values, never translated IDs.
 const rows = [
+  ['layout.openings.beforePlace','Set size, then place','寸法を決めて配置','Define las medidas y coloca','크기를 정한 다음 배치','Задайте размер и разместите','Maße einstellen, dann platzieren'],
   ['layout.popstation_affiliate_link','PopStation Mini · BIQU official store','PopStation Mini · BIQU公式ストア','PopStation Mini · tienda oficial de BIQU','PopStation Mini · BIQU 공식 스토어','PopStation Mini · официальный магазин BIQU','PopStation Mini · offizieller BIQU-Shop'],
   ['layout.popstation_affiliate_disclosure','Affiliate link: I may earn a commission on purchases.','アフィリエイトリンク：このリンク経由の購入で私に報酬が入る場合があります。','Enlace de afiliado: puedo recibir una comisión por las compras.','제휴 링크: 이 링크를 통한 구매 시 제가 수수료를 받을 수 있습니다.','Партнёрская ссылка: я могу получить комиссию за покупки.','Affiliate-Link: Bei Käufen erhalte ich möglicherweise eine Provision.'],
   ["layout.panel.collapse", "Hide settings panel", "設定パネルを閉じる", "Ocultar el panel de ajustes", "설정 패널 숨기기", "Скрыть панель настроек", "Einstellungsbereich ausblenden"],

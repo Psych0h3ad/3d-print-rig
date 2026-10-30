@@ -11,7 +11,7 @@ const site=path.resolve(option('--site')||fileURLToPath(new URL('../site/',impor
 const consumed={};
 const read=rel=>{const b=fs.readFileSync(path.join(site,rel));consumed[rel]=crypto.createHash('sha256').update(b).digest('hex');return b.toString('utf8').replaceAll('\r\n','\n')};
 const app=read('layout/layout-app.mjs'),renderer=read('layout/layout-renderer.mjs');
-read('layout/layout-language.mjs');read('layout/layout-i18n.mjs');
+read('layout/layout-opening-blueprint.mjs');read('layout/layout-language.mjs');read('layout/layout-i18n.mjs');
 read('layout/layout-state.mjs');read('layout/layout-constraints.mjs');read('layout/layout-geometry.mjs');
 const S=await import(pathToFileURL(path.join(site,'layout/layout-state.mjs')));
 const G=await import(pathToFileURL(path.join(site,'layout/layout-groups.mjs')));
@@ -183,8 +183,9 @@ await test('desktop-bootstrap-reaches-ready-with-automatic-renderer-and-no-remov
   const {groupTemplateInfo,parseGroupLibrary}=deps.G;
   const document=deps.doc,window=deps.win,$=q=>document.querySelector(q),navigator={deviceMemory:8},localStorage={getItem:()=>null};
   const setupLayoutPanel=deps.setupLayoutPanel;
+  const createOpeningBlueprint=options=>({setState(){},setLocale(){},dispose(){}});
   const storageKey='test',legacyStorageKey='legacy-test',groupLibraryKey='sets-test',maxFileBytes=2097152,fetch=async()=>({ok:true,json:async()=>deps.catalogData});let groupLibrary=[];
-  let state,catalog,rows,ui,view,panelLayout=null,selected=null,busy=false,roomEditing=false,disposed=false,placement=null,startEmpty=false;const past=[],future=[];
+  let state,catalog,rows,ui,view,panelLayout=null,openingBlueprint=null,selected=null,busy=false,roomEditing=false,disposed=false,placement=null,startEmpty=false;const past=[],future=[];
   const language={t:key=>key},t=key=>key,act=()=>{},select=()=>{},pick=()=>{},worldMove=()=>{},constrainMove=()=>{},worldRotate=deps.rotationPorts.onRotate,constrainRotate=deps.rotationPorts.constrainRotate,previewPlacement=()=>null,placeProposal=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},message=()=>{},humanError=()=> 'error';
   const calls={sync:0,language:0,views:[],presentations:[],options:[],libraries:[]};
   const sync=()=>calls.sync++,updateLanguage=()=>calls.language++,dark=()=>false;
@@ -580,7 +581,7 @@ const ui=null,{placementStatus}=deps;let placement={kind:'desk',name:'Desk',yawD
 });
 await test('back-forward-cache-preserves-live-controls-and-real-unload-disposes',()=>{
  const source=unique(app,'function pageHide(event){',"\nwindow.addEventListener('pagehide'");
- const effects=[],factory=new Function('effects','panelLayout',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},buildTools={dispose:()=>effects.push('build-tools')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
+ const effects=[],factory=new Function('effects','panelLayout','openingBlueprint',`let disposed=false,renderURL='blob:fixture';const cancelPlacement=()=>effects.push('cancel'),operation={abort:()=>effects.push('abort')},historyKey=()=>{},placementKey=()=>{},copyEvent=()=>{},pasteEvent=()=>{},document={removeEventListener:()=>effects.push('remove')},view={dispose:()=>effects.push('view')},ui={dispose:()=>effects.push('ui')},buildTools={dispose:()=>effects.push('build-tools')},language={disconnect:()=>effects.push('language')},URL={revokeObjectURL:()=>effects.push('url')};${source};return {pageHide,isDisposed:()=>disposed};`);
  const r=factory(effects,{dispose:()=>effects.push('panel-layout')});r.pageHide({persisted:true});r.pageHide({persisted:true});assert.equal(r.isDisposed(),false);assert.deepEqual(effects,['cancel','abort','cancel','abort']);
  r.pageHide({persisted:false});assert.equal(r.isDisposed(),true);assert.deepEqual(effects.slice(4),['cancel','abort','remove','remove','remove','remove','view','ui','build-tools','panel-layout','language','url']);
  const earlyEffects=[],early=factory(earlyEffects,null);early.pageHide({persisted:false});assert.equal(early.isDisposed(),true);

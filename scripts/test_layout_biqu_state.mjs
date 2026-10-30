@@ -508,10 +508,11 @@ function startupIngressFixture(savedText) {
     const {document,rows,catalog,createDefaultLayout,parseLayout,serializeLayout,getPopStationMigrations,parseGroupLibrary,t}=deps;
     const localStorage={getItem:key=>deps.storage.get(key)??null,setItem:(key,value)=>{deps.events.push('store');deps.writes.push({key,value});deps.storage.set(key,value);}};
     ${section('const storageKey=','const $=')}
-    let state,ui,view,disposed=false,mode='ready',startEmpty=false,buildTools=null,panelLayout=null,activeOpeningTool=null,interactionGeneration=0,selected=null;
+    let state,ui,view,disposed=false,mode='ready',startEmpty=false,buildTools=null,panelLayout=null,openingBlueprint=null,activeOpeningTool=null,interactionGeneration=0,selected=null;
     const window={},language={t},$=selector=>document.body.querySelector(selector),noop=()=>{};
     const act=noop,select=noop,pick=noop,selectOpening=noop,changeOpening=noop,worldMove=noop,constrainMove=noop,worldRotate=noop,constrainRotate=noop,previewPlacement=noop,placeProposal=noop;
     const historyKey=noop,placementKey=noop,copyEvent=noop,pasteEvent=noop,refreshGroupLibrary=noop;
+    const createOpeningBlueprint=()=>({setState:noop,setLocale:noop,dispose:noop});
     const createLayoutUI=()=>({setStatus:noop}),setupLayoutPanel=()=>({}),makeDefault=()=>createDefaultLayout({},catalog);
     const message=(value,error=false)=>{deps.events.push('notice');deps.messages.push({text:typeof value==='function'?value():value,error});};
     const sync=()=>deps.events.push('sync');

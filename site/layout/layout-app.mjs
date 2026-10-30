@@ -2,15 +2,16 @@ import {createDefaultLayout,createDesk,createShelf,createPopStation,createBiquPo
 import {equipmentRows} from './layout-equipment.mjs?v=1a44b9490add3138ce6b';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview,isEquipmentPreviewPreparedFor as isLayoutEquipmentPreviewPrepared} from './layout-equipment-preview.mjs?v=de6ed3b47a406e5c653a';
 import {createLayoutUI} from './layout-ui.mjs?v=9840bdc0d247cf8e59b2';
-import {setupLayoutLanguage} from './layout-language.mjs?v=33fc50070be892d9b7c6';
+import {setupLayoutLanguage} from './layout-language.mjs?v=f89ce10de9331ed1ef8a';
 import {proposePlacement} from './layout-placement.mjs?v=53172fdff41bb36cf9b0';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
   captureGroupTemplate,groupTemplateInfo,proposeGroupPlacement,parseGroupLibrary,GROUP_LIBRARY_LIMIT} from './layout-groups.mjs?v=3bdc5f2d8f82e416b7eb';
 import {captureLayoutClipboard,encodeLayoutClipboard,decodeLayoutClipboard,regroupLayoutSelection} from './layout-clipboard.mjs?v=0051d07cafd56195a286';
-import {placementStatus} from './layout-placement-feedback.mjs?v=b9b8be58b3d6887b3340';
+import {placementStatus} from './layout-placement-feedback.mjs?v=73136a36732bf2063d5c';
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {createLayoutBuildToolbar} from './layout-build-toolbar.mjs?v=2b5ab25b637195f494e3';
 import {newRoomOpening} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
+import {createOpeningBlueprint} from './layout-opening-blueprint.mjs?v=abd363e8e09ad296a98e';
 import {setupLayoutPanel} from './layout-panel-layout.mjs?v=c906e5c42cb851e1813e';
 
 const storageKey='3d-print-rig-layout-v2',legacyStorageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
@@ -19,7 +20,7 @@ const $=selector=>document.querySelector(selector);
 let state,catalog,rows,ui,view,language,selected=null,busy=false,roomEditing=false,operation=null,disposed=false,renderURL=null;
 let interactionGeneration=0;
 let startEmpty=false;
-let placement=null,lastPlacementTarget=null,buildTools=null,activeOpeningTool=null,panelLayout=null;
+let placement=null,lastPlacementTarget=null,buildTools=null,activeOpeningTool=null,panelLayout=null,openingBlueprint=null;
 let clipboardText='';
 const past=[],future=[];let nextId=1;
 const id=prefix=>{let value;do value=`${prefix}-${nextId++}`;while([...state.furniture,...state.printers,...(state.groups??[]),...groupLibrary,...state.room.openings??[]].some(e=>e.id===value||e.id.startsWith(value+':')));return value;};
@@ -69,12 +70,12 @@ function selectOpening(openingId){
   view?.cancelOpening?.();
   select(null);ui.setOpeningSelection(openingId);view.setOpeningSelection(openingId);
 }
-function changeOpening({type,opening}){
+function changeOpening({type,opening,keepPlacing=false}){
   if(busy||roomEditing)return;
   try{
     const o=type==='add'?{...opening,id:id(opening.type)}:opening;
     commit(applyAction(state,type==='add'?{type:'ADD_ROOM_OPENING',opening:o}:{type:'UPDATE_ROOM_OPENING',id:o.id,patch:{offsetMm:o.offsetMm,...(type==='resize'?{widthMm:o.widthMm}:{})}},catalog),{selection:null});
-    selectOpening(o.id);
+    if(!keepPlacing)selectOpening(o.id);
   }catch(error){message(()=>humanError(error),true);}
 }
 async function ensureEquipmentPreview(value){
@@ -360,7 +361,7 @@ async function act(action){
   if(action.type==='cancel'){cancelPlacement();operation?.abort();return;}
   if(busy||roomEditing)return;
   if(placement&&!['add','duplicate','group-place','copy','paste'].includes(action.type))cancelPlacement();
-  if(action.type!=='room-opening-place')view?.cancelOpening?.();
+  if(!['room-opening-place','room-opening-draft'].includes(action.type))view?.cancelOpening?.();
   const generation=++interactionGeneration;let importCommitted=false;
   try{
     switch(action.type){
@@ -371,7 +372,8 @@ async function act(action){
       case 'redo':if(future.length){past.push(state);commit(future.pop(),{history:false});}return;
       case 'reset':commit(createDefaultLayout(),{selection:null});view.view('perspective');view.view('fit');return;
       case 'room-opening-place':{const frameRoom=!activeOpeningTool;cancelPlacement();selected=null;ui.setPickedRootIds?.([]);sync();view.beginOpening(action.kind,{motion:action.motion,frameRoom});return;}
-      case 'room-opening-select':view?.cancelOpening?.();return;
+      case 'room-opening-select':view?.cancelOpening?.();view?.canvas.focus?.({preventScroll:true});return;
+      case 'room-opening-draft':view?.configureOpening?.({draft:action.draft,repeat:action.repeat});return;
       case 'room-opening-add':{
         const opening=newRoomOpening(state.room,{id:id(action.kind),type:action.kind,wallIndex:action.wallIndex});
         commit(applyAction(state,{type:'ADD_ROOM_OPENING',opening},catalog),{selection:null});
@@ -484,7 +486,7 @@ function updateViewPresentation({mode='perspective',projection='perspective-3d'}
   for(const element of document.querySelectorAll('[data-layout-view]'))if(element.dataset.layoutView!=='fit')element.setAttribute('aria-pressed',String(element.dataset.layoutView===mode));
 }
 function updateLanguage(){
-  ui?.setLocale(language.t);buildTools?.setLocale(language.t);panelLayout?.refreshLanguage(language.t);if(ui)sync();
+  ui?.setLocale(language.t);buildTools?.setLocale(language.t);openingBlueprint?.setLocale(language.t);panelLayout?.refreshLanguage(language.t);if(ui)sync();
   const node=$('#layout-status');if(node?._layoutMessage&&!node.hidden){const text=String(node._layoutMessage.format());node.textContent=text;ui?.setStatus({message:text,error:node._layoutMessage.error});}
   language.refresh();
   if(placement)updatePlacementBar(lastPlacementTarget?previewPlacement(lastPlacementTarget):null);
@@ -555,7 +557,7 @@ async function start(){
   if(!startEmpty)try{const saved=readSavedLayout();if(saved&&saved.length<=maxFileBytes){state=parseLayout(saved,catalog);loadedSaved=true;}}catch{message(()=>t('layout.error.savedPlan'),true);}
   try{const saved=localStorage.getItem(groupLibraryKey);if(saved)groupLibrary=parseGroupLibrary(saved,catalog);}catch{message(()=>t('layout.group.libraryUnavailable'),true);}
   if(!await ensureEquipmentPreview(state)||disposed)return;
-  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=1f5ddcd42059375da284');
+  const {createLayoutRenderer}=await import('./layout-renderer.mjs?v=6d8ecb018fee1059c3a2');
   ui=createLayoutUI({container:$('#layout-sidebar'),onAction:act,t:language.t,catalog:rows,
     onReveal:()=>panelLayout?.reveal(),
     onToolsRefresh:()=>buildTools?.setState({busy,roomEditing,placementKind:placement?.kind,openingTool:activeOpeningTool}),
@@ -567,7 +569,8 @@ async function start(){
   ui.setStatus({canPaste:true});
   panelLayout=setupLayoutPanel({document,window,t:language.t});
   refreshGroupLibrary();
-  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onPick:pick,onOpeningSelect:id=>selectOpening(id),onOpeningCommit:change=>changeOpening(change),onOpeningToolChange:tool=>{activeOpeningTool=tool;ui?.setOpeningTool?.(tool);ui?.refreshBuildTools?.();},onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
+  openingBlueprint=createOpeningBlueprint({container:$('#layout-opening-blueprint'),onAction:act,t:language.t});
+  view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onPick:pick,onOpeningSelect:id=>selectOpening(id),onOpeningCommit:change=>changeOpening(change),onOpeningToolChange:(tool,settings)=>{activeOpeningTool=tool;openingBlueprint?.setState({tool,...settings});ui?.setOpeningTool?.(tool);ui?.refreshBuildTools?.();},onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   if($('#layout-build-tools'))buildTools=createLayoutBuildToolbar({container:$('#layout-build-tools'),onAction:act,t:language.t});
   sync();if(getPopStationMigrations(state).length)message(()=>t('layout.popStationReplaced'));view.view('perspective');document.addEventListener('keydown',historyKey);document.addEventListener('keydown',placementKey);document.addEventListener('copy',copyEvent);document.addEventListener('paste',pasteEvent);
   for(const button of document.querySelectorAll('[data-layout-placement]'))button.addEventListener('click',()=>{if(button.dataset.layoutPlacement==='rotate')rotatePlacement();else cancelPlacement();view.canvas.focus?.({preventScroll:true});});
@@ -595,7 +598,7 @@ function pageHide(event){
   cancelPlacement();operation?.abort();
   // A back/forward cache entry resumes this same document and its controls.
   if(event.persisted)return;
-  disposed=true;document.removeEventListener('keydown',historyKey);document.removeEventListener('keydown',placementKey);document.removeEventListener('copy',copyEvent);document.removeEventListener('paste',pasteEvent);view?.dispose();ui?.dispose();buildTools?.dispose();panelLayout?.dispose();language?.disconnect();if(renderURL)URL.revokeObjectURL(renderURL);
+  disposed=true;document.removeEventListener('keydown',historyKey);document.removeEventListener('keydown',placementKey);document.removeEventListener('copy',copyEvent);document.removeEventListener('paste',pasteEvent);view?.dispose();ui?.dispose();buildTools?.dispose();panelLayout?.dispose();openingBlueprint?.dispose();language?.disconnect();if(renderURL)URL.revokeObjectURL(renderURL);
 }
 window.addEventListener('pagehide',pageHide);
 window.addEventListener('pageshow',event=>{

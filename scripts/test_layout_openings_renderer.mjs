@@ -13,7 +13,7 @@ const inputs=files.map(file=>{const b=fs.readFileSync(path.join(site,file));retu
 const load=file=>import(pathToFileURL(path.join(site,file)));
 const THREE=await load('viewer/vendor-r180/three.module.js');
 const {createOpeningHandles}=await load('layout/layout-opening-handles.mjs');
-const {createOpeningInteraction}=await load('layout/layout-opening-interaction.mjs');
+const {createOpeningInteraction,defaultOpeningDraft}=await load('layout/layout-opening-interaction.mjs');
 const {wallFrame,openingFrame,doorPlan,openingProblems}=await load('layout/layout-openings.mjs');
 const {createLayoutOpeningRenderer,openingPlanPrimitives,drawOpeningPlan}=await load('layout/layout-opening-renderer.mjs');
 const {pickPlanOpening}=await load('layout/layout-opening-picking.mjs');
@@ -244,7 +244,7 @@ class Renderer{
 }
 class PMREM{fromScene(){const texture=new THREE.Texture();return {texture,dispose(){texture.dispose();}};}dispose(){}}
 class Environment extends THREE.Scene{dispose(){}}
-const ports={createOpeningHandles,createOpeningInteraction,wallFrame,openingFrame,pickPlanOpening,openingPlanPrimitives,printerSilhouetteParts,printerSilhouetteSourceRoles,createPrinterPreviewMeshCache,THREE:{...THREE,WebGLRenderer:Renderer,PMREMGenerator:PMREM},OrbitControls:Controls,RoomEnvironment:Environment,
+const ports={createOpeningHandles,createOpeningInteraction,defaultOpeningDraft,wallFrame,openingFrame,pickPlanOpening,openingPlanPrimitives,printerSilhouetteParts,printerSilhouetteSourceRoles,createPrinterPreviewMeshCache,THREE:{...THREE,WebGLRenderer:Renderer,PMREMGenerator:PMREM},OrbitControls:Controls,RoomEnvironment:Environment,
   deriveScene:()=>({furniture:[],printers:[],surfaces:[]}),document:{createElement:node,createElementNS:(_,tag)=>node(tag)},devicePixelRatio:1,
   requestAnimationFrame:f=>{frames.set(++rafId,f);return rafId;},cancelAnimationFrame:id=>frames.delete(id),ResizeObserver:class{observe(){}disconnect(){}},
   createLayoutSurfaces,resolveSurfaceAppearance,wallSurfaceGeometry,drawPlanMeasurements,groupInfo(){},groupingForEntity(){},groupLabel(){},getLayoutEquipment(){},resolveLayoutEquipment(){},createEquipmentMeshCache:()=>({dispose(){}}),createLayoutOpeningRenderer,
