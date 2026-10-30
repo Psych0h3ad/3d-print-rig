@@ -119,8 +119,8 @@ export async function validateBiquPreview(input,{signal}={}){
   const centerM=Object.freeze(min.map((v,i)=>(v+max[i])/2)),sizeM=Object.freeze(min.map((v,i)=>max[i]-v));
   return Object.freeze({shape:'mesh',name:'BIQU PopStation mini / all 70 source leaves',
     geometryId:BIQU_POPSTATION_PREVIEW.geometryId,positionsM,normals,indices,centerM,sizeM,
-    color:'#adadad',doubleSided:true,groupId:'biqu-popstation-cabinet',groupKind:'cabinet',sourceLeaves,
-    sourceMaterial:'unassigned neutral display gray; physical finish unverified'});
+    color:'#eeede8',doubleSided:true,groupId:'biqu-popstation-cabinet',groupKind:'cabinet',sourceLeaves,
+    sourceMaterial:'Display finishes from official product photos; source CAD materials unassigned'});
 }
 
 /** Isolated cache for tests/audits. Shared callers coalesce one download, each
@@ -186,7 +186,7 @@ export const BIQU_POPSTATION_CAD=freeze({id:'biqu_popstation_mini_cad_v1',type:'
   notes:'Empty closed source cabinet only. No loaded CAD. Modeled housing floor; finite cutout deck, mounting, installed feet, load and clearance unverified. Gray is a display default.',
   fullScene:{kind:'manufacturer-cad-reference',staticReference:true,
     normalizationFrame:{units:'m',up:'+Y',front:'+Z',rootPivotM:[0,0,0]},
-    notes:'All 70 source leaves retained with original rigid matrices and neutral double-sided material.'}});
+    notes:'All 70 source leaves retained with original rigid matrices; display finishes follow official product photographs, with neutral interiors where finish is unconfirmed.'}});
 
 /** Only variant selection is accepted; caller provenance/descriptors never merge. */
 export function getBiquPopStation(variant){

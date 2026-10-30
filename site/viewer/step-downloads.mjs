@@ -1,4 +1,4 @@
-import {formatMessage} from './i18n.mjs?v=0848a410daf1b9fdb11b';
+import {formatMessage} from './i18n.mjs?v=9c850c3b2b5f5a26b1bc';
 import {publishedStepBaseline} from './step-download-admission.mjs?v=d51b2ba268db74ed7124';
 // Only published baseline assemblies; a selected head or Mod never changes a URL.
 export function assemblyDownloadEntries(catalog) {

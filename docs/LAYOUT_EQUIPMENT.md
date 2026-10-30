@@ -47,7 +47,9 @@ All supplied notices are preserved in the
 
 The **PopStation Mini · BIQU** entry uses cabinet CAD supplied by BIQU, with permission to distribute a Web mesh. The original STEP is not included in the site, downloads or export packages.
 
-This reference retains the 70 source occurrences. Its displayed envelope is 423.100 × 478.283 × 417.400 mm, including the handle. The bottom of the modeled housing is the floor datum. The supplied assembly has no spools, feeder assemblies, protruding feet or casters. Its neutral gray is a display material; the source does not specify colors.
+This reference retains the 70 source occurrences. Its displayed envelope is 423.100 × 478.283 × 417.400 mm, including the handle. The bottom of the modeled housing is the floor datum. The supplied assembly has no spools, feeder assemblies, protruding feet or casters. The white exterior, smoky transparent window, black handle, dark seals and silver hardware follow [BIQU's product photographs](https://biqu.equipment/products/biqu-popstation-mini-sealed-dual-drawer-storage-cabinet-for-4-filament-spools). They are display finishes; the supplied CAD does not specify colors. Unconfirmed interior finishes remain neutral gray. Individual materials within compound source parts have not been established.
+
+Both PopStation entries show a [BIQU official store affiliate link](https://psych0h3ad.link/lxbhIoR) in the selected item's panel, with an adjacent affiliate disclosure. The lightweight preview and detailed image export use the same source-based color assignments.
 
 The cabinet is a separate versioned layout item. Existing PopStation Mini references, U1 sets and saved placements keep their previous dimensions and support datum. The supplied cabinet's upper deck has cutouts; it is not offered as an automatically verified U1 mounting surface. The existing U1 reference remains available for that layout arrangement.
 

@@ -1,6 +1,6 @@
 import {createUsageAnalytics} from './usage-analytics.mjs?v=360195b80a0e6bca237d';
 import {usageAnalyticsConfig} from './usage-analytics-config.mjs?v=54e6c921795b1e6b18ff';
-import {messageSource} from './i18n.mjs?v=0848a410daf1b9fdb11b';
+import {messageSource} from './i18n.mjs?v=9c850c3b2b5f5a26b1bc';
 import {onWorkspaceDispose, workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 
 export const statisticsConsentKey = '3d-print-rig-analytics-consent-v1';

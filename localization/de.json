@@ -11421,6 +11421,14 @@
     "surface.unsupported_geometry": {
       "source_revision": "df1a50770135b2b088fe",
       "text": "Diese angezeigte Geometrie wird beim Export nicht unterstützt."
+    },
+    "layout.popstation_affiliate_link": {
+      "source_revision": "2179a4f7dd133e99569a",
+      "text": "PopStation Mini · offizieller BIQU-Shop"
+    },
+    "layout.popstation_affiliate_disclosure": {
+      "source_revision": "0cdf2615b3761e935e6a",
+      "text": "Affiliate-Link: Bei Käufen erhalte ich möglicherweise eine Provision."
     }
   }
 }

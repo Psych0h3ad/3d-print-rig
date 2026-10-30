@@ -1,8 +1,10 @@
 // Presentation only. The application owns state, history, files and model loading.
-import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=5bf92464eadb27075614';
+import {createRoomRect,createRoomL,createRoomPolygon,resolvePrinterEquipment} from './layout-state.mjs?v=7d8a03ac9d134b7f69db';
 import {WALL_FINISHES,FLOOR_FINISHES,DEFAULT_ROOM_APPEARANCE} from './layout-finishes.mjs?v=001b62f9728770a12303';
 import {groupLabel} from './layout-group-labels.mjs?v=1ff84a0cf5540fd3184b';
 const PRINTER_VIEWER_PAGES=new Set(['','index.html','annex.html','community.html','crossant.html','custom-voron.html','kit-reference.html','micron.html','positron.html','ratrig.html','remorph.html','trident.html','v0.html','v24-reference.html','v24.html']);
+// Keep the user's affiliate URL exact; imported plan fields never supply this URL.
+const POPSTATION_AFFILIATE_URL='https://psych0h3ad.link/lxbhIoR';
 // Only a registered catalog destination is eligible; saved plan fields never supply URLs.
 export function printerSourcesURL(row,href,language='en'){
   try{
@@ -790,6 +792,13 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
     }
     if(e.type==='popstation_mini')editor.append(el('p','layout-help','422 × 456 × 428 mm'),copy(el('p','layout-help'),'layout.popStationHelp'));
     if(e.type==='popstation_mini_biqu_v1')editor.append(el('p','layout-help',`${fixedOne(e.widthMm)} × ${fixedOne(e.depthMm)} × ${fixedOne(e.heightMm)} mm`),copy(el('p','layout-help'),'layout.biquPopStationHelp'));
+    if(!isPrinter&&['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
+      const link=el('a','layout-printer-source-link');link.href=POPSTATION_AFFILIATE_URL;link.target='_blank';link.rel='sponsored noopener noreferrer';
+      link.dataset.layoutAffiliateLink='popstation-mini';link.setAttribute('aria-describedby','layout-popstation-affiliate-disclosure');
+      link.append(icon('source'),copy(el('span'),'layout.popstation_affiliate_link'));
+      const disclosure=copy(el('small','layout-help'),'layout.popstation_affiliate_disclosure');disclosure.id='layout-popstation-affiliate-disclosure';
+      editor.append(link,disclosure);
+    }
     if(e.machineId==='snapmaker_u1_layout_reference'||['popstation_mini','popstation_mini_biqu_v1'].includes(e.type)){
       const link=el('a','layout-printer-source-link');link.href='https://github.com/Psych0h3ad/3d-print-rig/blob/main/docs/LAYOUT_EQUIPMENT.md';link.target='_blank';link.rel='noopener noreferrer';
       link.append(icon('source'),copy(el('span'),'layout.equipmentSources'));editor.append(link);

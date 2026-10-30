@@ -1,7 +1,7 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
 import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
-import {loadLanguage, formatMessage} from './i18n.mjs?v=0848a410daf1b9fdb11b';
+import {loadLanguage, formatMessage} from './i18n.mjs?v=9c850c3b2b5f5a26b1bc';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {workspaceFrame, workspaceListen, WorkspaceResizeObserver, WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect, frameResponsiveView} from './responsive-camera.mjs';
