@@ -93,6 +93,14 @@ Tab changes preserve unfinished form entries; selecting another object opens
 
 ## Windows, doors and ventilation fans
 
+Before clicking a wall, use **Set size, then place** above the scene to choose a
+size preset or enter width, height and lower-edge height in millimetres. The
+preview uses those exact dimensions; an opening that does not fit stays red.
+Empty or invalid dimensions block placement. **Keep placing** keeps the same
+settings for the next opening; Shift-click also places another copy. Each click
+adds one undo step. Escape or Cancel ends placement without adding an opening.
+These placement preferences do not change the room until a valid click.
+
 Choose **Window**, **Hinged**, **Sliding** or **Ventilation fan** from the scene
 toolbar, or under **Room → Windows, doors and fans**. Starting placement opens a
 2D plan fitted to the room. Switching between opening types keeps the working view. **Fit room**
