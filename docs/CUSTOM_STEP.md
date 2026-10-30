@@ -15,9 +15,10 @@ clearance. Existing native STEP assembly downloads remain available from the
 header's **STEP** button and retain their own baseline configurations.
 
 The source allowlist covers 14 distinct authored Stealthburner/Revo Voron and
-Clockwork 2 printed bodies from the pinned VORON source revision. The V6 setup
-also includes the shared Stealthburner body, LED diffuser, mask and carrier.
-Its V6-specific mounts, hotend and purchased parts remain listed as omissions.
+Clockwork 2 printed bodies from the pinned VORON source revision. V6, Dragon HF and Dragon SF
+also include their source-matched shared Stealthburner body, LED diffuser, mask
+and carrier. Their hotend-specific mounts, hotends and purchased parts remain
+listed as omissions.
 Each part is
 matched by asset identity and complete position/index buffer hashes. Only parts
 actually present in the displayed configuration are included. An altered cover,
@@ -38,7 +39,10 @@ changes. There is no project-wide relicensing of the geometry.
 
 An omitted component's original source or STEP permission may be unresolved.
 Such rows say so explicitly. Their assembly reference links are lookup aids;
-they are not verified individual manufacturer CAD downloads or grants.
+they are not verified individual manufacturer CAD downloads or grants. When a
+single unadmitted CAD part has separate display meshes, such as a motor body
+and endcaps, each visible mesh is listed separately with its original CAD part
+identity. This does not make it eligible for export.
 
 Export is capped at 150,000 triangles and 80 MiB of STEP. It can be canceled
 during checking, writing and packaging. Exactly zero-area source triangles are

@@ -14,6 +14,7 @@ export async function planSurfaceSelection(rows,policy,{signal}={}){
  rows=rows.map(row=>{
   if(!row||typeof row.id!=='string'||typeof row.asset!=='string')throw Error('Invalid selected part');
   const copy={id:row.id,asset:row.asset,key:String(row.key),name:String(row.name),sourceURL:row.sourceURL};
+  if(row.sourcePart)copy.sourcePart=structuredClone(row.sourcePart);
   if(!surfaceRule(policy,row.asset,row.key))return copy;
   const p=row.positions,i=row.index;
   if(!(p instanceof Float32Array)||!(i instanceof Uint16Array||i instanceof Uint32Array))return copy;
@@ -25,7 +26,7 @@ export async function planSurfaceSelection(rows,policy,{signal}={}){
   abort(signal);
   if(typeof row.id!=='string'||seen.has(row.id))throw Error('Duplicate selected part');seen.add(row.id);
   const rule=surfaceRule(policy,row.asset,row.key);
-  const omit=reason=>omitted.push({id:row.id,name:row.name,reason,sourceURL:rule?policy.source.sourceURL:null,referenceURL:safeURL(row.sourceURL),sourceStatus:rule?'author-source-matched':'component-origin-unresolved'});
+  const omit=reason=>omitted.push({id:row.id,name:row.name,reason,sourceURL:rule?policy.source.sourceURL:null,referenceURL:safeURL(row.sourceURL),sourceStatus:rule?'author-source-matched':'component-origin-unresolved',...(row.sourcePart?{sourcePart:row.sourcePart}:{})});
   if(!rule){omit('source-not-admitted');continue}
   if(!row.positions||!row.index||row.positionItemSize!==3||row.normalized||row.deformed||row.materialCount!==1||!row.fullDrawRange){omit('unsupported-display-geometry');continue}
   const position=row.positions,index=row.index;
@@ -46,6 +47,15 @@ export function snapshotHeadSurfaces({cached,bench,THREE,policy,catalog,href}){
  for(const [asset,promise]of cached){
   const a=promise.loaded;if(!a?.root.visible)continue;
   const metadata=new Map(a.meta.parts.map(p=>[String(p.key),p]));
+  // One unadmitted CAD part can have several independently colored display
+  // meshes (for example a switch lever/housing or motor body/endcaps). Keep
+  // every visible fragment in the omissions without confusing its display
+  // identity with a second authored body eligible for STEP export.
+  const counts=new Map(),ordinals=new Map(),objects=new Set();
+  for(const r of a.meshes){
+   if(objects.has(r.mesh))throw Error('Duplicate selected mesh reference');objects.add(r.mesh);
+   const key=String(r.key),ordinal=counts.get(key)||0;counts.set(key,ordinal+1);ordinals.set(r.mesh,ordinal);
+  }
   for(const r of a.meshes){
    let visible=true,node=r.mesh;for(;node&&node!==bench;node=node.parent)if(!node.visible)visible=false;
    if(!visible||node!==bench)continue;
@@ -54,7 +64,9 @@ export function snapshotHeadSurfaces({cached,bench,THREE,policy,catalog,href}){
    const sourceURL=safeURL(a.meta.source_url||a.meta.source_repository||a.meta.component_source_url)||
     (policy.parts.some(p=>p.asset===asset)?policy.source.sourceURL:null)||
     (spec?.step&&href?safeURL(new URL('../'+spec.step,href).href):null);
-   const row={id:rule?.key||asset+':'+key,asset,key,name:meta?.name||key,sourceURL};
+   const fragments=!rule&&counts.get(key)>1,ordinal=ordinals.get(mesh);
+   const row={id:rule?.key||(asset+':'+key+(fragments?'::display-mesh='+ordinal:'')),asset,key,name:meta?.name||key,sourceURL};
+   if(fragments)row.sourcePart={asset,key,displayMeshIndex:ordinal,displayMeshCount:counts.get(key),displayMeshName:String(mesh.name||'')};
    if(rule&&position&&index){
     const materials=[].concat(mesh.material),m=materials[0];
     row.positions=position.array.slice();row.index=index.array.slice();row.positionItemSize=position.itemSize;row.normalized=position.normalized;

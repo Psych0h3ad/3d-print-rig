@@ -28,7 +28,7 @@ import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollision
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {setupHeadBuilder} from './builder-ui.mjs?v=cc71997918ff491f897c';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=7177100fadcc7fdc8975';
-import {setupSurfaceStep} from './step-surface-ui.mjs?v=d2de012d4593ac487b06';
+import {setupSurfaceStep} from './step-surface-ui.mjs?v=96b56e293619fb8f88a1';
 import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 export async function mount(scope){
 let machineRegistry,toolBank,bankRig;

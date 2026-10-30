@@ -115,8 +115,8 @@
     },
     {
       "path": "docs/CUSTOM_STEP.md",
-      "bytes": 3429,
-      "sha256": "5f44feb919a32eb997bd07ec1a9fda277a2ed53219eec09551d2259e8a0db63b"
+      "bytes": 3683,
+      "sha256": "3097302d215affd8bb55ea04d1a9ff74725461e7535d67f70df44630f79e3e3a"
     },
     {
       "path": "docs/CUSTOM_VORON.md",
@@ -270,8 +270,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1235121,
-      "sha256": "4c562524379233668c8a37e9af9c4f6d3648c52b142b9ba2c72e5556ee380487"
+      "bytes": 1252976,
+      "sha256": "cfed40d6c219447a5d92834c0385ffba138df3866d78299a314397c2f5d3cf21"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -840,8 +840,13 @@
     },
     {
       "path": "scripts/audit_step_surface_assets.mjs",
-      "bytes": 7288,
-      "sha256": "c2018e65289a05fdffbfd40d288984e0e05e32a96e08c93a1664a52946ae40fc"
+      "bytes": 7433,
+      "sha256": "a84ffc64d53586a11902a2bc2297c178f47131a5854b5ee5fcf5e20a15b44ef6"
+    },
+    {
+      "path": "scripts/audit_step_surface_dragon.mjs",
+      "bytes": 25607,
+      "sha256": "964ff1d2fcb713c6f1844432477a0b45852ca8cd22f39de79dd86b6e5b2e4335"
     },
     {
       "path": "scripts/audit_step_surface_v6.mjs",
@@ -925,8 +930,8 @@
     },
     {
       "path": "scripts/build_locales.mjs",
-      "bytes": 15326,
-      "sha256": "bc5117554c21cae4d4ba3bf1c18400e37db5bc2b58ea953e6b8a8b9e0ad12c4f"
+      "bytes": 15487,
+      "sha256": "735de97b04ded5fc748c55bf71294ab3cbe0a3d1b8f60408a1beecf0423e6e54"
     },
     {
       "path": "scripts/build_seo.py",
@@ -2614,14 +2619,19 @@
       "sha256": "dfc1547c5017463913210deb4c9290bb4d95901da748cd559a767defb9d37677"
     },
     {
+      "path": "scripts/test_step_surface_dragon.mjs",
+      "bytes": 7239,
+      "sha256": "79e9ca9fba453c53612a35ef8c7509caabefbb65802249585d2a4aebc444af9a"
+    },
+    {
       "path": "scripts/test_step_surface_rebuild.mjs",
       "bytes": 3991,
       "sha256": "dc7f8205e2f8af885579ef60e6bd2932fb46c70bf578def24ab0cf38060d7b4f"
     },
     {
       "path": "scripts/test_step_surface_selection.mjs",
-      "bytes": 7911,
-      "sha256": "7a8905724f221a468182bcb10cfe9137853f6c21d9f2519f50120e8cc563691b"
+      "bytes": 9926,
+      "sha256": "5fbbdb09cc0a7b78940f582c6b301326f6c500205883bec0beb43e3713a2b6a3"
     },
     {
       "path": "scripts/test_step_surface_writer.mjs",
@@ -8145,8 +8155,8 @@
     },
     {
       "path": "site/viewer/step-surface-package.mjs",
-      "bytes": 6859,
-      "sha256": "b63b0399885fe7eec67d8c20189d5faf37ee30f91ab99d480ec60b74a9bd9074"
+      "bytes": 6860,
+      "sha256": "c2c0efb2bf37c85bb3f7b77014869c6e408092642ea86677edce2c3aded959dc"
     },
     {
       "path": "site/viewer/step-surface-rebuild.mjs",
@@ -8155,18 +8165,18 @@
     },
     {
       "path": "site/viewer/step-surface-selection.mjs",
-      "bytes": 5758,
-      "sha256": "963ac403b94d21cddba3a257e9e36f76a49c57da376f931678ba207733cecd07"
+      "bytes": 6730,
+      "sha256": "99fdb3edc79bb961c411bed1d6d76b70646b2060e0f7198a102f1363d641d29a"
     },
     {
       "path": "site/viewer/step-surface-sources.json",
-      "bytes": 15308,
-      "sha256": "1cc7ebb01b0a8e5d4a83c53891a20e2e36eedfa8b1e8fc04a264d69f4486735e"
+      "bytes": 22600,
+      "sha256": "e763ae1d2df4841799349764a872fd43c3a4bbab06f1e91ea71c1a7ad9d47166"
     },
     {
       "path": "site/viewer/step-surface-ui.mjs",
       "bytes": 6537,
-      "sha256": "d2de012d4593ac487b0634efeff6ef8a41e7490102d0a0c3910086105762225c"
+      "sha256": "96b56e293619fb8f88a117605d913ecec9c711f8316f9c60d45e8c42fc5508f1"
     },
     {
       "path": "site/viewer/step-surface-writer.mjs",
@@ -8241,12 +8251,12 @@
     {
       "path": "site/viewer/toolheads.html",
       "bytes": 11646,
-      "sha256": "6f43dd8314a2d9f5cb88d5ff8adc3b6578f2d2b0f1f5cbf6a24dda5bb638179c"
+      "sha256": "5389090fee889e591f79ea449ed030ad2bd1ed3924689fc1a6cd83d72a274732"
     },
     {
       "path": "site/viewer/toolheads.js",
       "bytes": 23767,
-      "sha256": "185df66b2955bc892708819cc8afc30fa8ddadc828cf83af861db8fb771f0362"
+      "sha256": "2745464f58c5fa1830ad69a168c8539116e92c4035940aac0651a5a3dde3dcd4"
     },
     {
       "path": "site/viewer/translation-engine.mjs",
