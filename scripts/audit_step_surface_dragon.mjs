@@ -8,6 +8,7 @@ import zlib from 'node:zlib';
 import assert from 'node:assert/strict';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 import {surfaceRule} from '../site/viewer/step-surface-selection.mjs';
+import {commonFrontLegacyPolicy} from './step_surface_common_policy.mjs';
 
 const sourceSite = fileURLToPath(new URL('../site/', import.meta.url));
 const assets = ['sb_dragon_hf', 'sb_dragon_sf'];
@@ -30,6 +31,7 @@ const reviewed = {
 };
 
 export function assertDragonPolicy(policy) {
+  policy = commonFrontLegacyPolicy(policy);
   assert.equal(policy?.parts?.length, 26, 'Dragon release requires exactly 26 source rules');
   const base = {...policy, parts: policy.parts.filter(p => !assets.includes(p.asset))};
   assert.equal(sha(canonicalJSON(base)), basePolicySHA256, 'Existing source identities, license or rules changed');
@@ -84,6 +86,10 @@ async function pinContext(root) {
   const auditFile = fileURLToPath(import.meta.url), auditBytes = await fs.readFile(auditFile);
   inputs['audit:scripts/audit_step_surface_dragon.mjs'] = {bytes: auditBytes.length, sha256: sha(auditBytes)};
   files.set('audit:scripts/audit_step_surface_dragon.mjs', auditFile);
+  const guardFile = fileURLToPath(new URL('./step_surface_common_policy.mjs', import.meta.url));
+  const guardBytes = await fs.readFile(guardFile);
+  inputs['audit:scripts/step_surface_common_policy.mjs'] = {bytes: guardBytes.length, sha256: sha(guardBytes)};
+  files.set('audit:scripts/step_surface_common_policy.mjs', guardFile);
   async function pin(name, {source = false, expected} = {}) {
     safeRelative(name);
     const file = path.join(source ? sourceSite : root, name), raw = await fs.readFile(file);

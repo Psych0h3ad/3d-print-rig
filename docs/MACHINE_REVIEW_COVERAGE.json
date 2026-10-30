@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "review_revision": "home-render-layout-opening-blueprint-v1",
+  "review_revision": "common-sb-front-selected-surface-export-v1",
   "reviewed_on": "2026-10-30",
   "input_sha256": {
     ".github/workflows/pages.yml": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b",
@@ -45,7 +45,8 @@
     "scripts/audit_source47_service_hosts.mjs": "4aafb8f88e57e18ce8fbdc7e953436619e3d4da946ed256de6fe9450c4742997",
     "scripts/audit_stealthburner_cutaway.mjs": "d9b327b8a550f4b27aecdf875d04698dfb1df25c082d200bfde137f04153e49b",
     "scripts/audit_step_surface_assets.mjs": "a84ffc64d53586a11902a2bc2297c178f47131a5854b5ee5fcf5e20a15b44ef6",
-    "scripts/audit_step_surface_dragon.mjs": "964ff1d2fcb713c6f1844432477a0b45852ca8cd22f39de79dd86b6e5b2e4335",
+    "scripts/audit_step_surface_common.mjs": "b5c7128a75a81db78e65fdb0c7b9bb0da636cb8bc780455c0538811154e59289",
+    "scripts/audit_step_surface_dragon.mjs": "fb1d50538d30de3f5619fd27d776b469af5fe37bb3eff72ad37b47e240d983d5",
     "scripts/audit_step_surface_v6.mjs": "cb306e4d103f9a6d0e0c9082233f3135817c476f7f914ae3d3277c754c2ab9a5",
     "scripts/audit_toolchanger_assets.mjs": "c278ec88d02ff7e5fbd5fbe970fc8298a7c8a1015213948cd691a17d9fb435d9",
     "scripts/audit_trident_half_ptfe.mjs": "53c76001750f079f060335264920a0adc40927eeb27bdcd1598607117379feb6",
@@ -64,7 +65,7 @@
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
     "scripts/build_locales.mjs": "b6a9d84f0da379b5d161937165d2066326d5b91cdc7be1bcd124a3c4bd414333",
     "scripts/build_seo.py": "08876ff43b6e72b0a2c70d971c40a88fba6b17b455e191a27cb03cf3e620eb8c",
-    "scripts/build_site.py": "a11631775b6a7a4e292fd35a0bc4fa1ab07e104a55b0a003497e5b08d65c0ace",
+    "scripts/build_site.py": "b99a5fe1ce60af7e5a7a73913cc44e1467060e091f30b9ce5cecd84e25e477c1",
     "scripts/build_support_catalog.mjs": "49dbbf7d24ddbff864a8b231fb73bb91398348fe46bb136bfab86fb052974a3c",
     "scripts/build_toolhead_catalog.py": "e7391d2cc7748db94033069dc44b8365260d169176ee73a31cef249da5023e1a",
     "scripts/cad_section_insert.py": "a590e2fb4045cb3d835901aee33521d63e96e37133979187b0b8503bf16ceefa",
@@ -162,6 +163,7 @@
     "scripts/source-asset-input.mjs": "6ca98b476220ab58505062ce475308da47aa83bf3a6d17863fd7e2ca7e45f1e6",
     "scripts/source-metadata-input.mjs": "f972d86c43a3c0aa440f1f15cb5ecd9f0e8ce5f9ffc6e6e3b675cdfddb47051e",
     "scripts/spool-deck-evidence.mjs": "4b2172ed087075d56fea27bc5338ec0121e5e14318e8d0064abefe9ed36f0a9e",
+    "scripts/step_surface_common_policy.mjs": "83e35f3a5bf85e5e681e6d200cc2a2632d2ad31f4e4d7da410bd7f5ab35f7019",
     "scripts/test_247zero.mjs": "d601a3faed4b4a517729451a7e4cc1ee88876219ab8bd261ff9688243f6930e5",
     "scripts/test_a4t_hardware_selection.mjs": "32dc275eec7fa49d260b02f4ba96c654f235764564a72bcb9963345f7bc6dee6",
     "scripts/test_a4t_printed_companions.mjs": "59992e9a580f9bc0aa91b6b80a754121cb3488d8e4b25a9caff27766355b29ae",
@@ -403,9 +405,10 @@
     "scripts/test_sponsor_banner.mjs": "6c07adba071219d83424042387d8b209e3d2653ceb0f1ca48394950d19e8e07b",
     "scripts/test_stealthburner_cutaway.mjs": "db81ac2c51b6758f881a688115663f8f63f721931bf5e04aedfcbd59c8603781",
     "scripts/test_step_download_admission.mjs": "dfc1547c5017463913210deb4c9290bb4d95901da748cd559a767defb9d37677",
+    "scripts/test_step_surface_common.mjs": "bca6cb3bde008d2108eb5715f6650b4246c935abf60d8de62276f1fdb446cada",
     "scripts/test_step_surface_dragon.mjs": "79e9ca9fba453c53612a35ef8c7509caabefbb65802249585d2a4aebc444af9a",
     "scripts/test_step_surface_rebuild.mjs": "dc7f8205e2f8af885579ef60e6bd2932fb46c70bf578def24ab0cf38060d7b4f",
-    "scripts/test_step_surface_selection.mjs": "5fbbdb09cc0a7b78940f582c6b301326f6c500205883bec0beb43e3713a2b6a3",
+    "scripts/test_step_surface_selection.mjs": "ce354f81a11372d57becb588ba86ea4069c05ec85de36168691388d204ce1e06",
     "scripts/test_step_surface_writer.mjs": "5b608f7911b5f801280f88ab95a63c0424cdf1b6c1d0abc58e172d03fc537432",
     "scripts/test_stinger.mjs": "a99aed69b14375787bccbe64ba6b67f9a73bca80c32ccf1cfb5926adff038cfe",
     "scripts/test_support_catalog.mjs": "9f54e4f6c4facaafb8a93b047dc6de4af01931766df231acfea606ec28abc2d4",
@@ -876,7 +879,7 @@
     "site/viewer/step-surface-package.mjs": "c2c0efb2bf37c85bb3f7b77014869c6e408092642ea86677edce2c3aded959dc",
     "site/viewer/step-surface-rebuild.mjs": "bb5a8955d9e35f1b126477e7b1592036bfc468660a2a686f92e546159165ddc2",
     "site/viewer/step-surface-selection.mjs": "99fdb3edc79bb961c411bed1d6d76b70646b2060e0f7198a102f1363d641d29a",
-    "site/viewer/step-surface-sources.json": "e763ae1d2df4841799349764a872fd43c3a4bbab06f1e91ea71c1a7ad9d47166",
+    "site/viewer/step-surface-sources.json": "17279e775615d396ee3896947e3af4c48c5310b8a73763978737aed4e24f3032",
     "site/viewer/step-surface-ui.mjs": "913ec4d86335cf1f03d8c9b72f0b233a4c972bae52207e9b14f5603f373641c6",
     "site/viewer/step-surface-writer.mjs": "4d714d06ec9ba241a3a9a57cb4cd5c7d1c07372f958bdded2d2db3789fef8fb7",
     "site/viewer/step-surface-zero-area.mjs": "1893343a3b079290421469c78c930eea074abf52567622b684c0d48d61ac10c5",
@@ -20854,5 +20857,14 @@
     "previous_row_evidence_unchanged": true,
     "full_physical_fit_certified": false,
     "limits": "No new native-solid, continuous-motion, touch/mobile, cross-browser or all-combination qualification."
+  },
+  "current_common_front_surface_review": {
+    "scope": "Eight exact common authored SB surface aliases for Rapido2HF and Chube Compact. No new mesh/installation/hotend companions or native solids.",
+    "actual": "Fresh pinned actual three-mesh canonical POSITION/index and all16 matrix relation,91current standalone front subsets,24child-transform negatives; pose4visits/3states and separate3palette visits, not Cartesian product. Companion body hashes/presence only.",
+    "browser": "Selected two Trident6mm standalone actual editor A-B-A via Save/filechooserLoad, separate contrast/reverse palette, front/side/rear/underside on Chube,1920px PNG,4/12part ZIP ledgers and byte-exact offline reconstruction except timestamp.",
+    "existing_machine_rows_retained": 73,
+    "changed_model_or_mount_registration_count": 0,
+    "full_physical_fit_certified": false,
+    "limits": "Historical91fullCPU remains historical. No all-installed-consumer/native-solid/companion/repair-wrapper/continuous-motion, additional-browser or mobile qualification. Unreviewed parts remain omissions."
   }
 }

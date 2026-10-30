@@ -720,6 +720,246 @@
         "key": "sb_revo_voron_11",
         "basis": "Private prospective exact numbered source copy; not production admitted."
       }
+    },
+    {
+      "key": "sb_rapido2_hf_front_6",
+      "asset": "sb_rapido2_hf",
+      "displayName": "Stealthburner_Body",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362184",
+        "productId": "362451",
+        "label": "Stealthburner_Body"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "bf67af8f4532e705740ce838bf68971c85fb944589ba32d900068eec1b8d56d2",
+          "count": 31347,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "ae2fe64afff4091ef60ef339c29fdaa6f9054be584cac242a722ce1ca78ec9d5",
+          "count": 119013,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      },
+      "sourceAlias": {
+        "asset": "sb_revo_voron",
+        "key": "sb_revo_voron_6",
+        "basis": "Same numbered authored SB extraction source identified by the producer lineage and exact complete exported buffers and source frame. Only this shared front leaf is included."
+      }
+    },
+    {
+      "key": "sb_rapido2_hf_front_9",
+      "asset": "sb_rapido2_hf",
+      "displayName": "LED_Diffuser",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362187",
+        "productId": "362454",
+        "label": "LED_Diffuser"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "c9b02435a6b368a4b1c5548883731a83d3bb1a7f34a256fbbf751fcb623b78b3",
+          "count": 1000,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "abe7806323d2fc41698adbfe03bb6c7ef394544aea5986a2de9e1e3b4e768a0a",
+          "count": 3246,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      },
+      "sourceAlias": {
+        "asset": "sb_revo_voron",
+        "key": "sb_revo_voron_9",
+        "basis": "Same numbered authored SB extraction source identified by the producer lineage and exact complete exported buffers and source frame. Only this shared front leaf is included."
+      }
+    },
+    {
+      "key": "sb_rapido2_hf_front_10",
+      "asset": "sb_rapido2_hf",
+      "displayName": "LED_Diffuser_Mask",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362188",
+        "productId": "362455",
+        "label": "LED_Diffuser_Mask"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "c8ba8e632aea6145ae922ccd9c35077304314a890821ecefb2ad11fe93b33cf9",
+          "count": 866,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "8a0637331936fe75bcc9e1d0da93b9614f2d2d97c3d5f9ddb378dd4406bb1909",
+          "count": 2964,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      },
+      "sourceAlias": {
+        "asset": "sb_revo_voron",
+        "key": "sb_revo_voron_10",
+        "basis": "Same numbered authored SB extraction source identified by the producer lineage and exact complete exported buffers and source frame. Only this shared front leaf is included."
+      }
+    },
+    {
+      "key": "sb_rapido2_hf_front_11",
+      "asset": "sb_rapido2_hf",
+      "displayName": "LED_Carrier",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362189",
+        "productId": "362456",
+        "label": "LED_Carrier"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "f0db02ac612041844d01d138170485463c3da4e533857b51f16e7a867a009f12",
+          "count": 1544,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "0c7c80b175b0f7a3b29df6724bdaec8b37fd0653d449eb45075e1a29a008560f",
+          "count": 3978,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      },
+      "sourceAlias": {
+        "asset": "sb_revo_voron",
+        "key": "sb_revo_voron_11",
+        "basis": "Same numbered authored SB extraction source identified by the producer lineage and exact complete exported buffers and source frame. Only this shared front leaf is included."
+      }
+    },
+    {
+      "key": "sb_chube_compact_common_6",
+      "asset": "sb_chube_compact",
+      "displayName": "Stealthburner_Body",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362184",
+        "productId": "362451",
+        "label": "Stealthburner_Body"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "bf67af8f4532e705740ce838bf68971c85fb944589ba32d900068eec1b8d56d2",
+          "count": 31347,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "ae2fe64afff4091ef60ef339c29fdaa6f9054be584cac242a722ce1ca78ec9d5",
+          "count": 119013,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      },
+      "sourceAlias": {
+        "asset": "sb_revo_voron",
+        "key": "sb_revo_voron_6",
+        "basis": "Same numbered authored SB extraction source identified by the producer lineage and exact complete exported buffers and source frame. Only this shared front leaf is included."
+      }
+    },
+    {
+      "key": "sb_chube_compact_common_9",
+      "asset": "sb_chube_compact",
+      "displayName": "LED_Diffuser",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362187",
+        "productId": "362454",
+        "label": "LED_Diffuser"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "c9b02435a6b368a4b1c5548883731a83d3bb1a7f34a256fbbf751fcb623b78b3",
+          "count": 1000,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "abe7806323d2fc41698adbfe03bb6c7ef394544aea5986a2de9e1e3b4e768a0a",
+          "count": 3246,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      },
+      "sourceAlias": {
+        "asset": "sb_revo_voron",
+        "key": "sb_revo_voron_9",
+        "basis": "Same numbered authored SB extraction source identified by the producer lineage and exact complete exported buffers and source frame. Only this shared front leaf is included."
+      }
+    },
+    {
+      "key": "sb_chube_compact_common_10",
+      "asset": "sb_chube_compact",
+      "displayName": "LED_Diffuser_Mask",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362188",
+        "productId": "362455",
+        "label": "LED_Diffuser_Mask"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "c8ba8e632aea6145ae922ccd9c35077304314a890821ecefb2ad11fe93b33cf9",
+          "count": 866,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "8a0637331936fe75bcc9e1d0da93b9614f2d2d97c3d5f9ddb378dd4406bb1909",
+          "count": 2964,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      },
+      "sourceAlias": {
+        "asset": "sb_revo_voron",
+        "key": "sb_revo_voron_10",
+        "basis": "Same numbered authored SB extraction source identified by the producer lineage and exact complete exported buffers and source frame. Only this shared front leaf is included."
+      }
+    },
+    {
+      "key": "sb_chube_compact_common_11",
+      "asset": "sb_chube_compact",
+      "displayName": "LED_Carrier",
+      "sourceSelector": {
+        "kind": "STEP-product-definition",
+        "id": "362189",
+        "productId": "362456",
+        "label": "LED_Carrier"
+      },
+      "geometry": {
+        "position": {
+          "sha256": "f0db02ac612041844d01d138170485463c3da4e533857b51f16e7a867a009f12",
+          "count": 1544,
+          "componentType": 5126,
+          "itemSize": 3
+        },
+        "index": {
+          "sha256": "0c7c80b175b0f7a3b29df6724bdaec8b37fd0653d449eb45075e1a29a008560f",
+          "count": 3978,
+          "componentType": 5125,
+          "itemSize": 1
+        }
+      },
+      "sourceAlias": {
+        "asset": "sb_revo_voron",
+        "key": "sb_revo_voron_11",
+        "basis": "Same numbered authored SB extraction source identified by the producer lineage and exact complete exported buffers and source frame. Only this shared front leaf is included."
+      }
     }
   ],
   "generator": [
