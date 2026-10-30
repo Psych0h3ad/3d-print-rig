@@ -22,7 +22,7 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
  if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=92adaf6001873caf2888');return loadV24ReferenceLayout(id,{signal,onProgress})}
  if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=ceba0226b6221074c089');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=cec89c7fd95b7994f235');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=789b3c3c5a0e96c7bc60');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
   const m=await import('./source-assembly-loader.mjs?v=ef314fa1db020ff95442'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');

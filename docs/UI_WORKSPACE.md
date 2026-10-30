@@ -63,6 +63,13 @@ The current-configuration summary describes the installed model. Draft choices
 do not change the installed CAD or committed URL. Save is disabled while changes
 are pending or loading; the mobile footer keeps Apply/Discard accessible. Import
 and explicit configuration links install their validated configuration directly.
+
+Installed machine heads, their Monolith gantry and parked tools switch together
+after the required models and bank have loaded. A failed load or reversible
+installation error preserves the previous assembly, belt resources, colors and
+visibility. A newer request supersedes an older pending request. Rendering and
+old-resource cleanup occur after the new assembly has committed; a cleanup
+diagnostic does not restore already retired resources.
 An installation error attempts rollback and offers retry; a failed rollback must
 not claim that the previous assembly is still visible.
 

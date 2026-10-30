@@ -6,6 +6,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 import {createInactiveHeadCache,canRestoreInactiveHeadIndices} from '../site/viewer/inactive-head-cache.mjs';
+import {captureAssemblyState} from '../site/viewer/assembly-transaction.mjs';
 import {THREE,MiB,assetFixture,disposalCounter} from './head-cache-test-fixtures.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),arg=process.argv.indexOf('--candidate');
 const candidate=arg<0?root:path.resolve(process.argv[arg+1]);
@@ -54,10 +55,10 @@ function installed(backend){
  const code=fs.readFileSync(path.join(candidate,'site/viewer/machine-heads.js'),'utf8');
  const start=code.indexOf('export function createMachineHeads('),end=code.indexOf('export function ensureMachineHeadControls(',start);
  assert(start>=0&&end>start);const definition=code.slice(start,end).replace(/^export /,'');
- const dependencies={THREE,Map,Set,createInactiveHeadCache,canRestoreInactiveHeadIndices,point,...cover,...ledNative,...assembly,
+ const dependencies={THREE,Map,Set,createInactiveHeadCache,canRestoreInactiveHeadIndices,captureAssemblyState,point,...cover,...ledNative,...assembly,
   workspaceTask:promiseTask,GLTFLoader:class{},fetch:backend.fetch,loadModel:backend.loadModel,bindLedSource(){},bindEvaMeshIdentities(){},validateEvaMetadata(){},
   madmaxPtfeAssetSpec:(_machine,_id,spec)=>spec,madmaxJointAssetSpec:(_machine,_id,spec)=>spec,captureMadmaxJoint:()=>null,setMadmaxJointPose(){},madmaxJointApplies:()=>false,
-  createMonolithGantry:()=>({install:async()=>{},setPalette(){},setDelta(){}}),appearanceRole:()=>null,
+  createMonolithGantry:()=>({root:new THREE.Group(),prepare:async()=>({canCommit(){},commit(){},rollback(){},finish(){}}),setPalette(){},setDelta(){}}),appearanceRole:()=>null,
   bankPlan:state=>({state,instances:state.instances||[]})};
  const create=vm.runInNewContext(definition+';createMachineHeads',dependencies);
  const scene=new THREE.Scene(),catalog={machine_id:'fixture',base_assets:backend.assets,assets:backend.assets};

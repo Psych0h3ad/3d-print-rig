@@ -1,3 +1,4 @@
+import {captureAssemblyState} from './assembly-transaction.mjs';
 import {createInactiveHeadCache,canRestoreInactiveHeadIndices} from './inactive-head-cache.mjs';
 import {bindLedSource} from './led-source-binding.mjs';
 import {cloneNativeLedTree} from './led-emission-surface.mjs?v=af40a3200e128a08c940';
@@ -16,7 +17,7 @@ import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installa
 import {workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {createCatalogRequests} from './catalog-requests.mjs?v=e08161a1108d8bf2b5b3';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=918b15bc03dc6e671bd4';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=d849685fed113351c7d9';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=01d6eb133dc727e3ab5b';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
@@ -70,7 +71,7 @@ export async function loadMachineHeadCatalog(machine){return workspaceTask(async
 });}
 export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  const gantry=createMonolithGantry(scene,catalog);
- const frontLoader=new GLTFLoader(),cache=new Map(),rig=new THREE.Group(),bankRig=new THREE.Group();rig.name='Installed_Machine_Head';bankRig.name='Frame_Tool_Bank';scene.add(rig,bankRig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0],bankState=null,bankEntries=[];
+ const frontLoader=new GLTFLoader(),cache=new Map(),rig=new THREE.Group(),bankRig=new THREE.Group();rig.name='Installed_Machine_Head';bankRig.name='Frame_Tool_Bank';scene.add(rig,bankRig);let current=null,palette={base:'#24272c',accent:'#e32636'},delta=[0,0,0],bankState=null,bankEntries=[],requestEpoch=0,pendingPreparations=0;const cleanupErrors=[];
  const headCache=createInactiveHeadCache(cache,{
   protectedRoots:()=>[bankRig],
   beforeEvict:(asset,{protectedResources})=>{
@@ -94,31 +95,74 @@ export function createMachineHeads(scene,catalog,{render=()=>{}}={}){
  function setPalette(value){gantry.setPalette(value);palette={...palette,...value};const rows=[...bankEntries,...[...cache.values()].flatMap(p=>p.loaded?.entries||[])];for(const row of rows)for(let i=0;i<row.materials.length;i++){const m=row.materials[i],color=palette[row.role];if(color)m.color.set(color);else m.color.copy(row.colors[i]);if(['base','accent'].includes(row.role)){m.metalness=0;m.roughness=.58}}}
  async function stagedBank(state,variant){return workspaceTask(async()=>{
   if(!state?.enabled)return {state,roots:[],entries:[]};const plan=bankPlan(state,catalog,catalog.bank_data,variant);
-  const ids=[...new Set(plan.instances.map(p=>p.id))];await Promise.all(ids.map(async id=>{return workspaceTask(async()=>{const a=await asset(id);cache.get(id).loaded=a});}));
+  const ids=[...new Set(plan.instances.map(p=>p.id))],loaded=await Promise.allSettled(ids.map(async id=>{return workspaceTask(async()=>{const a=await asset(id);cache.get(id).loaded=a});}));
+  const failure=loaded.find(r=>r.status==='rejected');if(failure)throw failure.reason;
   const roots=[],entries=[];
-  for(const entry of plan.instances){const a=cache.get(entry.id).loaded,root=cloneNativeLedTree(a.root),lookup=new Map(a.entries.map(e=>[String(e.key),e])),hidden=new Set(entry.hidden_keys||[]);root.visible=true;root.name='Dock_'+entry.slot+'_'+entry.id;root.userData.tool_bank={slot:entry.slot,kind:entry.kind,asset:entry.id};root.position.copy(point(entry.translation_mm));
-   root.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(String(partKey(mesh)));if(!row)throw Error('ドックの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];mesh.visible=!hidden.has(row.key)&&!['rail_reference','dock','shuttle_reference'].includes(row.component);const offset=entry.part_offsets_mm?.[row.key];if(offset)mesh.position.add(point(offset));entries.push({...row,mesh,materials,colors:row.colors.map(c=>c.clone())})});roots.push(root);
+  try{for(const entry of plan.instances){const a=cache.get(entry.id).loaded,root=cloneNativeLedTree(a.root),lookup=new Map(a.entries.map(e=>[String(e.key),e])),hidden=new Set(entry.hidden_keys||[]);root.visible=true;root.name='Dock_'+entry.slot+'_'+entry.id;root.userData.tool_bank={slot:entry.slot,kind:entry.kind,asset:entry.id};roots.push(root);root.position.copy(point(entry.translation_mm));
+   root.traverse(mesh=>{if(!mesh.isMesh)return;const row=lookup.get(String(partKey(mesh)));if(!row)throw Error('ドックの部品対応が不正です');mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];mesh.visible=!hidden.has(row.key)&&!['rail_reference','dock','shuttle_reference'].includes(row.component);const offset=entry.part_offsets_mm?.[row.key];if(offset)mesh.position.add(point(offset));entries.push({...row,mesh,materials,colors:row.colors.map(c=>c.clone())})});
   }
+  }catch(error){cleanup(()=>headCache.release(roots));throw error}
   return {state:plan.state,roots,entries};
  });}
- function commitBank(staged){const previous=[...bankRig.children];bankRig.clear();if(staged.roots.length)bankRig.add(...staged.roots);bankEntries=staged.entries;bankState=staged.state;headCache.release(previous);setPalette(palette)}
- async function setBank(state){return workspaceTask(async()=>{const staged=await stagedBank(state,current);commitBank(staged);headCache.commit(activeHeadIds());render()});}
- async function install(variant,state=bankState){return workspaceTask(async()=>{
-  await gantry.install(variant);
-  const uhfBase=cache.get('stealthburner')?.loaded;if(uhfBase)setRapidoXUhfSurface(uhfBase.entries,false);
-  for(const p of cache.values())if(p.loaded)setMadmaxJointPose(p.loaded.nativeJoint,false);
-  if(!variant?.machine_head){for(const p of cache.values())if(p.loaded)p.loaded.root.visible=false;current=null;commitBank({state:state?{...state,enabled:false}:null,roots:[],entries:[]});headCache.commit([],{purge:true});return}
-  const plan=variant.machine_head,required=[...new Set([plan.base,...plan.modules.map(m=>m.id)])];await Promise.all(required.map(async id=>{return workspaceTask(async()=>{const a=await asset(id);cache.get(id).loaded=a});}));
-  validateEvaMetadata(variant,cache.get(plan.base).loaded.meta);
-  const staged=await stagedBank(state,variant);
-  for(const p of cache.values())if(p.loaded){p.loaded.root.visible=false;p.loaded.root.position.set(0,0,0)}
-  const place=(id,translation,hidden=[])=>{const a=cache.get(id).loaded,omit=new Set(hidden);a.root.visible=true;a.root.position.copy(point(translation));for(const e of a.entries)e.mesh.visible=!omit.has(e.key)&&!['rail_reference','dock','shuttle_reference'].includes(e.component)};
-  place(plan.base,plan.translation,plan.hidden);for(const m of plan.modules)place(m.id,m.translation_mm,m.hidden_keys);if(plan.base==='stealthburner')setRapidoXUhfSurface(cache.get(plan.base).loaded.entries,variant.cover_source?.kind==='original_uhf');current=variant;for(const p of cache.values())if(p.loaded)setMadmaxJointPose(p.loaded.nativeJoint,madmaxJointApplies(catalog.machine_id,variant));commitBank(staged);setPalette(palette);setDelta(delta);headCache.commit(required);render();
+ function cleanup(task){try{task()}catch(error){cleanupErrors.push(String(error?.message||error));if(cleanupErrors.length>16)cleanupErrors.shift()}}
+ function commitBank(staged){bankRig.clear();if(staged.roots.length)bankRig.add(...staged.roots);bankEntries=staged.entries;bankState=staged.state;setPalette(palette)}
+ async function setBank(state){return workspaceTask(async()=>{
+  pendingPreparations++;try{
+  const epoch=++requestEpoch,staged=await stagedBank(state,current);
+  if(epoch!==requestEpoch){cleanup(()=>headCache.release(staged.roots));throw Error('Superseded bank preparation')}
+  const previous={roots:[...bankRig.children],entries:bankEntries,state:bankState},restore=captureAssemblyState([rig,bankRig,gantry.root]);
+  try{commitBank(staged)}catch(error){restore();bankEntries=previous.entries;bankState=previous.state;cleanup(()=>headCache.release(staged.roots));throw error}
+  cleanup(()=>headCache.release(previous.roots));cleanup(()=>render());
+  }finally{if(--pendingPreparations===0)cleanup(()=>headCache.commit(activeHeadIds(),{purge:!current}))}
  });}
+ async function install(variant,state=bankState){return workspaceTask(async()=>{
+  pendingPreparations++;try{
+  const epoch=++requestEpoch,signature=JSON.stringify([variant,state]),plan=variant?.machine_head;
+  const ensureCurrent=()=>{if(epoch!==requestEpoch||signature!==JSON.stringify([variant,state]))throw Error('Superseded or changed configuration preparation')};
+  let prepared=null,staged=null,restore=null,surfaces=[],previous=null;
+  const required=plan?[...new Set([plan.base,...plan.modules.map(m=>m.id)])]:[];
+  try{
+   const loaded=await Promise.allSettled(required.map(async id=>{const a=await asset(id);cache.get(id).loaded=a}));
+   const failed=loaded.find(r=>r.status==='rejected');if(failed)throw failed.reason;ensureCurrent();
+   if(plan){
+    validateEvaMetadata(variant,cache.get(plan.base).loaded.meta);
+    staged=await stagedBank(state,variant);
+   }else staged={state:state?{...state,enabled:false}:null,roots:[],entries:[]};
+   ensureCurrent();prepared=await gantry.prepare(variant);ensureCurrent();
+   ensureCurrent();prepared.canCommit();
+   previous={current,bankState,bankEntries,bankRoots:[...bankRig.children],delta:[...delta]};
+   const mutableIndices=new Set();
+   for(const p of cache.values())if(p.loaded){for(const e of p.loaded.entries){if(e.key==='423')mutableIndices.add(e.mesh.geometry);surfaces.push([e,Object.hasOwn(e,'uhfSurface'),e.uhfSurface])}}
+   restore=captureAssemblyState([rig,bankRig],{mutableIndices});
+   prepared.commit();
+   const uhfBase=cache.get('stealthburner')?.loaded;if(uhfBase)setRapidoXUhfSurface(uhfBase.entries,false);
+   for(const p of cache.values())if(p.loaded){setMadmaxJointPose(p.loaded.nativeJoint,false);p.loaded.root.visible=false;p.loaded.root.position.set(0,0,0)}
+   if(plan){
+    const place=(id,translation,hidden=[])=>{const a=cache.get(id).loaded,omit=new Set(hidden);a.root.visible=true;a.root.position.copy(point(translation));for(const e of a.entries)e.mesh.visible=!omit.has(e.key)&&!['rail_reference','dock','shuttle_reference'].includes(e.component)};
+    place(plan.base,plan.translation,plan.hidden);for(const m of plan.modules)place(m.id,m.translation_mm,m.hidden_keys);
+    if(plan.base==='stealthburner')setRapidoXUhfSurface(cache.get(plan.base).loaded.entries,variant.cover_source?.kind==='original_uhf');
+   }
+   current=plan?variant:null;
+   for(const p of cache.values())if(p.loaded)setMadmaxJointPose(p.loaded.nativeJoint,madmaxJointApplies(catalog.machine_id,variant));
+   commitBank(staged);setPalette(palette);setDelta(delta);
+  }catch(error){
+   const failures=[];
+   try{if(restore){restore();for(const[e,had,value]of surfaces){if(had)e.uhfSurface=value;else delete e.uhfSurface}current=previous.current;bankState=previous.bankState;bankEntries=previous.bankEntries;delta=previous.delta}}catch(e){failures.push(e)}
+   try{prepared?.rollback()}catch(e){failures.push(e)}
+   if(staged)cleanup(()=>headCache.release(staged.roots));
+   if(failures.length)throw new AggregateError([error,...failures],'Configuration recovery failed');
+   throw error;
+  }
+  // From here the new selection is coherent. Cleanup cannot reject it after
+  // irreversibly disposing old resources and make the UI restore stale fields.
+  cleanup(()=>prepared.finish());cleanup(()=>headCache.release(previous.bankRoots));cleanup(()=>render());
+  }finally{if(--pendingPreparations===0)cleanup(()=>headCache.commit(activeHeadIds(),{purge:!current}))}
+ });}
+
  function setDelta(value){gantry.setDelta(value);delta=[...value];rig.position.copy(point(delta));rig.updateMatrixWorld(true)}
  function setVisible(value){rig.visible=Boolean(value)}
  function focus(camera,controls){if(!current)return false;rig.updateMatrixWorld(true);const box=new THREE.Box3(),visible=o=>o.visible&&(!o.parent||visible(o.parent));rig.traverse(o=>{if(o.isMesh&&visible(o))box.expandByObject(o)});if(box.isEmpty())return false;camera.up.set(0,1,0);box.getCenter(controls.target);camera.position.copy(controls.target).add(new THREE.Vector3(.13,.07,.25));controls.update();render();return true}
- return {install,setBank,setDelta,setPalette,setVisible,focus,get active(){return current},get bankState(){return bankState},gantry,rig,bankRig,cache,cachePolicy:headCache};
+ return {install,setBank,setDelta,setPalette,setVisible,focus,get active(){return current},get bankState(){return bankState},gantry,rig,bankRig,cache,cachePolicy:headCache,get cleanupErrors(){return [...cleanupErrors]}};
 }
 export function ensureMachineHeadControls({gantry=false,monolithUnavailable}={}){
  let panel=document.querySelector('#configurationControls');

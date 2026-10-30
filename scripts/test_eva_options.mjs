@@ -892,9 +892,9 @@ async function parentIntegrationReview(){
   const source=range(files['machine-heads.js'],'export function createMachineHeads(', 'export function ensureMachineHeadControls(').replace(/^export /,'');
   const createRig=new Function('env',`const {THREE,createMonolithGantry,GLTFLoader,workspaceTask,madmaxPtfeAssetSpec,madmaxJointAssetSpec,
    loadExternalComponent,loadEvaFrontSurfaces,applyEvaFrontSurfaces,bindEvaMeshIdentities,partKey,appearanceRole,captureMadmaxJoint,
-   validateEvaMetadata,setMadmaxJointPose,madmaxJointApplies,setRapidoXUhfSurface,bindLedSource,createInactiveHeadCache,canRestoreInactiveHeadIndices}=env;
+   validateEvaMetadata,setMadmaxJointPose,madmaxJointApplies,setRapidoXUhfSurface,bindLedSource,createInactiveHeadCache,canRestoreInactiveHeadIndices,captureAssemblyState}=env;
    const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);${source};return createMachineHeads;`)(
-    {THREE,createInactiveHeadCache,canRestoreInactiveHeadIndices,createMonolithGantry:()=>({install:async()=>{},setPalette(){},setDelta(){}}),GLTFLoader:class{},workspaceTask:run=>run(),
+    {THREE,createInactiveHeadCache,canRestoreInactiveHeadIndices,captureAssemblyState:(await import('../site/viewer/assembly-transaction.mjs')).captureAssemblyState,createMonolithGantry:()=>({root:new THREE.Group(),prepare:async()=>({canCommit(){},commit(){},rollback(){},finish(){}}),setPalette(){},setDelta(){}}),GLTFLoader:class{},workspaceTask:run=>run(),
      madmaxPtfeAssetSpec:(machine,id,spec)=>spec,madmaxJointAssetSpec:(machine,id,spec)=>spec,
      loadExternalComponent:async(loader,spec)=>{hiddenLoads++;const meta=clone(f.definitions.get(spec.component_id)),root=model(meta);
       const ledModelReceipt=await verifyLedModelBytes(root,spec,new TextEncoder().encode(spec.component_id),{catalogId:spec.component_id});
