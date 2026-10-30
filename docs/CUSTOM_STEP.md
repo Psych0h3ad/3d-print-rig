@@ -15,9 +15,9 @@ clearance. Existing native STEP assembly downloads remain available from the
 header's **STEP** button and retain their own baseline configurations.
 
 The source allowlist covers 14 distinct authored Stealthburner/Revo Voron and
-Clockwork 2 printed bodies from the pinned VORON source revision. V6, Dragon HF and Dragon SF
-also include their source-matched shared Stealthburner body, LED diffuser, mask
-and carrier. Their hotend-specific mounts, hotends and purchased parts remain
+Clockwork 2 printed bodies from the pinned VORON source revision. V6, Dragon HF,
+Dragon SF, Rapido 2 HF and Chube Compact also include their shared Stealthburner
+body, LED diffuser, mask and carrier, matched to the original authored parts. Their hotend-specific mounts, hotends and purchased parts remain
 listed as omissions.
 Each part is
 matched by asset identity and complete position/index buffer hashes. Only parts
@@ -54,5 +54,6 @@ parts or complete machines as physically verified.
 
 For maintenance, update `step-surface-sources.json` only with exact body/source
 provenance and per-file terms. Run the source regressions and
-`audit_step_surface_assets.mjs` against the normal assembled site. The normal
+`audit_step_surface_assets.mjs` and `audit_step_surface_common.mjs` against
+the normal assembled site. The normal
 build invokes that audit; visibility or source-name matching alone is not enough.
