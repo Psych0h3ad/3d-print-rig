@@ -3,7 +3,7 @@ import {baselineReference,baselineLimits,baselineResetPose,baselineGcodeContext,
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=d849685fed113351c7d9';
+import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=01d6eb133dc727e3ab5b';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=918b15bc03dc6e671bd4';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
@@ -23,7 +23,7 @@ import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {createTridentMotion} from './trident-motion.mjs?v=77312c6bfbf6c7e7563d';
 import {headPlan,partKey} from './head-assembly.js?v=workspace-belts-1';
-import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=3a54e5386b5f334b4fd1';
+import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=83c9177b2c15a1b11e19';
 import {setupChangerBank} from './changer-bank.js?v=f5029fbbdd962cbe2c85';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=ff6c151f5e6e2fb4340c';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';

@@ -1,3 +1,4 @@
+import {captureAssemblyState} from './assembly-transaction.mjs';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
@@ -34,7 +35,7 @@ export async function loadMonolithMachines(catalog,headData){
 
 export function createMonolithGantry(scene,catalog){
  const root=new THREE.Group();root.name='Installed_Monolith_Gantry';root.visible=false;scene.add(root);
- const cache=new Map();let active=null,delta=[0,0,0],belts=[],palette={},flexibleVisible=true;
+ const cache=new Map();let active=null,delta=[0,0,0],belts=[],palette={},flexibleVisible=true,revision=0;const cleanupErrors=[];
  async function asset(id){
   if(cache.has(id))return cache.get(id);
   const spec=catalog.assets[id];if(!spec)throw Error('未登録のMonolith部品：'+id);
@@ -50,7 +51,7 @@ export function createMonolithGantry(scene,catalog){
  function setPalette(value){palette={...palette,...value};for(const p of cache.values())for(const e of p.loaded?.entries||[])for(const [i,m] of e.materials.entries()){if(palette[e.role])m.color.set(palette[e.role]);else m.color.copy(e.colors[i]);if(['base','accent'].includes(e.role)){m.metalness=0;m.roughness=.58}}}
  function setFlexibleVisible(value){flexibleVisible=Boolean(value);for(const b of belts)b.mesh.visible=flexibleVisible}
  function setDelta(value){
-  delta=[...value];if(!active)return;
+  revision++;delta=[...value];if(!active)return;
   const g=active.machine_gantry;root.position.copy(point(g.translation_mm));
   for(const id of g.modules){const a=cache.get(id)?.loaded;if(!a)continue;
    for(const e of a.entries){const motion=monolithPartDelta(id,e.row,delta,g.family),offset=g.part_offsets_mm?.[e.row.key]||[0,0,0];e.mesh.position.copy(e.origin).add(point(motion.map((v,i)=>v+offset[i])))}
@@ -61,22 +62,48 @@ export function createMonolithGantry(scene,catalog){
   }
   root.updateMatrixWorld(true);
  }
- async function install(variant){
-  const g=variant?.machine_gantry;
-  if(!g){active=null;root.visible=false;return}
-  const ids=g.modules.filter(id=>!id.startsWith('monolith_belts_'));
+ function disposeBelts(rows){for(const b of rows)for(const resource of [b.mesh.geometry,b.mesh.material])try{resource.dispose()}catch(error){cleanupErrors.push(String(error?.message||error));if(cleanupErrors.length>16)cleanupErrors.shift()}}
+ async function prepare(variant){
+  const baseRevision=revision,g=variant?.machine_gantry,ids=g?g.modules.filter(id=>!id.startsWith('monolith_belts_')):[];
   await Promise.all(ids.map(asset));
+  if(baseRevision!==revision)throw Error('Gantry changed during configuration preparation');
   const next=[];
-  for(const id of g.modules.filter(id=>id.startsWith('monolith_belts_'))){
-   const sources=catalog.monolith?.belt_routes.routes[id.replace(/_(250|300|350)$/,'')];if(!sources)throw Error('Monolithのベルト経路が未登録です');
-   for(const source of sources){const route=monolithBeltRoute(source,g.size_mm,delta[0],delta[1],variant.fit?.machine_mount?.belt_preview_cut),mesh=new THREE.Mesh(monolithBeltGeometry(route),new THREE.MeshStandardMaterial({color:'#111419',roughness:.85,side:THREE.DoubleSide}));mesh.name=id+'_'+source.source_key;mesh.visible=flexibleVisible;next.push({mesh,route,source,dx:delta[0],dy:delta[1]})}
+  try{
+   for(const id of (g?.modules||[]).filter(id=>id.startsWith('monolith_belts_'))){
+    const sources=catalog.monolith?.belt_routes.routes[id.replace(/_(250|300|350)$/,'')];if(!sources)throw Error('Monolithのベルト経路が未登録です');
+    for(const source of sources){const route=monolithBeltRoute(source,g.size_mm,delta[0],delta[1],variant.fit?.machine_mount?.belt_preview_cut),geometry=monolithBeltGeometry(route),material=new THREE.MeshStandardMaterial({color:'#111419',roughness:.85,side:THREE.DoubleSide}),mesh=new THREE.Mesh(geometry,material);mesh.name=id+'_'+source.source_key;mesh.visible=flexibleVisible;next.push({mesh,route,source,dx:delta[0],dy:delta[1]})}
+   }
+  }catch(error){disposeBelts(next);throw error}
+  let phase='prepared',previous=null,restore=null;
+  function canCommit(){if(phase!=='prepared'||baseRevision!==revision)throw Error('Stale gantry preparation');return true}
+  function rollback(){
+   if(phase==='finished'||phase==='aborted')return;
+   if(phase==='committed'){
+    restore();active=previous.active;delta=previous.delta;belts=previous.belts;
+    revision++;
+   }
+   disposeBelts(next);phase='aborted';
   }
-  for(const b of belts){root.remove(b.mesh);b.mesh.geometry.dispose();b.mesh.material.dispose()}belts=next;root.add(...belts.map(b=>b.mesh));
-  const hidden=new Set(g.hidden_module_keys||[]);
-  for(const p of cache.values())if(p.loaded){const a=p.loaded;a.root.visible=ids.includes(a.id);for(const e of a.entries)e.mesh.visible=!hidden.has(e.row.key)}
-  active=variant;root.visible=true;setPalette(palette);setDelta(delta);
+  return {
+   canCommit,
+   commit(){
+    canCommit();restore=captureAssemblyState([root]);previous={active,delta:[...delta],belts};phase='committed';
+    try{
+     for(const b of belts)root.remove(b.mesh);belts=next;for(const b of belts)b.mesh.visible=flexibleVisible;if(belts.length)root.add(...belts.map(b=>b.mesh));
+     const hidden=new Set(g?.hidden_module_keys||[]);
+     for(const p of cache.values())if(p.loaded){const a=p.loaded;a.root.visible=ids.includes(a.id);for(const e of a.entries)e.mesh.visible=!hidden.has(e.row.key)}
+     active=g?variant:null;root.visible=!!g;setPalette(palette);setDelta(delta);
+    }catch(error){rollback();throw error}
+   },
+   rollback,
+   finish(){if(phase!=='committed')throw Error('Gantry transaction not committed');disposeBelts(previous.belts);phase='finished'},
+   get phase(){return phase}
+  };
  }
- return {root,cache,install,setDelta,setPalette,setFlexibleVisible,get active(){return active},get belts(){return belts}};
+ async function install(variant){const staged=await prepare(variant);try{staged.commit();staged.finish()}catch(error){staged.rollback();throw error}}
+
+ return {root,cache,install,prepare,setDelta,setPalette,setFlexibleVisible,get cleanupErrors(){return [...cleanupErrors]},get active(){return active},get belts(){return belts}};
+
 }
 
 export function stockGantryVisibility(nodes){
