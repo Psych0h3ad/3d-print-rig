@@ -1,5 +1,19 @@
 # 出典と配布条件
 
+## UI設計の参考資料
+
+Layoutの余白、寸法フィールド、プリセットの選択表示と文脈に応じたパネル構成は、
+Damir Sokolovsky（@heydamir）の[unslop](https://github.com/heydamir/unslop)
+の設計指針を参考に、本アプリ用に調整しています。
+参考資料のライセンスは[CC BY 4.0](https://github.com/heydamir/unslop/blob/main/LICENSE)です。
+原資料の画像、動画、実行スクリプトは同梱していません。
+
+操作への即応、不要なアニメーションの削減、長いラベルの検査には
+Emil Kowalskiの[Skills for Designers and Engineers](https://github.com/emilkowalski/skills)
+を参考にしています。Copyright (c) 2026 Emil Kowalski、
+[MIT License](https://github.com/emilkowalski/skills/blob/main/LICENSE)。
+本アプリの3Dモデルには、それぞれの出典の条件が引き続き適用されます。
+
 各CAD・Modのライセンスは個別に適用されます。ビューアー全体や全モデルを一括でGPLまたはMITとして扱いません。
 使用形状の取得版と、原設計を照合した参考commitを区別しています。SIBOOR取得CADの版はSHA256で識別します。
 

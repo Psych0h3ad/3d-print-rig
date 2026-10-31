@@ -13,6 +13,15 @@ mobile controls.
 The planner is an alpha. Full-model PNG rendering uses registered defaults.
 Placement uses the registered static printer envelopes.
 
+Opening tools keep the floor plan visible while dimensions are edited in the
+right settings panel. Select Window, Hinged, Sliding or Ventilation fan, choose
+a size preset or enter exact dimensions, then click a wall. The active preset
+is marked; custom dimensions leave the presets unselected. Lower-edge height
+is measured from the floor and is omitted for doors. Keep placing retains the
+tool for another placement. Cancel or Escape exits the tool without removing
+openings already placed. Switching a settings tab exits placement and restores
+the normal panel. These preferences do not change the saved plan format.
+
 Placement shows simplified printer silhouettes: frames, beds, toolheads and
 major body panels. Geometry is shared between copies of the same printer, and
 small hardware and wiring are omitted. These shapes help identify machines;

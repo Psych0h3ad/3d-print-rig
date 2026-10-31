@@ -115,8 +115,8 @@ test('changed furniture selection and missing/deleted openings never resurrect t
   assert.deepEqual(f.actions,[]);f.unchanged();return f;
 });
 
-test('legacy placement stays under Room and cancels once when selecting properties or opening the catalog',()=>{
-  const f=fixture();for(const motion of ['hinged','sliding','hinged']){f.ui.setOpeningTool({kind:'door',motion});assert.equal(f.find('#layout-nav-room').hidden,false);assert.equal(f.find('#layout-opening-editor').hidden,true);}
+test('placement setup replaces Room contents and cancels once when selecting properties or opening the catalog',()=>{
+  const f=fixture();for(const motion of ['hinged','sliding','hinged']){f.ui.setOpeningTool({kind:'door',motion});assert.equal(f.find('#layout-nav-room').hidden,true);assert.equal(f.ui.openingPlacementContainer.hidden,false);assert.equal(f.ui.openingPlacementContainer.parentNode,f.find('#layout-nav-room').parentNode);assert.equal(f.find('#layout-tab-room').getAttribute('aria-selected'),'true');assert.equal(f.find('#layout-opening-editor').hidden,true);}
   assert.deepEqual(f.actions,[]);f.ui.setOpeningSelection('window');assert.equal(f.find('#layout-nav-selection').hidden,false);assert.equal(f.find('#layout-opening-editor').hidden,false);
   assert.deepEqual(f.actions,[{type:'room-opening-select'}]);
   f.ui.setOpeningTool({kind:'window'});assert.equal(f.ui.openPrinterCatalog(),true);assert.equal(f.find('#layout-nav-add').hidden,false);
