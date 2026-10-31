@@ -265,8 +265,8 @@
     },
     {
       "path": "docs/LAYOUT_PLANNER.md",
-      "bytes": 21911,
-      "sha256": "5fe68f3db83dd3676a367fdf3a008cc30aa2e8ead9e874ccd9a5b23fe8ed620c"
+      "bytes": 22531,
+      "sha256": "cb9e53852597ab021b7f5d9144a99456df0a8f9634af5865d7b94f7fef05d733"
     },
     {
       "path": "docs/MACHINE_REVIEW.md",
@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1263206,
-      "sha256": "a44387dca10ad7d1567785f71023c8c933da877e325b81566ca431c53e91154d"
+      "bytes": 1264666,
+      "sha256": "7124306f2240134899d45d59d278671fa5eadad389a33164fe6cd3745b962098"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -480,8 +480,8 @@
     },
     {
       "path": "docs/THIRD_PARTY_NOTICES.md",
-      "bytes": 69990,
-      "sha256": "4a0fed6dc723fbe90235a74f2c64a8fa68c5e5740d3194c28c2cacd6a070191f"
+      "bytes": 70907,
+      "sha256": "b6a08ca2799992d8b84c0c46eeec1ff04510c9428bdb670a3826462805ed2fe8"
     },
     {
       "path": "docs/TRANSLATING.md",
@@ -2115,8 +2115,8 @@
     },
     {
       "path": "scripts/test_layout_opening_blueprint.mjs",
-      "bytes": 6468,
-      "sha256": "4c4e8de53d8ff08b0ad46678195ce0ed124541f5af41832c5fc6d5cf64530c66"
+      "bytes": 6781,
+      "sha256": "bd0fc64c4eb15dc8ae05d0c282b4d8d3847740faf03df619ad8b07cae53d8c2b"
     },
     {
       "path": "scripts/test_layout_opening_export.mjs",
@@ -2125,8 +2125,8 @@
     },
     {
       "path": "scripts/test_layout_opening_interaction.mjs",
-      "bytes": 11526,
-      "sha256": "f4abe5c511359e199cee2b353e967d669170fe0c8ef7e31af60ce4c350644f20"
+      "bytes": 11888,
+      "sha256": "e9c086d5d7323a5745a405429af2692ed1f6aa0f64dee300dbea4273f0335847"
     },
     {
       "path": "scripts/test_layout_opening_resize.mjs",
@@ -2280,8 +2280,8 @@
     },
     {
       "path": "scripts/test_layout_workflow_ui.mjs",
-      "bytes": 15180,
-      "sha256": "05e741b9aa63850206d98107395d330dd9e8d370cdcd774992b7acbcda33aa3b"
+      "bytes": 15414,
+      "sha256": "bbe8616fb116b14a1f0c41130ac350ecba0531505146236763095385c34053e9"
     },
     {
       "path": "scripts/test_led_brightness.mjs",
@@ -5680,13 +5680,13 @@
     },
     {
       "path": "site/layout/index.html",
-      "bytes": 10797,
-      "sha256": "5baf8289c3a76a7a2c85428f857eb50b79880511d03cb8c3d94287faedac2713"
+      "bytes": 10740,
+      "sha256": "238ccfb539dad4616c80adbfbc8feef920b987322ea37c7d6e3a1a1e372a70d9"
     },
     {
       "path": "site/layout/layout-app.mjs",
-      "bytes": 51079,
-      "sha256": "fd6459a3873b347373a91b668f6e964e919d24d412c05d531198aab13b68be04"
+      "bytes": 51077,
+      "sha256": "f4426030685d1c582a689a0805eb441a8084aab5bb6dac939aaf072aa0f92116"
     },
     {
       "path": "site/layout/layout-biqu-appearance.mjs",
@@ -5795,13 +5795,13 @@
     },
     {
       "path": "site/layout/layout-opening-blueprint.css",
-      "bytes": 2576,
-      "sha256": "aa2867d07d2fafd59d58f581e61672893be19b67e94eec12225910e10cfaf0d3"
+      "bytes": 2950,
+      "sha256": "3d0edd2a85edf47c654caa7054815b499113a2505353d0eacccc164b978a8a00"
     },
     {
       "path": "site/layout/layout-opening-blueprint.mjs",
-      "bytes": 5030,
-      "sha256": "abd363e8e09ad296a98ecb48ce732d9fcbdabdb324330b057155458c3a7ce38c"
+      "bytes": 5299,
+      "sha256": "9f00a849e44af23d5fa39bad9242ab6433fbbfdfc2c4ddcfe173d4b0f69faa79"
     },
     {
       "path": "site/layout/layout-opening-handles.css",
@@ -5910,8 +5910,8 @@
     },
     {
       "path": "site/layout/layout-ui.mjs",
-      "bytes": 80617,
-      "sha256": "9840bdc0d247cf8e59b22cb1ccf73f3954c5737e4cf8bc402fb6d2804700e548"
+      "bytes": 80986,
+      "sha256": "a80118a3a73b1b5504eee31185269b7f700d12f0bed73c05c8b202175edd7f64"
     },
     {
       "path": "site/layout/layout-wall-rotation.mjs",
@@ -5945,8 +5945,8 @@
     },
     {
       "path": "site/layout/layout.css",
-      "bytes": 36543,
-      "sha256": "80028f7cae033933fc0c8cf08494350f6561a9ba06034ac3833f896db7ab2e19"
+      "bytes": 36654,
+      "sha256": "81e9e1476f6bc3a00acaea88dd68ef224a06c767b39bcb0534f11417c0431b31"
     },
     {
       "path": "site/licenses/a4t_machine/LICENSE",

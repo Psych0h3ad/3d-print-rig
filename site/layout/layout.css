@@ -2,16 +2,16 @@
   font-family: Inter, 'Segoe UI', 'Yu Gothic UI', sans-serif;
   font-size: 14px;
   color: #293b49;
-  background: #edf2f6;
+  background: #eef0f1;
   color-scheme: light;
   --paper: #ffffff;
-  --line: #dbe3eb;
-  --muted: #5e7080;
-  --ink: #253c4e;
+  --line: #d7dee0;
+  --muted: #596c75;
+  --ink: #253940;
   --accent: #246f82;
-  --layout-soft: #f2f6f9;
-  --layout-selected: #e5f1f5;
-  --layout-scene: #e7edf3;
+  --layout-soft: #f3f5f5;
+  --layout-selected: #e7f0f2;
+  --layout-scene: #e9edef;
   --layout-warn: #89601e;
   --layout-error: #b34343;
   --layout-action: #246c80;
@@ -26,14 +26,14 @@ body.night, :root[data-theme="dark"] {
   color-scheme: dark;
   color: #dce5ee;
   background: #111a24;
-  --paper: #192430;
-  --line: #334556;
-  --muted: #a3b4c4;
-  --ink: #dce8f3;
+  --paper: #1c262b;
+  --line: #36474e;
+  --muted: #a8b8bf;
+  --ink: #e2eaec;
   --accent: #8dccd7;
-  --layout-soft: #202f3e;
-  --layout-selected: #284653;
-  --layout-scene: #16222f;
+  --layout-soft: #232f35;
+  --layout-selected: #29464f;
+  --layout-scene: #172329;
   --layout-warn: #e5c380;
   --layout-error: #f3a3a3;
   --layout-action: #8dccd7;
@@ -140,8 +140,8 @@ button[aria-pressed="true"] { background: var(--layout-selected); border-color: 
 .layout-action-spacer { flex: 1; }
 .layout-plan-actions button { min-height: 32px; }
 .layout-plan-actions, .layout-workspace-notices, .layout-workspace-tabs, .layout-workspace-progress { flex: 0 0 auto; }
-.layout-workspace-tabs { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; padding: 5px 8px; border-bottom: 1px solid var(--line); background: var(--paper); }
-.layout-workspace-tabs button { min-width: 0; min-height: 32px; padding: 6px 3px; font-size: 11px; overflow-wrap: anywhere; border-color: transparent; }
+.layout-workspace-tabs { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 4px; padding: 8px; border-bottom: 1px solid var(--line); background: var(--paper); }
+.layout-workspace-tabs button { min-width: 0; min-height: 36px; padding: 8px 4px; font-size: 12px; overflow-wrap: anywhere; border-color: transparent; }
 .layout-workspace-tabs button[aria-selected="true"] { border-color: var(--accent); color: var(--ink); background: var(--layout-selected); }
 .layout-workspace-panels { flex: 1 1 0; min-height: 0; min-width: 0; overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; background: var(--paper); }
 .layout-workspace-progress { padding: 8px 12px; border-top: 1px solid var(--line); background: var(--paper); max-height: 32%; overflow: auto; }
@@ -390,15 +390,16 @@ input[aria-invalid="true"] { border-color: var(--layout-error); }
 .layout-opening-button { width: 100%; border: 1px solid var(--line); background: var(--paper); }
 .layout-opening-button[aria-pressed="true"] { background: var(--layout-selected); border-color: var(--accent); color: var(--accent); }
 .layout-opening-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.layout-opening-editor { margin-top: 8px; padding: 10px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--layout-soft); scroll-margin-top: 44px; }
+.layout-opening-editor { margin-top: 8px; padding: 0; border: 0; border-radius: 0; background: transparent; scroll-margin-top: 44px; }
 #layout-nav-selection > .layout-opening-editor { margin-top: 0; }
-.layout-opening-editor h4 { margin: 0 0 10px; color: var(--ink); font-size: 12px; }
-.layout-opening-group { min-width: 0; margin: 8px 0 0; padding: 8px 0 0; border: 0; border-top: 1px solid var(--line); }
+.layout-opening-editor h4 { margin: 0 0 16px; color: var(--ink); font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+.layout-opening-group { min-width: 0; margin: 16px 0 0; padding: 12px 0 0; border: 0; border-top: 1px solid var(--line); }
 .layout-opening-group legend { padding: 0 6px 0 0; color: var(--ink); font-size: 12px; font-weight: 600; }
 .layout-opening-group > .layout-field { margin-bottom: 10px; }
 .layout-opening-editor > .layout-field { margin-bottom: 10px; }
 .layout-opening-fields { margin-bottom: 10px; }
 .layout-opening-fields > .layout-field { min-width: 0; }
+.layout-opening-editor input[type="number"],.layout-opening-editor select{min-height:40px;font-size:13px;font-variant-numeric:tabular-nums}
 .layout-opening-wall-coordinates { margin-top: 5px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
 .layout-opening-editor > .layout-delete { margin-top: 8px; }
 .layout-opening-position { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }

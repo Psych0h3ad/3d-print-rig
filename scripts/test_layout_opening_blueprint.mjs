@@ -53,9 +53,10 @@ for(const lang of supportedLanguages)test(lang+': actual blueprint DOM, preset, 
   const doc=new TestDocument(),container=doc.createElement('div'),actions=[],t=createLayoutTranslator(lang);
   const ui=createOpeningBlueprint({container,t,onAction:a=>actions.push(a)}),tool={kind:'window'},draft=defaultOpeningDraft(room,'window');
   ui.setState({tool,draft,repeat:false,valid:true});assert.equal(container.hidden,false);assert(!container.textContent.includes('layout.openings.'));
-  const preset=container.querySelector('#layout-opening-blueprint-preset');preset.value='600x600';preset.dispatch('change');assert.deepEqual(actions.at(-1).draft,{widthMm:600,heightMm:600,sillMm:900});
+  const preset=container.querySelector('[data-opening-preset="600x600"]');preset.click();assert.deepEqual(actions.at(-1).draft,{widthMm:600,heightMm:600,sillMm:900});
+  doc.activeElement=preset;ui.setState({tool,draft:{...draft,widthMm:600,heightMm:600},valid:true});assert.equal(container.querySelector('[data-opening-preset="600x600"]'),preset,'Draft mirroring must not replace a focused preset');assert.equal(preset.getAttribute('aria-pressed'),'true');
   const width=container.querySelector('#layout-opening-blueprint-widthMm');width.value='';width.dispatch('input');assert(Number.isNaN(actions.at(-1).draft.widthMm));
-  doc.activeElement=width;ui.setState({tool,draft:{...draft,widthMm:NaN},valid:false});assert.equal(width.value,'');assert.equal(container.querySelector('#layout-opening-blueprint-error').hidden,false);
+  doc.activeElement=width;ui.setState({tool,draft:{...draft,widthMm:NaN},valid:false});assert.equal(width.value,'');assert.equal(container.querySelector('#layout-opening-blueprint-error').hidden,false);assert.equal(preset.getAttribute('aria-pressed'),'false');
   ui.setState({tool:{kind:'door',motion:'sliding'},draft:{widthMm:900,heightMm:2100,sillMm:0},repeat:true,valid:true});
   assert.equal(container.querySelector('#layout-opening-blueprint-sillMm').parentNode.parentNode.hidden,true);
   const keep=container.querySelector('#layout-opening-blueprint-repeat');assert(keep.checked);keep.checked=false;keep.dispatch('change');assert.equal(actions.at(-1).draft.sillMm,0);

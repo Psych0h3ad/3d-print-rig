@@ -440,7 +440,9 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
   function revealOpening(){showPanel('selection');setBrowserExpanded(false);panelHost.scrollTop=0;}
   function setOpeningTool(tool){
     if(disposed||JSON.stringify(tool)===JSON.stringify(openingTool))return;
-    openingTool=tool;if(tool){openingId=null;showPanel('room');setBrowserExpanded(false);panelHost.scrollTop=0;}
+    openingTool=tool;openingPlacementContainer.hidden=!tool;
+    if(tool){openingId=null;showPanel('room');setBrowserExpanded(false);panelHost.scrollTop=0;}
+    else if(panels.has(activePanel))panels.get(activePanel).hidden=false;
     refreshOpenings();refreshOpeningValues();refreshStatus();releaseDetachedControls();
   }
   function clearOpeningSelection(){
@@ -555,6 +557,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
   const manufacturerDetails=el('details','layout-add-help');manufacturerDetails.append(copy(el('summary'),'layout.manufacturer.title'),manufacturerNote);addSection.append(manufacturerDetails);
   const tabs=el('div','layout-workspace-tabs');tabs.setAttribute('role','tablist');tabs.dataset.layoutLabel='layout.settings';tabs.setAttribute('aria-label',tr('layout.settings'));
   const panelHost=el('div','layout-workspace-panels'),outputPanel=el('div','layout-output-panel');outputPanel.append(renderSection,warningSection,scope);
+  const openingPlacementContainer=el('div','layout-opening-placement');openingPlacementContainer.id='layout-opening-blueprint';openingPlacementContainer.hidden=true;panelHost.append(openingPlacementContainer);
   for(const [name,target]of [['selection',editorSection],['add',addSection],['room',roomSection],['output',outputPanel]]){
     target.id=`layout-nav-${name}`;target.setAttribute('role','tabpanel');target.setAttribute('aria-labelledby',`layout-tab-${name}`);panels.set(name,target);
     const tab=button(`layout.nav.${name}`,()=>showPanel(name));tab.id=`layout-tab-${name}`;tab.dataset.layoutTab=name;tab.setAttribute('role','tab');tab.setAttribute('aria-controls',target.id);
@@ -583,7 +586,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
     const changed=name!==activePanel;
     if(changed)panelScrolls.set(activePanel,panelHost.scrollTop||0);
     activePanel=name;
-    for(const [key,panel]of panels){panel.hidden=key!==name;const tab=tabButtons.get(key);tab.setAttribute('aria-selected',String(key===name));tab.tabIndex=key===name?0:-1;}
+    for(const [key,panel]of panels){panel.hidden=key!==name||!!openingTool;const tab=tabButtons.get(key);tab.setAttribute('aria-selected',String(key===name));tab.tabIndex=key===name?0:-1;}
     // Restore after showing the destination so its own content bounds scrolling.
     if(changed)panelHost.scrollTop=panelScrolls.get(name)||0;
   }
@@ -975,7 +978,7 @@ export function createLayoutUI({container, onAction, t, catalog = [], onReveal =
   return Object.freeze({update,setStatus,setProjection,setLocale,setGroupLibrary,
     refreshBuildTools(){if(!disposed)onToolsRefresh();},
     handleBuildToolKey(event){return !disposed&&!status.busy&&!!onBuildToolKey(event);},
-    setOpeningTool,
+    setOpeningTool,openingPlacementContainer,
     clearOpeningSelection,
     setOpeningSelection(id){if(disposed||status.busy)return;openingId=id;refreshOpenings();refreshOpeningValues();refreshStatus();if(selectedOpening())revealOpening();releaseDetachedControls();},
     getPickedRootIds:()=>[...pickedRoots],setPickedRootIds,focusObjectSearch,focusSelection,openPrinterCatalog,dispose});

@@ -1,7 +1,7 @@
 import {createDefaultLayout,createDesk,createShelf,createPopStation,createBiquPopStation,createCatalog,applyAction,applyWorldMove,resolveWorldMove,resolveWorldRotation,resolveSupportedPrinterRotation,placementViolations,deriveScene,worldTransform,validatePlacement,serializeLayout,parseLayout,getPopStationMigrations} from './layout-state.mjs?v=2dc1141b4d0cc422359d';
 import {equipmentRows} from './layout-equipment.mjs?v=1a44b9490add3138ce6b';
 import {prepareLayoutEquipmentPreview,needsEquipmentPreview,isEquipmentPreviewPreparedFor as isLayoutEquipmentPreviewPrepared} from './layout-equipment-preview.mjs?v=de6ed3b47a406e5c653a';
-import {createLayoutUI} from './layout-ui.mjs?v=9840bdc0d247cf8e59b2';
+import {createLayoutUI} from './layout-ui.mjs?v=a80118a3a73b1b5504ee';
 import {setupLayoutLanguage} from './layout-language.mjs?v=f89ce10de9331ed1ef8a';
 import {proposePlacement} from './layout-placement.mjs?v=53172fdff41bb36cf9b0';
 import {renameGroup,ungroup,removeGroup,groupInfo,transformGroup,resolveGroupMove,resolveGroupRotation,
@@ -11,7 +11,7 @@ import {placementStatus} from './layout-placement-feedback.mjs?v=73136a36732bf20
 import {readDisplay,saveDisplay,applyDisplay} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {createLayoutBuildToolbar} from './layout-build-toolbar.mjs?v=2b5ab25b637195f494e3';
 import {newRoomOpening} from './layout-openings.mjs?v=205557f45ffa9cc712d2';
-import {createOpeningBlueprint} from './layout-opening-blueprint.mjs?v=abd363e8e09ad296a98e';
+import {createOpeningBlueprint} from './layout-opening-blueprint.mjs?v=9f00a849e44af23d5fa3';
 import {setupLayoutPanel} from './layout-panel-layout.mjs?v=c906e5c42cb851e1813e';
 
 const storageKey='3d-print-rig-layout-v2',legacyStorageKey='3d-print-rig-layout-v1',maxFileBytes=2*1024*1024;
@@ -569,7 +569,7 @@ async function start(){
   ui.setStatus({canPaste:true});
   panelLayout=setupLayoutPanel({document,window,t:language.t});
   refreshGroupLibrary();
-  openingBlueprint=createOpeningBlueprint({container:$('#layout-opening-blueprint'),onAction:act,t:language.t});
+  openingBlueprint=createOpeningBlueprint({container:ui.openingPlacementContainer,onAction:act,t:language.t});
   view=createLayoutRenderer({container:$('#layout-scene'),catalog:rows,t:language.t,onSelect:select,onPick:pick,onOpeningSelect:id=>selectOpening(id),onOpeningCommit:change=>changeOpening(change),onOpeningToolChange:(tool,settings)=>{activeOpeningTool=tool;openingBlueprint?.setState({tool,...settings});ui?.setOpeningTool?.(tool);ui?.refreshBuildTools?.();},onMove:worldMove,constrainMove,onRotate:worldRotate,constrainRotate,onPlacementMove:previewPlacement,onPlacementCommit:placeProposal,onViewChange:updateViewPresentation,onError:error=>message(()=>humanError(error),true)});
   if($('#layout-build-tools'))buildTools=createLayoutBuildToolbar({container:$('#layout-build-tools'),onAction:act,t:language.t});
   sync();if(getPopStationMigrations(state).length)message(()=>t('layout.popStationReplaced'));view.view('perspective');document.addEventListener('keydown',historyKey);document.addEventListener('keydown',placementKey);document.addEventListener('copy',copyEvent);document.addEventListener('paste',pasteEvent);
