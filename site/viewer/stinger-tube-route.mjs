@@ -1,5 +1,5 @@
 import {Vector3,CurvePath,LineCurve3} from './vendor-r180/three.module.js';
-import {serviceBow} from './micron-tube-routes.mjs?v=7d2e3d67679db40ea5f1';
+import {serviceBow} from './micron-tube-routes.mjs?v=42301291ca24b3c155be';
 
 // End-face centres and fitting normal from the pinned native CAD. The author's
 // toolhead guide specifies a 600 mm reverse Bowden, longer than its CAD sweep.

@@ -53,7 +53,7 @@ export const micronTubeSpecs=[
 export const micronRoutePoint=([x,y,z])=>new Vector3(x/1000,z/1000,-y/1000);
 const add=(a,b,s=1)=>a.map((v,i)=>v+b[i]*s);
 export function micronTubeRoute(spec,delta){
- if(delta.length!==3||!delta.every(Number.isFinite))throw Error('Invalid Micron tube pose');
+ if(delta?.length!==3||![0,1,2].every(i=>Number.isFinite(delta[i])))throw Error('Invalid Micron tube pose');
  const start=add(spec.start_mm,delta),end=add(spec.end_mm,spec.end_motion==='fixed'?[0,0,0]:[0,0,delta[2]]);
  const exit=add(start,spec.start_axis,spec.start_straight_mm),entry=add(end,spec.end_axis,-spec.end_straight_mm);
  const curve=new CurvePath(),line=(a,b)=>curve.add(new LineCurve3(micronRoutePoint(a),micronRoutePoint(b)));
@@ -71,7 +71,8 @@ export function micronTubeRoute(spec,delta){
   cubic(corner,add(corner,[k,0,0]),add(turn,[0,k,0]),turn);
   line(turn,end);
  }else{
-  // Cable stays coaxial through the entire PUG and the tilted PG9 gland.
+  // Nominal PUG/PG9 tangent preview; these straight spans are not certified
+  // insertion, gripping or service lengths.
   const handle=Math.max(130,Math.hypot(exit[0]-entry[0],exit[1]-entry[1])*.7);
   cubic(exit,add(exit,spec.start_axis,handle),add(entry,spec.end_axis,-handle),entry);
   line(entry,end);

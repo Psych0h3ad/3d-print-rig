@@ -13,7 +13,7 @@ import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
-import {createCommunityAdapter} from './community-adapter.mjs?v=611339ada395324d092b';
+import {createCommunityAdapter} from './community-adapter.mjs?v=bf2f8389de9daf3045e7';
 import {setupNativeMotionControls} from './native-motion-controls.mjs?v=6717552a68f8a91b3de2';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');

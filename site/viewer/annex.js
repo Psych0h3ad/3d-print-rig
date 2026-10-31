@@ -14,7 +14,7 @@ import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
-import {createCommunityAdapter} from './community-adapter.mjs?v=611339ada395324d092b';
+import {createCommunityAdapter} from './community-adapter.mjs?v=bf2f8389de9daf3045e7';
 import {setupNativeMotionControls} from './native-motion-controls.mjs?v=6717552a68f8a91b3de2';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
