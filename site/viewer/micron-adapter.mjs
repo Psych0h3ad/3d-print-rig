@@ -3,7 +3,9 @@ import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {createPaletteController} from './palette-controller.mjs?v=ee8e97d84186af0fe8a0';
 import {micronHardwareColors} from './micron-native-materials.mjs?v=55b8c3644415d202fa4a';
 import {createMicronBelts} from './micron-belts.mjs?v=b786cde8a5ef24666fe2';
-import {createMicronFlexible} from './micron-flexible.mjs?v=c5bb8adda6d77818d988';
+import {createMicronFlexible} from './micron-flexible.mjs?v=bcd319c6ee8b160c9d8e';
+import {validateMicronTubeBindings} from './micron-tube-bindings.mjs?v=a7589691b354aaef29d3';
+import {micronTubeSpecs} from './micron-tube-routes.mjs?v=42301291ca24b3c155be';
 export const cadToGlb = ([x,y,z]) => [x / 1000, z / 1000, -y / 1000];
 export const corexyDelta = ([x,y]) => ({a_mm: x + y, b_mm: x - y});
 export const corexyInverse = (a,b) => [(a + b) / 2, (a - b) / 2];
@@ -39,6 +41,7 @@ export function createMicronAdapter(root, manifest, profile) {
   });
   const missing = [...records.keys()].filter(k => !nodes.has(k));
   if (missing.length) throw new Error(`Missing ${missing.length} parts`);
+  if(profile.machine_id==='micron_plus_r1_180')validateMicronTubeBindings(nodes,records,micronTubeSpecs);
   const nativeMaterials=new Map(Object.entries(micronHardwareColors[profile.machine_id]).filter(([key])=>records.has(key)));
   for(const [key,material]of nativeMaterials){const source=records.get(key)?.source;if(!source||source.commit!=='f76aa28767211ddfee2e30290aadcea3c45f8513'||source.source_key!==material.source_key||source.cache_machine!==material.cache_machine)throw Error('Micron native material identity mismatch');}
   const paletteController=createPaletteController(nodes,records,{materialOverrides:nativeMaterials});

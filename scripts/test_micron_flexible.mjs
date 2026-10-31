@@ -3,6 +3,7 @@ import {BufferGeometry,Float32BufferAttribute,Group,Mesh,MeshStandardMaterial} f
 import {createMicronFlexible} from '../site/viewer/micron-flexible.mjs';
 import {micronChainPins} from '../site/viewer/micron-flexible-pins.mjs';
 import {micronTubeSpecs} from '../site/viewer/micron-tube-routes.mjs';
+import {addMicronTubeFixtureBindings} from './micron-flexible-test-fixtures.mjs';
 
 // Lifecycle fixtures only: identity/buffer preservation, not source fit or clearance.
 const nodes=new Map(),records=new Map(),leaves=[],material=new MeshStandardMaterial();
@@ -20,12 +21,19 @@ for(const spec of micronTubeSpecs){
   original.addEventListener('dispose',()=>leaf.sourceDisposals++);leaves.push(leaf);
  }
 }
+addMicronTubeFixtureBindings(nodes,records);
 const flexible=createMicronFlexible(nodes,records,{machine_id:'micron_plus_r1_180'});
 function assertNative(state){
  assert.equal(state.tubes.length,micronTubeSpecs.length);
  for(const [i,tube]of state.tubes.entries()){
   assert.equal(tube.native_geometry,true);
-  assert.deepEqual(tube.endpoints_mm,[micronTubeSpecs[i].start_mm,micronTubeSpecs[i].end_mm]);
+  assert.deepEqual(tube.routing_datums_mm,[micronTubeSpecs[i].start_mm,micronTubeSpecs[i].end_mm]);
+  if(tube.key==='m180_01768'){
+   assert.equal(tube.endpoint_basis,'source_outer_cap_centers');
+   assert.deepEqual(tube.endpoints_mm,[[20.132155866669876,16.964916233959276,184.79862459683233],[75.83447820320578,138.03515200420597,166.7916868833239]]);
+  }else{
+   assert.equal(tube.endpoint_basis,'unmeasured_source_caps');assert.equal(tube.endpoints_mm,null);
+  }
   assert.deepEqual(tube.straight_sections_mm,[],'Do not label preview fitting sections as measured native geometry');
  }
  for(const leaf of leaves){

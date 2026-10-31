@@ -1,15 +1,19 @@
 import {Vector3,TubeGeometry} from './vendor/three.module.js';
 import {bedChainRoute} from './bed-chain.mjs?v=5c6ddd46ac13e6974c73';
 import {micronChainPins} from './micron-flexible-pins.mjs?v=motion-colors-41';
-import {micronTubeSpecs,micronTubeRoute} from './micron-tube-routes.mjs?v=7d2e3d67679db40ea5f1';
+import {micronTubeSpecs,micronTubeRoute} from './micron-tube-routes.mjs?v=42301291ca24b3c155be';
+import {validateMicronTubeBindings,micronNativeTubeEndpoints} from './micron-tube-bindings.mjs?v=a7589691b354aaef29d3';
 
 const point=([x,y,z])=>new Vector3(x/1000,z/1000,-y/1000);
-// Endpoint bores and straight insertion sections follow their owning parts.
+// Nominal bore datums follow checked source owners. Straight preview sections
+// are not measured insertion or holding lengths.
 // Moving free loops remain routing previews: service length/clearance unverified.
 // At source reset retain the authored meshes, including the fixed rear passage.
 
 export function createMicronFlexible(nodes,records,profile){
  const plus=profile.machine_id===micronChainPins.machine,axis=new Vector3(0,0,1),keys=new Set();
+ // Validate every route before cloning materials or mutating any source leaf.
+ if(plus)validateMicronTubeBindings(nodes,records,micronTubeSpecs);
  const chain=plus?micronChainPins.links.map(pin=>{
   const node=nodes.get(pin.key),row=records.get(pin.key);if(!node||!row)throw Error('Missing Micron chain link '+pin.key);keys.add(pin.key);
   const y=(row.bounds_mm[0][1]+row.bounds_mm[1][1])/2,from=point([pin.from_xz_mm[0],y,pin.from_xz_mm[1]]);
@@ -24,7 +28,7 @@ export function createMicronFlexible(nodes,records,profile){
  const fixed=[...records].filter(([k,r])=>r.motion==='reference_flexible'&&r.source?.assembly_path?.includes('Bed_Assembly v9:1')&&r.name==='Wire').map(([k])=>{keys.add(k);return nodes.get(k)});
  let lastZ,route,lastDelta='',tubeState=[];
  function update(delta,visible){
-  if(delta.length!==3||!delta.every(Number.isFinite))throw Error('Invalid Micron tube pose');
+  if(delta?.length!==3||![0,1,2].every(i=>Number.isFinite(delta[i])))throw Error('Invalid Micron tube pose');
   const atReference=delta.every(v=>Math.abs(v)<1e-6),deltaKey=atReference?'native':delta.join(',');
   const z=delta[2],active=Boolean(visible);
   if(chain.length&&z!==lastZ){
@@ -47,7 +51,11 @@ export function createMicronFlexible(nodes,records,profile){
     }
     t.node.position.copy(t.origin);
     // Preview straight sections do not describe the restored source geometry.
-    tubeState.push({key:t.key,endpoints_mm:route?.endpoints_mm??[t.start_mm.slice(),t.end_mm.slice()],straight_sections_mm:route?.straight_sections_mm??[],outer_diameter_mm:t.radius_mm*2,native_geometry:atReference});
+    const nativeEndpoints=atReference?micronNativeTubeEndpoints(t.key):null;
+    tubeState.push({key:t.key,endpoints_mm:route?.endpoints_mm??nativeEndpoints,
+     endpoint_basis:route?'display_route':nativeEndpoints?'source_outer_cap_centers':'unmeasured_source_caps',
+     routing_datums_mm:[t.start_mm.slice(),t.end_mm.slice()],
+     straight_sections_mm:route?.straight_sections_mm??[],outer_diameter_mm:t.radius_mm*2,native_geometry:atReference});
    }
    lastDelta=deltaKey;
   }else for(const t of tubes)t.node.position.copy(t.origin);

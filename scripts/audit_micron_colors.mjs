@@ -100,7 +100,7 @@ const codePaths=['scripts/audit_micron_colors.mjs','scripts/test_appearance_role
  'site/viewer/appearance-role.mjs','site/viewer/palette-controller.mjs',
  'site/viewer/micron-adapter.mjs','site/viewer/micron-native-materials.mjs',
  'site/viewer/micron-belts.mjs','site/viewer/micron-flexible.mjs',
- 'site/viewer/micron-flexible-pins.mjs','site/viewer/micron-tube-routes.mjs',
+ 'site/viewer/micron-flexible-pins.mjs','site/viewer/micron-tube-routes.mjs','site/viewer/micron-tube-bindings.mjs',
  'site/viewer/v0-belts.mjs','site/viewer/bed-chain.mjs',
  'site/viewer/vendor/GLTFLoader.js','site/viewer/vendor/three.module.js'];
 const umbilicalKey='m180_01768';
@@ -175,10 +175,13 @@ function posesFor(profile){
  return [ref,...forward,...forward.toReversed(),ref];
 }
 
-export async function auditMicronColors(root,outputPath){
+export async function auditMicronColors(root,outputPath,{machineIds=ids}={}){
+ assert(Array.isArray(machineIds),'Explicit Micron machine list required');
+ const selectedIds=Array.from(machineIds);
+ assert(selectedIds.length&&new Set(selectedIds).size===selectedIds.length&&selectedIds.every(id=>ids.includes(id)),'Missing, duplicate or unregistered Micron audit selection');
  assert(typeof root==='string'&&root.length,'An actual assembled-site root is required');root=path.resolve(root);
  const code_sha256={};for(const relative of codePaths)code_sha256[relative]=sha(await fs.readFile(new URL('../'+relative,import.meta.url)));
- const report={schema:'micron-actual-materials/105',all_passed:false,results:[],failures:[],code_sha256,
+ const report={schema:'micron-actual-materials/106',selected_machines:selectedIds,all_available_micron_machines:ids,all_passed:false,results:[],failures:[],code_sha256,
   classification_runtime_function_sha256:sha(appearanceRole.toString()),adapter_runtime_function_sha256:sha(createMicronAdapter.toString()),
   node_version:process.version,loader_arguments:process.execArgv,
   scope:'Current GLBs and exact reviewed census; attached materials, purchased PBR, anonymous printed roles, contrasting/reverse palettes, XYZ min/max/mid/reference and rigid native reset. Frozen role census is not a complete source STL/native-solid proof.',
@@ -203,7 +206,7 @@ export async function auditMicronColors(root,outputPath){
    assert.deepEqual(JSON.parse(bytes).machines.map(m=>m.id).sort(),registered,'Missing or unregistered actual Micron model');
   }
   const verifyBody=(id,name,bytes)=>{if(deliveryPins){const pin=deliveryPins.get(`machines/${id}/${name}`);assert(pin,'Missing approved Micron body');assert.equal(bytes.length,pin.bytes);assert.equal(sha(bytes),pin.sha256);}};
-  for(const id of ids){
+  for(const id of selectedIds){
    let scene;
    try{
     const dir=path.join(root,'machines',id),manifestBytes=await fs.readFile(path.join(dir,'assembly_manifest.json')),profileBytes=await fs.readFile(path.join(dir,'machine_profile.json'));
@@ -222,7 +225,16 @@ export async function auditMicronColors(root,outputPath){
     ({scene}=await new GLTFLoader().parseAsync(buffer,''));
     const sourceMeshes=[],manifestKeys=new Set(manifest.parts.map(p=>p.key));
     scene.traverse(mesh=>{if(!mesh.isMesh)return;const key=meshKey(mesh);assert(manifestKeys.has(key),`Unregistered actual mesh ${key}`);for(const [slot,material]of [].concat(mesh.material).entries())sourceMeshes.push({key,mesh,slot,source:materialState(material),sourceMaterial:material,geometry:mesh.geometry});});
-    const sourceNormalState=auditNormals(scene),adapter=createMicronAdapter(scene,manifest,profile),expected=expectedMicronRoles(id);
+    const sourceNormalState=auditNormals(scene);
+    if(id==='micron_plus_r1_180'){
+     for(const mutate of [p=>p.motion='fixed',p=>p.source.source_key='01766']){
+      const bad=structuredClone(manifest);mutate(bad.parts.find(p=>p.key==='m180_01767'));
+      assert.throws(()=>createMicronAdapter(scene,bad,profile),/Micron tube source binding mismatch/);
+      for(const r of sourceMeshes){assert.equal(r.mesh.geometry,r.geometry);assert.equal([].concat(r.mesh.material)[r.slot],r.sourceMaterial);assertMaterialState(r.sourceMaterial,r.source,'Rejected actual binding mutated source material');}
+     }
+     result.route_binding_rejected_actual_source_variants=2;
+    }
+    const adapter=createMicronAdapter(scene,manifest,profile),expected=expectedMicronRoles(id);
     result.roles=assertMicronRoles(manifest,adapter.records);
     const native=micronHardwareColors[id],rowsByMaterial=new Map(adapter.paletteMaterials.map(r=>[r.material,r]));
     assert.equal(rowsByMaterial.size,adapter.paletteMaterials.length,'Palette shares mutable materials');
@@ -260,7 +272,14 @@ export async function auditMicronColors(root,outputPath){
      adapter.setPalette(palette);
      const states=sourceMeshes.map(r=>r.role&&palette[r.role]?withAppearance(r.initial,{color:new THREE.Color(palette[r.role]).toArray()}):r.initial);
      for(const xyz of poses){
-      adapter.setPose(Object.fromEntries(['x','y','z'].map((axis,i)=>[axis,xyz[i]])));scene.updateMatrixWorld(true);
+      const poseState=adapter.setPose(Object.fromEntries(['x','y','z'].map((axis,i)=>[axis,xyz[i]])));scene.updateMatrixWorld(true);
+      for(const tube of poseState.flexible.tubes){
+       if(!poseState.atReference){assert.equal(tube.endpoint_basis,'display_route');assert.equal(tube.native_geometry,false);assert(tube.endpoints_mm.flat().every(Number.isFinite));}
+       else if(tube.key==='m180_01768'){
+        assert.equal(tube.endpoint_basis,'source_outer_cap_centers');
+        assert.deepEqual(tube.endpoints_mm,[[20.132155866669876,16.964916233959276,184.79862459683233],[75.83447820320578,138.03515200420597,166.7916868833239]]);
+       }else{assert.equal(tube.endpoint_basis,'unmeasured_source_caps');assert.equal(tube.endpoints_mm,null);}
+      }
       for(const [index,r]of sourceMeshes.entries()){
        assertMaterialState([].concat(r.mesh.material)[r.slot],states[index],`${id}/${r.key} attached material at ${xyz}`);renderedChecks++;
       }
@@ -291,12 +310,12 @@ export async function auditMicronColors(root,outputPath){
   }
  }catch(error){report.failures.push({id:'registration_or_catalog',message:error.message});}
  finally{if(!previousProgressEvent)delete globalThis.ProgressEvent;}
- report.all_passed=report.failures.length===0&&report.results.length===ids.length&&report.results.every(r=>r.passed);
+ report.all_passed=report.failures.length===0&&report.results.length===selectedIds.length&&report.results.every(r=>r.passed);
  if(outputPath)await fs.writeFile(outputPath,JSON.stringify(report,null,2)+'\n');
  assert(report.all_passed,`Micron material audit failed: ${report.failures.map(r=>r.id+': '+r.message).join('; ')}`);
  return report;
 }
 
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){
- const report=await auditMicronColors(process.argv[2],process.argv[3]);console.log(JSON.stringify(report));
+ const report=await auditMicronColors(process.argv[2],process.argv[3],process.argv[4]?{machineIds:[process.argv[4]]}:{});console.log(JSON.stringify(report));
 }

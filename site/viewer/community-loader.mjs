@@ -2,7 +2,7 @@ import {loadedPrinterAssetIdentity} from './gcode-loaded-asset-identity.mjs?v=42
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=7483c3e6dfe211e4d6b5';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
-import {createCommunityAdapter} from './community-adapter.mjs?v=611339ada395324d092b';
+import {createCommunityAdapter} from './community-adapter.mjs?v=bf2f8389de9daf3045e7';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {applySwitchwireDisplayDefault} from './switchwire-display-default.mjs?v=1a8f0c90e092e48729af';
 import {applyEvaInstallation} from './eva-installations.mjs?v=4dfad49e1f98d4b5b9f2';
