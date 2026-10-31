@@ -6,7 +6,7 @@ import {workspaceFrame,WorkspaceResizeObserver,workspaceTask} from './workspace-
 import {loadMonolithMachines,stockGantryVisibility} from './monolith-machine.js?v=01d6eb133dc727e3ab5b';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=918b15bc03dc6e671bd4';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import * as THREE from 'three';
 import {loadFrameMods,withFrameMods} from './frame-mods.js?v=5a5c0ed51b0944563616';

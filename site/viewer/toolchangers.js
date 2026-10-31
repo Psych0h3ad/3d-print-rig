@@ -3,7 +3,7 @@ ensureWorkspaceEntry(import.meta.url);
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {setResponsiveAspect} from './responsive-camera.mjs?v=workspace-belts-1';
+import {setResponsiveAspect} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';

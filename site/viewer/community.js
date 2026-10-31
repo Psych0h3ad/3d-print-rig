@@ -5,6 +5,6 @@ ensureWorkspaceEntry(import.meta.url);
 // Select the delegated renderer before importing ordinary community features.
 export async function mount(scope) {
   const machine = new URLSearchParams(location.search).get('machine');
-  if (isElegooMachine(machine)) return (await import('./elegoo.mjs?v=e16cad0e0794f4ebdddf')).mount(scope);
-  return (await import('./community-renderer.mjs?v=9f397e308c3b38f5eb4e')).mount(scope);
+  if (isElegooMachine(machine)) return (await import('./elegoo.mjs?v=f9c462998de3983efad8')).mount(scope);
+  return (await import('./community-renderer.mjs?v=ac1d9696e0804eb08de1')).mount(scope);
 }

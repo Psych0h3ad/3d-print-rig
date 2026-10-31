@@ -11,7 +11,7 @@ import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 export async function mount(scope){
 const $=s=>document.querySelector(s),wanted=new URLSearchParams(location.search).get('machine'),id=['micron_r1_120','micron_plus_r1_180'].includes(wanted)?wanted:'micron_r1_120';
