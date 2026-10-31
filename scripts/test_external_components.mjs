@@ -14,6 +14,8 @@ const library=await import(pathToFileURL(path.join(viewer,'v0-mod-library.mjs'))
 const {componentViews,resolveComponentView,componentViewKeys}=library;
 const {loadExternalComponent}=await import(pathToFileURL(path.join(viewer,'component-assets.mjs')));
 const THREE=await import(pathToFileURL(path.join(viewer,'vendor/three.module.js')));
+const {settleCameraPose}=await import(pathToFileURL(path.join(viewer,'responsive-camera.mjs')));
+read('site/viewer/responsive-camera.mjs');
 read('site/viewer/v0-mod-library.mjs');read('site/viewer/component-assets.mjs');read('site/viewer/vendor/three.module.js');
 const additions=JSON.parse(read('site/COMPONENT_ADDITIONS.json'));
 const item=additions.items[0],parts=item.views.flatMap(v=>v.parts.map(key=>({key,name:key})));
@@ -40,8 +42,8 @@ function productionModule(text,dependencies,globals){
  return vm.runInContext(`(function(){${code}\nreturn {mount};})()`,context,{filename:'components.js'});
 }
 function geometryModule(rel,names){
- const text=read(rel).replace(/^import \* as THREE from 'three';\r?\n/u,'').replace(/^export /gmu,'');
- return new Function('THREE',text+'\nreturn {'+names.join(',')+'};')(THREE);
+ const text=read(rel).replace(/^import \* as THREE from 'three';\r?\n/u,'').replace(/^import \{settleCameraPose\} from '[^']+';\r?\n/mu,'').replace(/^export /gmu,'');
+ return new Function('THREE','settleCameraPose',text+'\nreturn {'+names.join(',')+'};')(THREE,settleCameraPose);
 }
 const selection=geometryModule('site/viewer/component-selection.js',['partNodes','selectParts','visibleBounds']);
 const cameraModule=geometryModule('site/viewer/head-camera.mjs',['frameHeadBounds']);

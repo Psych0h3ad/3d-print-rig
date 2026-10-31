@@ -13,7 +13,7 @@ import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {partNodes,selectParts,visibleBounds} from './component-selection.js?v=workspace-belts-1';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
 import {componentCategories,componentCategory,componentViews,resolveComponentView,componentViewKeys,resolveComponentItem} from './v0-mod-library.mjs?v=abb4fafb1e86da0d3633';
-import {frameHeadBounds} from './head-camera.mjs';
+import {frameHeadBounds} from './head-camera.mjs?v=47ec56c126168b690489';
 import {partKey} from './head-assembly.js';
 import {hasMicroSwissSourceShroud,createSourceShroudPalette,mountSourceShroudPalette} from './microswiss-source-shroud-palette.mjs?v=f014e574106d0f8792bc';
 export async function mount(scope){

@@ -13,7 +13,7 @@ import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb
 import {translate} from './i18n.mjs?v=4c2e6b3d25b8ba4c8d87';
 import {rememberDisplayControl} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
 

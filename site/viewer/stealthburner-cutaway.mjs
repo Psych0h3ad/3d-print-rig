@@ -8,6 +8,7 @@ import {createModelProgress,readModelBytes} from './model-progress.mjs?v=beaef78
 import {cutawaySource} from './stealthburner-cutaway-source.mjs';
 import {createCutawayAssembly,filamentMeltProfile} from './stealthburner-cutaway-model.mjs';
 import {lessonDuration,lessonChapters,lessonState,advanceLesson} from './stealthburner-lesson.mjs';
+import {settleCameraPose} from './responsive-camera.mjs?v=149a79a654914b2af652';
 
 const $=selector=>document.querySelector(selector),stage=$('#stage');
 setupLanguage();setupHeaderThemeToggle($('.header-actions'));
@@ -59,7 +60,7 @@ function fit(next=view){
   const distance=size.length()/2/Math.sin(Math.min(vfov,hfov)/2)*1.14;
   const direction={section:[-1,.08,.08],perspective:[-1,.32,1.1],front:[0,.1,1]}[next];
   camera.position.copy(center).add(new THREE.Vector3(...direction).normalize().multiplyScalar(distance));
-  controls.target.copy(center);controls.update();
+  controls.target.copy(center);settleCameraPose(camera,controls);
   for(const [id,key]of [['sectionView','section'],['perspective','perspective'],['front','front']])$('#'+id).setAttribute('aria-pressed',String(next===key));
 }
 function resize(){

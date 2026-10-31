@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {settleCameraPose} from './responsive-camera.mjs?v=149a79a654914b2af652';
 
 // bounds must enclose every visible renderable in world space. Call after camera
 // controls/assembly motion, before rendering. This changes depth planes only.
@@ -58,7 +59,7 @@ export function frameHeadBounds(camera,controls,bounds,{direction,width,height,i
  camera.aspect=width/height;
  if(left||right||top||bottom)camera.setViewOffset(width,height,(right-left)/2,(bottom-top)/2,width,height);
  else camera.clearViewOffset();
- camera.position.copy(center).addScaledVector(back,distance);controls.target.copy(center);controls.update();
+ camera.position.copy(center).addScaledVector(back,distance);controls.target.copy(center);settleCameraPose(camera,controls);
  updateHeadClipping(camera,bounds);
  camera.updateProjectionMatrix();camera.updateMatrixWorld(true);
  return {distance,insets:{left,right,top,bottom}};

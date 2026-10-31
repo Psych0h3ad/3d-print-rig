@@ -11,7 +11,7 @@ import {createCustomTube} from './custom-voron-tube.mjs?v=f28049ddc0e0358894a7';
 import {createV24PtfePreview,V24_PTFE_SPEC} from './v24-ptfe.mjs?v=9def2f0b771f25d14c14';
 import {validateCustomState} from './custom-voron-state.mjs?v=4b6132fe80a74098a8ba';
 import {workspaceFrame,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';

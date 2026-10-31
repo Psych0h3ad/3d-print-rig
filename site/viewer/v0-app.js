@@ -8,7 +8,7 @@ import {v0ConfigurationSchema,stockV0Mods,validateV0State,readV0ModsURL,v0ModsUR
 import {replaceWorkspaceURL} from './workspace-navigation.mjs?v=424451cc1e036690fee7';
 import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 import {v0ModCategories,componentCategory} from './v0-mod-library.mjs?v=abb4fafb1e86da0d3633';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=workspace-belts-1';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';

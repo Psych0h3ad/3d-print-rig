@@ -11,7 +11,7 @@ import {headPrinterLink} from './head-navigation.mjs?v=a9afe36a7fc84df1ceee';
 import {headBuilderDimensions} from './configuration-model.js?v=ffcb5378701b391d2cab';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {headPrintedCounts,visibleInAsset} from './head-printed-parts.mjs?v=8f8ed3d5c06ff2b0f6c8';
-import {frameHeadBounds,updateHeadClipping} from './head-camera.mjs?v=dff80d4ea324eedaae9a';
+import {frameHeadBounds,updateHeadClipping} from './head-camera.mjs?v=47ec56c126168b690489';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';

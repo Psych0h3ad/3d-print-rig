@@ -38,6 +38,12 @@ models for community printers, Micron, Annex, Remorph, Crossant, Rat Rig and
 Positron with their production adapters. Report every available machine, actual
 model/adapter hashes, tested poses and combinations, findings and scope.
 
+Camera changes also require real-controller pointer regressions. Keep saved
+camera distances and bounds-based mobile insets distinct from landscape preset
+scaling. `test_camera_pose_restore.mjs` covers pending orbit/pan/dolly input at
+head/cutaway fitting and source-assembly camera restore; actual model rendering
+and browser inspection remain separate checks.
+
 Compare the generated support data against production composition with
 `node scripts/test_support_catalog.mjs <assembled-site> <assembled-site>/support/data`.
 The no-argument source regression does not perform that actual-catalog audit.

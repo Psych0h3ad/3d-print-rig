@@ -82,6 +82,7 @@ async function cacheReferences(outputs){
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
  for(const name of ['step-surface-selection.mjs','step-surface-package.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['yavoth-cowl-assets.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
+ for(const name of ['responsive-camera.mjs','head-camera.mjs','source-assembly-view-state.mjs','stealthburner-cutaway.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['usage-analytics.mjs','usage-analytics-config.mjs','usage-statistics.mjs','usage-statistics.css','privacy.mjs','privacy.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const [path,text]of files)if(path.startsWith(resolve(viewer,'../home')+sep))changed.set(path,text);
  const preference=resolve(viewer,'statistics-preference.mjs');changed.set(preference,await fs.readFile(preference,'utf8'));

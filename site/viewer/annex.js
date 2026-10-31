@@ -9,7 +9,7 @@ import {RoomEnvironment} from './vendor/RoomEnvironment.js';
 import {workspaceFrame,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=c57003e05d00c49566e3';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';

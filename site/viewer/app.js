@@ -8,8 +8,8 @@ import {workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace
 import {loadMonolithMachines} from './monolith-machine.js?v=01d6eb133dc727e3ab5b';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=918b15bc03dc6e671bd4';
 import {bankBedReferenceDrop} from './changer-bank-model.mjs?v=024cc52a5bbc61da7506';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
-import {framePrinterView} from './printer-camera-presets.mjs';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
+import {framePrinterView} from './printer-camera-presets.mjs?v=422e786c99788d7f0ba9';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';

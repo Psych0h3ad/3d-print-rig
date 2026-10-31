@@ -4,7 +4,7 @@ import {RoomEnvironment} from './vendor-r180/RoomEnvironment.js';
 import {loadLanguage, formatMessage} from './i18n.mjs?v=4c2e6b3d25b8ba4c8d87';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {workspaceFrame, workspaceListen, WorkspaceResizeObserver, WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {setResponsiveAspect, frameResponsiveView} from './responsive-camera.mjs';
+import {setResponsiveAspect, frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {rememberDisplayControl, readDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';

@@ -1,4 +1,4 @@
-import {frameResponsiveView} from './responsive-camera.mjs';
+import {frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 
 const views={iso:[1.05,.78,1.18],front:[0,.24,1.65],top:[0,1.8,0]};
 

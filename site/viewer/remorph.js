@@ -8,7 +8,7 @@ import {createRemorphEnvironment} from './remorph-environment.mjs?v=67b979de1893
 import {loadExtraMachine} from './extra-machine-loader.mjs?v=c57003e05d00c49566e3';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {workspaceFrame,WorkspaceResizeObserver,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs';
+import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
 export async function mount(scope){

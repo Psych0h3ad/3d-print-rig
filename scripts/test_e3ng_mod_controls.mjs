@@ -20,8 +20,9 @@ import {createSourceUIText} from '../site/viewer/source-assembly-ui-text.mjs';
 import {bindSourceConfigurationLoad} from '../site/viewer/source-assembly-configuration-ui.mjs';
 import {sourceText} from '../site/viewer/source-assembly-messages.mjs';
 import {captureViewAppearance,transferViewAppearance} from '../site/viewer/source-assembly-runtime/view_appearance.mjs';
+import {PerspectiveCamera,Vector3} from '../site/viewer/vendor-r180/three.module.js';
 
-// Only DOM/state doubles: no Three.js import, model fetch, mesh or native job.
+// DOM/state doubles plus a real camera basis; no model fetch, mesh or native job.
 const source=(await readFile(new URL('../site/viewer/source-assembly.mjs',import.meta.url),'utf8')).replace(/\r\n/g,'\n');
 const i18nRevision=contentRevision(await readFile(new URL('../site/viewer/i18n.mjs',import.meta.url),'utf8'));
 const {loadLanguage}=await import(new URL('../site/viewer/i18n.mjs?v='+i18nRevision,import.meta.url));
@@ -234,7 +235,8 @@ for(const [b,c,p]of combinations){
 }
 
 // Use the actual save callback and actual configuration-file handler. Camera
-// values are opaque arrays; the fake methods record restoration without 3D.
+// restoration uses the real camera vectors and projection with a light control
+// boundary. Pending pointer input is exercised separately by camera regressions.
 language='ja';state=fixture();choose('reinforced','cable-hole','hex');
 const savedCamera={position:[.3,.2,.5],target:[0,0,0],up:[0,1,0]};let savedBlob,downloadAnchor,revoked=false;
 const save=Function('active','captureCamera','camera','controls','lang','Blob','URL','owned','setTimeout','messages','$','machine','mode','return '+saveSource)(
@@ -246,7 +248,7 @@ save();const savedView=JSON.parse(await savedBlob.text());
 assert.equal(savedView.schema,'source-assembly-view-v1');assert.equal(savedView.machine,machine);assert.equal(savedView.view,'head');
 assert.deepEqual(savedView.settings.e3ng_mods,state.e3ng_mods);assert.deepEqual(savedView.settings.camera,savedCamera);assert.equal(savedView.settings.language,language);
 assert.deepEqual(savedView.settings.companion_data,companionData);assert(downloadAnchor.clicked&&revoked);assert.equal(downloadAnchor.download,machine+'.json');
-const arrayValue=()=>({value:null,fromArray(value){this.value=[...value];}}),camera={position:arrayValue(),up:arrayValue(),lookAt(){}},controls={target:arrayValue(),update(){}};
+const camera=new PerspectiveCamera(38,1,.001,10),controls={target:new Vector3(),enableDamping:true,autoRotate:false,update(){camera.lookAt(this.target)}};
 const file={files:[],value:''},status=owned('p'),buttons=[owned('button',{id:'iso'}),owned('button',{id:'front'})],tools={querySelectorAll:()=>buttons};
 let fileLoads=0,loadBlocked=false;
 bindSourceConfigurationLoad({file,machine,camera,controls,tools,render(){},messages,status,task:operation=>operation(),load:async(mode,settings)=>{
@@ -256,7 +258,7 @@ function selectFile(value){file.files=[{size:1000,text:async()=>JSON.stringify(v
 for(const lang of Object.keys(titles)){
  await loadLanguage(lang);language=lang;state=fixture();ui.sync();selectFile(savedView);await file.onchange();
  assert.equal(base.value,'reinforced');assert.equal(cable.value,'cable-hole');assert.equal(panels.value,'hex');assert.deepEqual(state.companion_data,companionData);
- assert.equal(status.textContent,sourceText('loaded',lang));assert.equal(file.value,'');assert.deepEqual(camera.position.value,savedCamera.position);
+ assert.equal(status.textContent,sourceText('loaded',lang));assert.equal(file.value,'');assert.deepEqual(camera.position.toArray(),savedCamera.position);
 }
 loadBlocked=true;state=fixture();ui.sync();selectFile(savedView);await file.onchange();assert.equal(base.value,'stock');assert.equal(cable.value,'stock');assert.equal(status.textContent,sourceText('unsafe',language));
 const beforeBad=fileLoads;selectFile({...savedView,machine:'other'});await file.onchange();assert.equal(fileLoads,beforeBad);assert.equal(status.textContent,sourceText('unsafe',language));
