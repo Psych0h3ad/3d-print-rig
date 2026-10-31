@@ -137,6 +137,14 @@ Purchased optics and hidden or detached cached parts do not enter this count.
 
 `responsive-camera.mjs` preserves viewing direction and scale when a viewport changes between landscape and portrait. Six full-machine controllers use it for resize; fixed camera presets also compensate for portrait aspect ratios. The responsive-camera test verifies projected scale, repeated resize stability, round-trip distance, target preservation and preset framing.
 
+Saved-camera restoration in Community, Positron and RatRig settles pending orbit,
+pan and zoom input before resuming damping. RatRig's exported in-place loader
+also settles the restored camera when a failed adoption returns to the previous
+assembly. The ordinary machine chooser uses workspace navigation, a separate
+path. `test_camera_consumer_restore.mjs` and `test_ratrig_camera_rollback.mjs`
+exercise the shipped consumer bodies with real controls and bounded fixtures;
+actual models, browser workflows and physical clearance remain separate reviews.
+
 Run the publication checker; relevant independent regressions include
 `test_configuration_draft.mjs`, `test_configurations.mjs`,
 `test_workspace_choices.mjs`, `test_workspace_sections.mjs`,

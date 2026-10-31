@@ -7,6 +7,7 @@ import {register} from 'node:module';
 import {spawnSync} from 'node:child_process';
 import {messageIdFor} from '../site/viewer/i18n.mjs';
 import * as THREE from '../site/viewer/vendor-r180/three.module.js';
+import {settleCameraPose} from '../site/viewer/responsive-camera.mjs';
 import {displayMotion,nativeMotion,communityConfiguration,validateCommunityState,communitySchema} from '../site/viewer/community-state.mjs';
 import {createCommunityAdapter} from '../site/viewer/community-adapter.mjs';
 import {bindLedSource,verifyLedModelBytes} from '../site/viewer/led-source-binding.mjs';
@@ -698,7 +699,7 @@ async function parentIntegrationReview(){
   range(files['community-renderer.mjs'],' async function setInstallation(id){',' for(const[id,kind]of ');
  const makeCommunity=new Function('env',`
   const {current,evaOptions,scope,axisKeys,$,document,history,location,describe,workspaceFrame,controls,renderer,scene,camera,
-   communityConfiguration,validateCommunityState,communitySchema,setPalette,grid,lighting,rememberDisplayControl,performance}=env;
+   communityConfiguration,validateCommunityState,communitySchema,setPalette,grid,lighting,rememberDisplayControl,performance,settleCameraPose}=env;
   let state=env.state,installationRequest=0,animation=null,frame=null;
   ${communityFunctions}
   return {setInstallation,restore,capture,state:()=>state,startMotion(){
@@ -716,8 +717,9 @@ async function parentIntegrationReview(){
   const environment={current:c,evaOptions:controller,scope:{disposed:false},axisKeys:['x','y','z'],$:element,
    document:{body:{dataset:{}}},history:{replaceState(){}},location:{href:'https://example.invalid/viewer/community.html'},describe(){},
    workspaceFrame:cb=>{frames.push(cb);return frames.length},controls:{update(){},target:new THREE.Vector3()},
-   renderer:{render(){}},scene:{},camera:{position:new THREE.Vector3(1,1,1),up:new THREE.Vector3(0,1,0),lookAt(){}},
-   communityConfiguration,validateCommunityState,communitySchema,setPalette(){},grid:{visible:false},lighting(){},rememberDisplayControl(){},performance:{now:()=>0},state};
+   renderer:{render(){}},scene:{},camera:new THREE.PerspectiveCamera(35,1,.01,30),
+   communityConfiguration,validateCommunityState,communitySchema,setPalette(){},grid:{visible:false},lighting(){},rememberDisplayControl(){},performance:{now:()=>0},state,settleCameraPose};
+  environment.camera.position.set(1,1,1);
   c.adapter.setReferences=()=>{};
   const ui=makeCommunity(environment);
   await ui.setInstallation('stock');assert.equal(controller.active,f.stock.id);checks.push('EVA'+generation+' native stock/default alias');
