@@ -15,7 +15,7 @@ import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb
 import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=4c2e6b3d25b8ba4c8d87';
 import {rememberDisplayControl} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
+import {setResponsiveAspect,frameResponsiveView,settleCameraPose} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
 const descriptions={
@@ -97,7 +97,7 @@ export async function mount(scope){
   $('badge').textContent=visible.toLocaleString()+' PARTS · '+current.profile.title.toUpperCase();render();return true;
  }
  function capture(){return {...structuredClone(state),camera:{position:camera.position.toArray(),target:controls.target.toArray(),up:camera.up.toArray()}}}
- async function restore(data){validateCommunityState(data,current.profile);animation=null;if(!await setInstallation(data.configuration??'stock'))return;state=structuredClone(data);if(state.configuration==='stock'&&current.profile.eva_installation)state.configuration=current.profile.eva_installation.configuration;setPalette(state.palette);current.adapter.setReferences(state.references);evaOptions?.update(state.axes);for(const k of ['base','accent','frame'])$(k).value=state.palette[k];$('references').checked=state.references;$('night').checked=state.night;$('gridVisible').checked=state.grid;grid.visible=state.grid;setAxes(data.axes);camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);camera.lookAt(controls.target);controls.update();lighting();rememberDisplayControl()}
+ async function restore(data){validateCommunityState(data,current.profile);animation=null;if(!await setInstallation(data.configuration??'stock'))return;state=structuredClone(data);if(state.configuration==='stock'&&current.profile.eva_installation)state.configuration=current.profile.eva_installation.configuration;setPalette(state.palette);current.adapter.setReferences(state.references);evaOptions?.update(state.axes);for(const k of ['base','accent','frame'])$(k).value=state.palette[k];$('references').checked=state.references;$('night').checked=state.night;$('gridVisible').checked=state.grid;grid.visible=state.grid;setAxes(data.axes);camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);settleCameraPose(camera,controls);lighting();rememberDisplayControl()}
  for(const[id,kind]of [['iso','iso'],['front','front'],['top','top'],['focusHead','head']])$(id).onclick=()=>view(kind);
  $('night').oninput=$('night').onchange=()=>{if(state)state.night=$('night').checked;lighting()};lighting();setupMachineNavigation(machine);
  function describe(){

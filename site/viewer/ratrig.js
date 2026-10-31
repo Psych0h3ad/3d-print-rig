@@ -14,7 +14,7 @@ import {createRatRigGcodePreview} from './ratrig_gcode_preview.mjs';
 import {ratRigSchema,validateRatRigConfiguration,ratRigAxisRanges} from './ratrig-ui-state.mjs?v=workspace-belts-1';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
+import {setResponsiveAspect,frameResponsiveView,settleCameraPose} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
 export async function mount(scope){
 const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
@@ -64,7 +64,7 @@ function provenance(){
 const currentRatRig=()=>current;
 const captureRatRigConfiguration=()=>({schema:ratRigSchema,machine:current.profile.machine_id,rig:current.adapter.getSnapshot(),view:{night:$('night').checked,grid:$('gridVisible').checked,camera:{position:camera.position.toArray(),target:controls.target.toArray(),up:camera.up.toArray()}}});
 function restoreRatRigConfiguration(data){
- program?.invalidate();validateRatRigConfiguration(current.profile,data);current.adapter.restore(data.rig);$('night').checked=data.view.night;$('gridVisible').checked=data.view.grid;grid.visible=data.view.grid;camera.position.fromArray(data.view.camera.position);camera.up.fromArray(data.view.camera.up);controls.target.fromArray(data.view.camera.target);camera.lookAt(controls.target);controls.update();lighting();current.gcode=createRatRigGcodePreview(current.adapter,current.profile);sync();rememberDisplayControl();return captureRatRigConfiguration();
+ program?.invalidate();validateRatRigConfiguration(current.profile,data);current.adapter.restore(data.rig);$('night').checked=data.view.night;$('gridVisible').checked=data.view.grid;grid.visible=data.view.grid;camera.position.fromArray(data.view.camera.position);camera.up.fromArray(data.view.camera.up);controls.target.fromArray(data.view.camera.target);settleCameraPose(camera,controls);lighting();current.gcode=createRatRigGcodePreview(current.adapter,current.profile);sync();rememberDisplayControl();return captureRatRigConfiguration();
 }
 async function loadMachine(id){return workspaceTask(async()=>{
  program?.invalidate();if(busy)throw Error('CADを読み込み中です。');const previous=current,previousInitial=initialSnapshot,previousView=current?captureRatRigConfiguration().view:null;setBusy(true);$('status').hidden=false;pending=new AbortController();let next;
@@ -73,7 +73,7 @@ async function loadMachine(id){return workspaceTask(async()=>{
   scene.add(next.root);if(previous)previous.root.visible=false;current=next;initialSnapshot=current.adapter.getSnapshot();
   grid.position.y=new THREE.Box3().setFromObject(current.root).min.y-.003;provenance();sync();view();$('status').hidden=true;document.body.dataset.assetStatus='ready';document.body.dataset.machineId=id;
   const url=new URL(location.href);url.searchParams.set('machine',id);replaceWorkspaceURL(null,'',url);disposeRatRig(previous?.root,previous?.adapter);return current.adapter.getSummary();
- }catch(e){if(disposed)return;if(next&&current===next){disposeRatRig(next.root,next.adapter);current=previous;initialSnapshot=previousInitial;if(previous){previous.root.visible=true;provenance();grid.position.y=new THREE.Box3().setFromObject(previous.root).min.y-.003;camera.position.fromArray(previousView.camera.position);camera.up.fromArray(previousView.camera.up);controls.target.fromArray(previousView.camera.target);camera.lookAt(controls.target);document.body.dataset.machineId=previous.profile.machine_id;sync()}}$('status').textContent=current?'切替に失敗しました。直前の機体を表示中。':'CADを読み込めませんでした。ページを再読み込みしてください。';document.body.dataset.assetStatus=current?'ready':'error';$('motionStatus').textContent=e.message;$('motionStatus').classList.add('notice');throw e}
+ }catch(e){if(disposed)return;if(next&&current===next){disposeRatRig(next.root,next.adapter);current=previous;initialSnapshot=previousInitial;if(previous){previous.root.visible=true;provenance();grid.position.y=new THREE.Box3().setFromObject(previous.root).min.y-.003;camera.position.fromArray(previousView.camera.position);camera.up.fromArray(previousView.camera.up);controls.target.fromArray(previousView.camera.target);settleCameraPose(camera,controls);document.body.dataset.machineId=previous.profile.machine_id;sync()}}$('status').textContent=current?'切替に失敗しました。直前の機体を表示中。':'CADを読み込めませんでした。ページを再読み込みしてください。';document.body.dataset.assetStatus=current?'ready':'error';$('motionStatus').textContent=e.message;$('motionStatus').classList.add('notice');throw e}
  finally{pending=null;if(!disposed)setBusy(false)}
 });}
 for(const axis of ['x0','x1','y','z'])$(axis).oninput=()=>action(()=>current.adapter.setPose({[axis]:Number($(axis).value)}));

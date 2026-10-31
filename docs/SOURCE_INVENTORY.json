@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1264666,
-      "sha256": "7124306f2240134899d45d59d278671fa5eadad389a33164fe6cd3745b962098"
+      "bytes": 1266863,
+      "sha256": "b8fbb241a6ea6b5afc543400170a705ae44f5a9861582906419e71be75b63ccd"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -555,8 +555,8 @@
     },
     {
       "path": "docs/UI_WORKSPACE.md",
-      "bytes": 10397,
-      "sha256": "8dab680b87daea3201e9274c20d3e188fab373ecbff76dce316dea272ebbdce8"
+      "bytes": 10953,
+      "sha256": "71c9d25c6e64b4d1483a212997d0f808dcc0c674c89c9fe9b52adbe78d6ab0f1"
     },
     {
       "path": "docs/V0_ASSEMBLY.md",
@@ -1504,6 +1504,11 @@
       "sha256": "18fd1e29424b98fbf2931c39922cbf44e4c6a2ae809db2cf17576389db3de41e"
     },
     {
+      "path": "scripts/test_camera_consumer_restore.mjs",
+      "bytes": 10219,
+      "sha256": "7cf58b4418967970b6d28a5284814aacf29fea51516807a3d42ce42dc9139f62"
+    },
+    {
       "path": "scripts/test_camera_pose_restore.mjs",
       "bytes": 7014,
       "sha256": "19213b1876958be1fc24b691632b6e835bbd95b2ae65d0af88eb84548a35e6e5"
@@ -1745,8 +1750,8 @@
     },
     {
       "path": "scripts/test_eva_options.mjs",
-      "bytes": 97941,
-      "sha256": "1692ce0ff323d14d9b387314bc64c537bf42971841d9417ad64eda2113650fba"
+      "bytes": 98054,
+      "sha256": "f0e3f0ed4d03a6abecff4dd37d370b0bd6a212143833d5da78e6d8150a3235cd"
     },
     {
       "path": "scripts/test_eva_options_transport.py",
@@ -2482,6 +2487,11 @@
       "path": "scripts/test_ratrig.mjs",
       "bytes": 3141,
       "sha256": "823e4cceb3759bce6797517bbf05d696ef0c5480a7136e37796651fa8af3f593"
+    },
+    {
+      "path": "scripts/test_ratrig_camera_rollback.mjs",
+      "bytes": 8526,
+      "sha256": "24ee4a5f17097abb900be97c7323c5d8cb5815bff8c9ac00a49ff6777ec79b53"
     },
     {
       "path": "scripts/test_rear_enclosures.mjs",
@@ -6975,8 +6985,8 @@
     },
     {
       "path": "site/viewer/community-renderer.mjs",
-      "bytes": 24063,
-      "sha256": "ac1d9696e0804eb08de1b2e8ec8c8f493f3171a41e5128be02e81246f013ee15"
+      "bytes": 24065,
+      "sha256": "21cda4c6712a487dda5210a436ca81963c3500b098cb928686dba2ac3279f644"
     },
     {
       "path": "site/viewer/community-state.mjs",
@@ -6986,12 +6996,12 @@
     {
       "path": "site/viewer/community.html",
       "bytes": 7913,
-      "sha256": "6558c8697be08b51ab0f795f0026987238151eaed201a4dd705e88857136af8c"
+      "sha256": "afb731ed6cbb57262900f363ad64ded5caa1e1ff835a41e2bc431b198db3d79a"
     },
     {
       "path": "site/viewer/community.js",
       "bytes": 585,
-      "sha256": "7cb1f7f3937d551a8fc20a93a971b55223f2ec47ca40b9bc9ea531520c12b8da"
+      "sha256": "df073148a41b2a6c5b965d068f4557a762d77a53e66bc0ba90d45c682cf8cdc0"
     },
     {
       "path": "site/viewer/component-assets.mjs",
@@ -7811,12 +7821,12 @@
     {
       "path": "site/viewer/positron.html",
       "bytes": 7601,
-      "sha256": "73f82ae44b6bb842db8cf1ca0661784b39c6de9f8f9737b1ade89c5fc63d7012"
+      "sha256": "545164b61e422dd0b5b4d9c705e79c1fab0aabbc6f5a629dc6dede52dc2b1c2e"
     },
     {
       "path": "site/viewer/positron.js",
-      "bytes": 10511,
-      "sha256": "73a277ccf6b2450e7a3db9a8e8101da2bc9c3d1d57c29e5a5c34e40e09215caa"
+      "bytes": 10513,
+      "sha256": "0909360a984b96f1c1d2f2d19a514df17aa32ed52984e6aad5cb5ba75f369c6d"
     },
     {
       "path": "site/viewer/printer-camera-presets.mjs",
@@ -7886,12 +7896,12 @@
     {
       "path": "site/viewer/ratrig.html",
       "bytes": 9311,
-      "sha256": "e69c251313a3dccb897870b59a61615c4b2b7aef89411ba0eeb9a3fdf97e11bd"
+      "sha256": "d5c1bcd13b74830990458c56cffd987e596097140298d60d5111d273338bf836"
     },
     {
       "path": "site/viewer/ratrig.js",
-      "bytes": 17008,
-      "sha256": "36d3b904e3218d3ba127490efe194feb0f17f852e3ac9e38b0bd729a96b81396"
+      "bytes": 17013,
+      "sha256": "f21075ff76aee5e0aa1204bb3e5e61cb5616d96110d293e5e34709fbea402556"
     },
     {
       "path": "site/viewer/ratrig_adapter.mjs",

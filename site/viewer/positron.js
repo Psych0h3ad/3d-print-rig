@@ -13,7 +13,7 @@ import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb
 import {translate} from './i18n.mjs?v=4c2e6b3d25b8ba4c8d87';
 import {rememberDisplayControl} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
+import {setResponsiveAspect,frameResponsiveView,settleCameraPose} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
 
@@ -43,7 +43,7 @@ export async function mount(scope){
   controls.target.copy(center);camera.up.set(0,kind==='top'?0:1,kind==='top'?-1:0);camera.position.copy(center).add(direction.normalize().multiplyScalar(distance));camera.lookAt(center);frameResponsiveView(camera,controls);controls.update();render();
  }
  function capture(){return {...structuredClone(state),schema:positronSchema,machine,camera:{position:camera.position.toArray(),target:controls.target.toArray(),up:camera.up.toArray()}}}
- function restore(data){validatePositronState(data);stop();state=structuredClone(data);current.adapter.setPalette(state.palette);current.adapter.setAccessoriesVisible(state.accessories);for(const c of ['base','accent','frame'])$(c).value=state.palette[c];$('accessories').checked=state.accessories;$('night').checked=state.night;$('gridVisible').checked=state.grid;grid.visible=state.grid;setFold(state.fold);camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);camera.lookAt(controls.target);controls.update();lighting();rememberDisplayControl()}
+ function restore(data){validatePositronState(data);stop();state=structuredClone(data);current.adapter.setPalette(state.palette);current.adapter.setAccessoriesVisible(state.accessories);for(const c of ['base','accent','frame'])$(c).value=state.palette[c];$('accessories').checked=state.accessories;$('night').checked=state.night;$('gridVisible').checked=state.grid;grid.visible=state.grid;setFold(state.fold);camera.position.fromArray(state.camera.position);camera.up.fromArray(state.camera.up);controls.target.fromArray(state.camera.target);settleCameraPose(camera,controls);lighting();rememberDisplayControl()}
  for(const[id,kind]of [['iso','iso'],['front','front'],['top','top'],['focusHead','head']])$(id).onclick=()=>view(kind);
  $('night').onchange=$('night').oninput=()=>{if(state)state.night=$('night').checked;lighting()};lighting();
  setupMachineNavigation(machine);
