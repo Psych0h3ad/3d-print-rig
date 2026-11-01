@@ -1,3 +1,4 @@
+import {prepareV0M2Seating,createV0M2Seating} from './v0-m2-seating.mjs?v=d15ba41d0be2c9a7b68b';
 // Manual stages with an optional, source-pinned rail preparation presentation.
 // Preparation poses are temporary rigid layouts, not insertion or clearance.
 import {createV0RailPreparation} from './v0-rail-preparation.mjs?v=74bbc70d05eb89bed68a';
@@ -124,8 +125,21 @@ export function validateV0AssemblyStages({nodes,manifest,machine,receipts,compan
   manual:{url:manual.url,sha256:manual.sha256,pages:manual.pages,revision:manual.revision},stages,companions:companionRows,seat_display_dependencies:[...seats.values()]};
 }
 
+
+const m2Preflights=new WeakMap();
+const stageSignature=s=>JSON.stringify([s.machine_id,s.model_sha256,s.manifest_sha256,s.parts,s.manual,s.stages,s.seat_display_dependencies]);
+export async function prepareV0AssemblyM2Seating(options){
+ const spec=validateV0AssemblyStages(options),signature=stageSignature(spec);
+ const receipt=await prepareV0M2Seating({nodes:options.nodes,manifest:options.manifest,spec,receipts:options.receipts});
+ const token=Object.freeze({});m2Preflights.set(token,{spec,signature,receipt,nodes:options.nodes,manifest:options.manifest,machine:options.machine,receipts:options.receipts,companions:options.companions,used:false});return token;
+}
+
 export function createV0AssemblyStages(options){
- const spec=validateV0AssemblyStages(options),nodes=options.nodes,bindings=new Map(nodes);
+ const validated=validateV0AssemblyStages(options),received=options.manualPreparation&&options.sourceDerivedFastenerSeating?m2Preflights.get(options.m2SeatingReceipt):null;
+ if(options.sourceDerivedFastenerSeating&&(!received||received.used||received.nodes!==options.nodes||received.manifest!==options.manifest||received.machine!==options.machine||received.receipts!==options.receipts||received.companions!==options.companions||received.signature!==stageSignature(validated)||received.signature!==stageSignature(received.spec)))fail('Missing current exact source-derived fastener preflight');
+ const spec=received?received.spec:validated,nodes=options.nodes,bindings=new Map(nodes);
+ const m2=received?createV0M2Seating({nodes,manifest:options.manifest,spec,receipts:options.receipts,receipt:received.receipt}):null;
+ if(received)received.used=true;
  const companionBindings=spec.companions,companionForKey=new Map();
  const preparation=options.manualPreparation?createV0RailPreparation({nodes,manifest:options.manifest,spec}):null;
  const drive=options.manualPreparation?createV0DriveAssembly(spec,options.manifest.machine_id):null;
@@ -166,6 +180,7 @@ export function createV0AssemblyStages(options){
   preparation?.check();
   idler?.check();
   xy?.check();
+  m2?.check();
   if(!active)return;
   for(const [node,row]of active.graph){
    if(node.parent!==row.parent||node.children!==row.childrenRef||node.userData?.part_key!==row.part_key||
@@ -200,6 +215,7 @@ export function createV0AssemblyStages(options){
   value.subassembly=manualWork?manualWork.isolated:Boolean(work);value.underside=Boolean(work?.underside);
   if(work&&!manualWork)value.presentation_note='Only the current drive subassembly is shown. The frame and previously prepared parts are set aside; the drives join the frame at manual page 81.';
   if(xyWork?.isolated)value.presentation_note='Only the current XY joint operation is shown. Prepared parts stay aside until the closing or installation operation.';
+  value.manual_fastener_reference=Boolean(m2&&active.index>=spec.stages.findIndex(s=>s.id==='x-install'));
   value.manual_note=drive?.note(active.index)||'';
   value.presentation_notes=[value.presentation_note,...manualWork?.notes||[]].filter(Boolean);
   if(manualWork){value.presentation_label=manualWork.status;value.camera_direction=[...manualWork.direction];value.camera_distance_floor=manualWork.isolated ? .05 : .24;value.part_notes={...manualWork.partNotes};value.stored_keys=(xyWork?xy:idlerWork?idler:feetWork?feet:bed).stored(active.index,new Set(active.part_keys))}
@@ -224,7 +240,7 @@ export function createV0AssemblyStages(options){
    if(!descriptor||!('value' in descriptor)||!descriptor.writable||typeof node.visible!=='boolean')fail('Native visibility changed: '+key);
   }
   const undo=[];
-  try{for(const policy of [preparation,idler,xy]){const restore=policy?.apply(index);if(restore)undo.push(restore)}}
+  try{for(const policy of [preparation,idler,xy,m2]){const restore=policy?.apply(index);if(restore)undo.push(restore)}}
   catch(error){for(const restore of undo.reverse())restore();throw error}
   for(const [key,node]of bindings){node.visible=state.visibilities.get(key)&&shown.has(key);state.graph.get(node).visible=node.visible}
   for(const {node,part_keys}of companionBindings){node.visible=state.companionVisibilities.get(node)&&part_keys.some(key=>shown.has(key));state.graph.get(node).visible=node.visible}
@@ -241,7 +257,7 @@ export function createV0AssemblyStages(options){
    if(!descriptor||!('value' in descriptor)||!descriptor.writable)fail('Native visibility changed: '+key);
   }
   const undo=[];
-  try{for(const policy of [preparation,idler,xy]){const restore=policy?.leave();if(restore)undo.push(restore)}}
+  try{for(const policy of [preparation,idler,xy,m2]){const restore=policy?.leave();if(restore)undo.push(restore)}}
   catch(error){for(const restore of undo.reverse())restore();throw error}
   for(const [key,node]of bindings)node.visible=active.visibilities.get(key);
   for(const [node,visible]of active.companionVisibilities)node.visible=visible;

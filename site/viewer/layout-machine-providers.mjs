@@ -20,11 +20,11 @@ async function prepare(run) {
 }
 export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
- if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=65c798b77ca30b05c85c');return loadV24ReferenceLayout(id,{signal,onProgress})}
+ if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=c06a25fd9811679af248');return loadV24ReferenceLayout(id,{signal,onProgress})}
  if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=ceba0226b6221074c089');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=9a94e12fe2e73b70bdb6');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=679d8b03e447117d58ff');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
-  const m=await import('./source-assembly-loader.mjs?v=486ec0c5237e6b2091fe'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede');
+  const m=await import('./source-assembly-loader.mjs?v=7b52ab60a19d79f09c79'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');
   const packet=await m.loadSourcePacket(record,signal),assembly=await m.loadSourceAssembly(packet,{signal,onProgress,mode:'full',includeModifications:false});
   return {root:assembly.root,manifest:packet,profile:packet,source:{normalSourceRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',record,credits:packet.source??packet.sources,mode:'full',variant:assembly.snapshot().variant},dispose:()=>{releaseRoot(assembly.root,assembly);assembly.root.removeFromParent();assembly.root.clear()}};

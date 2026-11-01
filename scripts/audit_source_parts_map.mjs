@@ -39,6 +39,8 @@ try{
  const savedX=sample.position.x;sample.position.x+=.001;try{index.verifyLive()}catch{rejects++}sample.position.x=savedX;index.verifyLive();
  if(rejects!==2)throw Error('Live graph negatives accepted');
  const {createVoronAssemblyGuide,supportsVoronAssembly}=await import(new URL('viewer/voron-assembly-guide.mjs',site));let assembly=null;
+ const mapSourceURL=new URL('viewer/source-parts-map.mjs',site),mapSource=await fs.readFile(mapSourceURL,'utf8'),displayDependency=mapSource.match(/from '(\.\/assembly-stage-emphasis\.mjs[^']*)'/)?.[1];if(!displayDependency)throw Error('Missing actual source-map display dependency');
+ const displayURL=new URL(displayDependency,mapSourceURL),displaySourceURL=new URL(displayURL);displaySourceURL.search='';const displayBytes=await fs.readFile(displaySourceURL),{createAssemblyStageEmphasis,assemblySourceMaterial}=await import(displayURL);
  if(supportsVoronAssembly(machine)){
   const baselineVisible=new Set(index.entries().map(r=>r.key)),guide=await createVoronAssemblyGuide(loaded,scene),counts=[];let last=0;
   const beltReceivers=[];
@@ -52,7 +54,9 @@ try{
   guide.restore();if(signature(loaded.root)!==before)throw Error('Assembly completion changed source');
   for(const i of [...guide.stages.map(s=>s.index).reverse(),0,guide.stages.length-1,1,0,guide.stages.length-2]){if(guide.setStage(i).visible_count!==counts[i])throw Error('Reversed assembly mask differs');guide.previewComplete();if(signature(loaded.root)!==before)throw Error('Complete comparison did not preserve native source');guide.setStage(i)}
   const saved=createAssemblyProgress(guide);saved.setStage(2);saved.toggle(2);validateAssemblyProgress(guide,JSON.parse(JSON.stringify(saved.snapshot())));let mapRejected=false;try{validateAssemblyProgress(guide,progress.snapshot())}catch{mapRejected=true}if(!mapRejected)throw Error('Part-map progress accepted as assembly');
-  guide.restore();assembly={stages:guide.stages.length,visibleCounts:counts,sourceItems:guide.partCount,beltReceiverKeys:beltReceivers,beltReceiversBeforeBelts:true,reverseAndPreview:true,restoredUnchanged:signature(loaded.root)===before,wrongViewProgressRejected:mapRejected,identity:guide.identity};
+  const display=createAssemblyStageEmphasis(),displayVisits=[];
+  for(const i of [1,Math.floor(guide.stages.length/2),guide.stages.length-2]){guide.setStage(i);const beforeDisplay=signature(loaded.root),parts=guide.entries().map(r=>({key:r.key,nodes:[r.node]})),currentKeys=guide.parts(i).map(p=>p.key),current=new Set(currentKeys);display.update({parts,currentKeys,enabled:true});guide.verifyLive();let dimmed=0;for(const part of parts)for(const node of part.nodes){if(current.has(part.key)&&node.material!==assemblySourceMaterial(node))throw Error('Current source part was dimmed');if(node.material!==assemblySourceMaterial(node))dimmed++}if(!dimmed)throw Error('Previous source parts were not dimmed');display.clear();if(signature(loaded.root)!==beforeDisplay)throw Error('Display mode changed source');displayVisits.push({stage:i,dimmedMeshes:dimmed,currentSourceKeys:currentKeys.length})}
+  display.dispose();guide.restore();assembly={stages:guide.stages.length,visibleCounts:counts,sourceItems:guide.partCount,beltReceiverKeys:beltReceivers,beltReceiversBeforeBelts:true,reverseAndPreview:true,restoredUnchanged:signature(loaded.root)===before,wrongViewProgressRejected:mapRejected,identity:guide.identity,stageEmphasis:{visits:displayVisits,sourceRestored:true,displayModuleSHA256:createHash('sha256').update(displayBytes).digest('hex'),sourceMapSHA256:createHash('sha256').update(mapSource).digest('hex')}};
  }
  const after=signature(loaded.root);if(before!==after)throw Error('Inspection mutated source assembly');
  loaded.dispose();let retired=false;try{index.verifyLive()}catch{retired=true}loaded=null;if(!retired)throw Error('Retired model accepted');

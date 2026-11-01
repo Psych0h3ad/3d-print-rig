@@ -12193,6 +12193,22 @@
     "v0.xy.852c43ba0639": {
       "source_revision": "33483aa7e5a8706906f5",
       "text": "현재 XY 조인트 단계만 표시합니다. 준비한 부품은 닫거나 장착하는 단계까지 따로 둡니다."
+    },
+    "assembly.workbench.no_matching_items": {
+      "source_revision": "521402aa9109e1ab9b09",
+      "text": "이 필터에 맞는 원본 부품이 없습니다."
+    },
+    "assembly.manual_fastener_reference": {
+      "source_revision": "00cab2232f596351f64c",
+      "text": "나사의 접시머리 면을 맞춘 조립 참조 위치입니다."
+    },
+    "assembly.workbench.dim_earlier": {
+      "source_revision": "a3386ce0811a4b9fa16a",
+      "text": "이전 단계 부품을 회색으로 표시"
+    },
+    "assembly.workbench.dim_hint": {
+      "source_revision": "f055b60402efad8847f3",
+      "text": "이 단계에서 사용하는 부품은 원래 색을 유지하고, 이전 부품은 옅은 회색으로 표시합니다."
     }
   }
 }
