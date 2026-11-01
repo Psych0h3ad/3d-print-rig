@@ -8,7 +8,7 @@ import {createAssemblyIndex,createAssemblyProgress,validateAssemblyProgress,asse
 import {createAssemblyWorkbench} from '../site/viewer/assembly-workbench.mjs';
 import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from '../site/viewer/assembly-progress-migrations.mjs';
 const raw=fs.readFileSync(new URL('../site/V0_ASSEMBLY_STAGES.json',import.meta.url)),catalog=JSON.parse(raw),sha=createHash('sha256').update(raw).digest('hex');
-const oldSHAs=["50a7f0e504fa3a013607cc4e0bc8cb4ff49dc442cb2a5b16a5ac70d17e0c67dd", 'cac666a318dc56cdae843f4464e1cb63f33663002c93b4ebedaf6abb97f6e810'];
+const oldSHAs=["2baa9a7d9ea85ec661d6d9b59055a4a68b0ec436e54f96ab7d7019ef17dafaa5","50a7f0e504fa3a013607cc4e0bc8cb4ff49dc442cb2a5b16a5ac70d17e0c67dd", 'cac666a318dc56cdae843f4464e1cb63f33663002c93b4ebedaf6abb97f6e810'];
 let positive=0,negative=0;
 for(const[mid,machine]of Object.entries(catalog.machines)){
  const keys=machine.stages.flatMap(s=>s.part_keys),manifest={machine_id:mid,parts:keys.map(key=>({key,name:'Source-key fixture '+key}))},receipts={'model.glb':machine.model_sha256,'assembly_manifest.json':machine.manifest_sha256,'assembly_stages.json':sha},index=createAssemblyIndex({manifest,machine,receipts});
@@ -16,7 +16,7 @@ for(const[mid,machine]of Object.entries(catalog.machines)){
  for(const oldSHA of oldSHAs)for(const version of [1,2]){
   const old={schema:'assembly-workbench-progress-v'+version,identity:{...index.identity,stages_sha256:oldSHA},current_stage:'a-drive-stack',checked_stages:['a-drive-stack','drives-install'],...(version===2?{checked_parts:[mount,bearing]}:{})};
   assert(assemblyProgressNeedsMigration(index,old.identity));
-  const next=validateAssemblyProgress(index,old);assert(!next.checked_stages.includes("bed-mount-flatness"));assert(!next.checked_stages.includes("bed-mounts-rail"));assert.equal(next.identity.stages_sha256,sha);assert.equal(next.current_stage,old.current_stage);assert.deepEqual(next.checked_stages,old.checked_stages);assert.deepEqual(new Set(next.checked_parts),new Set(version===2?[mount,bearing]:[]));positive++;
+  const next=validateAssemblyProgress(index,old);assert(!next.checked_stages.includes("feet-inlet-prep"));assert(!next.checked_stages.includes("z-motor-mount"));assert(!next.checked_stages.includes("bed-mount-flatness"));assert(!next.checked_stages.includes("bed-mounts-rail"));assert.equal(next.identity.stages_sha256,sha);assert.equal(next.current_stage,old.current_stage);assert.deepEqual(next.checked_stages,old.checked_stages);assert.deepEqual(new Set(next.checked_parts),new Set(version===2?[mount,bearing]:[]));positive++;
   const doc=new TestDocument(),container=doc.createElement('section');doc.body.append(container);const legacy={};
   for(const name of ['select','previous','next','focus','note','manual','finish'])legacy[name]=doc.createElement(name==='select'?'select':'button');
   for(const s of index.stages){const option=doc.createElement('option');option.value=String(s.index);legacy.select.append(option)}
@@ -32,6 +32,6 @@ for(const[mid,machine]of Object.entries(catalog.machines)){
   p=>p.identity.machine='another',p=>p.identity.model_sha256='0'.repeat(64),p=>p.identity.manifest_sha256='0'.repeat(64),p=>p.identity.manual_sha256='0'.repeat(64),p=>p.identity.manual_revision+=' stale',p=>p.identity.stages_sha256='0'.repeat(64),
   p=>p.identity.extra='unknown',p=>p.checked_parts.push(mount),p=>p.checked_parts=['missing'],p=>p.checked_parts=new Array(2),p=>p.current_stage='missing',
  ]){const p=structuredClone(progress);mutate(p);assert.throws(()=>validateAssemblyProgress(index,p));negative++}
- assert.equal(previousAssemblyProgressStorageKeys(index).length,4);assert.deepEqual(previousAssemblyProgressStorageKeys({identity:{...index.identity,model_sha256:'0'.repeat(64)}}),[]);positive++;
+ assert.equal(previousAssemblyProgressStorageKeys(index).length,6);assert.deepEqual(previousAssemblyProgressStorageKeys({identity:{...index.identity,model_sha256:'0'.repeat(64)}}),[]);positive++;
 }
 console.log(JSON.stringify({passed:true,positive,negative,scope:'Exact two before/after V0 identities only, v1/v2 file and browser-storage migration, visible notice, unchanged old storage, source-part/stage preservation, no invented v1 part checks and atomic rejection before UI mutation. Not actual CAD/native-fit evidence.'}));

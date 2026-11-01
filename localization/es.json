@@ -11933,6 +11933,114 @@
     "v0.bed.source.inspection": {
       "source_revision": "0b575169d283a6e81057",
       "text": "Solo se muestra el subconjunto actual de la cama en sus posiciones originales. Los demás conjuntos están reservados; esta vista de inspección no representa una trayectoria de inserción."
+    },
+    "v0.feet.manual.a3426620311417ac": {
+      "source_revision": "709364aada4a0d662346",
+      "text": "Prepare los insertos, apoyos de goma y tornillos M3x10 originales de ambas patas delanteras. Reserve los tornillos largos del bastidor y las tapas decorativas para sus pasos posteriores."
+    },
+    "v0.feet.manual.5a66658649e6c25c": {
+      "source_revision": "320f61224d7651f1e4cd",
+      "text": "Preparar la pata del lado de la entrada y su apoyo"
+    },
+    "v0.feet.manual.9ef9a551a9af3e3f": {
+      "source_revision": "353125281e55c607693f",
+      "text": "Prepare los dos insertos térmicos originales, el apoyo y su tornillo M3x10 en la pata del lado de la entrada. La entrada, los pernos del bastidor y los tornillos laterales se montan después."
+    },
+    "v0.feet.manual.1ed2049f0a3e61bb": {
+      "source_revision": "7cbf1041b9d6d853db00",
+      "text": "Prepare la pata trasera derecha simple con sus insertos, apoyo y tornillo M3x10 originales. Consulte su abertura Bowden en el manual. Reserve el tornillo largo y la tapa para después. Las alternativas excluidas por la configuración original permanecen ocultas."
+    },
+    "v0.feet.manual.d32acadb2eefef99": {
+      "source_revision": "6e440cc793844222e262",
+      "text": "Fijar las patas preparadas al bastidor"
+    },
+    "v0.feet.manual.b4ea129a398fab35": {
+      "source_revision": "c5daed2ca6cb1eff0789",
+      "text": "Fije las patas preparadas con los tornillos largos M3x40 originales. Sujete la pata de la entrada con sus dos M3x10 y las mismas dos tuercas precargadas en la página52. Use solo la pata trasera derecha seleccionada por la configuración original. La referencia conserva la orientación del CAD; no anima el volteo físico de la impresora."
+    },
+    "v0.feet.manual.a4fb8ffb64f76aaf": {
+      "source_revision": "5cc69e7ebdae715d9727",
+      "text": "Montar las tapas decorativas de las patas seleccionadas"
+    },
+    "v0.feet.manual.b79a33947b67ed96": {
+      "source_revision": "85bdef27483f06d03500",
+      "text": "Tras fijar las patas al bastidor, monte cada tapa original con sus dos tornillos autorroscantes M2x10 correspondientes. Las tapas traseras se introducen aquí, no al preparar las patas. Evite dañar las roscas del plástico."
+    },
+    "v0.feet.manual.4b63c93b652fe5ff": {
+      "source_revision": "2ee289fdc7e612bb7281",
+      "text": "Preparar el motor Z con husillo integrado y su soporte"
+    },
+    "v0.feet.manual.47957cdbb3115ac8": {
+      "source_revision": "dbc1ab0553c1c525e72b",
+      "text": "Prepare el motor y soporte impresos originales con dos M3x8 y un M3x6. Siga la lubricación de esta revisión; no sustituya el motor original por la alternativa r1 de tuerca POM y husillo recubierto. Reserve los cuatro tornillos de fijación al bastidor para el siguiente paso."
+    },
+    "v0.feet.manual.8ba1cb181363e6c7": {
+      "source_revision": "d31e014c1095ac85d42f",
+      "text": "Fijar sin apretar el motor Z al bastidor"
+    },
+    "v0.feet.manual.b2d651ee8fefe59a": {
+      "source_revision": "f049a0eb66db6cd0357f",
+      "text": "Monte los cuatro M3x8 originales en las mismas tuercas precargadas del soporte del motor. Déjelos flojos para la alineación siguiente. Los dos M3x8 de la carcasa del motor son otras piezas originales distintas."
+    },
+    "v0.feet.manual.13d6913d0fdc5265": {
+      "source_revision": "6968988f2c2a5ea44b61",
+      "text": "Alinear el motor Z y comprobar el recorrido manual de la cama"
+    },
+    "v0.feet.manual.b29b1954585b3005": {
+      "source_revision": "83f88ed795c9449f67de",
+      "text": "Siga la alineación y el recorrido manual de la página106 de V0.2 antes de apretar los cuatro tornillos motor-bastidor. No sustituya este procedimiento por el posterior de r1 en posición inferior. Una posición CAD estática no demuestra un recorrido libre."
+    },
+    "v0.feet.manual.d2b1079c585f7324": {
+      "source_revision": "af4731fc1ecb18402c98",
+      "text": "Preparar la pata con sensor, el racor y el rodamiento"
+    },
+    "v0.feet.manual.f95cbe0edb55cd47": {
+      "source_revision": "c2c53bfee46ccdb839ec",
+      "text": "Prepare la pata como en la página102 y monte los ECAS04 y MR85 originales según la página103. El manual retira la pieza de goma negra interna del racor. El CAD representa ECAS04 como un solo elemento de dos sólidos y no resuelve ni anima sus cinco piezas internas. Conserve el racor intacto en esta referencia y el apoyo de goma separado. No monte ambas alternativas traseras derechas."
+    },
+    "v0.feet.manual.4d776cdcca1e7862": {
+      "source_revision": "fd23352956b4b96a68d7",
+      "text": "Fijar el interruptor de filamento a la pata preparada"
+    },
+    "v0.feet.manual.97a0a1ab1ca43d53": {
+      "source_revision": "92ddcf47d0ddce294c41",
+      "text": "Use los dos terminales normalmente abiertos señalados en el manual y el M2x10 autorroscante original. Se conserva el interruptor comprado completo; no se inventa su desmontaje interno ni un modelo de cableado."
+    },
+    "v0.feet.manual.91b22bb1dba59600": {
+      "source_revision": "3a3722c4588a61380fba",
+      "text": "Introducir el husillo en la tuerca preparada"
+    },
+    "v0.feet.manual.8640d737ed4f7422": {
+      "source_revision": "ff9f10a07b3d1f4d3c5f",
+      "text": "Introduzca el husillo original en la tuerca antibacklash preparada. Siga la referencia enlazada del manual para sus dos mitades. La vista muestra las posiciones ensambladas originales, no una animación de inserción ni una prueba del engrane de roscas."
+    },
+    "v0.feet.manual.f9dc950ab542a025": {
+      "source_revision": "f253c986cad208491ecd",
+      "text": "Bajar la cama y aflojar los dos tornillos del soporte de la tuerca"
+    },
+    "v0.feet.manual.f4c96440d6a8da2b": {
+      "source_revision": "a29dbad6e84da21b44b1",
+      "text": "En la máquina real, gire el husillo hasta bajar la cama completamente. Afloje solo los mismos dos M3x12 superiores preparados en la página92. Los cuatro tornillos motor-bastidor siguen flojos. La vista estática original no reproduce este ajuste en la posición inferior."
+    },
+    "v0.feet.manual.0ad3cbee9a1a8dec": {
+      "source_revision": "81103b8ab5cb7c9994b0",
+      "text": "Centrar el husillo y apretar los mismos tornillos"
+    },
+    "v0.feet.manual.edb68c9afec35ea1": {
+      "source_revision": "1bf838ba409165fde248",
+      "text": "Con la cama aún completamente abajo, centre el husillo en el soporte. Apriete los mismos dos tornillos superiores y después los cuatro motor-bastidor según el manual. Este paso no añade tornillos nuevos."
+    },
+    "v0.feet.manual.27d7c2c4d38ab37e": {
+      "source_revision": "2585afcf039f9911b8d7",
+      "text": "Comprobar el recorrido Z moviendo la cama manualmente"
+    },
+    "v0.feet.manual.36ee4999ade24c4e": {
+      "source_revision": "374f9f9dd99bfcc8d105",
+      "text": "Mueva manualmente la cama por todo su recorrido y compruebe si ofrece resistencia. Si la máquina real se atasca, siga el manual; la posición de referencia no certifica recorrido libre, alineación ni holgura."
+    },
+    "v0.feet.rear_right.v02": {
+      "source_revision": "032dc4da724d3869b4f8",
+      "text": "Preparar la pata trasera derecha"
     }
   }
 }

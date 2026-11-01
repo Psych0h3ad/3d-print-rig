@@ -11933,6 +11933,114 @@
     "v0.bed.source.inspection": {
       "source_revision": "0b575169d283a6e81057",
       "text": "Nur die aktuelle Bettbaugruppe wird an ihren ursprünglichen Quellpositionen gezeigt. Andere Baugruppen sind beiseitegelegt; die Referenzansicht zeigt keinen Einführweg."
+    },
+    "v0.feet.manual.a3426620311417ac": {
+      "source_revision": "709364aada4a0d662346",
+      "text": "Originale Einsätze, Gummiauflagen und M3x10-Auflagenschrauben für beide vorderen Füße vorbereiten. Lange Rahmenschrauben und Zierabdeckungen für spätere Schritte aufbewahren."
+    },
+    "v0.feet.manual.5a66658649e6c25c": {
+      "source_revision": "320f61224d7651f1e4cd",
+      "text": "Fuß am Netzeingang und Auflage vorbereiten"
+    },
+    "v0.feet.manual.9ef9a551a9af3e3f": {
+      "source_revision": "353125281e55c607693f",
+      "text": "Zwei originale Schmelzeinsätze, Auflage und deren M3x10-Schraube im Fuß am Netzeingang vorbereiten. Netzeingang, Rahmenbolzen und seitliche Befestigungsschrauben folgen später."
+    },
+    "v0.feet.manual.1ed2049f0a3e61bb": {
+      "source_revision": "7cbf1041b9d6d853db00",
+      "text": "Hinteren rechten Fuß ohne Sensor mit originalen Einsätzen, Auflage und M3x10-Auflagenschraube vorbereiten. Bowdenöffnung im Handbuch prüfen. Lange Rahmenschraube und Zierabdeckung folgen später. Ursprünglich ausgeschlossene Alternativen bleiben ausgeblendet."
+    },
+    "v0.feet.manual.d32acadb2eefef99": {
+      "source_revision": "6e440cc793844222e262",
+      "text": "Vorbereitete Füße am Rahmen befestigen"
+    },
+    "v0.feet.manual.b4ea129a398fab35": {
+      "source_revision": "c5daed2ca6cb1eff0789",
+      "text": "Vorbereitete Füße mit den originalen langen M3x40 an den Rahmenecken befestigen. Fuß am Netzeingang mit zwei M3x10 und denselben auf Seite52 eingelegten Muttern sichern. Nur den ursprünglich ausgewählten hinteren rechten Fuß verwenden. Die CAD-Orientierung bleibt erhalten; das Umdrehen des Druckers wird nicht animiert."
+    },
+    "v0.feet.manual.a4fb8ffb64f76aaf": {
+      "source_revision": "5cc69e7ebdae715d9727",
+      "text": "Alle ausgewählten Fußabdeckungen befestigen"
+    },
+    "v0.feet.manual.b79a33947b67ed96": {
+      "source_revision": "85bdef27483f06d03500",
+      "text": "Nach der Rahmenmontage jede originale Abdeckung mit den zugehörigen zwei M2x10-Schneidschrauben befestigen. Auch die hinteren Abdeckungen kommen erst hier hinzu. Schraublöcher im Kunststoff nicht überdrehen."
+    },
+    "v0.feet.manual.4b63c93b652fe5ff": {
+      "source_revision": "2ee289fdc7e612bb7281",
+      "text": "Z-Motor mit integrierter Spindel und Halter vorbereiten"
+    },
+    "v0.feet.manual.47957cdbb3115ac8": {
+      "source_revision": "dbc1ab0553c1c525e72b",
+      "text": "Originalen Motor mit integrierter Spindel und Druckhalter mit zwei M3x8 und einer M3x6 vorbereiten. Schmieranweisung dieser Ausgabe beachten; die r1-Alternative mit POM-Mutter und beschichteter Spindel ersetzt nicht den ursprünglichen Motor. Vier Rahmenschrauben für den nächsten Schritt aufbewahren."
+    },
+    "v0.feet.manual.8ba1cb181363e6c7": {
+      "source_revision": "d31e014c1095ac85d42f",
+      "text": "Z-Motor lose am Rahmen befestigen"
+    },
+    "v0.feet.manual.b2d651ee8fefe59a": {
+      "source_revision": "f049a0eb66db6cd0357f",
+      "text": "Alle vier originalen M3x8-Rahmenschrauben mit denselben vorab eingelegten Haltermuttern ansetzen. Für die folgende Ausrichtung locker lassen. Die zwei M3x8 am Motorgehäuse sind andere originale Exemplare."
+    },
+    "v0.feet.manual.13d6913d0fdc5265": {
+      "source_revision": "6968988f2c2a5ea44b61",
+      "text": "Z-Motor ausrichten und manuellen Betthub prüfen"
+    },
+    "v0.feet.manual.b29b1954585b3005": {
+      "source_revision": "83f88ed795c9449f67de",
+      "text": "Ausrichtung und manuellen Betthub gemäß V0.2-Seite106 prüfen, bevor die vier Motor-Rahmen-Schrauben festgezogen werden. Das spätere r1-Verfahren in unterster Position ersetzt nicht diese Ausgabe. Eine statische CAD-Pose beweist keinen freien Lauf."
+    },
+    "v0.feet.manual.d2b1079c585f7324": {
+      "source_revision": "af4731fc1ecb18402c98",
+      "text": "Sensorfuß, Steckverbinder und Lager vorbereiten"
+    },
+    "v0.feet.manual.f95cbe0edb55cd47": {
+      "source_revision": "c2c53bfee46ccdb839ec",
+      "text": "Fuß wie auf Seite102 vorbereiten, dann originale ECAS04 und MR85 nach Seite103 einsetzen. Laut Handbuch entfällt das innere schwarze Gummiteil des Steckverbinders. ECAS04 ist in der Quelle ein Element mit zwei Körpern; seine fünf Innenteile werden nicht zugeordnet oder zerlegt dargestellt. Verbinder und separate Gummiauflage bleiben in dieser Referenz erhalten. Nicht beide hinteren rechten Varianten montieren."
+    },
+    "v0.feet.manual.4d776cdcca1e7862": {
+      "source_revision": "fd23352956b4b96a68d7",
+      "text": "Filamentschalter am vorbereiteten Fuß befestigen"
+    },
+    "v0.feet.manual.97a0a1ab1ca43d53": {
+      "source_revision": "92ddcf47d0ddce294c41",
+      "text": "Die zwei im Handbuch markierten Schließerkontakte und die originale M2x10-Schneidschraube verwenden. Der gekaufte Schalter bleibt vollständig; interne Zerlegung und Verkabelungsmodell werden nicht erfunden."
+    },
+    "v0.feet.manual.91b22bb1dba59600": {
+      "source_revision": "3a3722c4588a61380fba",
+      "text": "Spindel durch die vorbereitete Mutter führen"
+    },
+    "v0.feet.manual.8640d737ed4f7422": {
+      "source_revision": "ff9f10a07b3d1f4d3c5f",
+      "text": "Originale Spindel durch die vorbereitete spielfreie Mutter führen. Für deren zwei Hälften der verlinkten Handbuchreferenz folgen. Die Ansicht zeigt ursprüngliche Einbaulagen, keine Einführanimation oder Bestätigung des Gewindeeingriffs."
+    },
+    "v0.feet.manual.f9dc950ab542a025": {
+      "source_revision": "f253c986cad208491ecd",
+      "text": "Bett ganz absenken und die zwei Mutterhalterschrauben lösen"
+    },
+    "v0.feet.manual.f4c96440d6a8da2b": {
+      "source_revision": "a29dbad6e84da21b44b1",
+      "text": "Am realen Drucker das Bett durch Drehen der Spindel ganz absenken. Nur dieselben zwei oberen M3x12 von Seite92 lösen. Die vier Motor-Rahmen-Schrauben bleiben locker. Die statische Quellansicht bildet diese Einstellung in unterster Position nicht nach."
+    },
+    "v0.feet.manual.0ad3cbee9a1a8dec": {
+      "source_revision": "81103b8ab5cb7c9994b0",
+      "text": "Spindel zentrieren und die ursprünglichen Schrauben festziehen"
+    },
+    "v0.feet.manual.edb68c9afec35ea1": {
+      "source_revision": "1bf838ba409165fde248",
+      "text": "Bei weiterhin ganz abgesenktem Bett die Spindel im Halter zentrieren. Dieselben zwei oberen Schrauben, danach die vier Motor-Rahmen-Schrauben gemäß Handbuch festziehen. Hier kommen keine neuen Schrauben hinzu."
+    },
+    "v0.feet.manual.27d7c2c4d38ab37e": {
+      "source_revision": "2585afcf039f9911b8d7",
+      "text": "Z-Hub durch manuelles Bewegen des Betts prüfen"
+    },
+    "v0.feet.manual.36ee4999ade24c4e": {
+      "source_revision": "374f9f9dd99bfcc8d105",
+      "text": "Bett manuell über den gesamten Hub bewegen und auf Widerstand prüfen. Bei klemmender realer Mechanik dem Handbuch folgen; die Quellpose bestätigt weder freien Lauf noch Ausrichtung oder Freigang."
+    },
+    "v0.feet.rear_right.v02": {
+      "source_revision": "032dc4da724d3869b4f8",
+      "text": "Hinteren rechten Fuß und Auflage vorbereiten"
     }
   }
 }

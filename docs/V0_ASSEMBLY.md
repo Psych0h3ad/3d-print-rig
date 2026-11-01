@@ -29,7 +29,7 @@ before replacing the current progress. Clear and undo cover both record types.
 
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
-V0.2 has 112 stages and 1,653 exported source leaves. V0.2r1 has 113 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+V0.2 has 114 stages and 1,653 exported source leaves. V0.2r1 has 119 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
 
 The rail-nut preparation stage follows page 18 of each pinned manual: all five
 source carriers, each with its ten source nuts, are laid out in parallel for
@@ -97,6 +97,16 @@ No source item is removed or substituted to resolve this difference. See the
 [bed operation review](V0_BED_ASSEMBLY_REVIEW.json) for exact manual/source scope.
 These are inspection views at original source locations, not insertion,
 coplanarity measurement, fastening or native-fit certification.
+
+The feet and Z-motor reference steps separate preparation from frame fixing.
+Inlet-foot inserts and pads are prepared on page101; long corner screws and
+rear-foot accents appear at their later mounting operations. The Z motor uses
+its original motor-case screws separately from the four loose frame screws.
+Later alignment references the same existing nuts and top holder screws.
+The r1 fitting/bearing and switch operations are separate, while V0.2 retains
+its own alignment instructions. The one-piece ECAS04 reference does not expose
+its internal rubber removal, and bottom-position alignment is an instruction
+rather than an animated source pose. See the [foot and Z-motor review](V0_FEET_ASSEMBLY_REVIEW.json).
 
 | Version | Pinned source revision | Official manual |
 | --- | --- | --- |

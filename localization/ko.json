@@ -11933,6 +11933,114 @@
     "v0.bed.source.inspection": {
       "source_revision": "0b575169d283a6e81057",
       "text": "작업 중인 베드 소조립체만 원래 위치에 표시합니다. 다른 조립체는 따로 보관하며 이 참조 보기는 부품 삽입 경로를 나타내지 않습니다."
+    },
+    "v0.feet.manual.a3426620311417ac": {
+      "source_revision": "709364aada4a0d662346",
+      "text": "양쪽 앞발에 원본 인서트, 고무 패드와 패드 고정용 M3x10을 준비합니다. 긴 프레임 나사와 장식 커버는 뒤의 해당 단계에서 사용합니다."
+    },
+    "v0.feet.manual.5a66658649e6c25c": {
+      "source_revision": "320f61224d7651f1e4cd",
+      "text": "전원 입구 쪽 발과 패드 준비"
+    },
+    "v0.feet.manual.9ef9a551a9af3e3f": {
+      "source_revision": "353125281e55c607693f",
+      "text": "전원 입구 쪽 발에 원본 열압입 인서트 2개, 패드와 M3x10 패드 나사를 준비합니다. 전원 입구 본체, 프레임 볼트와 측면 고정 나사는 나중에 장착합니다."
+    },
+    "v0.feet.manual.1ed2049f0a3e61bb": {
+      "source_revision": "7cbf1041b9d6d853db00",
+      "text": "일반형 오른쪽 뒷발의 원본 인서트, 패드와 M3x10 패드 나사를 준비합니다. 설명서에서 Bowden 구멍을 확인합니다. 긴 프레임 나사와 장식 커버는 나중에 사용합니다. 원래 구성에서 제외된 대안은 계속 숨겨집니다."
+    },
+    "v0.feet.manual.d32acadb2eefef99": {
+      "source_revision": "6e440cc793844222e262",
+      "text": "준비한 발을 프레임에 장착"
+    },
+    "v0.feet.manual.b4ea129a398fab35": {
+      "source_revision": "c5daed2ca6cb1eff0789",
+      "text": "준비한 발을 원본 긴 M3x40으로 프레임 모서리에 고정합니다. 전원 입구 쪽 발에는 M3x10 2개와 52페이지에서 미리 넣은 같은 너트 2개를 씁니다. 원래 선택된 오른쪽 뒷발 하나만 사용합니다. 참조 보기는 원본 CAD 방향을 유지하며 프린터를 뒤집는 동작은 재현하지 않습니다."
+    },
+    "v0.feet.manual.a4fb8ffb64f76aaf": {
+      "source_revision": "5cc69e7ebdae715d9727",
+      "text": "선택된 각 발의 장식 부품 장착"
+    },
+    "v0.feet.manual.b79a33947b67ed96": {
+      "source_revision": "85bdef27483f06d03500",
+      "text": "프레임 장착 후 원본 장식 부품마다 맞는 M2x10 태핑 나사 2개로 고정합니다. 뒷발 장식도 발 준비 단계가 아닌 이 단계에서 사용합니다. 출력물의 나사 구멍이 뭉개지지 않도록 합니다."
+    },
+    "v0.feet.manual.4b63c93b652fe5ff": {
+      "source_revision": "2ee289fdc7e612bb7281",
+      "text": "리드스크루 일체형 Z 모터와 마운트 준비"
+    },
+    "v0.feet.manual.47957cdbb3115ac8": {
+      "source_revision": "dbc1ab0553c1c525e72b",
+      "text": "원본 리드스크루 일체형 모터와 출력 마운트를 M3x8 2개 및 M3x6 1개로 조립합니다. 이 개정판의 윤활 지침을 따르고 r1의 POM 너트·코팅 스크루 대안으로 원본 모터를 교체하지 않습니다. 프레임 고정용 나사 4개는 다음 단계에서 사용합니다."
+    },
+    "v0.feet.manual.8ba1cb181363e6c7": {
+      "source_revision": "d31e014c1095ac85d42f",
+      "text": "Z 모터를 프레임에 임시 고정"
+    },
+    "v0.feet.manual.b2d651ee8fefe59a": {
+      "source_revision": "f049a0eb66db6cd0357f",
+      "text": "원본 프레임용 M3x8 4개를 미리 넣은 같은 모터 마운트 너트에 장착합니다. 다음 정렬을 위해 이 4개는 느슨하게 둡니다. 모터 본체용 M3x8 2개는 별도의 원본 부품입니다."
+    },
+    "v0.feet.manual.13d6913d0fdc5265": {
+      "source_revision": "6968988f2c2a5ea44b61",
+      "text": "Z 모터 정렬 및 베드 수동 왕복 확인"
+    },
+    "v0.feet.manual.b29b1954585b3005": {
+      "source_revision": "83f88ed795c9449f67de",
+      "text": "모터-프레임 나사 4개를 완전히 조이기 전에 V0.2 106페이지의 정렬 및 수동 베드 왕복 절차를 따릅니다. 이후 r1의 최하단 정렬 절차를 이 개정판에 대신 적용하지 않습니다. 정적인 CAD 위치만으로 원활한 이동이 증명되지는 않습니다."
+    },
+    "v0.feet.manual.d2b1079c585f7324": {
+      "source_revision": "af4731fc1ecb18402c98",
+      "text": "감지용 뒷발·피팅·베어링 준비"
+    },
+    "v0.feet.manual.f95cbe0edb55cd47": {
+      "source_revision": "c2c53bfee46ccdb839ec",
+      "text": "102페이지와 같이 뒷발을 준비하고 103페이지대로 원본 ECAS04와 MR85를 장착합니다. 설명서는 피팅 내부 검은 고무 부품을 제거합니다. 원본 ECAS04는 솔리드 2개를 포함한 한 항목으로 내부 5개 부품의 대응이나 분해를 표시하지 않습니다. 참조 피팅은 그대로 유지하고 별도 고무 발 패드도 보존합니다. 두 오른쪽 뒷발 대안을 동시에 장착하지 않습니다."
+    },
+    "v0.feet.manual.4d776cdcca1e7862": {
+      "source_revision": "fd23352956b4b96a68d7",
+      "text": "준비한 발에 필라멘트 감지 스위치 고정"
+    },
+    "v0.feet.manual.97a0a1ab1ca43d53": {
+      "source_revision": "92ddcf47d0ddce294c41",
+      "text": "설명서에서 강조한 Normally Open용 두 단자와 원본 M2x10 태핑 나사를 사용합니다. 구매 스위치는 일체형 참조 부품으로 보존하며 내부 분해나 배선 형상을 만들어 넣지 않습니다."
+    },
+    "v0.feet.manual.91b22bb1dba59600": {
+      "source_revision": "3a3722c4588a61380fba",
+      "text": "준비한 너트에 리드스크루 통과"
+    },
+    "v0.feet.manual.8640d737ed4f7422": {
+      "source_revision": "ff9f10a07b3d1f4d3c5f",
+      "text": "원본 리드스크루를 준비한 안티백래시 너트에 통과시킵니다. 두 너트 반쪽은 설명서의 연결된 조립 참조를 따릅니다. 이 보기는 원본 조립 위치이며 삽입 애니메이션이나 나사산 맞물림 증명이 아닙니다."
+    },
+    "v0.feet.manual.f9dc950ab542a025": {
+      "source_revision": "f253c986cad208491ecd",
+      "text": "베드를 최하단으로 내리고 너트 홀더 나사 2개 풀기"
+    },
+    "v0.feet.manual.f4c96440d6a8da2b": {
+      "source_revision": "a29dbad6e84da21b44b1",
+      "text": "실기에서 리드스크루를 돌려 베드를 최하단으로 내립니다. 92페이지에서 준비한 같은 위쪽 M3x12 2개만 풉니다. 모터-프레임 나사 4개도 느슨하게 둡니다. 정적인 원본 보기는 이 최하단 조정 자세를 재현하지 않습니다."
+    },
+    "v0.feet.manual.0ad3cbee9a1a8dec": {
+      "source_revision": "81103b8ab5cb7c9994b0",
+      "text": "리드스크루 중심을 맞추고 같은 나사 조이기"
+    },
+    "v0.feet.manual.edb68c9afec35ea1": {
+      "source_revision": "1bf838ba409165fde248",
+      "text": "베드를 최하단에 유지한 채 리드스크루를 홀더 중심에 맞춥니다. 설명서대로 같은 위쪽 나사 2개를 조인 뒤 모터-프레임 나사 4개를 조입니다. 이 단계에서 새 나사는 추가하지 않습니다."
+    },
+    "v0.feet.manual.27d7c2c4d38ab37e": {
+      "source_revision": "2585afcf039f9911b8d7",
+      "text": "베드를 수동으로 왕복시켜 Z 이동 확인"
+    },
+    "v0.feet.manual.36ee4999ade24c4e": {
+      "source_revision": "374f9f9dd99bfcc8d105",
+      "text": "실기의 베드를 전체 범위에서 수동으로 왕복시켜 저항을 확인합니다. 걸림이 있으면 설명서대로 조정합니다. 원본 위치 표시만으로 원활한 이동, 정렬 또는 간격을 인증할 수는 없습니다."
+    },
+    "v0.feet.rear_right.v02": {
+      "source_revision": "032dc4da724d3869b4f8",
+      "text": "오른쪽 뒷발과 패드 준비"
     }
   }
 }

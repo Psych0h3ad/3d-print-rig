@@ -1,0 +1,310 @@
+{
+  "scope": "Stock V0.2/r1 foot and Z-motor manual reference operations. Original source shapes, normals, native matrices, materials, source identities, registrations and configuration format remain unchanged. No bottom-position animation or native mating qualification.",
+  "stage_sha256": "5b88dcdf6ca7690a9737781ce0f09f0aeb8405ea534a1701c37084797c11612e",
+  "previous_stage_sha256": [
+    "2baa9a7d9ea85ec661d6d9b59055a4a68b0ec436e54f96ab7d7019ef17dafaa5",
+    "50a7f0e504fa3a013607cc4e0bc8cb4ff49dc442cb2a5b16a5ac70d17e0c67dd",
+    "cac666a318dc56cdae843f4464e1cb63f33663002c93b4ebedaf6abb97f6e810"
+  ],
+  "manuals": [
+    {
+      "machine": "voron_v02_120",
+      "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8/Manuals/VORON_V0.2_Assembly_Manual.pdf",
+      "sha256": "69f989092ea63b60a15407ce1c4b4f9e260702330ae00416a059eb705d5170fe",
+      "pages": 246,
+      "revision": "2023-03-03 @ a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8",
+      "diagram_pages": [
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ]
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a53fc87562fd630c846af38d7de850c894dc3d85/Manuals/VORON_V0.2r1_Assembly_Manual.pdf",
+      "sha256": "5d9af5a34304c751799c4ab71d9d42ed0c3ebc20b14df4b612d332ce1cb44b6f",
+      "pages": 253,
+      "revision": "2024-05-07 @ a53fc87562fd630c846af38d7de850c894dc3d85",
+      "diagram_pages": [
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112
+      ]
+    }
+  ],
+  "operations": {
+    "voron_v02_120": [
+      {
+        "id": "feet-front",
+        "pages": [
+          101,
+          101
+        ],
+        "introduced": 8,
+        "referenced": 8
+      },
+      {
+        "id": "feet-inlet-prep",
+        "pages": [
+          101,
+          101
+        ],
+        "introduced": 5,
+        "referenced": 5
+      },
+      {
+        "id": "feet-rear-plain",
+        "pages": [
+          102,
+          102
+        ],
+        "introduced": 5,
+        "referenced": 5
+      },
+      {
+        "id": "feet-inlet",
+        "pages": [
+          102,
+          102
+        ],
+        "introduced": 6,
+        "referenced": 26
+      },
+      {
+        "id": "feet-accents",
+        "pages": [
+          103,
+          103
+        ],
+        "introduced": 12,
+        "referenced": 16
+      },
+      {
+        "id": "z-motor",
+        "pages": [
+          104,
+          104
+        ],
+        "introduced": 5,
+        "referenced": 5
+      },
+      {
+        "id": "z-motor-mount",
+        "pages": [
+          105,
+          105
+        ],
+        "introduced": 4,
+        "referenced": 20
+      },
+      {
+        "id": "z-align",
+        "pages": [
+          106,
+          106
+        ],
+        "introduced": 0,
+        "referenced": 16
+      }
+    ],
+    "voron_v02r1_120": [
+      {
+        "id": "feet-front",
+        "pages": [
+          101,
+          101
+        ],
+        "introduced": 8,
+        "referenced": 8
+      },
+      {
+        "id": "feet-inlet-prep",
+        "pages": [
+          101,
+          101
+        ],
+        "introduced": 5,
+        "referenced": 5
+      },
+      {
+        "id": "feet-rear-plain",
+        "pages": [
+          102,
+          102
+        ],
+        "introduced": 5,
+        "referenced": 5
+      },
+      {
+        "id": "feet-runout",
+        "pages": [
+          103,
+          103
+        ],
+        "introduced": 7,
+        "referenced": 7
+      },
+      {
+        "id": "feet-runout-switch",
+        "pages": [
+          104,
+          104
+        ],
+        "introduced": 2,
+        "referenced": 9
+      },
+      {
+        "id": "feet-inlet",
+        "pages": [
+          105,
+          105
+        ],
+        "introduced": 7,
+        "referenced": 36
+      },
+      {
+        "id": "feet-accents",
+        "pages": [
+          106,
+          106
+        ],
+        "introduced": 15,
+        "referenced": 20
+      },
+      {
+        "id": "z-motor",
+        "pages": [
+          107,
+          107
+        ],
+        "introduced": 5,
+        "referenced": 5
+      },
+      {
+        "id": "z-motor-thread",
+        "pages": [
+          108,
+          108
+        ],
+        "introduced": 0,
+        "referenced": 12
+      },
+      {
+        "id": "z-motor-mount",
+        "pages": [
+          109,
+          109
+        ],
+        "introduced": 4,
+        "referenced": 20
+      },
+      {
+        "id": "z-align",
+        "pages": [
+          110,
+          110
+        ],
+        "introduced": 0,
+        "referenced": 16
+      },
+      {
+        "id": "z-motor-center",
+        "pages": [
+          111,
+          111
+        ],
+        "introduced": 0,
+        "referenced": 16
+      },
+      {
+        "id": "z-cycle",
+        "pages": [
+          112,
+          112
+        ],
+        "introduced": 0,
+        "referenced": 16
+      }
+    ]
+  },
+  "source_review": {
+    "complete_foot_motor_POSITION_index_associations": [
+      45,
+      58
+    ],
+    "source_NORMAL": "Omitted by selected original GLB leaves; no repair or native/GPU normal certification.",
+    "selected_finite_screw_cap_pairs": 23,
+    "nominal_lengths_mm": [
+      40,
+      8,
+      6
+    ],
+    "scope": "Exact source under-head and tip finite triangle patches, complete source POSITION/index identities and winding controls; not receiver holes, threads, effective engagement, clearance or tolerances."
+  },
+  "actual_exports": [
+    {
+      "machine": "voron_v02_120",
+      "parts": 1653,
+      "stages": 114,
+      "states": 232,
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+      "restored": true
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "parts": 1678,
+      "stages": 119,
+      "states": 242,
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "restored": true
+    }
+  ],
+  "source_specific_notes": [
+    "The inlet foot and pad are prepared on page101, before frame installation. Its two side screws reuse the same two nuts preloaded on page52.",
+    "Long M3x40 frame screws and rear-foot accents are introduced at installation/accent pages, not during foot preparation. The r1 plain foot remains a native-excluded alternative; V0.2 has its stock plain foot.",
+    "The r1 ECAS04/MR85 operation103 is separate from the original switch and M2x10 operation104. Original fitting and separate rubber foot are retained intact.",
+    "Two motor-case M3x8 and one M3x6 belong to the prepared motor. Four different M3x8 and preloaded frame nuts are reused for loose installation/alignment.",
+    "r1 separately references threading108, loose mounting109, bottom-position instruction110, same two M3x12 top screws/centering111 and manual cycling112. V0.2 retains its own104-106 procedure."
+  ],
+  "software": [
+    "Each source occurrence has one introduction owner, and explicit later operation references reuse the same original part.",
+    "Preparation shows only the current source group; other items remain stored. Native-excluded alternatives are not exposed.",
+    "Three exact known public legacy stage identities migrate with source checks intact, retaining old browser keys. Added operations receive no invented completion marks.",
+    "Stage JSON uses compact whitespace serialization. Values and strict source pins remain; this is an explicitly new stage revision with exact progress migration."
+  ],
+  "browser_scope": "Selected Japanese1280x720/IAB both actual stock exports, old2baa file migration, repeated T8 screw selection/checks, real Save/clear/chooserLoad with exact current file roundtrip, both original config JSON restoration, separate r1 contrast/reverse/theme and6language visits, V0.2 rear-title6language visits and1920x1368PNG. Not all pose/palette/language products, mobile or multiple browsers.",
+  "open_findings": [
+    "The original one-leaf/two-solid ECAS04 representation does not resolve the manual five-part fitting or prove removal of its internal black rubber. It is neither split, deformed nor hidden to imply compliance.",
+    "The manual bottom-position alignment remains a physical-build instruction with a static original-CAD reference. This change does not animate or certify that adjustment pose, insertion, threads, alignment, torque, loads or full travel.",
+    "Original source insert/receiver and inherited contact findings retain their prior native review scopes. Complete source buffers and finite caps are not whole-machine fit evidence.",
+    "Other V0 manual diagrams/steps, detailed V2.4/Trident and source-specific derivative guides remain unfinished."
+  ]
+}
