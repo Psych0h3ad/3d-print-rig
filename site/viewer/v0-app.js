@@ -21,9 +21,9 @@ import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=d624fe15d1718e2562bd';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=00000000000000000000';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=00000000000000000000';
-import {createAssemblyPicker} from './assembly-picking.mjs?v=00000000000000000000';
+import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=1f84694a73b5a14deb74';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=14d5b55dc4da723e1787';
+import {createAssemblyPicker} from './assembly-picking.mjs?v=8eb4bc28a11055f9a41e';
 import {formatMessage,translate} from './i18n.mjs?v=ce1de4dba4ea5045a0c7';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];

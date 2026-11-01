@@ -1,5 +1,5 @@
-import {createAssemblyProgress,assemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=00000000000000000000';
-import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=00000000000000000000';
+import {createAssemblyProgress,assemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=1f84694a73b5a14deb74';
+import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=8325cd86583d044b5d13';
 
 // UI state describes the reader's checklist, never a mechanical validation.
 // Native visibility and camera changes stay with the viewer's stage controller.
@@ -27,8 +27,8 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
  const save=button('save',()=>download(`${index.identity.machine}-assembly-progress.json`,JSON.stringify(progress.snapshot(),null,2)+'\n'),actionRow),load=button('load',()=>file.click(),actionRow),file=element('input','',actions);file.type='file';file.accept='.json,application/json';file.hidden=true;
  const clear=button('clear',()=>{undo=progress.clearChecks();notice='clear_note';persist();refresh()},actions),undoButton=button('undo',()=>{if(undo){progress.restore({...undo,current_stage:progress.snapshot().current_stage});undo=null;notice='';persist();refresh()}},actions);
  const storageNote=element('p','assembly-storage-note',actions),status=element('p','assembly-progress-status');status.setAttribute('role','status');status.setAttribute('aria-live','polite');root.append(legacy.finish);container.append(root);
- const searchRegion=element('div','assembly-search-region');searchRegion.append(searchLabel,search,results,empty);
- root.replaceChildren(searchRegion,heading,meter,summary,checkLabel,nav,legacy.note,legacy.manual,sourceCount,selection,partTitle,items,more,hint,outline,actions,status,legacy.finish);
+ const searchRegion=element('div','assembly-search-region');searchRegion.append(searchLabel,search);
+ root.replaceChildren(searchRegion,results,empty,heading,meter,summary,checkLabel,nav,legacy.note,legacy.manual,sourceCount,selection,partTitle,items,more,hint,outline,actions,status,legacy.finish);
  const banner=doc.createElement('div');banner.className='assembly-active-banner';banner.setAttribute('data-i18n','off');banner.hidden=true;const bannerText=element('span','',banner),reveal=button('view',()=>onReveal?.(),banner),exit=element('button','',banner);exit.type='button';listen(exit,'click',()=>legacy.finish.click());bannerHost?.append(banner);
  function persist(){try{if(!storage)sessionOnly=true;else storage.setItem(key,JSON.stringify(progress.snapshot()))}catch{sessionOnly=true}}
  function renderResults(){
@@ -58,7 +58,7 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
  }
  function select(part,{reveal=false}={}){if(!active)return;index.part(part);selected=part;renderSelection();for(const n of items.children)if(n.dataset.part)n.setAttribute('aria-pressed',String(n.dataset.part===part));if(reveal){onReveal?.();selection.scrollIntoView?.({block:'nearest'})}}
  function importProgress(value){if(!active)throw Error('Inactive assembly view');const checked=validateAssemblyProgress(index,value);onStage(index.stage(checked.current_stage).index);progress.restore(checked);undo=null;notice='loaded';persist();refresh()}
- listen(check,'change',()=>{progress.toggle(progress.snapshot().current_stage);undo=null;notice='';persist();refresh()});listen(search,'input',renderResults);
+ listen(check,'change',()=>{progress.toggle(progress.snapshot().current_stage);undo=null;notice='';persist();refresh()});listen(search,'input',()=>{renderResults();if(search.value.trim())results.scrollIntoView?.({block:'nearest'})});
  let fileEpoch=0;listen(file,'change',async()=>{const epoch=++fileEpoch,input=file.files?.[0];file.value='';if(!input||!active)return;try{if(input.size>65536)throw Error('size');const text=await input.text();if(!active||epoch!==fileEpoch)return;importProgress(JSON.parse(text))}catch(e){if(!active||epoch!==fileEpoch)return;notice=String(e.message).includes('another model')?'wrong_version':'invalid';refresh()}});
  if(win)listen(win,'rig-language-change',refresh);
  refresh();

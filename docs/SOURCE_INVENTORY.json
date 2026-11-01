@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1269157,
-      "sha256": "e3ce0ac051f003b38c075b94319463822d9bd9a017c691b8eaca644d97ecfeed"
+      "bytes": 1270027,
+      "sha256": "c4082ad4e506a1d5f8cb6e7e30a5c77ec449a84b55bb19524e18b64b68f90da4"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -940,8 +940,8 @@
     },
     {
       "path": "scripts/build_locales.mjs",
-      "bytes": 16071,
-      "sha256": "2e84950e419d627064f1fef2f70a6354207d0ce8f8dc1b03ed6c2a99c8fc90ff"
+      "bytes": 16209,
+      "sha256": "7779d29e9f4701a39597cf0cb10917956b85fcb6ddc20846bbb9700057dfa798"
     },
     {
       "path": "scripts/build_seo.py",
@@ -1495,8 +1495,8 @@
     },
     {
       "path": "scripts/test_assembly_workbench.mjs",
-      "bytes": 5870,
-      "sha256": "c75b48e281b5bf57ffdb3a63f14b94902c0a466a1ae5369bab8f8aa6854bb70f"
+      "bytes": 5989,
+      "sha256": "f7ad1be7b27bc2d6ad06cb9645b5a38d9f2f361011be9afbbb9f2447830e6213"
     },
     {
       "path": "scripts/test_bed_chain.mjs",
@@ -6945,8 +6945,8 @@
     },
     {
       "path": "site/viewer/assembly-workbench.mjs",
-      "bytes": 10688,
-      "sha256": "28bc461f9da701eb68435c09c8ddc4d4bc46bf74e9db27106b25bc22e9d482a7"
+      "bytes": 10763,
+      "sha256": "14d5b55dc4da723e17877eeaa9bcd1a3c5138fbd482c801261598b3e0db2e946"
     },
     {
       "path": "site/viewer/asset-availability.js",
@@ -8521,7 +8521,7 @@
     {
       "path": "site/viewer/v0-app.js",
       "bytes": 32377,
-      "sha256": "c3f2a29ea9efe8775bc2fcf36275b357401205e559632f471b67c96db006c6e4"
+      "sha256": "563f12ecfc8f9e7c111369d0ffb7ad6a7bca9b76a7e5c11891e76f428a3186d7"
     },
     {
       "path": "site/viewer/v0-assembly.mjs",
@@ -8576,7 +8576,7 @@
     {
       "path": "site/viewer/v0.html",
       "bytes": 10592,
-      "sha256": "6fc98e929047ab1467c1274fce73cd301968ee86e3e263001b45da1b858f96b8"
+      "sha256": "c87ed8af0dfe7db59a28c36d6c994788adb51cbbe3e5a5723febb58718fab20b"
     },
     {
       "path": "site/viewer/v0_adapter.mjs",

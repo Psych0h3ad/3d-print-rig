@@ -63,7 +63,7 @@
     "scripts/audit_yavoth_source_assets.mjs": "f194771f349a1d2038176061bfbb08310ca34871a92dc29bc84c7db229bd902f",
     "scripts/build_approved_site.py": "84f55e624c383fd343218b7760d29363bf2563f2d5817d6631aa935382782f55",
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
-    "scripts/build_locales.mjs": "2e84950e419d627064f1fef2f70a6354207d0ce8f8dc1b03ed6c2a99c8fc90ff",
+    "scripts/build_locales.mjs": "7779d29e9f4701a39597cf0cb10917956b85fcb6ddc20846bbb9700057dfa798",
     "scripts/build_seo.py": "08876ff43b6e72b0a2c70d971c40a88fba6b17b455e191a27cb03cf3e620eb8c",
     "scripts/build_site.py": "b99a5fe1ce60af7e5a7a73913cc44e1467060e091f30b9ce5cecd84e25e477c1",
     "scripts/build_support_catalog.mjs": "49dbbf7d24ddbff864a8b231fb73bb91398348fe46bb136bfab86fb052974a3c",
@@ -174,7 +174,7 @@
     "scripts/test_assembly_downloads.mjs": "20b9a463aec89afd8356ceb89a0fd03a1d540f2150df98a3a17daf09911dd182",
     "scripts/test_assembly_picking.mjs": "36c08120bf3b3503aa7650a3cc551bba38603defad6b7de855e7e39c0efa487e",
     "scripts/test_assembly_transactions.mjs": "beff2ee061eff5ce55f9b292732659761855b4f87a30d33f64251a9eee6c285f",
-    "scripts/test_assembly_workbench.mjs": "c75b48e281b5bf57ffdb3a63f14b94902c0a466a1ae5369bab8f8aa6854bb70f",
+    "scripts/test_assembly_workbench.mjs": "f7ad1be7b27bc2d6ad06cb9645b5a38d9f2f361011be9afbbb9f2447830e6213",
     "scripts/test_bed_chain_native_roots.mjs": "fb4eb3085cb4bfaa58d335690148e0df71795508736db07494f7a6fa22d16a29",
     "scripts/test_bed_chain.mjs": "13d44bc398cbf1e0510c5a86ad7e7d4224cda54c6cac4ade6755319824a0cbbf",
     "scripts/test_build_evidence.py": "18fd1e29424b98fbf2931c39922cbf44e4c6a2ae809db2cf17576389db3de41e",
@@ -631,7 +631,7 @@
     "site/viewer/assembly-workbench-messages.mjs": "8325cd86583d044b5d13dcb59387ad0a18150e1f0802e3f5f353e8202720d12d",
     "site/viewer/assembly-workbench-model.mjs": "1f84694a73b5a14deb74d7519f1e802b0727bff98b0beec824aa642c92a0bea8",
     "site/viewer/assembly-workbench.css": "84028d9c026f39b798da7ab0bab97747c9a6095520e16bd0427b1ebaa75605cd",
-    "site/viewer/assembly-workbench.mjs": "28bc461f9da701eb68435c09c8ddc4d4bc46bf74e9db27106b25bc22e9d482a7",
+    "site/viewer/assembly-workbench.mjs": "14d5b55dc4da723e17877eeaa9bcd1a3c5138fbd482c801261598b3e0db2e946",
     "site/viewer/asset-availability.js": "24ecd91cd2dae366e90c1ddf332b7fd00979167334e65bb0e71df7d75ec219f7",
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
@@ -929,7 +929,7 @@
     "site/viewer/usage-statistics.css": "b74b6815cd2fbb983174ee29e85472f229fc402cf1e5c5f4709dd50286c23366",
     "site/viewer/usage-statistics.mjs": "a094671ff3ef5b2cfcb480cac9a89fe670cc6c246c9cbb8bdcd1cb9e6cc7cce9",
     "site/viewer/v0_adapter.mjs": "649d5ff906cefaa9659f9150ce8d1d7e90b827d64192afb57987c9acbfeafb3f",
-    "site/viewer/v0-app.js": "c3f2a29ea9efe8775bc2fcf36275b357401205e559632f471b67c96db006c6e4",
+    "site/viewer/v0-app.js": "563f12ecfc8f9e7c111369d0ffb7ad6a7bca9b76a7e5c11891e76f428a3186d7",
     "site/viewer/v0-assembly.mjs": "a5dacbc3bfe03b105af180ea06d5cd8054278ef87fe1046a39f6ff35f8dd1f63",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
     "site/viewer/v0-chain-pins.mjs": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136",
@@ -940,7 +940,7 @@
     "site/viewer/v0-native-installed-gate.mjs": "2801ee4ab692384c0d13083bede9a7428f7f47516bf81ea7310f5616dce47084",
     "site/viewer/v0-state.mjs": "5c6698815b72127154921b18d233889b80f0092eca131f4f6ed0355126832d41",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
-    "site/viewer/v0.html": "6fc98e929047ab1467c1274fce73cd301968ee86e3e263001b45da1b858f96b8",
+    "site/viewer/v0.html": "c87ed8af0dfe7db59a28c36d6c994788adb51cbbe3e5a5723febb58718fab20b",
     "site/viewer/v24_adapter.mjs": "c1618d21979653eb97f2cc9c1e29f57087cd832f35614dc7710e7de0913b56a0",
     "site/viewer/v24_matrix_adapter.mjs": "c71e052633de09bc592d218b7dbc07faedfd7b7c13ed1b42ea9ffc4a34916e3c",
     "site/viewer/v24-app.js": "3b28ba3956aa3311f1ad2eac03a0a9322cd478a3c4fee6d992c191badeb77275",
@@ -21003,5 +21003,12 @@
     "normal_actual_asset_build_bytes": 989795093,
     "existing_machine_rows_retained": 73,
     "limitations": "Personal checklist and static source assembly views only. No insertion/tightening/wiring animation, new native-solid clearance or mechanical validation, real-mobile/multiple-browser, continuous-motion or all-combination physical-fit certification."
+  },
+  "current_v0_search_scroll_review": {
+    "scope": "Only the search label/input remain sticky; query results use document flow so progress controls remain reachable. No model, adapter, stage, installation or configuration-schema changes.",
+    "independent_jobs": "Two bounded 512MiB/120s jobs: actual V0 model/stage gate and separate workbench/picking/app/state fixtures.",
+    "actual_browser": "Selected V0.2r1 Japanese IAB: retained A drive bearing query, stage22, real progress download and filechooser reload succeeds without changing stage. Screenshot retained separately.",
+    "coverage": "All73 historical machine rows retained. Parent normal actual build belongs to PR80; follow-up normal full build is required in CI before release completion.",
+    "limits": "No new physical-fit, native-solid, continuous-motion, real-mobile or cross-browser claim."
   }
 }
