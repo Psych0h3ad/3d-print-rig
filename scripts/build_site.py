@@ -489,6 +489,8 @@ COMPACT_REVIEW_REPORTS = (
     'review/eva-fronts.json',
     'review/v0-native-installation.json',
     'review/native-baseline-bootstrap.json',
+    'review/v24-native-reset.json',
+    'review/fox-ab-fan-assets.json',
 )
 
 

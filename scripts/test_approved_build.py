@@ -1082,11 +1082,13 @@ class GeneratedReviewCompaction(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = pathlib.Path(folder); self.reports(root, body)
             unrelated = root/'review/other.json'; unrelated.write_bytes(body)
+            pinned = root/'review/microswiss-source-shrouds.json'; pinned.write_bytes(body)
             contract = root/'APPROVED_DELIVERY.json'; contract.write_bytes(body)
             build_site.compact_generated_reviews(root)
             for name in build_site.COMPACT_REVIEW_REPORTS:
                 self.assertEqual((root/name).read_bytes(), expected)
             self.assertEqual(unrelated.read_bytes(), body)
+            self.assertEqual(pinned.read_bytes(), body, 'Historically byte-pinned report must remain untouched')
             self.assertEqual(contract.read_bytes(), body)
 
     def test_missing_or_invalid_report_stops_before_any_report_rewrite(self):

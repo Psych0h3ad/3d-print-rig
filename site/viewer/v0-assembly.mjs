@@ -1,10 +1,10 @@
 // Manual stages with an optional, source-pinned rail preparation presentation.
 // Preparation poses are temporary rigid layouts, not insertion or clearance.
-import {createV0RailPreparation} from './v0-rail-preparation.mjs';
-import {createV0DriveAssembly} from './v0-drive-assembly.mjs';
-import {createV0BedAssembly} from './v0-bed-assembly.mjs';
-import {createV0FeetAssembly} from './v0-feet-assembly.mjs';
-import {createV0IdlerAssembly} from './v0-idler-assembly.mjs';
+import {createV0RailPreparation} from './v0-rail-preparation.mjs?v=74bbc70d05eb89bed68a';
+import {createV0DriveAssembly} from './v0-drive-assembly.mjs?v=87761f3c0ebfce5998a9';
+import {createV0BedAssembly} from './v0-bed-assembly.mjs?v=3163b8e34404795e6717';
+import {createV0FeetAssembly} from './v0-feet-assembly.mjs?v=ee39e640a1ba4e93eac0';
+import {createV0IdlerAssembly} from './v0-idler-assembly.mjs?v=0847fa8bd4d517597689';
 export const v0AssemblySchema='v0-assembly-stages-v1';
 const record=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 const text=value=>typeof value==='string'&&value.trim().length>0;

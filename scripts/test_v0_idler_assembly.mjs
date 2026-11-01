@@ -9,6 +9,15 @@ import {createV0AssemblyStages} from '../site/viewer/v0-assembly.mjs';
 import {createAssemblyIndex,validateAssemblyProgress} from '../site/viewer/assembly-workbench-model.mjs';
 const bytes=fs.readFileSync(new URL('../site/V0_ASSEMBLY_STAGES.json',import.meta.url)),catalog=JSON.parse(bytes),sha=b=>createHash('sha256').update(b).digest('hex');
 let positive=0,negative=0;
+// A new controller/stage table must not import a stale cached policy. This
+// checks the actual import URLs against complete canonical dependency bytes.
+const control=fs.readFileSync(new URL('../site/viewer/v0-assembly.mjs',import.meta.url),'utf8');
+for(const name of ['v0-rail-preparation.mjs','v0-drive-assembly.mjs','v0-bed-assembly.mjs','v0-feet-assembly.mjs','v0-idler-assembly.mjs']){
+ const body=fs.readFileSync(new URL('../site/viewer/'+name,import.meta.url),'utf8').replaceAll('\r\n','\n'),expected=sha(body).slice(0,20);
+ assert(control.includes("'./"+name+'?v='+expected+"'"),'Policy import must be tied to current bytes: '+name);positive++;
+}
+const progressModel=fs.readFileSync(new URL('../site/viewer/assembly-workbench-model.mjs',import.meta.url),'utf8'),migration=fs.readFileSync(new URL('../site/viewer/assembly-progress-migrations.mjs',import.meta.url),'utf8').replaceAll('\r\n','\n');
+assert(progressModel.includes("'./assembly-progress-migrations.mjs?v="+sha(migration).slice(0,20)+"'"),'Progress migration must not reuse prior stage-identity code from cache');positive++;
 function fixture(mid){
  const spec=structuredClone(catalog.machines[mid]),r1=mid.includes('r1'),prefix=r1?'v02r1_':'v02_',key=n=>prefix+String(n).padStart(5,'0'),scene=new THREE.Scene(),nodes=new Map(),parts=[];
  const box=new THREE.BoxGeometry(.004,.003,.005),long=new THREE.BoxGeometry(.145,.0024,.0055),mat=new THREE.MeshStandardMaterial();

@@ -777,12 +777,18 @@
     }
   ],
   "source_sha256": {
-    "site/viewer/v0-idler-assembly.mjs": "0847fa8bd4d51759768930ef0b33712cd1d859135de60b93e1990a42a4495bc0",
-    "site/viewer/v0-assembly.mjs": "f056dd54a6f8450a6d114f6a8fd09f4e3b8e343a31b3f52619e295859eb330f6",
-    "site/viewer/v0-drive-assembly.mjs": "87761f3c0ebfce5998a9facfce27958dcbe4c8223c98fa91c54234c539cb3e74",
     "site/viewer/v0-rail-preparation.mjs": "74bbc70d05eb89bed68a19a90c950388c9df203bdbfa71e1a8265bfdc8efc2df",
+    "site/viewer/v0-drive-assembly.mjs": "87761f3c0ebfce5998a9facfce27958dcbe4c8223c98fa91c54234c539cb3e74",
+    "site/viewer/v0-bed-assembly.mjs": "3163b8e34404795e671794f66c690323f820b3dbd2e0ff1a549ba6b6ae6cac31",
+    "site/viewer/v0-feet-assembly.mjs": "ee39e640a1ba4e93eac0d6b8e052e25db732df3696757b0ef45c68975aa36a9d",
+    "site/viewer/v0-idler-assembly.mjs": "0847fa8bd4d51759768930ef0b33712cd1d859135de60b93e1990a42a4495bc0",
+    "site/viewer/v0-assembly.mjs": "6dd1d73bb55e2c46dd57cc1187026dc1b74d9edf3bd0bbd96b6b94b3f7f939b1",
+    "site/viewer/v0-app.js": "4644be6098559e3ac99c483967176a88be6116973345508e17a6ad2ecd187794",
+    "site/viewer/assembly-workbench.mjs": "6e89e21700ebf8bec84312d8a48d664202746503a7473d1677aaed06d512dd82",
+    "site/viewer/assembly-workbench-model.mjs": "86989f2d88c4e5a07e3d03a209cc24b7cfd732b043c186857b0b0a6ba7f96046",
     "site/viewer/assembly-progress-migrations.mjs": "4a8086bc4aa673ea4eb4b200a47463543b7b971b049ee1bd15bff3e7b6248566"
   },
   "physical_fit_certified": false,
-  "source_newline_policy": "Exact canonical LF publication source bytes; asset hashes retain their declared raw-byte contract."
+  "source_newline_policy": "Exact canonical LF publication source bytes; asset hashes retain their declared raw-byte contract.",
+  "cache_upgrade_scope": "Five assembly policy modules and progress migration module use exact content revisions. A selected previous-public-to-current warm-cache IAB upgrade retained existing part/stage records while new operations remained unchecked."
 }

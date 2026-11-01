@@ -276,7 +276,7 @@
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
       "bytes": 1351478,
-      "sha256": "51f0efbd120a192c284a3ad44bea935092128689d41e214a28c39b1414a42c5d"
+      "sha256": "2851323970f3bc3e303332cc0399825d166294e6e72619008c0069920054bd51"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -585,8 +585,8 @@
     },
     {
       "path": "docs/V0_IDLER_ASSEMBLY_REVIEW.json",
-      "bytes": 20333,
-      "sha256": "80e2df79773d020353c78b531c0ecd5c5bc933b871e4461308ed53f8e0690887"
+      "bytes": 21126,
+      "sha256": "42fd3f132db20384419c613ff7bacdb52b887a6de523382b0e4f7ca433248706"
     },
     {
       "path": "docs/V0_INSTALLATIONS.md",
@@ -980,8 +980,8 @@
     },
     {
       "path": "scripts/build_locales.mjs",
-      "bytes": 16465,
-      "sha256": "f65922d9e7bbeff64a68197bd13d264f78abef5ad6c9a2b12deb01c744c23b3e"
+      "bytes": 16619,
+      "sha256": "b1dbeb36c8e5c3443137a60dfa91382eaf746e56a24de8c009d21ba8522eddbe"
     },
     {
       "path": "scripts/build_seo.py",
@@ -990,8 +990,8 @@
     },
     {
       "path": "scripts/build_site.py",
-      "bytes": 35411,
-      "sha256": "c2c6b64623a18c201d80f7b6bc0daeebc771c7171d25aae916a510e62caf8bd2"
+      "bytes": 35484,
+      "sha256": "df9c3d6dbcf6603756d922ad0a57517beb4fbc7d18abfd15a160b2da8d1aaa84"
     },
     {
       "path": "scripts/build_support_catalog.mjs",
@@ -1520,8 +1520,8 @@
     },
     {
       "path": "scripts/test_approved_build.py",
-      "bytes": 82111,
-      "sha256": "f842f7132ba6bdb4d5900f7a4f6cca1092f34a6c490645b0a6ab205a8bce8568"
+      "bytes": 82316,
+      "sha256": "f5b34b0f0220c3271805af52c60ceab530e0792e4c770d5db297ef6feab2c06d"
     },
     {
       "path": "scripts/test_assembly_downloads.mjs",
@@ -2925,8 +2925,8 @@
     },
     {
       "path": "scripts/test_v0_idler_assembly.mjs",
-      "bytes": 7828,
-      "sha256": "4c6a2f213573237361ed509f544da4926658ca7edb6ac06bf5e2ffb3945806f0"
+      "bytes": 8922,
+      "sha256": "5bee109b7ea8a20c3d26f44961f9bf8799c822b5a53c7e1fe1ae8db4c26e011f"
     },
     {
       "path": "scripts/test_v0_installations.mjs",
@@ -7050,8 +7050,8 @@
     },
     {
       "path": "site/viewer/assembly-workbench-model.mjs",
-      "bytes": 9285,
-      "sha256": "3d7847235f8ba9eef0438696bd2a56e134804325e64e59dc5362fb5efd3e84f0"
+      "bytes": 9308,
+      "sha256": "86989f2d88c4e5a07e3d03a209cc24b7cfd732b043c186857b0b0a6ba7f96046"
     },
     {
       "path": "site/viewer/assembly-workbench.css",
@@ -7060,8 +7060,8 @@
     },
     {
       "path": "site/viewer/assembly-workbench.mjs",
-      "bytes": 15461,
-      "sha256": "3e984c473cf1e0f519680abc6bae10423a7056c3515baf0b594f128b1da9e9fb"
+      "bytes": 15484,
+      "sha256": "6e89e21700ebf8bec84312d8a48d664202746503a7473d1677aaed06d512dd82"
     },
     {
       "path": "site/viewer/asset-availability.js",
@@ -8346,7 +8346,7 @@
     {
       "path": "site/viewer/source-map-app.mjs",
       "bytes": 13467,
-      "sha256": "1d7d25e0edea331bafa642b05a762525a6efa5edaeb1f1efeb719f296846745c"
+      "sha256": "eb19933a583c865f7151a8d51cb35ab05ecddd0a9bbbbffc30ded1e96b70333c"
     },
     {
       "path": "site/viewer/source-map.css",
@@ -8356,7 +8356,7 @@
     {
       "path": "site/viewer/source-map.html",
       "bytes": 4537,
-      "sha256": "8db1088bbac27a32fde9a24e846d20e2b0e93e49c3cfc78dac5161f8f419beb9"
+      "sha256": "30e0dc1fdf4a272a3d0ddce9613199f2fb5f1a3484f580d0e7cf9e46734511a7"
     },
     {
       "path": "site/viewer/source-operating-bounds6.mjs",
@@ -8666,12 +8666,12 @@
     {
       "path": "site/viewer/v0-app.js",
       "bytes": 33331,
-      "sha256": "3bd6082acc546fe6ed5ff7c7cad8c02b96f99d8371740ce971ca0a480ccc89d1"
+      "sha256": "4644be6098559e3ac99c483967176a88be6116973345508e17a6ad2ecd187794"
     },
     {
       "path": "site/viewer/v0-assembly.mjs",
-      "bytes": 19400,
-      "sha256": "f056dd54a6f8450a6d114f6a8fd09f4e3b8e343a31b3f52619e295859eb330f6"
+      "bytes": 19515,
+      "sha256": "6dd1d73bb55e2c46dd57cc1187026dc1b74d9edf3bd0bbd96b6b94b3f7f939b1"
     },
     {
       "path": "site/viewer/v0-bed-assembly.mjs",
@@ -8746,7 +8746,7 @@
     {
       "path": "site/viewer/v0.html",
       "bytes": 10592,
-      "sha256": "393031918c0f79f155261791dee149ba09ca11fc9669426f7e322d872a646898"
+      "sha256": "1ec2e6adeefe13323226c7fc2db4ef3264a99a07b0ba4e7af260d554f33f73c0"
     },
     {
       "path": "site/viewer/v0_adapter.mjs",
