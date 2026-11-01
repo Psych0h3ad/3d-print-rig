@@ -11645,6 +11645,94 @@
     "source.map.extra.3": {
       "source_revision": "565ab805422ec229738f",
       "text": "Quellelemente {0} · Netze {1}"
+    },
+    "assembly.guide.0": {
+      "source_revision": "9501f6a5e3d1c4cf64e4",
+      "text": "Interaktiver Aufbau"
+    },
+    "assembly.guide.1": {
+      "source_revision": "b77f957b9434ef7189bf",
+      "text": "Aufbauschritt"
+    },
+    "assembly.guide.2": {
+      "source_revision": "4711ef706d960a738a8b",
+      "text": "Mit vollständigem Aufbau vergleichen"
+    },
+    "assembly.guide.3": {
+      "source_revision": "4ac816fdd70d13e23523",
+      "text": "Zur Aufbauansicht zurückkehren"
+    },
+    "assembly.guide.4": {
+      "source_revision": "6b4922bfa4f1152c52ec",
+      "text": "Interaktiven Aufbau starten"
+    },
+    "assembly.guide.5": {
+      "source_revision": "f56c271297e556ca3cd6",
+      "text": "Vollständige Teileübersicht öffnen"
+    },
+    "assembly.guide.6": {
+      "source_revision": "76a534404f31bfbfa972",
+      "text": "Kapitelweise entsteht die ursprüngliche Baugruppe. Die Übersicht zeigt Unterbaugruppen; einzelne Schraubenschritte stehen im Handbuch."
+    },
+    "assembly.guide.7": {
+      "source_revision": "f5e30b0b9a26af270dcc",
+      "text": "Der nächste Schritt ergänzt die ursprüngliche Unterbaugruppe samt zugehöriger Hardware. Die Teile stehen an ihren endgültigen CAD-Positionen. Einführwege werden nicht simuliert; das vollständige Handbuch bleibt erforderlich."
+    },
+    "assembly.guide.8": {
+      "source_revision": "23ede3db21fa61b96ba9",
+      "text": "A/B-Antriebe und Umlenkrollen"
+    },
+    "assembly.guide.9": {
+      "source_revision": "c458448e7951e295ffda",
+      "text": "Y-Schienen und Portalrahmen"
+    },
+    "assembly.guide.10": {
+      "source_revision": "dc86b497a32b84c6ffa3",
+      "text": "Z-Schienen und Hubmechanik"
+    },
+    "assembly.guide.11": {
+      "source_revision": "bce83873abc2e48a6113",
+      "text": "X-Achse"
+    },
+    "assembly.guide.12": {
+      "source_revision": "f48178ce41839edcf5fc",
+      "text": "A/B-Riemen"
+    },
+    "assembly.guide.13": {
+      "source_revision": "02341d2ce9e27db23efe",
+      "text": "Druckbett und Halterung"
+    },
+    "assembly.guide.14": {
+      "source_revision": "5dc44704ef4a25dee244",
+      "text": "Stealthburner-Baugruppe"
+    },
+    "assembly.guide.15": {
+      "source_revision": "8c2198a6187e9d6a1fb9",
+      "text": "Elektronik und Kabelführung"
+    },
+    "assembly.guide.16": {
+      "source_revision": "4a38365c4d6622ddb2e0",
+      "text": "Paneele und Türen"
+    },
+    "assembly.guide.17": {
+      "source_revision": "fb6c00d23be5cc634040",
+      "text": "Filamentführung"
+    },
+    "assembly.guide.18": {
+      "source_revision": "897d08aec26d7d0b84b3",
+      "text": "Z-Antriebe und Umlenkrollen"
+    },
+    "assembly.guide.19": {
+      "source_revision": "51de5e0b1c4ebb702178",
+      "text": "Portal und X-Träger"
+    },
+    "assembly.guide.20": {
+      "source_revision": "49ac8e1fa16c5dd3fd47",
+      "text": "Z-Verbindungen und Riemen"
+    },
+    "assembly.guide.21": {
+      "source_revision": "6d6b7348daea0b0e559a",
+      "text": "Abluftfilter"
     }
   }
 }

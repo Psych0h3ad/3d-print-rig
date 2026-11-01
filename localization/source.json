@@ -14665,6 +14665,116 @@
       "kind": "message",
       "en": "Source items {0} · meshes {1}",
       "ja": "元CAD項目 {0}・メッシュ {1}"
+    },
+    "assembly.guide.0": {
+      "kind": "message",
+      "en": "Interactive assembly",
+      "ja": "インタラクティブ組立"
+    },
+    "assembly.guide.1": {
+      "kind": "message",
+      "en": "Assembly position",
+      "ja": "組立の表示位置"
+    },
+    "assembly.guide.2": {
+      "kind": "message",
+      "en": "Compare complete assembly",
+      "ja": "完成形と比較"
+    },
+    "assembly.guide.3": {
+      "kind": "message",
+      "en": "Return to assembly view",
+      "ja": "組立表示へ戻る"
+    },
+    "assembly.guide.4": {
+      "kind": "message",
+      "en": "Start interactive assembly",
+      "ja": "組立を始める"
+    },
+    "assembly.guide.5": {
+      "kind": "message",
+      "en": "Explore complete part map",
+      "ja": "完成形の部品マップ"
+    },
+    "assembly.guide.6": {
+      "kind": "message",
+      "en": "Move through the chapters to build the source assembly. This is a subassembly overview, not a screw-by-screw guide.",
+      "ja": "章を進めると元CADの部品が組み上がります。小アセンブリー単位の概要表示です。個々のねじの手順は公式マニュアルで確認してください。"
+    },
+    "assembly.guide.7": {
+      "kind": "message",
+      "en": "Advance to add the next source subassembly. Hardware stays with its source group. Parts use their final CAD positions; this overview does not animate insertion paths or replace the full manual.",
+      "ja": "次へ進むと元CADの小アセンブリーを追加します。金物も所属部品と一緒に表示します。最終CAD位置での表示で、差し込み経路の再現や公式マニュアルの代わりではありません。"
+    },
+    "assembly.guide.8": {
+      "kind": "message",
+      "en": "A/B drives and idlers",
+      "ja": "A/B駆動部とアイドラー"
+    },
+    "assembly.guide.9": {
+      "kind": "message",
+      "en": "Y rails and gantry frame",
+      "ja": "Yレールとガントリーフレーム"
+    },
+    "assembly.guide.10": {
+      "kind": "message",
+      "en": "Z rails and lift",
+      "ja": "Zレールと昇降機構"
+    },
+    "assembly.guide.11": {
+      "kind": "message",
+      "en": "X axis",
+      "ja": "X軸組立"
+    },
+    "assembly.guide.12": {
+      "kind": "message",
+      "en": "A/B belts",
+      "ja": "A/Bベルト"
+    },
+    "assembly.guide.13": {
+      "kind": "message",
+      "en": "Print bed and support",
+      "ja": "ベッドと支持部"
+    },
+    "assembly.guide.14": {
+      "kind": "message",
+      "en": "Stealthburner assembly",
+      "ja": "Stealthburnerの組立"
+    },
+    "assembly.guide.15": {
+      "kind": "message",
+      "en": "Electronics and cable paths",
+      "ja": "電子部品と配線経路"
+    },
+    "assembly.guide.16": {
+      "kind": "message",
+      "en": "Panels and doors",
+      "ja": "パネルとドア"
+    },
+    "assembly.guide.17": {
+      "kind": "message",
+      "en": "Filament path",
+      "ja": "フィラメント供給経路"
+    },
+    "assembly.guide.18": {
+      "kind": "message",
+      "en": "Z drives and idlers",
+      "ja": "Z駆動部とアイドラー"
+    },
+    "assembly.guide.19": {
+      "kind": "message",
+      "en": "Gantry and X beam",
+      "ja": "ガントリーとXビーム"
+    },
+    "assembly.guide.20": {
+      "kind": "message",
+      "en": "Z joints and belts",
+      "ja": "Zジョイントとベルト"
+    },
+    "assembly.guide.21": {
+      "kind": "message",
+      "en": "Exhaust filter",
+      "ja": "排気フィルター"
     }
   }
 }

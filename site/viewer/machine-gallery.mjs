@@ -1,4 +1,4 @@
-import {setupUsageStatistics} from './usage-statistics.mjs?v=59c01ce4bc21ae310ac5';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=26f853b19035073af81e';
 import {setupLayoutNavigation} from './layout-nav.mjs?v=3b2a70a879b1cd6ce5d6';
 import {machineChoices, machineFamilies, machineVendors} from './machines.js?v=def15e6e5867393ab8db';
 import {normalizeLanguage, languageURL} from './languages.mjs?v=2e376566920474c0f57c';
@@ -94,13 +94,14 @@ export function createMachineCard(row, {document, current, language, translate, 
   const open = make('span', undefined, 'machine-open'), arrow = make('span', undefined, 'external-icon');
   arrow.setAttribute('aria-hidden', 'true'); open.append(make('span', message('gallery.open')), arrow);
   info.append(details, open); card.append(preview, info); item.append(card);
+  if(/^voron_trident_(250|300|350)$|^voron_v24_(250|300|350)_printed$|^voron_v02(r1)?_120$/.test(row.id)){const link=make('a',translate('Start interactive assembly',language),'source-map-link');link.href=languageURL(new URL((row.id.startsWith('voron_v02')?'./v0.html?assembly=1&machine=':'./source-map.html?view=assembly&machine=')+encodeURIComponent(row.id),current).href,language);item.append(link)}
   if(/^voron_trident_(250|300|350)$|^voron_v24_(250|300|350)_(printed|ldo_cnc)$/.test(row.id)){const link=make('a',translate('Source part map',language),'source-map-link');link.href=languageURL(new URL('./source-map.html?machine='+encodeURIComponent(row.id),current).href,language);item.append(link)}
   return item;
 }
 
 export async function mountGallery({document = globalThis.document, window = globalThis.window, fetcher = globalThis.fetch, services} = {}) {
   const [{setupLanguage, translate, formatMessage}, {setupHeaderThemeToggle, applyDisplay, displayKey}] = services || await Promise.all([
-    import('./i18n.mjs?v=52fefcccb7320bf1c315'), import('./display-preferences.mjs?v=8f347468def25922153c'),
+    import('./i18n.mjs?v=1ba508ae5059ae2bcaec'), import('./display-preferences.mjs?v=8f347468def25922153c'),
   ]);
   const $ = id => document.getElementById(id), lang = setupLanguage({document, window});
   setupLayoutNavigation(document.querySelector('[data-gallery-nav]'), {document, window});
