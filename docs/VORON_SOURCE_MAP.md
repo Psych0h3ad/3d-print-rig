@@ -45,13 +45,18 @@ from the public source preparation inventory at the pinned source revision;
 the generated table retains its SHA-256. Existing source-template rail screws
 and relocated X nuts stay with the X beam, and moving bed-frame hardware stays
 with the bed. V2.4 uses original source paths, including X-beam hardware whose
-exported broad group is Frame. Stock heads and their companions appear together.
+exported broad group is Frame. Trident's separate 18-part carriage and V2.4's
+32 source carriage/rail-block/probe leaves appear in the X/gantry chapter before
+the belts. The later Stealthburner chapter adds the head and its cooling and
+extruder companions. An ADXL assembly belonging to the extruder stays with it.
 
 LDO CNC retains the full part map. It is deliberately excluded from assembly
 mode because the printed guide does not establish a CNC assembly procedure.
 The normal nine-machine actual gate now additionally checks all six admitted
-assembly overviews, cumulative/reversed state counts, full comparison, exact
-source restoration and rejection of part-map progress in assembly mode.
+assembly overviews, the exact carriage cohort before belts, cumulative/reversed
+state counts, full comparison, exact source restoration and rejection of
+part-map progress in assembly mode. Every normally visible receiver must also
+remain visible in the belt chapter; matching only final counts is insufficient.
 
 `createSourcePartsMap` binds received component roots and all rendered source
 owners, checks finite world matrices, and rejects missing or unregistered model

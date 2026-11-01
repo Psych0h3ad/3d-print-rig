@@ -29,7 +29,12 @@ function v24Section(p,path){
  case 'V24_Bed':return 'bed';case 'V24_X_Beam':return 'gantry';
  case 'V24_Gantry':return /Z_Joints/.test(path)?'zaxis':/Chain_Guide/.test(path)?'wiring':/A\/B Drives|Front Idlers/.test(path)?'drives':'gantry';
  case 'V24_Reference_Belts':return /Z Belts/.test(path)?'zaxis':'belts';
- case 'V24_Toolhead':return 'head';case 'V24_Electronics':return 'wiring';case 'V24_Skirts':return 'skirts';case 'V24_Enclosure':return 'panels';case 'V24_Exhaust':return 'exhaust';case 'V24_Spool':return 'filament';
+ case 'V24_Toolhead':{
+  const owner=p.source_path?.[4];
+  if(['Panasonic GX-H15A:1','MGN12H (1):1','X_Carriage:1'].includes(owner))return 'gantry';
+  if(['SB TOOLHEAD-Revo Voron:1','ADXL_Assembly - Generic:1','CW2_Assembly:1','Stealthburner_Assembly:1'].includes(owner))return 'head';
+  fail('Unreviewed V2.4 carriage/head source owner: '+owner);
+ }case 'V24_Electronics':return 'wiring';case 'V24_Skirts':return 'skirts';case 'V24_Enclosure':return 'panels';case 'V24_Exhaust':return 'exhaust';case 'V24_Spool':return 'filament';
  default:fail('Unreviewed printed V2.4 source group: '+p.group);
  }
 }
@@ -39,7 +44,7 @@ export async function createVoronAssemblyGuide(loaded,scene){
  const raw=new Map();for(const c of loaded.inspection.components)for(const p of c.meta.parts)raw.set(c.path+'#'+p.key,{p,component:c.path});
  for(const source of base.stages)for(const key of source.part_keys){
   const {p,component}=raw.get(key),path=(p.source_path??[p.source_component??'']).join('/');
-  const section=family==='v24'?v24Section(p,path):component.includes('sb_carriage')||component.startsWith('toolheads/')||!p.group&&!component.includes('trident_r2_gantry_')?'head':tridentSection(p,path);
+  const section=family==='v24'?v24Section(p,path):component.includes('trident_r2_sb_carriage')?'xaxis':component.startsWith('toolheads/')||!p.group&&!component.includes('trident_r2_gantry_')?'head':tridentSection(p,path);
   if(!groups.has(section))fail('Unknown assembly section: '+section);groups.get(section).push(key);
  }
  const note='Advance to add the next source subassembly. Hardware stays with its source group. Parts use their final CAD positions; this overview does not animate insertion paths or replace the full manual.';

@@ -37,12 +37,19 @@ try{
  if(rejects!==2)throw Error('Live graph negatives accepted');
  const {createVoronAssemblyGuide,supportsVoronAssembly}=await import(new URL('viewer/voron-assembly-guide.mjs',site));let assembly=null;
  if(supportsVoronAssembly(machine)){
-  const guide=await createVoronAssemblyGuide(loaded,scene),counts=[];let last=0;
+  const baselineVisible=new Set(index.entries().map(r=>r.key)),guide=await createVoronAssemblyGuide(loaded,scene),counts=[];let last=0;
+  const beltReceivers=[];
+  for(const c of loaded.inspection.components)for(const p of c.meta.parts){
+   const required=c.path.includes('trident_r2_sb_carriage')||p.group==='V24_Toolhead'&&['Panasonic GX-H15A:1','MGN12H (1):1','X_Carriage:1'].includes(p.source_path?.[4]);
+   if(required){const key=c.path+'#'+p.key;if(guide.owner(key).index>=guide.stage('belts').index)throw Error('Belt receiver appears after belt: '+key);beltReceivers.push(key)}
+  }
+  if(beltReceivers.length!==(machine.startsWith('voron_trident_')?18:32))throw Error('Source carriage cohort changed');
+  guide.setStage('belts');for(const key of beltReceivers)if(baselineVisible.has(key)&&guide.getPartNodes(key).length===0)throw Error('Belt receiver absent in belt chapter');
   for(const s of guide.stages){const state=guide.setStage(s.index);if(state.visible_count<last)throw Error('Assembly lost cumulative source parts');last=state.visible_count;counts.push(last);for(const key of s.part_keys)guide.getPartNodes(key)}
   guide.restore();if(signature(loaded.root)!==before)throw Error('Assembly completion changed source');
   for(const i of [...guide.stages.map(s=>s.index).reverse(),0,guide.stages.length-1,1,0,guide.stages.length-2]){if(guide.setStage(i).visible_count!==counts[i])throw Error('Reversed assembly mask differs');guide.previewComplete();if(signature(loaded.root)!==before)throw Error('Complete comparison did not preserve native source');guide.setStage(i)}
   const saved=createAssemblyProgress(guide);saved.setStage(2);saved.toggle(2);validateAssemblyProgress(guide,JSON.parse(JSON.stringify(saved.snapshot())));let mapRejected=false;try{validateAssemblyProgress(guide,progress.snapshot())}catch{mapRejected=true}if(!mapRejected)throw Error('Part-map progress accepted as assembly');
-  guide.restore();assembly={stages:guide.stages.length,visibleCounts:counts,sourceItems:guide.partCount,reverseAndPreview:true,restoredUnchanged:signature(loaded.root)===before,wrongViewProgressRejected:mapRejected,identity:guide.identity};
+  guide.restore();assembly={stages:guide.stages.length,visibleCounts:counts,sourceItems:guide.partCount,beltReceiverKeys:beltReceivers,beltReceiversBeforeBelts:true,reverseAndPreview:true,restoredUnchanged:signature(loaded.root)===before,wrongViewProgressRejected:mapRejected,identity:guide.identity};
  }
  const after=signature(loaded.root);if(before!==after)throw Error('Inspection mutated source assembly');
  loaded.dispose();let retired=false;try{index.verifyLive()}catch{retired=true}loaded=null;if(!retired)throw Error('Retired model accepted');
