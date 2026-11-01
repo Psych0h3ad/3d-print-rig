@@ -1,5 +1,16 @@
 # V0 assembly steps
 
+Search by stage title, source part name or source key. The current stage lists its
+source items; selecting a displayed item focuses its real geometry. Clicking a
+visible source part in the viewport shows its identity and a link to its stage.
+Hidden source alternatives remain identified in the list without being exposed.
+
+The reader can check completed stages, resume in the same browser, and export or
+load a separate progress JSON. Progress is pinned to the machine, model, manifest,
+stage document and manual revision. A mismatched progress file is rejected before
+changing the view. This checklist is a personal record, not assembly inspection.
+It does not change the existing machine-configuration save format.
+
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
 V0.2 has 106 stages and 1,653 exported source leaves. V0.2r1 has 107 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Parts are shown cumulatively at their final CAD positions; this view does not animate insertion, screw tightening or wiring.

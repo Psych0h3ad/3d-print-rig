@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import * as THREE from '../site/viewer/vendor/three.module.js';
+import {createAssemblyPicker} from '../site/viewer/assembly-picking.mjs';
+const handlers=new Map(),element={addEventListener:(k,f)=>handlers.set(k,f),removeEventListener:k=>handlers.delete(k),getBoundingClientRect:()=>({left:0,top:0,width:100,height:100})};
+const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(45,1,.1,10);camera.position.z=2;camera.updateMatrixWorld(true);
+const mesh=new THREE.Mesh(new THREE.BoxGeometry(.5,.5,.5),new THREE.MeshBasicMaterial());scene.add(mesh);scene.updateMatrixWorld(true);const before=mesh.matrixWorld.toArray(),chosen=[];
+const picker=createAssemblyPicker({element,camera,entries:()=>[{key:'native1',node:mesh}],onPick:k=>chosen.push(k)}),event=(x=50,y=50,button=0,id=1)=>({clientX:x,clientY:y,button,pointerId:id});
+const click=(a=event(),b=a)=>{handlers.get('pointerdown')(a);handlers.get('pointerup')(b)};
+click();assert.deepEqual(chosen,['native1']);click(event(),event(58,50));click(event(50,50,2));click(event(),event(50,50,0,2));assert.equal(chosen.length,1);
+mesh.visible=false;click();assert.equal(chosen.length,1);mesh.visible=true;scene.visible=false;click();assert.equal(chosen.length,1);scene.visible=true;
+handlers.get('pointerdown')(event());handlers.get('pointercancel')();handlers.get('pointerup')(event());assert.equal(chosen.length,1);click(event(1,1));assert.equal(chosen.length,1);
+assert.deepEqual(mesh.matrixWorld.toArray(),before);picker.dispose();assert.equal(handlers.size,0);mesh.geometry.dispose();mesh.material.dispose();console.log('Assembly source picker: PASS (real Three.js ray, fixture geometry, no rendering claim)');

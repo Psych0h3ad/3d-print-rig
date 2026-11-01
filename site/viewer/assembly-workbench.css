@@ -1,0 +1,39 @@
+.assembly-workbench { --assembly-accent:#ae4c30; min-width:0; }
+.assembly-workbench[hidden],.assembly-workbench [hidden],.assembly-active-banner[hidden] { display:none!important; }
+.assembly-workbench-heading { border-left:3px solid var(--assembly-accent); padding-left:12px; margin:16px 0; }
+.assembly-stage-number { display:block; color:var(--muted); font:11px/1.5 'Consolas',monospace; font-variant-numeric:tabular-nums; }
+.ui-workspace .assembly-workbench h2 { font-size:20px; line-height:1.35; margin:5px 0 0; letter-spacing:-.025em; }
+.assembly-workbench h3 { font-size:12px; margin:18px 0 8px; }
+.assembly-progress { display:block; width:100%; height:4px; border:0; accent-color:var(--assembly-accent); }
+.assembly-progress::-webkit-progress-bar { background:var(--line); }.assembly-progress::-webkit-progress-value { background:var(--assembly-accent); }
+.assembly-progress-summary,.assembly-source-count { font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; margin:6px 0 12px; }
+.ui-workspace .assembly-check { display:flex; align-items:flex-start; gap:8px; margin:12px 0; font-size:12px; color:var(--ink); cursor:pointer; }
+.assembly-check input { width:16px; height:16px; flex:0 0 auto; margin:1px 0 0; accent-color:var(--assembly-accent); }
+.assembly-stage-nav { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin:12px 0; }
+.assembly-stage-nav button:last-child { grid-column:1/-1; }
+.ui-workspace .assembly-stage-nav button { margin:0; min-height:38px; }
+.ui-workspace .assembly-workbench #assemblyStepNote { font-size:12px; line-height:1.8; padding:12px 0; margin:0; border-block:1px solid var(--line); }
+.assembly-workbench #assemblyManual { display:inline-block; padding:10px 0; font-size:12px; text-underline-offset:3px; }
+.assembly-search-region { position:sticky;top:-16px;z-index:3;background:var(--paper);padding:8px 0 10px;border-bottom:1px solid var(--line); }
+.ui-workspace .assembly-search-label { margin:0 0 6px; font-size:12px; }
+.ui-workspace .assembly-search { width:100%; max-width:100%; min-height:40px; margin:0; padding:9px 10px; }
+.assembly-stage-results { max-height:235px; overflow:auto; margin-top:6px; border-bottom:1px solid var(--line); }
+.ui-workspace .assembly-stage-results button,.ui-workspace .assembly-parts button { display:block; width:100%; text-align:left; border:0; border-bottom:1px solid var(--line); border-radius:0; background:transparent; margin:0; padding:10px 8px; font-size:12px; overflow-wrap:anywhere; }
+.assembly-stage-results button[aria-current=true] { border-left:3px solid var(--assembly-accent); font-weight:650; }
+.assembly-stage-results button[data-checked=true]::after { content:'✓'; margin-left:8px; }
+.assembly-parts small { display:block; margin-top:3px; font:10px/1.5 'Consolas',monospace; color:var(--muted); }
+.assembly-parts button[aria-pressed=true] { background:color-mix(in srgb,var(--assembly-accent) 10%,transparent); }
+.assembly-part-path { font:10px/1.7 'Consolas',monospace; color:var(--muted); overflow-wrap:anywhere; }
+.assembly-part-name { font-size:13px; font-weight:600; overflow-wrap:anywhere; }
+.assembly-selection { padding:0 0 12px; border-bottom:1px solid var(--line); }
+.assembly-pick-hint,.assembly-storage-note,.assembly-progress-status,.assembly-search-empty { font-size:11px; line-height:1.7; color:var(--muted); }
+.assembly-action-row { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.ui-workspace .assembly-progress-actions,.ui-workspace .assembly-outline { background:transparent; border:0; border-block:1px solid var(--line); border-radius:0; padding:12px 0; margin:12px 0; }
+.assembly-active-banner { position:absolute;top:58px;left:12px;z-index:4;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;max-width:calc(100% - 24px);padding:6px 10px;background:var(--paper);border:1px solid var(--line);font-size:11px;color:var(--ink); }
+.ui-workspace .assembly-active-banner button { padding:4px 8px; min-height:30px; margin:0; font-size:11px; }
+.assembly-workbench :focus-visible { outline:2px solid var(--assembly-accent); outline-offset:2px; }
+html[data-theme=dark] .assembly-workbench { --assembly-accent:#ffa381; }
+body[data-assembly-stage] #panel-configuration > :not(#assemblyControls) { display:none; }
+body[data-assembly-stage] #assemblyControls > :is(summary,p:not(#assemblyStatus),#assemblyStart) { display:none; }
+body[data-assembly-stage] #assemblyControls { padding:0;margin:0;border:0; }
+@media(max-width:680px) { .assembly-active-banner { grid-column:1/-1; }.ui-workspace .assembly-search { font-size:16px; }.ui-workspace .assembly-workbench button { min-height:44px; } }

@@ -201,6 +201,18 @@ export function createV0AssemblyStages(options){
   // Stage keys include assigned alternatives; "focus added" only uses this
   // stage's keys which were visible when assembly mode was entered.
   getBoundsKeys(){checkActive();return active?visibleKeys(spec.stages[active.index].part_keys):[]},
+  getVisibleKeys(){checkActive();return active?visibleKeys():[]},
+  getDisplayedParts(){
+   checkActive();if(!active)return [];
+   return visibleKeys().map(key=>({key,nodes:[...new Set([nodes.get(key),companionForKey.get(key)].filter(visibleNode))]}));
+  },
+  getPartNodes(key){
+   checkActive();if(!bindings.has(key))fail('Unknown source part: '+key);
+   if(!active||!active.part_keys.includes(key))return [];
+   const roots=new Set(),native=nodes.get(key),companion=companionForKey.get(key);
+   if(visibleNode(native))roots.add(native);if(visibleNode(companion))roots.add(companion);
+   return [...roots];
+  },
   // The app can focus the displayed replacement rather than the hidden native
   // support-bearing leaf. Counts/keys remain native identities, not mesh count.
   getBoundsNodes(){

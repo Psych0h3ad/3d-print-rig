@@ -1,11 +1,11 @@
-import {siboorAlphaModelOptions,assertSiboorRawInput} from './trinity-alpha-siboor-r2.mjs?v=a13c8eb351da6a0a1df2';
+import {siboorAlphaModelOptions,assertSiboorRawInput} from './trinity-alpha-siboor-r2.mjs?v=f9c235643c142e804fbe';
 import {contentSHA256} from './mount-validation.mjs';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {extraAssetBase,checkedExtraAsset} from './extra-asset-integrity.mjs?v=7483c3e6dfe211e4d6b5';
 import {beginModelLoading} from './model-progress.mjs?v=beaef781095b6f56b290';
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=62618da89dc7b8091392';
-export {siboorMachine,loadSiboorRegistration} from './siboor-catalog.mjs?v=62618da89dc7b8091392';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=5b8156e6fed25fdf40eb';
+export {siboorMachine,loadSiboorRegistration} from './siboor-catalog.mjs?v=5b8156e6fed25fdf40eb';
 export async function loadSiboorAssembly(machine,{signal,progressOptions,onProgress}={}){
  const loader=new GLTFLoader();
  if(machine==='siboor_trident_350'){

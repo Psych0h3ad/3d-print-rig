@@ -11429,6 +11429,130 @@
     "layout.popstation_affiliate_disclosure": {
       "source_revision": "0cdf2615b3761e935e6a",
       "text": "Affiliate-Link: Bei Käufen erhalte ich möglicherweise eine Provision."
+    },
+    "assembly.workbench.title": {
+      "source_revision": "c9b206647cfca06ada61",
+      "text": "Montageanleitung"
+    },
+    "assembly.workbench.search": {
+      "source_revision": "daa71511480ffbaaf92e",
+      "text": "Schritt oder Teil suchen"
+    },
+    "assembly.workbench.search_hint": {
+      "source_revision": "ccc8319ad943762496ac",
+      "text": "Schrittname, Teilename, M3…"
+    },
+    "assembly.workbench.all_steps": {
+      "source_revision": "1d6c317b36b6841aa693",
+      "text": "Alle Schritte ({0})"
+    },
+    "assembly.workbench.results": {
+      "source_revision": "9f54cbe8a8b7b0828e11",
+      "text": "{0} passende Schritte"
+    },
+    "assembly.workbench.no_results": {
+      "source_revision": "8624b27a67a5988ae472",
+      "text": "Kein passender Schritt."
+    },
+    "assembly.workbench.current_step": {
+      "source_revision": "3c64a71ca348d9904dbb",
+      "text": "Schritt {0} von {1}"
+    },
+    "assembly.workbench.mark_done": {
+      "source_revision": "d81a818eda6a1ab8effc",
+      "text": "Ich habe diesen Schritt abgeschlossen"
+    },
+    "assembly.workbench.progress": {
+      "source_revision": "fbf2b4687975627ac613",
+      "text": "{0} / {1} Schritte markiert"
+    },
+    "assembly.workbench.save": {
+      "source_revision": "c691ea8b77568e21a485",
+      "text": "Fortschritt exportieren"
+    },
+    "assembly.workbench.load": {
+      "source_revision": "d270aea7a50e6c9543a7",
+      "text": "Fortschritt laden"
+    },
+    "assembly.workbench.clear": {
+      "source_revision": "7de4cc006d9615d8a3bd",
+      "text": "Schrittmarkierungen löschen"
+    },
+    "assembly.workbench.undo": {
+      "source_revision": "d9bc3b651b7c01168e41",
+      "text": "Löschen rückgängig machen"
+    },
+    "assembly.workbench.local": {
+      "source_revision": "f24c004a452e22089112",
+      "text": "Der Fortschritt bleibt in diesem Browser."
+    },
+    "assembly.workbench.session_only": {
+      "source_revision": "ee8aba7b25e940dfe108",
+      "text": "Browserspeicher ist nicht verfügbar. Exportiere den Fortschritt, um ihn zu behalten."
+    },
+    "assembly.workbench.resumed": {
+      "source_revision": "9d85ec9835c66c00fbd7",
+      "text": "Gespeicherter Fortschritt fortgesetzt."
+    },
+    "assembly.workbench.loaded": {
+      "source_revision": "3fa544231a50527a5475",
+      "text": "Fortschritt geladen."
+    },
+    "assembly.workbench.invalid": {
+      "source_revision": "82088b50daba0a0b8cd6",
+      "text": "Diese Fortschrittsdatei kann nicht gelesen werden."
+    },
+    "assembly.workbench.wrong_version": {
+      "source_revision": "0b72cea48cbc8c87d9a8",
+      "text": "Dieser Fortschritt gehört zu einem anderen Modell oder einer anderen Anleitungsversion."
+    },
+    "assembly.workbench.items": {
+      "source_revision": "480f3e4ac0544c8d7fcb",
+      "text": "Hier hinzugefügte Modellelemente"
+    },
+    "assembly.workbench.counts": {
+      "source_revision": "d8a95154f452b3d17b65",
+      "text": "Hinzugefügt {0} · angezeigt {1}"
+    },
+    "assembly.workbench.no_items": {
+      "source_revision": "d3ddfb31eaeb03f576c7",
+      "text": "Vorbereitung oder Prüfung: Es werden keine Modellelemente hinzugefügt."
+    },
+    "assembly.workbench.selected": {
+      "source_revision": "8fd37635e255689b9dbd",
+      "text": "Am Modell ausgewählt"
+    },
+    "assembly.workbench.part_step": {
+      "source_revision": "701d4f427f2e3aa59df8",
+      "text": "Schritt dieses Teils öffnen ({0})"
+    },
+    "assembly.workbench.focus_part": {
+      "source_revision": "3f1081fd57ef7bc89c09",
+      "text": "Dieses Teil fokussieren"
+    },
+    "assembly.workbench.not_displayed": {
+      "source_revision": "64c96c9a4fbdc21dc5ef",
+      "text": "Alternative aus der Quelle · nicht angezeigt"
+    },
+    "assembly.workbench.pick_hint": {
+      "source_revision": "15d9ac1bb783383ae649",
+      "text": "Wähle ein sichtbares Modellteil, um seinen Schritt zu finden."
+    },
+    "assembly.workbench.more": {
+      "source_revision": "49cd2dda79a20c292511",
+      "text": "{0} weitere Elemente anzeigen"
+    },
+    "assembly.workbench.view": {
+      "source_revision": "c58a74522929492c489f",
+      "text": "Anleitungsbereich anzeigen"
+    },
+    "assembly.workbench.active": {
+      "source_revision": "df0e92a9feb789b2f25d",
+      "text": "Montage {0}/{1}"
+    },
+    "assembly.workbench.clear_note": {
+      "source_revision": "4f28446ea4bc6794d527",
+      "text": "Schrittmarkierungen gelöscht."
     }
   }
 }

@@ -11429,6 +11429,130 @@
     "layout.popstation_affiliate_disclosure": {
       "source_revision": "0cdf2615b3761e935e6a",
       "text": "Партнёрская ссылка: я могу получить комиссию за покупки."
+    },
+    "assembly.workbench.title": {
+      "source_revision": "c9b206647cfca06ada61",
+      "text": "Руководство по сборке"
+    },
+    "assembly.workbench.search": {
+      "source_revision": "daa71511480ffbaaf92e",
+      "text": "Найти этап или деталь"
+    },
+    "assembly.workbench.search_hint": {
+      "source_revision": "ccc8319ad943762496ac",
+      "text": "Название этапа, детали, M3…"
+    },
+    "assembly.workbench.all_steps": {
+      "source_revision": "1d6c317b36b6841aa693",
+      "text": "Все этапы ({0})"
+    },
+    "assembly.workbench.results": {
+      "source_revision": "9f54cbe8a8b7b0828e11",
+      "text": "Найдено этапов: {0}"
+    },
+    "assembly.workbench.no_results": {
+      "source_revision": "8624b27a67a5988ae472",
+      "text": "Подходящих этапов нет."
+    },
+    "assembly.workbench.current_step": {
+      "source_revision": "3c64a71ca348d9904dbb",
+      "text": "Этап {0} из {1}"
+    },
+    "assembly.workbench.mark_done": {
+      "source_revision": "d81a818eda6a1ab8effc",
+      "text": "Я завершил этот этап"
+    },
+    "assembly.workbench.progress": {
+      "source_revision": "fbf2b4687975627ac613",
+      "text": "Отмечено этапов: {0} / {1}"
+    },
+    "assembly.workbench.save": {
+      "source_revision": "c691ea8b77568e21a485",
+      "text": "Экспортировать прогресс"
+    },
+    "assembly.workbench.load": {
+      "source_revision": "d270aea7a50e6c9543a7",
+      "text": "Загрузить прогресс"
+    },
+    "assembly.workbench.clear": {
+      "source_revision": "7de4cc006d9615d8a3bd",
+      "text": "Снять отметки этапов"
+    },
+    "assembly.workbench.undo": {
+      "source_revision": "d9bc3b651b7c01168e41",
+      "text": "Восстановить отметки"
+    },
+    "assembly.workbench.local": {
+      "source_revision": "f24c004a452e22089112",
+      "text": "Прогресс хранится в этом браузере."
+    },
+    "assembly.workbench.session_only": {
+      "source_revision": "ee8aba7b25e940dfe108",
+      "text": "Хранилище браузера недоступно. Экспортируйте прогресс, чтобы сохранить его."
+    },
+    "assembly.workbench.resumed": {
+      "source_revision": "9d85ec9835c66c00fbd7",
+      "text": "Сохранённый прогресс восстановлен."
+    },
+    "assembly.workbench.loaded": {
+      "source_revision": "3fa544231a50527a5475",
+      "text": "Прогресс загружен."
+    },
+    "assembly.workbench.invalid": {
+      "source_revision": "82088b50daba0a0b8cd6",
+      "text": "Не удалось прочитать файл прогресса."
+    },
+    "assembly.workbench.wrong_version": {
+      "source_revision": "0b72cea48cbc8c87d9a8",
+      "text": "Этот прогресс относится к другой модели или версии руководства."
+    },
+    "assembly.workbench.items": {
+      "source_revision": "480f3e4ac0544c8d7fcb",
+      "text": "Элементы модели на этом этапе"
+    },
+    "assembly.workbench.counts": {
+      "source_revision": "d8a95154f452b3d17b65",
+      "text": "Добавлено {0} · показано {1}"
+    },
+    "assembly.workbench.no_items": {
+      "source_revision": "d3ddfb31eaeb03f576c7",
+      "text": "Подготовка или проверка: элементы модели не добавляются."
+    },
+    "assembly.workbench.selected": {
+      "source_revision": "8fd37635e255689b9dbd",
+      "text": "Выбрано на модели"
+    },
+    "assembly.workbench.part_step": {
+      "source_revision": "701d4f427f2e3aa59df8",
+      "text": "Открыть этап этой детали ({0})"
+    },
+    "assembly.workbench.focus_part": {
+      "source_revision": "3f1081fd57ef7bc89c09",
+      "text": "Приблизить эту деталь"
+    },
+    "assembly.workbench.not_displayed": {
+      "source_revision": "64c96c9a4fbdc21dc5ef",
+      "text": "Вариант из оригинала · не показан"
+    },
+    "assembly.workbench.pick_hint": {
+      "source_revision": "15d9ac1bb783383ae649",
+      "text": "Выберите видимую деталь модели, чтобы найти её этап."
+    },
+    "assembly.workbench.more": {
+      "source_revision": "49cd2dda79a20c292511",
+      "text": "Показать ещё {0} элементов"
+    },
+    "assembly.workbench.view": {
+      "source_revision": "c58a74522929492c489f",
+      "text": "Показать панель руководства"
+    },
+    "assembly.workbench.active": {
+      "source_revision": "df0e92a9feb789b2f25d",
+      "text": "Сборка {0}/{1}"
+    },
+    "assembly.workbench.clear_note": {
+      "source_revision": "4f28446ea4bc6794d527",
+      "text": "Отметки этапов сняты."
     }
   }
 }
