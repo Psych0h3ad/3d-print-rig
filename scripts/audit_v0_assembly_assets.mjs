@@ -8,6 +8,7 @@ import {register} from 'node:module';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
+import {auditPartReview} from './assembly_part_review_audit.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const args=Object.fromEntries(process.argv.slice(2).reduce((a,v,i,list)=>v.startsWith('--')?[...a,[v.slice(2),list[i+1]]]:a,[]));
 assert(args.site&&args.report,'--site and --report required');
@@ -33,6 +34,8 @@ if(mapping)assert.deepEqual(Object.keys(mapping.machines).sort(),Object.keys(sta
 const threeURL=new URL('vendor/three.module.js',viewer).href;
 for(const name of ['vendor/GLTFLoader.js','v0_adapter.mjs','v0-assembly.mjs','v0-installations.mjs','v0-native-installed-gate.mjs','v0-app.js'])await pinClosure(new URL(name,viewer));
 await pinClosure(new URL('./audit_v0_native_installation_assets.mjs',import.meta.url));
+await pinClosure(new URL('./assembly_part_review_audit.mjs',import.meta.url));
+const {assemblyPartRows}=await import(new URL('assembly-part-review.mjs',viewer));
 const {auditGeometry}=await import('./audit_v0_native_installation_assets.mjs');
 register('data:text/javascript,'+encodeURIComponent(`export async function resolve(s,c,n){if(s==='three')return {url:${JSON.stringify(threeURL)},shortCircuit:true};return n(s,c)}`),import.meta.url);
 const THREE=await import(threeURL),{GLTFLoader}=await import(new URL('vendor/GLTFLoader.js',viewer));
@@ -100,6 +103,7 @@ try{
   const original=state(scene),geometryBefore=geometryPins(scene),visibility=new Map([...adapter.nodes].map(([k,n])=>[k,n.visible]));
   const controller=createV0AssemblyStages({nodes:adapter.nodes,manifest,machine:stages,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions});
   const workbench=createAssemblyIndex({manifest,machine:spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes),'assembly_stages.json':sha(await pin(site+'/V0_ASSEMBLY_STAGES.json'))}}),progress=createAssemblyProgress(workbench);
+  const partReview=auditPartReview(workbench,{assemblyPartRows,createAssemblyProgress,validateAssemblyProgress});
   for(const p of manifest.parts){const owner=workbench.owner(p.key);assert(owner.part_keys.includes(p.key));assert.equal(workbench.part(p.key).name,p.name)}
   for(const p of [manifest.parts[0],manifest.parts[Math.floor(manifest.parts.length/2)],manifest.parts.at(-1)])assert(workbench.search(p.key).some(s=>s.id===workbench.owner(p.key).id));
   const sequence=[...spec.stages.map((_,i)=>i),...spec.stages.map((_,i)=>spec.stages.length-1-i),spec.stages.length-1,0,Math.floor(spec.stages.length/2),spec.stages.length-1];
@@ -132,7 +136,7 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }

@@ -24,6 +24,22 @@ actual received metadata/model receipt vector, source state, classifications
 and manual revision. Other machines or revisions are rejected atomically.
 The regular configurators and their saved configuration formats are unchanged.
 
+Each source occurrence can now be checked individually, including named screws,
+nuts, washers, shims and inserts. Fastener and unchecked filters, same-name
+occurrence counts, source-key identity and next-unchecked focus support checking
+one real modeled item at a time. Printed nut adapters remain printed parts;
+the name filter does not classify their purchased descendants by parentage.
+Unidentified source parts remain available in the full list. Counts describe
+source occurrences in the selected chapter, not purchase quantities, tightening
+order, torque or instructions to dismantle purchased assemblies.
+
+Part checks use progress v2 and are independent of chapter completion. Existing
+source-matching v1 progress imports preserve stage records and start with no part
+checks. The older browser-storage entry is retained. Other machines, changed
+source receipts, unknown part keys and malformed records still fail atomically.
+The actual gate checks source membership, selected part round-trips, old-file
+migration and the size of a complete checklist against the 512 KiB import limit.
+
 ## Interactive assembly overview
 
 The collection also has a **Start interactive assembly** entry. For V0.2 and

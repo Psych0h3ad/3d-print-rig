@@ -11551,8 +11551,8 @@
       "text": "조립 {0}/{1}"
     },
     "assembly.workbench.clear_note": {
-      "source_revision": "4f28446ea4bc6794d527",
-      "text": "완료 단계 표시를 지웠습니다."
+      "text": "단계 및 부품 확인 기록을 해제했습니다.",
+      "source_revision": "f6605885868d98faa272"
     },
     "source.map.1": {
       "source_revision": "be0f1a76cb063da8f55a",
@@ -11733,6 +11733,42 @@
     "assembly.guide.21": {
       "source_revision": "6d6b7348daea0b0e559a",
       "text": "배기 필터"
+    },
+    "assembly.workbench.hardware_filter": {
+      "text": "나사·너트류",
+      "source_revision": "a5a269a307bd28fd1a29"
+    },
+    "assembly.workbench.remaining_filter": {
+      "text": "미확인만",
+      "source_revision": "729e5ea182ac57d85776"
+    },
+    "assembly.workbench.next_part": {
+      "text": "다음 미확인 부품",
+      "source_revision": "83ccb542172044596d1b"
+    },
+    "assembly.workbench.part_note": {
+      "text": "원본 CAD 부품을 개별 확인합니다. 수량은 이 단계 기준이며 체결 순서나 구매 조립품의 분해를 지시하지 않습니다.",
+      "source_revision": "4ca95f40e40a4818da5b"
+    },
+    "assembly.workbench.part_progress": {
+      "text": "부품 확인 {0} / {1}개 · 나사·너트류 {2}개",
+      "source_revision": "5bb2409c70c78597647d"
+    },
+    "assembly.workbench.source_quantity": {
+      "text": "동일 원본 이름 {0} / {1}",
+      "source_revision": "2e10f22dbada3f79433f"
+    },
+    "assembly.workbench.part_check_label": {
+      "text": "확인됨: {0} [{1}]",
+      "source_revision": "11b09942c18826e769bb"
+    },
+    "assembly.workbench.check_part": {
+      "text": "이 부품을 확인됨으로 표시",
+      "source_revision": "da2673636d9f314a1cdf"
+    },
+    "assembly.workbench.uncheck_part": {
+      "text": "이 부품의 확인 표시 해제",
+      "source_revision": "f7ee99937bcb21b06069"
     }
   }
 }
