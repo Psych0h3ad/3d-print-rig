@@ -11551,8 +11551,8 @@
       "text": "Сборка {0}/{1}"
     },
     "assembly.workbench.clear_note": {
-      "source_revision": "4f28446ea4bc6794d527",
-      "text": "Отметки этапов сняты."
+      "text": "Отметки этапов и деталей сняты.",
+      "source_revision": "f6605885868d98faa272"
     },
     "source.map.1": {
       "source_revision": "be0f1a76cb063da8f55a",
@@ -11733,6 +11733,42 @@
     "assembly.guide.21": {
       "source_revision": "6d6b7348daea0b0e559a",
       "text": "Вытяжной фильтр"
+    },
+    "assembly.workbench.hardware_filter": {
+      "text": "Крепёж",
+      "source_revision": "a5a269a307bd28fd1a29"
+    },
+    "assembly.workbench.remaining_filter": {
+      "text": "Только непроверенные",
+      "source_revision": "729e5ea182ac57d85776"
+    },
+    "assembly.workbench.next_part": {
+      "text": "Следующая непроверенная деталь",
+      "source_revision": "83ccb542172044596d1b"
+    },
+    "assembly.workbench.part_note": {
+      "text": "Проверяйте детали исходной модели по отдельности. Количество относится к этому этапу и не задаёт порядок крепления или разборки покупных узлов.",
+      "source_revision": "4ca95f40e40a4818da5b"
+    },
+    "assembly.workbench.part_progress": {
+      "text": "Проверено деталей {0} / {1} · крепёж {2}",
+      "source_revision": "5bb2409c70c78597647d"
+    },
+    "assembly.workbench.source_quantity": {
+      "text": "Одинаковое исходное имя {0} / {1}",
+      "source_revision": "2e10f22dbada3f79433f"
+    },
+    "assembly.workbench.part_check_label": {
+      "text": "Проверено: {0} [{1}]",
+      "source_revision": "11b09942c18826e769bb"
+    },
+    "assembly.workbench.check_part": {
+      "text": "Отметить эту деталь проверенной",
+      "source_revision": "da2673636d9f314a1cdf"
+    },
+    "assembly.workbench.uncheck_part": {
+      "text": "Снять отметку с этой детали",
+      "source_revision": "f7ee99937bcb21b06069"
     }
   }
 }

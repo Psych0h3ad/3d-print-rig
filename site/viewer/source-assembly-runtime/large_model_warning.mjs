@@ -1,4 +1,4 @@
-import{memoryAssessment,browserMemoryHints}from'./loading.mjs?v=e902db78d245dfb3d383';
+import{memoryAssessment,browserMemoryHints}from'./loading.mjs?v=7f22053a7cf6101b3267';
 export function memoryChoiceDetails(packet,device={},headPeakBytes=null){return {...memoryAssessment(packet),...browserMemoryHints(device),headPeakBytes,model_sha256:packet.model.sha256};}
 export async function requestModelChoice(packet,{device={},signal,choose,headPeakBytes=null}={}){const detail=memoryChoiceDetails(packet,device,headPeakBytes);if(signal?.aborted)return 'cancel';if(!detail.needsExplicitChoice&&!detail.hardCapExceeded)return 'full';const choice=await choose(detail,signal);if(signal?.aborted)return 'cancel';if(!['head','full','cancel'].includes(choice))throw Error('Unknown large model choice');if(choice==='full'&&detail.hardCapExceeded)throw Error('Full model exceeds hard resource cap');if(choice==='head'&&headPeakBytes===null)throw Error('No exact source head available');return choice;}
 export function createMemoryChoiceDialog({dialog,estimate,available,deviceText,headButton,fullButton,cancelButton,translate}){

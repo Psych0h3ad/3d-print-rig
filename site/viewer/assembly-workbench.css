@@ -37,3 +37,12 @@ body[data-assembly-stage] #panel-configuration > :not(#assemblyControls) { displ
 body[data-assembly-stage] #assemblyControls > :is(summary,p:not(#assemblyStatus),#assemblyStart) { display:none; }
 body[data-assembly-stage] #assemblyControls { padding:0;margin:0;border:0; }
 @media(max-width:680px) { .assembly-active-banner { grid-column:1/-1; }.ui-workspace .assembly-search { font-size:16px; }.ui-workspace .assembly-workbench button { min-height:44px; } }
+
+.assembly-part-summary,.assembly-part-note {font-size:11px;line-height:1.7;color:var(--muted);font-variant-numeric:tabular-nums;}
+.assembly-part-tools {display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;}
+.ui-workspace .assembly-part-tools button {min-height:34px;margin:0;padding:6px 9px;font-size:11px;}
+.assembly-part-tools button[aria-pressed=true] {border-color:var(--assembly-accent);background:color-mix(in srgb,var(--assembly-accent) 9%,transparent);}
+.assembly-part-row {display:grid;grid-template-columns:26px minmax(0,1fr);align-items:start;border-bottom:1px solid var(--line);}
+.assembly-part-row > input {width:16px;height:16px;margin:12px 0 0 3px;accent-color:var(--assembly-accent);}
+.ui-workspace .assembly-part-row button {border-bottom:0;min-width:0;}
+.assembly-part-ordinal {display:block;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;}

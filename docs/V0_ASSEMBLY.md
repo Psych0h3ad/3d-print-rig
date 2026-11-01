@@ -11,6 +11,22 @@ stage document and manual revision. A mismatched progress file is rejected befor
 changing the view. This checklist is a personal record, not assembly inspection.
 It does not change the existing machine-configuration save format.
 
+Individual source items also have their own checkboxes. Use **Fasteners** to
+filter named screws, nuts, washers, shims and inserts, or **Unchecked only** to
+find remaining items. **Next unchecked part** focuses a displayed source item
+without marking it checked. The selected 3D part can be checked directly too.
+Stage completion and individual part checks remain independent records.
+Names and sizes come from the source; same-name occurrence numbers count only
+this stage's source items, not a purchasing BOM. Hidden alternatives cannot be
+checked as displayed parts. No generic fasteners or new mounting claims are added.
+
+Progress v2 stores exact checked source keys. Source-matching v1 files migrate
+with their current stage and stage checks retained, and no invented part checks.
+Browser storage uses a separate v2 key while preserving old v1 storage. Import
+is capped at 512 KiB; actual-asset audits require a complete source-part checklist
+to fit that limit. Unknown, duplicated or sparse source records are rejected
+before replacing the current progress. Clear and undo cover both record types.
+
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
 V0.2 has 106 stages and 1,653 exported source leaves. V0.2r1 has 107 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Parts are shown cumulatively at their final CAD positions; this view does not animate insertion, screw tightening or wiring.

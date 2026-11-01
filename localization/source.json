@@ -14548,8 +14548,8 @@
     },
     "assembly.workbench.clear_note": {
       "kind": "message",
-      "ja": "作業済みの記録を外しました。",
-      "en": "Checked stages cleared."
+      "ja": "工程と部品の確認記録を外しました。",
+      "en": "Checked stage and part records cleared."
     },
     "source.map.1": {
       "kind": "message",
@@ -14775,6 +14775,51 @@
       "kind": "message",
       "en": "Exhaust filter",
       "ja": "排気フィルター"
+    },
+    "assembly.workbench.hardware_filter": {
+      "kind": "message",
+      "ja": "ネジ・ナット類",
+      "en": "Fasteners"
+    },
+    "assembly.workbench.remaining_filter": {
+      "kind": "message",
+      "ja": "未確認だけ",
+      "en": "Unchecked only"
+    },
+    "assembly.workbench.next_part": {
+      "kind": "message",
+      "ja": "次の未確認部品",
+      "en": "Next unchecked part"
+    },
+    "assembly.workbench.part_note": {
+      "kind": "message",
+      "ja": "元CADの部品を一点ずつ確認します。点数はこの工程の参照数です。購入品内部の分解や締結順序を指示するものではありません。",
+      "en": "Review source parts individually. Counts refer to this stage; they do not prescribe a fastening sequence or dismantling purchased assemblies."
+    },
+    "assembly.workbench.part_progress": {
+      "kind": "template",
+      "ja": "部品確認 {0} / {1}点・ネジ／ナット類 {2}点",
+      "en": "Parts checked {0} / {1} · fasteners {2}"
+    },
+    "assembly.workbench.source_quantity": {
+      "kind": "template",
+      "ja": "同名 {0} / {1}点",
+      "en": "Same source name {0} / {1}"
+    },
+    "assembly.workbench.part_check_label": {
+      "kind": "template",
+      "ja": "確認済み: {0} [{1}]",
+      "en": "Checked: {0} [{1}]"
+    },
+    "assembly.workbench.check_part": {
+      "kind": "message",
+      "ja": "この部品を確認済みにする",
+      "en": "Mark this part checked"
+    },
+    "assembly.workbench.uncheck_part": {
+      "kind": "message",
+      "ja": "この部品の確認済みを外す",
+      "en": "Uncheck this part"
     }
   }
 }
