@@ -91,7 +91,7 @@ class Element{
 }
 const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {promise,resolve,reject}};
 async function waitFor(check){for(let i=0;i<100;i++){if(check())return;await Promise.resolve()}throw Error('Fixture event did not reach expected boundary')}
-function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFailure=false,focusFailure=false,stockCompanion=false,missingModelReceipt=false,autoAssembly=false,preparationBoundary=false}={}){
+function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFailure=false,focusFailure=false,stockCompanion=false,missingModelReceipt=false,autoAssembly=false,preparationBoundary=false,driveBoundary=false}={}){
  const id=machine_id,profile=fixtureProfile(id),stockProfile=structuredClone(profile);
  const keys=['frame','rail','block','screw','bed','alternative'],scene=new THREE.Scene(),nodes=new Map(),geometry=new THREE.BoxGeometry(.02,.02,.02);
  for(const [i,key]of keys.entries()){
@@ -167,8 +167,8 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  const originalCamera=cameraState();let api;
  // This six-box lifecycle fixture has no reviewed rail geometry. Actual-model
  // jobs separately exercise the source-pinned preparation display.
- const assemblyFactory=options=>{const c=assemblyModule.createV0AssemblyStages({...options,manualPreparation:false});if(!preparationBoundary)return c;
-  const mode=s=>s?{...s,preparation:s.index===1}:null;
+ const assemblyFactory=options=>{const c=assemblyModule.createV0AssemblyStages({...options,manualPreparation:false});if(!preparationBoundary&&!driveBoundary)return c;
+  const mode=s=>s?{...s,preparation:preparationBoundary&&s.index===1,subassembly:driveBoundary&&s.index===1,underside:driveBoundary&&s.index===1,presentation_id:s.index===1?(driveBoundary?'drive-a-underside':'rail-preparation'):'installed'}:null;
   return {...c,current:()=>mode(c.current()),setStage:i=>mode(c.setStage(i))};
  };
  const dependencies={THREE,assemblyModule:{...assemblyModule,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
@@ -215,6 +215,13 @@ await check('preparation boundary frames new space; other stage changes retain o
  f.orbit.target.set(.6,.7,.8);f.$('#assemblyStage').value='0';f.$('#assemblyStage').onchange();assert.deepEqual(f.orbit.target.toArray(),[.6,.7,.8]);
  await f.finish();assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
 },{preparationBoundary:true});
+await check('manual drive inspection changes camera side without moving hardware',async f=>{
+ const hardwareUnchanged=()=>{for(const[i,node]of f.original().entries())for(const key of ['position','quaternion','scale','material','color'])assert.deepEqual(node[key],f.native[i][key])};
+ await f.start();f.$('#assemblyNext').click();assert.deepEqual(f.camera.up.toArray(),[0,-1,0]);assert(f.camera.position.y<f.orbit.target.y);hardwareUnchanged();
+ const focusedState=f.original();f.orbit.target.set(.6,.7,.8);f.$('#assemblyFocus').click();assert.deepEqual(f.camera.up.toArray(),[0,-1,0]);assert.deepEqual(f.original(),focusedState);
+ f.$('#assemblyNext').click();assert.deepEqual(f.camera.up.toArray(),[0,1,0]);assert(f.camera.position.y>f.orbit.target.y);hardwareUnchanged();
+ await f.finish();assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
+},{driveBoundary:true});
 for(const machine_id of machineIds)await check(machine_id+' explicit assembly link enters and restores',async f=>{
  await waitFor(()=>f.api.state().assemblyView&&!f.api.state().assemblyLocked);assert(f.api.state().assemblyView);await f.finish();assert.equal(f.api.state().assemblyView,null);assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
 },{machine_id,autoAssembly:true});

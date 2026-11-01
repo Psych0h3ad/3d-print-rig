@@ -44,9 +44,36 @@ stage, including the fifth carrier at the X-rail stage (r1 page 119, V0.2 page
 unchanged. They are not shown floating at future X/Z seats during Y-rail work.
 Moving back to preparation restores the layout; leaving assembly mode restores
 every original transform exactly. Crossing between the laid-out preparation
-and installed positions frames the new space automatically; other stage changes
-retain the reader's orbit. Stage IDs, manual/model pins and progress
+and installed positions frames the new space automatically; stage changes
+within the same work area retain the reader's orbit. Stage IDs, manual/model pins and progress
 identity remain unchanged, so existing checked stages and parts are retained.
+
+The A/B drive operations follow pages 69–81. During each drive's preparation,
+the viewer isolates only that source subassembly; the frame and previously
+prepared drive are set aside. The sequence shows 6, 21, 29 and 38 cumulative
+source items for each drive, then returns to the frame at the mounting step on
+page 81. No modeled item is deleted, substituted or moved. The original
+relative placements remain inspection states, rather than insertion animation.
+
+The bearing-stack operation selects an underside camera view, following the
+manual's upside-down assembly recommendation. The next motor operation returns
+to an upright inspection view. Guidance distinguishes the 18 mm bearing stack,
+0.5 mm shims, A pulley setting of 8.5 mm and B setting of 17.5 mm, inward motor
+wires, and the front preloaded nuts versus rear threaded frame ends. Temporary
+M3 retaining nuts mentioned by the manual are not invented as permanent CAD
+parts. These are manual instructions, not measured acceptance of the source
+geometry or a fastening/clearance certificate.
+
+Changing between a drive work area, its underside view and the installed frame
+automatically frames the relevant original parts. In particular, the mounting
+step can focus both prepared drives even though it adds no new source leaves.
+The four original frame mounting M3x35 screws per machine now belong to the
+page-81 mounting operation, rather than the earlier bearing/motor preparation.
+Stage IDs, model/manual receipts and the complete source inventory stay the same.
+Progress from the exact previous stage document is migrated to this corrected
+document with a visible notice. Its stage and individual source-part checks are
+retained, and the old browser-storage entry remains available. Arbitrary stage
+documents or different models/manuals are still rejected.
 
 | Version | Pinned source revision | Official manual |
 | --- | --- | --- |

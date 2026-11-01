@@ -1,0 +1,153 @@
+{
+  "scope": "V0.2/r1 manual pp69-81: isolated drive subassembly inspection, original frame mounting screw assignment and exact progress migration. Geometry, source placements/materials, machine registrations and configuration format are unchanged.",
+  "manuals": [
+    {
+      "machine": "voron_v02_120",
+      "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8/Manuals/VORON_V0.2_Assembly_Manual.pdf",
+      "sha256": "69f989092ea63b60a15407ce1c4b4f9e260702330ae00416a059eb705d5170fe",
+      "pages": 246,
+      "revision": "2023-03-03 @ a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8"
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a53fc87562fd630c846af38d7de850c894dc3d85/Manuals/VORON_V0.2r1_Assembly_Manual.pdf",
+      "sha256": "5d9af5a34304c751799c4ab71d9d42ed0c3ebc20b14df4b612d332ce1cb44b6f",
+      "pages": 253,
+      "revision": "2024-05-07 @ a53fc87562fd630c846af38d7de850c894dc3d85"
+    }
+  ],
+  "source_stage_correction": {
+    "before_sha256": "cac666a318dc56cdae843f4464e1cb63f33663002c93b4ebedaf6abb97f6e810",
+    "after_sha256": "50a7f0e504fa3a013607cc4e0bc8cb4ff49dc442cb2a5b16a5ac70d17e0c67dd",
+    "moved_occurrences": [
+      {
+        "machine": "voron_v02_120",
+        "key": "v02_00170",
+        "name": "M3x35 BHCS",
+        "from": "a-drive-stack",
+        "to": "drives-install"
+      },
+      {
+        "machine": "voron_v02_120",
+        "key": "v02_00169",
+        "name": "M3x35 BHCS",
+        "from": "a-drive-close",
+        "to": "drives-install"
+      },
+      {
+        "machine": "voron_v02_120",
+        "key": "v02_00212",
+        "name": "M3x35 BHCS (1)",
+        "from": "b-drive-stack",
+        "to": "drives-install"
+      },
+      {
+        "machine": "voron_v02_120",
+        "key": "v02_00214",
+        "name": "M3x35 BHCS (1)",
+        "from": "b-drive-close",
+        "to": "drives-install"
+      },
+      {
+        "machine": "voron_v02r1_120",
+        "key": "v02r1_00172",
+        "name": "M3x35 BHCS",
+        "from": "a-drive-stack",
+        "to": "drives-install"
+      },
+      {
+        "machine": "voron_v02r1_120",
+        "key": "v02r1_00171",
+        "name": "M3x35 BHCS",
+        "from": "a-drive-close",
+        "to": "drives-install"
+      },
+      {
+        "machine": "voron_v02r1_120",
+        "key": "v02r1_00214",
+        "name": "M3x35 BHCS (1)",
+        "from": "b-drive-stack",
+        "to": "drives-install"
+      },
+      {
+        "machine": "voron_v02r1_120",
+        "key": "v02r1_00216",
+        "name": "M3x35 BHCS (1)",
+        "from": "b-drive-close",
+        "to": "drives-install"
+      }
+    ],
+    "part_membership": "All original source keys retained exactly once; stage IDs retained."
+  },
+  "manual_diagram_review": {
+    "pages": [
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81
+    ],
+    "observations": [
+      "A and B drive preparation is separate from their page81 attachment to the frame.",
+      "Bearing stacks are inspected upside down; manual specifies18mm total and0.5mm shims.",
+      "Motor pulley settings differ: A8.5mm versusB17.5mm. These are manual instructions, not measured acceptance of model dimensions.",
+      "Four source M3x35 frame mounting screws per machine are distinct from bearing-stack and motor screws; display them at page81.",
+      "Temporary retaining nuts are instructions only; no generic or extra permanent hardware is modeled."
+    ]
+  },
+  "current_actual_exports": [
+    {
+      "machine": "voron_v02_120",
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+      "parts": 1653,
+      "stages": 106,
+      "forward_reverse_jump_states": 216,
+      "restored": true
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "parts": 1678,
+      "stages": 107,
+      "forward_reverse_jump_states": 218,
+      "restored": true
+    }
+  ],
+  "actual_expected_states": {
+    "A_preparation": [
+      6,
+      21,
+      29,
+      38
+    ],
+    "B_preparation": [
+      6,
+      21,
+      29,
+      38
+    ],
+    "page81_new_source_mounting_screws": 4
+  },
+  "software_review": [
+    "Source-specific cohort/manual/model/manifest rejection controls.",
+    "Underside/upright camera changes leave source geometry and transforms untouched.",
+    "Only the exact two known before/after V0 source identities may migrate.",
+    "v1 stage checks retained with no invented individual part checks; v2 source-key checks retained.",
+    "Old browser records retained with a visible migration notice; arbitrary source hashes fail before stage/UI mutation."
+  ],
+  "limitations": [
+    "Cumulative final source placements and isolated inspection views do not simulate insertion, tightening, thread engagement or physical build acceptance.",
+    "This change concerns the two pinned stock V0 manuals and source models. Other manual diagrams/families and full motion/native-clearance gaps remain separate.",
+    "Browser workflows, whole-site source/actual gates and served release checks are recorded separately at publication."
+  ]
+}

@@ -11781,6 +11781,42 @@
     "v0.preparation.stored": {
       "source_revision": "e6b78cd407793977fde2",
       "text": "Los portatuercas preparados para los raíles posteriores se reservan y aparecen con su raíl en la etapa de montaje correspondiente."
+    },
+    "v0.drive.status": {
+      "source_revision": "281f949b8cf0e8170dad",
+      "text": "Subconjunto de transmisión · antes de montarlo en el bastidor"
+    },
+    "v0.drive.layout": {
+      "source_revision": "e280fdf1edb6b6d31893",
+      "text": "Solo se muestra el subconjunto de transmisión actual. El bastidor y las piezas preparadas se reservan; los motores se montan en la página 81 del manual."
+    },
+    "v0.drive.prep": {
+      "source_revision": "4dd544a3112ef2c01730",
+      "text": "Compruebe las marcas A/B. Coloque los insertos térmicos exteriores completamente en sus orificios, por debajo de la superficie impresa."
+    },
+    "v0.drive.stack": {
+      "source_revision": "fe567862af8c16430598",
+      "text": "Inspeccione este subconjunto boca abajo. Use los rodamientos F623, separadores impresos y calces de 0.5 mm indicados; compruebe una altura total de 18 mm. Las tuercas M3 temporales del manual no son piezas permanentes del CAD."
+    },
+    "v0.drive.motor_a": {
+      "source_revision": "71352bab85f0475e911b",
+      "text": "Ajuste la polea del motor A a 8.5 mm con la plantilla del manual. Para los tornillos prisioneros, siga el manual y las instrucciones del fijador de roscas."
+    },
+    "v0.drive.motor_b": {
+      "source_revision": "8ac672d8775810f7b196",
+      "text": "Ajuste la polea del motor B a 17.5 mm con la plantilla del manual. Para los tornillos prisioneros, siga el manual y las instrucciones del fijador de roscas."
+    },
+    "v0.drive.close": {
+      "source_revision": "76a33386d6c6dcc3eba0",
+      "text": "Oriente los cables del motor hacia dentro. Compare los dientes de la polea con las pistas de los rodamientos antes de montar el conjunto terminado."
+    },
+    "v0.drive.install": {
+      "source_revision": "252b28fe52a1832067aa",
+      "text": "Monte B a la izquierda y A a la derecha. Los tornillos traseros usan los extremos roscados del bastidor y los delanteros las tuercas precargadas. Retire las tuercas M3 temporales antes del montaje."
+    },
+    "assembly.workbench.updated_manual": {
+      "source_revision": "99ba1474f34238880f69",
+      "text": "Se actualizó la tabla de etapas. Se conservaron sus comprobaciones de etapas y piezas originales, así como el registro guardado anterior."
     }
   }
 }

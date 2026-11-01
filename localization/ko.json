@@ -11781,6 +11781,42 @@
     "v0.preparation.stored": {
       "source_revision": "e6b78cd407793977fde2",
       "text": "나중에 사용할 준비된 홀더는 따로 보관하며 각 레일의 장착 단계에서 표시합니다."
+    },
+    "v0.drive.status": {
+      "source_revision": "281f949b8cf0e8170dad",
+      "text": "프레임 장착 전 구동부만 표시 중"
+    },
+    "v0.drive.layout": {
+      "source_revision": "e280fdf1edb6b6d31893",
+      "text": "작업 중인 구동부만 표시합니다. 프레임과 준비한 부품은 따로 보관하며 설명서 81페이지에서 구동부를 프레임에 장착합니다."
+    },
+    "v0.drive.prep": {
+      "source_revision": "4dd544a3112ef2c01730",
+      "text": "A/B 각인을 확인합니다. 바깥쪽 열압입 인서트는 출력물 표면보다 안쪽의 구멍 바닥까지 넣습니다."
+    },
+    "v0.drive.stack": {
+      "source_revision": "fe567862af8c16430598",
+      "text": "이 소조립체는 뒤집어서 확인합니다. 지정된 F623 베어링, 출력 스페이서, 0.5 mm 심을 사용하고 전체 적층 높이 18 mm를 확인합니다. 설명서의 임시 M3 너트는 원본 CAD의 영구 부품이 아닙니다."
+    },
+    "v0.drive.motor_a": {
+      "source_revision": "71352bab85f0475e911b",
+      "text": "설명서의 지그로 A 모터 풀리 높이를 8.5 mm로 맞춥니다. 무두나사는 설명서와 나사 고정제의 제품 지침에 따라 고정합니다."
+    },
+    "v0.drive.motor_b": {
+      "source_revision": "8ac672d8775810f7b196",
+      "text": "설명서의 지그로 B 모터 풀리 높이를 17.5 mm로 맞춥니다. 무두나사는 설명서와 나사 고정제의 제품 지침에 따라 고정합니다."
+    },
+    "v0.drive.close": {
+      "source_revision": "76a33386d6c6dcc3eba0",
+      "text": "모터 배선은 안쪽을 향하게 합니다. 완성된 구동부를 장착하기 전에 풀리 톱니와 베어링 주행면의 위치를 비교합니다."
+    },
+    "v0.drive.install": {
+      "source_revision": "252b28fe52a1832067aa",
+      "text": "B는 왼쪽, A는 오른쪽에 장착합니다. 뒤쪽 나사는 프레임 끝단의 나사산에, 앞쪽 나사는 미리 넣은 너트에 고정합니다. 임시 M3 너트는 장착 전에 제거합니다."
+    },
+    "assembly.workbench.updated_manual": {
+      "source_revision": "99ba1474f34238880f69",
+      "text": "단계표를 업데이트했습니다. 이전 단계 및 원본 부품 확인 기록을 유지했으며 기존 저장 기록도 보존합니다."
     }
   }
 }

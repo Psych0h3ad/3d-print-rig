@@ -11781,6 +11781,42 @@
     "v0.preparation.stored": {
       "source_revision": "e6b78cd407793977fde2",
       "text": "Vorbereitete Halter für spätere Schienen sind beiseitegelegt. Jeder erscheint mit seiner Schiene im entsprechenden Einbauschritt."
+    },
+    "v0.drive.status": {
+      "source_revision": "281f949b8cf0e8170dad",
+      "text": "Antriebsbaugruppe vor dem Einbau in den Rahmen"
+    },
+    "v0.drive.layout": {
+      "source_revision": "e280fdf1edb6b6d31893",
+      "text": "Nur die aktuelle Antriebsbaugruppe wird angezeigt. Rahmen und vorbereitete Teile sind beiseitegelegt; die Antriebe werden auf Handbuchseite 81 am Rahmen befestigt."
+    },
+    "v0.drive.prep": {
+      "source_revision": "4dd544a3112ef2c01730",
+      "text": "A/B-Markierungen prüfen. Die äußeren Schmelzeinsätze vollständig bis zum Lochgrund unter die Oberfläche des Druckteils einsetzen."
+    },
+    "v0.drive.stack": {
+      "source_revision": "fe567862af8c16430598",
+      "text": "Die Baugruppe umgedreht prüfen. Vorgesehene F623-Lager, gedruckte Abstandshalter und 0.5 mm Passscheiben verwenden; 18 mm Gesamthöhe prüfen. Die temporären M3-Muttern im Handbuch sind keine dauerhaften Teile der CAD-Quelle."
+    },
+    "v0.drive.motor_a": {
+      "source_revision": "71352bab85f0475e911b",
+      "text": "Die Riemenscheibe des A-Motors mit der Handbuchlehre auf 8.5 mm einstellen. Bei den Madenschrauben Handbuch und Produktanleitung der Schraubensicherung beachten."
+    },
+    "v0.drive.motor_b": {
+      "source_revision": "8ac672d8775810f7b196",
+      "text": "Die Riemenscheibe des B-Motors mit der Handbuchlehre auf 17.5 mm einstellen. Bei den Madenschrauben Handbuch und Produktanleitung der Schraubensicherung beachten."
+    },
+    "v0.drive.close": {
+      "source_revision": "76a33386d6c6dcc3eba0",
+      "text": "Die Motorkabel nach innen ausrichten. Vor dem Einbau des fertigen Antriebs die Riemenscheibenzähne mit den Lagerlaufflächen vergleichen."
+    },
+    "v0.drive.install": {
+      "source_revision": "252b28fe52a1832067aa",
+      "text": "B links und A rechts einbauen. Hintere Schrauben greifen in die Rahmengewinde, vordere in die zuvor eingelegten Muttern. Temporäre M3-Muttern vor dem Einbau entfernen."
+    },
+    "assembly.workbench.updated_manual": {
+      "source_revision": "99ba1474f34238880f69",
+      "text": "Die Schritttabelle wurde aktualisiert. Vorhandene Schritt- und Quellteilmarkierungen sowie der ursprüngliche gespeicherte Datensatz bleiben erhalten."
     }
   }
 }

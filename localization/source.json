@@ -14835,6 +14835,51 @@
       "kind": "message",
       "en": "Prepared carriers for later rails are set aside. Each appears with its receiving rail at the installation stage.",
       "ja": "後で使う準備済みの保持具は保管し、各レールの取付工程で表示します。"
+    },
+    "v0.drive.status": {
+      "kind": "message",
+      "ja": "取付前のドライブ組立を単独で表示中",
+      "en": "Drive subassembly · before frame mounting"
+    },
+    "v0.drive.layout": {
+      "kind": "message",
+      "ja": "作業中のドライブだけを表示します。フレームと準備済みの部品は保管し、81ページの工程でドライブを機体へ取り付けます。",
+      "en": "Only the current drive subassembly is shown. The frame and previously prepared parts are set aside; the drives join the frame at manual page 81."
+    },
+    "v0.drive.prep": {
+      "kind": "message",
+      "ja": "A/Bの刻印を確認します。外側の熱圧入インサートは、部品表面より奥の穴底まで入れます。",
+      "en": "Identify the A/B markings. Seat the outer heat-set inserts below the printed surface, fully in their holes."
+    },
+    "v0.drive.stack": {
+      "kind": "message",
+      "ja": "この小組立は上下を返して確認します。指定のF623ベアリング、印刷スペーサー、0.5 mmシムを使い、積み高さ18 mmを確認します。説明書の仮止め用M3ナットは、元CADに含まれる恒久部品ではありません。",
+      "en": "Inspect this subassembly upside down. Use the specified F623 bearings, printed spacers and 0.5 mm shims; check an 18 mm total stack. Temporary M3 nuts mentioned in the manual are not permanent source parts."
+    },
+    "v0.drive.motor_a": {
+      "kind": "message",
+      "ja": "説明書の治具でAモーターのプーリー高さを8.5 mmに合わせます。止めネジは説明書とねじ固定剤の製品指示に従って固定します。",
+      "en": "Set the A motor pulley with the manual jig to 8.5 mm. Follow the manual and the threadlocker product instructions for the grub screws."
+    },
+    "v0.drive.motor_b": {
+      "kind": "message",
+      "ja": "説明書の治具でBモーターのプーリー高さを17.5 mmに合わせます。止めネジは説明書とねじ固定剤の製品指示に従って固定します。",
+      "en": "Set the B motor pulley with the manual jig to 17.5 mm. Follow the manual and the threadlocker product instructions for the grub screws."
+    },
+    "v0.drive.close": {
+      "kind": "message",
+      "ja": "モーター配線を内側へ向けます。機体へ取り付ける前に、プーリーの歯とベアリングの走行面の位置を確認します。",
+      "en": "Keep the motor wires facing inward. Compare pulley teeth with the bearing races before installing the completed drive."
+    },
+    "v0.drive.install": {
+      "kind": "message",
+      "ja": "Bを左、Aを右に取り付けます。後ろのネジはフレーム端面のネジ穴へ、前のネジは先に入れたナットへ固定します。仮止め用M3ナットを使った場合は取り外します。",
+      "en": "Install B on the left and A on the right. Rear screws use the threaded frame ends; front screws use the preloaded nuts. Remove any temporary M3 nuts before mounting."
+    },
+    "assembly.workbench.updated_manual": {
+      "kind": "message",
+      "ja": "工程表を更新しました。以前の工程・部品チェックは保持し、元の保存記録も残しています。",
+      "en": "The stage table was updated. Your previous stage and source-part checks were retained; the original saved record is preserved."
     }
   }
 }
