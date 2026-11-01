@@ -12,8 +12,8 @@ for(const[mid,spec]of Object.entries(catalog.machines)){
   if(/^[ab]-drive-(prep|stack|motor|close)$/.test(s.id)){
    const letter=s.id[0],ids=['prep','stack','motor','close'],i=ids.indexOf(s.id.split('-').at(-1));
    const expected=spec.stages.filter(r=>ids.slice(0,i+1).some(op=>r.id===letter+'-drive-'+op)).flatMap(r=>r.part_keys);
-   assert.deepEqual([...out].sort(),expected.sort());assert.equal(out.size,[6,21,29,38][i]);
-   assert.equal(row.underside,i===1);assert.equal(row.keys.length,38);assert.equal(policy.focus(index).length,38);
+   assert.deepEqual([...out].sort(),expected.sort());assert.equal(out.size,[6,21,29,37][i]);
+   assert.equal(row.underside,i===1);assert.equal(row.keys.length,37);assert.equal(policy.focus(index).length,37);
    if(i===1)assert.match(policy.note(index),/18 mm/);
    if(i===2)assert.match(policy.note(index),letter==='a'?/8\.5 mm/:/17\.5 mm/);
   }else{assert.equal(out,shown);assert.equal(row,null)}
@@ -23,7 +23,7 @@ for(const[mid,spec]of Object.entries(catalog.machines)){
  // Moving backward/jumping cannot retain the opposite drive's isolated state.
  const ai=spec.stages.findIndex(s=>s.id==='a-drive-close'),bi=spec.stages.findIndex(s=>s.id==='b-drive-close'),all=new Set(spec.stages.flatMap(s=>s.part_keys));
  const a=[...policy.filter(ai,all)],b=[...policy.filter(bi,all)];assert(!a.some(k=>b.includes(k)));assert.deepEqual([...policy.filter(ai,all)],a);assert.equal(all.size,spec.parts);positive++;
- const copy=policy.focus(ai);copy.length=0;assert.equal(policy.focus(ai).length,38);positive++;
+ const copy=policy.focus(ai);copy.length=0;assert.equal(policy.focus(ai).length,37);positive++;
  const mounted=spec.stages.find(r=>r.id==='drives-install').part_keys;assert.equal(mounted.length,4);assert(mounted.every(k=>!a.includes(k)&&!b.includes(k)),'Frame mounting screws must not be prepared as internal bearing/motor screws');positive++;
  for(const mutate of [
   s=>s.manual.sha256='0'.repeat(64),s=>s.model_sha256='0'.repeat(64),s=>s.manifest_sha256='0'.repeat(64),

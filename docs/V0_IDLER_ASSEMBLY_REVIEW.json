@@ -1,0 +1,788 @@
+{
+  "scope": "Stock V0.2/r1 idler and upper-frame manual reference operations. Original source parts/materials/geometry and installation transforms retained; fourteen source leaves per machine receive temporary rigid preparation transforms only. No insertion, tightening, continuous travel or native-solid mating qualification.",
+  "stage_sha256": "1a72f36890af24c6f61f8ec86843bf77406ec2b5a13a207a7bc357ca8c7edc37",
+  "previous_stage_sha256": "5b88dcdf6ca7690a9737781ce0f09f0aeb8405ea534a1701c37084797c11612e",
+  "machines": [
+    {
+      "machine": "voron_v02_120",
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+      "manual": {
+        "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8/Manuals/VORON_V0.2_Assembly_Manual.pdf",
+        "sha256": "69f989092ea63b60a15407ce1c4b4f9e260702330ae00416a059eb705d5170fe",
+        "pages": 246,
+        "revision": "2023-03-03 @ a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8"
+      },
+      "stages": 123,
+      "operations": [
+        {
+          "id": "idlers-prepare",
+          "pages": [
+            84,
+            84
+          ],
+          "introduced_source_keys": [
+            "v02_00241",
+            "v02_00242",
+            "v02_00244",
+            "v02_00245",
+            "v02_00246",
+            "v02_00247",
+            "v02_00249",
+            "v02_00252",
+            "v02_00253",
+            "v02_00256",
+            "v02_00258",
+            "v02_00259",
+            "v02_00260",
+            "v02_00261"
+          ],
+          "referenced_source_keys": [
+            "v02_00241",
+            "v02_00242",
+            "v02_00244",
+            "v02_00245",
+            "v02_00246",
+            "v02_00247",
+            "v02_00249",
+            "v02_00252",
+            "v02_00253",
+            "v02_00256",
+            "v02_00258",
+            "v02_00259",
+            "v02_00260",
+            "v02_00261"
+          ]
+        },
+        {
+          "id": "b-idler",
+          "pages": [
+            85,
+            85
+          ],
+          "introduced_source_keys": [
+            "v02_00257"
+          ],
+          "referenced_source_keys": [
+            "v02_00252",
+            "v02_00253",
+            "v02_00256",
+            "v02_00258",
+            "v02_00259",
+            "v02_00260",
+            "v02_00261",
+            "v02_00257",
+            "v02_00005",
+            "v02_00000",
+            "v02_00262"
+          ]
+        },
+        {
+          "id": "b-idler-lock",
+          "pages": [
+            85,
+            85
+          ],
+          "introduced_source_keys": [
+            "v02_00254"
+          ],
+          "referenced_source_keys": [
+            "v02_00252",
+            "v02_00253",
+            "v02_00256",
+            "v02_00258",
+            "v02_00259",
+            "v02_00260",
+            "v02_00261",
+            "v02_00257",
+            "v02_00254"
+          ]
+        },
+        {
+          "id": "a-idler",
+          "pages": [
+            86,
+            86
+          ],
+          "introduced_source_keys": [
+            "v02_00250"
+          ],
+          "referenced_source_keys": [
+            "v02_00241",
+            "v02_00242",
+            "v02_00244",
+            "v02_00245",
+            "v02_00246",
+            "v02_00247",
+            "v02_00249",
+            "v02_00250",
+            "v02_00002",
+            "v02_00010",
+            "v02_00251"
+          ]
+        },
+        {
+          "id": "a-idler-lock",
+          "pages": [
+            86,
+            86
+          ],
+          "introduced_source_keys": [
+            "v02_00243"
+          ],
+          "referenced_source_keys": [
+            "v02_00241",
+            "v02_00242",
+            "v02_00244",
+            "v02_00245",
+            "v02_00246",
+            "v02_00247",
+            "v02_00249",
+            "v02_00250",
+            "v02_00243"
+          ]
+        },
+        {
+          "id": "idler-a-check",
+          "pages": [
+            87,
+            87
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00241",
+            "v02_00242",
+            "v02_00244",
+            "v02_00245",
+            "v02_00246",
+            "v02_00247",
+            "v02_00249",
+            "v02_00250",
+            "v02_00243",
+            "v02_00159",
+            "v02_00160",
+            "v02_00191",
+            "v02_00192",
+            "v02_00193",
+            "v02_00194",
+            "v02_00161",
+            "v02_00168",
+            "v02_00171",
+            "v02_00179",
+            "v02_00180",
+            "v02_00181",
+            "v02_00182",
+            "v02_00183",
+            "v02_00184",
+            "v02_00185",
+            "v02_00186",
+            "v02_00187",
+            "v02_00188",
+            "v02_00189",
+            "v02_00190",
+            "v02_00155",
+            "v02_00156",
+            "v02_00157",
+            "v02_00158",
+            "v02_00162",
+            "v02_00163",
+            "v02_00166",
+            "v02_00173",
+            "v02_00165",
+            "v02_00167",
+            "v02_00172",
+            "v02_00174",
+            "v02_00175",
+            "v02_00176",
+            "v02_00177",
+            "v02_00178"
+          ]
+        },
+        {
+          "id": "idler-b-check",
+          "pages": [
+            88,
+            88
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00252",
+            "v02_00253",
+            "v02_00256",
+            "v02_00258",
+            "v02_00259",
+            "v02_00260",
+            "v02_00261",
+            "v02_00257",
+            "v02_00254",
+            "v02_00203",
+            "v02_00204",
+            "v02_00234",
+            "v02_00235",
+            "v02_00236",
+            "v02_00237",
+            "v02_00202",
+            "v02_00210",
+            "v02_00211",
+            "v02_00222",
+            "v02_00223",
+            "v02_00224",
+            "v02_00225",
+            "v02_00226",
+            "v02_00227",
+            "v02_00228",
+            "v02_00229",
+            "v02_00230",
+            "v02_00231",
+            "v02_00232",
+            "v02_00233",
+            "v02_00198",
+            "v02_00199",
+            "v02_00200",
+            "v02_00201",
+            "v02_00205",
+            "v02_00206",
+            "v02_00209",
+            "v02_00217",
+            "v02_00208",
+            "v02_00213",
+            "v02_00215",
+            "v02_00216",
+            "v02_00218",
+            "v02_00219",
+            "v02_00220",
+            "v02_00221"
+          ]
+        },
+        {
+          "id": "idler-check",
+          "pages": [
+            89,
+            89
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00241",
+            "v02_00242",
+            "v02_00244",
+            "v02_00245",
+            "v02_00246",
+            "v02_00247",
+            "v02_00249",
+            "v02_00252",
+            "v02_00253",
+            "v02_00256",
+            "v02_00258",
+            "v02_00259",
+            "v02_00260",
+            "v02_00261",
+            "v02_00250",
+            "v02_00257",
+            "v02_00243",
+            "v02_00254"
+          ]
+        },
+        {
+          "id": "top-side-members",
+          "pages": [
+            121,
+            121
+          ],
+          "introduced_source_keys": [
+            "v02_00006",
+            "v02_00008",
+            "v02_00662",
+            "v02_00666",
+            "v02_00667",
+            "v02_00686",
+            "v02_00690",
+            "v02_00691"
+          ],
+          "referenced_source_keys": [
+            "v02_00006",
+            "v02_00008",
+            "v02_00662",
+            "v02_00666",
+            "v02_00667",
+            "v02_00686",
+            "v02_00690",
+            "v02_00691"
+          ]
+        },
+        {
+          "id": "top-front-access",
+          "pages": [
+            122,
+            122
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00006",
+            "v02_00008",
+            "v02_00243",
+            "v02_00254"
+          ]
+        },
+        {
+          "id": "top-front-fasteners",
+          "pages": [
+            122,
+            122
+          ],
+          "introduced_source_keys": [
+            "v02_00248",
+            "v02_00255"
+          ],
+          "referenced_source_keys": [
+            "v02_00006",
+            "v02_00008",
+            "v02_00248",
+            "v02_00255",
+            "v02_00241",
+            "v02_00242",
+            "v02_00244",
+            "v02_00245",
+            "v02_00246",
+            "v02_00247",
+            "v02_00249",
+            "v02_00252",
+            "v02_00253",
+            "v02_00256",
+            "v02_00258",
+            "v02_00259",
+            "v02_00260",
+            "v02_00261"
+          ]
+        },
+        {
+          "id": "top-camlocks-refit",
+          "pages": [
+            122,
+            122
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00006",
+            "v02_00008",
+            "v02_00243",
+            "v02_00254",
+            "v02_00248",
+            "v02_00255"
+          ]
+        },
+        {
+          "id": "top-rear-fasteners",
+          "pages": [
+            123,
+            123
+          ],
+          "introduced_source_keys": [
+            "v02_00164",
+            "v02_00207"
+          ],
+          "referenced_source_keys": [
+            "v02_00006",
+            "v02_00008",
+            "v02_00164",
+            "v02_00207"
+          ]
+        }
+      ]
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "manual": {
+        "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a53fc87562fd630c846af38d7de850c894dc3d85/Manuals/VORON_V0.2r1_Assembly_Manual.pdf",
+        "sha256": "5d9af5a34304c751799c4ab71d9d42ed0c3ebc20b14df4b612d332ce1cb44b6f",
+        "pages": 253,
+        "revision": "2024-05-07 @ a53fc87562fd630c846af38d7de850c894dc3d85"
+      },
+      "stages": 128,
+      "operations": [
+        {
+          "id": "idlers-prepare",
+          "pages": [
+            84,
+            84
+          ],
+          "introduced_source_keys": [
+            "v02r1_00243",
+            "v02r1_00244",
+            "v02r1_00246",
+            "v02r1_00247",
+            "v02r1_00248",
+            "v02r1_00249",
+            "v02r1_00251",
+            "v02r1_00254",
+            "v02r1_00255",
+            "v02r1_00258",
+            "v02r1_00260",
+            "v02r1_00261",
+            "v02r1_00262",
+            "v02r1_00263"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00243",
+            "v02r1_00244",
+            "v02r1_00246",
+            "v02r1_00247",
+            "v02r1_00248",
+            "v02r1_00249",
+            "v02r1_00251",
+            "v02r1_00254",
+            "v02r1_00255",
+            "v02r1_00258",
+            "v02r1_00260",
+            "v02r1_00261",
+            "v02r1_00262",
+            "v02r1_00263"
+          ]
+        },
+        {
+          "id": "b-idler",
+          "pages": [
+            85,
+            85
+          ],
+          "introduced_source_keys": [
+            "v02r1_00259"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00254",
+            "v02r1_00255",
+            "v02r1_00258",
+            "v02r1_00260",
+            "v02r1_00261",
+            "v02r1_00262",
+            "v02r1_00263",
+            "v02r1_00259",
+            "v02r1_00005",
+            "v02r1_00000",
+            "v02r1_00264"
+          ]
+        },
+        {
+          "id": "b-idler-lock",
+          "pages": [
+            85,
+            85
+          ],
+          "introduced_source_keys": [
+            "v02r1_00256"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00254",
+            "v02r1_00255",
+            "v02r1_00258",
+            "v02r1_00260",
+            "v02r1_00261",
+            "v02r1_00262",
+            "v02r1_00263",
+            "v02r1_00259",
+            "v02r1_00256"
+          ]
+        },
+        {
+          "id": "a-idler",
+          "pages": [
+            86,
+            86
+          ],
+          "introduced_source_keys": [
+            "v02r1_00252"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00243",
+            "v02r1_00244",
+            "v02r1_00246",
+            "v02r1_00247",
+            "v02r1_00248",
+            "v02r1_00249",
+            "v02r1_00251",
+            "v02r1_00252",
+            "v02r1_00002",
+            "v02r1_00010",
+            "v02r1_00253"
+          ]
+        },
+        {
+          "id": "a-idler-lock",
+          "pages": [
+            86,
+            86
+          ],
+          "introduced_source_keys": [
+            "v02r1_00245"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00243",
+            "v02r1_00244",
+            "v02r1_00246",
+            "v02r1_00247",
+            "v02r1_00248",
+            "v02r1_00249",
+            "v02r1_00251",
+            "v02r1_00252",
+            "v02r1_00245"
+          ]
+        },
+        {
+          "id": "idler-a-check",
+          "pages": [
+            87,
+            87
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00243",
+            "v02r1_00244",
+            "v02r1_00246",
+            "v02r1_00247",
+            "v02r1_00248",
+            "v02r1_00249",
+            "v02r1_00251",
+            "v02r1_00252",
+            "v02r1_00245",
+            "v02r1_00161",
+            "v02r1_00162",
+            "v02r1_00193",
+            "v02r1_00194",
+            "v02r1_00195",
+            "v02r1_00196",
+            "v02r1_00163",
+            "v02r1_00170",
+            "v02r1_00173",
+            "v02r1_00181",
+            "v02r1_00182",
+            "v02r1_00183",
+            "v02r1_00184",
+            "v02r1_00185",
+            "v02r1_00186",
+            "v02r1_00187",
+            "v02r1_00188",
+            "v02r1_00189",
+            "v02r1_00190",
+            "v02r1_00191",
+            "v02r1_00192",
+            "v02r1_00157",
+            "v02r1_00158",
+            "v02r1_00159",
+            "v02r1_00160",
+            "v02r1_00164",
+            "v02r1_00165",
+            "v02r1_00168",
+            "v02r1_00175",
+            "v02r1_00167",
+            "v02r1_00169",
+            "v02r1_00174",
+            "v02r1_00176",
+            "v02r1_00177",
+            "v02r1_00178",
+            "v02r1_00179",
+            "v02r1_00180"
+          ]
+        },
+        {
+          "id": "idler-b-check",
+          "pages": [
+            88,
+            88
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00254",
+            "v02r1_00255",
+            "v02r1_00258",
+            "v02r1_00260",
+            "v02r1_00261",
+            "v02r1_00262",
+            "v02r1_00263",
+            "v02r1_00259",
+            "v02r1_00256",
+            "v02r1_00204",
+            "v02r1_00205",
+            "v02r1_00236",
+            "v02r1_00237",
+            "v02r1_00238",
+            "v02r1_00239",
+            "v02r1_00208",
+            "v02r1_00212",
+            "v02r1_00213",
+            "v02r1_00224",
+            "v02r1_00225",
+            "v02r1_00226",
+            "v02r1_00227",
+            "v02r1_00228",
+            "v02r1_00229",
+            "v02r1_00230",
+            "v02r1_00231",
+            "v02r1_00232",
+            "v02r1_00233",
+            "v02r1_00234",
+            "v02r1_00235",
+            "v02r1_00200",
+            "v02r1_00201",
+            "v02r1_00202",
+            "v02r1_00203",
+            "v02r1_00206",
+            "v02r1_00207",
+            "v02r1_00211",
+            "v02r1_00219",
+            "v02r1_00210",
+            "v02r1_00215",
+            "v02r1_00217",
+            "v02r1_00218",
+            "v02r1_00220",
+            "v02r1_00221",
+            "v02r1_00222",
+            "v02r1_00223"
+          ]
+        },
+        {
+          "id": "idler-check",
+          "pages": [
+            89,
+            89
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00243",
+            "v02r1_00244",
+            "v02r1_00246",
+            "v02r1_00247",
+            "v02r1_00248",
+            "v02r1_00249",
+            "v02r1_00251",
+            "v02r1_00254",
+            "v02r1_00255",
+            "v02r1_00258",
+            "v02r1_00260",
+            "v02r1_00261",
+            "v02r1_00262",
+            "v02r1_00263",
+            "v02r1_00252",
+            "v02r1_00259",
+            "v02r1_00245",
+            "v02r1_00256"
+          ]
+        },
+        {
+          "id": "top-side-members",
+          "pages": [
+            127,
+            127
+          ],
+          "introduced_source_keys": [
+            "v02r1_00006",
+            "v02r1_00008",
+            "v02r1_00683",
+            "v02r1_00687",
+            "v02r1_00688",
+            "v02r1_00707",
+            "v02r1_00711",
+            "v02r1_00712"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00006",
+            "v02r1_00008",
+            "v02r1_00683",
+            "v02r1_00687",
+            "v02r1_00688",
+            "v02r1_00707",
+            "v02r1_00711",
+            "v02r1_00712"
+          ]
+        },
+        {
+          "id": "top-front-access",
+          "pages": [
+            128,
+            128
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00006",
+            "v02r1_00008",
+            "v02r1_00245",
+            "v02r1_00256"
+          ]
+        },
+        {
+          "id": "top-front-fasteners",
+          "pages": [
+            128,
+            128
+          ],
+          "introduced_source_keys": [
+            "v02r1_00250",
+            "v02r1_00257"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00006",
+            "v02r1_00008",
+            "v02r1_00250",
+            "v02r1_00257",
+            "v02r1_00243",
+            "v02r1_00244",
+            "v02r1_00246",
+            "v02r1_00247",
+            "v02r1_00248",
+            "v02r1_00249",
+            "v02r1_00251",
+            "v02r1_00254",
+            "v02r1_00255",
+            "v02r1_00258",
+            "v02r1_00260",
+            "v02r1_00261",
+            "v02r1_00262",
+            "v02r1_00263"
+          ]
+        },
+        {
+          "id": "top-camlocks-refit",
+          "pages": [
+            128,
+            128
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00006",
+            "v02r1_00008",
+            "v02r1_00245",
+            "v02r1_00256",
+            "v02r1_00250",
+            "v02r1_00257"
+          ]
+        },
+        {
+          "id": "top-rear-fasteners",
+          "pages": [
+            129,
+            129
+          ],
+          "introduced_source_keys": [
+            "v02r1_00166",
+            "v02r1_00209"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00006",
+            "v02r1_00008",
+            "v02r1_00166",
+            "v02r1_00209"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "site/viewer/v0-idler-assembly.mjs": "0847fa8bd4d51759768930ef0b33712cd1d859135de60b93e1990a42a4495bc0",
+    "site/viewer/v0-assembly.mjs": "f056dd54a6f8450a6d114f6a8fd09f4e3b8e343a31b3f52619e295859eb330f6",
+    "site/viewer/v0-drive-assembly.mjs": "87761f3c0ebfce5998a9facfce27958dcbe4c8223c98fa91c54234c539cb3e74",
+    "site/viewer/v0-rail-preparation.mjs": "74bbc70d05eb89bed68a19a90c950388c9df203bdbfa71e1a8265bfdc8efc2df",
+    "site/viewer/assembly-progress-migrations.mjs": "4a8086bc4aa673ea4eb4b200a47463543b7b971b049ee1bd15bff3e7b6248566"
+  },
+  "physical_fit_certified": false,
+  "source_newline_policy": "Exact canonical LF publication source bytes; asset hashes retain their declared raw-byte contract."
+}

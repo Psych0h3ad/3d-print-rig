@@ -47,7 +47,7 @@ const registryData=JSON.parse(await pin(site+'/V0_INSTALLATIONS.json'));
 for(const name of ['v0-app.js','v0-assembly.mjs','v0_adapter.mjs','v0-belts.mjs','v0-chain.mjs','v0-door.mjs','v0-tophat.mjs','appearance-role.mjs'])await pin(site+'/viewer/'+name);
 await pin(path.resolve(process.argv[1]));
 const report={schema:'actual-v0-assembly-stages-v1',passed:false,workers:1,machines:[],source_sha256:{},
- scope:'Actual decoded stock GLBs, manifests and production adapters/controller. Forward/reverse/jump stages, rail and drive preparation, bed subassembly/storage/removal/rail/refit operations and repeated original source references; exact native transforms outside rigid rail preparation and on exit, unchanged geometry/materials and exact visibility restoration. Manual diagrams, insertion paths and native-solid contact qualification remain separate.',
+ scope:'Actual decoded stock GLBs, manifests and production adapters/controller. Forward/reverse/jump stages, rail and idler rigid preparation, original late upper-frame screws and cam-lock removal/refit, drive/bed/feet operations and repeated original source references. Exact native transforms outside the named preparation displays and on exit, unchanged geometry/materials and visibility restoration. Manual diagrams, insertion paths and native-solid contact qualification remain separate.',
  insertion_animation_verified:false,physical_clearance_certified:false};
 function state(root){const rows=[];root.updateMatrixWorld(true);root.traverse(n=>{
  const materials=n.material?(Array.isArray(n.material)?n.material:[n.material]):[];
@@ -116,6 +116,17 @@ try{
   const railGroups=(id==='voron_v02_120'?[[56,67,'y-rails'],[79,90,'y-rails'],[102,113,'z-rails'],[125,136,'z-rails'],[320,331,'x-rail']]:[[58,69,'y-rails'],[81,92,'y-rails'],[104,115,'z-rails'],[127,138,'z-rails'],[328,339,'x-rail']]).map(([holder,first,stage])=>({holder:(id==='voron_v02_120'?'v02_':'v02r1_')+String(holder).padStart(5,'0'),keys:[holder,...Array.from({length:10},(_,i)=>first+i)].map(n=>(id==='voron_v02_120'?'v02_':'v02r1_')+String(n).padStart(5,'0')),installed:spec.stages.findIndex(s=>s.id===stage)}));
   const preparationNodes=new Set();for(const g of railGroups)for(const k of g.keys)adapter.nodes.get(k).traverse(n=>preparationNodes.add(n));
   const originalByNode=new Map(original.map(r=>[r.node,r]));
+  const idlerR1=id==='voron_v02r1_120',idlerKey=n=>(idlerR1?'v02r1_':'v02_')+String(n).padStart(5,'0');
+  const idlerGroups=(idlerR1?[[243,244,246,247,248,249,251],[254,255,258,260,261,262,263]]:[[241,242,244,245,246,247,249],[252,253,256,258,259,260,261]]).map((ns,i)=>({keys:ns.map(idlerKey),installed:spec.stages.findIndex(s=>s.id===(i?'b-idler':'a-idler'))}));
+  const idlerPrep=spec.stages.findIndex(s=>s.id==='idlers-prepare'),idlerPrepared=new Set(idlerGroups.flatMap(g=>g.keys)),idlerCams=(idlerR1?[245,256]:[243,254]).map(idlerKey),idlerPreparationNodes=new Set();
+  for(const k of idlerPrepared)adapter.nodes.get(k).traverse(n=>idlerPreparationNodes.add(n));
+  const upperHeights=idlerGroups.map(g=>new THREE.Box3().setFromObject(adapter.nodes.get(g.keys[1])).getSize(new THREE.Vector3()).y);
+  assert(upperHeights[0]>upperHeights[1]+.008,'A has the taller upper PRINTED section, not the higher bearing level');
+  function checkIdlerPreparation(){for(const g of idlerGroups){
+   const node=adapter.nodes.get(g.keys[0]),delta=node.matrixWorld.clone().multiply(new THREE.Matrix4().fromArray(originalByNode.get(node).matrix).invert());
+   assert(Math.abs(delta.determinant()-1)<1e-10,'Proper rigid idler preparation required');
+   for(const k of g.keys)adapter.nodes.get(k).traverse(n=>{const expected=delta.clone().multiply(new THREE.Matrix4().fromArray(originalByNode.get(n).matrix));assert(expected.elements.every((v,i)=>Math.abs(v-n.matrixWorld.elements[i])<1e-10),'Original idler bodies/bearings/shims/front screw must share one rigid transform')});
+  }}
   function checkPreparation(){
    const centers=[];
    for(const g of railGroups){const holder=adapter.nodes.get(g.holder),old=originalByNode.get(holder),delta=holder.matrixWorld.clone().multiply(new THREE.Matrix4().fromArray(old.matrix).invert());
@@ -136,7 +147,7 @@ try{
    // Independent source occurrence cohorts: A and B are assembled separately
    // in manual pp69-80 and do not appear mounted to the frame until p81.
    const drive=/^([ab])-drive-(prep|stack|motor|close)$/.exec(spec.stages[index].id);
-   if(drive){const r1=id==='voron_v02r1_120',start=drive[1]==='a'?(r1?157:155):(r1?200:198),prefix=r1?'v02r1_':'v02_',cohort=new Set(Array.from({length:40},(_,i)=>prefix+String(start+i).padStart(5,'0')));for(const key of keys)if(!cohort.has(key))keys.delete(key);assert.equal(r.subassembly,true);assert.equal(r.underside,drive[2]==='stack');assert.equal(keys.size,{prep:6,stack:21,motor:29,close:38}[drive[2]])}
+   if(drive){const r1=id==='voron_v02r1_120',start=drive[1]==='a'?(r1?157:155):(r1?200:198),prefix=r1?'v02r1_':'v02_',cohort=new Set(Array.from({length:40},(_,i)=>prefix+String(start+i).padStart(5,'0')));for(const key of keys)if(!cohort.has(key))keys.delete(key);assert.equal(r.subassembly,true);assert.equal(r.underside,drive[2]==='stack');assert.equal(keys.size,{prep:6,stack:21,motor:29,close:37}[drive[2]])}
    const mountKeys=(id==='voron_v02r1_120'?[171,172,214,216]:[169,170,212,214]).map(n=>(id==='voron_v02r1_120'?'v02r1_':'v02_')+String(n).padStart(5,'0'));
    const bedView=bedViews[spec.stages[index].id],r1=id==='voron_v02r1_120',bedKey=n=>(r1?'v02r1_':'v02_')+String(n+(r1?0:-9)).padStart(5,'0'),bedCohort=new Set([...bedAll].map(bedKey)),beforeBed=new Set(keys);
    if(bedView){const[isolated,visible]=bedView;if(visible){const mask=new Set(visible.map(bedKey));for(const k of keys)if(isolated?!mask.has(k):bedCohort.has(k)&&!mask.has(k))keys.delete(k)}
@@ -159,17 +170,29 @@ try{
    }
    if(spec.stages[index].id==='z-motor-mount')for(const n of r1?[546,548,549,550,551,552,553,554]:[537,539,540,541,542,543,544,545])assert(r.operation_part_keys.includes(footKey(n)),'Original frame screws and preloaded nuts required');
    if(['z-align','z-motor-center','z-cycle'].includes(spec.stages[index].id))for(const n of r1?[457,473]:[448,464])assert(r.operation_part_keys.includes(footKey(n)),'Reuse original nut-holder top screws');
+   const idlerPreparing=index===idlerPrep;
+   if(idlerPreparing){for(const k of keys)if(!idlerPrepared.has(k))keys.delete(k);assert.deepEqual(keys,idlerPrepared);assert(r.subassembly)}
+   else if(index>=idlerPrep)for(const g of idlerGroups)if(index<g.installed)for(const k of g.keys)keys.delete(k);
+   if(['top-front-access','top-front-fasteners'].includes(r.id)){for(const k of idlerCams){keys.delete(k);assert(r.stored_keys.includes(k),'Original cam locks are explicitly stored for access, not discarded')}}
+   for(const n of r1?[250,257,166,209]:[248,255,164,207]){
+    const k=idlerKey(n),front=(r1?[250,257]:[248,255]).includes(n),owner=front?'top-front-fasteners':'top-rear-fasteners';
+    assert.equal(workbench.owner(k).id,owner,'Original upper-frame M3x10 belongs to later receiving-member operation');
+   }
    for(const key of mountKeys)assert.equal(shown(key),visibility.get(key)&&keys.has(key),'Source mounting screw follows both installation and isolated inspection masks: '+key);
    for(const[k,n]of adapter.nodes)assert.equal(n.visible,visibility.get(k)&&keys.has(k),'Manual installation-stage visibility: '+k);
    for(const c of companions)assert.equal(c.node.visible,c.part_keys.some(k=>keys.has(k)),'Support-omitted carriage follows native stage');
    for(const seat of spec.seat_display_dependencies)assert(!shown(seat.part_key)||shown(seat.carrier_key),'Preloaded nut displayed without its receiving source member');
-   assert.equal(r.total,spec.stages.length);assert.equal(r.added,spec.stages[index].part_keys.length);unchanged(scene,original,false,true,prep?preparationNodes:new Set());if(prep)checkPreparation();poses.push({index,id:r.id,added:r.added,visible:r.visible_count,prepared:prep,stored:r.stored_count,subassembly:r.subassembly,underside:r.underside,...(bedView?{bedStored:r.stored_keys.length,operationReferences:(r.operation_part_keys||spec.stages[index].part_keys).length}:{} )});
+   assert.equal(r.total,spec.stages.length);assert.equal(r.added,spec.stages[index].part_keys.length);unchanged(scene,original,false,true,prep?preparationNodes:idlerPreparing?idlerPreparationNodes:new Set());if(prep)checkPreparation();if(idlerPreparing)checkIdlerPreparation();poses.push({index,id:r.id,added:r.added,visible:r.visible_count,prepared:prep,idler_prepared:idlerPreparing,stored:r.stored_count,subassembly:r.subassembly,underside:r.underside,...(bedView?{bedStored:r.stored_keys.length,operationReferences:(r.operation_part_keys||spec.stages[index].part_keys).length}:{} )});
    const shownParts=controller.getDisplayedParts();assert.equal(shownParts.length,r.visible_count);assert.deepEqual(shownParts.map(p=>p.key),controller.getVisibleKeys());
    for(const p of shownParts){assert(keys.has(p.key));for(const n of p.nodes)assert(displayed(n))}
    for(const p of [shownParts[0],shownParts[Math.floor(shownParts.length/2)],shownParts.at(-1)].filter(Boolean))assert.deepEqual(controller.getPartNodes(p.key),p.nodes);
    progress.setStage(r.id);progress.toggle(r.id);assert.deepEqual(validateAssemblyProgress(workbench,JSON.parse(JSON.stringify(progress.snapshot()))),progress.snapshot());
   }
   controller.leave();unchanged(scene,original,true);assert.deepEqual(geometryPins(scene),geometryBefore);
+  controller.setStage(spec.stages.findIndex(s=>s.id==='nut-carriers'));const beforeIdlerFailure=state(scene),victim=adapter.nodes.get(idlerGroups[0].keys[2]),originalUpdate=victim.updateMatrix;let inject=true;
+  victim.updateMatrix=function(){if(inject){inject=false;throw Error('actual idler failure injection')}return originalUpdate.call(this)};
+  assert.throws(()=>controller.setStage(idlerPrep),/actual idler failure injection/);victim.updateMatrix=originalUpdate;
+  assert.equal(controller.current().id,'nut-carriers');unchanged(scene,beforeIdlerFailure,true);controller.leave();unchanged(scene,original,true);
   controller.setStage(0);controller.leave();unchanged(scene,original,true);
   // Source alternatives must not reappear when normal motion or a stock reset
   // recomputes visibility after leaving assembly mode.
@@ -187,7 +210,7 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }

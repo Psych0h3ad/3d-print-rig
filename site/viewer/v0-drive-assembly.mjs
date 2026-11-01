@@ -20,12 +20,15 @@ export function createV0DriveAssembly(spec,machineId){
  const stages=spec.stages,rows=new Map(),all=[];
  for(const letter of ['a','b']){
   const complete=Array.from({length:40},(_,i)=>d.prefix+String(d[letter]+i).padStart(5,'0'));
-  const mounts=frameMounts[machineId][letter].map(n=>d.prefix+String(n).padStart(5,'0')),expected=complete.filter(k=>!mounts.includes(k));
+  // This M3x10 fastens the later upper B member (manual p123/129),
+  // not the prepared drive or its p81 frame mounts.
+  const lateTop=d.prefix+String(d[letter]+9).padStart(5,'0');
+  const mounts=frameMounts[machineId][letter].map(n=>d.prefix+String(n).padStart(5,'0')),expected=complete.filter(k=>!mounts.includes(k)&&k!==lateTop);
   const ids=['prep','stack','motor','close'].map(s=>letter+'-drive-'+s),group=ids.map(id=>stages.find(s=>s.id===id));
-  const start=letter==='a'?69:75,pages=[[start,start],[start+1,start+2],[start+3,start+3],[start+4,start+5]],counts=[6,15,8,9];
+  const start=letter==='a'?69:75,pages=[[start,start],[start+1,start+2],[start+3,start+3],[start+4,start+5]],counts=[6,15,8,8];
   if(group.some((s,i)=>!s||s.page_start!==pages[i][0]||s.page_end!==pages[i][1]||s.part_keys.length!==counts[i]))fail('Changed manual operation');
   const actual=group.flatMap(s=>s.part_keys);
-  if(new Set(actual).size!==38||actual.some(k=>!expected.includes(k)))fail('Changed original drive cohort');
+  if(new Set(actual).size!==37||actual.some(k=>!expected.includes(k)))fail('Changed original drive cohort');
   all.push(...complete);
   for(const[i,s]of group.entries())rows.set(s.id,Object.freeze({id:'drive-'+letter+(i===1?'-underside':'-upright'),letter,keys:Object.freeze([...expected]),underside:i===1,note:operations[i===2?(letter==='a'?'motorA':'motorB'):['prep','stack','motor','close'][i]]}));
  }

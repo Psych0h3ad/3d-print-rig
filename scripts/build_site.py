@@ -483,6 +483,55 @@ def _audit_built_runtime(target):
     print(json.dumps(verify_entrypoints(target, input_map)))
 
 
+COMPACT_REVIEW_REPORTS = (
+    'review/virtu-may-source-role.json',
+    'review/toolchangers.json',
+    'review/eva-fronts.json',
+    'review/v0-native-installation.json',
+    'review/native-baseline-bootstrap.json',
+)
+
+
+def compact_generated_reviews(target):
+    """Remove only JSON whitespace from these completed generated reports.
+
+    Retain every original string escape, number literal, field and asset pin.
+    Validate every file before writing any; a missing report fails the build.
+    """
+    rows = []
+    for name in COMPACT_REVIEW_REPORTS:
+        path = target / name
+        original = path.read_bytes()
+        def invalid_constant(value):
+            raise ValueError('Non-JSON constant in generated report: ' + value)
+        value = json.loads(original, parse_constant=invalid_constant)
+        compact = bytearray()
+        quoted = escaped = False
+        for byte in original:
+            if quoted:
+                compact.append(byte)
+                if escaped:
+                    escaped = False
+                elif byte == 92:
+                    escaped = True
+                elif byte == 34:
+                    quoted = False
+            elif byte == 34:
+                quoted = True
+                compact.append(byte)
+            elif byte not in (9, 10, 13, 32):
+                compact.append(byte)
+        compact = bytes(compact) + b'\n'
+        if json.loads(compact, parse_constant=invalid_constant) != value:
+            raise ValueError('Generated report changed during whitespace compaction: ' + name)
+        rows.append((path, original, compact))
+    for path, original, compact in rows:
+        if path.read_bytes() != original:
+            raise ValueError('Generated report changed before compaction: ' + str(path))
+    for path, _, compact in rows:
+        path.write_bytes(compact)
+
+
 def main():
     # Build runtime files only from the exact current per-file approved contract.
     # The historical archive helpers below are fixture APIs, never this entry path.
@@ -499,6 +548,7 @@ def main():
     build_approved()
     with audit_delivery_contract(args.delivery, target, contract_sha256):
         _audit_built_runtime(target)
+    compact_generated_reviews(target)
     size = sum(path.stat().st_size for path in target.rglob('*') if path.is_file())
     if size >= MAX_SITE_BYTES:
         raise ValueError('Site exceeds the deployment size budget.')

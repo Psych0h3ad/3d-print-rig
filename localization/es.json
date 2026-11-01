@@ -9639,8 +9639,8 @@
       "text": "Montar e instalar la polea guía A"
     },
     "ui.v0assembly.text_f02928e3c1020c": {
-      "source_revision": "33ab584e36f089686282",
-      "text": "Comprobar lados y orientación de las poleas guía"
+      "source_revision": "8aecfb469efc2fc8e4ba",
+      "text": "Comprobar el lado y la orientación de los tensores"
     },
     "ui.v0assembly.text_3255b4c990d1cf": {
       "source_revision": "99f0243e44829b4c264d",
@@ -12041,6 +12041,106 @@
     "v0.feet.rear_right.v02": {
       "source_revision": "032dc4da724d3869b4f8",
       "text": "Preparar la pata trasera derecha"
+    },
+    "v0.idler.c6bf66da25d6": {
+      "source_revision": "720ce724ac1309d58588",
+      "text": "Preparar ambos conjuntos de rodamientos de los tensores"
+    },
+    "v0.idler.95bd66ac57d5": {
+      "source_revision": "5e0d2a16d1b4ba46edd7",
+      "text": "Inspeccione ambos conjuntos invertidos. Cada uno utiliza dos rodamientos F623 originales, dos calces de 0.5 mm y su tornillo delantero M3x35."
+    },
+    "v0.idler.50b49c998c54": {
+      "source_revision": "21021390d4955e6fe813",
+      "text": "Montar el tensor B a la izquierda"
+    },
+    "v0.idler.8b04428e62b1": {
+      "source_revision": "9b755c7f3310cc2d53b6",
+      "text": "El M3x35 delantero usa el extremo roscado del montante delantero; el M3x35 trasero, la tuerca precargada del perfil superior del carril Y. Compruebe las cuatro tuercas de los montantes delanteros con esta página del manual."
+    },
+    "v0.idler.ae2e4a5f9051": {
+      "source_revision": "4abe73f4d5f3b2fd9983",
+      "text": "Colocar el cierre de leva del tensor B"
+    },
+    "v0.idler.38b0084244b8": {
+      "source_revision": "60d420b881fc321a03f0",
+      "text": "Coloque el cierre de leva original. El M3x10 del perfil lateral superior se instala después de colocar dicho perfil."
+    },
+    "v0.idler.fd00519d4cb9": {
+      "source_revision": "09cd15eee4f91473ca9f",
+      "text": "Montar el tensor A a la derecha"
+    },
+    "v0.idler.8b6cefe3066e": {
+      "source_revision": "fd540ab579bb17af1955",
+      "text": "Use el montante delantero roscado y la tuerca trasera precargada. Mantenga los conjuntos A y B en sus lados indicados."
+    },
+    "v0.idler.9dbbfee979a5": {
+      "source_revision": "ec478f4fb85a2e8d588a",
+      "text": "Colocar el cierre de leva del tensor A"
+    },
+    "v0.idler.41f013c19abe": {
+      "source_revision": "66f0a7512bb1468fa8d8",
+      "text": "Coloque el cierre de leva A original. Reserve el tornillo del perfil lateral superior para la operación posterior del bastidor."
+    },
+    "v0.idler.c1c60ac7d995": {
+      "source_revision": "4e0abf71f099668448ba",
+      "text": "Comprobar la altura de los rodamientos del lado A"
+    },
+    "v0.idler.f86d3ab2164d": {
+      "source_revision": "0251d32477561f1f7188",
+      "text": "A tiene la pieza impresa superior más alta y el conjunto de rodamientos más bajo. Compare el accionamiento A y su tensor en la vista lateral del manual."
+    },
+    "v0.idler.7ca44f627b47": {
+      "source_revision": "c1152d760620392b6afb",
+      "text": "Comprobar la altura de los rodamientos del lado B"
+    },
+    "v0.idler.fa6db72add2c": {
+      "source_revision": "8fb4259d2d02e304965b",
+      "text": "B tiene la pieza impresa superior más corta y el conjunto de rodamientos más alto. Compare el accionamiento B y su tensor en la vista lateral del manual."
+    },
+    "v0.idler.4fec27c34c76": {
+      "source_revision": "f39d5c9343f51bd8c457",
+      "text": "Compruebe la vista superior: B está a la izquierda y A a la derecha. Mantenga las alturas de rodamientos de las vistas laterales anteriores."
+    },
+    "v0.idler.191b7d36acc7": {
+      "source_revision": "ffe6ddf12018200282f8",
+      "text": "Instalar los dos perfiles laterales superiores"
+    },
+    "v0.idler.1ce181d98285": {
+      "source_revision": "ca5c38eba2be5ec95c17",
+      "text": "Use los dos perfiles B originales con sus tuercas precargadas. Reserve los M3x10 delanteros y traseros para los siguientes pasos."
+    },
+    "v0.idler.66845fb185fe": {
+      "source_revision": "21018fbe22d02f6abf44",
+      "text": "Retirar ambos cierres de leva para acceder a los tornillos"
+    },
+    "v0.idler.2c460fe12557": {
+      "source_revision": "8f2b8ab88dbd8f4d24dc",
+      "text": "Retire temporalmente ambos cierres de leva originales como se muestra. Resérvelos para colocarlos de nuevo tras los tornillos delanteros."
+    },
+    "v0.idler.72cfe51c661a": {
+      "source_revision": "a78b98fee4c45c919bb0",
+      "text": "Fijar los extremos delanteros de los perfiles superiores"
+    },
+    "v0.idler.bdfcc3b10c94": {
+      "source_revision": "051824f56d440c979628",
+      "text": "Instale los dos M3x10 delanteros originales con los cierres de leva retirados."
+    },
+    "v0.idler.ec7fca413395": {
+      "source_revision": "6673323e8e23af88cf32",
+      "text": "Volver a colocar los mismos dos cierres de leva"
+    },
+    "v0.idler.3e2cdc3a8e20": {
+      "source_revision": "1d0539d528ab44cbcfdc",
+      "text": "Vuelva a colocar ambos cierres de leva retirados en el paso anterior; son las mismas piezas originales."
+    },
+    "v0.idler.e8e09fd39c16": {
+      "source_revision": "a76d7be145535c230d39",
+      "text": "Fijar los extremos traseros de los perfiles superiores"
+    },
+    "v0.idler.656aa44e8ee3": {
+      "source_revision": "58be3c2f11dbc74aa8c9",
+      "text": "Instale los dos M3x10 traseros originales a través de las carcasas de los accionamientos en los perfiles superiores del bastidor."
     }
   }
 }

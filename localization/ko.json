@@ -9639,8 +9639,8 @@
       "text": "A 아이들러 조립 및 장착"
     },
     "ui.v0assembly.text_f02928e3c1020c": {
-      "source_revision": "33ab584e36f089686282",
-      "text": "아이들러 좌우와 적층 방향 확인"
+      "source_revision": "8aecfb469efc2fc8e4ba",
+      "text": "아이들러의 좌우와 방향 확인"
     },
     "ui.v0assembly.text_3255b4c990d1cf": {
       "source_revision": "99f0243e44829b4c264d",
@@ -12041,6 +12041,106 @@
     "v0.feet.rear_right.v02": {
       "source_revision": "032dc4da724d3869b4f8",
       "text": "오른쪽 뒷발과 패드 준비"
+    },
+    "v0.idler.c6bf66da25d6": {
+      "source_revision": "720ce724ac1309d58588",
+      "text": "양쪽 아이들러 베어링 조립"
+    },
+    "v0.idler.95bd66ac57d5": {
+      "source_revision": "5e0d2a16d1b4ba46edd7",
+      "text": "두 조립체를 뒤집은 방향으로 확인합니다. 각각 원본 F623 베어링 2개, 0.5 mm 심 2개와 앞쪽 M3x35 나사를 사용합니다."
+    },
+    "v0.idler.50b49c998c54": {
+      "source_revision": "21021390d4955e6fe813",
+      "text": "B 아이들러를 왼쪽에 장착"
+    },
+    "v0.idler.8b04428e62b1": {
+      "source_revision": "9b755c7f3310cc2d53b6",
+      "text": "앞쪽 M3x35는 앞 기둥의 나사산에, 뒤쪽 M3x35는 Y 레일 위쪽 프로파일에 미리 넣은 너트에 고정합니다. 앞 기둥의 너트 4개도 이 설명서 페이지와 대조합니다."
+    },
+    "v0.idler.ae2e4a5f9051": {
+      "source_revision": "4abe73f4d5f3b2fd9983",
+      "text": "B 아이들러 캠 잠금장치 장착"
+    },
+    "v0.idler.38b0084244b8": {
+      "source_revision": "60d420b881fc321a03f0",
+      "text": "원본 캠 잠금장치를 장착합니다. 위쪽 측면 프로파일용 M3x10은 해당 프로파일을 장착한 뒤에 사용합니다."
+    },
+    "v0.idler.fd00519d4cb9": {
+      "source_revision": "09cd15eee4f91473ca9f",
+      "text": "A 아이들러를 오른쪽에 장착"
+    },
+    "v0.idler.8b6cefe3066e": {
+      "source_revision": "fd540ab579bb17af1955",
+      "text": "앞 기둥의 나사산과 뒤쪽에 미리 넣은 너트를 사용합니다. A와 B를 지정된 좌우에 장착합니다."
+    },
+    "v0.idler.9dbbfee979a5": {
+      "source_revision": "ec478f4fb85a2e8d588a",
+      "text": "A 아이들러 캠 잠금장치 장착"
+    },
+    "v0.idler.41f013c19abe": {
+      "source_revision": "66f0a7512bb1468fa8d8",
+      "text": "원본 A 캠 잠금장치를 장착합니다. 위쪽 측면 프로파일 나사는 뒤의 프레임 단계에서 사용합니다."
+    },
+    "v0.idler.c1c60ac7d995": {
+      "source_revision": "4e0abf71f099668448ba",
+      "text": "A쪽 베어링 높이 확인"
+    },
+    "v0.idler.f86d3ab2164d": {
+      "source_revision": "0251d32477561f1f7188",
+      "text": "A는 위쪽 출력 부품이 더 높고 베어링 조립체는 더 낮습니다. 설명서의 측면도에서 A 구동부와 아이들러를 비교합니다."
+    },
+    "v0.idler.7ca44f627b47": {
+      "source_revision": "c1152d760620392b6afb",
+      "text": "B쪽 베어링 높이 확인"
+    },
+    "v0.idler.fa6db72add2c": {
+      "source_revision": "8fb4259d2d02e304965b",
+      "text": "B는 위쪽 출력 부품이 더 낮고 베어링 조립체는 더 높습니다. 설명서의 측면도에서 B 구동부와 아이들러를 비교합니다."
+    },
+    "v0.idler.4fec27c34c76": {
+      "source_revision": "f39d5c9343f51bd8c457",
+      "text": "위에서 보았을 때 왼쪽이 B, 오른쪽이 A인지 확인합니다. 앞의 측면도에 표시된 베어링 높이를 유지합니다."
+    },
+    "v0.idler.191b7d36acc7": {
+      "source_revision": "ffe6ddf12018200282f8",
+      "text": "위쪽 측면 프로파일 2개 장착"
+    },
+    "v0.idler.1ce181d98285": {
+      "source_revision": "ca5c38eba2be5ec95c17",
+      "text": "너트를 미리 넣은 원본 B 프로파일 2개를 사용합니다. 앞뒤 M3x10은 다음 고정 단계에서 사용합니다."
+    },
+    "v0.idler.66845fb185fe": {
+      "source_revision": "21018fbe22d02f6abf44",
+      "text": "나사에 접근하기 위해 양쪽 캠 잠금장치 분리"
+    },
+    "v0.idler.2c460fe12557": {
+      "source_revision": "8f2b8ab88dbd8f4d24dc",
+      "text": "그림처럼 원본 캠 잠금장치 2개를 잠시 분리합니다. 앞쪽 나사를 고정한 뒤 같은 부품을 다시 장착합니다."
+    },
+    "v0.idler.72cfe51c661a": {
+      "source_revision": "a78b98fee4c45c919bb0",
+      "text": "위쪽 프로파일 앞 끝을 나사로 고정"
+    },
+    "v0.idler.bdfcc3b10c94": {
+      "source_revision": "051824f56d440c979628",
+      "text": "캠 잠금장치를 분리한 상태에서 원본 앞쪽 M3x10 나사 2개를 장착합니다."
+    },
+    "v0.idler.ec7fca413395": {
+      "source_revision": "6673323e8e23af88cf32",
+      "text": "같은 캠 잠금장치 2개 재장착"
+    },
+    "v0.idler.3e2cdc3a8e20": {
+      "source_revision": "1d0539d528ab44cbcfdc",
+      "text": "앞 단계에서 분리한 같은 원본 캠 잠금장치 2개를 다시 장착합니다."
+    },
+    "v0.idler.e8e09fd39c16": {
+      "source_revision": "a76d7be145535c230d39",
+      "text": "위쪽 프로파일 뒤 끝을 나사로 고정"
+    },
+    "v0.idler.656aa44e8ee3": {
+      "source_revision": "58be3c2f11dbc74aa8c9",
+      "text": "원본 뒤쪽 M3x10 나사 2개를 구동부 하우징을 통과시켜 위쪽 프레임 프로파일에 장착합니다."
     }
   }
 }
