@@ -15025,6 +15025,141 @@
       "kind": "message",
       "ja": "作業中のベッド小組立だけを元CADの位置で表示しています。他の組立品は保管中です。この参照表示は部品の挿入経路を示しません。",
       "en": "Only the current bed subassembly is shown at the original source locations. Other assemblies are set aside; this inspection view does not show an insertion path."
+    },
+    "v0.feet.manual.a3426620311417ac": {
+      "kind": "message",
+      "ja": "前脚2個の元インサート、ゴムパッド、パッド固定用M3x10を準備します。長いフレーム固定ネジとアクセントカバーは、後の工程まで取り付けません。",
+      "en": "Prepare the original inserts, rubber pads and M3x10 pad screws for both front feet. Keep the long frame screws and accent covers for their later operations."
+    },
+    "v0.feet.manual.5a66658649e6c25c": {
+      "kind": "message",
+      "ja": "電源入口側の脚とパッドを準備",
+      "en": "Prepare the inlet-side foot and pad"
+    },
+    "v0.feet.manual.9ef9a551a9af3e3f": {
+      "kind": "message",
+      "ja": "電源入口側の脚に元の熱圧入インサート2個、パッド、パッド固定用M3x10を準備します。電源入口本体、フレーム固定ボルト、側面の固定ネジはまだ取り付けません。",
+      "en": "Prepare the two original heat-set inserts, pad and its M3x10 screw in the inlet-side foot. The inlet, frame bolts and side mounting screws are fitted later."
+    },
+    "v0.feet.manual.1ed2049f0a3e61bb": {
+      "kind": "message",
+      "ja": "通常型右後脚の元インサート、パッド、パッド固定用M3x10を準備します。Bowden用開口を説明書で確認してください。長い固定ネジとアクセントは後で使います。元の構成で非表示の代替部品は表示しません。",
+      "en": "Prepare the plain rear-right foot, original inserts, pad and M3x10 pad screw. Its Bowden opening is shown in the manual. Keep the long frame screw and accent for later. Native-excluded alternatives stay excluded."
+    },
+    "v0.feet.manual.d32acadb2eefef99": {
+      "kind": "message",
+      "ja": "準備した脚をフレームに取り付け",
+      "en": "Attach the prepared feet to the frame"
+    },
+    "v0.feet.manual.b4ea129a398fab35": {
+      "kind": "message",
+      "ja": "準備した脚を元の長いM3x40でフレーム角部に固定します。電源入口側は元のM3x10を2本と、52ページで先入れした同じナット2個を使います。右後脚は元の構成で選ばれた1種類だけです。参照表示は元CADの向きを保ち、実機を裏返す動作は再現しません。",
+      "en": "Install the prepared feet with the original long M3x40 corner screws. Secure the inlet-side foot with its two M3x10 screws and the same two nuts preloaded on page52. Use only the native-selected rear-right foot. The reference keeps the source assembly orientation; it does not animate physically turning the printer over."
+    },
+    "v0.feet.manual.a4fb8ffb64f76aaf": {
+      "kind": "message",
+      "ja": "各脚のアクセントを取り付け",
+      "en": "Attach all selected foot accents"
+    },
+    "v0.feet.manual.b79a33947b67ed96": {
+      "kind": "message",
+      "ja": "フレーム固定後、各脚の元アクセントを対応するM2x10タッピングネジ2本ずつで取り付けます。右後脚のアクセントも準備段階には取り付けず、この工程で使います。印刷部品のネジ穴を潰さないようにしてください。",
+      "en": "Fit each original accent with its matching two M2x10 self-tapping screws after frame installation. The same rear-foot accent occurrences are introduced here, not during foot preparation. Avoid stripping the printed screw holes."
+    },
+    "v0.feet.manual.4b63c93b652fe5ff": {
+      "kind": "message",
+      "ja": "リードスクリュー一体型Zモーターを準備",
+      "en": "Prepare the integrated Z motor and mount"
+    },
+    "v0.feet.manual.47957cdbb3115ac8": {
+      "kind": "message",
+      "ja": "元のリードスクリュー一体型モーターと印刷マウントを、M3x8を2本、M3x6を1本で組み立てます。この説明書の潤滑指示を確認し、r1のPOMナット・コーティングねじの代替品を標準CADへ置き換えません。フレーム固定用4本は次の取付工程で使います。",
+      "en": "Prepare the original integrated leadscrew motor and printed mount with its two M3x8 and one M3x6 screws. Apply the lubrication specified by this manual; the r1 POM/coated-screw alternative is not substituted for the stock source motor. Keep the four frame screws for the next mounting operation."
+    },
+    "v0.feet.manual.8ba1cb181363e6c7": {
+      "kind": "message",
+      "ja": "Zモーターをフレームに仮止め",
+      "en": "Loosely fasten the Z motor to the frame"
+    },
+    "v0.feet.manual.b2d651ee8fefe59a": {
+      "kind": "message",
+      "ja": "元のフレーム固定用M3x8を4本と、先入れ済みの同じモーター取付ナットを使います。次の整列が終わるまで4本を完全には締めません。モーター本体側のM3x8を2本とは別の元CAD項目です。",
+      "en": "Fit all four original M3x8 frame screws to the same preloaded motor-mount nuts. Leave these four screws loose for the following alignment operation. The two M3x8 motor-case screws are different original occurrences."
+    },
+    "v0.feet.manual.13d6913d0fdc5265": {
+      "kind": "message",
+      "ja": "Zモーターを整列してベッドの手動往復を確認",
+      "en": "Align the Z motor and check manual bed travel"
+    },
+    "v0.feet.manual.b29b1954585b3005": {
+      "kind": "message",
+      "ja": "V0.2の106ページの整列と手動往復の手順に従い、確認後にモーターとフレームの4本を固定します。後のr1の最下部調整手順を、この改訂へ流用しません。静的な元CAD位置だけで自由な動きは証明できません。",
+      "en": "Follow this V0.2 page106 alignment and manual bed-cycling procedure before fully securing the four motor-frame screws. The later r1 bottom-position procedure is not substituted for this revision. A static source pose is not proof of free travel."
+    },
+    "v0.feet.manual.d2b1079c585f7324": {
+      "kind": "message",
+      "ja": "検知用の右後脚・継手・ベアリングを準備",
+      "en": "Prepare the runout foot, fitting and bearing"
+    },
+    "v0.feet.manual.f95cbe0edb55cd47": {
+      "kind": "message",
+      "ja": "102ページと同様に右後脚を準備し、103ページの元ECAS04とMR85を取り付けます。説明書では継手内部の黒いゴム部品を除きます。元CADのECAS04は2ソリッドを含む1項目で、内部5部品の対応や分解表示はできません。参照モデルの継手を加工・非表示にはせず、別部品の脚パッドも保持します。右後脚の2種類を同時に取り付けないでください。",
+      "en": "Prepare the rear foot as on page102, then fit the original ECAS04 and MR85 bearing as on page103. The manual removes the fitting's internal black rubber piece. This source represents ECAS04 as one two-solid item: it does not resolve or animate its five internal pieces. Keep the original fitting intact in this reference; the separate rubber foot is retained. Never install both rear-right alternatives."
+    },
+    "v0.feet.manual.4d776cdcca1e7862": {
+      "kind": "message",
+      "ja": "準備した脚にフィラメント検知スイッチを固定",
+      "en": "Fit the runout switch to the prepared foot"
+    },
+    "v0.feet.manual.97a0a1ab1ca43d53": {
+      "kind": "message",
+      "ja": "説明書で強調されたNormally Open用の2端子と、元のM2x10タッピングネジを使います。購入品スイッチは一体の参照部品のまま保持し、内部の分解や配線形状を追加しません。",
+      "en": "Use the two highlighted normally-open terminals in the manual and the original M2x10 self-tapping screw. The reference retains the complete purchased switch; it does not invent an internal switch disassembly or a wiring model."
+    },
+    "v0.feet.manual.91b22bb1dba59600": {
+      "kind": "message",
+      "ja": "リードスクリューを準備済みナットに通す",
+      "en": "Engage the leadscrew with the prepared nut"
+    },
+    "v0.feet.manual.8640d737ed4f7422": {
+      "kind": "message",
+      "ja": "リードスクリューを準備済みのアンチバックラッシュナットに通します。2分割ナットは説明書の組立参照に従います。表示は元CADの組立位置で、挿入動作やねじ山の噛合を認定するものではありません。",
+      "en": "Engage the source leadscrew with the prepared anti-backlash nut. Follow the linked manual assembly reference for its two nut halves. This view shows their assembled source positions, not an insertion animation or proof of thread engagement."
+    },
+    "v0.feet.manual.f9dc950ab542a025": {
+      "kind": "message",
+      "ja": "ベッドを最下部にしてナット固定ネジ2本を緩める",
+      "en": "Lower the bed and loosen the two nut-holder screws"
+    },
+    "v0.feet.manual.f4c96440d6a8da2b": {
+      "kind": "message",
+      "ja": "実機ではリードスクリューを回してベッドを最下部へ下げます。92ページで使った同じ上側M3x12を2本だけ緩めます。モーターとフレームの4本も緩めたままです。この静的な元CAD表示は、最下部での調整姿勢までは再現しません。",
+      "en": "In the physical build, turn the leadscrew to bring the bed fully down. Loosen only the same two top M3x12 nut-holder screws prepared on page92. The four motor-to-frame screws remain loose. The static source view does not reproduce that bottom-position adjustment."
+    },
+    "v0.feet.manual.0ad3cbee9a1a8dec": {
+      "kind": "message",
+      "ja": "リードスクリューを中心に合わせて同じネジを固定",
+      "en": "Center the leadscrew and tighten the original screws"
+    },
+    "v0.feet.manual.edb68c9afec35ea1": {
+      "kind": "message",
+      "ja": "実機のベッドを最下部に保ち、リードスクリューをホルダーの中心へ合わせます。説明書どおり、同じ上側2本、続いてモーターとフレームの4本を締めます。この工程で新しいネジは追加しません。",
+      "en": "With the bed still fully down, center the leadscrew in the holder. Tighten the same two top holder screws, then the four motor-to-frame screws as shown. No new screws are introduced in this operation."
+    },
+    "v0.feet.manual.27d7c2c4d38ab37e": {
+      "kind": "message",
+      "ja": "ベッドを手動で往復させてZ動作を確認",
+      "en": "Check the Z travel by manually cycling the bed"
+    },
+    "v0.feet.manual.36ee4999ade24c4e": {
+      "kind": "message",
+      "ja": "実機のベッドを手動で全行程往復させ、抵抗を確認します。引っ掛かる場合は説明書に従って調整してください。元CADの表示だけで自由な動き、整列、クリアランスを認定することはできません。",
+      "en": "Manually cycle the bed through its range and check for resistance. Follow the manual if real hardware binds; a displayed source pose does not certify free travel, alignment or clearance."
+    },
+    "v0.feet.rear_right.v02": {
+      "kind": "message",
+      "ja": "右後脚とパッドを準備",
+      "en": "Prepare the rear-right foot"
     }
   }
 }

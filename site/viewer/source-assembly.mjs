@@ -4,7 +4,7 @@ import {sourceControlBounds} from './source-control-bounds.mjs?v=1c112b375b6d53f
 import * as THREE from './vendor-r180/three.module.js?v=c8211c69345d2e9949dc';
 import{OrbitControls}from'./vendor-r180/OrbitControls.js?v=1c5dfa7751d7ab320ac0';
 import{RoomEnvironment}from'./vendor-r180/RoomEnvironment.js?v=c20f0b4677f6128a138d';
-import{loadLanguage}from'./i18n.mjs?v=ab5a19f7c2497f1496a6';
+import{loadLanguage}from'./i18n.mjs?v=eeb41de93f357ec93a27';
 import{setupMachineNavigation}from'./machines.js?v=def15e6e5867393ab8db';
 import{sceneLightingState}from'./scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import{readDisplay,rememberDisplayControl}from'./display-preferences.mjs?v=8f347468def25922153c';
@@ -12,19 +12,19 @@ import{workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver}from
 import{setResponsiveAspect,frameResponsiveView}from'./responsive-camera.mjs?v=149a79a654914b2af652';
 import{setupRenderExport}from'./render-export.js?v=92d6e71ee392361a4f7d';
 import{sourceText}from'./source-assembly-messages.mjs?v=ca9a1808a98c73d5824f';
-import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=1028f021a217d9f9c4ae';
+import{loadSourceIndex,loadSourcePacket,sourceHeadPlan,selectedSourcePacket,loadSourceAssembly}from'./source-assembly-loader.mjs?v=3a59f009c066a4483566';
 import{sourceReviewBounds}from'./source-assembly-runtime/receiver_guard309.mjs?v=e73d2df413e8fdcf045d';
 import{sourceMinimumContext,sourceMinimumState}from'./source-assembly-runtime/state.mjs?v=b5247a9c87c6a42703d7';
 import{restoreCurrentAssemblyState}from'./source-assembly-runtime/restore_current_state.mjs?v=88db86b7780e49ae0a4f';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede';
-import{createLoadCoordinator,sourceProgressStatus}from'./source-assembly-runtime/loading.mjs?v=6ad5ce10bffb053b99cd';
-import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=f697b10a085d09c2533e';
+import{createLoadCoordinator,sourceProgressStatus}from'./source-assembly-runtime/loading.mjs?v=a5e532c7626b1c0be4b5';
+import{requestModelChoice,createMemoryChoiceDialog}from'./source-assembly-runtime/large_model_warning.mjs?v=c3a762edf47f38c30658';
 import{sourceXYMessage}from'./source-assembly-runtime/source_XY309.mjs?v=9e7ad89598a23adcc9e0';
 import{captureCamera,restoreCamera}from './source-assembly-view-state.mjs?v=fd9ad51b6102c745bc55';
 import{bindSourceConfigurationLoad,selectSourceCameraPreset}from './source-assembly-configuration-ui.mjs?v=7887eb8d33c4a7f24aef';
 import{createSourceUIText,sourceCreditNote,sourceCreditLabel}from './source-assembly-ui-text.mjs?v=02957ea40a587daba0a1';
 import{sourceReferencePanel,sourceCreditRecords}from './source-assembly-references.mjs?v=0a283a57ad3b7af595e8';
-import{setupE3NGModControls,captureE3NGModSelection,transferE3NGModSelection,appendE3NGModCredits}from './e3ng-mod-controls.mjs?v=27b02e830d671a9339a4';
+import{setupE3NGModControls,captureE3NGModSelection,transferE3NGModSelection,appendE3NGModCredits}from './e3ng-mod-controls.mjs?v=c8a7516ada39da2fee37';
 export async function mount(scope){
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),lang=()=>document.documentElement.lang,t=k=>sourceText(k,lang()),machine=new URLSearchParams(location.search).get('machine');

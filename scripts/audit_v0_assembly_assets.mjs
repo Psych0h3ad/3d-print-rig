@@ -148,6 +148,17 @@ try{
     if(spec.stages[index].id==='bed-mounts-separate'){assert.equal(keys.size,8);assert(bedRear.every(n=>r.stored_keys.includes(bedKey(n))))}
     if(spec.stages[index].id==='bed-mounts-rail')assert.equal([...keys].filter(k=>bedCohort.has(k)).length,16);
    }
+   // Independently enumerated original foot/motor cohorts, manual pp101-112.
+   // These are reference visibility checks, not receiver/thread/pose certificates.
+   const footViews=r1?{'feet-front':[606,607,608,609,611,615,616,617],'feet-inlet-prep':[590,598,599,600,602],'feet-rear-plain':[634,636,637,638,639],'feet-runout':[619,623,624,626,628,629,630],'feet-runout-switch':[619,623,624,625,626,627,628,629,630],'z-motor':[542,543,544,545,547]}:
+    {'feet-front':[594,599,600,601,602,604,608,609],'feet-inlet-prep':[581,583,591,592,593],'feet-rear-plain':[610,614,615,616,617],'z-motor':[533,534,535,536,538]};
+   const footKey=n=>(r1?'v02r1_':'v02_')+String(n).padStart(5,'0'),footView=footViews[spec.stages[index].id];
+   if(footView){const beforeFoot=new Set(spec.stages.slice(0,index+1).flatMap(s=>s.part_keys)),allowed=new Set(footView.map(footKey));for(const k of keys)if(!allowed.has(k))keys.delete(k);
+    assert.equal(r.subassembly,true);assert.deepEqual(new Set(r.stored_keys),new Set([...beforeFoot].filter(k=>!allowed.has(k))));assert.deepEqual(keys,allowed);
+    assert.deepEqual(new Set(controller.getVisibleKeys()),new Set([...allowed].filter(k=>visibility.get(k)||companions.some(c=>c.part_keys.includes(k)))),'Native excluded foot alternatives remain excluded');
+   }
+   if(spec.stages[index].id==='z-motor-mount')for(const n of r1?[546,548,549,550,551,552,553,554]:[537,539,540,541,542,543,544,545])assert(r.operation_part_keys.includes(footKey(n)),'Original frame screws and preloaded nuts required');
+   if(['z-align','z-motor-center','z-cycle'].includes(spec.stages[index].id))for(const n of r1?[457,473]:[448,464])assert(r.operation_part_keys.includes(footKey(n)),'Reuse original nut-holder top screws');
    for(const key of mountKeys)assert.equal(shown(key),visibility.get(key)&&keys.has(key),'Source mounting screw follows both installation and isolated inspection masks: '+key);
    for(const[k,n]of adapter.nodes)assert.equal(n.visible,visibility.get(k)&&keys.has(k),'Manual installation-stage visibility: '+k);
    for(const c of companions)assert.equal(c.node.visible,c.part_keys.some(k=>keys.has(k)),'Support-omitted carriage follows native stage');
