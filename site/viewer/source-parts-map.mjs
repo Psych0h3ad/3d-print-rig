@@ -1,3 +1,4 @@
+import {assemblySourceMaterial} from './assembly-stage-emphasis.mjs?v=31de7db3c02f47abdc16';
 const sha=b=>crypto.subtle.digest('SHA-256',b).then(a=>[...new Uint8Array(a)].map(v=>v.toString(16).padStart(2,'0')).join(''));
 const digest=v=>sha(new TextEncoder().encode(JSON.stringify(v)));
 const fail=s=>{throw Error('Source part map: '+s)};
@@ -54,7 +55,7 @@ export async function createSourcePartsMap(loaded,scene,{allowVisibilityStages=f
  const owners=new Map(stages.flatMap(s=>s.part_keys.map(k=>[k,s]))),search=stages.map(s=>normalize([s.title,...s.part_keys.flatMap(k=>{const p=rows.get(k);return[p.key,p.name,...p.path]})].join(' ')));
  function verifyLive(){
   if(root.parent!==scene||loaded.inspection.active()!==true||JSON.stringify(components.map(c=>c.meta))!==metadataSnapshot)fail('Source assembly retired or metadata changed');root.updateMatrixWorld(true);
-  for(const s of snapshots){if(!under(s.n,root)||s.n.parent!==s.parent||s.n.geometry!==s.g||s.g.drawRange.start!==s.drawStart||s.g.drawRange.count!==s.drawCount||s.p.version!==s.positionVersion||s.g.getAttribute('position')!==s.p||s.g.index!==s.index||s.n.material!==s.material||s.n.visible!==s.visible||matrix(s.n).some((n,i)=>n!==s.matrix[i]))fail('Source assembly changed')}
+  for(const s of snapshots){if(!under(s.n,root)||s.n.parent!==s.parent||s.n.geometry!==s.g||s.g.drawRange.start!==s.drawStart||s.g.drawRange.count!==s.drawCount||s.p.version!==s.positionVersion||s.g.getAttribute('position')!==s.p||s.g.index!==s.index||assemblySourceMaterial(s.n)!==s.material||s.n.visible!==s.visible||matrix(s.n).some((n,i)=>n!==s.matrix[i]))fail('Source assembly changed')}
  }
  function setVisibilityKeys(keys){
   if(!allowVisibilityStages)fail('Visibility stages require explicit opt-in');verifyLive();

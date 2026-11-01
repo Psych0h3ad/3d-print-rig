@@ -1,12 +1,12 @@
 import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=83b0d982f9b8dad8c28a';
-import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=7e07287f50f81274d235';
+import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=3110166c940701420da3';
 
 import {assemblyPartRows} from './assembly-part-review.mjs';
 import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs?v=c1a32fd13ba2aa1ccb36';
 
 // UI state describes the reader's checklist, never a mechanical validation.
 // Native visibility and camera changes stay with the viewer's stage controller.
-export function createAssemblyWorkbench({container,index,legacy,bannerHost,onStage,onFocusPart,onReveal,format,translate,storage,download}={}){
+export function createAssemblyWorkbench({container,index,legacy,bannerHost,onStage,onFocusPart,onReveal,onEmphasis,format,translate,storage,download}={}){
  const doc=container.ownerDocument,win=doc.defaultView,root=doc.createElement('section');root.className='assembly-workbench';root.setAttribute('data-i18n','off');
  const oldStageLabel=container.querySelector('label[for="assemblyStage"]');if(oldStageLabel)oldStageLabel.hidden=true;
  const listeners=[],listen=(n,event,fn)=>{n.addEventListener(event,fn);listeners.push(()=>n.removeEventListener(event,fn))};
@@ -18,6 +18,9 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
  const meter=element('progress','assembly-progress');meter.max=index.stages.length;
  const summary=element('div','assembly-progress-summary'),progressText=element('span','',summary),checkLabel=element('label','assembly-check'),check=element('input','',checkLabel);check.type='checkbox';const checkText=msg(element('span','',checkLabel),'mark_done');
  const nav=element('div','assembly-stage-nav');nav.append(legacy.previous,legacy.next,legacy.focus);
+ let dimEarlier=false;
+ const display=element('div','assembly-display-options'),dim=button('dim_earlier',()=>{dimEarlier=!dimEarlier;refreshEmphasis()},display),displayHint=element('p','assembly-display-hint',display);
+ display.hidden=typeof onEmphasis!=='function';
  root.append(legacy.note,legacy.manual);
  const sourceCount=element('p','assembly-source-count');
  const searchLabel=msg(element('label','assembly-search-label'),'search'),search=element('input','assembly-search');search.id='assemblyWorkbenchSearch';searchLabel.setAttribute('for',search.id);search.type='search';search.autocomplete='off';
@@ -32,9 +35,10 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
  const clear=button('clear',()=>{undo=progress.clearChecks();notice='clear_note';persist();refresh()},actions),undoButton=button('undo',()=>{if(undo){progress.restore({...undo,current_stage:progress.snapshot().current_stage});undo=null;notice='';persist();refresh()}},actions);
  const storageNote=element('p','assembly-storage-note',actions),status=element('p','assembly-progress-status');status.setAttribute('role','status');status.setAttribute('aria-live','polite');root.append(legacy.finish);container.append(root);
  const searchRegion=element('div','assembly-search-region');searchRegion.append(searchLabel,search);
- root.replaceChildren(searchRegion,results,empty,heading,meter,summary,checkLabel,nav,legacy.note,legacy.manual,sourceCount,selection,partTitle,partSummary,partTools,partNote,items,more,hint,outline,actions,status,legacy.finish);
+ root.replaceChildren(searchRegion,results,empty,heading,meter,summary,checkLabel,nav,display,legacy.note,legacy.manual,sourceCount,selection,partTitle,partSummary,partTools,partNote,items,more,hint,outline,actions,status,legacy.finish);
  const banner=doc.createElement('div');banner.className='assembly-active-banner';banner.setAttribute('data-i18n','off');banner.hidden=true;const bannerText=element('span','',banner),reveal=button('view',()=>onReveal?.(),banner),exit=element('button','',banner);exit.type='button';listen(exit,'click',()=>legacy.finish.click());bannerHost?.append(banner);
  function persist(){try{if(!storage)sessionOnly=true;else storage.setItem(key,JSON.stringify(progress.snapshot()))}catch{sessionOnly=true}}
+ function refreshEmphasis(){const preview=Boolean(state?.preview);dim.disabled=preview;dim.setAttribute('aria-pressed',String(dimEarlier&&!preview));displayHint.hidden=!dimEarlier||preview;displayHint.textContent=say('dim_hint');if(active&&state)onEmphasis?.({enabled:dimEarlier&&!preview,currentKeys:assemblyPartRows(index,state.index).map(r=>r.key)});}
  function renderResults(){
   const found=search.value.trim()?index.search(search.value,translate):[],signature=found.map(s=>s.id).join('|');
   if(signature!==resultSignature){results.replaceChildren(...found.map(s=>{const n=doc.createElement('button');n.type='button';n.dataset.stage=s.id;n.addEventListener('click',()=>{if(active)onStage(s.index)});return n}));resultSignature=signature}
@@ -47,7 +51,7 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
   const parts=all.filter(r=>(!hardwareOnly||r.fastener)&&(!remainingOnly||!checked.has(r.key))&&tokens.every(t=>[r.part.name,r.part.key,...r.part.path].join(' ').normalize('NFKD').toLowerCase().includes(t))),rows=parts.slice(0,limit);items.replaceChildren();
   partSummary.textContent=say('part_progress',[shown.filter(r=>checked.has(r.key)).length,shown.length,shown.filter(r=>r.fastener).length]);
   hardware.setAttribute('aria-pressed',String(hardwareOnly));remaining.setAttribute('aria-pressed',String(remainingOnly));nextPart.disabled=!all.some(r=>visible.has(r.key)&&!checked.has(r.key)&&(!hardwareOnly||r.fastener));
-  if(!parts.length){const p=doc.createElement('p');p.textContent=say('no_items');items.append(p)}
+  if(!parts.length){const p=doc.createElement('p');p.textContent=say(all.length?'no_matching_items':'no_items');items.append(p)}
   for(const r of rows){const p=r.part,row=doc.createElement('div');row.className='assembly-part-row';
    const review=doc.createElement('input');review.type='checkbox';review.dataset.partCheck=p.key;review.checked=checked.has(p.key);review.disabled=!visible.has(p.key);review.setAttribute('aria-label',say('part_check_label',[p.name,p.key]));review.addEventListener('change',()=>{if(!active)return;progress.togglePart(p.key);undo=null;notice='';persist();refresh()});row.append(review);
    const n=doc.createElement('button');n.type='button';n.dataset.part=p.key;n.setAttribute('data-i18n','off');n.setAttribute('aria-pressed',String(selected===p.key));n.textContent=p.name;
@@ -70,18 +74,18 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
   for(const n of legacy.select.options)n.textContent=translate(index.stage(Number(n.value)).title);
   for(const [n,raw]of [[legacy.previous,'Previous stage'],[legacy.next,'Next stage'],[legacy.focus,'Focus added parts'],[legacy.finish,'Return to previous configuration']])n.textContent=translate(raw);
   if(state){legacy.note.textContent=[state.manual_note||s.note,...(state.presentation_notes||[state.presentation_note])].filter(Boolean).map(translate).join(' ');legacy.manual.textContent=translate(state.manual_text);sourceCount.textContent=say('counts',[state.added,state.visible_count])}
-  renderResults();renderParts();renderSelection();
+  renderResults();renderParts();renderSelection();refreshEmphasis();
  }
  function select(part,{reveal=false}={}){if(!active)return;index.part(part);selected=part;renderSelection();for(const n of items.querySelectorAll('[data-part]'))n.setAttribute('aria-pressed',String(n.dataset.part===part));if(reveal){onReveal?.();selection.scrollIntoView?.({block:'nearest'})}}
  function importProgress(value){if(!active)throw Error('Inactive assembly view');const checked=validateAssemblyProgress(index,value),updated=assemblyProgressNeedsMigration(index,value.identity);onStage(index.stage(checked.current_stage).index);progress.restore(checked);undo=null;notice=updated?'updated_manual':'loaded';persist();refresh()}
- listen(check,'change',()=>{progress.toggle(progress.snapshot().current_stage);undo=null;notice='';persist();refresh()});listen(search,'input',()=>{limit=40;renderResults();if(typeof index.matchParts==='function')renderParts();if(search.value.trim())results.scrollIntoView?.({block:'nearest'})});
+ listen(check,'change',()=>{progress.toggle(progress.snapshot().current_stage);undo=null;notice='';persist();refresh()});listen(search,'input',()=>{limit=40;renderResults();renderParts();if(search.value.trim())results.scrollIntoView?.({block:'nearest'})});
  let fileEpoch=0;listen(file,'change',async()=>{const epoch=++fileEpoch,input=file.files?.[0];file.value='';if(!input||!active)return;try{if(input.size>524288)throw Error('size');const text=await input.text();if(!active||epoch!==fileEpoch)return;importProgress(JSON.parse(text))}catch(e){if(!active||epoch!==fileEpoch)return;notice=String(e.message).includes('another model')?'wrong_version':'invalid';refresh()}});
  if(win)listen(win,'rig-language-change',refresh);
  refresh();
  return Object.freeze({resumeIndex:()=>index.stage(progress.snapshot().current_stage).index,
   update(next){const changed=state?.index!==next.index;state={...next,visible_keys:[...next.visible_keys]};if(changed){limit=40;selected=null}progress.setStage(next.index);persist();refresh()},
-  activate(){active=true;banner.hidden=false;notice=manualUpdated?'updated_manual':resumed?'resumed':'';refresh()},deactivate(){active=false;fileEpoch++;banner.hidden=true;selected=null},select,importProgress,
+  activate(){active=true;banner.hidden=false;notice=manualUpdated?'updated_manual':resumed?'resumed':'';refresh()},deactivate(){onEmphasis?.({enabled:false,currentKeys:[]});active=false;fileEpoch++;banner.hidden=true;selected=null},select,importProgress,
   ownsCommand:n=>banner.contains(n),snapshot:()=>progress.snapshot(),
-  dispose(){active=false;fileEpoch++;for(const remove of listeners)remove();root.remove();banner.remove()},
+  dispose(){onEmphasis?.({enabled:false,currentKeys:[]});active=false;fileEpoch++;for(const remove of listeners)remove();root.remove();banner.remove()},
  });
 }

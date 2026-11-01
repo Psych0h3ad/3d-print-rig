@@ -15350,6 +15350,26 @@
       "kind": "message",
       "en": "Only the current XY joint operation is shown. Prepared parts stay aside until the closing or installation operation.",
       "ja": "現在のXYジョイント工程だけを表示しています。準備した部品は、閉じる工程や取付工程まで別に置きます。"
+    },
+    "assembly.workbench.no_matching_items": {
+      "kind": "message",
+      "ja": "条件に合う部品はありません。",
+      "en": "No source parts match these filters."
+    },
+    "assembly.manual_fastener_reference": {
+      "kind": "message",
+      "ja": "ネジの皿面を合わせた組立参照位置を表示中",
+      "en": "Assembly reference with the screw countersinks aligned."
+    },
+    "assembly.workbench.dim_earlier": {
+      "kind": "message",
+      "ja": "前の工程をグレー表示",
+      "en": "Dim earlier steps"
+    },
+    "assembly.workbench.dim_hint": {
+      "kind": "message",
+      "ja": "この工程で使う部品は元の色で、それ以外は薄いグレーで表示します。",
+      "en": "Parts used in this step keep their colors. Earlier parts appear in pale gray."
     }
   }
 }

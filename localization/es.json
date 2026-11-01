@@ -12193,6 +12193,22 @@
     "v0.xy.852c43ba0639": {
       "source_revision": "33483aa7e5a8706906f5",
       "text": "Solo se muestra la operación actual de la unión XY. Las piezas preparadas quedan aparte hasta el cierre o la instalación."
+    },
+    "assembly.workbench.no_matching_items": {
+      "source_revision": "521402aa9109e1ab9b09",
+      "text": "Ninguna pieza del modelo de origen coincide con estos filtros."
+    },
+    "assembly.manual_fastener_reference": {
+      "source_revision": "00cab2232f596351f64c",
+      "text": "Referencia de montaje con los tornillos alineados con los avellanados."
+    },
+    "assembly.workbench.dim_earlier": {
+      "source_revision": "a3386ce0811a4b9fa16a",
+      "text": "Atenuar los pasos anteriores"
+    },
+    "assembly.workbench.dim_hint": {
+      "source_revision": "f055b60402efad8847f3",
+      "text": "Las piezas de este paso conservan sus colores. Las anteriores aparecen en gris claro."
     }
   }
 }

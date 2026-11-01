@@ -9,6 +9,7 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 import {auditPartReview} from './assembly_part_review_audit.mjs';
+import {auditV0M2Reference} from './v0_m2_reference_audit.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const args=Object.fromEntries(process.argv.slice(2).reduce((a,v,i,list)=>v.startsWith('--')?[...a,[v.slice(2),list[i+1]]]:a,[]));
 assert(args.site&&args.report,'--site and --report required');
@@ -35,12 +36,16 @@ const threeURL=new URL('vendor/three.module.js',viewer).href;
 for(const name of ['vendor/GLTFLoader.js','v0_adapter.mjs','v0-assembly.mjs','v0-installations.mjs','v0-native-installed-gate.mjs','v0-app.js'])await pinClosure(new URL(name,viewer));
 await pinClosure(new URL('./audit_v0_native_installation_assets.mjs',import.meta.url));
 await pinClosure(new URL('./assembly_part_review_audit.mjs',import.meta.url));
+await pinClosure(new URL('./v0_m2_reference_audit.mjs',import.meta.url));
 const {assemblyPartRows}=await import(new URL('assembly-part-review.mjs',viewer));
+const appDependency=new vm.SourceTextModule((await pin(site+'/viewer/v0-app.js')).toString('utf8')).dependencySpecifiers.find(s=>s.startsWith('./assembly-stage-emphasis.mjs'));
+assert(appDependency,'Actual editor emphasis dependency required');
+const {createAssemblyStageEmphasis,assemblySourceMaterial}=await import(new URL(appDependency,viewer));
 const {auditGeometry}=await import('./audit_v0_native_installation_assets.mjs');
 register('data:text/javascript,'+encodeURIComponent(`export async function resolve(s,c,n){if(s==='three')return {url:${JSON.stringify(threeURL)},shortCircuit:true};return n(s,c)}`),import.meta.url);
 const THREE=await import(threeURL),{GLTFLoader}=await import(new URL('vendor/GLTFLoader.js',viewer));
 const {createV0Adapter}=await import(new URL('v0_adapter.mjs',viewer));
-const {createV0AssemblyStages}=await import(new URL('v0-assembly.mjs',viewer));
+const assemblyModule=await import(new URL('v0-assembly.mjs',viewer)),{createV0AssemblyStages}=assemblyModule;
 const {createV0Installations}=await import(new URL('v0-installations.mjs',viewer));
 const {v0NativeDependencyHash}=await import(new URL('v0-native-installed-gate.mjs',viewer));
 const registryData=JSON.parse(await pin(site+'/V0_INSTALLATIONS.json'));
@@ -83,7 +88,8 @@ const bedViews={
  'leadnut':[true,bedLead], 'leadnut-install':[false,null],
 };
 try{
- for(const[id,spec]of Object.entries(stages.machines)){
+ if(args.machine)assert(Object.hasOwn(stages.machines,args.machine),'Unknown requested stock machine');
+ for(const[id,spec]of Object.entries(stages.machines).filter(([id])=>!args.machine||args.machine===id)){
   const files=mapping?.machines[id]||{model:site+'/machines/'+id+'/model.glb.gz',manifest:site+'/machines/'+id+'/assembly_manifest.json',profile:site+'/machines/'+id+'/machine_profile.json'};
   for(const f of Object.values(files))assert(path.isAbsolute(f),'Explicit public asset paths required');
   const encoded=await pin(files.model),bytes=encoded[0]===0x1f&&encoded[1]===0x8b?gunzipSync(encoded,{maxOutputLength:100_000_000}):encoded;
@@ -212,6 +218,8 @@ try{
   assert.throws(()=>controller.setStage(idlerPrep),/actual idler failure injection/);victim.updateMatrix=originalUpdate;
   assert.equal(controller.current().id,'nut-carriers');unchanged(scene,beforeIdlerFailure,true);controller.leave();unchanged(scene,original,true);
   controller.setStage(0);controller.leave();unchanged(scene,original,true);
+  const manualFasteners=await auditV0M2Reference({module:assemblyModule,adapter,manifest,spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,scene,geometryPins,createAssemblyStageEmphasis,assemblySourceMaterial});
+  unchanged(scene,original,true);
   // Source alternatives must not reappear when normal motion or a stock reset
   // recomputes visibility after leaving assembly mode.
   const nativePose=profile.display_reference_xyz_mm,alternativePoses=[];
@@ -228,7 +236,7 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }

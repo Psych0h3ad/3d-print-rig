@@ -49,3 +49,7 @@ body[data-assembly-stage] #assemblyControls { padding:0;margin:0;border:0; }
 .assembly-related-stage select {width:100%;min-width:0;font:inherit;}
 .ui-workspace .assembly-part-row button {border-bottom:0;min-width:0;}
 .assembly-part-ordinal {display:block;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;}
+
+.assembly-display-options {margin:8px 0 14px;}
+.assembly-display-options button[aria-pressed="true"] {border-color:var(--assembly-accent);background:color-mix(in srgb,var(--assembly-accent) 12%,transparent);}
+.assembly-display-hint {margin:6px 0 0;font-size:11px;line-height:1.6;color:var(--muted);}

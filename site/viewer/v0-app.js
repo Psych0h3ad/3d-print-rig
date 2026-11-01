@@ -1,3 +1,5 @@
+import {createAssemblyStageEmphasis} from './assembly-stage-emphasis.mjs?v=31de7db3c02f47abdc16';
+const assemblyEmphasis=createAssemblyStageEmphasis();
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
@@ -18,13 +20,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=569ac7ab5ced73ec9bf6';
+import {setupPublicInfo} from './public-info.js?v=4ada675fd20b5bc37076';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=83b0d982f9b8dad8c28a';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=ab9ca37cb6afde1331f2';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=8472341be77b21a1c319';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate} from './i18n.mjs?v=d49d9b9aee9c4df9e054';
+import {formatMessage,translate} from './i18n.mjs?v=06b4d44feb44328464c6';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -114,7 +116,7 @@ try{
  $('#configurationFile').onchange=async()=>{return workspaceTask(async()=>{try{const file=$('#configurationFile').files[0];if(!file)return;if(file.size>1048576)throw Error('設定ファイルが大きすぎます');if(await restoreV0State(JSON.parse(await file.text())))configurationFeedback('構成を復元しました')}catch(e){configurationFeedback(loadError('読込エラー:',e))}finally{$('#configurationFile').value=''}});};
  refreshMods();
  const valid=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v);try{const saved=JSON.parse(localStorage.getItem(profile.appearance.storage_key)||'null');if(saved?.machine_id===id)for(const role of Object.keys(palette))if(valid(saved.colors?.[role]))palette[role]=saved.colors[role]}catch{}
- applyPalette=function(){for(const [m,c] of originals)m.color.copy(c);adapter.setPalette(palette);installations?.setPalette(palette);for(const role of Object.keys(palette)){const v=palette[role]||profile.appearance.palette_defaults[role];$('#'+role).value=v;$('#'+role+'Hex').value=v;$('#'+role+'Hex').removeAttribute('aria-invalid')}$('#frameFinish').value=palette.frame==='#b9bec4'?'silver':!palette.frame||palette.frame==='#0e0f11'?'black':'custom';document.body.dataset.protectedChanges=String(protectedMaterials.filter(m=>!m.color.equals(originals.get(m))).length);$('#paletteStatus').textContent=Object.values(palette).some(Boolean)?'この機種の配色':'標準CADの配色';render()};
+ applyPalette=function(){for(const [m,c] of originals)m.color.copy(c);adapter.setPalette(palette);installations?.setPalette(palette);for(const role of Object.keys(palette)){const v=palette[role]||profile.appearance.palette_defaults[role];$('#'+role).value=v;$('#'+role+'Hex').value=v;$('#'+role+'Hex').removeAttribute('aria-invalid')}$('#frameFinish').value=palette.frame==='#b9bec4'?'silver':!palette.frame||palette.frame==='#0e0f11'?'black':'custom';document.body.dataset.protectedChanges=String(protectedMaterials.filter(m=>!m.color.equals(originals.get(m))).length);$('#paletteStatus').textContent=Object.values(palette).some(Boolean)?'この機種の配色':'標準CADの配色';assemblyEmphasis.refresh();render()};
  function save(){try{localStorage.setItem(profile.appearance.storage_key,JSON.stringify({machine_id:id,colors:palette}))}catch{}}
  for(const role of Object.keys(palette)){$('#'+role).disabled=false;$('#'+role+'Hex').disabled=false;$('#'+role).oninput=()=>{palette[role]=$('#'+role).value;applyPalette();save()};$('#'+role+'Hex').oninput=()=>{const v=$('#'+role+'Hex').value;if(!valid(v)){$('#'+role+'Hex').setAttribute('aria-invalid','true');return}palette[role]=v;applyPalette();save()}}
  $('#frameFinish').disabled=false;$('#frameFinish').onchange=()=>{if($('#frameFinish').value==='custom')return;palette.frame=$('#frameFinish').value==='silver'?'#b9bec4':'#0e0f11';applyPalette();save()};$('#resetPalette').disabled=false;$('#resetPalette').onclick=()=>{palette={base:null,accent:null,frame:null};applyPalette();save()};applyPalette();
@@ -197,7 +199,7 @@ function setupAssemblyControls(receipts){
   $('#assemblyManual').href=manual.url+'#page='+stage.page_start;
   $('#assemblyManual').textContent=`公式マニュアル ${stage.page_start}–${stage.page_end} ページ`;
   assemblyWorkbench?.update({...state,visible_keys:assemblyView.getVisibleKeys(),manual_text:$('#assemblyManual').textContent});
-  status.textContent=state.presentation_label?translate(state.presentation_label,document.documentElement.lang||'en'):state.preparation?'ナット保持具の準備状態を並べて表示中':state.subassembly?'取付前のドライブ組立を単独で表示中':'元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
+  status.textContent=state.manual_fastener_reference?formatMessage('assembly.manual_fastener_reference',[],document.documentElement.lang||'en'):state.presentation_label?translate(state.presentation_label,document.documentElement.lang||'en'):state.preparation?'ナット保持具の準備状態を並べて表示中':state.subassembly?'取付前のドライブ組立を単独で表示中':'元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
   // The inspection layout and installed rails occupy different spaces. Keep
   // them in view when crossing that boundary, without reframing other stages.
   if(previous&&previous.presentation_id!==state.presentation_id)focusAdded();
@@ -205,7 +207,7 @@ function setupAssemblyControls(receipts){
  async function finish(){
   if(assemblyLocked||!assemblyView)return;assemblyLocked=true;
   const saved=assemblySnapshot;
-  try{assemblyView.leave();assemblyView=null;assemblyWorkbench?.deactivate();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;
+  try{assemblyEmphasis.clear();assemblyView.leave();assemblyView=null;assemblyWorkbench?.deactivate();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;
    if(!await restoreV0State(saved.configuration))throw Error('元の構成を復元できません');
    camera.position.copy(saved.camera);camera.up.copy(saved.up);orbit.target.copy(saved.target);orbit.update();render();status.textContent='元の構成を復元しました';
   }catch(e){fail(e)}finally{if(!assemblyView){unlockControls();assemblySnapshot=null}assemblyLocked=false}
@@ -215,19 +217,21 @@ function setupAssemblyControls(receipts){
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
    if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=689e54096b54f6eeaaa9',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
-   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=992f4a0b6212e813415f');
+   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=f42ad2912a0f1cb4e873');
    program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();
    $('#doorAngle').value='0';$('#doorAngle').oninput();$('#tophatAngle').value='0';$('#tophatAngle').oninput();$('#reset').onclick();
    const companions=[...installations.roots.values()].flat().filter(r=>r.wrapper.visible).map(r=>({node:r.wrapper,part_keys:r.option.replace_keys}));
-   assemblyView=createV0AssemblyStages({nodes:adapter.nodes,manifest:currentManifest,machine:assemblyData.machines[id],receipts,companions,manualPreparation:true});
+   const assemblyOptions={nodes:adapter.nodes,manifest:currentManifest,machine:assemblyData.machines[id],receipts,companions,manualPreparation:true,sourceDerivedFastenerSeating:true};
+   const m2SeatingReceipt=await prepareV0AssemblyM2Seating(assemblyOptions);
+   assemblyView=createV0AssemblyStages({...assemblyOptions,m2SeatingReceipt});
    step.replaceChildren(...assemblyData.machines[id].stages.map((stage,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=stage.title;return option}));
    if(!assemblyWorkbench){
     const index=createAssemblyIndex({manifest:currentManifest,machine:assemblyData.machines[id],receipts:{...receipts,'assembly_stages.json':assemblyStageHash}});
     assemblyWorkbench=createAssemblyWorkbench({container:$('#assemblySteps'),bannerHost:$('#stage'),index,
      legacy:{select:step,previous:$('#assemblyPrevious'),next:$('#assemblyNext'),focus:$('#assemblyFocus'),note:$('#assemblyStepNote'),manual:$('#assemblyManual'),finish:$('#assemblyFinish')},
-     format:(key,values)=>formatMessage(key,values,document.documentElement.lang||'en'),translate:text=>translate(text,document.documentElement.lang||'en'),onStage:present,onFocusPart:focusPart,
+     format:(key,values)=>formatMessage(key,values,document.documentElement.lang||'en'),translate:text=>translate(text,document.documentElement.lang||'en'),onStage:present,onFocusPart:focusPart,onEmphasis:({enabled,currentKeys})=>{if(enabled)assemblyEmphasis.update({parts:assemblyView?.getDisplayedParts()||[],currentKeys,enabled});else assemblyEmphasis.clear();render()},
      onReveal(){const panel=start.closest('[role=tabpanel]');if(panel)document.querySelector('[role=tab][aria-controls="'+panel.id+'"]')?.click();start.closest('details').open=true;$('#assemblySteps').scrollIntoView({block:'nearest'})},
      storage:{getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)},
      download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)},
@@ -236,7 +240,7 @@ function setupAssemblyControls(receipts){
    }
    lockControls();$('#assemblySteps').hidden=false;assemblyWorkbench.activate();present(assemblyWorkbench.resumeIndex());focusAdded();
   }catch(e){
-   try{assemblyView?.leave();assemblyView=null;
+   try{assemblyEmphasis.clear();assemblyView?.leave();assemblyView=null;
     if(assemblySnapshot){if(!await restoreV0State(assemblySnapshot.configuration))throw Error('元の構成を復元できません');
      camera.position.copy(assemblySnapshot.camera);camera.up.copy(assemblySnapshot.up);orbit.target.copy(assemblySnapshot.target);orbit.update();render()}
    }catch(rollbackError){e=new Error(e.message+' / '+rollbackError.message)}
@@ -253,7 +257,8 @@ function setupAssemblyControls(receipts){
  }
  const picker=createAssemblyPicker({element:renderer.domElement,camera,entries:()=>assemblyView?assemblyView.getDisplayedParts().flatMap(({key,nodes})=>nodes.filter(node=>adapter.nodes.get(key)===node||[...installations.roots.values()].flat().some(r=>r.wrapper===node&&r.option.replace_keys.length===1)).map(node=>({key,node}))):[],onPick:key=>assemblyWorkbench?.select(key,{reveal:true})});
  if(new URL(location.href).searchParams.get('assembly')==='1')start.click();
- scope.cleanup(()=>{try{assemblyView?.leave()}finally{picker.dispose();assemblyWorkbench?.dispose();assemblyWorkbench=null;assemblyView=null;assemblySnapshot=null;assemblyLocked=false;unlockControls();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage}});
+ scope.cleanup(()=>assemblyEmphasis.dispose());
+ scope.cleanup(()=>{try{assemblyEmphasis.clear();assemblyView?.leave()}finally{picker.dispose();assemblyWorkbench?.dispose();assemblyWorkbench=null;assemblyView=null;assemblySnapshot=null;assemblyLocked=false;unlockControls();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage}});
 }
 function currentV0(){return {adapter,profile,manifest:currentManifest,installations,scene,camera,orbit}}
 function captureV0State(){return validateV0State({profile,registry:installations.registry},{schema:v0ConfigurationSchema,machine_id:id,mods:installations.getState(),pose:adapter.getPose(),palette:{...palette},enclosure:$('#enclosure').checked,belts:$('#belts').checked,grid:$('#gridVisible').checked,door_angle_deg:adapter.door.getAngle(),tophat_angle_deg:adapter.tophat.getAngle()})}

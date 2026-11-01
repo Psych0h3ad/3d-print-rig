@@ -6,6 +6,7 @@ import vm from 'node:vm';
 import {createHash} from 'node:crypto';
 import * as THREE from '../site/viewer/vendor/three.module.js';
 import * as assemblyModule from '../site/viewer/v0-assembly.mjs';
+import {createAssemblyStageEmphasis} from '../site/viewer/assembly-stage-emphasis.mjs';
 import {installationsModule,stateModule} from './v0-state-test-runtime.mjs';
 import {v0NativeStateProfile,v0NativeModelHash} from '../site/viewer/v0-native-installed-gate.mjs';
 import {fixtureProfile} from './v0-state-fixtures.mjs';
@@ -65,7 +66,7 @@ const handlers=Object.fromEntries([
  ['tophatAngle',"$('#tophatAngle').oninput="],
 ].map(([key,prefix])=>[key,extractHandler(prefix)]));
 const factory=vm.runInNewContext(`(dependencies=>{
- const {THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,location,
+ const {THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,location,assemblyEmphasis,
   installations,stateRestorer,program,scope,fetch,workspaceTask,frameResponsiveView,render,
   loadError,stockV0Mods,validateV0State,v0ConfigurationSchema,v0NativeStateProfile,
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash,createAssemblyWorkbench,createAssemblyPicker,renderer,formatMessage,translate}=dependencies;
@@ -168,11 +169,15 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  const originalCamera=cameraState();let api;
  // This six-box lifecycle fixture has no reviewed rail geometry. Actual-model
  // jobs separately exercise the source-pinned preparation display.
- const assemblyFactory=options=>{const c=assemblyModule.createV0AssemblyStages({...options,manualPreparation:false});if(!preparationBoundary&&!driveBoundary&&!bedBoundary)return c;
+ // This six-box fixture cannot satisfy received actual-buffer hashes. Keep
+ // that boundary explicit; the mandatory actual-asset job checks it for real.
+ const fixtureReceipt=Object.freeze({});
+ const prepareFixture=async options=>{assert.equal(options.sourceDerivedFastenerSeating,true);return fixtureReceipt};
+ const assemblyFactory=options=>{assert.equal(options.m2SeatingReceipt,fixtureReceipt);const c=assemblyModule.createV0AssemblyStages({...options,manualPreparation:false,sourceDerivedFastenerSeating:false});if(!preparationBoundary&&!driveBoundary&&!bedBoundary)return c;
   const mode=s=>s?{...s,...(bedBoundary&&s.index===1?{camera_direction:[.15,.18,1],camera_distance_floor:.24,presentation_label:'Installation reference view'}:{}),preparation:preparationBoundary&&s.index===1,subassembly:driveBoundary&&s.index===1,underside:driveBoundary&&s.index===1,presentation_id:s.index===1?(driveBoundary?'drive-a-underside':'rail-preparation'):'installed'}:null;
   return {...c,current:()=>mode(c.current()),setStage:i=>mode(c.setStage(i))};
  };
- const dependencies={THREE,assemblyModule:{...assemblyModule,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
+ const dependencies={THREE,assemblyEmphasis:createAssemblyStageEmphasis(),assemblyModule:{...assemblyModule,prepareV0AssemblyM2Seating:prepareFixture,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash:async bytes=>sha(Buffer.from(bytes)),renderer:{domElement:{}},formatMessage:()=>'',translate:x=>x,
   // This port isolates the complete native/configuration lifecycle; the real DOM
   // workbench/picker have independent tests and an actual-model browser audit.

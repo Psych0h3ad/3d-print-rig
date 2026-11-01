@@ -10,6 +10,7 @@ import {translate,loadLanguage,formatMessage} from '../site/viewer/i18n.mjs';
 import * as assemblyWorkbenchModel from '../site/viewer/assembly-workbench-model.mjs';
 import {createAssemblyWorkbench} from '../site/viewer/assembly-workbench.mjs';
 import {createAssemblyPicker} from '../site/viewer/assembly-picking.mjs';
+import * as assemblyStageEmphasis from '../site/viewer/assembly-stage-emphasis.mjs';
 await loadLanguage('ko');assert.equal(translate('Load error: Invalid XYZ settings','ko'),'로드 오류: 잘못된 XYZ 설정');
 assert.equal(translate('Load error: Invalid XYZ settings','en'),'Load error: Invalid XYZ settings');
 import * as libraryModule from '../site/viewer/v0-mod-library.mjs';
@@ -78,6 +79,7 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
   'i18n.mjs':{translate,formatMessage},
   'assembly-workbench-model.mjs':assemblyWorkbenchModel,
   'assembly-workbench.mjs':{createAssemblyWorkbench},
+  'assembly-stage-emphasis.mjs':assemblyStageEmphasis,
   'assembly-picking.mjs':{createAssemblyPicker},
   'display-preferences.mjs':{setupSceneDisplay:()=>{}},
   'workspace-lifecycle.mjs':{workspaceTask:fn=>Promise.resolve().then(fn),workspaceFrame:()=>1,workspaceListen:()=>{},WorkspaceResizeObserver:class{observe(){}}},

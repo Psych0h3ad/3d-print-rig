@@ -10,23 +10,23 @@ import {madmaxJointAssetSpec,madmaxJointApplies,captureMadmaxJoint,setMadmaxJoin
 import {madmaxPtfeAssetSpec} from './madmax-ptfe.mjs?v=5c6deded33e560c6e7b6';
 import {withRapidoXUhfCover,setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd8c7';
 import {v24NativeDriveMetadata} from './v24-drive-metadata.mjs?v=dbdf9f37cb0849ffc262';
-import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=5a8e98bafc6f5ad6031c';
-import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=0d1cf4052d9db53a22bb';
-import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=bf887c73d726722d1ce6';
-import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=0d1cf4052d9db53a22bb';
+import {augmentTrinityAlphaHosts,TRINITY_ALPHA_HOST_SOURCE,alphaResetPose,alphaRangeNotice,alphaResetLabel} from './trinity-alpha-host-extensions.mjs?v=f7582b68d6b42495a896';
+import {alphaReference,alphaLimits} from './trinity-alpha-installation.mjs?v=ed6c73e6a7ac181df624';
+import {augmentTrinitySiboorR2,TRINITY_SIBOOR_SOURCE} from './trinity-alpha-siboor-r2.mjs?v=93a7a6f6d1a6265afb83';
+import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installation.mjs?v=ed6c73e6a7ac181df624';
 import {workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {createCatalogRequests} from './catalog-requests.mjs?v=e08161a1108d8bf2b5b3';
-import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=245985350e3593bcf5d3';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=78f941a56379d58a4f7f';
+import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=ddcb76ae7441ca2f5c6d';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=df2e59657f9bfb35dd9e';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {partKey} from './head-assembly.js';
-import {v24HeadCatalog} from './machine-head-model.mjs?v=9166e65cfebfd5fb4306';
-import {setupConfigurations} from './configurations.js?v=28a0618a09994a22f0ca';
+import {v24HeadCatalog} from './machine-head-model.mjs?v=ca100ba0a13a51fbfa77';
+import {setupConfigurations} from './configurations.js?v=8dddb4781357ef248866';
 
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=b1cccabc15ce1aaf1d7e';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=7794b6da647cd645d0d1';
 import {stockProbeFit} from './probe-mounts.js?v=517d139912b21c017b1b';
 
 import {xolEmbeddedBoard,sbEmbeddedBoard,withEmbeddedBoards} from './embedded-boards.mjs';

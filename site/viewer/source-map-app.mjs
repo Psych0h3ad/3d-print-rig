@@ -1,12 +1,13 @@
+import {createAssemblyStageEmphasis} from './assembly-stage-emphasis.mjs?v=31de7db3c02f47abdc16';
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
-import {loadVoronDefaultLayout} from './layout-voron-defaults.mjs?v=9a94e12fe2e73b70bdb6';
-import {loadV24ReferenceLayout} from './layout-v24-reference-provider.mjs?v=65c798b77ca30b05c85c';
-import {createVoronAssemblyGuide,supportsVoronAssembly} from './voron-assembly-guide.mjs?v=bfadb256539920e61f31';
-import {createSourcePartsMap,sourceMapMachines} from './source-parts-map.mjs?v=aef1e3b96b466ccb5b31';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=ab9ca37cb6afde1331f2';
+import {loadVoronDefaultLayout} from './layout-voron-defaults.mjs?v=679d8b03e447117d58ff';
+import {loadV24ReferenceLayout} from './layout-v24-reference-provider.mjs?v=c06a25fd9811679af248';
+import {createVoronAssemblyGuide,supportsVoronAssembly} from './voron-assembly-guide.mjs?v=5c43b26be052d21bc97d';
+import {createSourcePartsMap,sourceMapMachines} from './source-parts-map.mjs?v=603f6fb0f1d8fa8afc35';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=8472341be77b21a1c319';
 import {createSourcePicker} from './source-picking-core.mjs?v=ca04efe661ce9d571b7f';
-import {setupLanguage,translate,formatMessage} from './i18n.mjs?v=d49d9b9aee9c4df9e054';
+import {setupLanguage,translate,formatMessage} from './i18n.mjs?v=06b4d44feb44328464c6';
 import {applyDisplay,setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
 import {setupGrid} from './grid-control.js';
 import {settleCameraPose} from './responsive-camera.mjs?v=149a79a654914b2af652';
@@ -19,6 +20,7 @@ applyDisplay();setupHeaderThemeToggle($('.header-actions'));setupLanguage();
 const stage=$('#stage'),renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.001,100),orbit=new OrbitControls(camera,renderer.domElement);orbit.enableDamping=false;scene.add(new THREE.HemisphereLight('#ffffff','#69727a',2.5));
 const light=new THREE.DirectionalLight('#ffffff',3);light.position.set(1,2,2);scene.add(light);const rear=new THREE.DirectionalLight('#e8f2ff',1.5);rear.position.set(-1,1,-2);scene.add(rear);
+const assemblyEmphasis=createAssemblyStageEmphasis();
 let disposed=false,loaded,index,workbench,picker,frame=0,nativeNodes=[];
 function render(){if(disposed||frame)return;frame=requestAnimationFrame(()=>{frame=0;scene.background=new THREE.Color(document.documentElement.dataset.theme==='dark'?'#101820':'#edf1f5');renderer.render(scene,camera)})}
 orbit.addEventListener('change',render);const grid=setupGrid(scene,render);
@@ -43,7 +45,7 @@ try{
  for(const s of index.stages){const o=document.createElement('option');o.value=String(s.index);o.textContent=s.title;select.append(o)}
  function show(value){const s=index.stage(value),state=assemblyMode?index.setStage(value):index.state(value);if(assemblyMode){$('#assemblyPosition').value=String(s.index);$('#assemblyPositionValue').textContent=(s.index+1)+' / '+index.stages.length;$('#assemblyPreview').setAttribute('aria-pressed','false');$('#assemblyPreview').textContent=tr('Compare complete assembly');document.body.dataset.assemblyStage=s.id}state.manual_text=assemblyMode?formatMessage('ui.v0assembly.pages',[s.page_start,s.page_end],lang()):tr('Related manual chapter')+' '+s.page_start+'–'+s.page_end;select.value=String(s.index);previous.disabled=s.index===0;next.disabled=s.index===index.stages.length-1;manual.href=index.manual.url+'#page='+s.page_start;workbench.update(state);render()}
  previous.onclick=()=>show(Math.max(0,Number(select.value)-1));next.onclick=()=>show(Math.min(index.stages.length-1,Number(select.value)+1));select.onchange=()=>show(Number(select.value));focus.onclick=()=>fit(index.parts(Number(select.value)).flatMap(p=>index.getPartNodes(p.key)));finish.onclick=()=>{location.href='./machines.html?lang='+lang()};
- workbench=createAssemblyWorkbench({container,index,legacy:{select,previous,next,focus,finish,manual,note},onStage:show,onFocusPart:key=>fit(index.getPartNodes(key)),onReveal:()=>$('#mapWorkbench').scrollIntoView({block:'nearest'}),format,translate:tr,storage:(()=>{try{return localStorage}catch{return null}})(),download});
+ workbench=createAssemblyWorkbench({container,index,onEmphasis:assemblyMode?({enabled,currentKeys})=>{if(enabled)assemblyEmphasis.update({parts:index.entries().map(r=>({key:r.key,nodes:[r.node]})),currentKeys,enabled});else assemblyEmphasis.clear();render()}:undefined,legacy:{select,previous,next,focus,finish,manual,note},onStage:show,onFocusPart:key=>fit(index.getPartNodes(key)),onReveal:()=>$('#mapWorkbench').scrollIntoView({block:'nearest'}),format,translate:tr,storage:(()=>{try{return localStorage}catch{return null}})(),download});
  if(assemblyMode){
   const controls=document.createElement('div');controls.className='assembly-timeline';
   const label=document.createElement('label');label.htmlFor='assemblyPosition';label.textContent=tr('Assembly position');
@@ -70,4 +72,4 @@ function refreshMode(){
 refreshMode();
 window.addEventListener('rig-language-change',()=>{refreshMode();refreshCount();render()});
 window.addEventListener('pageshow',event=>{if(event.persisted&&!disposed){applyDisplay();resize();render()}});
-window.addEventListener('pagehide',event=>{if(event.persisted||disposed)return;disposed=true;controller.abort();cancelAnimationFrame(frame);resizeObserver.disconnect();picker?.dispose();workbench?.dispose();try{if(assemblyMode)index?.restore()}finally{orbit.dispose();loaded?.dispose();grid.geometry.dispose();grid.material.dispose();renderer.dispose()}});
+window.addEventListener('pagehide',event=>{if(event.persisted||disposed)return;disposed=true;controller.abort();cancelAnimationFrame(frame);resizeObserver.disconnect();try{picker?.dispose();workbench?.dispose();if(assemblyMode)index?.restore()}finally{try{assemblyEmphasis.dispose()}finally{orbit.dispose();loaded?.dispose();grid.geometry.dispose();grid.material.dispose();renderer.dispose()}}});
