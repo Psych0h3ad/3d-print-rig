@@ -11817,6 +11817,122 @@
     "assembly.workbench.updated_manual": {
       "source_revision": "99ba1474f34238880f69",
       "text": "Se actualizó la tabla de etapas. Se conservaron sus comprobaciones de etapas y piezas originales, así como el registro guardado anterior."
+    },
+    "assembly.workbench.related_stages": {
+      "source_revision": "3cb043d6029df24fd1bc",
+      "text": "Operaciones de esta pieza"
+    },
+    "assembly.workbench.stored": {
+      "source_revision": "09af2e68482c4b6a9ce2",
+      "text": "Reservada"
+    },
+    "v0.bed.view.subassembly": {
+      "source_revision": "37594dd0e99d7bd54fc3",
+      "text": "Vista de referencia del subconjunto"
+    },
+    "v0.bed.view.installation": {
+      "source_revision": "79d50d72ed88363bf2ed",
+      "text": "Vista de referencia del montaje"
+    },
+    "v0.bed.stage.bed_carrier_prep.title": {
+      "source_revision": "634a9abf26cf3aa2b213",
+      "text": "Prepare el soporte trasero derecho y el extremo de la cadena"
+    },
+    "v0.bed.stage.bed_carrier_prep.note": {
+      "source_revision": "b470fb050d16536f7894",
+      "text": "Coloque los dos insertos indicados en el soporte trasero derecho y fije el separador original y el extremo separado de la cadena con los dos tornillos M3x16. Esta guía corresponde al bastidor de perfiles estándar; Kirigami tiene una rama específica de su fuente."
+    },
+    "v0.bed.stage.bed_carrier_frame.title": {
+      "source_revision": "a0f92ca063c15b9ca609",
+      "text": "Monte el frente y los perfiles F"
+    },
+    "v0.bed.stage.bed_carrier_frame.note": {
+      "source_revision": "21450d2a2e02d29a835d",
+      "text": "Fije el frente original a los dos perfiles F. Deje flojos los tornillos traseros M3x8 y sus tuercas de ranura para conectar el perfil G en la siguiente operación; los soportes traseros aún no se montan."
+    },
+    "v0.bed.stage.bed_carrier_crossbar.title": {
+      "source_revision": "8b1883cff87a8c479d71",
+      "text": "Una el perfil G al soporte"
+    },
+    "v0.bed.stage.bed_carrier_crossbar.note": {
+      "source_revision": "1554a8ebd7897c6f4d40",
+      "text": "Deslice el perfil G sobre las cabezas de los tornillos traseros preparados. Apriételos con la llave de 2mm indicada a través de los orificios de acceso."
+    },
+    "v0.bed.stage.bed_carrier_preload.title": {
+      "source_revision": "7ed5665e1844c2126497",
+      "text": "Precargue las tuercas en las ranuras"
+    },
+    "v0.bed.stage.bed_carrier_preload.note": {
+      "source_revision": "f979665d2d5f8d6c1e0b",
+      "text": "El manual indica 10 tuercas precargadas en grupos de 6, 1, 2 y 1. La fuente original contiene 11 instancias en este conjunto, incluido un par cercano cuya función separada no está resuelta. Conserve las referencias distintas y siga la cantidad del manual; el recuento del modelo no es una cantidad de compra ni una certificación de montaje."
+    },
+    "v0.bed.stage.bed_mounts.title": {
+      "source_revision": "f986e6ee38fc1f66638a",
+      "text": "Presente los soportes traseros de la cama"
+    },
+    "v0.bed.stage.bed_mounts.note": {
+      "source_revision": "e4c093363d7a1872d9f4",
+      "text": "Fije provisionalmente ambos soportes traseros al bastidor preparado con los tornillos originales M3x12 y M3x8. Después compruebe que sus caras sean coplanares y retírelos antes de fijarlos a los bloques de los rieles."
+    },
+    "v0.bed.stage.bed_mount_flatness.title": {
+      "source_revision": "391eb2ca7faeba6b4635",
+      "text": "Compruebe las dos caras de montaje"
+    },
+    "v0.bed.stage.bed_mount_flatness.note": {
+      "source_revision": "5edef970c0115292d13e",
+      "text": "Compruebe que las dos caras de montaje de los bloques sean coplanares, como muestra el manual. El modelo es una referencia: no mide ni certifica las superficies de sus piezas impresas."
+    },
+    "v0.bed.stage.bed_mounts_separate.title": {
+      "source_revision": "3111391d6be92c31e8e0",
+      "text": "Retire los soportes traseros del bastidor"
+    },
+    "v0.bed.stage.bed_mounts_separate.note": {
+      "source_revision": "47ffcf159a4dadcb8940",
+      "text": "Retire los tornillos provisionales que unen el bastidor a los soportes y reserve el bastidor y esos tornillos. Mantenga el extremo de la cadena en el soporte trasero derecho para la siguiente operación."
+    },
+    "v0.bed.stage.bed_mounts_rail.title": {
+      "source_revision": "416bb6b2451686f76903",
+      "text": "Fije los soportes a los bloques Z"
+    },
+    "v0.bed.stage.bed_mounts_rail.note": {
+      "source_revision": "42ab3d0f46372f5c218e",
+      "text": "Fije los soportes a los bloques originales con los ocho M2x8 SHCS, usando los orificios de acceso. Siga las instrucciones del manual y del fijador de roscas para estas uniones metálicas."
+    },
+    "v0.bed.stage.bed_carrier_install.title": {
+      "source_revision": "216c76ae66449c21129a",
+      "text": "Vuelva a montar el bastidor en los soportes"
+    },
+    "v0.bed.stage.bed_carrier_install.note": {
+      "source_revision": "eb0dbf002e12a94c6162",
+      "text": "Vuelva a montar el bastidor con los mismos tornillos M3x8 y M3x12 y las tuercas centrales precargadas. La página46 muestra el acceso con llave de bola; se reutilizan las mismas piezas originales, sin duplicarlas."
+    },
+    "v0.bed.stage.leadnut.title": {
+      "source_revision": "6c9e770b4b1165b13e67",
+      "text": "Monte la tuerca del husillo y su soporte"
+    },
+    "v0.bed.stage.leadnut.note": {
+      "source_revision": "d52b62df94c3a4004dd3",
+      "text": "Monte la tuerca antiholgura original en su soporte impreso correspondiente y coloque los dos tornillos superiores indicados. Las dos mitades de la tuerca no deben girar por separado."
+    },
+    "v0.bed.stage.leadnut_install.title": {
+      "source_revision": "971ab3353f8c42443e15",
+      "text": "Fije el soporte preparado de la tuerca"
+    },
+    "v0.bed.stage.leadnut_install.note": {
+      "source_revision": "c3cb3713c7c03819bdb1",
+      "text": "Fije el soporte terminado al bastidor con los tornillos originales y las tuercas precargadas del perfil G. Se reutilizan el mismo soporte y el conjunto antiholgura."
+    },
+    "v0.bed.stage.leadnut.note_r1": {
+      "source_revision": "b5fb898da38d44ccb25a",
+      "text": "Monte la tuerca antiholgura original en su soporte impreso correspondiente y coloque los dos tornillos superiores indicados. Las dos mitades de la tuerca no deben girar por separado. Respete también la advertencia de esta revisión sobre tuercas redondas y con cara plana."
+    },
+    "v0.bed.source.pair": {
+      "source_revision": "5e78918a8383590295f8",
+      "text": "Estas tuercas cercanas son referencias distintas del CAD original. Su función separada no está resuelta; siga la cantidad del manual, no el recuento del modelo."
+    },
+    "v0.bed.source.inspection": {
+      "source_revision": "0b575169d283a6e81057",
+      "text": "Solo se muestra el subconjunto actual de la cama en sus posiciones originales. Los demás conjuntos están reservados; esta vista de inspección no representa una trayectoria de inserción."
     }
   }
 }

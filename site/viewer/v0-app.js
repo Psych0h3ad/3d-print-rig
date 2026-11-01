@@ -18,13 +18,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=6504756bd80267dc7986';
+import {setupPublicInfo} from './public-info.js?v=d0be76fa6f018043949c';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=301d1aeef5ffa6eabfe2';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=01eac3b872653e9148de';
+import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=3d7847235f8ba9eef043';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=3e984c473cf1e0f51968';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate} from './i18n.mjs?v=6a99072432a208126f93';
+import {formatMessage,translate} from './i18n.mjs?v=ab5a19f7c2497f1496a6';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -166,9 +166,9 @@ function setupAssemblyControls(receipts){
    });
   }
   if(box.isEmpty())return;
-  const extent=box.getSize(new THREE.Vector3()).length(),distance=Math.max(.05,extent/(2*Math.tan(camera.fov*Math.PI/360))*1.3);
-  const underside=assemblyView.current()?.underside;
-  box.getCenter(orbit.target);camera.up.set(0,underside?-1:1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(.65,underside?-.4:.4,1).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
+  const state=assemblyView.current(),extent=box.getSize(new THREE.Vector3()).length(),distance=Math.max(state?.camera_distance_floor||.05,extent/(2*Math.tan(camera.fov*Math.PI/360))*1.3);
+  const underside=state?.underside,direction=state?.camera_direction||[.65,underside?-.4:.4,1];
+  box.getCenter(orbit.target);camera.up.set(0,underside?-1:1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(...direction).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
  }
  function present(index){
   const previous=assemblyView.current();
@@ -181,7 +181,7 @@ function setupAssemblyControls(receipts){
   $('#assemblyManual').href=manual.url+'#page='+stage.page_start;
   $('#assemblyManual').textContent=`公式マニュアル ${stage.page_start}–${stage.page_end} ページ`;
   assemblyWorkbench?.update({...state,visible_keys:assemblyView.getVisibleKeys(),manual_text:$('#assemblyManual').textContent});
-  status.textContent=state.preparation?'ナット保持具の準備状態を並べて表示中':state.subassembly?'取付前のドライブ組立を単独で表示中':'元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
+  status.textContent=state.presentation_label?translate(state.presentation_label,document.documentElement.lang||'en'):state.preparation?'ナット保持具の準備状態を並べて表示中':state.subassembly?'取付前のドライブ組立を単独で表示中':'元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
   // The inspection layout and installed rails occupy different spaces. Keep
   // them in view when crossing that boundary, without reframing other stages.
   if(previous&&previous.presentation_id!==state.presentation_id)focusAdded();
@@ -198,8 +198,8 @@ function setupAssemblyControls(receipts){
   if(assemblyLocked||assemblyView)return;assemblyLocked=true;
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
-   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=50a7f0e504fa3a013607',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
-   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=442b4eb2028cf9f963f2');
+   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=2baa9a7d9ea85ec661d6',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
+   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=f659932610714d8aeeb9');
    program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();
@@ -233,7 +233,7 @@ function setupAssemblyControls(receipts){
  $('#assemblyFocus').onclick=focusAdded;$('#assemblyFinish').onclick=()=>workspaceTask(finish);
  function focusPart(key){
   if(!assemblyView)return;const box=new THREE.Box3();scene.updateMatrixWorld(true);for(const node of assemblyView.getPartNodes(key))box.expandByObject(node);
-  if(box.isEmpty())return;const distance=Math.max(.05,box.getSize(new THREE.Vector3()).length()/(2*Math.tan(camera.fov*Math.PI/360))*1.4);box.getCenter(orbit.target);camera.up.set(0,1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(.65,.4,1).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
+  if(box.isEmpty())return;const state=assemblyView.current(),underside=state?.underside,direction=state?.camera_direction||[.65,underside?-.4:.4,1],distance=Math.max(state?.camera_distance_floor||.05,box.getSize(new THREE.Vector3()).length()/(2*Math.tan(camera.fov*Math.PI/360))*1.4);box.getCenter(orbit.target);camera.up.set(0,underside?-1:1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(...direction).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
  }
  const picker=createAssemblyPicker({element:renderer.domElement,camera,entries:()=>assemblyView?assemblyView.getDisplayedParts().flatMap(({key,nodes})=>nodes.filter(node=>adapter.nodes.get(key)===node||[...installations.roots.values()].flat().some(r=>r.wrapper===node&&r.option.replace_keys.length===1)).map(node=>({key,node}))):[],onPick:key=>assemblyWorkbench?.select(key,{reveal:true})});
  if(new URL(location.href).searchParams.get('assembly')==='1')start.click();

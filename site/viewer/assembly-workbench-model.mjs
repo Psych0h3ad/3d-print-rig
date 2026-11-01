@@ -39,16 +39,35 @@ export function createAssemblyIndex({manifest,machine,receipts}={}){
    const key=s.part_keys[i];owners.set(key,index);keys.push(key);
   }
   ids.set(s.id,index);
-  return Object.freeze({id:s.id,index,title:s.title,note:s.note||'',page_start:s.page_start,page_end:s.page_end,part_keys:Object.freeze(keys)});
+  const copy={id:s.id,index,title:s.title,note:s.note||'',page_start:s.page_start,page_end:s.page_end,part_keys:Object.freeze(keys)};
+  if(Object.hasOwn(s,'operation_part_keys')){
+   if(!Array.isArray(s.operation_part_keys))fail('Invalid operation source references');
+   const refs=[],seen=new Set();
+   for(let i=0;i<s.operation_part_keys.length;i++){
+    if(!Object.hasOwn(s.operation_part_keys,i))fail('Sparse operation references');
+    const key=s.operation_part_keys[i];if(!text(key)||!parts.has(key)||seen.has(key))fail('Unknown or duplicate operation reference');seen.add(key);refs.push(key);
+   }
+   if(keys.some(key=>!seen.has(key)))fail('New source part missing from operation');
+   copy.operation_part_keys=Object.freeze(refs);
+  }
+  return Object.freeze(copy);
  });
  if(owners.size!==parts.size)fail('Unassigned source parts');
- const searchBase=stages.map(s=>normalize([s.title,s.note,s.id,...s.part_keys.flatMap(key=>{const p=parts.get(key);return [p.key,p.name,p.group,...p.path]})].join(' ')));
+ const refs=s=>s.operation_part_keys||s.part_keys;
+ const operations=new Map([...parts.keys()].map(k=>[k,[]]));
+ for(const s of stages)for(const key of refs(s)){
+  if(owners.get(key)>s.index)fail('Operation references a future source part');
+  operations.get(key).push(s);
+ }
+ for(const rows of operations.values())Object.freeze(rows);
+ const searchBase=stages.map(s=>normalize([s.title,s.note,s.id,...refs(s).flatMap(key=>{const p=parts.get(key);return [p.key,p.name,p.group,...p.path]})].join(' ')));
  const identity=Object.freeze({machine:manifest.machine_id,model_sha256:receipts['model.glb'],manifest_sha256:receipts['assembly_manifest.json'],stages_sha256:receipts['assembly_stages.json'],manual_sha256:machine.manual.sha256,manual_revision:machine.manual.revision});
  const stage=value=>{const index=typeof value==='string'?ids.get(value):value;if(!Number.isSafeInteger(index)||!stages[index])fail('Unknown stage');return stages[index];};
  return Object.freeze({identity,stages:Object.freeze(stages),partCount:parts.size,
   stage,part(key){if(!parts.has(key))fail('Unknown source part');return parts.get(key);},
   owner(key){if(!owners.has(key))fail('Unknown source part');return stages[owners.get(key)];},
-  parts(value){return Object.freeze(stage(value).part_keys.map(key=>parts.get(key)));},
+  parts(value){return Object.freeze(refs(stage(value)).map(key=>parts.get(key)));},
+  operations(key){if(!operations.has(key))fail('Unknown source part');return operations.get(key);},
   search(query,translate=v=>v){
    const tokens=normalize(query).split(' ').filter(Boolean);
    return Object.freeze(stages.filter(s=>{

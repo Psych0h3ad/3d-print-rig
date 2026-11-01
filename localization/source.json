@@ -14880,6 +14880,151 @@
       "kind": "message",
       "ja": "工程表を更新しました。以前の工程・部品チェックは保持し、元の保存記録も残しています。",
       "en": "The stage table was updated. Your previous stage and source-part checks were retained; the original saved record is preserved."
+    },
+    "assembly.workbench.related_stages": {
+      "kind": "message",
+      "ja": "この部品を扱う工程",
+      "en": "Operations using this part"
+    },
+    "assembly.workbench.stored": {
+      "kind": "message",
+      "ja": "保管中",
+      "en": "Set aside"
+    },
+    "v0.bed.view.subassembly": {
+      "kind": "message",
+      "ja": "小組立の参照表示",
+      "en": "Subassembly reference view"
+    },
+    "v0.bed.view.installation": {
+      "kind": "message",
+      "ja": "取付状態の参照表示",
+      "en": "Installation reference view"
+    },
+    "v0.bed.stage.bed_carrier_prep.title": {
+      "kind": "message",
+      "ja": "右後ベッドマウントとチェーン端部を準備",
+      "en": "Prepare the right rear bed mount and chain end"
+    },
+    "v0.bed.stage.bed_carrier_prep.note": {
+      "kind": "message",
+      "ja": "右後マウントに指定のインサート2個を入れ、元のスペーサーと外したチェーン端をM3x16ネジ2本で取り付けます。この手順は標準の押出材支持枠用です。Kirigamiは出典に応じた別の分岐です。",
+      "en": "Prepare the two specified inserts in the right rear mount, then attach the original spacer and detached chain end with the two M3x16 screws. This guide follows the stock extrusion carrier; the Kirigami option has a separate source-specific branch."
+    },
+    "v0.bed.stage.bed_carrier_frame.title": {
+      "kind": "message",
+      "ja": "F押出材とベッド前部を組み立て",
+      "en": "Build the front and F-extrusion carrier"
+    },
+    "v0.bed.stage.bed_carrier_frame.note": {
+      "kind": "message",
+      "ja": "元の前部品を2本のF押出材に付けます。次のG押出材の接続に備え、後端のM3x8ネジと溝ナットは緩く組んでおきます。後側ベッドマウントはまだ取り付けません。",
+      "en": "Attach the original front to the two F extrusions. Prepare the rear M3x8 screws and their slot nuts loosely for the G extrusion in the next operation; do not fit the rear bed mounts yet."
+    },
+    "v0.bed.stage.bed_carrier_crossbar.title": {
+      "kind": "message",
+      "ja": "G押出材を支持枠に接続",
+      "en": "Join the G extrusion to the carrier"
+    },
+    "v0.bed.stage.bed_carrier_crossbar.note": {
+      "kind": "message",
+      "ja": "準備した後端のネジ頭にG押出材をスライドさせて接続します。アクセス穴から指定の2mmドライバーを入れて締めます。",
+      "en": "Slide the G extrusion over the prepared rear screw heads. Use the specified 2mm driver through its access holes to tighten them."
+    },
+    "v0.bed.stage.bed_carrier_preload.title": {
+      "kind": "message",
+      "ja": "支持枠の溝にナットを先入れ",
+      "en": "Preload the carrier slot nuts"
+    },
+    "v0.bed.stage.bed_carrier_preload.note": {
+      "kind": "message",
+      "ja": "説明書の先入れナットは6、1、2、1個の計10個です。原CADの該当部分は11項目あり、近接した2項目の用途の違いは未確定です。元の項目を区別して保持し、必要数は説明書に従ってください。モデルの項目数は購入数や取付合格を示しません。",
+      "en": "The manual specifies 10 preload nuts in groups of 6, 1, 2 and 1. The original source has 11 occurrences in this subset, including a nearby pair whose separate purpose is unresolved. Keep the source references distinct and follow the manual quantity; the model item count is not a purchasing requirement or native-fit approval."
+    },
+    "v0.bed.stage.bed_mounts.title": {
+      "kind": "message",
+      "ja": "後側ベッドマウントを仮組み",
+      "en": "Temporarily fit the rear bed mounts"
+    },
+    "v0.bed.stage.bed_mounts.note": {
+      "kind": "message",
+      "ja": "準備した支持枠に、元のM3x12とM3x8ネジで左右の後側マウントを仮止めします。次に取付面の平面を確認し、レールブロックへ固定する前に一度取り外します。",
+      "en": "Temporarily attach both rear mounts to the prepared carrier with the original M3x12 and M3x8 screws. This fit is followed by a coplanarity check and removal before rail-block fastening."
+    },
+    "v0.bed.stage.bed_mount_flatness.title": {
+      "kind": "message",
+      "ja": "左右のレール取付面を確認",
+      "en": "Check both rear mounting faces"
+    },
+    "v0.bed.stage.bed_mount_flatness.note": {
+      "kind": "message",
+      "ja": "図のように、レールブロックと接する左右の面が同じ平面にあるか確認します。モデルは参照用で、実物の印刷面を測定したり、平面が出ていると認定したりするものではありません。",
+      "en": "Check the two rail-block mounting faces for coplanarity as shown in the manual. The model is a reference; it does not measure or certify your printed surfaces."
+    },
+    "v0.bed.stage.bed_mounts_separate.title": {
+      "kind": "message",
+      "ja": "支持枠から後側マウントを外す",
+      "en": "Remove the rear mounts from the carrier"
+    },
+    "v0.bed.stage.bed_mounts_separate.note": {
+      "kind": "message",
+      "ja": "支持枠とマウントを仮止めしたネジを外し、支持枠とそのネジを保管します。次の工程に備え、チェーン端部は右後マウントに付けたままにします。",
+      "en": "Remove the temporary carrier-to-mount screws and set the carrier and these screws aside. Keep the chain end with the right rear mount for the next operation."
+    },
+    "v0.bed.stage.bed_mounts_rail.title": {
+      "kind": "message",
+      "ja": "後側マウントをZレールブロックに固定",
+      "en": "Fasten both rear mounts to the Z rail blocks"
+    },
+    "v0.bed.stage.bed_mounts_rail.note": {
+      "kind": "message",
+      "ja": "アクセス穴から元のM2x8 SHCSを8本すべて入れ、マウントを元のレールブロックに固定します。金属ねじ部へのねじ固定剤の使い方は、説明書と製品の指示に従ってください。",
+      "en": "Attach the mounts to the original rail blocks with all eight M2x8 SHCS through the access holes. Follow the manual and threadlocker product directions for this metal-thread engagement."
+    },
+    "v0.bed.stage.bed_carrier_install.title": {
+      "kind": "message",
+      "ja": "支持枠を後側マウントに付け直す",
+      "en": "Refit the carrier to both rear mounts"
+    },
+    "v0.bed.stage.bed_carrier_install.note": {
+      "kind": "message",
+      "ja": "保管した同じM3x8とM3x12ネジ、および中央に先入れしたナットを使い、支持枠を付け直します。ボールポイントドライバーの通し方は46ページを確認します。元の部品を再使用し、複製は追加しません。",
+      "en": "Refit the prepared carrier with the same M3x8 and M3x12 screws and the preloaded centre nuts. The ball-end driver access is shown on page46; previously recorded source parts are reused, not duplicated."
+    },
+    "v0.bed.stage.leadnut.title": {
+      "kind": "message",
+      "ja": "リードナットとホルダーを組み立て",
+      "en": "Assemble the leadscrew nut and its holder"
+    },
+    "v0.bed.stage.leadnut.note": {
+      "kind": "message",
+      "ja": "元のバックラッシュ防止ナットを対応する印刷ホルダーに組み、指定の上側ネジ2本を付けます。ナットの2つの半体が独立して回転しないようにします。",
+      "en": "Assemble the original anti-backlash nut in its matching printed holder and fit the two specified top screws. The two nut halves must not rotate independently."
+    },
+    "v0.bed.stage.leadnut_install.title": {
+      "kind": "message",
+      "ja": "リードナットホルダーを支持枠に固定",
+      "en": "Attach the prepared leadscrew nut holder"
+    },
+    "v0.bed.stage.leadnut_install.note": {
+      "kind": "message",
+      "ja": "組み立てたホルダーを、元のネジとG押出材に先入れしたナットで支持枠に固定します。同じホルダーとバックラッシュ防止ナット一式を再使用します。",
+      "en": "Attach the completed holder to the prepared carrier using the original screws and the preloaded G-extrusion nuts. This operation reuses the same holder and anti-backlash assembly."
+    },
+    "v0.bed.stage.leadnut.note_r1": {
+      "kind": "message",
+      "ja": "元のバックラッシュ防止ナットを対応する印刷ホルダーに組み、指定の上側ネジ2本を付けます。ナットの2つの半体が独立して回転しないようにします。 この改訂の丸形・平面付きナットについての注意も確認してください。",
+      "en": "Assemble the original anti-backlash nut in its matching printed holder and fit the two specified top screws. The two nut halves must not rotate independently. Follow this revision's explicit round/flat caution."
+    },
+    "v0.bed.source.pair": {
+      "kind": "message",
+      "ja": "近接したナット2項目は別々の原CAD参照です。用途の違いは未確定のため、必要数はモデルの項目数ではなく説明書に従ってください。",
+      "en": "These nearby nut occurrences are distinct original CAD references. Their separate purpose is unresolved; follow the manual quantity, not the model item count."
+    },
+    "v0.bed.source.inspection": {
+      "kind": "message",
+      "ja": "作業中のベッド小組立だけを元CADの位置で表示しています。他の組立品は保管中です。この参照表示は部品の挿入経路を示しません。",
+      "en": "Only the current bed subassembly is shown at the original source locations. Other assemblies are set aside; this inspection view does not show an insertion path."
     }
   }
 }

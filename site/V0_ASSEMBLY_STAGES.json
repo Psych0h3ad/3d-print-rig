@@ -237,7 +237,7 @@
         },
         {
           "id": "bed-carrier-prep",
-          "title": "Prepare the bed nut block and chain connector",
+          "title": "Prepare the right rear bed mount and chain end",
           "page_start": 36,
           "page_end": 37,
           "part_keys": [
@@ -245,34 +245,59 @@
             "v02_00453",
             "v02_00503",
             "v02_00505",
-            "v02_00509",
             "v02_00512",
-            "v02_00522"
+            "v02_00522",
+            "v02_00511"
           ],
-          "note": "Install the specified inserts and detach the chain end for easier assembly. Stock extrusion bed carrier is mapped; Kirigami is a separate unrepresented manual branch."
+          "note": "Prepare the two specified inserts in the right rear mount, then attach the original spacer and detached chain end with the two M3x16 screws. This guide follows the stock extrusion carrier; the Kirigami option has a separate source-specific branch."
         },
         {
           "id": "bed-carrier-frame",
-          "title": "Build the stock extrusion bed carrier",
+          "title": "Build the front and F-extrusion carrier",
           "page_start": 38,
-          "page_end": 40,
+          "page_end": 38,
           "part_keys": [
-            "v02_00449",
-            "v02_00461",
-            "v02_00462",
-            "v02_00463",
-            "v02_00465",
-            "v02_00466",
             "v02_00467",
             "v02_00468",
-            "v02_00469",
             "v02_00470",
-            "v02_00471",
             "v02_00472",
-            "v02_00473",
             "v02_00474",
             "v02_00475",
-            "v02_00476",
+            "v02_00489",
+            "v02_00492",
+            "v02_00496",
+            "v02_00497",
+            "v02_00514",
+            "v02_00518",
+            "v02_00519"
+          ],
+          "note": "Attach the original front to the two F extrusions. Prepare the rear M3x8 screws and their slot nuts loosely for the G extrusion in the next operation; do not fit the rear bed mounts yet."
+        },
+        {
+          "id": "bed-carrier-crossbar",
+          "title": "Join the G extrusion to the carrier",
+          "page_start": 39,
+          "page_end": 39,
+          "part_keys": [
+            "v02_00517"
+          ],
+          "operation_part_keys": [
+            "v02_00517",
+            "v02_00518",
+            "v02_00519",
+            "v02_00472",
+            "v02_00475",
+            "v02_00492",
+            "v02_00496"
+          ],
+          "note": "Slide the G extrusion over the prepared rear screw heads. Use the specified 2mm driver through its access holes to tighten them."
+        },
+        {
+          "id": "bed-carrier-preload",
+          "title": "Preload the carrier slot nuts",
+          "page_start": 40,
+          "page_end": 40,
+          "part_keys": [
             "v02_00482",
             "v02_00483",
             "v02_00484",
@@ -280,37 +305,106 @@
             "v02_00486",
             "v02_00487",
             "v02_00488",
-            "v02_00489",
             "v02_00490",
             "v02_00491",
-            "v02_00492",
             "v02_00493",
-            "v02_00494",
-            "v02_00496",
-            "v02_00497",
-            "v02_00514",
-            "v02_00517",
-            "v02_00518",
-            "v02_00519"
+            "v02_00494"
           ],
-          "note": "Preload the carrier slots exactly as the page-40 diagrams show: 6, 1, 2 and 1 extra M3 nuts. All screws into slots require nuts; preparation uses the final hardware subgroup."
+          "operation_part_keys": [
+            "v02_00517",
+            "v02_00482",
+            "v02_00483",
+            "v02_00484",
+            "v02_00485",
+            "v02_00486",
+            "v02_00487",
+            "v02_00488",
+            "v02_00490",
+            "v02_00491",
+            "v02_00493",
+            "v02_00494"
+          ],
+          "note": "The manual specifies 10 preload nuts in groups of 6, 1, 2 and 1. The original source has 11 occurrences in this subset, including a nearby pair whose separate purpose is unresolved. Keep the source references distinct and follow the manual quantity; the model item count is not a purchasing requirement or native-fit approval."
         },
         {
           "id": "bed-mounts",
-          "title": "Prepare and check the rear bed mounts",
+          "title": "Temporarily fit the rear bed mounts",
           "page_start": 41,
-          "page_end": 43,
+          "page_end": 41,
           "part_keys": [
+            "v02_00510",
+            "v02_00449",
+            "v02_00461",
+            "v02_00462",
+            "v02_00463",
+            "v02_00466",
+            "v02_00469",
+            "v02_00473",
+            "v02_00476"
+          ],
+          "note": "Temporarily attach both rear mounts to the prepared carrier with the original M3x12 and M3x8 screws. This fit is followed by a coplanarity check and removal before rail-block fastening.",
+          "operation_part_keys": [
+            "v02_00514",
+            "v02_00517",
+            "v02_00518",
+            "v02_00519",
+            "v02_00510",
+            "v02_00511",
+            "v02_00449",
+            "v02_00461",
+            "v02_00462",
+            "v02_00463",
+            "v02_00466",
+            "v02_00469",
+            "v02_00473",
+            "v02_00476",
+            "v02_00482",
+            "v02_00483",
+            "v02_00485",
+            "v02_00487",
+            "v02_00488",
+            "v02_00490",
+            "v02_00493",
+            "v02_00494"
+          ]
+        },
+        {
+          "id": "bed-mount-flatness",
+          "title": "Check both rear mounting faces",
+          "page_start": 42,
+          "page_end": 42,
+          "part_keys": [],
+          "operation_part_keys": [
             "v02_00510",
             "v02_00511"
           ],
-          "note": "Temporarily fit the rear mounts to check their two mounting faces are coplanar, then remove them for attachment to rail blocks. This static display does not replay those temporary poses."
+          "note": "Check the two rail-block mounting faces for coplanarity as shown in the manual. The model is a reference; it does not measure or certify your printed surfaces."
         },
         {
-          "id": "bed-carrier-install",
-          "title": "Attach the carrier to both Z carriages",
+          "id": "bed-mounts-separate",
+          "title": "Remove the rear mounts from the carrier",
+          "page_start": 43,
+          "page_end": 43,
+          "part_keys": [],
+          "operation_part_keys": [
+            "v02_00510",
+            "v02_00511",
+            "v02_00449",
+            "v02_00461",
+            "v02_00462",
+            "v02_00463",
+            "v02_00466",
+            "v02_00469",
+            "v02_00473",
+            "v02_00476"
+          ],
+          "note": "Remove the temporary carrier-to-mount screws and set the carrier and these screws aside. Keep the chain end with the right rear mount for the next operation."
+        },
+        {
+          "id": "bed-mounts-rail",
+          "title": "Fasten both rear mounts to the Z rail blocks",
           "page_start": 44,
-          "page_end": 46,
+          "page_end": 44,
           "part_keys": [
             "v02_00444",
             "v02_00450",
@@ -321,7 +415,51 @@
             "v02_00457",
             "v02_00458"
           ],
-          "note": "Use the access holes and small metal-only threadlocker application for all eight M2x8 rail-block screws. Refit the carrier with the preloaded centre nuts and ball-end driver."
+          "operation_part_keys": [
+            "v02_00510",
+            "v02_00511",
+            "v02_00444",
+            "v02_00450",
+            "v02_00451",
+            "v02_00452",
+            "v02_00454",
+            "v02_00456",
+            "v02_00457",
+            "v02_00458"
+          ],
+          "note": "Attach the mounts to the original rail blocks with all eight M2x8 SHCS through the access holes. Follow the manual and threadlocker product directions for this metal-thread engagement."
+        },
+        {
+          "id": "bed-carrier-install",
+          "title": "Refit the carrier to both rear mounts",
+          "page_start": 45,
+          "page_end": 46,
+          "part_keys": [],
+          "note": "Refit the prepared carrier with the same M3x8 and M3x12 screws and the preloaded centre nuts. The ball-end driver access is shown on page46; previously recorded source parts are reused, not duplicated.",
+          "operation_part_keys": [
+            "v02_00514",
+            "v02_00517",
+            "v02_00518",
+            "v02_00519",
+            "v02_00510",
+            "v02_00511",
+            "v02_00449",
+            "v02_00461",
+            "v02_00462",
+            "v02_00463",
+            "v02_00466",
+            "v02_00469",
+            "v02_00473",
+            "v02_00476",
+            "v02_00482",
+            "v02_00483",
+            "v02_00485",
+            "v02_00487",
+            "v02_00488",
+            "v02_00490",
+            "v02_00493",
+            "v02_00494"
+          ]
         },
         {
           "id": "z-tram",
@@ -650,15 +788,44 @@
         },
         {
           "id": "leadnut",
-          "title": "Install the anti-backlash leadnut",
+          "title": "Assemble the leadscrew nut and its holder",
           "page_start": 92,
-          "page_end": 93,
+          "page_end": 92,
           "part_keys": [
+            "v02_00509",
             "v02_00448",
             "v02_00464",
             "v02_00477"
           ],
-          "note": "Use the source nut-holder size and prevent the anti-backlash halves rotating independently. Check the manual branch for a through-hole nut; r1 additionally requires a locating flat."
+          "note": "Assemble the original anti-backlash nut in its matching printed holder and fit the two specified top screws. The two nut halves must not rotate independently.",
+          "operation_part_keys": [
+            "v02_00509",
+            "v02_00448",
+            "v02_00464",
+            "v02_00477"
+          ]
+        },
+        {
+          "id": "leadnut-install",
+          "title": "Attach the prepared leadscrew nut holder",
+          "page_start": 93,
+          "page_end": 93,
+          "part_keys": [
+            "v02_00465",
+            "v02_00471"
+          ],
+          "operation_part_keys": [
+            "v02_00509",
+            "v02_00448",
+            "v02_00464",
+            "v02_00477",
+            "v02_00465",
+            "v02_00471",
+            "v02_00484",
+            "v02_00491",
+            "v02_00517"
+          ],
+          "note": "Attach the completed holder to the prepared carrier using the original screws and the preloaded G-extrusion nuts. This operation reuses the same holder and anti-backlash assembly."
         },
         {
           "id": "upright-nut-check",
@@ -2946,7 +3113,7 @@
         },
         {
           "id": "bed-carrier-prep",
-          "title": "Prepare the bed nut block and chain connector",
+          "title": "Prepare the right rear bed mount and chain end",
           "page_start": 36,
           "page_end": 37,
           "part_keys": [
@@ -2954,34 +3121,59 @@
             "v02r1_00462",
             "v02r1_00512",
             "v02r1_00514",
-            "v02r1_00518",
             "v02r1_00521",
-            "v02r1_00531"
+            "v02r1_00531",
+            "v02r1_00520"
           ],
-          "note": "Install the specified inserts and detach the chain end for easier assembly. Stock extrusion bed carrier is mapped; Kirigami is a separate unrepresented manual branch."
+          "note": "Prepare the two specified inserts in the right rear mount, then attach the original spacer and detached chain end with the two M3x16 screws. This guide follows the stock extrusion carrier; the Kirigami option has a separate source-specific branch."
         },
         {
           "id": "bed-carrier-frame",
-          "title": "Build the stock extrusion bed carrier",
+          "title": "Build the front and F-extrusion carrier",
           "page_start": 38,
-          "page_end": 40,
+          "page_end": 38,
           "part_keys": [
-            "v02r1_00458",
-            "v02r1_00470",
-            "v02r1_00471",
-            "v02r1_00472",
-            "v02r1_00474",
-            "v02r1_00475",
             "v02r1_00476",
             "v02r1_00477",
-            "v02r1_00478",
             "v02r1_00479",
-            "v02r1_00480",
             "v02r1_00481",
-            "v02r1_00482",
             "v02r1_00483",
             "v02r1_00484",
-            "v02r1_00485",
+            "v02r1_00498",
+            "v02r1_00501",
+            "v02r1_00505",
+            "v02r1_00506",
+            "v02r1_00523",
+            "v02r1_00527",
+            "v02r1_00528"
+          ],
+          "note": "Attach the original front to the two F extrusions. Prepare the rear M3x8 screws and their slot nuts loosely for the G extrusion in the next operation; do not fit the rear bed mounts yet."
+        },
+        {
+          "id": "bed-carrier-crossbar",
+          "title": "Join the G extrusion to the carrier",
+          "page_start": 39,
+          "page_end": 39,
+          "part_keys": [
+            "v02r1_00526"
+          ],
+          "operation_part_keys": [
+            "v02r1_00526",
+            "v02r1_00527",
+            "v02r1_00528",
+            "v02r1_00481",
+            "v02r1_00484",
+            "v02r1_00501",
+            "v02r1_00505"
+          ],
+          "note": "Slide the G extrusion over the prepared rear screw heads. Use the specified 2mm driver through its access holes to tighten them."
+        },
+        {
+          "id": "bed-carrier-preload",
+          "title": "Preload the carrier slot nuts",
+          "page_start": 40,
+          "page_end": 40,
+          "part_keys": [
             "v02r1_00491",
             "v02r1_00492",
             "v02r1_00493",
@@ -2989,37 +3181,106 @@
             "v02r1_00495",
             "v02r1_00496",
             "v02r1_00497",
-            "v02r1_00498",
             "v02r1_00499",
             "v02r1_00500",
-            "v02r1_00501",
             "v02r1_00502",
-            "v02r1_00503",
-            "v02r1_00505",
-            "v02r1_00506",
-            "v02r1_00523",
-            "v02r1_00526",
-            "v02r1_00527",
-            "v02r1_00528"
+            "v02r1_00503"
           ],
-          "note": "Preload the carrier slots exactly as the page-40 diagrams show: 6, 1, 2 and 1 extra M3 nuts. All screws into slots require nuts; preparation uses the final hardware subgroup."
+          "operation_part_keys": [
+            "v02r1_00526",
+            "v02r1_00491",
+            "v02r1_00492",
+            "v02r1_00493",
+            "v02r1_00494",
+            "v02r1_00495",
+            "v02r1_00496",
+            "v02r1_00497",
+            "v02r1_00499",
+            "v02r1_00500",
+            "v02r1_00502",
+            "v02r1_00503"
+          ],
+          "note": "The manual specifies 10 preload nuts in groups of 6, 1, 2 and 1. The original source has 11 occurrences in this subset, including a nearby pair whose separate purpose is unresolved. Keep the source references distinct and follow the manual quantity; the model item count is not a purchasing requirement or native-fit approval."
         },
         {
           "id": "bed-mounts",
-          "title": "Prepare and check the rear bed mounts",
+          "title": "Temporarily fit the rear bed mounts",
           "page_start": 41,
-          "page_end": 43,
+          "page_end": 41,
           "part_keys": [
+            "v02r1_00519",
+            "v02r1_00458",
+            "v02r1_00470",
+            "v02r1_00471",
+            "v02r1_00472",
+            "v02r1_00475",
+            "v02r1_00478",
+            "v02r1_00482",
+            "v02r1_00485"
+          ],
+          "note": "Temporarily attach both rear mounts to the prepared carrier with the original M3x12 and M3x8 screws. This fit is followed by a coplanarity check and removal before rail-block fastening.",
+          "operation_part_keys": [
+            "v02r1_00523",
+            "v02r1_00526",
+            "v02r1_00527",
+            "v02r1_00528",
+            "v02r1_00519",
+            "v02r1_00520",
+            "v02r1_00458",
+            "v02r1_00470",
+            "v02r1_00471",
+            "v02r1_00472",
+            "v02r1_00475",
+            "v02r1_00478",
+            "v02r1_00482",
+            "v02r1_00485",
+            "v02r1_00491",
+            "v02r1_00492",
+            "v02r1_00494",
+            "v02r1_00496",
+            "v02r1_00497",
+            "v02r1_00499",
+            "v02r1_00502",
+            "v02r1_00503"
+          ]
+        },
+        {
+          "id": "bed-mount-flatness",
+          "title": "Check both rear mounting faces",
+          "page_start": 42,
+          "page_end": 42,
+          "part_keys": [],
+          "operation_part_keys": [
             "v02r1_00519",
             "v02r1_00520"
           ],
-          "note": "Temporarily fit the rear mounts to check their two mounting faces are coplanar, then remove them for attachment to rail blocks. This static display does not replay those temporary poses."
+          "note": "Check the two rail-block mounting faces for coplanarity as shown in the manual. The model is a reference; it does not measure or certify your printed surfaces."
         },
         {
-          "id": "bed-carrier-install",
-          "title": "Attach the carrier to both Z carriages",
+          "id": "bed-mounts-separate",
+          "title": "Remove the rear mounts from the carrier",
+          "page_start": 43,
+          "page_end": 43,
+          "part_keys": [],
+          "operation_part_keys": [
+            "v02r1_00519",
+            "v02r1_00520",
+            "v02r1_00458",
+            "v02r1_00470",
+            "v02r1_00471",
+            "v02r1_00472",
+            "v02r1_00475",
+            "v02r1_00478",
+            "v02r1_00482",
+            "v02r1_00485"
+          ],
+          "note": "Remove the temporary carrier-to-mount screws and set the carrier and these screws aside. Keep the chain end with the right rear mount for the next operation."
+        },
+        {
+          "id": "bed-mounts-rail",
+          "title": "Fasten both rear mounts to the Z rail blocks",
           "page_start": 44,
-          "page_end": 46,
+          "page_end": 44,
           "part_keys": [
             "v02r1_00453",
             "v02r1_00459",
@@ -3030,7 +3291,51 @@
             "v02r1_00466",
             "v02r1_00467"
           ],
-          "note": "Use the access holes and small metal-only threadlocker application for all eight M2x8 rail-block screws. Refit the carrier with the preloaded centre nuts and ball-end driver."
+          "operation_part_keys": [
+            "v02r1_00519",
+            "v02r1_00520",
+            "v02r1_00453",
+            "v02r1_00459",
+            "v02r1_00460",
+            "v02r1_00461",
+            "v02r1_00463",
+            "v02r1_00465",
+            "v02r1_00466",
+            "v02r1_00467"
+          ],
+          "note": "Attach the mounts to the original rail blocks with all eight M2x8 SHCS through the access holes. Follow the manual and threadlocker product directions for this metal-thread engagement."
+        },
+        {
+          "id": "bed-carrier-install",
+          "title": "Refit the carrier to both rear mounts",
+          "page_start": 45,
+          "page_end": 46,
+          "part_keys": [],
+          "note": "Refit the prepared carrier with the same M3x8 and M3x12 screws and the preloaded centre nuts. The ball-end driver access is shown on page46; previously recorded source parts are reused, not duplicated.",
+          "operation_part_keys": [
+            "v02r1_00523",
+            "v02r1_00526",
+            "v02r1_00527",
+            "v02r1_00528",
+            "v02r1_00519",
+            "v02r1_00520",
+            "v02r1_00458",
+            "v02r1_00470",
+            "v02r1_00471",
+            "v02r1_00472",
+            "v02r1_00475",
+            "v02r1_00478",
+            "v02r1_00482",
+            "v02r1_00485",
+            "v02r1_00491",
+            "v02r1_00492",
+            "v02r1_00494",
+            "v02r1_00496",
+            "v02r1_00497",
+            "v02r1_00499",
+            "v02r1_00502",
+            "v02r1_00503"
+          ]
         },
         {
           "id": "z-tram",
@@ -3361,15 +3666,44 @@
         },
         {
           "id": "leadnut",
-          "title": "Install the anti-backlash leadnut",
+          "title": "Assemble the leadscrew nut and its holder",
           "page_start": 92,
-          "page_end": 93,
+          "page_end": 92,
           "part_keys": [
+            "v02r1_00518",
             "v02r1_00457",
             "v02r1_00473",
             "v02r1_00486"
           ],
-          "note": "Use the source nut-holder size and prevent the anti-backlash halves rotating independently. Check the manual branch for a through-hole nut; r1 additionally requires a locating flat."
+          "note": "Assemble the original anti-backlash nut in its matching printed holder and fit the two specified top screws. The two nut halves must not rotate independently. Follow this revision's explicit round/flat caution.",
+          "operation_part_keys": [
+            "v02r1_00518",
+            "v02r1_00457",
+            "v02r1_00473",
+            "v02r1_00486"
+          ]
+        },
+        {
+          "id": "leadnut-install",
+          "title": "Attach the prepared leadscrew nut holder",
+          "page_start": 93,
+          "page_end": 93,
+          "part_keys": [
+            "v02r1_00474",
+            "v02r1_00480"
+          ],
+          "operation_part_keys": [
+            "v02r1_00518",
+            "v02r1_00457",
+            "v02r1_00473",
+            "v02r1_00486",
+            "v02r1_00474",
+            "v02r1_00480",
+            "v02r1_00493",
+            "v02r1_00500",
+            "v02r1_00526"
+          ],
+          "note": "Attach the completed holder to the prepared carrier using the original screws and the preloaded G-extrusion nuts. This operation reuses the same holder and anti-backlash assembly."
         },
         {
           "id": "upright-nut-check",
