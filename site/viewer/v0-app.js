@@ -18,13 +18,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=29f497e835f41014be52';
+import {setupPublicInfo} from './public-info.js?v=4f5d0d4b690288489ad9';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=1b791c138605845638ff';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=f1c1e125b877cda1b8b5';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=28da5b34b6363358d803';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate} from './i18n.mjs?v=fd9c367155a12b48205e';
+import {formatMessage,translate} from './i18n.mjs?v=628c8b0455eaed91f60d';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -170,6 +170,7 @@ function setupAssemblyControls(receipts){
   box.getCenter(orbit.target);camera.up.set(0,1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(.65,.4,1).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
  }
  function present(index){
+  const previous=assemblyView.current();
   const state=assemblyView.setStage(index);step.value=String(index);
   $('#assemblyPrevious').disabled=index===0;$('#assemblyNext').disabled=index===state.total-1;
   const stage=assemblyData.machines[id].stages[index];
@@ -179,7 +180,10 @@ function setupAssemblyControls(receipts){
   $('#assemblyManual').href=manual.url+'#page='+stage.page_start;
   $('#assemblyManual').textContent=`公式マニュアル ${stage.page_start}–${stage.page_end} ページ`;
   assemblyWorkbench?.update({...state,visible_keys:assemblyView.getVisibleKeys(),manual_text:$('#assemblyManual').textContent});
-  status.textContent='元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
+  status.textContent=state.preparation?'ナット保持具の準備状態を並べて表示中':'元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
+  // The inspection layout and installed rails occupy different spaces. Keep
+  // them in view when crossing that boundary, without reframing other stages.
+  if(previous&&Boolean(previous.preparation)!==Boolean(state.preparation))focusAdded();
  }
  async function finish(){
   if(assemblyLocked||!assemblyView)return;assemblyLocked=true;
@@ -194,13 +198,13 @@ function setupAssemblyControls(receipts){
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
    if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=cac666a318dc56cdae84',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
-   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=a5dacbc3bfe03b105af1');
+   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=df282ef60f3ab91fac2b');
    program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();
    $('#doorAngle').value='0';$('#doorAngle').oninput();$('#tophatAngle').value='0';$('#tophatAngle').oninput();$('#reset').onclick();
    const companions=[...installations.roots.values()].flat().filter(r=>r.wrapper.visible).map(r=>({node:r.wrapper,part_keys:r.option.replace_keys}));
-   assemblyView=createV0AssemblyStages({nodes:adapter.nodes,manifest:currentManifest,machine:assemblyData.machines[id],receipts,companions});
+   assemblyView=createV0AssemblyStages({nodes:adapter.nodes,manifest:currentManifest,machine:assemblyData.machines[id],receipts,companions,manualPreparation:true});
    step.replaceChildren(...assemblyData.machines[id].stages.map((stage,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=stage.title;return option}));
    if(!assemblyWorkbench){
     const index=createAssemblyIndex({manifest:currentManifest,machine:assemblyData.machines[id],receipts:{...receipts,'assembly_stages.json':assemblyStageHash}});

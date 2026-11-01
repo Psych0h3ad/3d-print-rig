@@ -29,7 +29,24 @@ before replacing the current progress. Clear and undo cover both record types.
 
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
-V0.2 has 106 stages and 1,653 exported source leaves. V0.2r1 has 107 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Parts are shown cumulatively at their final CAD positions; this view does not animate insertion, screw tightening or wiring.
+V0.2 has 106 stages and 1,653 exported source leaves. V0.2r1 has 107 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+
+The rail-nut preparation stage follows page 18 of each pinned manual: all five
+source carriers, each with its ten source nuts, are laid out in parallel for
+inspection. Each complete group receives one temporary rigid transform. The
+arrangement is labelled as a preparation display, rather than an installation
+position or insertion path. No part is stretched, regenerated or substituted.
+
+Pages 20–23 use the two Y-rail carriers; pages 24–26 use the two Z-rail carriers.
+Prepared carriers for later rails are set aside until their receiving rail's
+stage, including the fifth carrier at the X-rail stage (r1 page 119, V0.2 page
+113). Their source inventory and individual preparation checkboxes remain
+unchanged. They are not shown floating at future X/Z seats during Y-rail work.
+Moving back to preparation restores the layout; leaving assembly mode restores
+every original transform exactly. Crossing between the laid-out preparation
+and installed positions frames the new space automatically; other stage changes
+retain the reader's orbit. Stage IDs, manual/model pins and progress
+identity remain unchanged, so existing checked stages and parts are retained.
 
 | Version | Pinned source revision | Official manual |
 | --- | --- | --- |
@@ -44,7 +61,7 @@ The displayed V0.2r1 uses the runout-sensor rear foot and the V0 display. Its pl
 
 Preloading instructions stay on their manual pages. Twenty source frame-slot nuts per version appear in 3D only when their receiving extrusion is shown, preventing isolated nuts in earlier steps. Their exact native source keys and receiving members are recorded in `seat_display_dependencies`; stage validation rejects a nut assigned before its receiving member. All source leaves remain assigned exactly once.
 
-Publication runs `audit_v0_assembly_assets.mjs` on both decoded stock GLBs with the production adapters, stage controller and support-omitted carriage. It exercises all forward and reverse stages, intermediate jumps and leaving/re-entering the view, checks exact visibility restoration, and rejects transform, geometry, material or source-hash changes. Source-executed UI tests separately check locking, rollback and configuration restoration.
+Publication runs `audit_v0_assembly_assets.mjs` on both decoded stock GLBs with the production adapters, stage controller and support-omitted carriage. It exercises all forward and reverse stages, intermediate jumps and leaving/re-entering the view. At preparation it checks proper rigid group transforms, parallel separated rows and the unchanged relative matrices of every carrier and its ten nuts. Other stages retain exact native transforms; geometry, materials, source hashes and final restoration remain exact throughout. Source-executed UI tests separately check locking, rollback and configuration restoration. The preparation policy also has source-identity, external-transform and partial-failure rollback regressions.
 
 The alternative-selection regression also moves every axis through minimum, maximum, intermediate and reversed poses, then resets the native assembly. The excluded alternatives must remain hidden. Motion may rebuild flexible meshes; their geometry content, source transforms and materials must return to the reference state.
 

@@ -9515,7 +9515,7 @@
       "text": "Закройте этапы сборки перед просмотром движения"
     },
     "ui.v0assembly.text_d5760661421533": {
-      "source_revision": "fbadf482ae7a4454282e",
+      "source_revision": "5ad14cf7d6711867186f",
       "text": "Подготовка и справочник крепежа"
     },
     "ui.v0assembly.text_2f406f1e667afb": {
@@ -9703,7 +9703,7 @@
       "text": "Вставить гайки и установить верхние боковые профили"
     },
     "ui.v0assembly.text_cb0e479a2aa19a": {
-      "source_revision": "a6c7b80fc3ccf6be0029",
+      "source_revision": "80d36efe4f9b49d289e2",
       "text": "Подготовить каретку X и удерживаемый крепёж"
     },
     "ui.v0assembly.text_462f541d6e72e5": {
@@ -11769,6 +11769,18 @@
     "assembly.workbench.uncheck_part": {
       "text": "Снять отметку с этой детали",
       "source_revision": "f7ee99937bcb21b06069"
+    },
+    "v0.preparation.status": {
+      "source_revision": "5a85fe3a89607239a15d",
+      "text": "Подготовленные держатели гаек · раскладка для осмотра"
+    },
+    "v0.preparation.layout": {
+      "source_revision": "6841505c7d526c1e4a67",
+      "text": "Пять подготовленных держателей показаны рядом для осмотра. Эта раскладка не показывает места установки или траектории вставки."
+    },
+    "v0.preparation.stored": {
+      "source_revision": "e6b78cd407793977fde2",
+      "text": "Держатели для последующих направляющих отложены. Каждый появится со своей направляющей на этапе установки."
     }
   }
 }

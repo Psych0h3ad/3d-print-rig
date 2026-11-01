@@ -1,5 +1,6 @@
-// Static, cumulative manual stages. This module changes native visibility only.
-// It does not simulate insertion, motion, material changes or assembly clearance.
+// Manual stages with an optional, source-pinned rail preparation presentation.
+// Preparation poses are temporary rigid layouts, not insertion or clearance.
+import {createV0RailPreparation} from './v0-rail-preparation.mjs';
 export const v0AssemblySchema='v0-assembly-stages-v1';
 const record=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 const text=value=>typeof value==='string'&&value.trim().length>0;
@@ -110,6 +111,7 @@ export function validateV0AssemblyStages({nodes,manifest,machine,receipts,compan
 export function createV0AssemblyStages(options){
  const spec=validateV0AssemblyStages(options),nodes=options.nodes,bindings=new Map(nodes);
  const companionBindings=spec.companions,companionForKey=new Map();
+ const preparation=options.manualPreparation?createV0RailPreparation({nodes,manifest:options.manifest,spec}):null;
  for(const row of companionBindings)for(const key of row.part_keys)companionForKey.set(key,row.node);
  let active=null;
  function checkBindings(){
@@ -140,6 +142,7 @@ export function createV0AssemblyStages(options){
  }
  function checkActive(){
   checkBindings();
+  preparation?.check();
   if(!active)return;
   for(const [node,row]of active.graph){
    if(node.parent!==row.parent||node.children!==row.childrenRef||node.userData?.part_key!==row.part_key||
@@ -165,18 +168,23 @@ export function createV0AssemblyStages(options){
   const value={index:active.index,total:spec.stages.length,id:stage.id,title:stage.title,pages:[stage.page_start,stage.page_end],
    added:stage.part_keys.length,visible_count:visibleKeys().length,part_keys:[...stage.part_keys],cumulative_part_keys:[...active.part_keys]};
   for(const field of ['title_ja','note','note_ja'])if(stage[field]!==undefined)value[field]=stage[field];
+  if(preparation){value.preparation=preparation.prepared(active.index);value.stored_count=preparation.deferred(active.index).length;
+   value.presentation_note=value.preparation?'The five prepared carriers are laid out together. This arrangement is for inspection; it does not show installation positions or insertion paths.':value.stored_count?'Prepared carriers for later rails are set aside. Each appears with its receiving rail at the installation stage.':'';
+  }
   return value;
  }
  function setStage(index){
   if(!Number.isSafeInteger(index)||index<0||index>=spec.stages.length)fail('Stage index out of range');
   checkActive();
   const state=active??snapshot(),part_keys=spec.stages.slice(0,index+1).flatMap(stage=>stage.part_keys),shown=new Set(part_keys);
+  for(const key of preparation?.deferred(index)||[])shown.delete(key);
   // Native-hidden alternatives stay hidden. No part, transform or material is
   // replaced. Validate every root before applying the cumulative mask.
   for(const [key,node]of [...bindings,...companionBindings.map((row,i)=>['companion '+i,row.node])]){
    const descriptor=Object.getOwnPropertyDescriptor(node,'visible');
    if(!descriptor||!('value' in descriptor)||!descriptor.writable||typeof node.visible!=='boolean')fail('Native visibility changed: '+key);
   }
+  preparation?.apply(index);
   for(const [key,node]of bindings){node.visible=state.visibilities.get(key)&&shown.has(key);state.graph.get(node).visible=node.visible}
   for(const {node,part_keys}of companionBindings){node.visible=state.companionVisibilities.get(node)&&part_keys.some(key=>shown.has(key));state.graph.get(node).visible=node.visible}
   state.index=index;state.part_keys=part_keys;active=state;
@@ -191,6 +199,7 @@ export function createV0AssemblyStages(options){
    const descriptor=Object.getOwnPropertyDescriptor(node,'visible');
    if(!descriptor||!('value' in descriptor)||!descriptor.writable)fail('Native visibility changed: '+key);
   }
+  preparation?.leave();
   for(const [key,node]of bindings)node.visible=active.visibilities.get(key);
   for(const [node,visible]of active.companionVisibilities)node.visible=visible;
   active=null;return null;
@@ -200,7 +209,7 @@ export function createV0AssemblyStages(options){
   current(){checkActive();return result()},
   // Stage keys include assigned alternatives; "focus added" only uses this
   // stage's keys which were visible when assembly mode was entered.
-  getBoundsKeys(){checkActive();return active?visibleKeys(spec.stages[active.index].part_keys):[]},
+  getBoundsKeys(){checkActive();return active?visibleKeys([...spec.stages[active.index].part_keys,...preparation?.focus(active.index)||[]]):[]},
   getVisibleKeys(){checkActive();return active?visibleKeys():[]},
   getDisplayedParts(){
    checkActive();if(!active)return [];
@@ -217,7 +226,7 @@ export function createV0AssemblyStages(options){
   // support-bearing leaf. Counts/keys remain native identities, not mesh count.
   getBoundsNodes(){
    checkActive();if(!active)return [];
-   const keys=spec.stages[active.index].part_keys,roots=new Set();
+   const keys=[...spec.stages[active.index].part_keys,...preparation?.focus(active.index)||[]],roots=new Set();
    for(const key of keys){const native=nodes.get(key),companion=companionForKey.get(key);if(visibleNode(native))roots.add(native);if(visibleNode(companion))roots.add(companion)}
    return [...roots];
   },

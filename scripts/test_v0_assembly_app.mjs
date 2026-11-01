@@ -91,7 +91,7 @@ class Element{
 }
 const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {promise,resolve,reject}};
 async function waitFor(check){for(let i=0;i<100;i++){if(check())return;await Promise.resolve()}throw Error('Fixture event did not reach expected boundary')}
-function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFailure=false,focusFailure=false,stockCompanion=false,missingModelReceipt=false,autoAssembly=false}={}){
+function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFailure=false,focusFailure=false,stockCompanion=false,missingModelReceipt=false,autoAssembly=false,preparationBoundary=false}={}){
  const id=machine_id,profile=fixtureProfile(id),stockProfile=structuredClone(profile);
  const keys=['frame','rail','block','screw','bed','alternative'],scene=new THREE.Scene(),nodes=new Map(),geometry=new THREE.BoxGeometry(.02,.02,.02);
  for(const [i,key]of keys.entries()){
@@ -165,7 +165,13 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  const orbit={target:new THREE.Vector3(.03,.04,.05),update(){events.push({type:'orbit'})}};
  const cameraState=()=>({position:camera.position.toArray(),up:camera.up.toArray(),target:orbit.target.toArray()});
  const originalCamera=cameraState();let api;
- const dependencies={THREE,assemblyModule,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
+ // This six-box lifecycle fixture has no reviewed rail geometry. Actual-model
+ // jobs separately exercise the source-pinned preparation display.
+ const assemblyFactory=options=>{const c=assemblyModule.createV0AssemblyStages({...options,manualPreparation:false});if(!preparationBoundary)return c;
+  const mode=s=>s?{...s,preparation:s.index===1}:null;
+  return {...c,current:()=>mode(c.current()),setStage:i=>mode(c.setStage(i))};
+ };
+ const dependencies={THREE,assemblyModule:{...assemblyModule,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash:async bytes=>sha(Buffer.from(bytes)),renderer:{domElement:{}},formatMessage:()=>'',translate:x=>x,
   // This port isolates the complete native/configuration lifecycle; the real DOM
   // workbench/picker have independent tests and an actual-model browser audit.
@@ -200,6 +206,15 @@ const assertConfig=f=>assert.deepEqual(plain(f.api.captureV0State()),f.config);
 const assertNative=f=>assert.deepEqual(f.original(),f.native);
 const ordinary=['x','y','z','reset','enclosure','belts','saveConfiguration','loadConfiguration','configurationFile','resetMods','mod-toolhead','preDisabled'];
 const assertLocked=f=>{for(const key of ordinary)assert.equal(f.$('#'+key).disabled,true,key+' must remain locked');for(const key of ['viewerLanguage','configTab','mobileConfig'])assert.equal(f.$('#'+key).disabled,false,key+' must remain usable')};
+await check('preparation boundary frames new space; other stage changes retain orbit',async f=>{
+ await f.start();const first=f.orbit.target.toArray();
+ f.$('#assemblyNext').click();assert.notDeepEqual(f.orbit.target.toArray(),first);const box=new THREE.Box3();
+ for(const key of ['rail','block','screw'])box.union(new THREE.Box3().setFromObject(f.nodes.get(key)));
+ assert(f.orbit.target.distanceTo(box.getCenter(new THREE.Vector3()))<1e-12);
+ f.$('#assemblyNext').click();assert(f.orbit.target.distanceTo(f.nodes.get('bed').position)<1e-12);
+ f.orbit.target.set(.6,.7,.8);f.$('#assemblyStage').value='0';f.$('#assemblyStage').onchange();assert.deepEqual(f.orbit.target.toArray(),[.6,.7,.8]);
+ await f.finish();assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
+},{preparationBoundary:true});
 for(const machine_id of machineIds)await check(machine_id+' explicit assembly link enters and restores',async f=>{
  await waitFor(()=>f.api.state().assemblyView&&!f.api.state().assemblyLocked);assert(f.api.state().assemblyView);await f.finish();assert.equal(f.api.state().assemblyView,null);assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
 },{machine_id,autoAssembly:true});

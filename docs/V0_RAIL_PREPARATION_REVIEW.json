@@ -1,0 +1,82 @@
+{
+  "scope": "V0.2/r1 source-preserving rail-nut preparation display and receiving-rail stage masks, not insertion paths or physical engagement. Existing 73 machine coverage rows retained.",
+  "manuals": [
+    {
+      "machine_id": "voron_v02_120",
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+      "manual": {
+        "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8/Manuals/VORON_V0.2_Assembly_Manual.pdf",
+        "sha256": "69f989092ea63b60a15407ce1c4b4f9e260702330ae00416a059eb705d5170fe",
+        "pages": 246,
+        "revision": "2023-03-03 @ a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8"
+      },
+      "parts": 1653,
+      "stages": 106,
+      "restored": true
+    },
+    {
+      "machine_id": "voron_v02r1_120",
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "manual": {
+        "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a53fc87562fd630c846af38d7de850c894dc3d85/Manuals/VORON_V0.2r1_Assembly_Manual.pdf",
+        "sha256": "5d9af5a34304c751799c4ab71d9d42ed0c3ebc20b14df4b612d332ce1cb44b6f",
+        "pages": 253,
+        "revision": "2024-05-07 @ a53fc87562fd630c846af38d7de850c894dc3d85"
+      },
+      "parts": 1678,
+      "stages": 107,
+      "restored": true
+    }
+  ],
+  "diagram_review": {
+    "both_versions": [
+      18,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "X_rail": {
+      "voron_v02_120": 113,
+      "voron_v02r1_120": 119
+    },
+    "observations": [
+      "Page18 prepares five carriers; page20 inserts two Y carriers; page24 inserts two Z carriers; the remaining X carrier is reused at its X-rail stage.",
+      "Preparation lays out five complete source groups. Later rail groups are stored until their own receiving stage; source inventory/checklist ownership is retained."
+    ]
+  },
+  "actual_output": {
+    "V02": {
+      "parts": 1653,
+      "forward_reverse_jump_states": 216
+    },
+    "V02r1": {
+      "parts": 1678,
+      "forward_reverse_jump_states": 218
+    },
+    "prepared_groups_per_model": 5,
+    "nuts_per_group": 10,
+    "rigid_transform_tolerance_m": 1e-10,
+    "restored_native_transforms": "exact",
+    "buffers_materials_source_alternatives": "unchanged"
+  },
+  "software_negative_controls": [
+    "Manual/model/manifest pin changes",
+    "Changed stage/group/source names",
+    "Missing matrix and nested source groups",
+    "Outside transform edits",
+    "Partial rigid-layout failure restores the preceding display"
+  ],
+  "progress": "Stage document, source identities and v1/v2 progress keys remain unchanged. No completion flags are invented.",
+  "limitations": [
+    "Other stages retain their existing static source positions.",
+    "Manual page diagrams and software masks are distinct from native-solid mating and insertion path proof.",
+    "Source CAD is fully populated; source occurrence quantities do not replace the manual hardware choices or purchasing BOM.",
+    "Browser, usual repository checks and whole-asset release gates are qualified separately at the exact release commit."
+  ]
+}

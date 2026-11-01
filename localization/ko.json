@@ -9515,7 +9515,7 @@
       "text": "동작을 미리 보기 전에 조립 단계를 닫아 주세요"
     },
     "ui.v0assembly.text_d5760661421533": {
-      "source_revision": "fbadf482ae7a4454282e",
+      "source_revision": "5ad14cf7d6711867186f",
       "text": "준비 및 하드웨어 확인"
     },
     "ui.v0assembly.text_2f406f1e667afb": {
@@ -9703,7 +9703,7 @@
       "text": "상부 측면 부재에 너트 삽입 및 장착"
     },
     "ui.v0assembly.text_cb0e479a2aa19a": {
-      "source_revision": "a6c7b80fc3ccf6be0029",
+      "source_revision": "80d36efe4f9b49d289e2",
       "text": "X 캐리지와 고정되는 하드웨어 준비"
     },
     "ui.v0assembly.text_462f541d6e72e5": {
@@ -11769,6 +11769,18 @@
     "assembly.workbench.uncheck_part": {
       "text": "이 부품의 확인 표시 해제",
       "source_revision": "f7ee99937bcb21b06069"
+    },
+    "v0.preparation.status": {
+      "source_revision": "5a85fe3a89607239a15d",
+      "text": "준비된 너트 홀더 · 점검용 배치"
+    },
+    "v0.preparation.layout": {
+      "source_revision": "6841505c7d526c1e4a67",
+      "text": "준비한 너트 홀더 다섯 개를 나란히 표시합니다. 점검용 배치이며 장착 위치나 삽입 경로를 나타내지 않습니다."
+    },
+    "v0.preparation.stored": {
+      "source_revision": "e6b78cd407793977fde2",
+      "text": "나중에 사용할 준비된 홀더는 따로 보관하며 각 레일의 장착 단계에서 표시합니다."
     }
   }
 }

@@ -12003,7 +12003,7 @@
     },
     "ui.v0assembly.text_d5760661421533": {
       "kind": "message",
-      "ja": "準備と金物の確認",
+      "ja": "組み立てを始める前に",
       "en": "Preparation and hardware reference"
     },
     "ui.v0assembly.text_2f406f1e667afb": {
@@ -12238,7 +12238,7 @@
     },
     "ui.v0assembly.text_cb0e479a2aa19a": {
       "kind": "message",
-      "ja": "Xキャリッジと保持される金物を準備",
+      "ja": "Xキャリッジと固定用部品を準備",
       "en": "Prepare the X carriage and retained captive hardware"
     },
     "ui.v0assembly.text_462f541d6e72e5": {
@@ -14820,6 +14820,21 @@
       "kind": "message",
       "ja": "この部品の確認済みを外す",
       "en": "Uncheck this part"
+    },
+    "v0.preparation.status": {
+      "kind": "message",
+      "en": "Prepared nut carriers · laid out for inspection",
+      "ja": "ナット保持具の準備状態を並べて表示中"
+    },
+    "v0.preparation.layout": {
+      "kind": "message",
+      "en": "The five prepared carriers are laid out together. This arrangement is for inspection; it does not show installation positions or insertion paths.",
+      "ja": "準備した5本の保持具を並べています。確認用の配置であり、取付位置や差込み経路を示すものではありません。"
+    },
+    "v0.preparation.stored": {
+      "kind": "message",
+      "en": "Prepared carriers for later rails are set aside. Each appears with its receiving rail at the installation stage.",
+      "ja": "後で使う準備済みの保持具は保管し、各レールの取付工程で表示します。"
     }
   }
 }

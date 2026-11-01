@@ -63,7 +63,7 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
   exit.textContent=translate('閉じる');exit.title=translate('Return to previous configuration');
   for(const n of legacy.select.options)n.textContent=translate(index.stage(Number(n.value)).title);
   for(const [n,raw]of [[legacy.previous,'Previous stage'],[legacy.next,'Next stage'],[legacy.focus,'Focus added parts'],[legacy.finish,'Return to previous configuration']])n.textContent=translate(raw);
-  if(state){legacy.note.textContent=translate(s.note);legacy.manual.textContent=translate(state.manual_text);sourceCount.textContent=say('counts',[state.added,state.visible_count])}
+  if(state){legacy.note.textContent=[s.note,state.presentation_note].filter(Boolean).map(translate).join(' ');legacy.manual.textContent=translate(state.manual_text);sourceCount.textContent=say('counts',[state.added,state.visible_count])}
   renderResults();renderParts();renderSelection();
  }
  function select(part,{reveal=false}={}){if(!active)return;index.part(part);selected=part;renderSelection();for(const n of items.querySelectorAll('[data-part]'))n.setAttribute('aria-pressed',String(n.dataset.part===part));if(reveal){onReveal?.();selection.scrollIntoView?.({block:'nearest'})}}
