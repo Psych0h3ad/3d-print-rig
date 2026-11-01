@@ -12,10 +12,10 @@ import {loadExtraMachine} from './extra-machine-loader.mjs?v=c57003e05d00c49566e
 import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
+import {setupPublicInfo} from './public-info.js?v=d624fe15d1718e2562bd';
 import {applyNativeMotionProfile,loadNativeMotionProfile} from './native-motion-profile.mjs?v=91532eb992519143f437';
 import {createCommunityAdapter} from './community-adapter.mjs?v=bf2f8389de9daf3045e7';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=6717552a68f8a91b3de2';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=884fd43cff70636acc26';
 export async function mount(scope){
  const $=id=>document.getElementById(id),stage=$('stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antialias:true}));
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=THREE.ACESFilmicToneMapping;stage.append(renderer.domElement);

@@ -18,9 +18,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=c3ec6db110aef990ae31';
+import {setupPublicInfo} from './public-info.js?v=d624fe15d1718e2562bd';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
+import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=00000000000000000000';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=00000000000000000000';
+import {createAssemblyPicker} from './assembly-picking.mjs?v=00000000000000000000';
+import {formatMessage,translate} from './i18n.mjs?v=ce1de4dba4ea5045a0c7';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -35,7 +39,7 @@ const stage=$('#stage'),renderer=scope.renderer(new THREE.WebGLRenderer({antiali
 const scene=scope.scene(new THREE.Scene()),camera=new THREE.PerspectiveCamera(38,1,.001,10),orbit=scope.resource(new OrbitControls(camera,renderer.domElement));scene.add(new THREE.HemisphereLight('#ffffff','#6c7981',2.4));
 for(const pos of [[.4,.6,.5],[-.3,.2,-.4]]){const light=new THREE.DirectionalLight('#ffffff',2);light.position.set(...pos);scene.add(light)}
 let adapter,profile,program,programFrame,stockProfile,installations,stateRestorer,currentManifest,applyPalette,palette={base:null,accent:null,frame:null},pending=false;
-let assemblyView=null,assemblySnapshot=null,assemblyLocked=false,assemblyControlStates=new Map(),assemblyData=null;
+let assemblyView=null,assemblySnapshot=null,assemblyLocked=false,assemblyControlStates=new Map(),assemblyData=null,assemblyStageHash=null,assemblyWorkbench=null;
 function render(){if(pending)return;pending=true;workspaceFrame(()=>{pending=false;renderer.render(scene,camera)})}
 const grid=setupGrid(scene,render);grid.position.y=-.026;
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
@@ -145,7 +149,7 @@ function setupAssemblyControls(receipts){
  const fail=e=>{status.textContent=loadError('手順の読込エラー:',e)};
  function lockControls(){
   for(const n of document.querySelectorAll('aside input,aside select,aside button')){
-   if(n.closest('#assemblyControls')||n.id==='viewerLanguage'||n.getAttribute('role')==='tab'||n.closest('.mobile-layout'))continue;
+   if(n.closest('#assemblyControls')||assemblyWorkbench?.ownsCommand(n)||n.id==='viewerLanguage'||n.getAttribute('role')==='tab'||n.closest('.mobile-layout'))continue;
    if(!assemblyControlStates.has(n))assemblyControlStates.set(n,n.disabled);n.disabled=true;
   }
   start.disabled=true;
@@ -174,12 +178,13 @@ function setupAssemblyControls(receipts){
   const manual=assemblyData.machines[id].manual;
   $('#assemblyManual').href=manual.url+'#page='+stage.page_start;
   $('#assemblyManual').textContent=`公式マニュアル ${stage.page_start}–${stage.page_end} ページ`;
+  assemblyWorkbench?.update({...state,visible_keys:assemblyView.getVisibleKeys(),manual_text:$('#assemblyManual').textContent});
   status.textContent='元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
  }
  async function finish(){
   if(assemblyLocked||!assemblyView)return;assemblyLocked=true;
   const saved=assemblySnapshot;
-  try{assemblyView.leave();assemblyView=null;$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;
+  try{assemblyView.leave();assemblyView=null;assemblyWorkbench?.deactivate();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;
    if(!await restoreV0State(saved.configuration))throw Error('元の構成を復元できません');
    camera.position.copy(saved.camera);camera.up.copy(saved.up);orbit.target.copy(saved.target);orbit.update();render();status.textContent='元の構成を復元しました';
   }catch(e){fail(e)}finally{if(!assemblyView){unlockControls();assemblySnapshot=null}assemblyLocked=false}
@@ -188,8 +193,8 @@ function setupAssemblyControls(receipts){
   if(assemblyLocked||assemblyView)return;assemblyLocked=true;
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
-   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=cac666a318dc56cdae84',{cache:'no-cache'});if(!response.ok)throw Error('手順データを読み込めません');assemblyData=await response.json()}
-   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=ac576b8eed02781734ab');
+   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=cac666a318dc56cdae84',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
+   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=a5dacbc3bfe03b105af1');
    program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();
@@ -197,20 +202,36 @@ function setupAssemblyControls(receipts){
    const companions=[...installations.roots.values()].flat().filter(r=>r.wrapper.visible).map(r=>({node:r.wrapper,part_keys:r.option.replace_keys}));
    assemblyView=createV0AssemblyStages({nodes:adapter.nodes,manifest:currentManifest,machine:assemblyData.machines[id],receipts,companions});
    step.replaceChildren(...assemblyData.machines[id].stages.map((stage,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=stage.title;return option}));
-   lockControls();$('#assemblySteps').hidden=false;present(0);focusAdded();
+   if(!assemblyWorkbench){
+    const index=createAssemblyIndex({manifest:currentManifest,machine:assemblyData.machines[id],receipts:{...receipts,'assembly_stages.json':assemblyStageHash}});
+    assemblyWorkbench=createAssemblyWorkbench({container:$('#assemblySteps'),bannerHost:$('#stage'),index,
+     legacy:{select:step,previous:$('#assemblyPrevious'),next:$('#assemblyNext'),focus:$('#assemblyFocus'),note:$('#assemblyStepNote'),manual:$('#assemblyManual'),finish:$('#assemblyFinish')},
+     format:(key,values)=>formatMessage(key,values,document.documentElement.lang||'en'),translate:text=>translate(text,document.documentElement.lang||'en'),onStage:present,onFocusPart:focusPart,
+     onReveal(){const panel=start.closest('[role=tabpanel]');if(panel)document.querySelector('[role=tab][aria-controls="'+panel.id+'"]')?.click();start.closest('details').open=true;$('#assemblySteps').scrollIntoView({block:'nearest'})},
+     storage:{getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)},
+     download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)},
+    });
+    $('#assemblyPartCount').hidden=true;
+   }
+   lockControls();$('#assemblySteps').hidden=false;assemblyWorkbench.activate();present(assemblyWorkbench.resumeIndex());focusAdded();
   }catch(e){
    try{assemblyView?.leave();assemblyView=null;
     if(assemblySnapshot){if(!await restoreV0State(assemblySnapshot.configuration))throw Error('元の構成を復元できません');
      camera.position.copy(assemblySnapshot.camera);camera.up.copy(assemblySnapshot.up);orbit.target.copy(assemblySnapshot.target);orbit.update();render()}
    }catch(rollbackError){e=new Error(e.message+' / '+rollbackError.message)}
-   assemblySnapshot=null;$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;fail(e);
+   assemblyWorkbench?.deactivate();assemblySnapshot=null;$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;fail(e);
   }finally{if(!assemblyView)unlockControls();assemblyLocked=false;start.disabled=Boolean(assemblyView)}
  });
  step.onchange=()=>{if(assemblyView)present(Number(step.value))};
  $('#assemblyPrevious').onclick=()=>{if(assemblyView)present(Math.max(0,Number(step.value)-1))};
  $('#assemblyNext').onclick=()=>{if(assemblyView)present(Math.min(assemblyData.machines[id].stages.length-1,Number(step.value)+1))};
  $('#assemblyFocus').onclick=focusAdded;$('#assemblyFinish').onclick=()=>workspaceTask(finish);
- scope.cleanup(()=>{try{assemblyView?.leave()}finally{assemblyView=null;assemblySnapshot=null;assemblyLocked=false;unlockControls();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage}});
+ function focusPart(key){
+  if(!assemblyView)return;const box=new THREE.Box3();scene.updateMatrixWorld(true);for(const node of assemblyView.getPartNodes(key))box.expandByObject(node);
+  if(box.isEmpty())return;const distance=Math.max(.05,box.getSize(new THREE.Vector3()).length()/(2*Math.tan(camera.fov*Math.PI/360))*1.4);box.getCenter(orbit.target);camera.up.set(0,1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(.65,.4,1).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
+ }
+ const picker=createAssemblyPicker({element:renderer.domElement,camera,entries:()=>assemblyView?assemblyView.getDisplayedParts().flatMap(({key,nodes})=>nodes.filter(node=>adapter.nodes.get(key)===node||[...installations.roots.values()].flat().some(r=>r.wrapper===node&&r.option.replace_keys.length===1)).map(node=>({key,node}))):[],onPick:key=>assemblyWorkbench?.select(key,{reveal:true})});
+ scope.cleanup(()=>{try{assemblyView?.leave()}finally{picker.dispose();assemblyWorkbench?.dispose();assemblyWorkbench=null;assemblyView=null;assemblySnapshot=null;assemblyLocked=false;unlockControls();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage}});
 }
 function currentV0(){return {adapter,profile,manifest:currentManifest,installations,scene,camera,orbit}}
 function captureV0State(){return validateV0State({profile,registry:installations.registry},{schema:v0ConfigurationSchema,machine_id:id,mods:installations.getState(),pose:adapter.getPose(),palette:{...palette},enclosure:$('#enclosure').checked,belts:$('#belts').checked,grid:$('#gridVisible').checked,door_angle_deg:adapter.door.getAngle(),tophat_angle_deg:adapter.tophat.getAngle()})}

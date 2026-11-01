@@ -25,6 +25,8 @@ async function pinClosure(url){
  }
 }
 const stages=JSON.parse(await pin(site+'/V0_ASSEMBLY_STAGES.json'));
+await pinClosure(new URL('assembly-workbench-model.mjs',viewer));
+const {createAssemblyIndex,createAssemblyProgress,validateAssemblyProgress}=await import(new URL('assembly-workbench-model.mjs',viewer));
 assert.deepEqual(Object.keys(stages.machines).sort(),['voron_v02_120','voron_v02r1_120']);
 const mapping=args.map?JSON.parse(await pin(path.resolve(args.map))):null;
 if(mapping)assert.deepEqual(Object.keys(mapping.machines).sort(),Object.keys(stages.machines).sort());
@@ -97,6 +99,9 @@ try{
   const shown=key=>displayed(adapter.nodes.get(key))||companions.some(c=>c.part_keys.includes(key)&&displayed(c.node));
   const original=state(scene),geometryBefore=geometryPins(scene),visibility=new Map([...adapter.nodes].map(([k,n])=>[k,n.visible]));
   const controller=createV0AssemblyStages({nodes:adapter.nodes,manifest,machine:stages,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions});
+  const workbench=createAssemblyIndex({manifest,machine:spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes),'assembly_stages.json':sha(await pin(site+'/V0_ASSEMBLY_STAGES.json'))}}),progress=createAssemblyProgress(workbench);
+  for(const p of manifest.parts){const owner=workbench.owner(p.key);assert(owner.part_keys.includes(p.key));assert.equal(workbench.part(p.key).name,p.name)}
+  for(const p of [manifest.parts[0],manifest.parts[Math.floor(manifest.parts.length/2)],manifest.parts.at(-1)])assert(workbench.search(p.key).some(s=>s.id===workbench.owner(p.key).id));
   const sequence=[...spec.stages.map((_,i)=>i),...spec.stages.map((_,i)=>spec.stages.length-1-i),spec.stages.length-1,0,Math.floor(spec.stages.length/2),spec.stages.length-1];
   const poses=[];
   for(const index of sequence){const r=controller.setStage(index),keys=new Set(spec.stages.slice(0,index+1).flatMap(s=>s.part_keys));
@@ -104,6 +109,10 @@ try{
    for(const c of companions)assert.equal(c.node.visible,c.part_keys.some(k=>keys.has(k)),'Support-omitted carriage follows native stage');
    for(const seat of spec.seat_display_dependencies)assert(!shown(seat.part_key)||shown(seat.carrier_key),'Preloaded nut displayed without its receiving source member');
    assert.equal(r.total,spec.stages.length);assert.equal(r.added,spec.stages[index].part_keys.length);unchanged(scene,original);poses.push({index,id:r.id,added:r.added,visible:r.visible_count});
+   const shownParts=controller.getDisplayedParts();assert.equal(shownParts.length,r.visible_count);assert.deepEqual(shownParts.map(p=>p.key),controller.getVisibleKeys());
+   for(const p of shownParts){assert(keys.has(p.key));for(const n of p.nodes)assert(displayed(n))}
+   for(const p of [shownParts[0],shownParts[Math.floor(shownParts.length/2)],shownParts.at(-1)].filter(Boolean))assert.deepEqual(controller.getPartNodes(p.key),p.nodes);
+   progress.setStage(r.id);progress.toggle(r.id);assert.deepEqual(validateAssemblyProgress(workbench,JSON.parse(JSON.stringify(progress.snapshot()))),progress.snapshot());
   }
   controller.leave();unchanged(scene,original,true);assert.deepEqual(geometryPins(scene),geometryBefore);
   controller.setStage(0);controller.leave();unchanged(scene,original,true);
@@ -123,7 +132,7 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,restored:true});
+  report.machines.push({machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }

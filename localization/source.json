@@ -14395,6 +14395,161 @@
       "kind": "message",
       "ja": "アフィリエイトリンク：このリンク経由の購入で私に報酬が入る場合があります。",
       "en": "Affiliate link: I may earn a commission on purchases."
+    },
+    "assembly.workbench.title": {
+      "kind": "message",
+      "ja": "組立ガイド",
+      "en": "Assembly guide"
+    },
+    "assembly.workbench.search": {
+      "kind": "message",
+      "ja": "工程・部品を検索",
+      "en": "Find a stage or part"
+    },
+    "assembly.workbench.search_hint": {
+      "kind": "message",
+      "ja": "工程名、部品名、M3…",
+      "en": "Stage name, part name, M3…"
+    },
+    "assembly.workbench.all_steps": {
+      "kind": "template",
+      "ja": "工程一覧（{0}工程）",
+      "en": "All stages ({0})"
+    },
+    "assembly.workbench.results": {
+      "kind": "template",
+      "ja": "該当する工程：{0}",
+      "en": "{0} matching stages"
+    },
+    "assembly.workbench.no_results": {
+      "kind": "message",
+      "ja": "該当する工程がありません。",
+      "en": "No matching stage."
+    },
+    "assembly.workbench.current_step": {
+      "kind": "template",
+      "ja": "工程 {0} / {1}",
+      "en": "Stage {0} of {1}"
+    },
+    "assembly.workbench.mark_done": {
+      "kind": "message",
+      "ja": "この工程を作業済みにする",
+      "en": "I have completed this stage"
+    },
+    "assembly.workbench.progress": {
+      "kind": "template",
+      "ja": "{0} / {1}工程を記録",
+      "en": "{0} / {1} stages checked"
+    },
+    "assembly.workbench.save": {
+      "kind": "message",
+      "ja": "進捗を書き出す",
+      "en": "Export progress"
+    },
+    "assembly.workbench.load": {
+      "kind": "message",
+      "ja": "進捗を読み込む",
+      "en": "Load progress"
+    },
+    "assembly.workbench.clear": {
+      "kind": "message",
+      "ja": "作業済みの記録を外す",
+      "en": "Clear checked stages"
+    },
+    "assembly.workbench.undo": {
+      "kind": "message",
+      "ja": "記録を元に戻す",
+      "en": "Undo clearing"
+    },
+    "assembly.workbench.local": {
+      "kind": "message",
+      "ja": "進捗はこのブラウザーに保存します。",
+      "en": "Progress stays in this browser."
+    },
+    "assembly.workbench.session_only": {
+      "kind": "message",
+      "ja": "ブラウザーに保存できません。進捗を書き出して保管できます。",
+      "en": "Browser storage is unavailable. Export progress to keep it."
+    },
+    "assembly.workbench.resumed": {
+      "kind": "message",
+      "ja": "保存した進捗から再開しました。",
+      "en": "Resumed saved progress."
+    },
+    "assembly.workbench.loaded": {
+      "kind": "message",
+      "ja": "進捗を読み込みました。",
+      "en": "Progress restored."
+    },
+    "assembly.workbench.invalid": {
+      "kind": "message",
+      "ja": "進捗ファイルを読み込めません。",
+      "en": "Cannot read this progress file."
+    },
+    "assembly.workbench.wrong_version": {
+      "kind": "message",
+      "ja": "別の機体・手順版の進捗です。",
+      "en": "This progress belongs to another model or manual version."
+    },
+    "assembly.workbench.items": {
+      "kind": "message",
+      "ja": "この工程のモデル項目",
+      "en": "Model items added here"
+    },
+    "assembly.workbench.counts": {
+      "kind": "template",
+      "ja": "追加 {0}・表示 {1}",
+      "en": "Added {0} · displayed {1}"
+    },
+    "assembly.workbench.no_items": {
+      "kind": "message",
+      "ja": "準備・確認の工程です。モデルの追加はありません。",
+      "en": "Preparation or inspection: no model items are added."
+    },
+    "assembly.workbench.selected": {
+      "kind": "message",
+      "ja": "モデル上の選択",
+      "en": "Selected on the model"
+    },
+    "assembly.workbench.part_step": {
+      "kind": "template",
+      "ja": "この部品の工程（{0}）へ",
+      "en": "Open this part’s stage ({0})"
+    },
+    "assembly.workbench.focus_part": {
+      "kind": "message",
+      "ja": "この部品に寄る",
+      "en": "Focus this part"
+    },
+    "assembly.workbench.not_displayed": {
+      "kind": "message",
+      "ja": "原本の代替要素・現在は非表示",
+      "en": "Source alternative · not displayed"
+    },
+    "assembly.workbench.pick_hint": {
+      "kind": "message",
+      "ja": "表示中の部品をクリックして、対応する工程を探せます。",
+      "en": "Select a visible model part to find its stage."
+    },
+    "assembly.workbench.more": {
+      "kind": "template",
+      "ja": "さらに {0}項目を表示",
+      "en": "Show {0} more items"
+    },
+    "assembly.workbench.view": {
+      "kind": "message",
+      "ja": "手順パネルへ",
+      "en": "Show guide panel"
+    },
+    "assembly.workbench.active": {
+      "kind": "template",
+      "ja": "組立 {0}/{1}",
+      "en": "Assembly {0}/{1}"
+    },
+    "assembly.workbench.clear_note": {
+      "kind": "message",
+      "ja": "作業済みの記録を外しました。",
+      "en": "Checked stages cleared."
     }
   }
 }

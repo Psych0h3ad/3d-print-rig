@@ -9,6 +9,7 @@ import * as assemblyModule from '../site/viewer/v0-assembly.mjs';
 import {installationsModule,stateModule} from './v0-state-test-runtime.mjs';
 import {v0NativeStateProfile,v0NativeModelHash} from '../site/viewer/v0-native-installed-gate.mjs';
 import {fixtureProfile} from './v0-state-fixtures.mjs';
+import {createAssemblyIndex,readAssemblyStageDocument} from '../site/viewer/assembly-workbench-model.mjs';
 
 const appURL=new URL('../site/viewer/v0-app.js',import.meta.url),appSource=await fs.readFile(appURL,'utf8');
 const stageURL=new URL('../site/V0_ASSEMBLY_STAGES.json',import.meta.url),stageBytes=await fs.readFile(stageURL),productionStages=JSON.parse(stageBytes);
@@ -66,9 +67,10 @@ const handlers=Object.fromEntries([
 const factory=vm.runInNewContext(`(dependencies=>{
  const {THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,
   installations,stateRestorer,program,scope,fetch,workspaceTask,frameResponsiveView,render,
-  loadError,stockV0Mods,validateV0State,v0ConfigurationSchema,v0NativeStateProfile}=dependencies;
+  loadError,stockV0Mods,validateV0State,v0ConfigurationSchema,v0NativeStateProfile,
+  createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash,createAssemblyWorkbench,createAssemblyPicker,renderer,formatMessage,translate}=dependencies;
  let palette=dependencies.palette,assemblyView=null,assemblySnapshot=null,assemblyLocked=false,
-  assemblyControlStates=new Map(),assemblyData=null;
+  assemblyControlStates=new Map(),assemblyData=null,assemblyStageHash=null,assemblyWorkbench=null;
  ${functions}
  ${Object.entries(handlers).map(([id,code])=>`$('#${id}').${['reset'].includes(id)?'onclick':['belts','enclosure'].includes(id)?'onchange':'oninput'}=${code};`).join('\n')}
  ${setup}
@@ -103,7 +105,7 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  if(stockCompanion)for(const key of companionKeys)nodes.get(key).visible=false;
  const original=()=>[...nodes].map(([key,n])=>({key,visible:n.visible,position:n.position.toArray(),quaternion:n.quaternion.toArray(),scale:n.scale.toArray(),material:n.children[0].material,color:n.children[0].material.color.getHex()}));
  const native=original(),events=[],elements=new Map(),cleanups=[];
- const controlIds=['assemblyStart','assemblyStage','assemblyPrevious','assemblyNext','assemblyFocus','assemblyFinish','assemblySteps','assemblyStatus','assemblyPartCount','assemblyManual','assemblyStepNote'];
+ const controlIds=['assemblyStart','assemblyStage','assemblyPrevious','assemblyNext','assemblyFocus','assemblyFinish','assemblySteps','assemblyStatus','assemblyPartCount','assemblyManual','assemblyStepNote','stage'];
  for(const key of controlIds)elements.set(key,new Element(key,{assembly:true}));
  for(const key of ['x','y','z','xv','yv','zv','reset','enclosure','belts','gridVisible','doorAngle','doorAnglev','tophatAngle','tophatAnglev','saveConfiguration','loadConfiguration','configurationFile','resetMods','mod-toolhead','motionStatus','flexibleStatus','installationStatus'])elements.set(key,new Element(key));
  elements.set('preDisabled',new Element('preDisabled',{disabled:true}));
@@ -163,10 +165,15 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  const orbit={target:new THREE.Vector3(.03,.04,.05),update(){events.push({type:'orbit'})}};
  const cameraState=()=>({position:camera.position.toArray(),up:camera.up.toArray(),target:orbit.target.toArray()});
  const originalCamera=cameraState();let api;
- const dependencies={THREE,assemblyModule,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key}))},id,
+ const dependencies={THREE,assemblyModule,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,
+  createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash:async bytes=>sha(Buffer.from(bytes)),renderer:{domElement:{}},formatMessage:()=>'',translate:x=>x,
+  // This port isolates the complete native/configuration lifecycle; the real DOM
+  // workbench/picker have independent tests and an actual-model browser audit.
+  createAssemblyWorkbench:({index})=>({resumeIndex:()=>0,update:()=>{},activate:()=>{},deactivate:()=>{},ownsCommand:()=>false,dispose:()=>{}}),
+  createAssemblyPicker:()=>({dispose:()=>{}}),
   installations,stateRestorer,palette,program:{invalidate(){events.push({type:'gcode-invalidated'})},updatePath:()=>{}},
   scope:{cleanup:fn=>cleanups.push(fn)},receipts,
-  fetch:async(path,options)=>{const url=new URL(path,'https://example.test/viewer/v0.html');assert.equal(url.pathname,'/V0_ASSEMBLY_STAGES.json');assert([...url.searchParams.keys()].every(key=>key==='v'),'Unexpected stage query parameter');assert.equal(options.cache,'no-cache');tasks.fetchCount++;if(tasks.fetchGate)await tasks.fetchGate.promise;return {ok:!fetchFailure,json:async()=>stageData}},
+  fetch:async(path,options)=>{const url=new URL(path,'https://example.test/viewer/v0.html');assert.equal(url.pathname,'/V0_ASSEMBLY_STAGES.json');assert([...url.searchParams.keys()].every(key=>key==='v'),'Unexpected stage query parameter');assert.equal(options.cache,'no-cache');tasks.fetchCount++;if(tasks.fetchGate)await tasks.fetchGate.promise;return {ok:!fetchFailure,arrayBuffer:async()=>new TextEncoder().encode(JSON.stringify(stageData)).buffer}},
   workspaceTask:fn=>Promise.resolve().then(fn),frameResponsiveView:()=>{if(focusFailure)throw Error('Injected focus failure')},render:()=>{},loadError:(prefix,e)=>prefix+' '+e.message,
   stockV0Mods:stateModule.stockV0Mods,validateV0State:stateModule.validateV0State,v0ConfigurationSchema:stateModule.v0ConfigurationSchema,v0NativeStateProfile,
  };

@@ -6,7 +6,10 @@ import vm from 'node:vm';
 import {webcrypto,createHash} from 'node:crypto';
 import * as THREE from '../site/viewer/vendor/three.module.js';
 import {installationsModule,stateModule} from './v0-state-test-runtime.mjs';
-import {translate,loadLanguage} from '../site/viewer/i18n.mjs';
+import {translate,loadLanguage,formatMessage} from '../site/viewer/i18n.mjs';
+import * as assemblyWorkbenchModel from '../site/viewer/assembly-workbench-model.mjs';
+import {createAssemblyWorkbench} from '../site/viewer/assembly-workbench.mjs';
+import {createAssemblyPicker} from '../site/viewer/assembly-picking.mjs';
 await loadLanguage('ko');assert.equal(translate('Load error: Invalid XYZ settings','ko'),'로드 오류: 잘못된 XYZ 설정');
 assert.equal(translate('Load error: Invalid XYZ settings','en'),'Load error: Invalid XYZ settings');
 import * as libraryModule from '../site/viewer/v0-mod-library.mjs';
@@ -72,7 +75,10 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
  let programFrame,programPose;
  const namespaces={
   'workspace-entry.mjs':{ensureWorkspaceEntry:()=>{}},
-  'i18n.mjs':{translate},
+  'i18n.mjs':{translate,formatMessage},
+  'assembly-workbench-model.mjs':assemblyWorkbenchModel,
+  'assembly-workbench.mjs':{createAssemblyWorkbench},
+  'assembly-picking.mjs':{createAssemblyPicker},
   'display-preferences.mjs':{setupSceneDisplay:()=>{}},
   'workspace-lifecycle.mjs':{workspaceTask:fn=>Promise.resolve().then(fn),workspaceFrame:()=>1,workspaceListen:()=>{},WorkspaceResizeObserver:class{observe(){}}},
   'workspace-navigation.mjs':{replaceWorkspaceURL:(state,title,url)=>history.replaceState(state,title,url)},
@@ -81,7 +87,7 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
   'component-assets.mjs':{loadExternalComponent:()=>{throw Error('Unexpected external source')}},
   'responsive-camera.mjs':{setResponsiveAspect:()=>{},frameResponsiveView:()=>{}},
   'appearance-role.mjs':{appearanceRole:()=>null},
-  three:{...THREE,WebGLRenderer:class{domElement={};setPixelRatio(){}setClearColor(){}render(){}setSize(){}dispose(){}}},
+  three:{...THREE,WebGLRenderer:class{domElement={addEventListener(){},removeEventListener(){}};setPixelRatio(){}setClearColor(){}render(){}setSize(){}dispose(){}}},
   'OrbitControls.js':{OrbitControls:class{target=new THREE.Vector3();addEventListener(){}update(){}dispose(){}}},
   'GLTFLoader.js':{GLTFLoader:class{}},
   'model-loader.js':{loadModel:async(loader,path)=>{

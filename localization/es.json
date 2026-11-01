@@ -11429,6 +11429,130 @@
     "layout.popstation_affiliate_disclosure": {
       "source_revision": "0cdf2615b3761e935e6a",
       "text": "Enlace de afiliado: puedo recibir una comisión por las compras."
+    },
+    "assembly.workbench.title": {
+      "source_revision": "c9b206647cfca06ada61",
+      "text": "Guía de montaje"
+    },
+    "assembly.workbench.search": {
+      "source_revision": "daa71511480ffbaaf92e",
+      "text": "Buscar una etapa o pieza"
+    },
+    "assembly.workbench.search_hint": {
+      "source_revision": "ccc8319ad943762496ac",
+      "text": "Nombre de etapa, pieza, M3…"
+    },
+    "assembly.workbench.all_steps": {
+      "source_revision": "1d6c317b36b6841aa693",
+      "text": "Todas las etapas ({0})"
+    },
+    "assembly.workbench.results": {
+      "source_revision": "9f54cbe8a8b7b0828e11",
+      "text": "{0} etapas encontradas"
+    },
+    "assembly.workbench.no_results": {
+      "source_revision": "8624b27a67a5988ae472",
+      "text": "No se encontraron etapas."
+    },
+    "assembly.workbench.current_step": {
+      "source_revision": "3c64a71ca348d9904dbb",
+      "text": "Etapa {0} de {1}"
+    },
+    "assembly.workbench.mark_done": {
+      "source_revision": "d81a818eda6a1ab8effc",
+      "text": "He completado esta etapa"
+    },
+    "assembly.workbench.progress": {
+      "source_revision": "fbf2b4687975627ac613",
+      "text": "{0} / {1} etapas marcadas"
+    },
+    "assembly.workbench.save": {
+      "source_revision": "c691ea8b77568e21a485",
+      "text": "Exportar progreso"
+    },
+    "assembly.workbench.load": {
+      "source_revision": "d270aea7a50e6c9543a7",
+      "text": "Cargar progreso"
+    },
+    "assembly.workbench.clear": {
+      "source_revision": "7de4cc006d9615d8a3bd",
+      "text": "Quitar las marcas de etapas"
+    },
+    "assembly.workbench.undo": {
+      "source_revision": "d9bc3b651b7c01168e41",
+      "text": "Deshacer el borrado"
+    },
+    "assembly.workbench.local": {
+      "source_revision": "f24c004a452e22089112",
+      "text": "El progreso se guarda en este navegador."
+    },
+    "assembly.workbench.session_only": {
+      "source_revision": "ee8aba7b25e940dfe108",
+      "text": "El almacenamiento del navegador no está disponible. Exporta el progreso para conservarlo."
+    },
+    "assembly.workbench.resumed": {
+      "source_revision": "9d85ec9835c66c00fbd7",
+      "text": "Se ha reanudado el progreso guardado."
+    },
+    "assembly.workbench.loaded": {
+      "source_revision": "3fa544231a50527a5475",
+      "text": "Progreso restaurado."
+    },
+    "assembly.workbench.invalid": {
+      "source_revision": "82088b50daba0a0b8cd6",
+      "text": "No se puede leer este archivo de progreso."
+    },
+    "assembly.workbench.wrong_version": {
+      "source_revision": "0b72cea48cbc8c87d9a8",
+      "text": "Este progreso corresponde a otro modelo o versión del manual."
+    },
+    "assembly.workbench.items": {
+      "source_revision": "480f3e4ac0544c8d7fcb",
+      "text": "Elementos del modelo añadidos aquí"
+    },
+    "assembly.workbench.counts": {
+      "source_revision": "d8a95154f452b3d17b65",
+      "text": "Añadidos {0} · mostrados {1}"
+    },
+    "assembly.workbench.no_items": {
+      "source_revision": "d3ddfb31eaeb03f576c7",
+      "text": "Preparación o inspección: no se añaden elementos al modelo."
+    },
+    "assembly.workbench.selected": {
+      "source_revision": "8fd37635e255689b9dbd",
+      "text": "Seleccionado en el modelo"
+    },
+    "assembly.workbench.part_step": {
+      "source_revision": "701d4f427f2e3aa59df8",
+      "text": "Abrir la etapa de esta pieza ({0})"
+    },
+    "assembly.workbench.focus_part": {
+      "source_revision": "3f1081fd57ef7bc89c09",
+      "text": "Enfocar esta pieza"
+    },
+    "assembly.workbench.not_displayed": {
+      "source_revision": "64c96c9a4fbdc21dc5ef",
+      "text": "Alternativa del original · no mostrada"
+    },
+    "assembly.workbench.pick_hint": {
+      "source_revision": "15d9ac1bb783383ae649",
+      "text": "Selecciona una pieza visible para encontrar su etapa."
+    },
+    "assembly.workbench.more": {
+      "source_revision": "49cd2dda79a20c292511",
+      "text": "Mostrar {0} elementos más"
+    },
+    "assembly.workbench.view": {
+      "source_revision": "c58a74522929492c489f",
+      "text": "Mostrar el panel de la guía"
+    },
+    "assembly.workbench.active": {
+      "source_revision": "df0e92a9feb789b2f25d",
+      "text": "Montaje {0}/{1}"
+    },
+    "assembly.workbench.clear_note": {
+      "source_revision": "4f28446ea4bc6794d527",
+      "text": "Se han quitado las marcas de etapas."
     }
   }
 }
