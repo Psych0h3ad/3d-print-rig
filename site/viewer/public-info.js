@@ -1,7 +1,7 @@
 import {workspaceTask,workspaceListen,WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setupProductDirectory} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=ef9c5f4cb70ddb92e68d';
-import {messageSource} from './i18n.mjs?v=27698ccf4dd37540be77';
+import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=eed8b123f5d6ee95f2ac';
+import {messageSource} from './i18n.mjs?v=d49d9b9aee9c4df9e054';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};
@@ -31,7 +31,7 @@ export async function setupPublicInfo({includeDownloads=true,machineId=null}={})
  const updateShortcut=()=>{const shortcut=$('#machineStepDownloads');if(shortcut){shortcut.hidden=!entries.some(item=>item.id===currentMachine());shortcut.setAttribute('aria-haspopup','dialog');shortcut.onclick=openDownloads}};
  new WorkspaceMutationObserver(updateShortcut).observe(document.body,{attributes:true,attributeFilter:['data-machine-id']});
  const loadCatalog=async()=>{downloadButton.disabled=true;try{
-  const response=await fetch('../PUBLIC_CATALOG.json?v=39077ecd2fb888ab969b',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
+  const response=await fetch('../PUBLIC_CATALOG.json?v=6ea4b81efa79fcbe691f',{cache:'no-cache'});if(!response.ok)throw Error('カタログを取得できません');const catalog=await response.json();
   const assemblyDownload=$('#assemblyDownload');if(assemblyDownload)assemblyDownload.hidden=true;
   sb.append(node('p','ビューアー版：'+catalog.viewer_version));
   if(catalog.model_source_url)sb.append(link('表示モデルの編集用データ',catalog.model_source_url));

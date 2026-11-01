@@ -1,4 +1,4 @@
-import {installedHeadPlan} from './machine-head-model.mjs?v=bcdf2f0444ff0780cc6c';
+import {installedHeadPlan} from './machine-head-model.mjs?v=9166e65cfebfd5fb4306';
 import {translatedProbeFit} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {sphinxBeltPreviewCut} from './sphinx-belt-interface.mjs?v=82539821284ce55535f1';
 const completeSphinx=v=>v.mount==='fixed'&&v.gantry==='sphinx_monolith'&&v.fit?.nozzle_mm?.every(Number.isFinite)&&['extruder','hotend'].every(k=>v.modules.some(m=>m.id===v.fit?.complete_head_native?.[k]));

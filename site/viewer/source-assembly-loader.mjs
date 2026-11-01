@@ -1,11 +1,11 @@
 import {attachSourceMaterialDisplay} from './source-assembly-runtime/source-material-display.mjs?v=5d773caa9598cb098acb';
 import {attachE3NGMods} from './source-assembly-runtime/e3ng-mods.mjs?v=de4e6dbe8cee9009ed32';
 import {e3ngModAsset,e3ngPanelAsset,e3ngModModel} from './source-assembly-runtime/e3ng-mod-data.mjs?v=6c0d243d5a84b25d0ea1';
-import {loadProgressiveSource,createProgressiveUploader} from './source-assembly-runtime/progressive-source-loader.mjs?v=3e6d900f8880663ba947';
+import {loadProgressiveSource,createProgressiveUploader} from './source-assembly-runtime/progressive-source-loader.mjs?v=d8b03c262883b28d0638';
 import {attachIllustrativeLatchDisplay} from './source-assembly-runtime/illustrative-latch-adapter.mjs?v=99ad800d6fe1e947f0cf';
 import{GLTFLoader}from'./vendor-r180/GLTFLoader.js?v=adbbafe8ce40416525b6';
-import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=ea80a84e42f662f377b8';
-import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=70bdd95161af2aaa12e0';
+import{fetchPinned,assertLoadingBudget}from'./source-assembly-runtime/loading.mjs?v=ae74e91b87be4b9c24ab';
+import{loadChunkedModel,validateChunkManifest}from'./source-assembly-runtime/chunk_loader.mjs?v=d36e8c148bc9891fba57';
 import{headSubsetPlan,headSubsetPacket}from'./source-assembly-runtime/head_subset.mjs?v=9d559758a3aaa9114976';
 import{createAssembly}from'./source-assembly-runtime/assembly.mjs?v=184e8963c12cd2734592';
 import{releaseRoot}from'./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede';

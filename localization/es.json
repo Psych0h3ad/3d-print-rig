@@ -12141,6 +12141,58 @@
     "v0.idler.656aa44e8ee3": {
       "source_revision": "58be3c2f11dbc74aa8c9",
       "text": "Instale los dos M3x10 traseros originales a través de las carcasas de los accionamientos en los perfiles superiores del bastidor."
+    },
+    "v0.xy.f620952a477b": {
+      "source_revision": "152a519f05f7e0e93c6a",
+      "text": "Colocar los insertos de la unión XY izquierda"
+    },
+    "v0.xy.8b9ea04825d5": {
+      "source_revision": "13a7e26ab064c1210547",
+      "text": "Coloque los dos insertos térmicos originales un poco por debajo de la superficie impresa. Reserve esta pieza mientras monta los rodamientos."
+    },
+    "v0.xy.8b45829d7dd9": {
+      "source_revision": "28b990852075b9a50b51",
+      "text": "Montar los rodamientos de la unión XY izquierda boca abajo"
+    },
+    "v0.xy.6e5230042c6b": {
+      "source_revision": "7169c09be67abfae249e",
+      "text": "Use la placa impresa correspondiente, dos tornillos M3x25, cuatro rodamientos F623, ocho calces y los separadores originales. Respete las alturas reflejadas de los rodamientos del dibujo."
+    },
+    "v0.xy.748953cf43e7": {
+      "source_revision": "5d7ecb79d6fb5b6a36ed",
+      "text": "Cerrar la unión XY izquierda"
+    },
+    "v0.xy.9d2b4afd0f1d": {
+      "source_revision": "32ca708a792cc0b00baa",
+      "text": "Vuelva a colocar la misma pieza con sus dos insertos y monte el tornillo autorroscante M2x10 original. Mantenga cada pieza de las uniones reflejadas en su lado indicado."
+    },
+    "v0.xy.e22ede36a540": {
+      "source_revision": "8275f002618b7032c87b",
+      "text": "Comprobar el espacio interior de la unión XY izquierda"
+    },
+    "v0.xy.fbfd2e75e2a6": {
+      "source_revision": "8ee80eeadfe806dc73c4",
+      "text": "Compruebe los 19 mm indicados entre las dos caras interiores impresas. Reserve la unión preparada hasta montarla en el perfil X."
+    },
+    "v0.xy.250a26ca3724": {
+      "source_revision": "00685863484e045118c1",
+      "text": "Colocar los insertos de la unión XY derecha"
+    },
+    "v0.xy.2f0decdccd2e": {
+      "source_revision": "281dc5acee413000b627",
+      "text": "Montar los rodamientos de la unión XY derecha boca abajo"
+    },
+    "v0.xy.50836913a465": {
+      "source_revision": "ee2828b98a7f674751b4",
+      "text": "Cerrar la unión XY derecha"
+    },
+    "v0.xy.49b6208afc46": {
+      "source_revision": "a70d380fbf41ae77a766",
+      "text": "Comprobar el espacio interior de la unión XY derecha"
+    },
+    "v0.xy.852c43ba0639": {
+      "source_revision": "33483aa7e5a8706906f5",
+      "text": "Solo se muestra la operación actual de la unión XY. Las piezas preparadas quedan aparte hasta el cierre o la instalación."
     }
   }
 }

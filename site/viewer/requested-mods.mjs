@@ -14,7 +14,7 @@ export function mergeRequestedMods(registration,data,machine){
  return {...registration,assets:{...registration.assets,...data.assets},accessories:[...(registration.accessories||[]),...rows]};
 }
 export async function loadRequestedMods(registration,machine){
- const response=await fetch('../REQUESTED_MOD_INSTALLATIONS.json?v=88625ad98d1902543051',{cache:'no-cache'});
+ const response=await fetch('../REQUESTED_MOD_INSTALLATIONS.json?v=3899a24a7ebb9c223ae3',{cache:'no-cache'});
  if(!response.ok)throw Error('追加Modの登録を取得できません');
  return mergeRequestedMods(registration,await response.json(),machine);
 }

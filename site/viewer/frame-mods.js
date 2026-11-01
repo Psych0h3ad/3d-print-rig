@@ -1,6 +1,6 @@
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=bbeac53e416d7310bedc';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=b1cccabc15ce1aaf1d7e';
 import {loadInternalSpool} from './internal-spool.mjs?v=ca3a453f6bf2966e0208';
-import {loadRequestedMods} from './requested-mods.mjs?v=165580239f7428aeab51';
+import {loadRequestedMods} from './requested-mods.mjs?v=15d2eb7eaa298d86b67d';
 export async function loadFrameMods(machine){
  const response=await fetch('../MACHINE_MODS.json?v=trident-clearance-35',{cache:'no-cache'});if(!response.ok)throw Error('機種別Modを取得できません');
  const data=await response.json();if(machine==='siboor_trident_300'){const patch=(await loadSiboorRegistration()).registrations;data.machines[machine]=patch.mods;}const registration=data.machines[machine];if(!registration)throw Error('機種別Modが未登録です');
