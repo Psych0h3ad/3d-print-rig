@@ -38,7 +38,7 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
   results.hidden=!search.value.trim();empty.hidden=!search.value.trim()||found.length>0;empty.textContent=say('no_results');
  }
  function renderParts(){
-  if(!state)return;const visible=new Set(state.visible_keys),parts=index.parts(state.index),rows=parts.slice(0,limit);items.replaceChildren();
+  if(!state)return;const visible=new Set(state.visible_keys),parts=typeof index.matchParts==='function'&&search.value.trim()?index.matchParts(state.index,search.value,translate):index.parts(state.index),rows=parts.slice(0,limit);items.replaceChildren();
   if(!parts.length){const p=doc.createElement('p');p.textContent=say('no_items');items.append(p)}
   for(const p of rows){const n=doc.createElement('button');n.type='button';n.dataset.part=p.key;n.setAttribute('data-i18n','off');n.setAttribute('aria-pressed',String(selected===p.key));n.textContent=p.name;
    const small=doc.createElement('small');small.textContent=visible.has(p.key)?p.key:say('not_displayed');n.append(small);n.addEventListener('click',()=>{select(p.key);if(visible.has(p.key))onFocusPart(p.key)});items.append(n)}
@@ -58,7 +58,7 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
  }
  function select(part,{reveal=false}={}){if(!active)return;index.part(part);selected=part;renderSelection();for(const n of items.children)if(n.dataset.part)n.setAttribute('aria-pressed',String(n.dataset.part===part));if(reveal){onReveal?.();selection.scrollIntoView?.({block:'nearest'})}}
  function importProgress(value){if(!active)throw Error('Inactive assembly view');const checked=validateAssemblyProgress(index,value);onStage(index.stage(checked.current_stage).index);progress.restore(checked);undo=null;notice='loaded';persist();refresh()}
- listen(check,'change',()=>{progress.toggle(progress.snapshot().current_stage);undo=null;notice='';persist();refresh()});listen(search,'input',()=>{renderResults();if(search.value.trim())results.scrollIntoView?.({block:'nearest'})});
+ listen(check,'change',()=>{progress.toggle(progress.snapshot().current_stage);undo=null;notice='';persist();refresh()});listen(search,'input',()=>{limit=40;renderResults();if(typeof index.matchParts==='function')renderParts();if(search.value.trim())results.scrollIntoView?.({block:'nearest'})});
  let fileEpoch=0;listen(file,'change',async()=>{const epoch=++fileEpoch,input=file.files?.[0];file.value='';if(!input||!active)return;try{if(input.size>65536)throw Error('size');const text=await input.text();if(!active||epoch!==fileEpoch)return;importProgress(JSON.parse(text))}catch(e){if(!active||epoch!==fileEpoch)return;notice=String(e.message).includes('another model')?'wrong_version':'invalid';refresh()}});
  if(win)listen(win,'rig-language-change',refresh);
  refresh();

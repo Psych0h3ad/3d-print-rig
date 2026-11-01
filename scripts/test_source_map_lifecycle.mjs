@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const source=fs.readFileSync(new URL('../site/viewer/source-map-app.mjs',import.meta.url),'utf8'),start=source.lastIndexOf("window.addEventListener('rig-language-change'");
+assert(start>0);const tail=source.slice(start);
+function fixture(ready=true){const handlers=new Map(),calls=[],mark=name=>()=>calls.push(name),resource=name=>({dispose:mark(name)}),window={addEventListener:(name,fn)=>handlers.set(name,fn)};
+ const state=new Function('window','refreshCount','render','applyDisplay','resize','controller','cancelAnimationFrame','resizeObserver','picker','workbench','orbit','loaded','grid','renderer',`let disposed=false,frame=7;${tail};return()=>({disposed});`)(window,mark('count'),mark('render'),mark('display'),mark('resize'),{abort:mark('abort')},mark('cancelFrame'),{disconnect:mark('observer')},ready?resource('picker'):undefined,ready?resource('workbench'):undefined,resource('orbit'),ready?resource('model'):undefined,{geometry:resource('gridGeometry'),material:resource('gridMaterial')},resource('renderer'));
+ return {calls,state,fire:(name,event)=>handlers.get(name)(event)};
+}
+const retained=fixture();retained.fire('pagehide',{persisted:true});assert.deepEqual(retained.calls,[],'A history-cached document must retain its live model and controls');assert.equal(retained.state().disposed,false);
+retained.fire('pageshow',{persisted:true});assert.deepEqual(retained.calls,['display','resize','render']);retained.calls.length=0;
+retained.fire('pagehide',{persisted:false});assert(retained.state().disposed);assert.deepEqual(retained.calls,['abort','cancelFrame','observer','picker','workbench','orbit','model','gridGeometry','gridMaterial','renderer']);const once=[...retained.calls];retained.fire('pagehide',{persisted:false});retained.fire('pageshow',{persisted:true});assert.deepEqual(retained.calls,once,'Retired resources must not be disposed twice or revived');
+const pending=fixture(false);pending.fire('pagehide',{persisted:false});assert(pending.state().disposed);assert(!pending.calls.includes('model'));
+console.log(JSON.stringify({passed:true,scope:'Actual app lifecycle handlers with explicit resource fixtures; persisted resume, final retirement, duplicate event and pending-load controls. Not a native browser cache or GPU retirement certification.'}));

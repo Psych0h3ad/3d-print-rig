@@ -11553,6 +11553,98 @@
     "assembly.workbench.clear_note": {
       "source_revision": "4f28446ea4bc6794d527",
       "text": "완료 단계 표시를 지웠습니다."
+    },
+    "source.map.1": {
+      "source_revision": "be0f1a76cb063da8f55a",
+      "text": "원본 부품 지도"
+    },
+    "source.map.2": {
+      "source_revision": "d6baf922078c6a594abf",
+      "text": "전체 기본 조립체를 살펴봅니다. 원본 분류는 조립 순서가 아닙니다."
+    },
+    "source.map.3": {
+      "source_revision": "61f79ee5e56a73eb9416",
+      "text": "분류 및 부품 검색"
+    },
+    "source.map.4": {
+      "source_revision": "574ba51c87d9f96c3282",
+      "text": "분류 {0} / {1}"
+    },
+    "source.map.5": {
+      "source_revision": "3e8c7bd57e7cdb4e927a",
+      "text": "원본 분류 ({0})"
+    },
+    "source.map.6": {
+      "source_revision": "967b52ab34fe08012825",
+      "text": "이 분류를 검토 완료로 표시"
+    },
+    "source.map.7": {
+      "source_revision": "411ce8f3ece1efefbf99",
+      "text": "{0} / {1}개 분류 기록"
+    },
+    "source.map.8": {
+      "source_revision": "9ced1aefc3e9ac4d3426",
+      "text": "이 분류의 원본 항목"
+    },
+    "source.map.9": {
+      "source_revision": "50b2047e3ea45400f56b",
+      "text": "분류 내 {0} · 표시 {1}"
+    },
+    "source.map.10": {
+      "source_revision": "f6fa1b18fca50903fb7a",
+      "text": "이 분류 열기 ({0})"
+    },
+    "source.map.11": {
+      "source_revision": "001931ed8d8be6e15a4b",
+      "text": "부품 지도 {0}/{1}"
+    },
+    "source.map.12": {
+      "source_revision": "2f9df2346be5543a84b4",
+      "text": "이전 분류"
+    },
+    "source.map.13": {
+      "source_revision": "5d1944dffdece615a7ee",
+      "text": "다음 분류"
+    },
+    "source.map.14": {
+      "source_revision": "c7980cda73ca7d7e604a",
+      "text": "분류에 초점 맞추기"
+    },
+    "source.map.15": {
+      "source_revision": "5692da0d52942f1a9185",
+      "text": "기기 목록으로 돌아가기"
+    },
+    "source.map.16": {
+      "source_revision": "5883dc2a2eb41f3d94bb",
+      "text": "표시된 부품을 선택해 원본 분류를 찾으세요."
+    },
+    "source.map.17": {
+      "source_revision": "87716185a5c4393776c1",
+      "text": "분류, 부품 이름, M3…"
+    },
+    "source.map.18": {
+      "source_revision": "d8997dc309b8a11b929f",
+      "text": "원본 자료"
+    },
+    "source.map.19": {
+      "source_revision": "08fd1187838c971a75fb",
+      "text": "전체 기본 조립체를 계속 표시합니다. 분류는 조립 순서가 아닙니다. 매뉴얼은 관련 참고 자료이며, CNC와 부속 부품의 세부 사항은 원본 지침을 확인하세요."
+    },
+    "source.map.extra.0": {
+      "source_revision": "9b7c31824627a6e6904f",
+      "text": "전체 조립체 맞추기"
+    },
+    "source.map.extra.1": {
+      "source_revision": "d9449dd233bd333062ec",
+      "text": "격자"
+    },
+    "source.map.extra.2": {
+      "source_revision": "1ca3136936fae2d36799",
+      "text": "매뉴얼 관련 장"
+    },
+    "source.map.extra.3": {
+      "source_revision": "565ab805422ec229738f",
+      "text": "원본 항목 {0} · 메시 {1}"
     }
   }
 }

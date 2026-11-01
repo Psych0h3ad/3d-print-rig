@@ -14550,6 +14550,121 @@
       "kind": "message",
       "ja": "作業済みの記録を外しました。",
       "en": "Checked stages cleared."
+    },
+    "source.map.1": {
+      "kind": "message",
+      "ja": "元CADの部品マップ",
+      "en": "Source part map"
+    },
+    "source.map.2": {
+      "kind": "message",
+      "ja": "標準構成の全体を調べます。元CADの分類は取り付け順序ではありません。",
+      "en": "Inspect the complete default assembly. Source classifications are not an insertion order."
+    },
+    "source.map.3": {
+      "kind": "message",
+      "ja": "分類・部品を検索",
+      "en": "Search classifications and parts"
+    },
+    "source.map.4": {
+      "kind": "message",
+      "ja": "分類 {0} / {1}",
+      "en": "Classification {0} / {1}"
+    },
+    "source.map.5": {
+      "kind": "message",
+      "ja": "元CADの分類（{0}）",
+      "en": "Source classifications ({0})"
+    },
+    "source.map.6": {
+      "kind": "message",
+      "ja": "この分類を確認済みにする",
+      "en": "Mark this classification reviewed"
+    },
+    "source.map.7": {
+      "kind": "message",
+      "ja": "{0} / {1}分類を記録",
+      "en": "{0} / {1} classifications recorded"
+    },
+    "source.map.8": {
+      "kind": "message",
+      "ja": "この分類の元CAD項目",
+      "en": "Source items in this classification"
+    },
+    "source.map.9": {
+      "kind": "message",
+      "ja": "分類内 {0}・表示中 {1}",
+      "en": "In classification {0} · displayed {1}"
+    },
+    "source.map.10": {
+      "kind": "message",
+      "ja": "この部品の分類へ（{0}）",
+      "en": "Open this classification ({0})"
+    },
+    "source.map.11": {
+      "kind": "message",
+      "ja": "部品マップ {0}/{1}",
+      "en": "Part map {0}/{1}"
+    },
+    "source.map.12": {
+      "kind": "message",
+      "ja": "前の分類",
+      "en": "Previous classification"
+    },
+    "source.map.13": {
+      "kind": "message",
+      "ja": "次の分類",
+      "en": "Next classification"
+    },
+    "source.map.14": {
+      "kind": "message",
+      "ja": "この分類へ寄る",
+      "en": "Focus classification"
+    },
+    "source.map.15": {
+      "kind": "message",
+      "ja": "マシン一覧に戻る",
+      "en": "Back to machines"
+    },
+    "source.map.16": {
+      "kind": "message",
+      "ja": "表示中の部品をクリックして、元CADの分類を探せます。",
+      "en": "Select a visible model part to find its classification."
+    },
+    "source.map.17": {
+      "kind": "message",
+      "ja": "分類名・部品名・M3…",
+      "en": "Classification, part name, M3…"
+    },
+    "source.map.18": {
+      "kind": "message",
+      "ja": "元モデルの出典資料",
+      "en": "Source documents"
+    },
+    "source.map.19": {
+      "kind": "message",
+      "ja": "標準構成の全体表示を保ちます。分類は取り付け順序ではありません。公式マニュアルは関連章への参照で、CNCや付属部品の詳細は各原作者の資料で確認してください。",
+      "en": "The complete default assembly stays visible. Classifications are not an insertion order. Manual links are related references; CNC and companion details require their original instructions."
+    },
+    "source.map.extra.0": {
+      "kind": "message",
+      "en": "Fit assembly",
+      "ja": "機体全体に合わせる"
+    },
+    "source.map.extra.1": {
+      "kind": "message",
+      "en": "Grid",
+      "ja": "グリッド"
+    },
+    "source.map.extra.2": {
+      "kind": "message",
+      "en": "Related manual chapter",
+      "ja": "公式マニュアルの関連章"
+    },
+    "source.map.extra.3": {
+      "kind": "message",
+      "en": "Source items {0} · meshes {1}",
+      "ja": "元CAD項目 {0}・メッシュ {1}"
     }
   }
 }

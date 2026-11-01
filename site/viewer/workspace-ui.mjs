@@ -1,18 +1,18 @@
-import {setupUsageStatistics} from './usage-statistics.mjs?v=a094671ff3ef5b2cfcb4';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=59c01ce4bc21ae310ac5';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 import {setupLayoutNavigation} from './layout-nav.mjs?v=3b2a70a879b1cd6ce5d6';
 ensureWorkspaceEntry(import.meta.url);
 import {setupDisplayPreferences,setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 // Shared presentation layer. Existing controls, IDs and CAD controllers stay intact.
-import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=ce1de4dba4ea5045a0c7';
+import {setupLanguage,originalText,messageSource} from './i18n.mjs?v=52fefcccb7320bf1c315';
 import {normalizeLanguage,languageURL} from './languages.mjs?v=2e376566920474c0f57c';
 import {printerWorkspaceURL,workspaceReturnKey,workspaceKindFor} from './workspace-return.mjs?v=ae42ffadba4c105fe02e';
 import {setupWorkspaceSharing} from './workspace-share.mjs?v=36f449afd7a9a7773743';
 import {lockInspectorHorizontalScroll} from './workspace-scroll.mjs?v=workspace-belts-1';
-import {setupChoiceSearch} from './workspace-choices.mjs?v=0d891ff1b5c6aa86d491';
+import {setupChoiceSearch} from './workspace-choices.mjs?v=7c1d634a2b182480b7bf';
 import {setupMobileLayout} from './workspace-layout.mjs?v=738c040595ec99155ce2';
-import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=44558560b5d7bc0d17f4';
+import {workspaceSectionCategory,isPrimaryWorkspaceLink} from './workspace-sections.mjs?v=a02e51da4c1cce62d163';
 const $ = selector => document.querySelector(selector);
 const node = (tag, className, text) => {
   const element = document.createElement(tag);
