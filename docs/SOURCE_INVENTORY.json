@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1279995,
-      "sha256": "41e050d03a1781c40e57c35e748a50f27a7bd9ba5168690a684f6b43f1e9b76e"
+      "bytes": 1280108,
+      "sha256": "100f2698a978e38b50274732779bb4f5b73321e5f2c4fbd92ddb87d0b6d26afd"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -2662,6 +2662,11 @@
       "path": "scripts/test_source_loading_progress.mjs",
       "bytes": 13377,
       "sha256": "c4d38de22fd698309812f16981c730c0a3f03b181eb82d1d00a5cb1affb7c57c"
+    },
+    {
+      "path": "scripts/test_source_map_lifecycle.mjs",
+      "bytes": 2352,
+      "sha256": "a5d5619b0f0dd591a3224afa01aa1ff0a5bea220ca8c4f556a11861b24c43393"
     },
     {
       "path": "scripts/test_source_parts_map.mjs",
@@ -8255,8 +8260,8 @@
     },
     {
       "path": "site/viewer/source-map-app.mjs",
-      "bytes": 9822,
-      "sha256": "417880225fcade4aba2cb5dafbf1413045711da03eb738dbaf9156d8fc8acb72"
+      "bytes": 9960,
+      "sha256": "bcb8969d045e21265828b427a7554bd482fb1ab2e3c2d5f3d030ae781a5cb9fb"
     },
     {
       "path": "site/viewer/source-map.css",
@@ -8266,7 +8271,7 @@
     {
       "path": "site/viewer/source-map.html",
       "bytes": 4505,
-      "sha256": "45848788e5db4bf7f9ce23ba885483b9de632936c0240ae9feea87c4d1dd91f5"
+      "sha256": "1b3d04fd0d52ccbc647ae3031da1f784966e95a64dcfc3a618aa94789a5706df"
     },
     {
       "path": "site/viewer/source-operating-bounds6.mjs",
