@@ -47,7 +47,7 @@ const registryData=JSON.parse(await pin(site+'/V0_INSTALLATIONS.json'));
 for(const name of ['v0-app.js','v0-assembly.mjs','v0_adapter.mjs','v0-belts.mjs','v0-chain.mjs','v0-door.mjs','v0-tophat.mjs','appearance-role.mjs'])await pin(site+'/viewer/'+name);
 await pin(path.resolve(process.argv[1]));
 const report={schema:'actual-v0-assembly-stages-v1',passed:false,workers:1,machines:[],source_sha256:{},
- scope:'Actual decoded stock GLBs, manifests and production adapters/controller. Forward/reverse/jump stages, rail and idler rigid preparation, original late upper-frame screws and cam-lock removal/refit, drive/bed/feet operations and repeated original source references. Exact native transforms outside the named preparation displays and on exit, unchanged geometry/materials and visibility restoration. Manual diagrams, insertion paths and native-solid contact qualification remain separate.',
+ scope:'Actual decoded stock GLBs, manifests and production adapters/controller. Forward/reverse/jump stages, rail, idler and mirrored XY rigid preparation, original late upper-frame screws and cam-lock removal/refit, drive/bed/feet operations and repeated original source references. Exact native transforms outside the named preparation displays and on exit, unchanged geometry/materials and visibility restoration. Manual diagrams, insertion paths and native-solid contact qualification remain separate.',
  insertion_animation_verified:false,physical_clearance_certified:false};
 function state(root){const rows=[];root.updateMatrixWorld(true);root.traverse(n=>{
  const materials=n.material?(Array.isArray(n.material)?n.material:[n.material]):[];
@@ -127,6 +127,16 @@ try{
    assert(Math.abs(delta.determinant()-1)<1e-10,'Proper rigid idler preparation required');
    for(const k of g.keys)adapter.nodes.get(k).traverse(n=>{const expected=delta.clone().multiply(new THREE.Matrix4().fromArray(originalByNode.get(n).matrix));assert(expected.elements.every((v,i)=>Math.abs(v-n.matrixWorld.elements[i])<1e-10),'Original idler bodies/bearings/shims/front screw must share one rigid transform')});
   }}
+  // Independent original occurrence enumeration, reviewed official XY pages.
+  const xyGroups=(idlerR1?[[265,266,267,268,270,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291],[297,298,304,306,307,308,309,310,311,312,313,314,315,316,317,318,319,323,324,325]]:[[263,264,265,266,268,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289],[292,293,299,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317]]).map(ns=>ns.map(idlerKey));
+  const xyRoles=(idlerR1?[[267,290,291,268],[324,306,307,304]]:[[265,288,289,266],[316,301,302,299]]).map(ns=>ns.map(idlerKey));
+  const xyInstall=spec.stages.findIndex(s=>s.id==='x-joints'),xyNodes=xyGroups.map(g=>{const out=new Set();for(const k of g)adapter.nodes.get(k).traverse(n=>out.add(n));return out});
+  function checkXYPreparation(group){
+   const node=adapter.nodes.get(group[0]),delta=node.matrixWorld.clone().multiply(new THREE.Matrix4().fromArray(originalByNode.get(node).matrix).invert());
+   assert(Math.abs(delta.determinant()-1)<1e-10,'Proper rigid XY inspection transform required');
+   assert(Math.abs(delta.elements[0]-1)<1e-10&&Math.abs(delta.elements[5]+1)<1e-10&&Math.abs(delta.elements[10]+1)<1e-10,'XY manual preparation is one half-turn about world X');
+   for(const k of group)adapter.nodes.get(k).traverse(n=>{const expected=delta.clone().multiply(new THREE.Matrix4().fromArray(originalByNode.get(n).matrix));assert(expected.elements.every((v,i)=>Math.abs(v-n.matrixWorld.elements[i])<1e-10),'Whole original XY body/insert/screw/shim/bearing/spacer cohort must share one rigid transform')});
+  }
   function checkPreparation(){
    const centers=[];
    for(const g of railGroups){const holder=adapter.nodes.get(g.holder),old=originalByNode.get(holder),delta=holder.matrixWorld.clone().multiply(new THREE.Matrix4().fromArray(old.matrix).invert());
@@ -174,6 +184,14 @@ try{
    if(idlerPreparing){for(const k of keys)if(!idlerPrepared.has(k))keys.delete(k);assert.deepEqual(keys,idlerPrepared);assert(r.subassembly)}
    else if(index>=idlerPrep)for(const g of idlerGroups)if(index<g.installed)for(const k of g.keys)keys.delete(k);
    if(['top-front-access','top-front-fasteners'].includes(r.id)){for(const k of idlerCams){keys.delete(k);assert(r.stored_keys.includes(k),'Original cam locks are explicitly stored for access, not discarded')}}
+   const xyMatch=/^xy-(left|right)(?:-(inserts|stack|close))?$/.exec(r.id),xySide=xyMatch?Number(xyMatch[1]==='right'):-1,xyPreparing=xySide>=0;
+   if(xyPreparing){
+    const group=xyGroups[xySide],roles=xyRoles[xySide],kind=xyMatch[2]||'check',allow=new Set(kind==='inserts'?roles.slice(0,3):kind==='stack'?group.filter(k=>!roles.includes(k)):group);
+    for(const k of keys)if(!allow.has(k))keys.delete(k);
+    assert.deepEqual(keys,allow);assert.equal(r.subassembly,true);assert.equal(r.operation_part_keys.length,allow.size);assert.deepEqual(new Set(r.stored_keys),new Set(spec.stages.slice(0,index+1).flatMap(s=>s.part_keys).filter(k=>!allow.has(k))));
+    assert.equal(allow.size,{inserts:3,stack:16,close:20,check:20}[kind]);checkXYPreparation(group);
+   }else if(index<xyInstall)for(const g of xyGroups)for(const k of g)keys.delete(k);
+   if(r.id==='x-joints'){assert.equal(r.subassembly,false);for(const g of xyGroups)for(const k of g)assert(r.operation_part_keys.includes(k),'Install the same original prepared XY joint');}
    for(const n of r1?[250,257,166,209]:[248,255,164,207]){
     const k=idlerKey(n),front=(r1?[250,257]:[248,255]).includes(n),owner=front?'top-front-fasteners':'top-rear-fasteners';
     assert.equal(workbench.owner(k).id,owner,'Original upper-frame M3x10 belongs to later receiving-member operation');
@@ -182,7 +200,7 @@ try{
    for(const[k,n]of adapter.nodes)assert.equal(n.visible,visibility.get(k)&&keys.has(k),'Manual installation-stage visibility: '+k);
    for(const c of companions)assert.equal(c.node.visible,c.part_keys.some(k=>keys.has(k)),'Support-omitted carriage follows native stage');
    for(const seat of spec.seat_display_dependencies)assert(!shown(seat.part_key)||shown(seat.carrier_key),'Preloaded nut displayed without its receiving source member');
-   assert.equal(r.total,spec.stages.length);assert.equal(r.added,spec.stages[index].part_keys.length);unchanged(scene,original,false,true,prep?preparationNodes:idlerPreparing?idlerPreparationNodes:new Set());if(prep)checkPreparation();if(idlerPreparing)checkIdlerPreparation();poses.push({index,id:r.id,added:r.added,visible:r.visible_count,prepared:prep,idler_prepared:idlerPreparing,stored:r.stored_count,subassembly:r.subassembly,underside:r.underside,...(bedView?{bedStored:r.stored_keys.length,operationReferences:(r.operation_part_keys||spec.stages[index].part_keys).length}:{} )});
+   assert.equal(r.total,spec.stages.length);assert.equal(r.added,spec.stages[index].part_keys.length);unchanged(scene,original,false,true,prep?preparationNodes:idlerPreparing?idlerPreparationNodes:xyPreparing?xyNodes[xySide]:new Set());if(prep)checkPreparation();if(idlerPreparing)checkIdlerPreparation();poses.push({index,id:r.id,added:r.added,visible:r.visible_count,prepared:prep,idler_prepared:idlerPreparing,xy_prepared:xyPreparing,stored:r.stored_count,subassembly:r.subassembly,underside:r.underside,...(bedView?{bedStored:r.stored_keys.length,operationReferences:(r.operation_part_keys||spec.stages[index].part_keys).length}:{} )});
    const shownParts=controller.getDisplayedParts();assert.equal(shownParts.length,r.visible_count);assert.deepEqual(shownParts.map(p=>p.key),controller.getVisibleKeys());
    for(const p of shownParts){assert(keys.has(p.key));for(const n of p.nodes)assert(displayed(n))}
    for(const p of [shownParts[0],shownParts[Math.floor(shownParts.length/2)],shownParts.at(-1)].filter(Boolean))assert.deepEqual(controller.getPartNodes(p.key),p.nodes);
@@ -210,7 +228,7 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }

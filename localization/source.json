@@ -15285,6 +15285,71 @@
       "kind": "message",
       "en": "Install the two original rear M3x10 screws through the drive housings into the upper frame members.",
       "ja": "元の後側M3x10を2本、ドライブハウジングから上側横材へ取り付けます。"
+    },
+    "v0.xy.f620952a477b": {
+      "kind": "message",
+      "en": "Fit the left XY joint inserts",
+      "ja": "左XYジョイントにインサートを入れる"
+    },
+    "v0.xy.8b9ea04825d5": {
+      "kind": "message",
+      "en": "Fit the two original heat-set inserts slightly below the printed surface. Set this body aside while building the bearing stack.",
+      "ja": "元の熱圧入インサート2個を、印刷部品の表面より少し低く入れます。この部品はベアリングの重ね組みが終わるまで別に置きます。"
+    },
+    "v0.xy.8b45829d7dd9": {
+      "kind": "message",
+      "en": "Build the left XY bearing stacks upside down",
+      "ja": "左XYジョイントを逆さに重ね組み"
+    },
+    "v0.xy.6e5230042c6b": {
+      "kind": "message",
+      "en": "Use the matching printed plate, two M3x25 screws, four F623 bearings, eight shims and the original spacers. Keep the illustrated mirrored bearing levels.",
+      "ja": "対応する印刷部品、M3x25を2本、F623ベアリング4個、シム8枚と元のスペーサーを使います。左右でベアリング高さが逆になる説明図を確認します。"
+    },
+    "v0.xy.748953cf43e7": {
+      "kind": "message",
+      "en": "Close the left XY joint",
+      "ja": "左XYジョイントを閉じる"
+    },
+    "v0.xy.9d2b4afd0f1d": {
+      "kind": "message",
+      "en": "Bring back the same body with its two inserts and fit the original M2x10 self-tapping screw. Keep the two mirrored joint bodies on their specified sides.",
+      "ja": "インサート2個を入れた同じ部品を戻し、元のM2x10タッピングネジを取り付けます。左右のジョイント部品を取り違えないようにします。"
+    },
+    "v0.xy.e22ede36a540": {
+      "kind": "message",
+      "en": "Check the left XY joint internal gap",
+      "ja": "左XYジョイントの内寸を確認"
+    },
+    "v0.xy.fbfd2e75e2a6": {
+      "kind": "message",
+      "en": "Check the illustrated 19 mm gap between the two inner printed faces. The complete prepared joint stays aside until it is attached to the X extrusion.",
+      "ja": "内側の印刷面どうしの間隔が、説明図の19 mmになっていることを確認します。組み終えたジョイントは、X押出材へ取り付けるまで別に置きます。"
+    },
+    "v0.xy.250a26ca3724": {
+      "kind": "message",
+      "en": "Fit the right XY joint inserts",
+      "ja": "右XYジョイントにインサートを入れる"
+    },
+    "v0.xy.2f0decdccd2e": {
+      "kind": "message",
+      "en": "Build the right XY bearing stacks upside down",
+      "ja": "右XYジョイントを逆さに重ね組み"
+    },
+    "v0.xy.50836913a465": {
+      "kind": "message",
+      "en": "Close the right XY joint",
+      "ja": "右XYジョイントを閉じる"
+    },
+    "v0.xy.49b6208afc46": {
+      "kind": "message",
+      "en": "Check the right XY joint internal gap",
+      "ja": "右XYジョイントの内寸を確認"
+    },
+    "v0.xy.852c43ba0639": {
+      "kind": "message",
+      "en": "Only the current XY joint operation is shown. Prepared parts stay aside until the closing or installation operation.",
+      "ja": "現在のXYジョイント工程だけを表示しています。準備した部品は、閉じる工程や取付工程まで別に置きます。"
     }
   }
 }

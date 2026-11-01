@@ -1,0 +1,796 @@
+{
+  "scope": "Original stock V0.2/r1 XY preparation reference operations, official left/right diagrams, unchanged source geometry/materials/source keys and installation matrices. One rigid inspection transform per complete20-leaf joint. No insertion, torque, native-solid mating or complete machine qualification.",
+  "stage_sha256": "689e54096b54f6eeaaa9d5d96c6a735a8fc43391e6477ab0115bc9aeb8ba2a4e",
+  "previous_stage_sha256": "1a72f36890af24c6f61f8ec86843bf77406ec2b5a13a207a7bc357ca8c7edc37",
+  "machines": [
+    {
+      "machine": "voron_v02_120",
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+      "manual": {
+        "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8/Manuals/VORON_V0.2_Assembly_Manual.pdf",
+        "sha256": "69f989092ea63b60a15407ce1c4b4f9e260702330ae00416a059eb705d5170fe",
+        "pages": 246,
+        "revision": "2023-03-03 @ a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8"
+      },
+      "stages": 129,
+      "sourceLeaves": 1653,
+      "preparedSourceLeaves": 40,
+      "operations": [
+        {
+          "id": "xy-left-inserts",
+          "pages": [
+            109,
+            109
+          ],
+          "introduced_source_keys": [
+            "v02_00265",
+            "v02_00288",
+            "v02_00289"
+          ],
+          "referenced_source_keys": [
+            "v02_00265",
+            "v02_00288",
+            "v02_00289"
+          ]
+        },
+        {
+          "id": "xy-left-stack",
+          "pages": [
+            109,
+            109
+          ],
+          "introduced_source_keys": [
+            "v02_00263",
+            "v02_00264",
+            "v02_00268",
+            "v02_00275",
+            "v02_00276",
+            "v02_00277",
+            "v02_00278",
+            "v02_00279",
+            "v02_00280",
+            "v02_00281",
+            "v02_00282",
+            "v02_00283",
+            "v02_00284",
+            "v02_00285",
+            "v02_00286",
+            "v02_00287"
+          ],
+          "referenced_source_keys": [
+            "v02_00263",
+            "v02_00264",
+            "v02_00268",
+            "v02_00275",
+            "v02_00276",
+            "v02_00277",
+            "v02_00278",
+            "v02_00279",
+            "v02_00280",
+            "v02_00281",
+            "v02_00282",
+            "v02_00283",
+            "v02_00284",
+            "v02_00285",
+            "v02_00286",
+            "v02_00287"
+          ]
+        },
+        {
+          "id": "xy-left-close",
+          "pages": [
+            110,
+            110
+          ],
+          "introduced_source_keys": [
+            "v02_00266"
+          ],
+          "referenced_source_keys": [
+            "v02_00263",
+            "v02_00264",
+            "v02_00265",
+            "v02_00266",
+            "v02_00268",
+            "v02_00275",
+            "v02_00276",
+            "v02_00277",
+            "v02_00278",
+            "v02_00279",
+            "v02_00280",
+            "v02_00281",
+            "v02_00282",
+            "v02_00283",
+            "v02_00284",
+            "v02_00285",
+            "v02_00286",
+            "v02_00287",
+            "v02_00288",
+            "v02_00289"
+          ]
+        },
+        {
+          "id": "xy-left",
+          "pages": [
+            110,
+            110
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00263",
+            "v02_00264",
+            "v02_00265",
+            "v02_00266",
+            "v02_00268",
+            "v02_00275",
+            "v02_00276",
+            "v02_00277",
+            "v02_00278",
+            "v02_00279",
+            "v02_00280",
+            "v02_00281",
+            "v02_00282",
+            "v02_00283",
+            "v02_00284",
+            "v02_00285",
+            "v02_00286",
+            "v02_00287",
+            "v02_00288",
+            "v02_00289"
+          ]
+        },
+        {
+          "id": "xy-right-inserts",
+          "pages": [
+            111,
+            111
+          ],
+          "introduced_source_keys": [
+            "v02_00316",
+            "v02_00301",
+            "v02_00302"
+          ],
+          "referenced_source_keys": [
+            "v02_00316",
+            "v02_00301",
+            "v02_00302"
+          ]
+        },
+        {
+          "id": "xy-right-stack",
+          "pages": [
+            111,
+            111
+          ],
+          "introduced_source_keys": [
+            "v02_00292",
+            "v02_00293",
+            "v02_00303",
+            "v02_00304",
+            "v02_00305",
+            "v02_00306",
+            "v02_00307",
+            "v02_00308",
+            "v02_00309",
+            "v02_00310",
+            "v02_00311",
+            "v02_00312",
+            "v02_00313",
+            "v02_00314",
+            "v02_00315",
+            "v02_00317"
+          ],
+          "referenced_source_keys": [
+            "v02_00292",
+            "v02_00293",
+            "v02_00303",
+            "v02_00304",
+            "v02_00305",
+            "v02_00306",
+            "v02_00307",
+            "v02_00308",
+            "v02_00309",
+            "v02_00310",
+            "v02_00311",
+            "v02_00312",
+            "v02_00313",
+            "v02_00314",
+            "v02_00315",
+            "v02_00317"
+          ]
+        },
+        {
+          "id": "xy-right-close",
+          "pages": [
+            112,
+            112
+          ],
+          "introduced_source_keys": [
+            "v02_00299"
+          ],
+          "referenced_source_keys": [
+            "v02_00292",
+            "v02_00293",
+            "v02_00299",
+            "v02_00301",
+            "v02_00302",
+            "v02_00303",
+            "v02_00304",
+            "v02_00305",
+            "v02_00306",
+            "v02_00307",
+            "v02_00308",
+            "v02_00309",
+            "v02_00310",
+            "v02_00311",
+            "v02_00312",
+            "v02_00313",
+            "v02_00314",
+            "v02_00315",
+            "v02_00316",
+            "v02_00317"
+          ]
+        },
+        {
+          "id": "xy-right",
+          "pages": [
+            112,
+            112
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00292",
+            "v02_00293",
+            "v02_00299",
+            "v02_00301",
+            "v02_00302",
+            "v02_00303",
+            "v02_00304",
+            "v02_00305",
+            "v02_00306",
+            "v02_00307",
+            "v02_00308",
+            "v02_00309",
+            "v02_00310",
+            "v02_00311",
+            "v02_00312",
+            "v02_00313",
+            "v02_00314",
+            "v02_00315",
+            "v02_00316",
+            "v02_00317"
+          ]
+        },
+        {
+          "id": "x-joints",
+          "pages": [
+            114,
+            115
+          ],
+          "introduced_source_keys": [
+            "v02_00267",
+            "v02_00270",
+            "v02_00271",
+            "v02_00291",
+            "v02_00294",
+            "v02_00300"
+          ],
+          "referenced_source_keys": [
+            "v02_00267",
+            "v02_00270",
+            "v02_00271",
+            "v02_00291",
+            "v02_00294",
+            "v02_00300",
+            "v02_00263",
+            "v02_00264",
+            "v02_00265",
+            "v02_00266",
+            "v02_00268",
+            "v02_00275",
+            "v02_00276",
+            "v02_00277",
+            "v02_00278",
+            "v02_00279",
+            "v02_00280",
+            "v02_00281",
+            "v02_00282",
+            "v02_00283",
+            "v02_00284",
+            "v02_00285",
+            "v02_00286",
+            "v02_00287",
+            "v02_00288",
+            "v02_00289",
+            "v02_00292",
+            "v02_00293",
+            "v02_00299",
+            "v02_00301",
+            "v02_00302",
+            "v02_00303",
+            "v02_00304",
+            "v02_00305",
+            "v02_00306",
+            "v02_00307",
+            "v02_00308",
+            "v02_00309",
+            "v02_00310",
+            "v02_00311",
+            "v02_00312",
+            "v02_00313",
+            "v02_00314",
+            "v02_00315",
+            "v02_00316",
+            "v02_00317",
+            "v02_00290",
+            "v02_00318",
+            "v02_00319",
+            "v02_00321",
+            "v02_00322",
+            "v02_00323",
+            "v02_00324",
+            "v02_00325",
+            "v02_00326",
+            "v02_00327",
+            "v02_00328",
+            "v02_00329",
+            "v02_00330"
+          ]
+        }
+      ],
+      "internalGapDatums": [
+        {
+          "upperSourceKey": "v02_00264",
+          "lowerSourceKey": "v02_00265",
+          "upperNativeFace": 53,
+          "lowerNativeFace": 85,
+          "upperBRepSHA256": "5e77362fab4d9b24ebf44a79a7ce7c0ed638c03790b3937070d8e8669f46ca97",
+          "lowerBRepSHA256": "746d60c1a2e2cc0d8312cf1ee91790880e03aef3ac69ec57697cc6926d57372a",
+          "nativePlaneSeparation_mm": 18.999999999999716,
+          "actualPlaneSeparation_mm": 18.999993801116943,
+          "upperSignedFacetWitnesses": 148,
+          "lowerSignedFacetWitnesses": 211
+        },
+        {
+          "upperSourceKey": "v02_00315",
+          "lowerSourceKey": "v02_00316",
+          "upperNativeFace": 34,
+          "lowerNativeFace": 35,
+          "upperBRepSHA256": "d327046f4a20c60c1e81b149a03c387b59b059681a63e2549e92cbfc250cc1b6",
+          "lowerBRepSHA256": "44b754c02ab5fbb82d009a7978b0230893cb666d314ac11e43deea11b64f215b",
+          "nativePlaneSeparation_mm": 18.999999999999716,
+          "actualPlaneSeparation_mm": 18.999993801116943,
+          "upperSignedFacetWitnesses": 148,
+          "lowerSignedFacetWitnesses": 211
+        }
+      ],
+      "datumScope": "Finite original native plane identities/areas/world axes and signed actual planar facet witnesses. Does not establish continuous triangle containment in trimmed faces, insert depth, receiver fit, thread/tolerance or assembly contact."
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "manual": {
+        "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a53fc87562fd630c846af38d7de850c894dc3d85/Manuals/VORON_V0.2r1_Assembly_Manual.pdf",
+        "sha256": "5d9af5a34304c751799c4ab71d9d42ed0c3ebc20b14df4b612d332ce1cb44b6f",
+        "pages": 253,
+        "revision": "2024-05-07 @ a53fc87562fd630c846af38d7de850c894dc3d85"
+      },
+      "stages": 134,
+      "sourceLeaves": 1678,
+      "preparedSourceLeaves": 40,
+      "operations": [
+        {
+          "id": "xy-left-inserts",
+          "pages": [
+            115,
+            115
+          ],
+          "introduced_source_keys": [
+            "v02r1_00267",
+            "v02r1_00290",
+            "v02r1_00291"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00267",
+            "v02r1_00290",
+            "v02r1_00291"
+          ]
+        },
+        {
+          "id": "xy-left-stack",
+          "pages": [
+            115,
+            115
+          ],
+          "introduced_source_keys": [
+            "v02r1_00265",
+            "v02r1_00266",
+            "v02r1_00270",
+            "v02r1_00277",
+            "v02r1_00278",
+            "v02r1_00279",
+            "v02r1_00280",
+            "v02r1_00281",
+            "v02r1_00282",
+            "v02r1_00283",
+            "v02r1_00284",
+            "v02r1_00285",
+            "v02r1_00286",
+            "v02r1_00287",
+            "v02r1_00288",
+            "v02r1_00289"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00265",
+            "v02r1_00266",
+            "v02r1_00270",
+            "v02r1_00277",
+            "v02r1_00278",
+            "v02r1_00279",
+            "v02r1_00280",
+            "v02r1_00281",
+            "v02r1_00282",
+            "v02r1_00283",
+            "v02r1_00284",
+            "v02r1_00285",
+            "v02r1_00286",
+            "v02r1_00287",
+            "v02r1_00288",
+            "v02r1_00289"
+          ]
+        },
+        {
+          "id": "xy-left-close",
+          "pages": [
+            116,
+            116
+          ],
+          "introduced_source_keys": [
+            "v02r1_00268"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00265",
+            "v02r1_00266",
+            "v02r1_00267",
+            "v02r1_00268",
+            "v02r1_00270",
+            "v02r1_00277",
+            "v02r1_00278",
+            "v02r1_00279",
+            "v02r1_00280",
+            "v02r1_00281",
+            "v02r1_00282",
+            "v02r1_00283",
+            "v02r1_00284",
+            "v02r1_00285",
+            "v02r1_00286",
+            "v02r1_00287",
+            "v02r1_00288",
+            "v02r1_00289",
+            "v02r1_00290",
+            "v02r1_00291"
+          ]
+        },
+        {
+          "id": "xy-left",
+          "pages": [
+            116,
+            116
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00265",
+            "v02r1_00266",
+            "v02r1_00267",
+            "v02r1_00268",
+            "v02r1_00270",
+            "v02r1_00277",
+            "v02r1_00278",
+            "v02r1_00279",
+            "v02r1_00280",
+            "v02r1_00281",
+            "v02r1_00282",
+            "v02r1_00283",
+            "v02r1_00284",
+            "v02r1_00285",
+            "v02r1_00286",
+            "v02r1_00287",
+            "v02r1_00288",
+            "v02r1_00289",
+            "v02r1_00290",
+            "v02r1_00291"
+          ]
+        },
+        {
+          "id": "xy-right-inserts",
+          "pages": [
+            117,
+            117
+          ],
+          "introduced_source_keys": [
+            "v02r1_00324",
+            "v02r1_00306",
+            "v02r1_00307"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00324",
+            "v02r1_00306",
+            "v02r1_00307"
+          ]
+        },
+        {
+          "id": "xy-right-stack",
+          "pages": [
+            117,
+            117
+          ],
+          "introduced_source_keys": [
+            "v02r1_00297",
+            "v02r1_00298",
+            "v02r1_00308",
+            "v02r1_00309",
+            "v02r1_00310",
+            "v02r1_00311",
+            "v02r1_00312",
+            "v02r1_00313",
+            "v02r1_00314",
+            "v02r1_00315",
+            "v02r1_00316",
+            "v02r1_00317",
+            "v02r1_00318",
+            "v02r1_00319",
+            "v02r1_00323",
+            "v02r1_00325"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00297",
+            "v02r1_00298",
+            "v02r1_00308",
+            "v02r1_00309",
+            "v02r1_00310",
+            "v02r1_00311",
+            "v02r1_00312",
+            "v02r1_00313",
+            "v02r1_00314",
+            "v02r1_00315",
+            "v02r1_00316",
+            "v02r1_00317",
+            "v02r1_00318",
+            "v02r1_00319",
+            "v02r1_00323",
+            "v02r1_00325"
+          ]
+        },
+        {
+          "id": "xy-right-close",
+          "pages": [
+            118,
+            118
+          ],
+          "introduced_source_keys": [
+            "v02r1_00304"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00297",
+            "v02r1_00298",
+            "v02r1_00304",
+            "v02r1_00306",
+            "v02r1_00307",
+            "v02r1_00308",
+            "v02r1_00309",
+            "v02r1_00310",
+            "v02r1_00311",
+            "v02r1_00312",
+            "v02r1_00313",
+            "v02r1_00314",
+            "v02r1_00315",
+            "v02r1_00316",
+            "v02r1_00317",
+            "v02r1_00318",
+            "v02r1_00319",
+            "v02r1_00323",
+            "v02r1_00324",
+            "v02r1_00325"
+          ]
+        },
+        {
+          "id": "xy-right",
+          "pages": [
+            118,
+            118
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00297",
+            "v02r1_00298",
+            "v02r1_00304",
+            "v02r1_00306",
+            "v02r1_00307",
+            "v02r1_00308",
+            "v02r1_00309",
+            "v02r1_00310",
+            "v02r1_00311",
+            "v02r1_00312",
+            "v02r1_00313",
+            "v02r1_00314",
+            "v02r1_00315",
+            "v02r1_00316",
+            "v02r1_00317",
+            "v02r1_00318",
+            "v02r1_00319",
+            "v02r1_00323",
+            "v02r1_00324",
+            "v02r1_00325"
+          ]
+        },
+        {
+          "id": "x-joints",
+          "pages": [
+            120,
+            121
+          ],
+          "introduced_source_keys": [
+            "v02r1_00269",
+            "v02r1_00272",
+            "v02r1_00273",
+            "v02r1_00296",
+            "v02r1_00299",
+            "v02r1_00305"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00269",
+            "v02r1_00272",
+            "v02r1_00273",
+            "v02r1_00296",
+            "v02r1_00299",
+            "v02r1_00305",
+            "v02r1_00265",
+            "v02r1_00266",
+            "v02r1_00267",
+            "v02r1_00268",
+            "v02r1_00270",
+            "v02r1_00277",
+            "v02r1_00278",
+            "v02r1_00279",
+            "v02r1_00280",
+            "v02r1_00281",
+            "v02r1_00282",
+            "v02r1_00283",
+            "v02r1_00284",
+            "v02r1_00285",
+            "v02r1_00286",
+            "v02r1_00287",
+            "v02r1_00288",
+            "v02r1_00289",
+            "v02r1_00290",
+            "v02r1_00291",
+            "v02r1_00297",
+            "v02r1_00298",
+            "v02r1_00304",
+            "v02r1_00306",
+            "v02r1_00307",
+            "v02r1_00308",
+            "v02r1_00309",
+            "v02r1_00310",
+            "v02r1_00311",
+            "v02r1_00312",
+            "v02r1_00313",
+            "v02r1_00314",
+            "v02r1_00315",
+            "v02r1_00316",
+            "v02r1_00317",
+            "v02r1_00318",
+            "v02r1_00319",
+            "v02r1_00323",
+            "v02r1_00324",
+            "v02r1_00325",
+            "v02r1_00292",
+            "v02r1_00293",
+            "v02r1_00294",
+            "v02r1_00295",
+            "v02r1_00320",
+            "v02r1_00321",
+            "v02r1_00322",
+            "v02r1_00326",
+            "v02r1_00327",
+            "v02r1_00329",
+            "v02r1_00330",
+            "v02r1_00331",
+            "v02r1_00332",
+            "v02r1_00333",
+            "v02r1_00334",
+            "v02r1_00335",
+            "v02r1_00336",
+            "v02r1_00337",
+            "v02r1_00338"
+          ]
+        }
+      ],
+      "internalGapDatums": [
+        {
+          "upperSourceKey": "v02r1_00266",
+          "lowerSourceKey": "v02r1_00267",
+          "upperNativeFace": 1,
+          "lowerNativeFace": 85,
+          "upperBRepSHA256": "fa2857fe7761c16a5e61573e6aa33d5842ae5f0e24fadf49f3876dc685303cc8",
+          "lowerBRepSHA256": "e7d201b472300b8befe1e413f5ff4cdb17944056ea613d3e6c6eccb938629e1c",
+          "nativePlaneSeparation_mm": 18.999999999999915,
+          "actualPlaneSeparation_mm": 18.999993801116943,
+          "upperSignedFacetWitnesses": 148,
+          "lowerSignedFacetWitnesses": 211
+        },
+        {
+          "upperSourceKey": "v02r1_00323",
+          "lowerSourceKey": "v02r1_00324",
+          "upperNativeFace": 10,
+          "lowerNativeFace": 35,
+          "upperBRepSHA256": "caeb6e7cebf65e8a5ea4125f3a65d749ecbad12fce0d05d68400eff528abe674",
+          "lowerBRepSHA256": "961aa70e3fdfbad142f7fb12772562533eea12e4a3c211f64ace10c8dbab2369",
+          "nativePlaneSeparation_mm": 18.999999999999943,
+          "actualPlaneSeparation_mm": 18.999993801116943,
+          "upperSignedFacetWitnesses": 148,
+          "lowerSignedFacetWitnesses": 211
+        }
+      ],
+      "datumScope": "Finite original native plane identities/areas/world axes and signed actual planar facet witnesses. Does not establish continuous triangle containment in trimmed faces, insert depth, receiver fit, thread/tolerance or assembly contact."
+    }
+  ],
+  "software_regressions": [
+    "test_v0_xy_preparation.mjs",
+    "test_v0_manual_camera.mjs",
+    "test_v0_assembly_app.mjs",
+    "test_assembly_progress_migration.mjs"
+  ],
+  "actual_asset_release_audit": "audit_v0_assembly_assets.mjs",
+  "native_mating_qualified": false,
+  "insertion_animation_verified": false,
+  "model_registrations_changed": false,
+  "source_part_keys_changed": false,
+  "progress_scope": "Exact earlier source identities only. Preserve source-part checks and unaffected stage records, open split XY work at insert preparation and leave all newly split XY operations unchecked. Old browser storage remains separate. No machine configuration format change.",
+  "camera_scope": "Named views use actual displayed part bounds while assembly is active; normal/empty view presets retain prior framing. Automatic manual/part fitting clears stale preset indicators. Real bundled pointer-control fixtures and selected IAB scenes remain distinct evidence.",
+  "browser_scope": {
+    "browser": "IAB Chromium",
+    "viewport": [
+      1280,
+      720
+    ],
+    "analytics": "off",
+    "selectedMachines": [
+      "voron_v02_120",
+      "voron_v02r1_120"
+    ],
+    "selectedRightStackTitlesLanguages": [
+      "en",
+      "ja",
+      "es",
+      "ko",
+      "ru",
+      "de"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "actualPNGDimensions": [
+      2560,
+      1824
+    ],
+    "exactFilePairs": 12,
+    "scope": "Selected operation/edit/filechooser migration/palette/PNG and original-state restoration only. No real-mobile, multiple-browser or complete physical-fit claim."
+  },
+  "source_sha256": {
+    "site/viewer/v0-rail-preparation.mjs": "74bbc70d05eb89bed68a19a90c950388c9df203bdbfa71e1a8265bfdc8efc2df",
+    "site/viewer/v0-drive-assembly.mjs": "87761f3c0ebfce5998a9facfce27958dcbe4c8223c98fa91c54234c539cb3e74",
+    "site/viewer/v0-bed-assembly.mjs": "3163b8e34404795e671794f66c690323f820b3dbd2e0ff1a549ba6b6ae6cac31",
+    "site/viewer/v0-feet-assembly.mjs": "ee39e640a1ba4e93eac0d6b8e052e25db732df3696757b0ef45c68975aa36a9d",
+    "site/viewer/v0-idler-assembly.mjs": "0847fa8bd4d51759768930ef0b33712cd1d859135de60b93e1990a42a4495bc0",
+    "site/viewer/v0-xy-preparation.mjs": "0127d6a73db5ed16ccff2ce1494ec88b977e5aa87e2124af70eda20cc636dccf",
+    "site/viewer/v0-assembly.mjs": "992f4a0b6212e813415f3af5b3c9006a923441b87389cf7972496044a009eb1f",
+    "site/viewer/v0-app.js": "967a02a84797ca9e37a5905f855238fb7e102cdef8b18c270030657f762d7eab",
+    "site/viewer/assembly-workbench.mjs": "ab9ca37cb6afde1331f2b52b8d886b7fbd3dc7df194a4aa09a3cbec8c7c90b6c",
+    "site/viewer/assembly-workbench-model.mjs": "83b0d982f9b8dad8c28a81cab7c5f2fef0f3e595754036aee01a0a26fa99df78",
+    "site/viewer/assembly-progress-migrations.mjs": "c1a32fd13ba2aa1ccb36d8e7f94f6de64ec10d2d3e85e13d189de0954641682a"
+  },
+  "source_newline_policy": "Exact canonical LF application bytes. Model/manual hashes retain their original raw-byte contract."
+}

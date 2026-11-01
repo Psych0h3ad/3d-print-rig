@@ -4,10 +4,10 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {loadMonolithData} from './monolith-machine.js?v=063fe848cb85f7825fb5';
+import {loadMonolithData} from './monolith-machine.js?v=78f941a56379d58a4f7f';
 import {setupChangerBank} from './changer-bank.js?v=f5029fbbdd962cbe2c85';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=6da36a80178332ffa86b';
-import {headPrinterLink} from './head-navigation.mjs?v=75b666200e36b4e3c031';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=a9011c58abd639be6f0d';
+import {headPrinterLink} from './head-navigation.mjs?v=2bc6ee2b77cf991bdba6';
 import {headBuilderDimensions} from './configuration-model.js?v=ffcb5378701b391d2cab';
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {headPrintedCounts,visibleInAsset} from './head-printed-parts.mjs?v=8f8ed3d5c06ff2b0f6c8';
@@ -16,8 +16,8 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {setupConfigurations} from './configurations.js?v=d77ac4d66ce7b6b9871b';
-import {setupPublicInfo} from './public-info.js?v=5372304c5b5f1c8629bb';
+import {setupConfigurations} from './configurations.js?v=28a0618a09994a22f0ca';
+import {setupPublicInfo} from './public-info.js?v=569ac7ab5ced73ec9bf6';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {headPlan,headPlacement,partKey,headCombinationCount} from './head-assembly.js?v=workspace-belts-1';
 import {validateEvaMetadata,bindEvaMeshIdentities} from './eva-heads.mjs?v=b53ce6925a6fec3b5b10';
@@ -26,9 +26,9 @@ import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=8861ff03a8160acad48b';
+import {setupHeadBuilder} from './builder-ui.mjs?v=13f03825a92cb03f5527';
 import {validateBuilderExtras} from './toolhead-builder.mjs?v=7177100fadcc7fdc8975';
-import {setupSurfaceStep} from './step-surface-ui.mjs?v=5b7f6851ee53aa7703d3';
+import {setupSurfaceStep} from './step-surface-ui.mjs?v=090434de50e4d27febb3';
 import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 export async function mount(scope){
 let machineRegistry,toolBank,bankRig;
@@ -240,7 +240,7 @@ try{
  toolBank=setupChangerBank({before:$('#assemblyScope'),catalog:bankCatalog,rig:bankAdapter,data:headData.bank,extras:{presentation:'toolhead',getExtras:extras,applyExtras:restoreExtras,validateExtras:validateBuilderExtras,onSettled:()=>{builder?.update();if(ready){appearance();visibleBounds();fit()}}}});
  const controller=await setupConfigurations(catalog,install,toolBank.options);await toolBank.bind(controller);
  if(!ready)throw Error('ヘッドのCADを表示できませんでした');
- let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=39077ecd2fb888ab969b');if(r.ok)pins=(await r.json()).sources||[]}catch{}
+ let pins=[];try{const r=await fetch('../PUBLIC_CATALOG.json?v=6ea4b81efa79fcbe691f');if(r.ok)pins=(await r.json()).sources||[]}catch{}
  builder=setupHeadBuilder(catalog,{getVariant:()=>currentVariant,getMetadata:()=>new Map([...cached].filter(([,p])=>p.loaded).map(([id,p])=>[id,p.loaded.meta])),getExtras:()=>toolBank.options.getExtras(),pins,selectVariant:id=>controller.selectVariant(id),isBusy:()=>controller.busy});
  setupSurfaceStep({button:$('#buildSurfaceStep'),scope,isBusy:()=>controller.busy,getSnapshot:()=>({cached,bench,THREE,catalog,href:location.href,configuration:currentVariant.id,bankEnabled:toolBank.options.getExtras().tool_bank?.enabled===true})});
 }catch(e){$('#loading').hidden=false;$('#loading').textContent=e.message;document.body.dataset.assetStatus='error';console.error(e)}

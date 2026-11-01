@@ -84,7 +84,8 @@ class Element{
   Object.assign(this,{id,assembly,mobile,role,disabled,hidden:false,checked:false,value:'',textContent:'',children:[],dataset:{}});
  }
  closest(selector){return selector==='#assemblyControls'&&this.assembly||selector==='.mobile-layout'&&this.mobile?this:null}
- getAttribute(name){return name==='role'?this.role:null}
+ getAttribute(name){return name==='role'?this.role:this.attributes?.[name]??null}
+ setAttribute(name,value){(this.attributes??={})[name]=String(value)}
  replaceChildren(...children){this.children=children}
  click(){if(!this.disabled)return this.onclick?.()}
  input(value){if(!this.disabled){this.value=String(value);return this.oninput?.()}}
@@ -105,7 +106,7 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  if(stockCompanion)for(const key of companionKeys)nodes.get(key).visible=false;
  const original=()=>[...nodes].map(([key,n])=>({key,visible:n.visible,position:n.position.toArray(),quaternion:n.quaternion.toArray(),scale:n.scale.toArray(),material:n.children[0].material,color:n.children[0].material.color.getHex()}));
  const native=original(),events=[],elements=new Map(),cleanups=[];
- const controlIds=['assemblyStart','assemblyStage','assemblyPrevious','assemblyNext','assemblyFocus','assemblyFinish','assemblySteps','assemblyStatus','assemblyPartCount','assemblyManual','assemblyStepNote','stage'];
+ const controlIds=['assemblyStart','assemblyStage','assemblyPrevious','assemblyNext','assemblyFocus','assemblyFinish','assemblySteps','assemblyStatus','assemblyPartCount','assemblyManual','assemblyStepNote','stage','iso','front','top','focusHead'];
  for(const key of controlIds)elements.set(key,new Element(key,{assembly:true}));
  for(const key of ['x','y','z','xv','yv','zv','reset','enclosure','belts','gridVisible','doorAngle','doorAnglev','tophatAngle','tophatAnglev','saveConfiguration','loadConfiguration','configurationFile','resetMods','mod-toolhead','motionStatus','flexibleStatus','installationStatus'])elements.set(key,new Element(key));
  elements.set('preDisabled',new Element('preDisabled',{disabled:true}));
@@ -208,7 +209,9 @@ const ordinary=['x','y','z','reset','enclosure','belts','saveConfiguration','loa
 const assertLocked=f=>{for(const key of ordinary)assert.equal(f.$('#'+key).disabled,true,key+' must remain locked');for(const key of ['viewerLanguage','configTab','mobileConfig'])assert.equal(f.$('#'+key).disabled,false,key+' must remain usable')};
 await check('preparation boundary frames new space; other stage changes retain orbit',async f=>{
  await f.start();const first=f.orbit.target.toArray();
+ for(const id of ['iso','front','top','focusHead'])f.$('#'+id).setAttribute('aria-pressed',String(id==='top'));
  f.$('#assemblyNext').click();assert.notDeepEqual(f.orbit.target.toArray(),first);const box=new THREE.Box3();
+ for(const id of ['iso','front','top','focusHead'])assert.equal(f.$('#'+id).getAttribute('aria-pressed'),'false','Manual inspection must clear stale named-view indicators');
  for(const key of ['rail','block','screw'])box.union(new THREE.Box3().setFromObject(f.nodes.get(key)));
  assert(f.orbit.target.distanceTo(box.getCenter(new THREE.Vector3()))<1e-12);
  f.$('#assemblyNext').click();assert(f.orbit.target.distanceTo(f.nodes.get('bed').position)<1e-12);

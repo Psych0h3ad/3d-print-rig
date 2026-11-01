@@ -1,4 +1,4 @@
-import {assemblyProgressNeedsMigration} from './assembly-progress-migrations.mjs?v=4a8086bc4aa673ea4eb4';
+import {assemblyProgressNeedsMigration,assemblyProgressStageCorrection} from './assembly-progress-migrations.mjs?v=c1a32fd13ba2aa1ccb36';
 const record=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
 const text=v=>typeof v==='string'&&v.trim().length>0;
 const hash=v=>typeof v==='string'&&/^[a-f0-9]{64}$/i.test(v);
@@ -94,7 +94,9 @@ export function validateAssemblyProgress(index,value){
   if(!Object.hasOwn(input,i)||!text(input[i])||parts.has(input[i]))fail('Invalid checked part');
   index.part(input[i]);parts.add(input[i]);
  }
- return {schema:assemblyProgressSchema,identity:plain(expected),current_stage:value.current_stage,checked_stages:index.stages.filter(s=>checked.has(s.id)).map(s=>s.id),checked_parts:order.filter(k=>parts.has(k))};
+ const correction=assemblyProgressStageCorrection(index,value.identity),current_stage=correction?.current[value.current_stage]||value.current_stage;
+ index.stage(current_stage);if(correction)for(const id of correction.recheck)checked.delete(id);
+ return {schema:assemblyProgressSchema,identity:plain(expected),current_stage,checked_stages:index.stages.filter(s=>checked.has(s.id)).map(s=>s.id),checked_parts:order.filter(k=>parts.has(k))};
 }
 
 export function createAssemblyProgress(index,saved){

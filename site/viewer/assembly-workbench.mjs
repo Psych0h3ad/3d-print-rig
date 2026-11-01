@@ -1,8 +1,8 @@
-import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=86989f2d88c4e5a07e3d';
+import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=83b0d982f9b8dad8c28a';
 import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=7e07287f50f81274d235';
 
 import {assemblyPartRows} from './assembly-part-review.mjs';
-import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs?v=4a8086bc4aa673ea4eb4';
+import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs?v=c1a32fd13ba2aa1ccb36';
 
 // UI state describes the reader's checklist, never a mechanical validation.
 // Native visibility and camera changes stay with the viewer's stage controller.

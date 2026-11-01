@@ -18,13 +18,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=5372304c5b5f1c8629bb';
+import {setupPublicInfo} from './public-info.js?v=569ac7ab5ced73ec9bf6';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=86989f2d88c4e5a07e3d';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=6e89e21700ebf8bec843';
+import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=83b0d982f9b8dad8c28a';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=ab9ca37cb6afde1331f2';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate} from './i18n.mjs?v=27698ccf4dd37540be77';
+import {formatMessage,translate} from './i18n.mjs?v=d49d9b9aee9c4df9e054';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -44,7 +44,21 @@ function render(){if(pending)return;pending=true;workspaceFrame(()=>{pending=fal
 const grid=setupGrid(scene,render);grid.position.y=-.026;
 function resize(){const b=stage.getBoundingClientRect();renderer.setSize(b.width,b.height,false);setResponsiveAspect(camera,orbit,b.width,b.height);render()}
 new WorkspaceResizeObserver(resize).observe(stage);orbit.addEventListener('change',render);
-function view(name){camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);orbit.target.set(0,.16,0);camera.position.set(...({iso:[.53,.45,.7],front:[0,.17,.9],top:[0,1,0]}[name]));frameResponsiveView(camera,orbit);render()}
+function view(name){
+ camera.up.set(0,name==='top'?0:1,name==='top'?-1:0);
+ if(assemblyView){
+  const box=new THREE.Box3(),partBox=new THREE.Box3();scene.updateMatrixWorld(true);
+  for(const {nodes}of assemblyView.getDisplayedParts())for(const root of nodes)root.traverse(n=>{
+   for(let p=n;p;p=p.parent)if(!p.visible)return;
+   if(n.isMesh&&n.geometry&&n.geometry.drawRange.count!==0){n.geometry.computeBoundingBox();partBox.copy(n.geometry.boundingBox).applyMatrix4(n.matrixWorld);box.union(partBox)}
+  });
+  if(!box.isEmpty()){
+   const distance=Math.max(.05,box.getSize(new THREE.Vector3()).length()/(2*Math.tan(camera.fov*Math.PI/360))*1.3),direction={iso:[.65,.4,1],front:[0,0,1],top:[0,1,0]}[name];
+   box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(...direction).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();return;
+  }
+ }
+ orbit.target.set(0,.16,0);camera.position.set(...({iso:[.53,.45,.7],front:[0,.17,.9],top:[0,1,0]}[name]));frameResponsiveView(camera,orbit);render();
+}
 for(const name of ['iso','front','top'])$('#'+name).onclick=()=>view(name);view('iso');
 $('#focusHead').onclick=()=>{if(!adapter)return;const box=new THREE.Box3(),partBox=new THREE.Box3();function expand(node){if(!node.visible)return;if(node.isMesh&&node.geometry){node.geometry.computeBoundingBox();partBox.copy(node.geometry.boundingBox).applyMatrix4(node.matrixWorld);box.union(partBox)}for(const child of node.children)expand(child)}scene.updateMatrixWorld(true);for(const [key,node] of adapter.nodes)if(adapter.records.get(key).group===profile.head_group)expand(node);for(const rows of installations?.roots.values()||[])for(const r of rows)if(r.spec.motion==='xy')expand(r.wrapper);if(box.isEmpty())return;camera.up.set(0,1,0);box.getCenter(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(.1,.06,.2));orbit.update();render()};
 function applyPose(){if(!adapter||assemblyView)return;const pose=adapter.setPose(Object.fromEntries(['x','y','z'].map(a=>[a,Number($('#'+a).value)])));for(const a of ['x','y','z'])$('#'+a+'v').textContent=Number($('#'+a).value).toFixed(2)+' mm';
@@ -146,6 +160,7 @@ function setupAssemblyControls(receipts){
  const start=$('#assemblyStart');if(!start)return;
  start.disabled=false;
  const step=$('#assemblyStage'),status=$('#assemblyStatus');
+ function clearManualCameraPreset(){for(const name of ['iso','front','top','focusHead'])$('#'+name).setAttribute('aria-pressed','false')}
  const fail=e=>{status.textContent=loadError('手順の読込エラー:',e)};
  function lockControls(){
   for(const n of document.querySelectorAll('aside input,aside select,aside button')){
@@ -166,6 +181,7 @@ function setupAssemblyControls(receipts){
    });
   }
   if(box.isEmpty())return;
+  clearManualCameraPreset();
   const state=assemblyView.current(),extent=box.getSize(new THREE.Vector3()).length(),distance=Math.max(state?.camera_distance_floor||.05,extent/(2*Math.tan(camera.fov*Math.PI/360))*1.3);
   const underside=state?.underside,direction=state?.camera_direction||[.65,underside?-.4:.4,1];
   box.getCenter(orbit.target);camera.up.set(0,underside?-1:1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(...direction).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
@@ -198,8 +214,8 @@ function setupAssemblyControls(receipts){
   if(assemblyLocked||assemblyView)return;assemblyLocked=true;
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
-   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=1a72f36890af24c6f61f',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
-   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=6dd1d73bb55e2c46dd57');
+   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=689e54096b54f6eeaaa9',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
+   const {createV0AssemblyStages}=await import('./v0-assembly.mjs?v=992f4a0b6212e813415f');
    program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();
@@ -233,7 +249,7 @@ function setupAssemblyControls(receipts){
  $('#assemblyFocus').onclick=focusAdded;$('#assemblyFinish').onclick=()=>workspaceTask(finish);
  function focusPart(key){
   if(!assemblyView)return;const box=new THREE.Box3();scene.updateMatrixWorld(true);for(const node of assemblyView.getPartNodes(key))box.expandByObject(node);
-  if(box.isEmpty())return;const state=assemblyView.current(),underside=state?.underside,direction=state?.camera_direction||[.65,underside?-.4:.4,1],distance=Math.max(state?.camera_distance_floor||.05,box.getSize(new THREE.Vector3()).length()/(2*Math.tan(camera.fov*Math.PI/360))*1.4);box.getCenter(orbit.target);camera.up.set(0,underside?-1:1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(...direction).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
+  if(box.isEmpty())return;clearManualCameraPreset();const state=assemblyView.current(),underside=state?.underside,direction=state?.camera_direction||[.65,underside?-.4:.4,1],distance=Math.max(state?.camera_distance_floor||.05,box.getSize(new THREE.Vector3()).length()/(2*Math.tan(camera.fov*Math.PI/360))*1.4);box.getCenter(orbit.target);camera.up.set(0,underside?-1:1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(...direction).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
  }
  const picker=createAssemblyPicker({element:renderer.domElement,camera,entries:()=>assemblyView?assemblyView.getDisplayedParts().flatMap(({key,nodes})=>nodes.filter(node=>adapter.nodes.get(key)===node||[...installations.roots.values()].flat().some(r=>r.wrapper===node&&r.option.replace_keys.length===1)).map(node=>({key,node}))):[],onPick:key=>assemblyWorkbench?.select(key,{reveal:true})});
  if(new URL(location.href).searchParams.get('assembly')==='1')start.click();
