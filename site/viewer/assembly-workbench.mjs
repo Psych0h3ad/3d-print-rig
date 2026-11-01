@@ -1,7 +1,8 @@
-import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=1b791c138605845638ff';
-import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=01ac2a613aafd6e324c8';
+import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=301d1aeef5ffa6eabfe2';
+import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=21ba17bf05c5c2f277bc';
 
 import {assemblyPartRows} from './assembly-part-review.mjs';
+import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs';
 
 // UI state describes the reader's checklist, never a mechanical validation.
 // Native visibility and camera changes stay with the viewer's stage controller.
@@ -11,8 +12,8 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
  const listeners=[],listen=(n,event,fn)=>{n.addEventListener(event,fn);listeners.push(()=>n.removeEventListener(event,fn))};
  const element=(tag,cls,parent=root)=>{const n=doc.createElement(tag);if(cls)n.className=cls;parent.append(n);return n};
  const bindings=[],msg=(n,key,values=[])=>{bindings.push({n,key,values});return n},button=(key,fn,parent=root)=>{const n=msg(element('button','',parent),key);n.type='button';listen(n,'click',fn);return n};
- const say=(key,values=[])=>format(messages[key],values),key=assemblyProgressStorageKey(index);let sessionOnly=false,notice='',progress=createAssemblyProgress(index),resumed=false,active=false,state=null,selected=null,limit=40,undo=null,resultSignature='',hardwareOnly=false,remainingOnly=false;
- try{const saved=storage?.getItem(key)??storage?.getItem(legacyAssemblyProgressStorageKey(index));if(saved){progress=createAssemblyProgress(index,JSON.parse(saved));resumed=true}}catch{sessionOnly=true}
+ const say=(key,values=[])=>format(messages[key],values),key=assemblyProgressStorageKey(index);let sessionOnly=false,notice='',progress=createAssemblyProgress(index),resumed=false,manualUpdated=false,active=false,state=null,selected=null,limit=40,undo=null,resultSignature='',hardwareOnly=false,remainingOnly=false;
+ try{const saved=[key,legacyAssemblyProgressStorageKey(index),...previousAssemblyProgressStorageKeys(index)].map(k=>storage?.getItem(k)).find(Boolean);if(saved){const value=JSON.parse(saved);progress=createAssemblyProgress(index,value);manualUpdated=assemblyProgressNeedsMigration(index,value.identity);resumed=true}}catch{sessionOnly=true}
  const heading=element('div','assembly-workbench-heading'),number=element('span','assembly-stage-number',heading),title=element('h2','',heading);
  const meter=element('progress','assembly-progress');meter.max=index.stages.length;
  const summary=element('div','assembly-progress-summary'),progressText=element('span','',summary),checkLabel=element('label','assembly-check'),check=element('input','',checkLabel);check.type='checkbox';const checkText=msg(element('span','',checkLabel),'mark_done');
@@ -63,18 +64,18 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
   exit.textContent=translate('閉じる');exit.title=translate('Return to previous configuration');
   for(const n of legacy.select.options)n.textContent=translate(index.stage(Number(n.value)).title);
   for(const [n,raw]of [[legacy.previous,'Previous stage'],[legacy.next,'Next stage'],[legacy.focus,'Focus added parts'],[legacy.finish,'Return to previous configuration']])n.textContent=translate(raw);
-  if(state){legacy.note.textContent=[s.note,state.presentation_note].filter(Boolean).map(translate).join(' ');legacy.manual.textContent=translate(state.manual_text);sourceCount.textContent=say('counts',[state.added,state.visible_count])}
+  if(state){legacy.note.textContent=[state.manual_note||s.note,...(state.presentation_notes||[state.presentation_note])].filter(Boolean).map(translate).join(' ');legacy.manual.textContent=translate(state.manual_text);sourceCount.textContent=say('counts',[state.added,state.visible_count])}
   renderResults();renderParts();renderSelection();
  }
  function select(part,{reveal=false}={}){if(!active)return;index.part(part);selected=part;renderSelection();for(const n of items.querySelectorAll('[data-part]'))n.setAttribute('aria-pressed',String(n.dataset.part===part));if(reveal){onReveal?.();selection.scrollIntoView?.({block:'nearest'})}}
- function importProgress(value){if(!active)throw Error('Inactive assembly view');const checked=validateAssemblyProgress(index,value);onStage(index.stage(checked.current_stage).index);progress.restore(checked);undo=null;notice='loaded';persist();refresh()}
+ function importProgress(value){if(!active)throw Error('Inactive assembly view');const checked=validateAssemblyProgress(index,value),updated=assemblyProgressNeedsMigration(index,value.identity);onStage(index.stage(checked.current_stage).index);progress.restore(checked);undo=null;notice=updated?'updated_manual':'loaded';persist();refresh()}
  listen(check,'change',()=>{progress.toggle(progress.snapshot().current_stage);undo=null;notice='';persist();refresh()});listen(search,'input',()=>{limit=40;renderResults();if(typeof index.matchParts==='function')renderParts();if(search.value.trim())results.scrollIntoView?.({block:'nearest'})});
  let fileEpoch=0;listen(file,'change',async()=>{const epoch=++fileEpoch,input=file.files?.[0];file.value='';if(!input||!active)return;try{if(input.size>524288)throw Error('size');const text=await input.text();if(!active||epoch!==fileEpoch)return;importProgress(JSON.parse(text))}catch(e){if(!active||epoch!==fileEpoch)return;notice=String(e.message).includes('another model')?'wrong_version':'invalid';refresh()}});
  if(win)listen(win,'rig-language-change',refresh);
  refresh();
  return Object.freeze({resumeIndex:()=>index.stage(progress.snapshot().current_stage).index,
   update(next){const changed=state?.index!==next.index;state={...next,visible_keys:[...next.visible_keys]};if(changed){limit=40;selected=null}progress.setStage(next.index);persist();refresh()},
-  activate(){active=true;banner.hidden=false;notice=resumed?'resumed':'';refresh()},deactivate(){active=false;fileEpoch++;banner.hidden=true;selected=null},select,importProgress,
+  activate(){active=true;banner.hidden=false;notice=manualUpdated?'updated_manual':resumed?'resumed':'';refresh()},deactivate(){active=false;fileEpoch++;banner.hidden=true;selected=null},select,importProgress,
   ownsCommand:n=>banner.contains(n),snapshot:()=>progress.snapshot(),
   dispose(){active=false;fileEpoch++;for(const remove of listeners)remove();root.remove();banner.remove()},
  });

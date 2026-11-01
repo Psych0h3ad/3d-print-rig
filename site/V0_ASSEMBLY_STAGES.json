@@ -464,7 +464,6 @@
           "part_keys": [
             "v02_00161",
             "v02_00168",
-            "v02_00170",
             "v02_00171",
             "v02_00179",
             "v02_00180",
@@ -507,7 +506,6 @@
             "v02_00164",
             "v02_00165",
             "v02_00167",
-            "v02_00169",
             "v02_00172",
             "v02_00174",
             "v02_00175",
@@ -541,7 +539,6 @@
             "v02_00202",
             "v02_00210",
             "v02_00211",
-            "v02_00212",
             "v02_00222",
             "v02_00223",
             "v02_00224",
@@ -583,7 +580,6 @@
             "v02_00207",
             "v02_00208",
             "v02_00213",
-            "v02_00214",
             "v02_00215",
             "v02_00216",
             "v02_00218",
@@ -598,7 +594,12 @@
           "title": "Install B left and A right drives",
           "page_start": 81,
           "page_end": 81,
-          "part_keys": [],
+          "part_keys": [
+            "v02_00169",
+            "v02_00170",
+            "v02_00212",
+            "v02_00214"
+          ],
           "note": "Reuse the preloaded forward nuts and threaded rear frame ends; remove temporary retaining nuts. This stage references the two prepared drive subgroups rather than duplicating their leaves."
         },
         {
@@ -3174,7 +3175,6 @@
           "part_keys": [
             "v02r1_00163",
             "v02r1_00170",
-            "v02r1_00172",
             "v02r1_00173",
             "v02r1_00181",
             "v02r1_00182",
@@ -3217,7 +3217,6 @@
             "v02r1_00166",
             "v02r1_00167",
             "v02r1_00169",
-            "v02r1_00171",
             "v02r1_00174",
             "v02r1_00176",
             "v02r1_00177",
@@ -3251,7 +3250,6 @@
             "v02r1_00208",
             "v02r1_00212",
             "v02r1_00213",
-            "v02r1_00214",
             "v02r1_00224",
             "v02r1_00225",
             "v02r1_00226",
@@ -3293,7 +3291,6 @@
             "v02r1_00209",
             "v02r1_00210",
             "v02r1_00215",
-            "v02r1_00216",
             "v02r1_00217",
             "v02r1_00218",
             "v02r1_00220",
@@ -3308,7 +3305,12 @@
           "title": "Install B left and A right drives",
           "page_start": 81,
           "page_end": 81,
-          "part_keys": [],
+          "part_keys": [
+            "v02r1_00171",
+            "v02r1_00172",
+            "v02r1_00214",
+            "v02r1_00216"
+          ],
           "note": "Reuse the preloaded forward nuts and threaded rear frame ends; remove temporary retaining nuts. This stage references the two prepared drive subgroups rather than duplicating their leaves."
         },
         {

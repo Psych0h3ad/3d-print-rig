@@ -1,3 +1,4 @@
+import {assemblyProgressNeedsMigration} from './assembly-progress-migrations.mjs';
 const record=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
 const text=v=>typeof v==='string'&&v.trim().length>0;
 const hash=v=>typeof v==='string'&&/^[a-f0-9]{64}$/i.test(v);
@@ -63,7 +64,7 @@ export function validateAssemblyProgress(index,value){
  const legacy=value.schema==='assembly-workbench-progress-v1',fields=legacy?['checked_stages','current_stage','identity','schema']:['checked_parts','checked_stages','current_stage','identity','schema'];
  if(Object.keys(value).sort().join('|')!==fields.join('|')||!legacy&&!Array.isArray(value.checked_parts))fail('Unknown progress fields');
  const expected=index.identity;
- if(Object.keys(value.identity).sort().join('|')!==Object.keys(expected).sort().join('|')||Object.keys(expected).some(k=>value.identity[k]!==expected[k]))fail('Progress belongs to another model or manual revision');
+ if(Object.keys(value.identity).sort().join('|')!==Object.keys(expected).sort().join('|')||Object.keys(expected).some(k=>value.identity[k]!==expected[k])&&!assemblyProgressNeedsMigration(index,value.identity))fail('Progress belongs to another model or manual revision');
  index.stage(value.current_stage);const checked=new Set();
  for(let i=0;i<value.checked_stages.length;i++){
   if(!Object.hasOwn(value.checked_stages,i)||!text(value.checked_stages[i])||checked.has(value.checked_stages[i]))fail('Invalid checked stage');
