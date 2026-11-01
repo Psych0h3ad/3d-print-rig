@@ -18,13 +18,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=5936f744b556cbdb3fe8';
+import {setupPublicInfo} from './public-info.js?v=1f3b544c47d94aad49e5';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=1f84694a73b5a14deb74';
 import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=88764031765c8df4bef5';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate} from './i18n.mjs?v=52fefcccb7320bf1c315';
+import {formatMessage,translate} from './i18n.mjs?v=1ba508ae5059ae2bcaec';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -231,6 +231,7 @@ function setupAssemblyControls(receipts){
   if(box.isEmpty())return;const distance=Math.max(.05,box.getSize(new THREE.Vector3()).length()/(2*Math.tan(camera.fov*Math.PI/360))*1.4);box.getCenter(orbit.target);camera.up.set(0,1,0);camera.position.copy(orbit.target).add(new THREE.Vector3(.65,.4,1).normalize().multiplyScalar(distance));frameResponsiveView(camera,orbit);render();
  }
  const picker=createAssemblyPicker({element:renderer.domElement,camera,entries:()=>assemblyView?assemblyView.getDisplayedParts().flatMap(({key,nodes})=>nodes.filter(node=>adapter.nodes.get(key)===node||[...installations.roots.values()].flat().some(r=>r.wrapper===node&&r.option.replace_keys.length===1)).map(node=>({key,node}))):[],onPick:key=>assemblyWorkbench?.select(key,{reveal:true})});
+ if(new URL(location.href).searchParams.get('assembly')==='1')start.click();
  scope.cleanup(()=>{try{assemblyView?.leave()}finally{picker.dispose();assemblyWorkbench?.dispose();assemblyWorkbench=null;assemblyView=null;assemblySnapshot=null;assemblyLocked=false;unlockControls();$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage}});
 }
 function currentV0(){return {adapter,profile,manifest:currentManifest,installations,scene,camera,orbit}}

@@ -11645,6 +11645,94 @@
     "source.map.extra.3": {
       "source_revision": "565ab805422ec229738f",
       "text": "원본 항목 {0} · 메시 {1}"
+    },
+    "assembly.guide.0": {
+      "source_revision": "9501f6a5e3d1c4cf64e4",
+      "text": "인터랙티브 조립"
+    },
+    "assembly.guide.1": {
+      "source_revision": "b77f957b9434ef7189bf",
+      "text": "조립 표시 위치"
+    },
+    "assembly.guide.2": {
+      "source_revision": "4711ef706d960a738a8b",
+      "text": "완성형과 비교"
+    },
+    "assembly.guide.3": {
+      "source_revision": "4ac816fdd70d13e23523",
+      "text": "조립 보기로 돌아가기"
+    },
+    "assembly.guide.4": {
+      "source_revision": "6b4922bfa4f1152c52ec",
+      "text": "조립 시작"
+    },
+    "assembly.guide.5": {
+      "source_revision": "f56c271297e556ca3cd6",
+      "text": "완성형 부품 맵"
+    },
+    "assembly.guide.6": {
+      "source_revision": "76a534404f31bfbfa972",
+      "text": "장을 넘기면 원본 CAD 부품이 조립됩니다. 하위 조립체 단위의 개요이며, 개별 나사 작업은 공식 매뉴얼을 확인하세요."
+    },
+    "assembly.guide.7": {
+      "source_revision": "f5e30b0b9a26af270dcc",
+      "text": "다음으로 진행하면 원본 하위 조립체와 해당 금속 부품을 추가합니다. 최종 CAD 위치를 표시하며, 삽입 경로를 재현하거나 전체 매뉴얼을 대체하지 않습니다."
+    },
+    "assembly.guide.8": {
+      "source_revision": "23ede3db21fa61b96ba9",
+      "text": "A/B 구동부와 아이들러"
+    },
+    "assembly.guide.9": {
+      "source_revision": "c458448e7951e295ffda",
+      "text": "Y 레일과 갠트리 프레임"
+    },
+    "assembly.guide.10": {
+      "source_revision": "dc86b497a32b84c6ffa3",
+      "text": "Z 레일과 승강 장치"
+    },
+    "assembly.guide.11": {
+      "source_revision": "bce83873abc2e48a6113",
+      "text": "X축 조립"
+    },
+    "assembly.guide.12": {
+      "source_revision": "f48178ce41839edcf5fc",
+      "text": "A/B 벨트"
+    },
+    "assembly.guide.13": {
+      "source_revision": "02341d2ce9e27db23efe",
+      "text": "베드와 지지부"
+    },
+    "assembly.guide.14": {
+      "source_revision": "5dc44704ef4a25dee244",
+      "text": "Stealthburner 조립"
+    },
+    "assembly.guide.15": {
+      "source_revision": "8c2198a6187e9d6a1fb9",
+      "text": "전자 부품과 배선 경로"
+    },
+    "assembly.guide.16": {
+      "source_revision": "4a38365c4d6622ddb2e0",
+      "text": "패널과 도어"
+    },
+    "assembly.guide.17": {
+      "source_revision": "fb6c00d23be5cc634040",
+      "text": "필라멘트 공급 경로"
+    },
+    "assembly.guide.18": {
+      "source_revision": "897d08aec26d7d0b84b3",
+      "text": "Z 구동부와 아이들러"
+    },
+    "assembly.guide.19": {
+      "source_revision": "51de5e0b1c4ebb702178",
+      "text": "갠트리와 X 빔"
+    },
+    "assembly.guide.20": {
+      "source_revision": "49ac8e1fa16c5dd3fd47",
+      "text": "Z 조인트와 벨트"
+    },
+    "assembly.guide.21": {
+      "source_revision": "6d6b7348daea0b0e559a",
+      "text": "배기 필터"
     }
   }
 }

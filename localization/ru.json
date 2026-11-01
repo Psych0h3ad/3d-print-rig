@@ -11645,6 +11645,94 @@
     "source.map.extra.3": {
       "source_revision": "565ab805422ec229738f",
       "text": "Исходных элементов {0} · сеток {1}"
+    },
+    "assembly.guide.0": {
+      "source_revision": "9501f6a5e3d1c4cf64e4",
+      "text": "Интерактивная сборка"
+    },
+    "assembly.guide.1": {
+      "source_revision": "b77f957b9434ef7189bf",
+      "text": "Этап сборки"
+    },
+    "assembly.guide.2": {
+      "source_revision": "4711ef706d960a738a8b",
+      "text": "Сравнить с полной сборкой"
+    },
+    "assembly.guide.3": {
+      "source_revision": "4ac816fdd70d13e23523",
+      "text": "Вернуться к сборке"
+    },
+    "assembly.guide.4": {
+      "source_revision": "6b4922bfa4f1152c52ec",
+      "text": "Начать интерактивную сборку"
+    },
+    "assembly.guide.5": {
+      "source_revision": "f56c271297e556ca3cd6",
+      "text": "Открыть полную карту деталей"
+    },
+    "assembly.guide.6": {
+      "source_revision": "76a534404f31bfbfa972",
+      "text": "Переходите по главам, чтобы собрать исходную модель. Это обзор узлов; порядок установки каждого винта смотрите в руководстве."
+    },
+    "assembly.guide.7": {
+      "source_revision": "f5e30b0b9a26af270dcc",
+      "text": "Следующий шаг добавляет исходный узел вместе с его крепежом. Детали показаны в конечных CAD-положениях: пути установки не моделируются, полное руководство остаётся необходимым."
+    },
+    "assembly.guide.8": {
+      "source_revision": "23ede3db21fa61b96ba9",
+      "text": "Приводы A/B и обводные ролики"
+    },
+    "assembly.guide.9": {
+      "source_revision": "c458448e7951e295ffda",
+      "text": "Направляющие Y и рама портала"
+    },
+    "assembly.guide.10": {
+      "source_revision": "dc86b497a32b84c6ffa3",
+      "text": "Направляющие Z и подъёмный механизм"
+    },
+    "assembly.guide.11": {
+      "source_revision": "bce83873abc2e48a6113",
+      "text": "Ось X"
+    },
+    "assembly.guide.12": {
+      "source_revision": "f48178ce41839edcf5fc",
+      "text": "Ремни A/B"
+    },
+    "assembly.guide.13": {
+      "source_revision": "02341d2ce9e27db23efe",
+      "text": "Стол и опоры"
+    },
+    "assembly.guide.14": {
+      "source_revision": "5dc44704ef4a25dee244",
+      "text": "Узел Stealthburner"
+    },
+    "assembly.guide.15": {
+      "source_revision": "8c2198a6187e9d6a1fb9",
+      "text": "Электроника и прокладка кабелей"
+    },
+    "assembly.guide.16": {
+      "source_revision": "4a38365c4d6622ddb2e0",
+      "text": "Панели и двери"
+    },
+    "assembly.guide.17": {
+      "source_revision": "fb6c00d23be5cc634040",
+      "text": "Тракт подачи филамента"
+    },
+    "assembly.guide.18": {
+      "source_revision": "897d08aec26d7d0b84b3",
+      "text": "Приводы Z и обводные ролики"
+    },
+    "assembly.guide.19": {
+      "source_revision": "51de5e0b1c4ebb702178",
+      "text": "Портал и балка X"
+    },
+    "assembly.guide.20": {
+      "source_revision": "49ac8e1fa16c5dd3fd47",
+      "text": "Шарниры Z и ремни"
+    },
+    "assembly.guide.21": {
+      "source_revision": "6d6b7348daea0b0e559a",
+      "text": "Вытяжной фильтр"
     }
   }
 }

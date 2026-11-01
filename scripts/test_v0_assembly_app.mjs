@@ -65,7 +65,7 @@ const handlers=Object.fromEntries([
  ['tophatAngle',"$('#tophatAngle').oninput="],
 ].map(([key,prefix])=>[key,extractHandler(prefix)]));
 const factory=vm.runInNewContext(`(dependencies=>{
- const {THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,
+ const {THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,location,
   installations,stateRestorer,program,scope,fetch,workspaceTask,frameResponsiveView,render,
   loadError,stockV0Mods,validateV0State,v0ConfigurationSchema,v0NativeStateProfile,
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash,createAssemblyWorkbench,createAssemblyPicker,renderer,formatMessage,translate}=dependencies;
@@ -91,7 +91,7 @@ class Element{
 }
 const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {promise,resolve,reject}};
 async function waitFor(check){for(let i=0;i<100;i++){if(check())return;await Promise.resolve()}throw Error('Fixture event did not reach expected boundary')}
-function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFailure=false,focusFailure=false,stockCompanion=false,missingModelReceipt=false}={}){
+function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFailure=false,focusFailure=false,stockCompanion=false,missingModelReceipt=false,autoAssembly=false}={}){
  const id=machine_id,profile=fixtureProfile(id),stockProfile=structuredClone(profile);
  const keys=['frame','rail','block','screw','bed','alternative'],scene=new THREE.Scene(),nodes=new Map(),geometry=new THREE.BoxGeometry(.02,.02,.02);
  for(const [i,key]of keys.entries()){
@@ -165,7 +165,7 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  const orbit={target:new THREE.Vector3(.03,.04,.05),update(){events.push({type:'orbit'})}};
  const cameraState=()=>({position:camera.position.toArray(),up:camera.up.toArray(),target:orbit.target.toArray()});
  const originalCamera=cameraState();let api;
- const dependencies={THREE,assemblyModule,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,
+ const dependencies={THREE,assemblyModule,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash:async bytes=>sha(Buffer.from(bytes)),renderer:{domElement:{}},formatMessage:()=>'',translate:x=>x,
   // This port isolates the complete native/configuration lifecycle; the real DOM
   // workbench/picker have independent tests and an actual-model browser audit.
@@ -200,6 +200,9 @@ const assertConfig=f=>assert.deepEqual(plain(f.api.captureV0State()),f.config);
 const assertNative=f=>assert.deepEqual(f.original(),f.native);
 const ordinary=['x','y','z','reset','enclosure','belts','saveConfiguration','loadConfiguration','configurationFile','resetMods','mod-toolhead','preDisabled'];
 const assertLocked=f=>{for(const key of ordinary)assert.equal(f.$('#'+key).disabled,true,key+' must remain locked');for(const key of ['viewerLanguage','configTab','mobileConfig'])assert.equal(f.$('#'+key).disabled,false,key+' must remain usable')};
+for(const machine_id of machineIds)await check(machine_id+' explicit assembly link enters and restores',async f=>{
+ await waitFor(()=>f.api.state().assemblyView&&!f.api.state().assemblyLocked);assert(f.api.state().assemblyView);await f.finish();assert.equal(f.api.state().assemblyView,null);assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
+},{machine_id,autoAssembly:true});
 for(const machine_id of machineIds)for(const nonstock of [false,true])await check(machine_id+' normal '+(nonstock?'nonstock':'stock')+' entry/stages/restore',async f=>{
  assert.equal(f.receipts['model.glb'],productionStages.machines[machine_id].model_sha256,'Production receipt must match registered model pin');
  await f.start();assert(f.api.state().assemblyView);assertLocked(f);assert.equal(f.$('#assemblySteps').hidden,false);

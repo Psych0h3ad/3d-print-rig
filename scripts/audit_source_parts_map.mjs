@@ -34,8 +34,18 @@ try{
  validateAssemblyProgress(index,JSON.parse(JSON.stringify(progress.snapshot())));if(index.search('M3').length===0)throw Error('Source search lost hardware');
  const sample=index.entries()[0].node,parent=sample.parent;sample.removeFromParent();let rejects=0;try{index.verifyLive()}catch{rejects++}parent.add(sample);index.verifyLive();
  const savedX=sample.position.x;sample.position.x+=.001;try{index.verifyLive()}catch{rejects++}sample.position.x=savedX;index.verifyLive();
- if(rejects!==2)throw Error('Live graph negatives accepted');const after=signature(loaded.root);if(before!==after)throw Error('Inspection mutated source assembly');
+ if(rejects!==2)throw Error('Live graph negatives accepted');
+ const {createVoronAssemblyGuide,supportsVoronAssembly}=await import(new URL('viewer/voron-assembly-guide.mjs',site));let assembly=null;
+ if(supportsVoronAssembly(machine)){
+  const guide=await createVoronAssemblyGuide(loaded,scene),counts=[];let last=0;
+  for(const s of guide.stages){const state=guide.setStage(s.index);if(state.visible_count<last)throw Error('Assembly lost cumulative source parts');last=state.visible_count;counts.push(last);for(const key of s.part_keys)guide.getPartNodes(key)}
+  guide.restore();if(signature(loaded.root)!==before)throw Error('Assembly completion changed source');
+  for(const i of [...guide.stages.map(s=>s.index).reverse(),0,guide.stages.length-1,1,0,guide.stages.length-2]){if(guide.setStage(i).visible_count!==counts[i])throw Error('Reversed assembly mask differs');guide.previewComplete();if(signature(loaded.root)!==before)throw Error('Complete comparison did not preserve native source');guide.setStage(i)}
+  const saved=createAssemblyProgress(guide);saved.setStage(2);saved.toggle(2);validateAssemblyProgress(guide,JSON.parse(JSON.stringify(saved.snapshot())));let mapRejected=false;try{validateAssemblyProgress(guide,progress.snapshot())}catch{mapRejected=true}if(!mapRejected)throw Error('Part-map progress accepted as assembly');
+  guide.restore();assembly={stages:guide.stages.length,visibleCounts:counts,sourceItems:guide.partCount,reverseAndPreview:true,restoredUnchanged:signature(loaded.root)===before,wrongViewProgressRejected:mapRejected,identity:guide.identity};
+ }
+ const after=signature(loaded.root);if(before!==after)throw Error('Inspection mutated source assembly');
  loaded.dispose();let retired=false;try{index.verifyLive()}catch{retired=true}loaded=null;if(!retired)throw Error('Retired model accepted');
- const report={passed:true,machine,sourceItems:index.partCount,meshes:index.renderCount,classifications:index.stages.length,checked:index.stages.length,graphNegatives:rejects,retiredRejected:retired,sourceUnchanged:before===after,identity:index.identity,requests,limitations:'Current default source part-map CPU inspection only; no new mechanical fit, manual insertion paths, whole normal/GPU or continuous-motion qualification.'};
+ const report={passed:true,machine,sourceItems:index.partCount,meshes:index.renderCount,classifications:index.stages.length,checked:index.stages.length,graphNegatives:rejects,retiredRejected:retired,sourceUnchanged:before===after,assembly,assemblyUnsupportedExplicitly:!supportsVoronAssembly(machine),identity:index.identity,requests,limitations:'Current default source-map and chapter-level cumulative assembly CPU inspection only; CNC remains part map only. No new mechanical fit, manual insertion paths, whole normal/GPU or continuous-motion qualification.'};
  await fs.writeFile(reportFile,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({machine,passed:true,sourceItems:index.partCount,meshes:index.renderCount,classifications:index.stages.length}));
 }finally{loaded?.dispose()}

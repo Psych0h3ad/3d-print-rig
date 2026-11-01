@@ -14,7 +14,11 @@ def main():
   subprocess.run(['node','--max-old-space-size=96','--max-semi-space-size=1',str(ROOT/'scripts/audit_source_parts_map.mjs'),'--site',str(a.site),'--machine',mid,'--report',str(report),*(['--inputs',str(a.inputs)]if a.inputs else [])],cwd=ROOT,check=True,timeout=120)
   r=json.loads(report.read_bytes())
   if r.get('passed')is not True or r.get('machine')!=mid or not r.get('sourceUnchanged')or not r.get('retiredRejected'):raise ValueError('Missing or unqualified source-map assembly: '+mid)
-  rows.append({k:r[k]for k in ['machine','sourceItems','meshes','classifications','identity','sourceUnchanged','retiredRejected']})
+  if mid.endswith('_ldo_cnc'):
+   if r.get('assembly')is not None or r.get('assemblyUnsupportedExplicitly')is not True:raise ValueError('CNC source lacks a reviewed assembly plan')
+  elif not r.get('assembly')or not all(r['assembly'].get(k)for k in ['reverseAndPreview','restoredUnchanged','wrongViewProgressRejected']):raise ValueError('Missing actual interactive assembly: '+mid)
+  rows.append({k:r[k]for k in ['machine','sourceItems','meshes','classifications','identity','sourceUnchanged','retiredRejected','assembly','assemblyUnsupportedExplicitly']})
  (a.output/'summary.json').write_text(json.dumps({'passed':True,'machines':rows,'scope':'Nine default source maps; live ownership, progress, unchanged source buffers/matrices/materials. No insertion/mating/continuous-motion certification.'},indent=2)+'\n',encoding='utf-8')
  print(f'Source part maps: {len(rows)} actual assemblies passed in fresh serial processes.')
+ print('Interactive assembly: 6 actual defaults passed cumulative/reverse/compare/restore; 3 CNC defaults remain part-map-only.')
 if __name__=='__main__':main()

@@ -11645,6 +11645,94 @@
     "source.map.extra.3": {
       "source_revision": "565ab805422ec229738f",
       "text": "Elementos originales {0} · mallas {1}"
+    },
+    "assembly.guide.0": {
+      "source_revision": "9501f6a5e3d1c4cf64e4",
+      "text": "Montaje interactivo"
+    },
+    "assembly.guide.1": {
+      "source_revision": "b77f957b9434ef7189bf",
+      "text": "Posición de montaje"
+    },
+    "assembly.guide.2": {
+      "source_revision": "4711ef706d960a738a8b",
+      "text": "Comparar con el conjunto completo"
+    },
+    "assembly.guide.3": {
+      "source_revision": "4ac816fdd70d13e23523",
+      "text": "Volver al montaje"
+    },
+    "assembly.guide.4": {
+      "source_revision": "6b4922bfa4f1152c52ec",
+      "text": "Iniciar montaje interactivo"
+    },
+    "assembly.guide.5": {
+      "source_revision": "f56c271297e556ca3cd6",
+      "text": "Explorar el mapa completo de piezas"
+    },
+    "assembly.guide.6": {
+      "source_revision": "76a534404f31bfbfa972",
+      "text": "Avanza por los capítulos para montar el modelo original. Esta vista muestra subconjuntos; consulta el manual para cada tornillo."
+    },
+    "assembly.guide.7": {
+      "source_revision": "f5e30b0b9a26af270dcc",
+      "text": "Avanza para añadir el siguiente subconjunto original con sus herrajes. Las piezas aparecen en su posición final del CAD; no se simulan trayectorias de inserción ni se sustituye el manual completo."
+    },
+    "assembly.guide.8": {
+      "source_revision": "23ede3db21fa61b96ba9",
+      "text": "Accionamientos A/B y poleas guía"
+    },
+    "assembly.guide.9": {
+      "source_revision": "c458448e7951e295ffda",
+      "text": "Guías Y y bastidor del pórtico"
+    },
+    "assembly.guide.10": {
+      "source_revision": "dc86b497a32b84c6ffa3",
+      "text": "Guías Z y elevación"
+    },
+    "assembly.guide.11": {
+      "source_revision": "bce83873abc2e48a6113",
+      "text": "Eje X"
+    },
+    "assembly.guide.12": {
+      "source_revision": "f48178ce41839edcf5fc",
+      "text": "Correas A/B"
+    },
+    "assembly.guide.13": {
+      "source_revision": "02341d2ce9e27db23efe",
+      "text": "Cama y soporte"
+    },
+    "assembly.guide.14": {
+      "source_revision": "5dc44704ef4a25dee244",
+      "text": "Montaje de Stealthburner"
+    },
+    "assembly.guide.15": {
+      "source_revision": "8c2198a6187e9d6a1fb9",
+      "text": "Electrónica y recorrido de cables"
+    },
+    "assembly.guide.16": {
+      "source_revision": "4a38365c4d6622ddb2e0",
+      "text": "Paneles y puertas"
+    },
+    "assembly.guide.17": {
+      "source_revision": "fb6c00d23be5cc634040",
+      "text": "Recorrido del filamento"
+    },
+    "assembly.guide.18": {
+      "source_revision": "897d08aec26d7d0b84b3",
+      "text": "Accionamientos Z y poleas guía"
+    },
+    "assembly.guide.19": {
+      "source_revision": "51de5e0b1c4ebb702178",
+      "text": "Pórtico y viga X"
+    },
+    "assembly.guide.20": {
+      "source_revision": "49ac8e1fa16c5dd3fd47",
+      "text": "Uniones Z y correas"
+    },
+    "assembly.guide.21": {
+      "source_revision": "6d6b7348daea0b0e559a",
+      "text": "Filtro de extracción"
     }
   }
 }

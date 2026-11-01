@@ -1,4 +1,4 @@
-# VORON source part map
+# VORON part map and interactive assembly
 
 The machine collection links to a read-only source map for official Trident
 250/300/350 and V2.4 printed/LDO CNC 250/300/350. It reuses the existing default
@@ -23,6 +23,35 @@ It supports local resume, JSON export/load, clear and undo. Identity includes th
 actual received metadata/model receipt vector, source state, classifications
 and manual revision. Other machines or revisions are rejected atomically.
 The regular configurators and their saved configuration formats are unchanged.
+
+## Interactive assembly overview
+
+The collection also has a **Start interactive assembly** entry. For V0.2 and
+V0.2r1 it opens the existing 106/107-stage manual view directly. For official
+Trident and printed V2.4 at 250/300/350 it opens the same part-map page with
+`view=assembly`, using a separate source-bound progress identity.
+
+Trident has 12 chapter-sized states and printed V2.4 has 13. Next/previous,
+the stage range control, search and part focus change the cumulative native
+visibility mask. Compare complete assembly temporarily restores the original
+full display; returning or changing stage restores the current assembly mask.
+Hidden source alternatives stay hidden. Positions, normals, topology and
+materials are unchanged. The floor uses the complete assembly bounds.
+
+These are subassembly overviews. They do not represent every screw operation,
+preload, insertion path or interference-free assembly trajectory. The complete
+official manual remains necessary. Trident gantry occurrences are classified
+from the public source preparation inventory at the pinned source revision;
+the generated table retains its SHA-256. Existing source-template rail screws
+and relocated X nuts stay with the X beam, and moving bed-frame hardware stays
+with the bed. V2.4 uses original source paths, including X-beam hardware whose
+exported broad group is Frame. Stock heads and their companions appear together.
+
+LDO CNC retains the full part map. It is deliberately excluded from assembly
+mode because the printed guide does not establish a CNC assembly procedure.
+The normal nine-machine actual gate now additionally checks all six admitted
+assembly overviews, cumulative/reversed state counts, full comparison, exact
+source restoration and rejection of part-map progress in assembly mode.
 
 `createSourcePartsMap` binds received component roots and all rendered source
 owners, checks finite world matrices, and rejects missing or unregistered model
