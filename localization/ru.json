@@ -11553,6 +11553,98 @@
     "assembly.workbench.clear_note": {
       "source_revision": "4f28446ea4bc6794d527",
       "text": "Отметки этапов сняты."
+    },
+    "source.map.1": {
+      "source_revision": "be0f1a76cb063da8f55a",
+      "text": "Карта исходных деталей"
+    },
+    "source.map.2": {
+      "source_revision": "d6baf922078c6a594abf",
+      "text": "Обзор полной стандартной сборки. Исходные категории не задают порядок монтажа."
+    },
+    "source.map.3": {
+      "source_revision": "61f79ee5e56a73eb9416",
+      "text": "Поиск категорий и деталей"
+    },
+    "source.map.4": {
+      "source_revision": "574ba51c87d9f96c3282",
+      "text": "Категория {0} / {1}"
+    },
+    "source.map.5": {
+      "source_revision": "3e8c7bd57e7cdb4e927a",
+      "text": "Исходные категории ({0})"
+    },
+    "source.map.6": {
+      "source_revision": "967b52ab34fe08012825",
+      "text": "Отметить категорию как просмотренную"
+    },
+    "source.map.7": {
+      "source_revision": "411ce8f3ece1efefbf99",
+      "text": "Записано категорий: {0} / {1}"
+    },
+    "source.map.8": {
+      "source_revision": "9ced1aefc3e9ac4d3426",
+      "text": "Исходные элементы категории"
+    },
+    "source.map.9": {
+      "source_revision": "50b2047e3ea45400f56b",
+      "text": "В категории {0} · показано {1}"
+    },
+    "source.map.10": {
+      "source_revision": "f6fa1b18fca50903fb7a",
+      "text": "Открыть категорию ({0})"
+    },
+    "source.map.11": {
+      "source_revision": "001931ed8d8be6e15a4b",
+      "text": "Карта деталей {0}/{1}"
+    },
+    "source.map.12": {
+      "source_revision": "2f9df2346be5543a84b4",
+      "text": "Предыдущая категория"
+    },
+    "source.map.13": {
+      "source_revision": "5d1944dffdece615a7ee",
+      "text": "Следующая категория"
+    },
+    "source.map.14": {
+      "source_revision": "c7980cda73ca7d7e604a",
+      "text": "Приблизить категорию"
+    },
+    "source.map.15": {
+      "source_revision": "5692da0d52942f1a9185",
+      "text": "Вернуться к принтерам"
+    },
+    "source.map.16": {
+      "source_revision": "5883dc2a2eb41f3d94bb",
+      "text": "Выберите видимую деталь, чтобы найти её категорию."
+    },
+    "source.map.17": {
+      "source_revision": "87716185a5c4393776c1",
+      "text": "Категория, имя детали, M3…"
+    },
+    "source.map.18": {
+      "source_revision": "d8997dc309b8a11b929f",
+      "text": "Исходные документы"
+    },
+    "source.map.19": {
+      "source_revision": "08fd1187838c971a75fb",
+      "text": "Стандартная сборка остаётся видимой. Категории не задают порядок монтажа. Главы руководства служат справкой; для CNC и сопутствующих деталей нужны исходные инструкции."
+    },
+    "source.map.extra.0": {
+      "source_revision": "9b7c31824627a6e6904f",
+      "text": "Показать всю сборку"
+    },
+    "source.map.extra.1": {
+      "source_revision": "d9449dd233bd333062ec",
+      "text": "Сетка"
+    },
+    "source.map.extra.2": {
+      "source_revision": "1ca3136936fae2d36799",
+      "text": "Связанная глава руководства"
+    },
+    "source.map.extra.3": {
+      "source_revision": "565ab805422ec229738f",
+      "text": "Исходных элементов {0} · сеток {1}"
     }
   }
 }

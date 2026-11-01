@@ -116,6 +116,7 @@ async function cacheReferences(outputs){
   const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
  }
  // Content revisions propagate from dictionaries to their importers and page
+ for(const name of ['source-parts-map.mjs','source-picking-core.mjs','source-map-app.mjs','source-map.css','layout-voron-defaults.mjs','layout-v24-reference-provider.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  // controllers. Revising copy does not depend on remembering a cache suffix.
  for(let pass=0;pass<30;pass++){
   let progress=false;

@@ -17,15 +17,15 @@
 .assembly-search-region { position:sticky;top:-16px;z-index:3;background:var(--paper);padding:8px 0 10px;border-bottom:1px solid var(--line); }
 .ui-workspace .assembly-search-label { margin:0 0 6px; font-size:12px; }
 .ui-workspace .assembly-search { width:100%; max-width:100%; min-height:40px; margin:0; padding:9px 10px; }
-.assembly-stage-results { max-height:235px; overflow:auto; margin-top:6px; border-bottom:1px solid var(--line); }
+.assembly-stage-results { max-height:235px; overflow:auto; margin-top:6px; border-bottom:1px solid var(--line); scroll-margin-top:100px; }
 .ui-workspace .assembly-stage-results button,.ui-workspace .assembly-parts button { display:block; width:100%; text-align:left; border:0; border-bottom:1px solid var(--line); border-radius:0; background:transparent; margin:0; padding:10px 8px; font-size:12px; overflow-wrap:anywhere; }
 .assembly-stage-results button[aria-current=true] { border-left:3px solid var(--assembly-accent); font-weight:650; }
-.assembly-stage-results button[data-checked=true]::after { content:'✓'; margin-left:8px; }
+.assembly-stage-results button[data-checked=true]::after { content:''; display:inline-block; width:14px; height:14px; margin-left:8px; vertical-align:-2px; background:currentColor; -webkit-mask:url('./icons/check.svg') center/contain no-repeat; mask:url('./icons/check.svg') center/contain no-repeat; }
 .assembly-parts small { display:block; margin-top:3px; font:10px/1.5 'Consolas',monospace; color:var(--muted); }
 .assembly-parts button[aria-pressed=true] { background:color-mix(in srgb,var(--assembly-accent) 10%,transparent); }
 .assembly-part-path { font:10px/1.7 'Consolas',monospace; color:var(--muted); overflow-wrap:anywhere; }
 .assembly-part-name { font-size:13px; font-weight:600; overflow-wrap:anywhere; }
-.assembly-selection { padding:0 0 12px; border-bottom:1px solid var(--line); }
+.assembly-selection { padding:0 0 12px; border-bottom:1px solid var(--line); scroll-margin-top:100px; }
 .assembly-pick-hint,.assembly-storage-note,.assembly-progress-status,.assembly-search-empty { font-size:11px; line-height:1.7; color:var(--muted); }
 .assembly-action-row { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
 .ui-workspace .assembly-progress-actions,.ui-workspace .assembly-outline { background:transparent; border:0; border-block:1px solid var(--line); border-radius:0; padding:12px 0; margin:12px 0; }

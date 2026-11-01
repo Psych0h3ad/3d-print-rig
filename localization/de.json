@@ -11553,6 +11553,98 @@
     "assembly.workbench.clear_note": {
       "source_revision": "4f28446ea4bc6794d527",
       "text": "Schrittmarkierungen gelöscht."
+    },
+    "source.map.1": {
+      "source_revision": "be0f1a76cb063da8f55a",
+      "text": "Quellteilkarte"
+    },
+    "source.map.2": {
+      "source_revision": "d6baf922078c6a594abf",
+      "text": "Vollständige Standardbaugruppe prüfen. Quellkategorien sind keine Montagereihenfolge."
+    },
+    "source.map.3": {
+      "source_revision": "61f79ee5e56a73eb9416",
+      "text": "Kategorien und Teile suchen"
+    },
+    "source.map.4": {
+      "source_revision": "574ba51c87d9f96c3282",
+      "text": "Kategorie {0} / {1}"
+    },
+    "source.map.5": {
+      "source_revision": "3e8c7bd57e7cdb4e927a",
+      "text": "Quellkategorien ({0})"
+    },
+    "source.map.6": {
+      "source_revision": "967b52ab34fe08012825",
+      "text": "Diese Kategorie als geprüft markieren"
+    },
+    "source.map.7": {
+      "source_revision": "411ce8f3ece1efefbf99",
+      "text": "{0} / {1} Kategorien vermerkt"
+    },
+    "source.map.8": {
+      "source_revision": "9ced1aefc3e9ac4d3426",
+      "text": "Quellelemente dieser Kategorie"
+    },
+    "source.map.9": {
+      "source_revision": "50b2047e3ea45400f56b",
+      "text": "In Kategorie {0} · angezeigt {1}"
+    },
+    "source.map.10": {
+      "source_revision": "f6fa1b18fca50903fb7a",
+      "text": "Diese Kategorie öffnen ({0})"
+    },
+    "source.map.11": {
+      "source_revision": "001931ed8d8be6e15a4b",
+      "text": "Teilkarte {0}/{1}"
+    },
+    "source.map.12": {
+      "source_revision": "2f9df2346be5543a84b4",
+      "text": "Vorherige Kategorie"
+    },
+    "source.map.13": {
+      "source_revision": "5d1944dffdece615a7ee",
+      "text": "Nächste Kategorie"
+    },
+    "source.map.14": {
+      "source_revision": "c7980cda73ca7d7e604a",
+      "text": "Kategorie fokussieren"
+    },
+    "source.map.15": {
+      "source_revision": "5692da0d52942f1a9185",
+      "text": "Zurück zu den Maschinen"
+    },
+    "source.map.16": {
+      "source_revision": "5883dc2a2eb41f3d94bb",
+      "text": "Ein sichtbares Teil auswählen, um seine Kategorie zu finden."
+    },
+    "source.map.17": {
+      "source_revision": "87716185a5c4393776c1",
+      "text": "Kategorie, Teilname, M3…"
+    },
+    "source.map.18": {
+      "source_revision": "d8997dc309b8a11b929f",
+      "text": "Quelldokumente"
+    },
+    "source.map.19": {
+      "source_revision": "08fd1187838c971a75fb",
+      "text": "Die Standardbaugruppe bleibt sichtbar. Kategorien sind keine Montagereihenfolge. Handbuchkapitel dienen als Referenz; für CNC und Begleitteile gelten die Originalanleitungen."
+    },
+    "source.map.extra.0": {
+      "source_revision": "9b7c31824627a6e6904f",
+      "text": "Baugruppe einpassen"
+    },
+    "source.map.extra.1": {
+      "source_revision": "d9449dd233bd333062ec",
+      "text": "Raster"
+    },
+    "source.map.extra.2": {
+      "source_revision": "1ca3136936fae2d36799",
+      "text": "Zugehöriges Handbuchkapitel"
+    },
+    "source.map.extra.3": {
+      "source_revision": "565ab805422ec229738f",
+      "text": "Quellelemente {0} · Netze {1}"
     }
   }
 }

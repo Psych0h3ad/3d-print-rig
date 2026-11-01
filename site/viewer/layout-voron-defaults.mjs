@@ -12,8 +12,8 @@ function release(root){const g=new Set(),m=new Set(),t=new Set();root.traverse(n
 function cloneMaterials(root){root.traverse(n=>{if(!n.isMesh)return;const source=[].concat(n.material);n.material=Array.isArray(n.material)?source.map(m=>m.clone()):n.material.clone();for(const m of [].concat(n.material)){m.side=THREE.DoubleSide;if(m.transparent)m.depthWrite=false}})}
 function colorRows(root,meta,palette){const rows=new Map(meta.parts.map(p=>[String(p.key),p]));root.traverse(n=>{if(!n.isMesh)return;let q=n;while(q&&!rows.has(String(q.userData?.part_key)))q=q.parent;const key=q?.userData?.part_key??n.userData?.partKey??n.name.match(/^P(.+?)__/)?.[1]??n.name,row=rows.get(String(key));if(!row)throw Error('Layout default part identity missing: '+key);const role=appearanceRole(row);n.userData.layoutMaterialAudit={key:String(key),role,palette,roleRule:'appearanceRole exact source meta',sourceName:row.name};if(palette[role])for(const m of [].concat(n.material))m.color.set(palette[role])})}
 export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
- const root=new THREE.Group();root.name='validated_default_'+id;const assets=[],cleanups=[],progressOptions={document:null,navigator:null,onUpdate:onProgress,preferPublicAssets:true};
- const options={signal,progressOptions};let manifest,profile,configuration,details={};
+ const root=new THREE.Group();root.name='validated_default_'+id;const assets=[],components=[],cleanups=[],progressOptions={document:null,navigator:null,onUpdate:onProgress,preferPublicAssets:true};
+ const options={signal,progressOptions};let manifest,profile,configuration,details={},active=true;
  async function json(rel){
   signal?.throwIfAborted();const expected=layoutDefaultSourcePins[rel];if(!expected)throw Error('Unpinned default metadata: '+rel);
   const r=await fetch(new URL(rel,site),{signal,cache:'no-cache'});if(!r.ok)throw Error('Default metadata unavailable: '+rel);
@@ -28,11 +28,13 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
    meta=await json(spec.meta);const parser=new GLTFLoader();
    gltf=await loadModel({parseAsync:async(buffer,path)=>{assets.push({path:spec.glb,bytes:buffer.byteLength,sha256:await hash(buffer)});const g=await parser.parseAsync(buffer,path);root.add(g.scene);return g}},new URL(spec.glb,site).href,onProgress,{...options,...(spec.modelOptions||{})});
   }
-  root.add(gltf.scene);cloneMaterials(gltf.scene);signal?.throwIfAborted();return {root:gltf.scene,meta,gltf};
+  root.add(gltf.scene);cloneMaterials(gltf.scene);signal?.throwIfAborted();
+  if(!spec.external)components.push(Object.freeze({path:spec.meta,root:gltf.scene,meta,metadata:Object.freeze({...assets.find(a=>a.path===spec.meta)}),model:Object.freeze({...assets.find(a=>a.path===spec.glb)})}));
+  return {root:gltf.scene,meta,gltf};
  }
  try{
   if(id==='siboor_v24_350'){
-   const {createV24Adapter}=await import('./v24_adapter.mjs?v=c1618d21979653eb97f2'),{alphaNativeHostModelOptions}=await import('./trinity-alpha-host-extensions.mjs?v=333a8f81513a69ee2ff3'),{ProbeMountSelection}=await import('./probe-mounts.js?v=517d139912b21c017b1b');
+   const {createV24Adapter}=await import('./v24_adapter.mjs?v=c1618d21979653eb97f2'),{alphaNativeHostModelOptions}=await import('./trinity-alpha-host-extensions.mjs?v=4c9891ba2fdf0c095b03'),{ProbeMountSelection}=await import('./probe-mounts.js?v=517d139912b21c017b1b');
    manifest=await json('machines/'+id+'/assembly_manifest.json');profile=await json('machines/'+id+'/machine_profile.json');
    const base=await asset({meta:'machines/'+id+'/assembly_manifest.json',glb:'machines/'+id+'/model.glb',modelOptions:alphaNativeHostModelOptions(id)}),adapter=createV24Adapter(base.root,manifest,profile),probes=await json('V24_PROBES.json');
    if(probes.probes[0].id!=='stock_panasonic'||probes.probes[0].module)throw Error('V24 native default probe changed');
@@ -40,7 +42,7 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
    adapter.setFlexibleVisible(true);adapter.setEnclosureVisible(true);adapter.setPalette({});const out=adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,profile.display_reference_xyz_mm[i]])));
    if(!out.atReference)throw Error('V24 native reference mismatch');configuration=(profile.available_configurations?.[0]?.id||'stock')+'__stock_panasonic';details={reference:profile.display_reference_xyz_mm,nativeHead:true,defaultDiscoInstalled:false};
   } else if(/^voron_trident_(250|300|350)$/.test(id)){
-   const {createTridentMotion}=await import('./trident-motion.mjs?v=77312c6bfbf6c7e7563d'),{headPlan}=await import('./head-assembly.js?v=workspace-belts-1'),{baselineReference,baselineLimits,baselineResetPose,NATIVE_BASELINE_SOURCE}=await import('./baseline-native-datum.mjs?v=b86b6ff7d71bab3c1117'),{stockGantryVisibility}=await import('./monolith-machine.js?v=10f1b3e053e47827fb2d');
+   const {createTridentMotion}=await import('./trident-motion.mjs?v=77312c6bfbf6c7e7563d'),{headPlan}=await import('./head-assembly.js?v=workspace-belts-1'),{baselineReference,baselineLimits,baselineResetPose,NATIVE_BASELINE_SOURCE}=await import('./baseline-native-datum.mjs?v=b86b6ff7d71bab3c1117'),{stockGantryVisibility}=await import('./monolith-machine.js?v=5da3293ecb8bb434b87d');
    profile=await json('machines/'+id+'/machine_profile.json');const catalog=await json('machines/'+id+'/configurations.json'),heads=await json('TOOLHEAD_CONFIGURATIONS.json'),datum=await json(NATIVE_BASELINE_SOURCE.file),v=structuredClone(catalog.variants[0]);
    const binding=datum.baselines.find(r=>r.machine===id&&r.source_variant===v.id);if(!binding)throw Error('Missing accepted native default head datum');v.native_reference_92=binding;v.fit={...v.fit,nozzle_mm:[...binding.nozzle_native_machine_mm]};configuration=v.id;
    const motion=createTridentMotion(profile),base=await asset(profile.base_assets);manifest=base.meta;motion.register(base.root,base.meta);
@@ -56,7 +58,7 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
    const reset=baselineResetPose(reference,drop),out=motion.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,reset[i]])),{flexibleVisible:true,toolheadReference:true});visibility.update();
    details={reference,reset,bedReferenceDrop:drop,pose:out,headPlan:{base:plan.base,translation:plan.translation,hidden:[...plan.hidden],modules:plan.modules},nativeDatum:binding,defaultDiscoInstalled:false};
   } else if(/^siboor_trident_(300|350)$/.test(id)){
-   const {loadSiboorAssembly}=await import('./siboor-machine.mjs?v=0b70f6dc8f9dd61d9af0'),{createBedChain}=await import('./bed-chain.mjs?v=5c6ddd46ac13e6974c73'),{setupFlexible}=await import('./flexible.js?v=37fd0f2d1bdfe5ac356f'),{createPrinterBelts}=await import('./printer-gantry.mjs');
+   const {loadSiboorAssembly}=await import('./siboor-machine.mjs?v=2960e78d4055e0cc32b6'),{createBedChain}=await import('./bed-chain.mjs?v=5c6ddd46ac13e6974c73'),{setupFlexible}=await import('./flexible.js?v=37fd0f2d1bdfe5ac356f'),{createPrinterBelts}=await import('./printer-gantry.mjs');
    const [meta,routes,g,endstops,colors,catalog]=await loadSiboorAssembly(id,options);manifest=meta;root.add(g.scene);g.scene.add(endstops.scene);cloneMaterials(g.scene);profile={machine_id:id,source:meta.source};
    const v=catalog.variants[0];if(v.gantry!=='siboor_awd'||v.toolhead!=='stealthburner'||v.hotend!=='rapido2_uhf'||v.extruder!=='cw2'||v.modules.length||v.head_translation_mm.some(x=>x!==0))throw Error('SIBOOR native default recipe changed');configuration=v.id;
    const rows=new Map(meta.parts.map(p=>[String(p.key),p])),parts=new Map(),meshes=[];const removed=new Set(v.removed_stock_keys);
@@ -68,6 +70,6 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
    details={reference,bedReferenceDrop:drop,route,chain,nativeHead:true,defaultDiscoInstalled:false};
   } else throw Error('Unknown extracted Voron default: '+id);
   signal?.throwIfAborted();root.updateMatrixWorld(true);
-  return {root,manifest,profile,source:{normalSourceRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',machineId:id,configuration,assets,details,recipe:'Frozen normal viewer default, source-derived modules/visibility/native pose; optional accessories and alternate heads unloaded',source:manifest.source??profile.source},dispose:()=>{for(const f of cleanups)f();release(root)}};
+  return {root,manifest,profile,inspection:Object.freeze({components:Object.freeze(components),active:()=>active}),source:{normalSourceRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',machineId:id,configuration,assets,details,recipe:'Frozen normal viewer default, source-derived modules/visibility/native pose; optional accessories and alternate heads unloaded',source:manifest.source??profile.source},dispose:()=>{active=false;for(const f of cleanups)f();release(root)}};
  }catch(error){release(root);throw error}
 }

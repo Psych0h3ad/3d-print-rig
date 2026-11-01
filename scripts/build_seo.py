@@ -11,7 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'site'
 BASE = 'https://psych0h3ad.github.io/3d-print-rig/'
 GENERAL = 'Choose a printer, combine toolheads, hotends, extruders and Mods, and compare the assembled model in 3D. Save and share configurations, export images and download available STEP assemblies.'
-PAGES = {'layout/index.html': ('Layout planner · 3D Print Rig',
+PAGES = {'viewer/source-map.html': ('Source part map · 3D Print Rig',
+                         'Explore VORON V2.4 and Trident source parts in their default assemblies. Search native components, focus in 3D, open related manual chapters and save review progress.'),
+ 'layout/index.html': ('Layout planner · 3D Print Rig',
                           'Plan a room for your 3D printers. Import an SVG outline or draw the room, add desks and shelves, then arrange printers and export an image.'),
  'viewer/privacy.html': ('Privacy and cookies · 3D Print Rig',
                          'How 3D Print Rig handles optional analytics, cookies, public usage statistics and privacy requests.'),

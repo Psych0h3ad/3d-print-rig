@@ -11553,6 +11553,98 @@
     "assembly.workbench.clear_note": {
       "source_revision": "4f28446ea4bc6794d527",
       "text": "Se han quitado las marcas de etapas."
+    },
+    "source.map.1": {
+      "source_revision": "be0f1a76cb063da8f55a",
+      "text": "Mapa de piezas originales"
+    },
+    "source.map.2": {
+      "source_revision": "d6baf922078c6a594abf",
+      "text": "Inspecciona el conjunto predeterminado completo. Las categorías originales no indican el orden de montaje."
+    },
+    "source.map.3": {
+      "source_revision": "61f79ee5e56a73eb9416",
+      "text": "Buscar categorías y piezas"
+    },
+    "source.map.4": {
+      "source_revision": "574ba51c87d9f96c3282",
+      "text": "Categoría {0} / {1}"
+    },
+    "source.map.5": {
+      "source_revision": "3e8c7bd57e7cdb4e927a",
+      "text": "Categorías originales ({0})"
+    },
+    "source.map.6": {
+      "source_revision": "967b52ab34fe08012825",
+      "text": "Marcar esta categoría como revisada"
+    },
+    "source.map.7": {
+      "source_revision": "411ce8f3ece1efefbf99",
+      "text": "{0} / {1} categorías registradas"
+    },
+    "source.map.8": {
+      "source_revision": "9ced1aefc3e9ac4d3426",
+      "text": "Elementos originales de esta categoría"
+    },
+    "source.map.9": {
+      "source_revision": "50b2047e3ea45400f56b",
+      "text": "En la categoría {0} · visibles {1}"
+    },
+    "source.map.10": {
+      "source_revision": "f6fa1b18fca50903fb7a",
+      "text": "Abrir esta categoría ({0})"
+    },
+    "source.map.11": {
+      "source_revision": "001931ed8d8be6e15a4b",
+      "text": "Mapa de piezas {0}/{1}"
+    },
+    "source.map.12": {
+      "source_revision": "2f9df2346be5543a84b4",
+      "text": "Categoría anterior"
+    },
+    "source.map.13": {
+      "source_revision": "5d1944dffdece615a7ee",
+      "text": "Categoría siguiente"
+    },
+    "source.map.14": {
+      "source_revision": "c7980cda73ca7d7e604a",
+      "text": "Enfocar categoría"
+    },
+    "source.map.15": {
+      "source_revision": "5692da0d52942f1a9185",
+      "text": "Volver a máquinas"
+    },
+    "source.map.16": {
+      "source_revision": "5883dc2a2eb41f3d94bb",
+      "text": "Selecciona una pieza visible para encontrar su categoría."
+    },
+    "source.map.17": {
+      "source_revision": "87716185a5c4393776c1",
+      "text": "Categoría, nombre de pieza, M3…"
+    },
+    "source.map.18": {
+      "source_revision": "d8997dc309b8a11b929f",
+      "text": "Documentos de origen"
+    },
+    "source.map.19": {
+      "source_revision": "08fd1187838c971a75fb",
+      "text": "Se mantiene visible el conjunto predeterminado. Las categorías no indican el orden de montaje. El manual es una referencia relacionada; consulta las instrucciones originales para CNC y piezas complementarias."
+    },
+    "source.map.extra.0": {
+      "source_revision": "9b7c31824627a6e6904f",
+      "text": "Ajustar conjunto"
+    },
+    "source.map.extra.1": {
+      "source_revision": "d9449dd233bd333062ec",
+      "text": "Cuadrícula"
+    },
+    "source.map.extra.2": {
+      "source_revision": "1ca3136936fae2d36799",
+      "text": "Capítulo relacionado del manual"
+    },
+    "source.map.extra.3": {
+      "source_revision": "565ab805422ec229738f",
+      "text": "Elementos originales {0} · mallas {1}"
     }
   }
 }
