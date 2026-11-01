@@ -1,7 +1,7 @@
 import {workspaceTask,workspaceListen,WorkspaceMutationObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setupProductDirectory} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=c6a3851bbbbaf516e1ec';
-import {messageSource} from './i18n.mjs?v=6a99072432a208126f93';
+import {assemblyDownloadEntries,mountStepDownloadLibrary} from './step-downloads.mjs?v=f1d288fb3c03e5203609';
+import {messageSource} from './i18n.mjs?v=ab5a19f7c2497f1496a6';
 const $=s=>document.querySelector(s);
 function dialog(id,title){const d=document.createElement('dialog');d.id=id;d.innerHTML=`<div class="dialog-head"><h2>${title}</h2><button class="close" aria-label="閉じる"></button></div><div class="dialog-body"></div>`;document.body.append(d);d.querySelector('.close').onclick=()=>d.close();return d}
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n};

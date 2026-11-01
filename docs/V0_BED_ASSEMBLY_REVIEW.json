@@ -1,0 +1,179 @@
+{
+  "scope": "Stock V0.2/r1 bed manual inspection operations, original source occurrence reuse and exact progress migration. No model geometry, normals, native matrices, materials, registrations or configuration format changed.",
+  "manuals": [
+    {
+      "machine": "voron_v02_120",
+      "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8/Manuals/VORON_V0.2_Assembly_Manual.pdf",
+      "sha256": "69f989092ea63b60a15407ce1c4b4f9e260702330ae00416a059eb705d5170fe",
+      "pages": 246,
+      "revision": "2023-03-03 @ a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8"
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a53fc87562fd630c846af38d7de850c894dc3d85/Manuals/VORON_V0.2r1_Assembly_Manual.pdf",
+      "sha256": "5d9af5a34304c751799c4ab71d9d42ed0c3ebc20b14df4b612d332ce1cb44b6f",
+      "pages": 253,
+      "revision": "2024-05-07 @ a53fc87562fd630c846af38d7de850c894dc3d85"
+    }
+  ],
+  "stage_sha256": "2baa9a7d9ea85ec661d6d9b59055a4a68b0ec436e54f96ab7d7019ef17dafaa5",
+  "previous_stage_sha256": [
+    "50a7f0e504fa3a013607cc4e0bc8cb4ff49dc442cb2a5b16a5ac70d17e0c67dd",
+    "cac666a318dc56cdae843f4464e1cb63f33663002c93b4ebedaf6abb97f6e810"
+  ],
+  "diagram_pages": [
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    92,
+    93
+  ],
+  "operations": [
+    {
+      "id": "bed-carrier-prep",
+      "pages": [
+        36,
+        37
+      ],
+      "introduced": 7,
+      "references": 7
+    },
+    {
+      "id": "bed-carrier-frame",
+      "pages": [
+        38,
+        38
+      ],
+      "introduced": 13,
+      "references": 13
+    },
+    {
+      "id": "bed-carrier-crossbar",
+      "pages": [
+        39,
+        39
+      ],
+      "introduced": 1,
+      "references": 7
+    },
+    {
+      "id": "bed-carrier-preload",
+      "pages": [
+        40,
+        40
+      ],
+      "introduced": 11,
+      "references": 12
+    },
+    {
+      "id": "bed-mounts",
+      "pages": [
+        41,
+        41
+      ],
+      "introduced": 9,
+      "references": 22
+    },
+    {
+      "id": "bed-mount-flatness",
+      "pages": [
+        42,
+        42
+      ],
+      "introduced": 0,
+      "references": 2
+    },
+    {
+      "id": "bed-mounts-separate",
+      "pages": [
+        43,
+        43
+      ],
+      "introduced": 0,
+      "references": 10
+    },
+    {
+      "id": "bed-mounts-rail",
+      "pages": [
+        44,
+        44
+      ],
+      "introduced": 8,
+      "references": 10
+    },
+    {
+      "id": "bed-carrier-install",
+      "pages": [
+        45,
+        46
+      ],
+      "introduced": 0,
+      "references": 22
+    },
+    {
+      "id": "leadnut",
+      "pages": [
+        92,
+        92
+      ],
+      "introduced": 4,
+      "references": 4
+    },
+    {
+      "id": "leadnut-install",
+      "pages": [
+        93,
+        93
+      ],
+      "introduced": 2,
+      "references": 9
+    }
+  ],
+  "source_specific_notes": [
+    "The insert/chain-end receiver is the original right rear bed mount, not the T8 nut holder.",
+    "Kirigami bypass notes differ: r1 p36 points to47; V0.2 p38 points to43. This stock extruded-carrier display does not qualify that alternative.",
+    "Temporary rear mount attachment p41, face inspection42, removal43, Z-block attachment44, carrier refit45-46 remain separate operations using the same original screws.",
+    "T8 nut holder preparation belongs to92; its two G-extrusion mounting screws belong to93. The r1 round/flat nut caution is not copied into the older manual."
+  ],
+  "actual_exports": [
+    {
+      "machine": "voron_v02_120",
+      "parts": 1653,
+      "stages": 112,
+      "states": 228,
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+      "restored": true
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "parts": 1678,
+      "stages": 113,
+      "states": 230,
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "restored": true
+    }
+  ],
+  "software": [
+    "Each original source part has one first-introduction owner; explicit operation references reuse it in later operations. Unknown/future/duplicate/sparse references fail.",
+    "Global source-part checks and operation completion stay independent. New operations receive no invented completion marks.",
+    "Set-aside source screws remain listed and cannot be focused or newly checked as visible; selection survives related-operation navigation.",
+    "Only complete known old source identities migrate; old browser records remain intact.",
+    "Full-field generated JSON audit reports use compact whitespace serialization; evidence fields, values and strict asset pins remain intact."
+  ],
+  "open_findings": [
+    "The manual preloads10 nuts (6+1+2+1); the source cohort contains11 distinct occurrences. Nearby pairs v02_00483/v02_00486 and v02r1_00492/v02r1_00495 remain distinct, with separate purpose unresolved. No occurrence is deleted or substituted.",
+    "The selected55 raw bed mesh inputs per model omit NORMAL. Original POSITION/index association is separate from loader/GPU normal handling; this change does not repair or qualify native/GPU normals.",
+    "Inspection masks use original final source positions; they do not show insertion paths or certify coplanarity, threaded engagement, torque, manufacturing fit, all manual diagrams or all combinations."
+  ]
+}

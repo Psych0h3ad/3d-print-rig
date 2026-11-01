@@ -19,7 +19,7 @@ def main():
    if r.get('assembly')is not None or r.get('assemblyUnsupportedExplicitly')is not True:raise ValueError('CNC source lacks a reviewed assembly plan')
   elif not r.get('assembly')or not all(r['assembly'].get(k)for k in ['beltReceiversBeforeBelts','reverseAndPreview','restoredUnchanged','wrongViewProgressRejected']):raise ValueError('Missing actual interactive assembly: '+mid)
   rows.append({k:r[k]for k in ['machine','sourceItems','meshes','classifications','identity','sourceUnchanged','retiredRejected','assembly','assemblyUnsupportedExplicitly','partReview']})
- (a.output/'summary.json').write_text(json.dumps({'passed':True,'machines':rows,'scope':'Nine default source maps; live ownership, progress, unchanged source buffers/matrices/materials. No insertion/mating/continuous-motion certification.'},indent=2)+'\n',encoding='utf-8')
+ (a.output/'summary.json').write_text(json.dumps({'passed':True,'machines':rows,'scope':'Nine default source maps; live ownership, progress, unchanged source buffers/matrices/materials. No insertion/mating/continuous-motion certification.'},separators=(',',':'))+'\n',encoding='utf-8')
  print(f'Source part maps: {len(rows)} actual assemblies passed in fresh serial processes.')
  print('Interactive assembly: 6 actual defaults passed cumulative/reverse/compare/restore; 3 CNC defaults remain part-map-only.')
 if __name__=='__main__':main()

@@ -11817,6 +11817,122 @@
     "assembly.workbench.updated_manual": {
       "source_revision": "99ba1474f34238880f69",
       "text": "단계표를 업데이트했습니다. 이전 단계 및 원본 부품 확인 기록을 유지했으며 기존 저장 기록도 보존합니다."
+    },
+    "assembly.workbench.related_stages": {
+      "source_revision": "3cb043d6029df24fd1bc",
+      "text": "이 부품을 다루는 단계"
+    },
+    "assembly.workbench.stored": {
+      "source_revision": "09af2e68482c4b6a9ce2",
+      "text": "따로 보관 중"
+    },
+    "v0.bed.view.subassembly": {
+      "source_revision": "37594dd0e99d7bd54fc3",
+      "text": "소조립체 참조 보기"
+    },
+    "v0.bed.view.installation": {
+      "source_revision": "79d50d72ed88363bf2ed",
+      "text": "장착 상태 참조 보기"
+    },
+    "v0.bed.stage.bed_carrier_prep.title": {
+      "source_revision": "634a9abf26cf3aa2b213",
+      "text": "오른쪽 뒤 베드 마운트와 체인 끝단 준비"
+    },
+    "v0.bed.stage.bed_carrier_prep.note": {
+      "source_revision": "b470fb050d16536f7894",
+      "text": "오른쪽 뒤 마운트에 지정된 인서트 두 개를 넣고 원래 스페이서와 분리한 체인 끝단을 M3x16 나사 두 개로 고정합니다. 이 절차는 기본 프로파일 지지대용이며 Kirigami는 해당 원본의 별도 절차를 따릅니다."
+    },
+    "v0.bed.stage.bed_carrier_frame.title": {
+      "source_revision": "a0f92ca063c15b9ca609",
+      "text": "F 프로파일과 베드 앞부분 조립"
+    },
+    "v0.bed.stage.bed_carrier_frame.note": {
+      "source_revision": "21450d2a2e02d29a835d",
+      "text": "원래 앞부분을 F 프로파일 두 개에 고정합니다. 다음 단계에서 G 프로파일을 연결하도록 뒤쪽 M3x8 나사와 슬롯 너트를 느슨하게 끼워 둡니다. 뒤쪽 베드 마운트는 아직 장착하지 않습니다."
+    },
+    "v0.bed.stage.bed_carrier_crossbar.title": {
+      "source_revision": "8b1883cff87a8c479d71",
+      "text": "G 프로파일을 지지대에 연결"
+    },
+    "v0.bed.stage.bed_carrier_crossbar.note": {
+      "source_revision": "1554a8ebd7897c6f4d40",
+      "text": "준비한 뒤쪽 나사 머리 위로 G 프로파일을 밀어 연결합니다. 접근 구멍으로 지정된 2mm 드라이버를 넣어 조입니다."
+    },
+    "v0.bed.stage.bed_carrier_preload.title": {
+      "source_revision": "7ed5665e1844c2126497",
+      "text": "지지대 슬롯에 너트 미리 삽입"
+    },
+    "v0.bed.stage.bed_carrier_preload.note": {
+      "source_revision": "f979665d2d5f8d6c1e0b",
+      "text": "설명서는 슬롯 너트 10개를 6, 1, 2, 1개씩 미리 넣도록 지정합니다. 원본 CAD의 해당 부분에는 11개 항목이 있으며 가까운 두 항목의 용도 차이는 미확정입니다. 원본 항목을 구분해 유지하고 필요 수량은 설명서를 따르십시오. 모델 항목 수는 구매 수량이나 장착 적합 판정이 아닙니다."
+    },
+    "v0.bed.stage.bed_mounts.title": {
+      "source_revision": "f986e6ee38fc1f66638a",
+      "text": "뒤쪽 베드 마운트 임시 조립"
+    },
+    "v0.bed.stage.bed_mounts.note": {
+      "source_revision": "e4c093363d7a1872d9f4",
+      "text": "준비한 지지대에 원래 M3x12 및 M3x8 나사로 양쪽 뒤 마운트를 임시 고정합니다. 다음으로 장착면의 동일 평면 여부를 확인한 뒤 레일 블록에 고정하기 전에 다시 분리합니다."
+    },
+    "v0.bed.stage.bed_mount_flatness.title": {
+      "source_revision": "391eb2ca7faeba6b4635",
+      "text": "양쪽 레일 장착면 확인"
+    },
+    "v0.bed.stage.bed_mount_flatness.note": {
+      "source_revision": "5edef970c0115292d13e",
+      "text": "설명서 그림처럼 두 레일 블록 장착면이 같은 평면에 있는지 확인합니다. 모델은 참조용이며 실제 출력물 표면을 측정하거나 평면 상태를 인증하지 않습니다."
+    },
+    "v0.bed.stage.bed_mounts_separate.title": {
+      "source_revision": "3111391d6be92c31e8e0",
+      "text": "지지대에서 뒤 마운트 분리"
+    },
+    "v0.bed.stage.bed_mounts_separate.note": {
+      "source_revision": "47ffcf159a4dadcb8940",
+      "text": "지지대와 마운트를 임시 고정한 나사를 빼고 지지대와 해당 나사를 따로 보관합니다. 다음 단계를 위해 체인 끝단은 오른쪽 뒤 마운트에 붙여 둡니다."
+    },
+    "v0.bed.stage.bed_mounts_rail.title": {
+      "source_revision": "416bb6b2451686f76903",
+      "text": "뒤 마운트를 Z 레일 블록에 고정"
+    },
+    "v0.bed.stage.bed_mounts_rail.note": {
+      "source_revision": "42ab3d0f46372f5c218e",
+      "text": "접근 구멍을 통해 원래 M2x8 SHCS 여덟 개를 모두 넣어 마운트를 원래 레일 블록에 고정합니다. 금속 나사 체결부의 나사 고정제 사용은 설명서와 제품 지침을 따릅니다."
+    },
+    "v0.bed.stage.bed_carrier_install.title": {
+      "source_revision": "216c76ae66449c21129a",
+      "text": "지지대를 뒤 마운트에 다시 장착"
+    },
+    "v0.bed.stage.bed_carrier_install.note": {
+      "source_revision": "eb0dbf002e12a94c6162",
+      "text": "같은 M3x8 및 M3x12 나사와 중앙에 미리 넣은 너트를 사용해 지지대를 다시 장착합니다. 볼 엔드 드라이버 접근은 46페이지를 확인합니다. 기존 원본 부품을 재사용하며 복제 부품을 추가하지 않습니다."
+    },
+    "v0.bed.stage.leadnut.title": {
+      "source_revision": "6c9e770b4b1165b13e67",
+      "text": "리드스크루 너트와 홀더 조립"
+    },
+    "v0.bed.stage.leadnut.note": {
+      "source_revision": "d52b62df94c3a4004dd3",
+      "text": "원래 백래시 방지 너트를 해당 출력 홀더에 조립하고 지정된 위쪽 나사 두 개를 끼웁니다. 너트의 두 부분이 서로 독립적으로 회전하면 안 됩니다."
+    },
+    "v0.bed.stage.leadnut_install.title": {
+      "source_revision": "971ab3353f8c42443e15",
+      "text": "조립한 리드스크루 너트 홀더 고정"
+    },
+    "v0.bed.stage.leadnut_install.note": {
+      "source_revision": "c3cb3713c7c03819bdb1",
+      "text": "조립한 홀더를 원래 나사와 G 프로파일에 미리 넣은 너트로 지지대에 고정합니다. 같은 홀더와 백래시 방지 너트 조립체를 재사용합니다."
+    },
+    "v0.bed.stage.leadnut.note_r1": {
+      "source_revision": "b5fb898da38d44ccb25a",
+      "text": "원래 백래시 방지 너트를 해당 출력 홀더에 조립하고 지정된 위쪽 나사 두 개를 끼웁니다. 너트의 두 부분이 서로 독립적으로 회전하면 안 됩니다. 이 개정판의 원형 및 평면 가공 너트 주의사항도 확인하십시오."
+    },
+    "v0.bed.source.pair": {
+      "source_revision": "5e78918a8383590295f8",
+      "text": "가까운 두 너트 항목은 원본 CAD의 서로 다른 참조입니다. 각각의 용도가 미확정이므로 모델 항목 수가 아니라 설명서의 수량을 따르십시오."
+    },
+    "v0.bed.source.inspection": {
+      "source_revision": "0b575169d283a6e81057",
+      "text": "작업 중인 베드 소조립체만 원래 위치에 표시합니다. 다른 조립체는 따로 보관하며 이 참조 보기는 부품 삽입 경로를 나타내지 않습니다."
     }
   }
 }

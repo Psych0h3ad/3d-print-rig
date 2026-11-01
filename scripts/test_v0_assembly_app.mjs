@@ -91,7 +91,7 @@ class Element{
 }
 const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {promise,resolve,reject}};
 async function waitFor(check){for(let i=0;i<100;i++){if(check())return;await Promise.resolve()}throw Error('Fixture event did not reach expected boundary')}
-function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFailure=false,focusFailure=false,stockCompanion=false,missingModelReceipt=false,autoAssembly=false,preparationBoundary=false,driveBoundary=false}={}){
+function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFailure=false,focusFailure=false,stockCompanion=false,missingModelReceipt=false,autoAssembly=false,preparationBoundary=false,driveBoundary=false,bedBoundary=false}={}){
  const id=machine_id,profile=fixtureProfile(id),stockProfile=structuredClone(profile);
  const keys=['frame','rail','block','screw','bed','alternative'],scene=new THREE.Scene(),nodes=new Map(),geometry=new THREE.BoxGeometry(.02,.02,.02);
  for(const [i,key]of keys.entries()){
@@ -115,7 +115,7 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  const asideControls=new Set(['assemblyStart','assemblyStage','assemblyPrevious','assemblyNext','assemblyFocus','assemblyFinish',
   'x','y','z','reset','enclosure','belts','gridVisible','doorAngle','tophatAngle','saveConfiguration','loadConfiguration','configurationFile',
   'resetMods','mod-toolhead','preDisabled','viewerLanguage','configTab','mobileConfig']);
- const document={body:{dataset:{}},querySelectorAll:selector=>{assert.equal(selector,'aside input,aside select,aside button');return [...elements.values()].filter(node=>asideControls.has(node.id))},createElement:tag=>new Element('',{assembly:tag==='option'})};
+ const document={documentElement:{lang:'en'},body:{dataset:{}},querySelectorAll:selector=>{assert.equal(selector,'aside input,aside select,aside button');return [...elements.values()].filter(node=>asideControls.has(node.id))},createElement:tag=>new Element('',{assembly:tag==='option'})};
  $('#assemblySteps').hidden=true;
  let pose=[25,75,60],door=35,tophat=40,flexible=false,enclosure=false;
  const adapter={nodes,getPose:()=>[...pose],door:{getAngle:()=>door},tophat:{getAngle:()=>tophat},
@@ -167,8 +167,8 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
  const originalCamera=cameraState();let api;
  // This six-box lifecycle fixture has no reviewed rail geometry. Actual-model
  // jobs separately exercise the source-pinned preparation display.
- const assemblyFactory=options=>{const c=assemblyModule.createV0AssemblyStages({...options,manualPreparation:false});if(!preparationBoundary&&!driveBoundary)return c;
-  const mode=s=>s?{...s,preparation:preparationBoundary&&s.index===1,subassembly:driveBoundary&&s.index===1,underside:driveBoundary&&s.index===1,presentation_id:s.index===1?(driveBoundary?'drive-a-underside':'rail-preparation'):'installed'}:null;
+ const assemblyFactory=options=>{const c=assemblyModule.createV0AssemblyStages({...options,manualPreparation:false});if(!preparationBoundary&&!driveBoundary&&!bedBoundary)return c;
+  const mode=s=>s?{...s,...(bedBoundary&&s.index===1?{camera_direction:[.15,.18,1],camera_distance_floor:.24,presentation_label:'Installation reference view'}:{}),preparation:preparationBoundary&&s.index===1,subassembly:driveBoundary&&s.index===1,underside:driveBoundary&&s.index===1,presentation_id:s.index===1?(driveBoundary?'drive-a-underside':'rail-preparation'):'installed'}:null;
   return {...c,current:()=>mode(c.current()),setStage:i=>mode(c.setStage(i))};
  };
  const dependencies={THREE,assemblyModule:{...assemblyModule,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
@@ -215,6 +215,14 @@ await check('preparation boundary frames new space; other stage changes retain o
  f.orbit.target.set(.6,.7,.8);f.$('#assemblyStage').value='0';f.$('#assemblyStage').onchange();assert.deepEqual(f.orbit.target.toArray(),[.6,.7,.8]);
  await f.finish();assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
 },{preparationBoundary:true});
+await check('bed receiver focus uses the manual-facing direction outside the frame',async f=>{
+ await f.start();f.$('#assemblyNext').click();
+ const direction=f.camera.position.clone().sub(f.orbit.target),expected=new THREE.Vector3(.15,.18,1).normalize();
+ assert(direction.length()>=.24);assert(direction.normalize().distanceTo(expected)<1e-12);assert.deepEqual(f.camera.up.toArray(),[0,1,0]);
+ f.orbit.target.set(.8,.6,.7);f.$('#assemblyFocus').click();assert(f.camera.position.distanceTo(f.orbit.target)>=.24);
+ for(const[i,node]of f.original().entries())for(const key of ['position','quaternion','scale','material','color'])assert.deepEqual(node[key],f.native[i][key]);
+ await f.finish();assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
+},{bedBoundary:true});
 await check('manual drive inspection changes camera side without moving hardware',async f=>{
  const hardwareUnchanged=()=>{for(const[i,node]of f.original().entries())for(const key of ['position','quaternion','scale','material','color'])assert.deepEqual(node[key],f.native[i][key])};
  await f.start();f.$('#assemblyNext').click();assert.deepEqual(f.camera.up.toArray(),[0,-1,0]);assert(f.camera.position.y<f.orbit.target.y);hardwareUnchanged();

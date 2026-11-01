@@ -11817,6 +11817,122 @@
     "assembly.workbench.updated_manual": {
       "source_revision": "99ba1474f34238880f69",
       "text": "Die Schritttabelle wurde aktualisiert. Vorhandene Schritt- und Quellteilmarkierungen sowie der ursprüngliche gespeicherte Datensatz bleiben erhalten."
+    },
+    "assembly.workbench.related_stages": {
+      "source_revision": "3cb043d6029df24fd1bc",
+      "text": "Arbeitsschritte mit diesem Teil"
+    },
+    "assembly.workbench.stored": {
+      "source_revision": "09af2e68482c4b6a9ce2",
+      "text": "Beiseitegelegt"
+    },
+    "v0.bed.view.subassembly": {
+      "source_revision": "37594dd0e99d7bd54fc3",
+      "text": "Referenzansicht der Baugruppe"
+    },
+    "v0.bed.view.installation": {
+      "source_revision": "79d50d72ed88363bf2ed",
+      "text": "Referenzansicht des Einbaus"
+    },
+    "v0.bed.stage.bed_carrier_prep.title": {
+      "source_revision": "634a9abf26cf3aa2b213",
+      "text": "Hintere rechte Bettaufnahme und Kettenende vorbereiten"
+    },
+    "v0.bed.stage.bed_carrier_prep.note": {
+      "source_revision": "b470fb050d16536f7894",
+      "text": "Die zwei vorgesehenen Einsätze in die hintere rechte Aufnahme einsetzen. Originalen Abstandshalter und abgetrenntes Kettenende mit den zwei M3x16-Schrauben befestigen. Diese Anleitung gilt für den serienmäßigen Profilträger; Kirigami folgt einer eigenen quellenspezifischen Variante."
+    },
+    "v0.bed.stage.bed_carrier_frame.title": {
+      "source_revision": "a0f92ca063c15b9ca609",
+      "text": "Vorderteil und F-Profile montieren"
+    },
+    "v0.bed.stage.bed_carrier_frame.note": {
+      "source_revision": "21450d2a2e02d29a835d",
+      "text": "Das originale Vorderteil an den zwei F-Profilen befestigen. Die hinteren M3x8-Schrauben mit ihren Nutmuttern für den nächsten Einbau des G-Profils locker vorbereiten. Die hinteren Bettaufnahmen noch nicht anbauen."
+    },
+    "v0.bed.stage.bed_carrier_crossbar.title": {
+      "source_revision": "8b1883cff87a8c479d71",
+      "text": "G-Profil mit dem Träger verbinden"
+    },
+    "v0.bed.stage.bed_carrier_crossbar.note": {
+      "source_revision": "1554a8ebd7897c6f4d40",
+      "text": "Das G-Profil über die vorbereiteten hinteren Schraubenköpfe schieben. Die Schrauben mit dem vorgesehenen 2mm-Schlüssel durch die Zugangsbohrungen festziehen."
+    },
+    "v0.bed.stage.bed_carrier_preload.title": {
+      "source_revision": "7ed5665e1844c2126497",
+      "text": "Nutmuttern des Trägers vorab einsetzen"
+    },
+    "v0.bed.stage.bed_carrier_preload.note": {
+      "source_revision": "f979665d2d5f8d6c1e0b",
+      "text": "Das Handbuch nennt 10 vorab einzusetzende Muttern in Gruppen von 6, 1, 2 und 1. Der ursprüngliche CAD-Ausschnitt enthält 11 Vorkommen, darunter ein nahes Paar mit ungeklärter getrennter Funktion. Die Quellverweise getrennt erhalten und die Handbuchmenge beachten; die Modellanzahl ist keine Bestellmenge oder Freigabe der mechanischen Passung."
+    },
+    "v0.bed.stage.bed_mounts.title": {
+      "source_revision": "f986e6ee38fc1f66638a",
+      "text": "Hintere Bettaufnahmen probeweise anbauen"
+    },
+    "v0.bed.stage.bed_mounts.note": {
+      "source_revision": "e4c093363d7a1872d9f4",
+      "text": "Beide hinteren Aufnahmen mit den originalen M3x12- und M3x8-Schrauben probeweise am vorbereiteten Träger befestigen. Anschließend die Ebenheit der Kontaktflächen prüfen und die Aufnahmen vor der Befestigung an den Schienenwagen wieder abnehmen."
+    },
+    "v0.bed.stage.bed_mount_flatness.title": {
+      "source_revision": "391eb2ca7faeba6b4635",
+      "text": "Beide Schienenkontaktflächen prüfen"
+    },
+    "v0.bed.stage.bed_mount_flatness.note": {
+      "source_revision": "5edef970c0115292d13e",
+      "text": "Wie im Handbuch prüfen, ob die beiden Kontaktflächen zu den Schienenwagen in einer Ebene liegen. Das Modell ist eine Referenz und misst oder bestätigt nicht die Flächen Ihrer gedruckten Teile."
+    },
+    "v0.bed.stage.bed_mounts_separate.title": {
+      "source_revision": "3111391d6be92c31e8e0",
+      "text": "Hintere Aufnahmen vom Träger abnehmen"
+    },
+    "v0.bed.stage.bed_mounts_separate.note": {
+      "source_revision": "47ffcf159a4dadcb8940",
+      "text": "Die provisorischen Schrauben zwischen Träger und Aufnahmen entfernen und Träger sowie Schrauben beiseitelegen. Das Kettenende für den nächsten Schritt an der hinteren rechten Aufnahme belassen."
+    },
+    "v0.bed.stage.bed_mounts_rail.title": {
+      "source_revision": "416bb6b2451686f76903",
+      "text": "Hintere Aufnahmen an den Z-Schienenwagen befestigen"
+    },
+    "v0.bed.stage.bed_mounts_rail.note": {
+      "source_revision": "42ab3d0f46372f5c218e",
+      "text": "Die Aufnahmen mit allen acht originalen M2x8 SHCS durch die Zugangsbohrungen an den Schienenwagen befestigen. Für diese Metallgewinde die Anweisungen im Handbuch und zum Schraubensicherungsmittel beachten."
+    },
+    "v0.bed.stage.bed_carrier_install.title": {
+      "source_revision": "216c76ae66449c21129a",
+      "text": "Träger wieder an den hinteren Aufnahmen anbauen"
+    },
+    "v0.bed.stage.bed_carrier_install.note": {
+      "source_revision": "eb0dbf002e12a94c6162",
+      "text": "Den vorbereiteten Träger mit denselben M3x8- und M3x12-Schrauben sowie den vorab eingesetzten mittleren Muttern wieder anbauen. Seite46 zeigt den Zugang mit Kugelkopf-Schlüssel. Die ursprünglichen Teile werden wiederverwendet, nicht dupliziert."
+    },
+    "v0.bed.stage.leadnut.title": {
+      "source_revision": "6c9e770b4b1165b13e67",
+      "text": "Spindelmutter mit ihrem Halter zusammenbauen"
+    },
+    "v0.bed.stage.leadnut.note": {
+      "source_revision": "d52b62df94c3a4004dd3",
+      "text": "Die originale Anti-Backlash-Mutter in ihren passenden gedruckten Halter einsetzen und die zwei vorgesehenen oberen Schrauben montieren. Die beiden Mutternhälften dürfen sich nicht unabhängig voneinander drehen."
+    },
+    "v0.bed.stage.leadnut_install.title": {
+      "source_revision": "971ab3353f8c42443e15",
+      "text": "Vorbereiteten Spindelmutterhalter befestigen"
+    },
+    "v0.bed.stage.leadnut_install.note": {
+      "source_revision": "c3cb3713c7c03819bdb1",
+      "text": "Den fertigen Halter mit den originalen Schrauben und den vorab im G-Profil eingesetzten Muttern am Träger befestigen. Dabei denselben Halter und dieselbe Anti-Backlash-Baugruppe wiederverwenden."
+    },
+    "v0.bed.stage.leadnut.note_r1": {
+      "source_revision": "b5fb898da38d44ccb25a",
+      "text": "Die originale Anti-Backlash-Mutter in ihren passenden gedruckten Halter einsetzen und die zwei vorgesehenen oberen Schrauben montieren. Die beiden Mutternhälften dürfen sich nicht unabhängig voneinander drehen. Auch den Hinweis dieser Revision zu runden Muttern und Muttern mit Abflachung beachten."
+    },
+    "v0.bed.source.pair": {
+      "source_revision": "5e78918a8383590295f8",
+      "text": "Diese nahen Mutternvorkommen sind unterschiedliche Referenzen der ursprünglichen CAD-Datei. Ihre getrennte Funktion ist ungeklärt; die Handbuchmenge statt der Modellanzahl beachten."
+    },
+    "v0.bed.source.inspection": {
+      "source_revision": "0b575169d283a6e81057",
+      "text": "Nur die aktuelle Bettbaugruppe wird an ihren ursprünglichen Quellpositionen gezeigt. Andere Baugruppen sind beiseitegelegt; die Referenzansicht zeigt keinen Einführweg."
     }
   }
 }
