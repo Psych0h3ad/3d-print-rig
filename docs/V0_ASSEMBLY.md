@@ -29,7 +29,7 @@ before replacing the current progress. Clear and undo cover both record types.
 
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
-V0.2 has 114 stages and 1,653 exported source leaves. V0.2r1 has 119 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+V0.2 has 123 stages and 1,653 exported source leaves. V0.2r1 has 128 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
 
 The rail-nut preparation stage follows page 18 of each pinned manual: all five
 source carriers, each with its ten source nuts, are laid out in parallel for
@@ -50,7 +50,7 @@ identity remain unchanged, so existing checked stages and parts are retained.
 
 The A/B drive operations follow pages 69–81. During each drive's preparation,
 the viewer isolates only that source subassembly; the frame and previously
-prepared drive are set aside. The sequence shows 6, 21, 29 and 38 cumulative
+prepared drive are set aside. The sequence shows 6, 21, 29 and 37 cumulative
 source items for each drive, then returns to the frame at the mounting step on
 page 81. No modeled item is deleted, substituted or moved. The original
 relative placements remain inspection states, rather than insertion animation.
@@ -74,6 +74,25 @@ Progress from the exact previous stage document is migrated to this corrected
 document with a visible notice. Its stage and individual source-part checks are
 retained, and the old browser-storage entry remains available. Arbitrary stage
 documents or different models/manuals are still rejected.
+
+The idlers follow the separate preparation, mounting and cam-lock instructions
+on pages 84–89. Each original seven-item subassembly is laid out upside down
+with one rigid transform. The B assembly mounts first on the left; the prepared
+A assembly is set aside until its right-side mounting step. Rear M3x35 screws
+and cam locks are introduced separately. Returning to installation or leaving
+assembly mode restores the original source transforms. A has the taller upper
+printed section and lower bearing level; B has the shorter upper section and
+higher bearings. The two bearing levels have separate side-view checks.
+
+Four original M3x10 screws belong to the later upper side members, rather than
+drive or idler preparation. After those two B profiles are installed (V0.2 pages
+121–123, r1 pages 127–129), remove both original cam locks, fit the front screws,
+refit the same locks, then fit the rear screws through the drive housings.
+The locks remain identified while set aside. Part checks follow the same source
+occurrences across these operations, and exact earlier progress records migrate
+without marking the new operations complete. These displays do not certify
+thread engagement, insertion paths or native-solid fit. See the
+[idler operation review](V0_IDLER_ASSEMBLY_REVIEW.json) for source scope.
 
 The stock bed carrier now follows the temporary states on pages 36–46:
 right rear mount/chain-end preparation, F and G carrier construction, slot-nut

@@ -12158,7 +12158,7 @@
     },
     "ui.v0assembly.text_f02928e3c1020c": {
       "kind": "message",
-      "ja": "アイドラーの左右と積層方向を確認",
+      "ja": "アイドラーの左右と向きを確認",
       "en": "Check idler side and stack orientation"
     },
     "ui.v0assembly.text_3255b4c990d1cf": {
@@ -15160,6 +15160,131 @@
       "kind": "message",
       "ja": "右後脚とパッドを準備",
       "en": "Prepare the rear-right foot"
+    },
+    "v0.idler.c6bf66da25d6": {
+      "kind": "message",
+      "en": "Prepare both idler bearing stacks",
+      "ja": "両アイドラーのベアリングを組む"
+    },
+    "v0.idler.95bd66ac57d5": {
+      "kind": "message",
+      "en": "Inspect both assemblies upside down. Each uses two original F623 bearings, two 0.5 mm shims and its front M3x35 screw.",
+      "ja": "両方の組立を裏返した向きで確認します。それぞれ元のF623ベアリング2個、0.5 mmシム2枚、前側のM3x35を使います。"
+    },
+    "v0.idler.50b49c998c54": {
+      "kind": "message",
+      "en": "Mount the B idler on the left",
+      "ja": "Bアイドラーを左側に取り付け"
+    },
+    "v0.idler.8b04428e62b1": {
+      "kind": "message",
+      "en": "The front M3x35 uses the threaded front upright; the rear M3x35 uses the preloaded nut in the upper Y-rail member. Check the four nuts in the front uprights against this manual page.",
+      "ja": "前側のM3x35は前支柱のねじ穴、後側のM3x35はYレール上側横材の先入れナットを使います。前支柱のナット4個も、このページの指示と照合します。"
+    },
+    "v0.idler.ae2e4a5f9051": {
+      "kind": "message",
+      "en": "Fit the B idler cam lock",
+      "ja": "Bアイドラーのカムロックを取り付け"
+    },
+    "v0.idler.38b0084244b8": {
+      "kind": "message",
+      "en": "Fit the original cam lock. The upper side-member M3x10 is installed later, after its frame member is present.",
+      "ja": "元のカムロックを取り付けます。上側横材用のM3x10は、その横材を付けた後で使います。"
+    },
+    "v0.idler.fd00519d4cb9": {
+      "kind": "message",
+      "en": "Mount the A idler on the right",
+      "ja": "Aアイドラーを右側に取り付け"
+    },
+    "v0.idler.8b6cefe3066e": {
+      "kind": "message",
+      "en": "Use the front threaded upright and the rear preloaded nut. Keep the A and B assemblies on their specified sides.",
+      "ja": "前支柱のねじ穴と後側の先入れナットを使います。AとBを指定された左右に取り付けます。"
+    },
+    "v0.idler.9dbbfee979a5": {
+      "kind": "message",
+      "en": "Fit the A idler cam lock",
+      "ja": "Aアイドラーのカムロックを取り付け"
+    },
+    "v0.idler.41f013c19abe": {
+      "kind": "message",
+      "en": "Fit the original A cam lock. Keep the upper side-member screw for the later frame operation.",
+      "ja": "元のAカムロックを取り付けます。上側横材用のネジは、後のフレーム工程で使います。"
+    },
+    "v0.idler.c1c60ac7d995": {
+      "kind": "message",
+      "en": "Check the A-side bearing level",
+      "ja": "A側のベアリング高さを確認"
+    },
+    "v0.idler.f86d3ab2164d": {
+      "kind": "message",
+      "en": "A has the taller upper printed section and the lower bearing stack. Compare the A drive and idler in the manual side view.",
+      "ja": "Aは上側の印刷部品が高く、ベアリングは低い位置です。説明書の側面図でAドライブとアイドラーを見比べます。"
+    },
+    "v0.idler.7ca44f627b47": {
+      "kind": "message",
+      "en": "Check the B-side bearing level",
+      "ja": "B側のベアリング高さを確認"
+    },
+    "v0.idler.fa6db72add2c": {
+      "kind": "message",
+      "en": "B has the shorter upper printed section and the higher bearing stack. Compare the B drive and idler in the manual side view.",
+      "ja": "Bは上側の印刷部品が低く、ベアリングは高い位置です。説明書の側面図でBドライブとアイドラーを見比べます。"
+    },
+    "v0.idler.4fec27c34c76": {
+      "kind": "message",
+      "en": "Check the top view: B is on the left and A is on the right. Keep the bearing levels shown in the preceding side views.",
+      "ja": "上面図で左がB、右がAであることを確認します。前の側面図で示されたベアリング高さを保ちます。"
+    },
+    "v0.idler.191b7d36acc7": {
+      "kind": "message",
+      "en": "Install the two upper side members",
+      "ja": "上側の横材2本を取り付け"
+    },
+    "v0.idler.1ce181d98285": {
+      "kind": "message",
+      "en": "Use the two original B frame members with their preloaded nuts. Keep the front and rear M3x10 screws for the following operations.",
+      "ja": "先入れナットを入れた元のB横材2本を使います。前後のM3x10は、続く固定工程で使います。"
+    },
+    "v0.idler.66845fb185fe": {
+      "kind": "message",
+      "en": "Remove both cam locks for screw access",
+      "ja": "ネジを締めるため両カムロックを外す"
+    },
+    "v0.idler.2c460fe12557": {
+      "kind": "message",
+      "en": "Temporarily remove both original cam locks as shown. Set them aside for refitting after the front screws.",
+      "ja": "説明書どおり両方の元カムロックを一時的に外します。前側のネジを締めた後、同じ部品を戻します。"
+    },
+    "v0.idler.72cfe51c661a": {
+      "kind": "message",
+      "en": "Fasten the front ends of the upper members",
+      "ja": "上側横材の前端をネジで固定"
+    },
+    "v0.idler.bdfcc3b10c94": {
+      "kind": "message",
+      "en": "Install the two original front M3x10 screws while the cam locks are removed.",
+      "ja": "カムロックを外した状態で、元の前側M3x10を2本取り付けます。"
+    },
+    "v0.idler.ec7fca413395": {
+      "kind": "message",
+      "en": "Refit the same two cam locks",
+      "ja": "同じカムロック2個を戻す"
+    },
+    "v0.idler.3e2cdc3a8e20": {
+      "kind": "message",
+      "en": "Refit both cam locks removed in the preceding operation; these are the same original parts.",
+      "ja": "前の工程で外した、同じ元カムロック2個を戻します。"
+    },
+    "v0.idler.e8e09fd39c16": {
+      "kind": "message",
+      "en": "Fasten the rear ends of the upper members",
+      "ja": "上側横材の後端をネジで固定"
+    },
+    "v0.idler.656aa44e8ee3": {
+      "kind": "message",
+      "en": "Install the two original rear M3x10 screws through the drive housings into the upper frame members.",
+      "ja": "元の後側M3x10を2本、ドライブハウジングから上側横材へ取り付けます。"
     }
   }
 }

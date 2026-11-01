@@ -9639,8 +9639,8 @@
       "text": "Umlenkrolle A zusammenbauen und einbauen"
     },
     "ui.v0assembly.text_f02928e3c1020c": {
-      "source_revision": "33ab584e36f089686282",
-      "text": "Umlenkrollenseite und Stapelausrichtung prüfen"
+      "source_revision": "8aecfb469efc2fc8e4ba",
+      "text": "Seite und Ausrichtung der Umlenkrollen prüfen"
     },
     "ui.v0assembly.text_3255b4c990d1cf": {
       "source_revision": "99f0243e44829b4c264d",
@@ -12041,6 +12041,106 @@
     "v0.feet.rear_right.v02": {
       "source_revision": "032dc4da724d3869b4f8",
       "text": "Hinteren rechten Fuß und Auflage vorbereiten"
+    },
+    "v0.idler.c6bf66da25d6": {
+      "source_revision": "720ce724ac1309d58588",
+      "text": "Beide Umlenkrollen-Lagersätze vorbereiten"
+    },
+    "v0.idler.95bd66ac57d5": {
+      "source_revision": "5e0d2a16d1b4ba46edd7",
+      "text": "Beide Baugruppen umgedreht prüfen. Jede verwendet zwei originale F623-Lager, zwei 0.5-mm-Passscheiben und die vordere M3x35-Schraube."
+    },
+    "v0.idler.50b49c998c54": {
+      "source_revision": "21021390d4955e6fe813",
+      "text": "B-Umlenkrolle links montieren"
+    },
+    "v0.idler.8b04428e62b1": {
+      "source_revision": "9b755c7f3310cc2d53b6",
+      "text": "Die vordere M3x35 greift in das Gewinde der vorderen Stütze, die hintere M3x35 in die vorab eingesetzte Mutter im oberen Y-Schienenprofil. Die vier Muttern in den vorderen Stützen mit dieser Handbuchseite abgleichen."
+    },
+    "v0.idler.ae2e4a5f9051": {
+      "source_revision": "4abe73f4d5f3b2fd9983",
+      "text": "Exzenterklemmung der B-Umlenkrolle einsetzen"
+    },
+    "v0.idler.38b0084244b8": {
+      "source_revision": "60d420b881fc321a03f0",
+      "text": "Die originale Exzenterklemmung einsetzen. Die M3x10 für das obere Seitenprofil erst nach Einbau dieses Profils montieren."
+    },
+    "v0.idler.fd00519d4cb9": {
+      "source_revision": "09cd15eee4f91473ca9f",
+      "text": "A-Umlenkrolle rechts montieren"
+    },
+    "v0.idler.8b6cefe3066e": {
+      "source_revision": "fd540ab579bb17af1955",
+      "text": "Das Gewinde der vorderen Stütze und die vorab eingesetzte hintere Mutter verwenden. A und B auf den vorgegebenen Seiten belassen."
+    },
+    "v0.idler.9dbbfee979a5": {
+      "source_revision": "ec478f4fb85a2e8d588a",
+      "text": "Exzenterklemmung der A-Umlenkrolle einsetzen"
+    },
+    "v0.idler.41f013c19abe": {
+      "source_revision": "66f0a7512bb1468fa8d8",
+      "text": "Die originale A-Exzenterklemmung einsetzen. Die Schraube des oberen Seitenprofils für den späteren Rahmenschritt aufbewahren."
+    },
+    "v0.idler.c1c60ac7d995": {
+      "source_revision": "4e0abf71f099668448ba",
+      "text": "Lagerhöhe auf der A-Seite prüfen"
+    },
+    "v0.idler.f86d3ab2164d": {
+      "source_revision": "0251d32477561f1f7188",
+      "text": "Bei A ist das obere Druckteil höher und der Lagersatz tiefer. A-Antrieb und Umlenkrolle in der Seitenansicht des Handbuchs vergleichen."
+    },
+    "v0.idler.7ca44f627b47": {
+      "source_revision": "c1152d760620392b6afb",
+      "text": "Lagerhöhe auf der B-Seite prüfen"
+    },
+    "v0.idler.fa6db72add2c": {
+      "source_revision": "8fb4259d2d02e304965b",
+      "text": "Bei B ist das obere Druckteil niedriger und der Lagersatz höher. B-Antrieb und Umlenkrolle in der Seitenansicht des Handbuchs vergleichen."
+    },
+    "v0.idler.4fec27c34c76": {
+      "source_revision": "f39d5c9343f51bd8c457",
+      "text": "In der Draufsicht prüfen: B links, A rechts. Die Lagerhöhen aus den vorherigen Seitenansichten beibehalten."
+    },
+    "v0.idler.191b7d36acc7": {
+      "source_revision": "ffe6ddf12018200282f8",
+      "text": "Die beiden oberen Seitenprofile montieren"
+    },
+    "v0.idler.1ce181d98285": {
+      "source_revision": "ca5c38eba2be5ec95c17",
+      "text": "Die beiden originalen B-Profile mit den vorab eingesetzten Muttern verwenden. Vordere und hintere M3x10 für die folgenden Schritte aufbewahren."
+    },
+    "v0.idler.66845fb185fe": {
+      "source_revision": "21018fbe22d02f6abf44",
+      "text": "Beide Exzenterklemmungen für den Schraubenzugang entfernen"
+    },
+    "v0.idler.2c460fe12557": {
+      "source_revision": "8f2b8ab88dbd8f4d24dc",
+      "text": "Beide originalen Exzenterklemmungen wie gezeigt vorübergehend entfernen. Nach Einbau der vorderen Schrauben wieder einsetzen."
+    },
+    "v0.idler.72cfe51c661a": {
+      "source_revision": "a78b98fee4c45c919bb0",
+      "text": "Vordere Enden der oberen Profile verschrauben"
+    },
+    "v0.idler.bdfcc3b10c94": {
+      "source_revision": "051824f56d440c979628",
+      "text": "Die beiden originalen vorderen M3x10 bei entfernten Exzenterklemmungen montieren."
+    },
+    "v0.idler.ec7fca413395": {
+      "source_revision": "6673323e8e23af88cf32",
+      "text": "Dieselben beiden Exzenterklemmungen wieder einsetzen"
+    },
+    "v0.idler.3e2cdc3a8e20": {
+      "source_revision": "1d0539d528ab44cbcfdc",
+      "text": "Beide im vorherigen Schritt entfernten Exzenterklemmungen wieder einsetzen; es bleiben dieselben Originalteile."
+    },
+    "v0.idler.e8e09fd39c16": {
+      "source_revision": "a76d7be145535c230d39",
+      "text": "Hintere Enden der oberen Profile verschrauben"
+    },
+    "v0.idler.656aa44e8ee3": {
+      "source_revision": "58be3c2f11dbc74aa8c9",
+      "text": "Die beiden originalen hinteren M3x10 durch die Antriebsgehäuse in die oberen Rahmenprofile schrauben."
     }
   }
 }

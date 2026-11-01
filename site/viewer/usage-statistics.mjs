@@ -1,6 +1,6 @@
 import {createUsageAnalytics} from './usage-analytics.mjs?v=a686f7c8e70e907ce276';
 import {usageAnalyticsConfig} from './usage-analytics-config.mjs?v=54e6c921795b1e6b18ff';
-import {messageSource} from './i18n.mjs?v=eeb41de93f357ec93a27';
+import {messageSource} from './i18n.mjs?v=27698ccf4dd37540be77';
 import {onWorkspaceDispose, workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 
 import {statisticsConsentKey,statisticsReviewKey,statisticsPreference,storeStatisticsConsent} from './statistics-preference.mjs?v=bee995128ef463ee128f';

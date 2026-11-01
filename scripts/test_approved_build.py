@@ -291,6 +291,7 @@ class ApprovedDeliveryAuditContext(unittest.TestCase):
         with patch.object(sys, 'argv', argv), patch.object(build_site, 'ROOT', root), \
                 patch.object(build_approved_site, 'main', side_effect=approved_build) as approved, \
                 patch.object(build_site, '_audit_built_runtime', side_effect=actual_audit) as audit, \
+                patch.object(build_site, 'compact_generated_reviews', side_effect=lambda _: events.append('compact')) as compact, \
                 patch.object(build_site, 'MAX_SITE_BYTES', len(b'tiny runtime')+1), \
                 patch('sys.stdout', new_callable=io.StringIO) as stdout:
             if change_source:
@@ -307,7 +308,9 @@ class ApprovedDeliveryAuditContext(unittest.TestCase):
             approved.assert_called_once_with()
             if not change_source: audit.assert_called_once_with(site.resolve())
             if change_source or audit_fails: self.assertEqual(stdout.getvalue(), '')
-        self.assertEqual(events, ['build'] if change_source else ['build', 'audit'])
+            if change_source or audit_fails: compact.assert_not_called()
+            else: compact.assert_called_once_with(site.resolve())
+        self.assertEqual(events, ['build'] if change_source else ['build', 'audit'] if audit_fails else ['build', 'audit', 'compact'])
         self.assertFalse(target.exists())
         self.assertEqual({p.name for p in site.iterdir()}, {'runtime.bin'})
         self.assertEqual((site/'runtime.bin').read_bytes(), b'tiny runtime')
@@ -1061,6 +1064,45 @@ class ApprovedEquipmentBuildGates(unittest.TestCase):
             result = build_approved_site.main()
         self.assertTrue(result['deployment_ready']); self.prepare_equipment_inputs.assert_not_called()
         self.assertEqual(len(result['layout_equipment_audits']['audit_input_files']), 10)
+
+
+class GeneratedReviewCompaction(unittest.TestCase):
+    def reports(self, root, body):
+        for name in build_site.COMPACT_REVIEW_REPORTS:
+            path = root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(body)
+
+    def test_preserves_literal_numbers_escapes_unicode_and_asset_pins(self):
+        # Do not round a long coefficient, rewrite its exponent or touch string whitespace.
+        body = ('{\r\n "pin": "' + 'a'*64 + '", "n": [1.2300000000000000000e-101,9007199254740993,-0.0],'
+                ' "text": "日本語  a \\\" b \\\\ c", "nested": { "ok": true }\r\n}\r\n').encode()
+        expected = ('{"pin":"' + 'a'*64 + '","n":[1.2300000000000000000e-101,9007199254740993,-0.0],'
+                    '"text":"日本語  a \\\" b \\\\ c","nested":{"ok":true}}\n').encode()
+        with tempfile.TemporaryDirectory() as folder:
+            root = pathlib.Path(folder); self.reports(root, body)
+            unrelated = root/'review/other.json'; unrelated.write_bytes(body)
+            pinned = root/'review/microswiss-source-shrouds.json'; pinned.write_bytes(body)
+            contract = root/'APPROVED_DELIVERY.json'; contract.write_bytes(body)
+            build_site.compact_generated_reviews(root)
+            for name in build_site.COMPACT_REVIEW_REPORTS:
+                self.assertEqual((root/name).read_bytes(), expected)
+            self.assertEqual(unrelated.read_bytes(), body)
+            self.assertEqual(pinned.read_bytes(), body, 'Historically byte-pinned report must remain untouched')
+            self.assertEqual(contract.read_bytes(), body)
+
+    def test_missing_or_invalid_report_stops_before_any_report_rewrite(self):
+        body = b'{\r\n "pin": "original", "all_fields": [1, 2, 3]\r\n}\r\n'
+        for invalid in [None, b'{"broken":', b'{"non_json": NaN}']:
+            with self.subTest(invalid=invalid), tempfile.TemporaryDirectory() as folder:
+                root = pathlib.Path(folder); self.reports(root, body)
+                last = root/build_site.COMPACT_REVIEW_REPORTS[-1]
+                if invalid is None: last.unlink()
+                else: last.write_bytes(invalid)
+                with self.assertRaises((FileNotFoundError, ValueError)):
+                    build_site.compact_generated_reviews(root)
+                for name in build_site.COMPACT_REVIEW_REPORTS[:-1]:
+                    self.assertEqual((root/name).read_bytes(), body)
 
 
 if __name__ == '__main__': unittest.main()

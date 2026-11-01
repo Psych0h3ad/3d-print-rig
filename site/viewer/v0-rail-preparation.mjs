@@ -58,8 +58,9 @@ export function createV0RailPreparation({nodes,manifest,spec}){
   }
   expected=new Map(keys.map(k=>[k,transform(nodes.get(k))]));
   }catch(error){write(prior);saved=priorSaved;expected=priorExpected;throw error}
+  let used=false;return()=>{if(used)return;write(prior);saved=priorSaved;expected=priorExpected;used=true};
  }
- return {check,apply,leave(){check();if(saved)restore();saved=null;expected=null},
+ return {check,apply,leave(){check();if(!saved)return;const undo=apply(null);saved=null;expected=null;return undo},
   deferred(index){return index===prep?[]:groups.filter(g=>index>=prep&&index<g.installed).flatMap(g=>g.keys)},
   focus(index){return groups.filter(g=>g.installed===index).flatMap(g=>g.keys)},
   prepared:index=>index===prep,

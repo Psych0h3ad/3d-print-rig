@@ -1,9 +1,10 @@
 // Manual stages with an optional, source-pinned rail preparation presentation.
 // Preparation poses are temporary rigid layouts, not insertion or clearance.
-import {createV0RailPreparation} from './v0-rail-preparation.mjs';
-import {createV0DriveAssembly} from './v0-drive-assembly.mjs';
-import {createV0BedAssembly} from './v0-bed-assembly.mjs';
-import {createV0FeetAssembly} from './v0-feet-assembly.mjs';
+import {createV0RailPreparation} from './v0-rail-preparation.mjs?v=74bbc70d05eb89bed68a';
+import {createV0DriveAssembly} from './v0-drive-assembly.mjs?v=87761f3c0ebfce5998a9';
+import {createV0BedAssembly} from './v0-bed-assembly.mjs?v=3163b8e34404795e6717';
+import {createV0FeetAssembly} from './v0-feet-assembly.mjs?v=ee39e640a1ba4e93eac0';
+import {createV0IdlerAssembly} from './v0-idler-assembly.mjs?v=0847fa8bd4d517597689';
 export const v0AssemblySchema='v0-assembly-stages-v1';
 const record=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 const text=value=>typeof value==='string'&&value.trim().length>0;
@@ -129,6 +130,7 @@ export function createV0AssemblyStages(options){
  const drive=options.manualPreparation?createV0DriveAssembly(spec,options.manifest.machine_id):null;
  const bed=options.manualPreparation?createV0BedAssembly(spec,options.manifest.machine_id):null;
  const feet=options.manualPreparation?createV0FeetAssembly(spec,options.manifest.machine_id):null;
+ const idler=options.manualPreparation?createV0IdlerAssembly({nodes,manifest:options.manifest,spec}):null;
  for(const row of companionBindings)for(const key of row.part_keys)companionForKey.set(key,row.node);
  let active=null;
  function checkBindings(){
@@ -160,6 +162,7 @@ export function createV0AssemblyStages(options){
  function checkActive(){
   checkBindings();
   preparation?.check();
+  idler?.check();
   if(!active)return;
   for(const [node,row]of active.graph){
    if(node.parent!==row.parent||node.children!==row.childrenRef||node.userData?.part_key!==row.part_key||
@@ -189,13 +192,14 @@ export function createV0AssemblyStages(options){
   if(preparation){value.preparation=preparation.prepared(active.index);value.stored_count=preparation.deferred(active.index).length;
    value.presentation_note=value.preparation?'The five prepared carriers are laid out together. This arrangement is for inspection; it does not show installation positions or insertion paths.':value.stored_count?'Prepared carriers for later rails are set aside. Each appears with its receiving rail at the installation stage.':'';
   }
-  const bedWork=bed?.at(active.index),feetWork=feet?.at(active.index),manualWork=feetWork||bedWork,work=manualWork||drive?.at(active.index);
+  const bedWork=bed?.at(active.index),feetWork=feet?.at(active.index),idlerWork=idler?.at(active.index),manualWork=idlerWork||feetWork||bedWork,work=manualWork||drive?.at(active.index);
   value.presentation_id=work?.id||(value.preparation?'rail-preparation':'installed');
   value.subassembly=manualWork?manualWork.isolated:Boolean(work);value.underside=Boolean(work?.underside);
   if(work&&!manualWork)value.presentation_note='Only the current drive subassembly is shown. The frame and previously prepared parts are set aside; the drives join the frame at manual page 81.';
   value.manual_note=drive?.note(active.index)||'';
   value.presentation_notes=[value.presentation_note,...manualWork?.notes||[]].filter(Boolean);
-  if(manualWork){value.presentation_label=manualWork.status;value.camera_direction=[...manualWork.direction];value.camera_distance_floor=manualWork.isolated ? .05 : .24;value.part_notes={...manualWork.partNotes};value.stored_keys=(feetWork?feet:bed).stored(active.index,new Set(active.part_keys))}
+  if(manualWork){value.presentation_label=manualWork.status;value.camera_direction=[...manualWork.direction];value.camera_distance_floor=manualWork.isolated ? .05 : .24;value.part_notes={...manualWork.partNotes};value.stored_keys=(idlerWork?idler:feetWork?feet:bed).stored(active.index,new Set(active.part_keys))}
+  if(idler){const stored=idler.stored(active.index,new Set(active.part_keys));value.stored_count=(value.stored_count||0)+stored.length}
   return value;
  }
  function setStage(index){
@@ -206,13 +210,16 @@ export function createV0AssemblyStages(options){
   shown=drive?.filter(index,shown)||shown;
   shown=bed?.filter(index,shown)||shown;
   shown=feet?.filter(index,shown)||shown;
+  shown=idler?.filter(index,shown)||shown;
   // Native-hidden alternatives stay hidden. No part, transform or material is
   // replaced. Validate every root before applying the cumulative mask.
   for(const [key,node]of [...bindings,...companionBindings.map((row,i)=>['companion '+i,row.node])]){
    const descriptor=Object.getOwnPropertyDescriptor(node,'visible');
    if(!descriptor||!('value' in descriptor)||!descriptor.writable||typeof node.visible!=='boolean')fail('Native visibility changed: '+key);
   }
-  preparation?.apply(index);
+  const undo=[];
+  try{for(const policy of [preparation,idler]){const restore=policy?.apply(index);if(restore)undo.push(restore)}}
+  catch(error){for(const restore of undo.reverse())restore();throw error}
   for(const [key,node]of bindings){node.visible=state.visibilities.get(key)&&shown.has(key);state.graph.get(node).visible=node.visible}
   for(const {node,part_keys}of companionBindings){node.visible=state.companionVisibilities.get(node)&&part_keys.some(key=>shown.has(key));state.graph.get(node).visible=node.visible}
   state.index=index;state.part_keys=part_keys;active=state;
@@ -227,7 +234,9 @@ export function createV0AssemblyStages(options){
    const descriptor=Object.getOwnPropertyDescriptor(node,'visible');
    if(!descriptor||!('value' in descriptor)||!descriptor.writable)fail('Native visibility changed: '+key);
   }
-  preparation?.leave();
+  const undo=[];
+  try{for(const policy of [preparation,idler]){const restore=policy?.leave();if(restore)undo.push(restore)}}
+  catch(error){for(const restore of undo.reverse())restore();throw error}
   for(const [key,node]of bindings)node.visible=active.visibilities.get(key);
   for(const [node,visible]of active.companionVisibilities)node.visible=visible;
   active=null;return null;
@@ -237,7 +246,7 @@ export function createV0AssemblyStages(options){
   current(){checkActive();return result()},
   // Stage keys include assigned alternatives; "focus added" only uses this
   // stage's keys which were visible when assembly mode was entered.
-  getBoundsKeys(){checkActive();return active?visibleKeys([...new Set([...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[]])]):[]},
+  getBoundsKeys(){checkActive();return active?visibleKeys([...new Set([...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[]])]):[]},
   getVisibleKeys(){checkActive();return active?visibleKeys():[]},
   getDisplayedParts(){
    checkActive();if(!active)return [];
@@ -254,7 +263,7 @@ export function createV0AssemblyStages(options){
   // support-bearing leaf. Counts/keys remain native identities, not mesh count.
   getBoundsNodes(){
    checkActive();if(!active)return [];
-   const keys=[...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[]],roots=new Set();
+   const keys=[...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[]],roots=new Set();
    for(const key of keys){const native=nodes.get(key),companion=companionForKey.get(key);if(visibleNode(native))roots.add(native);if(visibleNode(companion))roots.add(companion)}
    return [...roots];
   },
