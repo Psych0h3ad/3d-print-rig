@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1296389,
-      "sha256": "92ad9d462dc9b2bed107866bc382957060face79f7b6f97639d419d9b58134bc"
+      "bytes": 1309332,
+      "sha256": "1676f9d3925dd0842fe498e61a467717fe1af6e3923bbaa00ee073e1f91af63f"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -595,8 +595,8 @@
     },
     {
       "path": "docs/VORON_SOURCE_MAP.md",
-      "bytes": 4706,
-      "sha256": "59a26e8fa494ea7d3ded3ff5fc7d681cc427887f13987d35ff1a922bb15c6a89"
+      "bytes": 5102,
+      "sha256": "66e8c1a72beb7c3e20150bd6d73abcbeee697089a6814f0ca40ef90d96586d42"
     },
     {
       "path": "docs/WALLPAPERS.md",
@@ -840,8 +840,8 @@
     },
     {
       "path": "scripts/audit_source_parts_map.mjs",
-      "bytes": 7204,
-      "sha256": "8f431e2bf7476c6f3abd65fd776b7286fe7e58c6c27aa08341dc424c0685075f"
+      "bytes": 8067,
+      "sha256": "9dcda5b2c62752181b9ba71c5e89f9ca8a97c44171d2d23c335eb049caee9a51"
     },
     {
       "path": "scripts/audit_source_printed_colors.mjs",
@@ -1030,8 +1030,8 @@
     },
     {
       "path": "scripts/check_source_parts_map_release.py",
-      "bytes": 2349,
-      "sha256": "a7f448fa85cceb3b6b6efc06a3bbd93a431ece8cae210300f7a417b9f4b293b1"
+      "bytes": 2376,
+      "sha256": "1826ed8b6dd2bbaafd78772a6b51c12de2caede963cd24a0114a42571a7a2964"
     },
     {
       "path": "scripts/check_trinity_beacon_release.py",
@@ -2980,8 +2980,8 @@
     },
     {
       "path": "scripts/test_voron_assembly_guide.mjs",
-      "bytes": 5049,
-      "sha256": "b1fbafbc5a93ac9616a650b0285b6ff98c817d799d9e3a766bb3576191d4f099"
+      "bytes": 7463,
+      "sha256": "eaff9d14db69405b67e93f736e2b4bdaac36a8229b661e4b985af1adc1bed17c"
     },
     {
       "path": "scripts/test_wallpaper_catalog.mjs",
@@ -8825,8 +8825,8 @@
     },
     {
       "path": "site/viewer/voron-assembly-guide.mjs",
-      "bytes": 6902,
-      "sha256": "bfadb256539920e61f31d334e102237677b098ab75d3e7e50a2f32144dfad245"
+      "bytes": 7235,
+      "sha256": "abe725143409b41bb86c433922150576598e7516cb83d30440dcf92e0daaca5b"
     },
     {
       "path": "site/viewer/voron-guide-lineage.mjs",
