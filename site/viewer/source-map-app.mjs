@@ -1,12 +1,12 @@
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
-import {loadVoronDefaultLayout} from './layout-voron-defaults.mjs?v=983c74585a930e7299a5';
-import {loadV24ReferenceLayout} from './layout-v24-reference-provider.mjs?v=209293b18a47b912b2b2';
+import {loadVoronDefaultLayout} from './layout-voron-defaults.mjs?v=68309326afe69da3f367';
+import {loadV24ReferenceLayout} from './layout-v24-reference-provider.mjs?v=e40e12849fcdd30576a8';
 import {createVoronAssemblyGuide,supportsVoronAssembly} from './voron-assembly-guide.mjs?v=bfadb256539920e61f31';
 import {createSourcePartsMap,sourceMapMachines} from './source-parts-map.mjs?v=aef1e3b96b466ccb5b31';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=f1c1e125b877cda1b8b5';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=28da5b34b6363358d803';
 import {createSourcePicker} from './source-picking-core.mjs?v=ca04efe661ce9d571b7f';
-import {setupLanguage,translate,formatMessage} from './i18n.mjs?v=fd9c367155a12b48205e';
+import {setupLanguage,translate,formatMessage} from './i18n.mjs?v=628c8b0455eaed91f60d';
 import {applyDisplay,setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
 import {setupGrid} from './grid-control.js';
 import {settleCameraPose} from './responsive-camera.mjs?v=149a79a654914b2af652';

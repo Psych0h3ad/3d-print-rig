@@ -9515,7 +9515,7 @@
       "text": "Cierre los pasos de montaje antes de previsualizar el movimiento"
     },
     "ui.v0assembly.text_d5760661421533": {
-      "source_revision": "fbadf482ae7a4454282e",
+      "source_revision": "5ad14cf7d6711867186f",
       "text": "Preparación y referencia de herrajes"
     },
     "ui.v0assembly.text_2f406f1e667afb": {
@@ -9703,7 +9703,7 @@
       "text": "Insertar tuercas y montar los laterales superiores"
     },
     "ui.v0assembly.text_cb0e479a2aa19a": {
-      "source_revision": "a6c7b80fc3ccf6be0029",
+      "source_revision": "80d36efe4f9b49d289e2",
       "text": "Preparar el carro X y sus herrajes cautivos"
     },
     "ui.v0assembly.text_462f541d6e72e5": {
@@ -11769,6 +11769,18 @@
     "assembly.workbench.uncheck_part": {
       "text": "Quitar la marca de esta pieza",
       "source_revision": "f7ee99937bcb21b06069"
+    },
+    "v0.preparation.status": {
+      "source_revision": "5a85fe3a89607239a15d",
+      "text": "Portatuercas preparados · dispuestos para inspección"
+    },
+    "v0.preparation.layout": {
+      "source_revision": "6841505c7d526c1e4a67",
+      "text": "Los cinco portatuercas preparados se muestran juntos. Esta disposición sirve para inspección; no indica posiciones de montaje ni trayectorias de inserción."
+    },
+    "v0.preparation.stored": {
+      "source_revision": "e6b78cd407793977fde2",
+      "text": "Los portatuercas preparados para los raíles posteriores se reservan y aparecen con su raíl en la etapa de montaje correspondiente."
     }
   }
 }

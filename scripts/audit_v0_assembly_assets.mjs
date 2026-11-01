@@ -47,15 +47,15 @@ const registryData=JSON.parse(await pin(site+'/V0_INSTALLATIONS.json'));
 for(const name of ['v0-app.js','v0-assembly.mjs','v0_adapter.mjs','v0-belts.mjs','v0-chain.mjs','v0-door.mjs','v0-tophat.mjs','appearance-role.mjs'])await pin(site+'/viewer/'+name);
 await pin(path.resolve(process.argv[1]));
 const report={schema:'actual-v0-assembly-stages-v1',passed:false,workers:1,machines:[],source_sha256:{},
- scope:'Actual decoded stock GLBs, manifests and production adapters/controller; cumulative and reversed stages, native transform/material/geometry invariance and exact visibility restoration. Static final poses only. Native-solid contact review and manual diagram inspection are separate.',
+ scope:'Actual decoded stock GLBs, manifests and production adapters/controller. Forward/reverse/jump stages, five source-pinned rigid preparation groups and receiving-rail masks; exact native transforms in other stages and on exit, with unchanged geometry/materials and exact visibility restoration. Manual diagrams, insertion paths and native-solid contact qualification remain separate.',
  insertion_animation_verified:false,physical_clearance_certified:false};
 function state(root){const rows=[];root.updateMatrixWorld(true);root.traverse(n=>{
  const materials=n.material?(Array.isArray(n.material)?n.material:[n.material]):[];
  rows.push({node:n,parent:n.parent,children:[...n.children],position:n.position.toArray(),quaternion:n.quaternion.toArray(),scale:n.scale.toArray(),matrix:n.matrixWorld.toArray(),geometry:n.geometry,
  materials:[...materials],values:materials.map(m=>[m.color?.getHex(),m.opacity,m.transparent,m.depthWrite,m.metalness,m.roughness,m.emissive?.getHex(),m.emissiveIntensity]),visible:n.visible});
 });return rows;}
-function unchanged(root,rows,checkVisibility=false,checkGeometryIdentity=true){root.updateMatrixWorld(true);let count=0;root.traverse(()=>count++);assert.equal(count,rows.length);
- for(const r of rows){const n=r.node;assert.equal(n.parent,r.parent);assert.deepEqual(n.children,r.children);assert.deepEqual(n.position.toArray(),r.position);assert.deepEqual(n.quaternion.toArray(),r.quaternion);assert.deepEqual(n.scale.toArray(),r.scale);assert.deepEqual(n.matrixWorld.toArray(),r.matrix);if(checkGeometryIdentity)assert.equal(n.geometry,r.geometry);
+function unchanged(root,rows,checkVisibility=false,checkGeometryIdentity=true,preparationNodes=new Set()){root.updateMatrixWorld(true);let count=0;root.traverse(()=>count++);assert.equal(count,rows.length);
+ for(const r of rows){const n=r.node;assert.equal(n.parent,r.parent);assert.deepEqual(n.children,r.children);if(!preparationNodes.has(n)){assert.deepEqual(n.position.toArray(),r.position);assert.deepEqual(n.quaternion.toArray(),r.quaternion);assert.deepEqual(n.scale.toArray(),r.scale);assert.deepEqual(n.matrixWorld.toArray(),r.matrix)}if(checkGeometryIdentity)assert.equal(n.geometry,r.geometry);
  const m=n.material?(Array.isArray(n.material)?n.material:[n.material]):[];assert.deepEqual(m,r.materials);assert.deepEqual(m.map(v=>[v.color?.getHex(),v.opacity,v.transparent,v.depthWrite,v.metalness,v.roughness,v.emissive?.getHex(),v.emissiveIntensity]),r.values);if(checkVisibility)assert.equal(n.visible,r.visible);}
 }
 function geometryPins(root){const values=[];root.traverse(n=>{if(!n.geometry)return;for(const[k,a]of Object.entries(n.geometry.attributes))values.push([n.uuid,k,sha(Buffer.from(a.array.buffer,a.array.byteOffset,a.array.byteLength))]);if(n.geometry.index){const a=n.geometry.index.array;values.push([n.uuid,'index',sha(Buffer.from(a.buffer,a.byteOffset,a.byteLength))])}});return values;}
@@ -101,7 +101,19 @@ try{
   assert.deepEqual(spec.seat_display_dependencies?.map(s=>({part_key:s.part_key,carrier_key:s.carrier_key,preload_stage_id:s.preload_stage_id})).sort((a,b)=>a.part_key.localeCompare(b.part_key)),reviewedSeats(id),'Exact reviewed source frame-nut owners required');
   const shown=key=>displayed(adapter.nodes.get(key))||companions.some(c=>c.part_keys.includes(key)&&displayed(c.node));
   const original=state(scene),geometryBefore=geometryPins(scene),visibility=new Map([...adapter.nodes].map(([k,n])=>[k,n.visible]));
-  const controller=createV0AssemblyStages({nodes:adapter.nodes,manifest,machine:stages,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions});
+  const controller=createV0AssemblyStages({nodes:adapter.nodes,manifest,machine:stages,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,manualPreparation:true});
+  const railGroups=(id==='voron_v02_120'?[[56,67,'y-rails'],[79,90,'y-rails'],[102,113,'z-rails'],[125,136,'z-rails'],[320,331,'x-rail']]:[[58,69,'y-rails'],[81,92,'y-rails'],[104,115,'z-rails'],[127,138,'z-rails'],[328,339,'x-rail']]).map(([holder,first,stage])=>({holder:(id==='voron_v02_120'?'v02_':'v02r1_')+String(holder).padStart(5,'0'),keys:[holder,...Array.from({length:10},(_,i)=>first+i)].map(n=>(id==='voron_v02_120'?'v02_':'v02r1_')+String(n).padStart(5,'0')),installed:spec.stages.findIndex(s=>s.id===stage)}));
+  const preparationNodes=new Set();for(const g of railGroups)for(const k of g.keys)adapter.nodes.get(k).traverse(n=>preparationNodes.add(n));
+  const originalByNode=new Map(original.map(r=>[r.node,r]));
+  function checkPreparation(){
+   const centers=[];
+   for(const g of railGroups){const holder=adapter.nodes.get(g.holder),old=originalByNode.get(holder),delta=holder.matrixWorld.clone().multiply(new THREE.Matrix4().fromArray(old.matrix).invert());
+    assert(Math.abs(delta.determinant()-1)<1e-10,'Preparation must be a proper rigid transform');
+    for(const k of g.keys)adapter.nodes.get(k).traverse(n=>{const expected=delta.clone().multiply(new THREE.Matrix4().fromArray(originalByNode.get(n).matrix));assert(expected.elements.every((v,i)=>Math.abs(v-n.matrixWorld.elements[i])<1e-10),'Holder and all ten source nuts must share one rigid transform')});
+    const b=new THREE.Box3().setFromObject(holder),center=b.getCenter(new THREE.Vector3()),size=b.getSize(new THREE.Vector3());assert(size.x>.144&&size.x<.146&&size.y<.006&&size.z<.006);assert(Math.abs(center.x)<1e-9&&Math.abs(center.y-.01)<1e-9);centers.push(center.z);
+   }
+   for(let i=1;i<centers.length;i++)assert(Math.abs(centers[i]-centers[i-1]-.018)<1e-9,'Prepared strips must be separate parallel rows');
+  }
   const workbench=createAssemblyIndex({manifest,machine:spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes),'assembly_stages.json':sha(await pin(site+'/V0_ASSEMBLY_STAGES.json'))}}),progress=createAssemblyProgress(workbench);
   const partReview=auditPartReview(workbench,{assemblyPartRows,createAssemblyProgress,validateAssemblyProgress});
   for(const p of manifest.parts){const owner=workbench.owner(p.key);assert(owner.part_keys.includes(p.key));assert.equal(workbench.part(p.key).name,p.name)}
@@ -109,10 +121,11 @@ try{
   const sequence=[...spec.stages.map((_,i)=>i),...spec.stages.map((_,i)=>spec.stages.length-1-i),spec.stages.length-1,0,Math.floor(spec.stages.length/2),spec.stages.length-1];
   const poses=[];
   for(const index of sequence){const r=controller.setStage(index),keys=new Set(spec.stages.slice(0,index+1).flatMap(s=>s.part_keys));
-   for(const[k,n]of adapter.nodes)assert.equal(n.visible,visibility.get(k)&&keys.has(k),'Cumulative native stage visibility: '+k);
+   const prep=spec.stages[index].id==='nut-carriers';for(const g of railGroups)if(!prep&&index<g.installed)for(const k of g.keys)keys.delete(k);
+   for(const[k,n]of adapter.nodes)assert.equal(n.visible,visibility.get(k)&&keys.has(k),'Manual installation-stage visibility: '+k);
    for(const c of companions)assert.equal(c.node.visible,c.part_keys.some(k=>keys.has(k)),'Support-omitted carriage follows native stage');
    for(const seat of spec.seat_display_dependencies)assert(!shown(seat.part_key)||shown(seat.carrier_key),'Preloaded nut displayed without its receiving source member');
-   assert.equal(r.total,spec.stages.length);assert.equal(r.added,spec.stages[index].part_keys.length);unchanged(scene,original);poses.push({index,id:r.id,added:r.added,visible:r.visible_count});
+   assert.equal(r.total,spec.stages.length);assert.equal(r.added,spec.stages[index].part_keys.length);unchanged(scene,original,false,true,prep?preparationNodes:new Set());if(prep)checkPreparation();poses.push({index,id:r.id,added:r.added,visible:r.visible_count,prepared:prep,stored:r.stored_count});
    const shownParts=controller.getDisplayedParts();assert.equal(shownParts.length,r.visible_count);assert.deepEqual(shownParts.map(p=>p.key),controller.getVisibleKeys());
    for(const p of shownParts){assert(keys.has(p.key));for(const n of p.nodes)assert(displayed(n))}
    for(const p of [shownParts[0],shownParts[Math.floor(shownParts.length/2)],shownParts.at(-1)].filter(Boolean))assert.deepEqual(controller.getPartNodes(p.key),p.nodes);
