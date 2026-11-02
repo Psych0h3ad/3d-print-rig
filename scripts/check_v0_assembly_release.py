@@ -17,6 +17,9 @@ def main():
             if not row.get('passed')or len(row['machines'])!=1 or row['machines'][0]['machine_id']!=mid:raise ValueError('Missing exact V0 assembly: '+mid)
             proof=row['machines'][0].get('manualFasteners',{})
             if proof.get('sourceFasteners')!=8 or not all(proof.get(k)for k in ['controlledEarlierPartDisplayLease','currentFastenersOriginalHardwareMaterial','foreignDisplayReplacementRejected','originalTransformsMaterialsGeometryVisibilityRestored']):raise ValueError('Missing actual source fastener/display audit: '+mid)
+            head=row['machines'][0].get('headOwnership',{});display=row['machines'][0].get('headDisplay',{})
+            if head.get('operations')!=41 or head.get('originalHeadOperationLeaves')!=86 or head.get('originalSourceCohort')!=(100 if mid=='voron_v02r1_120'else 99):raise ValueError('Missing exact original head/companion operation audit: '+mid)
+            if len(display.get('visits',[]))!=3 or display.get('separatePalettes')!=3 or not all(display.get(k)for k in ['originalRestored','originalSourceMaterialsRetained','fullGeometryContentRetained']):raise ValueError('Missing actual current head display/material restoration: '+mid)
             rows.append(row)
     if stages.read_bytes()!=source:raise ValueError('Stage source changed between machines')
     result={k:v for k,v in rows[0].items()if k not in {'machines','source_sha256'}};result['machines']=[m for row in rows for m in row['machines']];pins={}

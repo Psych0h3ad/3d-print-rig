@@ -12354,7 +12354,10 @@
     "ui.v0assembly.text_cd57e91951abb3": {
       "kind": "message",
       "ja": "ホットエンドとカウリングを固定",
-      "en": "Fasten the hotend and cowling"
+      "en": "Fasten the hotend and cowling",
+      "aliases": [
+        "Join the hotend and cowling"
+      ]
     },
     "ui.v0assembly.text_d990e91ee5ed53": {
       "kind": "message",
@@ -14878,8 +14881,8 @@
     },
     "assembly.workbench.updated_manual": {
       "kind": "message",
-      "ja": "工程表を更新しました。以前の工程・部品チェックは保持し、元の保存記録も残しています。",
-      "en": "The stage table was updated. Your previous stage and source-part checks were retained; the original saved record is preserved."
+      "ja": "工程表を更新しました。部品チェックと変更のない工程は保持し、変更した工程は再確認に戻しています。元の保存記録も残しています。",
+      "en": "Stage list updated. Part checks and unchanged stages are retained; revised operations need a fresh check. Previous saved records are kept."
     },
     "assembly.workbench.related_stages": {
       "kind": "message",
@@ -15370,6 +15373,376 @@
       "kind": "message",
       "ja": "この工程で使う部品は元の色で、それ以外は薄いグレーで表示します。",
       "en": "Parts used in this step keep their colors. Earlier parts appear in pale gray."
+    },
+    "assembly.v0head.title.head_prep": {
+      "kind": "message",
+      "ja": "カウリングのインサートを準備",
+      "en": "Prepare cowling inserts"
+    },
+    "assembly.v0head.title.head_shuttle_prep": {
+      "kind": "message",
+      "ja": "シャトルのインサートを準備",
+      "en": "Prepare the shuttle insert"
+    },
+    "assembly.v0head.title.head_spacers_prep": {
+      "kind": "message",
+      "ja": "配線保持用スペーサー2本を準備",
+      "en": "Prepare both strain-relief spacers"
+    },
+    "assembly.v0head.title.head_midbody_prep": {
+      "kind": "message",
+      "ja": "ミッドボディのインサートと調整ネジを準備",
+      "en": "Prepare midbody inserts and stop screw"
+    },
+    "assembly.v0head.title.head_carriage_review": {
+      "kind": "message",
+      "ja": "準備済みXキャリッジのインサートを再確認",
+      "en": "Recheck the prepared X-carriage inserts"
+    },
+    "assembly.v0head.title.head_shaft_check": {
+      "kind": "message",
+      "ja": "ギヤ軸と2個のベアリングを確認",
+      "en": "Check the shaft and both gear bearings"
+    },
+    "assembly.v0head.title.head_motorplate_prep": {
+      "kind": "message",
+      "ja": "モータープレートのベアリングとナットを準備",
+      "en": "Prepare the motor plate bearing and captive nut"
+    },
+    "assembly.v0head.title.head_front_bearing": {
+      "kind": "message",
+      "ja": "前側のギヤ軸ベアリングを取り付け",
+      "en": "Seat the front gear-shaft bearing"
+    },
+    "assembly.v0head.title.head_shuttle_install": {
+      "kind": "message",
+      "ja": "準備したシャトルを組み込む",
+      "en": "Fit the prepared shuttle"
+    },
+    "assembly.v0head.title.head_guidler_install": {
+      "kind": "message",
+      "ja": "準備したガイドラーを組み込む",
+      "en": "Fit the prepared guidler"
+    },
+    "assembly.v0head.title.head_latch_install": {
+      "kind": "message",
+      "ja": "ラッチを組み込む",
+      "en": "Fit the latch"
+    },
+    "assembly.v0head.title.head_midbody_join": {
+      "kind": "message",
+      "ja": "ミッドボディと軸用ネジを取り付け",
+      "en": "Join the midbody and pivot fasteners"
+    },
+    "assembly.v0head.title.head_drive_gear": {
+      "kind": "message",
+      "ja": "50T軸にドライブギヤを取り付け",
+      "en": "Fit the drive gear on the 50T shaft"
+    },
+    "assembly.v0head.title.head_motorplate_close": {
+      "kind": "message",
+      "ja": "準備したモータープレートで押出機を閉じる",
+      "en": "Close the extruder with the prepared motor plate"
+    },
+    "assembly.v0head.title.head_gear_spacing": {
+      "kind": "message",
+      "ja": "50Tギヤの横すきまを確認",
+      "en": "Check the 50T gear side clearance"
+    },
+    "assembly.v0head.title.head_drive_align": {
+      "kind": "message",
+      "ja": "ドライブギヤの歯をフィラメント経路に合わせる",
+      "en": "Align the drive teeth with the filament path"
+    },
+    "assembly.v0head.title.head_tension": {
+      "kind": "message",
+      "ja": "テンションネジとばねを取り付け",
+      "en": "Fit the tension screw and spring"
+    },
+    "assembly.v0head.title.head_latch_check": {
+      "kind": "message",
+      "ja": "ラッチがシャトルの溝に入ることを確認",
+      "en": "Check latch engagement in the shuttle"
+    },
+    "assembly.v0head.title.head_feed_check": {
+      "kind": "message",
+      "ja": "送り状態と押しつぶし防止ネジを確認",
+      "en": "Check feeding and the anti-squish stop"
+    },
+    "assembly.v0head.title.head_fan_first": {
+      "kind": "message",
+      "ja": "片側のブロワーファンを取り付け",
+      "en": "Fit the first duct blower"
+    },
+    "assembly.v0head.title.head_fan_axial": {
+      "kind": "message",
+      "ja": "3010ホットエンドファンを取り付け",
+      "en": "Fit the 3010 hotend fan"
+    },
+    "assembly.v0head.title.head_fan_second": {
+      "kind": "message",
+      "ja": "反対側のブロワーファンを取り付け",
+      "en": "Fit the opposite duct blower"
+    },
+    "assembly.v0head.title.head_motor": {
+      "kind": "message",
+      "ja": "モーターを丸穴側で仮止めする",
+      "en": "Start the motor fixing at the round hole"
+    },
+    "assembly.v0head.title.head_motor_slot": {
+      "kind": "message",
+      "ja": "モーター調整用の長穴側を仮止めする",
+      "en": "Fit the motor adjustment-slot screw loosely"
+    },
+    "assembly.v0head.title.head_open_latch": {
+      "kind": "message",
+      "ja": "調整のためラッチとガイドラーを開く",
+      "en": "Open the latch and guidler for adjustment"
+    },
+    "assembly.v0head.title.head_backlash": {
+      "kind": "message",
+      "ja": "モーターのギヤの遊びを調整",
+      "en": "Adjust the motor gear backlash"
+    },
+    "assembly.v0head.title.head_motor_tighten": {
+      "kind": "message",
+      "ja": "モーターを固定して送り状態を再確認",
+      "en": "Tighten and repeat the feeding check"
+    },
+    "assembly.v0head.title.head_hotend_choice": {
+      "kind": "message",
+      "ja": "元モデルのホットエンドを確認",
+      "en": "Check the source hotend choice"
+    },
+    "assembly.v0head.title.head_hotend": {
+      "kind": "message",
+      "ja": "元モデルのRevo Voronを組み立て",
+      "en": "Assemble the source Revo Voron hotend"
+    },
+    "assembly.v0head.title.head_hotend_tube": {
+      "kind": "message",
+      "ja": "元モデルのPTFEチューブを入れる",
+      "en": "Insert the source PTFE tube"
+    },
+    "assembly.v0head.title.head_tube_length": {
+      "kind": "message",
+      "ja": "PTFEの突き出し6 mmを確認",
+      "en": "Check the captured PTFE protrusion"
+    },
+    "assembly.v0head.title.head_tube_jig": {
+      "kind": "message",
+      "ja": "公式治具の方法でPTFEを切りそろえる",
+      "en": "Trim PTFE using the official jig method"
+    },
+    "assembly.v0head.title.head_install": {
+      "kind": "message",
+      "ja": "前側のネジでヘッドをキャリッジに取り付け",
+      "en": "Mount the toolhead with the front fixings"
+    },
+    "assembly.v0head.title.head_rear_fixing": {
+      "kind": "message",
+      "ja": "後側のキャリッジ固定ネジを取り付け",
+      "en": "Fit the rear carriage screw"
+    },
+    "assembly.v0head.title.head_strain_relief": {
+      "kind": "message",
+      "ja": "準備した配線保持部品を取り付け",
+      "en": "Install the prepared strain-relief parts"
+    },
+    "assembly.v0head.title.head_wire_ties": {
+      "kind": "message",
+      "ja": "結束部で配線束を固定",
+      "en": "Secure the wire bundle at the tie loops"
+    },
+    "assembly.v0head.title.head_wire_path": {
+      "kind": "message",
+      "ja": "ヒーター線と細い配線の経路を分ける",
+      "en": "Separate heater and thin-wire routes"
+    },
+    "assembly.v0head.note.head_prep": {
+      "kind": "message",
+      "ja": "カウリングのインサート3個を準備します。",
+      "en": "Prepare the three cowling inserts."
+    },
+    "assembly.v0head.note.head_shuttle_prep": {
+      "kind": "message",
+      "ja": "マニュアルの向きに合わせて、シャトルにインサートを入れます。",
+      "en": "Fit the shuttle insert as shown in the manual."
+    },
+    "assembly.v0head.note.head_spacers_prep": {
+      "kind": "message",
+      "ja": "スペーサー2本の両端に計4個のインサートを入れ、配線保持部品の取り付けまで保管します。",
+      "en": "Prepare four end inserts in the two spacers, then keep both spacers aside until strain-relief installation."
+    },
+    "assembly.v0head.note.head_midbody_prep": {
+      "kind": "message",
+      "ja": "インサート5個を入れ、M2x6の調整ネジを樹脂部に軽くねじ込みます。後の調整でも同じネジを使います。",
+      "en": "Fit five inserts and start the M2x6 stop screw in the plastic. This same screw is adjusted later."
+    },
+    "assembly.v0head.note.head_carriage_review": {
+      "kind": "message",
+      "ja": "前の工程で準備したキャリッジとインサート2個を使います。",
+      "en": "Reuse the carriage and its two inserts prepared earlier."
+    },
+    "assembly.v0head.note.head_guidler": {
+      "kind": "message",
+      "ja": "マニュアルの図に従ってサポートを除去し、アイドラーのベアリング、軸、補強ネジを取り付けます。",
+      "en": "Follow the manual support-removal diagram before fitting the idler bearings, shaft and reinforcing screw."
+    },
+    "assembly.v0head.note.head_shaft_check": {
+      "kind": "message",
+      "ja": "軸の短い側の突き出しが3 mm未満か確認します。MR85ベアリング2個を仮に通して確認し、組み立て前に外します。",
+      "en": "Check that the short shaft end protrudes less than 3 mm. Test-fit both MR85 bearings, then remove them for assembly."
+    },
+    "assembly.v0head.note.head_motorplate_prep": {
+      "kind": "message",
+      "ja": "マニュアルに従ってM3ナットを保持し、接着剤がねじ山やベアリングに付かないようにします。準備したプレートは保管します。",
+      "en": "Secure the captive M3 nut as instructed, keeping adhesive away from its threads and the bearing. Set the prepared plate aside."
+    },
+    "assembly.v0head.note.head_midbody_join": {
+      "kind": "message",
+      "ja": "M3x25を3本、下側のM3x10を2本使います。下側のM3x25はガイドラーの軸になるため、締めすぎず滑らかに動くことを確認します。",
+      "en": "Use three M3x25 screws and both lower M3x10 screws. The lower M3x25 is the guidler hinge; keep the arm moving freely."
+    },
+    "assembly.v0head.note.head_drive_gear": {
+      "kind": "message",
+      "ja": "図の反転したギヤの向きに合わせます。フィラメント経路を合わせるまで、イモネジは締めません。",
+      "en": "Follow the reversed gear orientation in the diagram. Leave the grub screw loose until filament alignment."
+    },
+    "assembly.v0head.note.head_motorplate_close": {
+      "kind": "message",
+      "ja": "準備したプレート、ベアリング、ナットを使い、M3x6を2本と下側面のM3x10を1本で固定します。",
+      "en": "Reuse the prepared plate, bearing and captive nut. Use two M3x6 screws and the separate lower-side M3x10 screw."
+    },
+    "assembly.v0head.note.head_gear_spacing": {
+      "kind": "message",
+      "ja": "図を参考に、50Tギヤの横すきまを約0.75 mmにして中央に合わせます。",
+      "en": "Centre the 50T gear with about 0.75 mm side clearance as illustrated."
+    },
+    "assembly.v0head.note.head_drive_align": {
+      "kind": "message",
+      "ja": "フィラメントを通して歯の位置を合わせ、軸の平らな面にイモネジを固定します。",
+      "en": "Use filament to align the drive teeth, then secure the grub screw against the shaft flat."
+    },
+    "assembly.v0head.note.head_tension": {
+      "kind": "message",
+      "ja": "ネジ、ばね、ワッシャーの順序はマニュアルで確認してください。この元モデルではワッシャーを個別に識別できていません。",
+      "en": "Follow the manual screw, spring and washer arrangement. The washer is not a separately identified part in this source model."
+    },
+    "assembly.v0head.note.head_feed_check": {
+      "kind": "message",
+      "ja": "同じM2調整ネジを調整し、モーターを付ける前にフィラメントへ軽い歯形が付くことを確認します。",
+      "en": "Adjust the same M2 stop screw and check for light tooth marks on the filament before fitting the motor."
+    },
+    "assembly.v0head.note.head_fan_first": {
+      "kind": "message",
+      "ja": "ブロワーの出口を冷却ダクトへ向け、図の配線経路に合わせます。",
+      "en": "Orient the blower outlet into the cooling duct and follow the illustrated wire route."
+    },
+    "assembly.v0head.note.head_fan_axial": {
+      "kind": "message",
+      "ja": "3010ファンはカウリング内へ送風する向きにし、図の位置から配線を出します。",
+      "en": "The 3010 fan blows into the cowling. Follow the illustrated wire exit."
+    },
+    "assembly.v0head.note.head_fan_second": {
+      "kind": "message",
+      "ja": "反対側のブロワーを取り付け、図で示す溝へ配線を通します。",
+      "en": "Fit the opposite blower and route its wires through the illustrated channel."
+    },
+    "assembly.v0head.note.head_led_supplement": {
+      "kind": "message",
+      "ja": "元CADにあるオプション部品です。この範囲のマニュアルには取り付け手順がありません。",
+      "en": "Optional source CAD supplement. This manual section does not describe its installation."
+    },
+    "assembly.v0head.note.head_motor": {
+      "kind": "message",
+      "ja": "モーターを取り付け、丸穴側のM3x10を軽く締めます。",
+      "en": "Fit the motor and slightly tighten the M3x10 screw at the round hole."
+    },
+    "assembly.v0head.note.head_motor_slot": {
+      "kind": "message",
+      "ja": "曲がった長穴側のM3x10は、ギヤの遊びを調整するまで緩めておきます。後ろへ出たねじ山は配線保持用スペーサーにも使います。",
+      "en": "Keep the M3x10 in the curved slot loose until gear backlash is set. Its rear threads are also used for the strain-relief spacer."
+    },
+    "assembly.v0head.note.head_open_latch": {
+      "kind": "message",
+      "ja": "実物のラッチとガイドラーを開き、50Tギヤを自由に回せるようにします。この参照表示では関節を動かしていません。",
+      "en": "Open the latch and guidler on the real assembly so the 50T gear can turn freely. The reference model does not animate this joint."
+    },
+    "assembly.v0head.note.head_backlash": {
+      "kind": "message",
+      "ja": "長穴を使ってモーター位置を調整し、マニュアルに従ってギヤを一周させながら遊びを確認します。",
+      "en": "Adjust the motor through the slot and check gear play through a complete turn, as described in the manual."
+    },
+    "assembly.v0head.note.head_motor_tighten": {
+      "kind": "message",
+      "ja": "同じモーター固定ネジ2本を締め、ギヤの遊びとフィラメントの送りをもう一度確認します。",
+      "en": "Tighten the same two motor screws, then repeat the gear-play and filament checks."
+    },
+    "assembly.v0head.note.head_hotend_choice": {
+      "kind": "message",
+      "ja": "この元モデルはRevo Voronです。他のホットエンドには、それぞれに合うマウントと金物が必要です。",
+      "en": "This source assembly uses Revo Voron. Other hotends need their own matching mount and hardware."
+    },
+    "assembly.v0head.note.head_hotend": {
+      "kind": "message",
+      "ja": "対応するRevo VoronマウントとM3x8ネジ4本を使います。",
+      "en": "Use the matching Revo Voron mount and all four M3x8 screws."
+    },
+    "assembly.v0head.note.head_tube_length": {
+      "kind": "message",
+      "ja": "PTFEをマウント上面から6 mm出し、ホットエンドで保持された状態にします。",
+      "en": "The PTFE tube must project 6 mm above the mount and remain captured by the hotend."
+    },
+    "assembly.v0head.note.head_tube_jig": {
+      "kind": "message",
+      "ja": "チューブを奥まで入れてから、公式のプーリー治具で面をそろえて切ります。このモデルに治具は含まれていません。",
+      "en": "Seat the tube fully, then use the official pulley jig to trim it flush. The jig is not included in this model."
+    },
+    "assembly.v0head.note.head_close": {
+      "kind": "message",
+      "ja": "準備したホットエンドとカウリングを、前側のM3x35ネジ2本で固定します。",
+      "en": "Join the prepared hotend and cowling with the two M3x35 front screws."
+    },
+    "assembly.v0head.note.head_install": {
+      "kind": "message",
+      "ja": "同じ前側の長いネジ2本を使って、ヘッドをキャリッジに取り付けます。下側のM3x10はそのままです。",
+      "en": "Reuse those same two long front screws to mount the head on the carriage. Keep the lower M3x10 screws in place."
+    },
+    "assembly.v0head.note.head_rear_fixing": {
+      "kind": "message",
+      "ja": "後側のM3x16ネジを、モータープレートに保持したナットへ固定します。",
+      "en": "Use the rear M3x16 screw with the captive nut in the motor plate."
+    },
+    "assembly.v0head.note.head_strain_relief": {
+      "kind": "message",
+      "ja": "準備したスペーサーをモーター固定ネジの後ろへ取り付け、配線保持プレートと固定ネジ4本を付けます。",
+      "en": "Fit the prepared spacers on the exposed motor-screw threads, then add the strain-relief plate and its four screws."
+    },
+    "assembly.v0head.note.head_wire_ties": {
+      "kind": "message",
+      "ja": "ヘッドと配線保持部の図で示す位置で配線を結束します。配線束全体はモデル化されていません。",
+      "en": "Secure the wires at the illustrated tie points on the head and strain relief. The full wire bundle is not modeled."
+    },
+    "assembly.v0head.note.head_wire_path": {
+      "kind": "message",
+      "ja": "ヘッドを手前に置いて必要な余裕だけを残し、ヒーター線をセンサーやファンの細い配線と分けて通します。",
+      "en": "Allow only the needed slack with the head at the front. Route heater wires separately from thin sensor and fan wires."
+    },
+    "assembly.v0head.note.head_latch_check": {
+      "kind": "message",
+      "ja": "ラッチがシャトルの溝に入ることを確認します。",
+      "en": "The latch must engage the groove in the shuttle."
+    },
+    "assembly.v0head.context.0": {
+      "kind": "message",
+      "ja": "準備するヘッド部品を分けて表示しています。機体や後で使う部品は保管し、差し込みや関節の動作は再現していません。",
+      "en": "Prepared head parts are inspected separately. Earlier machine parts and later head components stay aside; no insertion or joint trajectory is simulated."
+    },
+    "assembly.v0head.context.1": {
+      "kind": "message",
+      "ja": "元モデルの取り付け位置を参照表示しています。",
+      "en": "Original installation reference positions are retained."
     }
   }
 }

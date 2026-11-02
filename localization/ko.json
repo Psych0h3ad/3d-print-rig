@@ -9795,7 +9795,7 @@
       "text": "원본과 동일한 Revo Voron 핫엔드 조립"
     },
     "ui.v0assembly.text_cd57e91951abb3": {
-      "source_revision": "2cf6ab68f4a9f8850b8b",
+      "source_revision": "08f58f0022c22e9c0b7a",
       "text": "핫엔드와 카울 고정"
     },
     "ui.v0assembly.text_d990e91ee5ed53": {
@@ -11815,8 +11815,8 @@
       "text": "B는 왼쪽, A는 오른쪽에 장착합니다. 뒤쪽 나사는 프레임 끝단의 나사산에, 앞쪽 나사는 미리 넣은 너트에 고정합니다. 임시 M3 너트는 장착 전에 제거합니다."
     },
     "assembly.workbench.updated_manual": {
-      "source_revision": "99ba1474f34238880f69",
-      "text": "단계표를 업데이트했습니다. 이전 단계 및 원본 부품 확인 기록을 유지했으며 기존 저장 기록도 보존합니다."
+      "source_revision": "8379498d6a735e983c9d",
+      "text": "단계 목록이 업데이트되었습니다. 부품 확인과 변경되지 않은 단계는 유지되며, 수정된 작업은 다시 확인해야 합니다. 이전 저장 기록도 남아 있습니다."
     },
     "assembly.workbench.related_stages": {
       "source_revision": "3cb043d6029df24fd1bc",
@@ -12209,6 +12209,302 @@
     "assembly.workbench.dim_hint": {
       "source_revision": "f055b60402efad8847f3",
       "text": "이 단계에서 사용하는 부품은 원래 색을 유지하고, 이전 부품은 옅은 회색으로 표시합니다."
+    },
+    "assembly.v0head.title.head_prep": {
+      "source_revision": "352a36bf0856f89a6e12",
+      "text": "카울링 인서트 준비"
+    },
+    "assembly.v0head.title.head_shuttle_prep": {
+      "source_revision": "1e08bf14e05327e555b4",
+      "text": "셔틀 인서트 준비"
+    },
+    "assembly.v0head.title.head_spacers_prep": {
+      "source_revision": "a685dcb6bcd2907347f4",
+      "text": "배선 고정 스페이서 2개 준비"
+    },
+    "assembly.v0head.title.head_midbody_prep": {
+      "source_revision": "8c8990a1e7fa054b4b0a",
+      "text": "미드바디 인서트와 조정 나사 준비"
+    },
+    "assembly.v0head.title.head_carriage_review": {
+      "source_revision": "9feac291f3e1ea88ab7e",
+      "text": "준비된 X 캐리지 인서트 재확인"
+    },
+    "assembly.v0head.title.head_shaft_check": {
+      "source_revision": "77996520b505b2f846ba",
+      "text": "기어 축과 베어링 2개 확인"
+    },
+    "assembly.v0head.title.head_motorplate_prep": {
+      "source_revision": "ad380ba09fbab4d927b5",
+      "text": "모터 플레이트 베어링과 고정 너트 준비"
+    },
+    "assembly.v0head.title.head_front_bearing": {
+      "source_revision": "f64dd684ed3dec164bdc",
+      "text": "앞쪽 기어 축 베어링 장착"
+    },
+    "assembly.v0head.title.head_shuttle_install": {
+      "source_revision": "deb138b06ab258bdc824",
+      "text": "준비된 셔틀 장착"
+    },
+    "assembly.v0head.title.head_guidler_install": {
+      "source_revision": "079931a071cc09698ad4",
+      "text": "준비된 가이들러 장착"
+    },
+    "assembly.v0head.title.head_latch_install": {
+      "source_revision": "7ecf0e0d7267395c459c",
+      "text": "래치 장착"
+    },
+    "assembly.v0head.title.head_midbody_join": {
+      "source_revision": "621f078f2f8cfb5b8ff6",
+      "text": "미드바디와 회전축 나사 장착"
+    },
+    "assembly.v0head.title.head_drive_gear": {
+      "source_revision": "63e967c7e1648f529e2f",
+      "text": "50T 축에 구동 기어 장착"
+    },
+    "assembly.v0head.title.head_motorplate_close": {
+      "source_revision": "ff0d187bf61fd74d5d1f",
+      "text": "준비된 모터 플레이트로 압출기 닫기"
+    },
+    "assembly.v0head.title.head_gear_spacing": {
+      "source_revision": "c4e6cef7041ee899b52c",
+      "text": "50T 기어 측면 간격 확인"
+    },
+    "assembly.v0head.title.head_drive_align": {
+      "source_revision": "2a2cf6505562bfe8c855",
+      "text": "구동 기어 이빨을 필라멘트 경로에 맞추기"
+    },
+    "assembly.v0head.title.head_tension": {
+      "source_revision": "269ff19f60c683f743b6",
+      "text": "장력 조절 나사와 스프링 장착"
+    },
+    "assembly.v0head.title.head_latch_check": {
+      "source_revision": "02d4deefd02c5e9bf1f4",
+      "text": "래치가 셔틀 홈에 걸리는지 확인"
+    },
+    "assembly.v0head.title.head_feed_check": {
+      "source_revision": "032f955f75cac9056c85",
+      "text": "필라멘트 공급과 눌림 방지 나사 확인"
+    },
+    "assembly.v0head.title.head_fan_first": {
+      "source_revision": "cadeca49ae71fd8c1102",
+      "text": "첫 번째 블로워 팬 장착"
+    },
+    "assembly.v0head.title.head_fan_axial": {
+      "source_revision": "0faf0b4c3fd3bbe39065",
+      "text": "3010 핫엔드 팬 장착"
+    },
+    "assembly.v0head.title.head_fan_second": {
+      "source_revision": "0a0a60d6de55ebb5d98c",
+      "text": "반대쪽 블로워 팬 장착"
+    },
+    "assembly.v0head.title.head_motor": {
+      "source_revision": "f7160562102f5f1d27c1",
+      "text": "원형 구멍 쪽에서 모터 임시 고정"
+    },
+    "assembly.v0head.title.head_motor_slot": {
+      "source_revision": "002b005b6439d67374de",
+      "text": "모터 조정 슬롯 나사를 느슨하게 장착"
+    },
+    "assembly.v0head.title.head_open_latch": {
+      "source_revision": "f653a64cbcb26c4dfa0d",
+      "text": "조정을 위해 래치와 가이들러 열기"
+    },
+    "assembly.v0head.title.head_backlash": {
+      "source_revision": "6e287d88a7fc35cdb9c5",
+      "text": "모터 기어 백래시 조정"
+    },
+    "assembly.v0head.title.head_motor_tighten": {
+      "source_revision": "abc66ce7e9699ac2db5b",
+      "text": "나사를 조이고 필라멘트 공급 재확인"
+    },
+    "assembly.v0head.title.head_hotend_choice": {
+      "source_revision": "96a08e05751777766b3f",
+      "text": "원본 모델의 핫엔드 확인"
+    },
+    "assembly.v0head.title.head_hotend": {
+      "source_revision": "33a33fe698ae26567829",
+      "text": "원본 모델의 Revo Voron 조립"
+    },
+    "assembly.v0head.title.head_hotend_tube": {
+      "source_revision": "10053682bc12f90f0b13",
+      "text": "원본 모델의 PTFE 튜브 삽입"
+    },
+    "assembly.v0head.title.head_tube_length": {
+      "source_revision": "801f9b78f85a601d73e8",
+      "text": "고정된 PTFE 튜브 돌출 길이 확인"
+    },
+    "assembly.v0head.title.head_tube_jig": {
+      "source_revision": "c2a6544e24654044904d",
+      "text": "공식 지그 방식으로 PTFE 자르기"
+    },
+    "assembly.v0head.title.head_install": {
+      "source_revision": "28014a0372f1fa0aa876",
+      "text": "앞쪽 나사로 툴헤드를 캐리지에 장착"
+    },
+    "assembly.v0head.title.head_rear_fixing": {
+      "source_revision": "1d3fef398cd78eb896df",
+      "text": "캐리지 뒤쪽 고정 나사 장착"
+    },
+    "assembly.v0head.title.head_strain_relief": {
+      "source_revision": "fdd168517fa101796a9d",
+      "text": "준비된 배선 고정 부품 장착"
+    },
+    "assembly.v0head.title.head_wire_ties": {
+      "source_revision": "cf94a39115e3a6d362c8",
+      "text": "케이블 타이 고정부에 배선 묶음 고정"
+    },
+    "assembly.v0head.title.head_wire_path": {
+      "source_revision": "4af46800517469daeb31",
+      "text": "히터 배선과 가는 배선의 경로 분리"
+    },
+    "assembly.v0head.note.head_prep": {
+      "source_revision": "148f06ab2c4e427d7429",
+      "text": "카울링 인서트 3개를 준비합니다."
+    },
+    "assembly.v0head.note.head_shuttle_prep": {
+      "source_revision": "71ffba347f5980ad192c",
+      "text": "매뉴얼의 방향에 맞춰 셔틀 인서트를 장착합니다."
+    },
+    "assembly.v0head.note.head_spacers_prep": {
+      "source_revision": "8c0bc063433d81ca76a3",
+      "text": "스페이서 2개 양끝에 인서트 총 4개를 넣고 배선 고정 부품 장착 때까지 보관합니다."
+    },
+    "assembly.v0head.note.head_midbody_prep": {
+      "source_revision": "e1d9429c11f5bf658273",
+      "text": "인서트 5개를 넣고 플라스틱에 M2x6 조정 나사를 가볍게 체결합니다. 이후에도 같은 나사를 조정합니다."
+    },
+    "assembly.v0head.note.head_carriage_review": {
+      "source_revision": "6511d1b770d94ed98c1b",
+      "text": "앞 단계에서 준비한 캐리지와 인서트 2개를 사용합니다."
+    },
+    "assembly.v0head.note.head_guidler": {
+      "source_revision": "88c59cfb3939ee4a52b9",
+      "text": "매뉴얼 그림에 따라 서포트를 제거한 뒤 아이들러 베어링, 축, 보강 나사를 장착합니다."
+    },
+    "assembly.v0head.note.head_shaft_check": {
+      "source_revision": "7b13319f08ef8a7b4717",
+      "text": "축의 짧은 쪽 돌출부가 3 mm 미만인지 확인합니다. MR85 베어링 2개를 시험 장착한 뒤 조립을 위해 분리합니다."
+    },
+    "assembly.v0head.note.head_motorplate_prep": {
+      "source_revision": "e3ef3d9014c7353dfed2",
+      "text": "지침에 따라 M3 너트를 고정하되 나사산과 베어링에 접착제가 묻지 않게 합니다. 준비된 플레이트는 따로 보관합니다."
+    },
+    "assembly.v0head.note.head_midbody_join": {
+      "source_revision": "1fef82c5b4574b20694c",
+      "text": "M3x25 3개와 아래쪽 M3x10 2개를 사용합니다. 아래쪽 M3x25는 가이들러 회전축이므로 암이 자유롭게 움직이게 합니다."
+    },
+    "assembly.v0head.note.head_drive_gear": {
+      "source_revision": "e4396acb0b73c6fe20da",
+      "text": "그림의 뒤집힌 기어 방향을 따릅니다. 필라멘트 정렬 전까지 고정 나사는 느슨하게 둡니다."
+    },
+    "assembly.v0head.note.head_motorplate_close": {
+      "source_revision": "742a5ec6bbfa3231bcef",
+      "text": "준비된 플레이트, 베어링, 너트를 사용합니다. M3x6 2개와 아래 측면의 별도 M3x10으로 고정합니다."
+    },
+    "assembly.v0head.note.head_gear_spacing": {
+      "source_revision": "f5c12b032df395861f93",
+      "text": "그림처럼 측면 간격을 약 0.75 mm로 두고 50T 기어를 가운데 맞춥니다."
+    },
+    "assembly.v0head.note.head_drive_align": {
+      "source_revision": "f2174d8d79f455427719",
+      "text": "필라멘트로 기어 이빨을 정렬한 다음 축의 평면에 고정 나사를 체결합니다."
+    },
+    "assembly.v0head.note.head_tension": {
+      "source_revision": "f9f14a0cca9c564c6bfa",
+      "text": "나사, 스프링, 와셔 순서는 매뉴얼을 따릅니다. 이 원본 모델에서는 와셔가 별도 부품으로 식별되지 않았습니다."
+    },
+    "assembly.v0head.note.head_feed_check": {
+      "source_revision": "d8c70310e58a528bd567",
+      "text": "같은 M2 조정 나사를 조절하고 모터 장착 전에 필라멘트에 가벼운 기어 자국이 남는지 확인합니다."
+    },
+    "assembly.v0head.note.head_fan_first": {
+      "source_revision": "1168d4f076948e96551f",
+      "text": "블로워 출구를 냉각 덕트로 향하게 하고 그림의 배선 경로를 따릅니다."
+    },
+    "assembly.v0head.note.head_fan_axial": {
+      "source_revision": "d274d7f58fd7db3dbb79",
+      "text": "3010 팬이 카울링 안으로 바람을 보내도록 하고 그림의 위치로 배선을 빼냅니다."
+    },
+    "assembly.v0head.note.head_fan_second": {
+      "source_revision": "366e612cb12973d819c4",
+      "text": "반대쪽 블로워를 장착하고 그림의 홈으로 배선을 통과시킵니다."
+    },
+    "assembly.v0head.note.head_led_supplement": {
+      "source_revision": "aeac23209dfc09ce9524",
+      "text": "원본 CAD의 선택 부품입니다. 이 매뉴얼 구간에는 장착 절차가 없습니다."
+    },
+    "assembly.v0head.note.head_motor": {
+      "source_revision": "b4d324aec5faf168b87d",
+      "text": "모터를 장착하고 원형 구멍 쪽 M3x10을 가볍게 조입니다."
+    },
+    "assembly.v0head.note.head_motor_slot": {
+      "source_revision": "5255f19169c981d9d09b",
+      "text": "기어 백래시를 조정할 때까지 곡선 슬롯의 M3x10을 느슨하게 둡니다. 뒤쪽 나사산은 배선 고정 스페이서에도 사용합니다."
+    },
+    "assembly.v0head.note.head_open_latch": {
+      "source_revision": "7a018cc770097d4de008",
+      "text": "실제 조립품의 래치와 가이들러를 열어 50T 기어가 자유롭게 돌게 합니다. 참조 모델에서는 이 관절을 움직이지 않습니다."
+    },
+    "assembly.v0head.note.head_backlash": {
+      "source_revision": "79c613e6d9be2e189522",
+      "text": "슬롯을 이용해 모터를 조정하고 매뉴얼에 따라 기어를 한 바퀴 돌리며 유격을 확인합니다."
+    },
+    "assembly.v0head.note.head_motor_tighten": {
+      "source_revision": "20e009794346d5cc4666",
+      "text": "같은 모터 나사 2개를 조인 뒤 기어 유격과 필라멘트 공급을 다시 확인합니다."
+    },
+    "assembly.v0head.note.head_hotend_choice": {
+      "source_revision": "c9187508bdb4cc7e2bf0",
+      "text": "이 원본 조립품은 Revo Voron을 사용합니다. 다른 핫엔드에는 맞는 마운트와 체결 부품이 필요합니다."
+    },
+    "assembly.v0head.note.head_hotend": {
+      "source_revision": "ecb5bd42a0ccd765e157",
+      "text": "맞는 Revo Voron 마운트와 M3x8 나사 4개를 사용합니다."
+    },
+    "assembly.v0head.note.head_tube_length": {
+      "source_revision": "618a6cfa375f39595ecd",
+      "text": "PTFE 튜브가 마운트 위로 6 mm 돌출되고 핫엔드에 고정되도록 합니다."
+    },
+    "assembly.v0head.note.head_tube_jig": {
+      "source_revision": "62d868303c11383d5e22",
+      "text": "튜브를 끝까지 넣고 공식 풀리 지그로 면에 맞춰 자릅니다. 이 모델에는 지그가 포함되지 않습니다."
+    },
+    "assembly.v0head.note.head_close": {
+      "source_revision": "dc9139b5d208cd2ea478",
+      "text": "준비된 핫엔드와 카울링을 앞쪽 M3x35 나사 2개로 고정합니다."
+    },
+    "assembly.v0head.note.head_install": {
+      "source_revision": "a0b7be056f8c58f1a1c9",
+      "text": "같은 앞쪽 긴 나사 2개로 헤드를 캐리지에 장착합니다. 아래쪽 M3x10은 그대로 둡니다."
+    },
+    "assembly.v0head.note.head_rear_fixing": {
+      "source_revision": "05db0869af98aa8cfa93",
+      "text": "모터 플레이트의 고정 너트에 뒤쪽 M3x16 나사를 체결합니다."
+    },
+    "assembly.v0head.note.head_strain_relief": {
+      "source_revision": "550a7127286095dfb796",
+      "text": "준비된 스페이서를 모터 나사의 뒤쪽 나사산에 장착한 다음 배선 고정 플레이트와 나사 4개를 장착합니다."
+    },
+    "assembly.v0head.note.head_wire_ties": {
+      "source_revision": "a00c126992e4da618364",
+      "text": "그림에 표시된 헤드와 배선 고정부 위치에 배선을 묶습니다. 전체 배선 묶음은 모델링되지 않았습니다."
+    },
+    "assembly.v0head.note.head_wire_path": {
+      "source_revision": "f1f2b8fe3cc0e0203b09",
+      "text": "헤드를 앞쪽에 두고 필요한 만큼만 배선 여유를 남깁니다. 히터 배선은 센서와 팬의 가는 배선과 분리합니다."
+    },
+    "assembly.v0head.note.head_latch_check": {
+      "source_revision": "27f7bfa877089cdf0791",
+      "text": "래치가 셔틀 홈에 걸리는지 확인합니다."
+    },
+    "assembly.v0head.context.0": {
+      "source_revision": "8c22a802c54fcd32afae",
+      "text": "준비할 헤드 부품을 따로 표시합니다. 기체와 나중에 쓸 부품은 보관하며 삽입이나 관절 경로는 재현하지 않습니다."
+    },
+    "assembly.v0head.context.1": {
+      "source_revision": "591707747c97343835b1",
+      "text": "원본 모델의 장착 위치를 참조로 표시합니다."
     }
   }
 }

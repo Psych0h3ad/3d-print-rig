@@ -20,13 +20,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=4ada675fd20b5bc37076';
+import {setupPublicInfo} from './public-info.js?v=b31c041e97afea84163d';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=83b0d982f9b8dad8c28a';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=8472341be77b21a1c319';
+import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=60fe468a02a8754c743e';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=e3fbfd2bd14472f9e28e';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate} from './i18n.mjs?v=06b4d44feb44328464c6';
+import {formatMessage,translate} from './i18n.mjs?v=ce9697136267b44d745f';
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -71,7 +71,7 @@ function applyPose(){if(!adapter||assemblyView)return;const pose=adapter.setPose
 try{
  const nativeAssetReceipts={};
  const root='../machines/'+id+'/',json=async name=>{return workspaceTask(async()=>{const r=await fetch(root+name,{cache:'no-cache'});if(!r.ok)throw Error(name+'の読込に失敗');const bytes=await r.arrayBuffer();nativeAssetReceipts[name]=await v0NativeByteHash(bytes);return JSON.parse(new TextDecoder().decode(bytes))});};
- const [manifest,p,g,library,registration]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb',undefined,{verifySha256:v0NativeModelHash(id)}),fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()}),fetch('../V0_INSTALLATIONS.json?v=65d0fcf808da644b5824',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('V0 Mod取付データ');return r.json()})]);
+ const [manifest,p,g,library,registration]=await Promise.all([json('assembly_manifest.json'),json('machine_profile.json'),loadModel(new GLTFLoader(),root+'model.glb',undefined,{verifySha256:v0NativeModelHash(id)}),fetch('../COMPONENT_LIBRARY.json?v=trident-clearance-35',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Modカタログ');return r.json()}),fetch('../V0_INSTALLATIONS.json?v=33ea90dc4303d3dced78',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('V0 Mod取付データ');return r.json()})]);
  nativeAssetReceipts['model.glb']=v0NativeModelHash(id);
  profile=p;stockProfile=structuredClone(p);profile.stock_display_limits_mm=structuredClone(stockProfile.display_limits_mm);currentManifest=manifest;scene.add(g.scene);adapter=createV0Adapter(g.scene,manifest,profile);const originals=new Map(),protectedMaterials=[];
  for(const [key,node] of adapter.nodes)node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){originals.set(material,material.color.clone());if(!appearanceRole(adapter.records.get(key)))protectedMaterials.push(material);if(material.transparent)material.depthWrite=false}});
@@ -216,8 +216,8 @@ function setupAssemblyControls(receipts){
   if(assemblyLocked||assemblyView)return;assemblyLocked=true;
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
-   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=689e54096b54f6eeaaa9',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
-   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=f42ad2912a0f1cb4e873');
+   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=30115ff48261cbbdcb53',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
+   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=dfb9e7a0eab5e726c989');
    program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();

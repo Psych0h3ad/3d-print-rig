@@ -1,3 +1,4 @@
+import {attachHeadFixtureMetadata} from './v0_head_reference_audit.mjs';
 // Box fixtures exercise lifecycle/atomicity and source operation identity.
 // Exact exported hardware and native gap/slot evidence are separate audits.
 import assert from 'node:assert/strict';
@@ -18,7 +19,7 @@ function fixture(mid){
  for(const[g,[holder,first]]of (r1?[[58,69],[81,92],[104,115],[127,138],[328,339]]:[[56,67],[79,90],[102,113],[125,136],[320,331]]).entries()){
   nodes.get(key(holder)).position.set(g*.02,.2,.1);for(let i=0;i<10;i++)nodes.get(key(first+i)).position.set(g*.02+(i-4.5)*.014,.203,.1);
  }
- scene.updateMatrixWorld(true);const manifest={machine_id:mid,parts},receipts={'model.glb':spec.model_sha256,'assembly_manifest.json':spec.manifest_sha256,'assembly_stages.json':sha(bytes)},options={nodes,manifest,machine:spec,receipts,manualPreparation:true};
+ scene.updateMatrixWorld(true);const manifest={machine_id:mid,parts:attachHeadFixtureMetadata(parts,mid)},receipts={'model.glb':spec.model_sha256,'assembly_manifest.json':spec.manifest_sha256,'assembly_stages.json':sha(bytes)},options={nodes,manifest,machine:spec,receipts,manualPreparation:true};
  return{spec,key,scene,nodes,manifest,options,index:id=>spec.stages.findIndex(s=>s.id===id)};
 }
 const snapshot=f=>{f.scene.updateMatrixWorld(true);return[...f.nodes].map(([k,n])=>[k,n.visible,n.position.toArray(),n.quaternion.toArray(),n.scale.toArray(),n.matrix.toArray(),n.matrixWorld.toArray(),n.geometry,n.material])};

@@ -1,0 +1,1475 @@
+{
+  "scope": "Stock Mini Stealthburner manual reference operations with unchanged original source geometry, hardware materials and source positions. Separate preparation, stored components, individual screw identities and reused front fixings. No insertion, joint articulation, torque, thread engagement or native-solid fit certification.",
+  "stage_sha256": "30115ff48261cbbdcb53c49a2e9b51d8c660a6554eed43ec305870ffe1739c8a",
+  "previous_stage_sha256": "689e54096b54f6eeaaa9d5d96c6a735a8fc43391e6477ab0115bc9aeb8ba2a4e",
+  "source_repository": "https://github.com/VoronDesign/Voron-0",
+  "source_license": "GPL-3.0",
+  "machines": [
+    {
+      "machine": "voron_v02_120",
+      "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+      "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+      "manual": {
+        "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8/Manuals/VORON_V0.2_Assembly_Manual.pdf",
+        "sha256": "69f989092ea63b60a15407ce1c4b4f9e260702330ae00416a059eb705d5170fe",
+        "pages": 246,
+        "revision": "2023-03-03 @ a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8"
+      },
+      "stages": 158,
+      "sourceLeaves": 1653,
+      "headOperationLeaves": 86,
+      "headAndEarlierCompanionSourceOccurrences": 99,
+      "headOperations": 41,
+      "roles": {
+        "midbody_lower_M3x10": [
+          "v02_00369",
+          "v02_00385"
+        ],
+        "plate_side_M3x10": "v02_00382",
+        "motor_round_hole_M3x10": "v02_00384",
+        "motor_curved_slot_M3x10": "v02_00383",
+        "reused_long_front_M3x35": [
+          "v02_00372",
+          "v02_00388"
+        ]
+      },
+      "operations": [
+        {
+          "id": "head-prep",
+          "pages": [
+            151,
+            151
+          ],
+          "introduced_source_keys": [
+            "v02_00351",
+            "v02_00352",
+            "v02_00394",
+            "v02_00399",
+            "v02_00401"
+          ],
+          "referenced_source_keys": [
+            "v02_00351",
+            "v02_00352",
+            "v02_00394",
+            "v02_00399",
+            "v02_00401"
+          ]
+        },
+        {
+          "id": "head-shuttle-prep",
+          "pages": [
+            151,
+            151
+          ],
+          "introduced_source_keys": [
+            "v02_00341",
+            "v02_00408"
+          ],
+          "referenced_source_keys": [
+            "v02_00341",
+            "v02_00408"
+          ]
+        },
+        {
+          "id": "head-spacers-prep",
+          "pages": [
+            151,
+            151
+          ],
+          "introduced_source_keys": [
+            "v02_00346",
+            "v02_00347",
+            "v02_00398",
+            "v02_00402",
+            "v02_00405",
+            "v02_00407"
+          ],
+          "referenced_source_keys": [
+            "v02_00346",
+            "v02_00347",
+            "v02_00398",
+            "v02_00402",
+            "v02_00405",
+            "v02_00407"
+          ]
+        },
+        {
+          "id": "head-midbody-prep",
+          "pages": [
+            152,
+            152
+          ],
+          "introduced_source_keys": [
+            "v02_00344",
+            "v02_00364",
+            "v02_00395",
+            "v02_00397",
+            "v02_00400",
+            "v02_00403",
+            "v02_00404"
+          ],
+          "referenced_source_keys": [
+            "v02_00344",
+            "v02_00364",
+            "v02_00395",
+            "v02_00397",
+            "v02_00400",
+            "v02_00403",
+            "v02_00404"
+          ]
+        },
+        {
+          "id": "head-carriage-review",
+          "pages": [
+            152,
+            152
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00345",
+            "v02_00396",
+            "v02_00406"
+          ]
+        },
+        {
+          "id": "head-guidler",
+          "pages": [
+            153,
+            153
+          ],
+          "introduced_source_keys": [
+            "v02_00343",
+            "v02_00356",
+            "v02_00357",
+            "v02_00358",
+            "v02_00359",
+            "v02_00373"
+          ],
+          "referenced_source_keys": [
+            "v02_00343",
+            "v02_00356",
+            "v02_00357",
+            "v02_00358",
+            "v02_00359",
+            "v02_00373"
+          ]
+        },
+        {
+          "id": "head-shaft-check",
+          "pages": [
+            154,
+            154
+          ],
+          "introduced_source_keys": [
+            "v02_00362",
+            "v02_00360",
+            "v02_00363"
+          ],
+          "referenced_source_keys": [
+            "v02_00362",
+            "v02_00360",
+            "v02_00363"
+          ]
+        },
+        {
+          "id": "head-motorplate-prep",
+          "pages": [
+            155,
+            155
+          ],
+          "introduced_source_keys": [
+            "v02_00350",
+            "v02_00392"
+          ],
+          "referenced_source_keys": [
+            "v02_00350",
+            "v02_00392",
+            "v02_00360"
+          ]
+        },
+        {
+          "id": "head-front-bearing",
+          "pages": [
+            156,
+            156
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00363",
+            "v02_00351"
+          ]
+        },
+        {
+          "id": "head-shuttle-install",
+          "pages": [
+            156,
+            156
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00341",
+            "v02_00408",
+            "v02_00351"
+          ]
+        },
+        {
+          "id": "head-guidler-install",
+          "pages": [
+            156,
+            156
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00343",
+            "v02_00356",
+            "v02_00357",
+            "v02_00358",
+            "v02_00359",
+            "v02_00373",
+            "v02_00351",
+            "v02_00363"
+          ]
+        },
+        {
+          "id": "head-latch-install",
+          "pages": [
+            156,
+            156
+          ],
+          "introduced_source_keys": [
+            "v02_00342"
+          ],
+          "referenced_source_keys": [
+            "v02_00342"
+          ]
+        },
+        {
+          "id": "head-midbody-join",
+          "pages": [
+            157,
+            157
+          ],
+          "introduced_source_keys": [
+            "v02_00371",
+            "v02_00369",
+            "v02_00385",
+            "v02_00386",
+            "v02_00387"
+          ],
+          "referenced_source_keys": [
+            "v02_00344",
+            "v02_00364",
+            "v02_00395",
+            "v02_00397",
+            "v02_00400",
+            "v02_00403",
+            "v02_00404",
+            "v02_00371",
+            "v02_00369",
+            "v02_00385",
+            "v02_00386",
+            "v02_00387",
+            "v02_00343"
+          ]
+        },
+        {
+          "id": "head-drive-gear",
+          "pages": [
+            158,
+            158
+          ],
+          "introduced_source_keys": [
+            "v02_00361"
+          ],
+          "referenced_source_keys": [
+            "v02_00361",
+            "v02_00362",
+            "v02_00363"
+          ]
+        },
+        {
+          "id": "head-motorplate-close",
+          "pages": [
+            159,
+            159
+          ],
+          "introduced_source_keys": [
+            "v02_00377",
+            "v02_00378",
+            "v02_00382"
+          ],
+          "referenced_source_keys": [
+            "v02_00350",
+            "v02_00392",
+            "v02_00360",
+            "v02_00377",
+            "v02_00378",
+            "v02_00382"
+          ]
+        },
+        {
+          "id": "head-gear-spacing",
+          "pages": [
+            160,
+            160
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00362",
+            "v02_00344",
+            "v02_00350"
+          ]
+        },
+        {
+          "id": "head-drive-align",
+          "pages": [
+            161,
+            161
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00361",
+            "v02_00362",
+            "v02_00343",
+            "v02_00341"
+          ]
+        },
+        {
+          "id": "head-tension",
+          "pages": [
+            162,
+            162
+          ],
+          "introduced_source_keys": [
+            "v02_00354",
+            "v02_00355"
+          ],
+          "referenced_source_keys": [
+            "v02_00354",
+            "v02_00355"
+          ]
+        },
+        {
+          "id": "head-latch-check",
+          "pages": [
+            163,
+            163
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00342",
+            "v02_00341",
+            "v02_00354",
+            "v02_00355"
+          ]
+        },
+        {
+          "id": "head-feed-check",
+          "pages": [
+            164,
+            164
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00364",
+            "v02_00361",
+            "v02_00362",
+            "v02_00343",
+            "v02_00341"
+          ]
+        },
+        {
+          "id": "head-fan-first",
+          "pages": [
+            165,
+            165
+          ],
+          "introduced_source_keys": [
+            "v02_00410"
+          ],
+          "referenced_source_keys": [
+            "v02_00410",
+            "v02_00351"
+          ]
+        },
+        {
+          "id": "head-fan-axial",
+          "pages": [
+            166,
+            166
+          ],
+          "introduced_source_keys": [
+            "v02_00409"
+          ],
+          "referenced_source_keys": [
+            "v02_00409",
+            "v02_00351"
+          ]
+        },
+        {
+          "id": "head-fan-second",
+          "pages": [
+            167,
+            167
+          ],
+          "introduced_source_keys": [
+            "v02_00411"
+          ],
+          "referenced_source_keys": [
+            "v02_00411",
+            "v02_00351"
+          ]
+        },
+        {
+          "id": "head-led-supplement",
+          "pages": [
+            167,
+            167
+          ],
+          "introduced_source_keys": [
+            "v02_00418",
+            "v02_00419",
+            "v02_00420",
+            "v02_00421",
+            "v02_00422",
+            "v02_00423",
+            "v02_00424",
+            "v02_00425",
+            "v02_00426",
+            "v02_00427",
+            "v02_00428",
+            "v02_00429",
+            "v02_00430",
+            "v02_00431"
+          ],
+          "referenced_source_keys": [
+            "v02_00418",
+            "v02_00419",
+            "v02_00420",
+            "v02_00421",
+            "v02_00422",
+            "v02_00423",
+            "v02_00424",
+            "v02_00425",
+            "v02_00426",
+            "v02_00427",
+            "v02_00428",
+            "v02_00429",
+            "v02_00430",
+            "v02_00431"
+          ]
+        },
+        {
+          "id": "head-motor",
+          "pages": [
+            168,
+            168
+          ],
+          "introduced_source_keys": [
+            "v02_00353",
+            "v02_00384"
+          ],
+          "referenced_source_keys": [
+            "v02_00353",
+            "v02_00384",
+            "v02_00350"
+          ]
+        },
+        {
+          "id": "head-motor-slot",
+          "pages": [
+            169,
+            169
+          ],
+          "introduced_source_keys": [
+            "v02_00383"
+          ],
+          "referenced_source_keys": [
+            "v02_00353",
+            "v02_00383",
+            "v02_00350"
+          ]
+        },
+        {
+          "id": "head-open-latch",
+          "pages": [
+            170,
+            170
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00342",
+            "v02_00343",
+            "v02_00362"
+          ]
+        },
+        {
+          "id": "head-backlash",
+          "pages": [
+            171,
+            171
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00353",
+            "v02_00362",
+            "v02_00383",
+            "v02_00384"
+          ]
+        },
+        {
+          "id": "head-motor-tighten",
+          "pages": [
+            172,
+            172
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00383",
+            "v02_00384",
+            "v02_00353",
+            "v02_00362",
+            "v02_00361"
+          ]
+        },
+        {
+          "id": "head-hotend-choice",
+          "pages": [
+            173,
+            173
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": []
+        },
+        {
+          "id": "head-hotend",
+          "pages": [
+            174,
+            174
+          ],
+          "introduced_source_keys": [
+            "v02_00349",
+            "v02_00412",
+            "v02_00413",
+            "v02_00414",
+            "v02_00415",
+            "v02_00416"
+          ],
+          "referenced_source_keys": [
+            "v02_00349",
+            "v02_00412",
+            "v02_00413",
+            "v02_00414",
+            "v02_00415",
+            "v02_00416"
+          ]
+        },
+        {
+          "id": "head-hotend-tube",
+          "pages": [
+            174,
+            174
+          ],
+          "introduced_source_keys": [
+            "v02_00417"
+          ],
+          "referenced_source_keys": [
+            "v02_00417",
+            "v02_00349",
+            "v02_00416"
+          ]
+        },
+        {
+          "id": "head-tube-length",
+          "pages": [
+            175,
+            175
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00417",
+            "v02_00349",
+            "v02_00416"
+          ]
+        },
+        {
+          "id": "head-tube-jig",
+          "pages": [
+            176,
+            176
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00417",
+            "v02_00349",
+            "v02_00416"
+          ]
+        },
+        {
+          "id": "head-close",
+          "pages": [
+            177,
+            177
+          ],
+          "introduced_source_keys": [
+            "v02_00372",
+            "v02_00388"
+          ],
+          "referenced_source_keys": [
+            "v02_00349",
+            "v02_00412",
+            "v02_00413",
+            "v02_00414",
+            "v02_00415",
+            "v02_00416",
+            "v02_00417",
+            "v02_00372",
+            "v02_00388"
+          ]
+        },
+        {
+          "id": "head-install",
+          "pages": [
+            178,
+            178
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00372",
+            "v02_00388",
+            "v02_00345"
+          ]
+        },
+        {
+          "id": "head-rear-fixing",
+          "pages": [
+            179,
+            179
+          ],
+          "introduced_source_keys": [
+            "v02_00370"
+          ],
+          "referenced_source_keys": [
+            "v02_00370",
+            "v02_00392",
+            "v02_00350"
+          ]
+        },
+        {
+          "id": "head-strain-relief",
+          "pages": [
+            180,
+            180
+          ],
+          "introduced_source_keys": [
+            "v02_00348",
+            "v02_00366",
+            "v02_00368",
+            "v02_00379",
+            "v02_00381"
+          ],
+          "referenced_source_keys": [
+            "v02_00346",
+            "v02_00347",
+            "v02_00398",
+            "v02_00402",
+            "v02_00405",
+            "v02_00407",
+            "v02_00348",
+            "v02_00366",
+            "v02_00368",
+            "v02_00379",
+            "v02_00381",
+            "v02_00383",
+            "v02_00384"
+          ]
+        },
+        {
+          "id": "head-wire-ties",
+          "pages": [
+            181,
+            181
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00348",
+            "v02_00351"
+          ]
+        },
+        {
+          "id": "head-wire-path",
+          "pages": [
+            182,
+            182
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02_00348",
+            "v02_00351",
+            "v02_00353"
+          ]
+        },
+        {
+          "id": "head-adxl-supplement",
+          "pages": [
+            182,
+            182
+          ],
+          "introduced_source_keys": [
+            "v02_00432",
+            "v02_00433",
+            "v02_00434",
+            "v02_00435",
+            "v02_00436",
+            "v02_00437",
+            "v02_00438",
+            "v02_00439"
+          ],
+          "referenced_source_keys": [
+            "v02_00432",
+            "v02_00433",
+            "v02_00434",
+            "v02_00435",
+            "v02_00436",
+            "v02_00437",
+            "v02_00438",
+            "v02_00439"
+          ]
+        }
+      ]
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+      "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+      "manual": {
+        "url": "https://raw.githubusercontent.com/VoronDesign/Voron-0/a53fc87562fd630c846af38d7de850c894dc3d85/Manuals/VORON_V0.2r1_Assembly_Manual.pdf",
+        "sha256": "5d9af5a34304c751799c4ab71d9d42ed0c3ebc20b14df4b612d332ce1cb44b6f",
+        "pages": 253,
+        "revision": "2024-05-07 @ a53fc87562fd630c846af38d7de850c894dc3d85"
+      },
+      "stages": 163,
+      "sourceLeaves": 1678,
+      "headOperationLeaves": 86,
+      "headAndEarlierCompanionSourceOccurrences": 100,
+      "headOperations": 41,
+      "roles": {
+        "midbody_lower_M3x10": [
+          "v02r1_00378",
+          "v02r1_00394"
+        ],
+        "plate_side_M3x10": "v02r1_00391",
+        "motor_round_hole_M3x10": "v02r1_00393",
+        "motor_curved_slot_M3x10": "v02r1_00392",
+        "reused_long_front_M3x35": [
+          "v02r1_00381",
+          "v02r1_00397"
+        ]
+      },
+      "operations": [
+        {
+          "id": "head-prep",
+          "pages": [
+            157,
+            157
+          ],
+          "introduced_source_keys": [
+            "v02r1_00360",
+            "v02r1_00361",
+            "v02r1_00403",
+            "v02r1_00408",
+            "v02r1_00410"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00360",
+            "v02r1_00361",
+            "v02r1_00403",
+            "v02r1_00408",
+            "v02r1_00410"
+          ]
+        },
+        {
+          "id": "head-shuttle-prep",
+          "pages": [
+            157,
+            157
+          ],
+          "introduced_source_keys": [
+            "v02r1_00349",
+            "v02r1_00417"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00349",
+            "v02r1_00417"
+          ]
+        },
+        {
+          "id": "head-spacers-prep",
+          "pages": [
+            157,
+            157
+          ],
+          "introduced_source_keys": [
+            "v02r1_00355",
+            "v02r1_00356",
+            "v02r1_00407",
+            "v02r1_00411",
+            "v02r1_00414",
+            "v02r1_00416"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00355",
+            "v02r1_00356",
+            "v02r1_00407",
+            "v02r1_00411",
+            "v02r1_00414",
+            "v02r1_00416"
+          ]
+        },
+        {
+          "id": "head-midbody-prep",
+          "pages": [
+            158,
+            158
+          ],
+          "introduced_source_keys": [
+            "v02r1_00352",
+            "v02r1_00373",
+            "v02r1_00404",
+            "v02r1_00406",
+            "v02r1_00409",
+            "v02r1_00412",
+            "v02r1_00413"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00352",
+            "v02r1_00373",
+            "v02r1_00404",
+            "v02r1_00406",
+            "v02r1_00409",
+            "v02r1_00412",
+            "v02r1_00413"
+          ]
+        },
+        {
+          "id": "head-carriage-review",
+          "pages": [
+            158,
+            158
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00353",
+            "v02r1_00405",
+            "v02r1_00415"
+          ]
+        },
+        {
+          "id": "head-guidler",
+          "pages": [
+            159,
+            159
+          ],
+          "introduced_source_keys": [
+            "v02r1_00351",
+            "v02r1_00365",
+            "v02r1_00366",
+            "v02r1_00367",
+            "v02r1_00368",
+            "v02r1_00382"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00351",
+            "v02r1_00365",
+            "v02r1_00366",
+            "v02r1_00367",
+            "v02r1_00368",
+            "v02r1_00382"
+          ]
+        },
+        {
+          "id": "head-shaft-check",
+          "pages": [
+            160,
+            160
+          ],
+          "introduced_source_keys": [
+            "v02r1_00371",
+            "v02r1_00369",
+            "v02r1_00372"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00371",
+            "v02r1_00369",
+            "v02r1_00372"
+          ]
+        },
+        {
+          "id": "head-motorplate-prep",
+          "pages": [
+            161,
+            161
+          ],
+          "introduced_source_keys": [
+            "v02r1_00359",
+            "v02r1_00401"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00359",
+            "v02r1_00401",
+            "v02r1_00369"
+          ]
+        },
+        {
+          "id": "head-front-bearing",
+          "pages": [
+            162,
+            162
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00372",
+            "v02r1_00360"
+          ]
+        },
+        {
+          "id": "head-shuttle-install",
+          "pages": [
+            162,
+            162
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00349",
+            "v02r1_00417",
+            "v02r1_00360"
+          ]
+        },
+        {
+          "id": "head-guidler-install",
+          "pages": [
+            162,
+            162
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00351",
+            "v02r1_00365",
+            "v02r1_00366",
+            "v02r1_00367",
+            "v02r1_00368",
+            "v02r1_00382",
+            "v02r1_00360",
+            "v02r1_00372"
+          ]
+        },
+        {
+          "id": "head-latch-install",
+          "pages": [
+            162,
+            162
+          ],
+          "introduced_source_keys": [
+            "v02r1_00350"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00350"
+          ]
+        },
+        {
+          "id": "head-midbody-join",
+          "pages": [
+            163,
+            163
+          ],
+          "introduced_source_keys": [
+            "v02r1_00380",
+            "v02r1_00378",
+            "v02r1_00394",
+            "v02r1_00395",
+            "v02r1_00396"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00352",
+            "v02r1_00373",
+            "v02r1_00404",
+            "v02r1_00406",
+            "v02r1_00409",
+            "v02r1_00412",
+            "v02r1_00413",
+            "v02r1_00380",
+            "v02r1_00378",
+            "v02r1_00394",
+            "v02r1_00395",
+            "v02r1_00396",
+            "v02r1_00351"
+          ]
+        },
+        {
+          "id": "head-drive-gear",
+          "pages": [
+            164,
+            164
+          ],
+          "introduced_source_keys": [
+            "v02r1_00370"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00370",
+            "v02r1_00371",
+            "v02r1_00372"
+          ]
+        },
+        {
+          "id": "head-motorplate-close",
+          "pages": [
+            165,
+            165
+          ],
+          "introduced_source_keys": [
+            "v02r1_00386",
+            "v02r1_00387",
+            "v02r1_00391"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00359",
+            "v02r1_00401",
+            "v02r1_00369",
+            "v02r1_00386",
+            "v02r1_00387",
+            "v02r1_00391"
+          ]
+        },
+        {
+          "id": "head-gear-spacing",
+          "pages": [
+            166,
+            166
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00371",
+            "v02r1_00352",
+            "v02r1_00359"
+          ]
+        },
+        {
+          "id": "head-drive-align",
+          "pages": [
+            167,
+            167
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00370",
+            "v02r1_00371",
+            "v02r1_00351",
+            "v02r1_00349"
+          ]
+        },
+        {
+          "id": "head-tension",
+          "pages": [
+            168,
+            168
+          ],
+          "introduced_source_keys": [
+            "v02r1_00363",
+            "v02r1_00364"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00363",
+            "v02r1_00364"
+          ]
+        },
+        {
+          "id": "head-latch-check",
+          "pages": [
+            169,
+            169
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00350",
+            "v02r1_00349",
+            "v02r1_00363",
+            "v02r1_00364"
+          ]
+        },
+        {
+          "id": "head-feed-check",
+          "pages": [
+            170,
+            170
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00373",
+            "v02r1_00370",
+            "v02r1_00371",
+            "v02r1_00351",
+            "v02r1_00349"
+          ]
+        },
+        {
+          "id": "head-fan-first",
+          "pages": [
+            171,
+            171
+          ],
+          "introduced_source_keys": [
+            "v02r1_00419"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00419",
+            "v02r1_00360"
+          ]
+        },
+        {
+          "id": "head-fan-axial",
+          "pages": [
+            172,
+            172
+          ],
+          "introduced_source_keys": [
+            "v02r1_00418"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00418",
+            "v02r1_00360"
+          ]
+        },
+        {
+          "id": "head-fan-second",
+          "pages": [
+            173,
+            173
+          ],
+          "introduced_source_keys": [
+            "v02r1_00420"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00420",
+            "v02r1_00360"
+          ]
+        },
+        {
+          "id": "head-led-supplement",
+          "pages": [
+            173,
+            173
+          ],
+          "introduced_source_keys": [
+            "v02r1_00427",
+            "v02r1_00428",
+            "v02r1_00429",
+            "v02r1_00430",
+            "v02r1_00431",
+            "v02r1_00432",
+            "v02r1_00433",
+            "v02r1_00434",
+            "v02r1_00435",
+            "v02r1_00436",
+            "v02r1_00437",
+            "v02r1_00438",
+            "v02r1_00439",
+            "v02r1_00440"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00427",
+            "v02r1_00428",
+            "v02r1_00429",
+            "v02r1_00430",
+            "v02r1_00431",
+            "v02r1_00432",
+            "v02r1_00433",
+            "v02r1_00434",
+            "v02r1_00435",
+            "v02r1_00436",
+            "v02r1_00437",
+            "v02r1_00438",
+            "v02r1_00439",
+            "v02r1_00440"
+          ]
+        },
+        {
+          "id": "head-motor",
+          "pages": [
+            174,
+            174
+          ],
+          "introduced_source_keys": [
+            "v02r1_00362",
+            "v02r1_00393"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00362",
+            "v02r1_00393",
+            "v02r1_00359"
+          ]
+        },
+        {
+          "id": "head-motor-slot",
+          "pages": [
+            175,
+            175
+          ],
+          "introduced_source_keys": [
+            "v02r1_00392"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00362",
+            "v02r1_00392",
+            "v02r1_00359"
+          ]
+        },
+        {
+          "id": "head-open-latch",
+          "pages": [
+            176,
+            176
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00350",
+            "v02r1_00351",
+            "v02r1_00371"
+          ]
+        },
+        {
+          "id": "head-backlash",
+          "pages": [
+            177,
+            177
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00362",
+            "v02r1_00371",
+            "v02r1_00392",
+            "v02r1_00393"
+          ]
+        },
+        {
+          "id": "head-motor-tighten",
+          "pages": [
+            178,
+            178
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00392",
+            "v02r1_00393",
+            "v02r1_00362",
+            "v02r1_00371",
+            "v02r1_00370"
+          ]
+        },
+        {
+          "id": "head-hotend-choice",
+          "pages": [
+            179,
+            179
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": []
+        },
+        {
+          "id": "head-hotend",
+          "pages": [
+            180,
+            180
+          ],
+          "introduced_source_keys": [
+            "v02r1_00358",
+            "v02r1_00421",
+            "v02r1_00422",
+            "v02r1_00423",
+            "v02r1_00424",
+            "v02r1_00425"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00358",
+            "v02r1_00421",
+            "v02r1_00422",
+            "v02r1_00423",
+            "v02r1_00424",
+            "v02r1_00425"
+          ]
+        },
+        {
+          "id": "head-hotend-tube",
+          "pages": [
+            180,
+            180
+          ],
+          "introduced_source_keys": [
+            "v02r1_00426"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00426",
+            "v02r1_00358",
+            "v02r1_00425"
+          ]
+        },
+        {
+          "id": "head-tube-length",
+          "pages": [
+            181,
+            181
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00426",
+            "v02r1_00358",
+            "v02r1_00425"
+          ]
+        },
+        {
+          "id": "head-tube-jig",
+          "pages": [
+            182,
+            182
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00426",
+            "v02r1_00358",
+            "v02r1_00425"
+          ]
+        },
+        {
+          "id": "head-close",
+          "pages": [
+            183,
+            183
+          ],
+          "introduced_source_keys": [
+            "v02r1_00381",
+            "v02r1_00397"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00358",
+            "v02r1_00421",
+            "v02r1_00422",
+            "v02r1_00423",
+            "v02r1_00424",
+            "v02r1_00425",
+            "v02r1_00426",
+            "v02r1_00381",
+            "v02r1_00397"
+          ]
+        },
+        {
+          "id": "head-install",
+          "pages": [
+            184,
+            184
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00381",
+            "v02r1_00397",
+            "v02r1_00353"
+          ]
+        },
+        {
+          "id": "head-rear-fixing",
+          "pages": [
+            185,
+            185
+          ],
+          "introduced_source_keys": [
+            "v02r1_00379"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00379",
+            "v02r1_00401",
+            "v02r1_00359"
+          ]
+        },
+        {
+          "id": "head-strain-relief",
+          "pages": [
+            186,
+            186
+          ],
+          "introduced_source_keys": [
+            "v02r1_00357",
+            "v02r1_00375",
+            "v02r1_00377",
+            "v02r1_00388",
+            "v02r1_00390"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00355",
+            "v02r1_00356",
+            "v02r1_00407",
+            "v02r1_00411",
+            "v02r1_00414",
+            "v02r1_00416",
+            "v02r1_00357",
+            "v02r1_00375",
+            "v02r1_00377",
+            "v02r1_00388",
+            "v02r1_00390",
+            "v02r1_00392",
+            "v02r1_00393"
+          ]
+        },
+        {
+          "id": "head-wire-ties",
+          "pages": [
+            187,
+            187
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00357",
+            "v02r1_00360"
+          ]
+        },
+        {
+          "id": "head-wire-path",
+          "pages": [
+            188,
+            188
+          ],
+          "introduced_source_keys": [],
+          "referenced_source_keys": [
+            "v02r1_00357",
+            "v02r1_00360",
+            "v02r1_00362"
+          ]
+        },
+        {
+          "id": "head-adxl-supplement",
+          "pages": [
+            188,
+            188
+          ],
+          "introduced_source_keys": [
+            "v02r1_00441",
+            "v02r1_00442",
+            "v02r1_00443",
+            "v02r1_00444",
+            "v02r1_00445",
+            "v02r1_00446",
+            "v02r1_00447",
+            "v02r1_00448"
+          ],
+          "referenced_source_keys": [
+            "v02r1_00441",
+            "v02r1_00442",
+            "v02r1_00443",
+            "v02r1_00444",
+            "v02r1_00445",
+            "v02r1_00446",
+            "v02r1_00447",
+            "v02r1_00448"
+          ]
+        }
+      ]
+    }
+  ]
+}

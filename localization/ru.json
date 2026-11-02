@@ -9795,7 +9795,7 @@
       "text": "Собрать точный исходный вариант хотэнда Revo Voron"
     },
     "ui.v0assembly.text_cd57e91951abb3": {
-      "source_revision": "2cf6ab68f4a9f8850b8b",
+      "source_revision": "08f58f0022c22e9c0b7a",
       "text": "Закрепить хотэнд и кожух"
     },
     "ui.v0assembly.text_d990e91ee5ed53": {
@@ -11815,8 +11815,8 @@
       "text": "Установите B слева, A справа. Задние винты вкручиваются в резьбовые торцы рамы, передние — в заранее вставленные гайки. Перед установкой снимите временные гайки M3."
     },
     "assembly.workbench.updated_manual": {
-      "source_revision": "99ba1474f34238880f69",
-      "text": "Таблица этапов обновлена. Отметки этапов и исходных деталей сохранены; прежняя сохранённая запись также остаётся."
+      "source_revision": "8379498d6a735e983c9d",
+      "text": "Список этапов обновлён. Отметки деталей и неизменённых этапов сохранены; изменённые операции нужно проверить заново. Предыдущие записи сохранены."
     },
     "assembly.workbench.related_stages": {
       "source_revision": "3cb043d6029df24fd1bc",
@@ -12209,6 +12209,302 @@
     "assembly.workbench.dim_hint": {
       "source_revision": "f055b60402efad8847f3",
       "text": "Детали текущего шага сохраняют свои цвета. Предыдущие детали показаны светло-серыми."
+    },
+    "assembly.v0head.title.head_prep": {
+      "source_revision": "352a36bf0856f89a6e12",
+      "text": "Подготовка вставок кожуха"
+    },
+    "assembly.v0head.title.head_shuttle_prep": {
+      "source_revision": "1e08bf14e05327e555b4",
+      "text": "Подготовка вставки ползунка"
+    },
+    "assembly.v0head.title.head_spacers_prep": {
+      "source_revision": "a685dcb6bcd2907347f4",
+      "text": "Подготовка двух стоек крепления проводов"
+    },
+    "assembly.v0head.title.head_midbody_prep": {
+      "source_revision": "8c8990a1e7fa054b4b0a",
+      "text": "Подготовка вставок и упорного винта среднего корпуса"
+    },
+    "assembly.v0head.title.head_carriage_review": {
+      "source_revision": "9feac291f3e1ea88ab7e",
+      "text": "Повторная проверка вставок каретки X"
+    },
+    "assembly.v0head.title.head_shaft_check": {
+      "source_revision": "77996520b505b2f846ba",
+      "text": "Проверка вала и двух подшипников"
+    },
+    "assembly.v0head.title.head_motorplate_prep": {
+      "source_revision": "ad380ba09fbab4d927b5",
+      "text": "Подготовка подшипника и закладной гайки пластины мотора"
+    },
+    "assembly.v0head.title.head_front_bearing": {
+      "source_revision": "f64dd684ed3dec164bdc",
+      "text": "Установка переднего подшипника вала"
+    },
+    "assembly.v0head.title.head_shuttle_install": {
+      "source_revision": "deb138b06ab258bdc824",
+      "text": "Установка подготовленного ползунка"
+    },
+    "assembly.v0head.title.head_guidler_install": {
+      "source_revision": "079931a071cc09698ad4",
+      "text": "Установка подготовленного прижимного рычага"
+    },
+    "assembly.v0head.title.head_latch_install": {
+      "source_revision": "7ecf0e0d7267395c459c",
+      "text": "Установка защёлки"
+    },
+    "assembly.v0head.title.head_midbody_join": {
+      "source_revision": "621f078f2f8cfb5b8ff6",
+      "text": "Соединение среднего корпуса и установка осевых винтов"
+    },
+    "assembly.v0head.title.head_drive_gear": {
+      "source_revision": "63e967c7e1648f529e2f",
+      "text": "Установка подающей шестерни на вал 50T"
+    },
+    "assembly.v0head.title.head_motorplate_close": {
+      "source_revision": "ff0d187bf61fd74d5d1f",
+      "text": "Закрытие экструдера подготовленной пластиной мотора"
+    },
+    "assembly.v0head.title.head_gear_spacing": {
+      "source_revision": "c4e6cef7041ee899b52c",
+      "text": "Проверка бокового зазора шестерни 50T"
+    },
+    "assembly.v0head.title.head_drive_align": {
+      "source_revision": "2a2cf6505562bfe8c855",
+      "text": "Совмещение зубьев с каналом филамента"
+    },
+    "assembly.v0head.title.head_tension": {
+      "source_revision": "269ff19f60c683f743b6",
+      "text": "Установка натяжного винта и пружины"
+    },
+    "assembly.v0head.title.head_latch_check": {
+      "source_revision": "02d4deefd02c5e9bf1f4",
+      "text": "Проверка зацепления защёлки с ползунком"
+    },
+    "assembly.v0head.title.head_feed_check": {
+      "source_revision": "032f955f75cac9056c85",
+      "text": "Проверка подачи и ограничителя сжатия"
+    },
+    "assembly.v0head.title.head_fan_first": {
+      "source_revision": "cadeca49ae71fd8c1102",
+      "text": "Установка первого вентилятора обдува"
+    },
+    "assembly.v0head.title.head_fan_axial": {
+      "source_revision": "0faf0b4c3fd3bbe39065",
+      "text": "Установка вентилятора хотэнда 3010"
+    },
+    "assembly.v0head.title.head_fan_second": {
+      "source_revision": "0a0a60d6de55ebb5d98c",
+      "text": "Установка вентилятора с другой стороны"
+    },
+    "assembly.v0head.title.head_motor": {
+      "source_revision": "f7160562102f5f1d27c1",
+      "text": "Наживление мотора со стороны круглого отверстия"
+    },
+    "assembly.v0head.title.head_motor_slot": {
+      "source_revision": "002b005b6439d67374de",
+      "text": "Наживление винта в регулировочном пазу мотора"
+    },
+    "assembly.v0head.title.head_open_latch": {
+      "source_revision": "f653a64cbcb26c4dfa0d",
+      "text": "Открытие защёлки и прижимного рычага для регулировки"
+    },
+    "assembly.v0head.title.head_backlash": {
+      "source_revision": "6e287d88a7fc35cdb9c5",
+      "text": "Регулировка зазора шестерён мотора"
+    },
+    "assembly.v0head.title.head_motor_tighten": {
+      "source_revision": "abc66ce7e9699ac2db5b",
+      "text": "Затяжка и повторная проверка подачи"
+    },
+    "assembly.v0head.title.head_hotend_choice": {
+      "source_revision": "96a08e05751777766b3f",
+      "text": "Проверка хотэнда исходной модели"
+    },
+    "assembly.v0head.title.head_hotend": {
+      "source_revision": "33a33fe698ae26567829",
+      "text": "Сборка хотэнда Revo Voron исходной модели"
+    },
+    "assembly.v0head.title.head_hotend_tube": {
+      "source_revision": "10053682bc12f90f0b13",
+      "text": "Установка трубки PTFE исходной модели"
+    },
+    "assembly.v0head.title.head_tube_length": {
+      "source_revision": "801f9b78f85a601d73e8",
+      "text": "Проверка выступания закреплённой трубки PTFE"
+    },
+    "assembly.v0head.title.head_tube_jig": {
+      "source_revision": "c2a6544e24654044904d",
+      "text": "Подрезка PTFE по официальной методике с шаблоном"
+    },
+    "assembly.v0head.title.head_install": {
+      "source_revision": "28014a0372f1fa0aa876",
+      "text": "Крепление головки передними винтами"
+    },
+    "assembly.v0head.title.head_rear_fixing": {
+      "source_revision": "1d3fef398cd78eb896df",
+      "text": "Установка заднего винта каретки"
+    },
+    "assembly.v0head.title.head_strain_relief": {
+      "source_revision": "fdd168517fa101796a9d",
+      "text": "Установка подготовленных деталей крепления проводов"
+    },
+    "assembly.v0head.title.head_wire_ties": {
+      "source_revision": "cf94a39115e3a6d362c8",
+      "text": "Крепление жгута в точках для стяжек"
+    },
+    "assembly.v0head.title.head_wire_path": {
+      "source_revision": "4af46800517469daeb31",
+      "text": "Разделение проводов нагревателя и тонких проводов"
+    },
+    "assembly.v0head.note.head_prep": {
+      "source_revision": "148f06ab2c4e427d7429",
+      "text": "Подготовьте три вставки кожуха."
+    },
+    "assembly.v0head.note.head_shuttle_prep": {
+      "source_revision": "71ffba347f5980ad192c",
+      "text": "Установите вставку ползунка в ориентации из руководства."
+    },
+    "assembly.v0head.note.head_spacers_prep": {
+      "source_revision": "8c0bc063433d81ca76a3",
+      "text": "Установите четыре вставки в торцы двух стоек и отложите их до монтажа крепления проводов."
+    },
+    "assembly.v0head.note.head_midbody_prep": {
+      "source_revision": "e1d9429c11f5bf658273",
+      "text": "Установите пять вставок и наживите упорный винт M2x6 в пластике. Позже регулируется этот же винт."
+    },
+    "assembly.v0head.note.head_carriage_review": {
+      "source_revision": "6511d1b770d94ed98c1b",
+      "text": "Используйте ранее подготовленную каретку с двумя вставками."
+    },
+    "assembly.v0head.note.head_guidler": {
+      "source_revision": "88c59cfb3939ee4a52b9",
+      "text": "По рисунку руководства удалите поддержку, затем установите подшипники ролика, ось и усиливающий винт."
+    },
+    "assembly.v0head.note.head_shaft_check": {
+      "source_revision": "7b13319f08ef8a7b4717",
+      "text": "Короткий конец вала должен выступать менее чем на 3 mm. Примерьте оба подшипника MR85 и снимите их перед сборкой."
+    },
+    "assembly.v0head.note.head_motorplate_prep": {
+      "source_revision": "e3ef3d9014c7353dfed2",
+      "text": "Закрепите закладную гайку M3 по инструкции. Клей не должен попасть на резьбу и подшипник. Отложите подготовленную пластину."
+    },
+    "assembly.v0head.note.head_midbody_join": {
+      "source_revision": "1fef82c5b4574b20694c",
+      "text": "Используйте три винта M3x25 и два нижних M3x10. Нижний M3x25 служит осью рычага: он должен свободно двигаться."
+    },
+    "assembly.v0head.note.head_drive_gear": {
+      "source_revision": "e4396acb0b73c6fe20da",
+      "text": "Соблюдайте обратную ориентацию шестерни на рисунке. Не затягивайте стопорный винт до выравнивания по филаменту."
+    },
+    "assembly.v0head.note.head_motorplate_close": {
+      "source_revision": "742a5ec6bbfa3231bcef",
+      "text": "Используйте подготовленные пластину, подшипник и гайку. Установите два M3x6 и отдельный нижний боковой M3x10."
+    },
+    "assembly.v0head.note.head_gear_spacing": {
+      "source_revision": "f5c12b032df395861f93",
+      "text": "Выставьте шестерню 50T по центру с боковым зазором около 0.75 mm, как на рисунке."
+    },
+    "assembly.v0head.note.head_drive_align": {
+      "source_revision": "f2174d8d79f455427719",
+      "text": "Совместите зубья по филаменту, затем затяните стопорный винт на лыске вала."
+    },
+    "assembly.v0head.note.head_tension": {
+      "source_revision": "f9f14a0cca9c564c6bfa",
+      "text": "Порядок винта, пружины и шайбы смотрите в руководстве. Шайба не выделена отдельной деталью в исходной модели."
+    },
+    "assembly.v0head.note.head_feed_check": {
+      "source_revision": "d8c70310e58a528bd567",
+      "text": "Отрегулируйте тот же упорный винт M2 и до установки мотора проверьте лёгкие следы зубьев на филаменте."
+    },
+    "assembly.v0head.note.head_fan_first": {
+      "source_revision": "1168d4f076948e96551f",
+      "text": "Направьте выход вентилятора в канал обдува и проложите провода по рисунку."
+    },
+    "assembly.v0head.note.head_fan_axial": {
+      "source_revision": "d274d7f58fd7db3dbb79",
+      "text": "Вентилятор 3010 должен дуть внутрь кожуха. Выведите провода по рисунку."
+    },
+    "assembly.v0head.note.head_fan_second": {
+      "source_revision": "366e612cb12973d819c4",
+      "text": "Установите второй вентилятор и проведите его провода по указанному каналу."
+    },
+    "assembly.v0head.note.head_led_supplement": {
+      "source_revision": "aeac23209dfc09ce9524",
+      "text": "Необязательное дополнение исходной CAD. В этом разделе руководства его монтаж не описан."
+    },
+    "assembly.v0head.note.head_motor": {
+      "source_revision": "b4d324aec5faf168b87d",
+      "text": "Установите мотор и слегка затяните M3x10 в круглом отверстии."
+    },
+    "assembly.v0head.note.head_motor_slot": {
+      "source_revision": "5255f19169c981d9d09b",
+      "text": "Оставьте M3x10 в дуговом пазу незатянутым до регулировки зазора. Выступающая сзади резьба нужна также для стойки проводов."
+    },
+    "assembly.v0head.note.head_open_latch": {
+      "source_revision": "7a018cc770097d4de008",
+      "text": "Откройте защёлку и рычаг на реальном узле, чтобы шестерня 50T вращалась свободно. В справочной модели шарнир не анимирован."
+    },
+    "assembly.v0head.note.head_backlash": {
+      "source_revision": "79c613e6d9be2e189522",
+      "text": "Отрегулируйте мотор в пазу и проверьте зазор за полный оборот по руководству."
+    },
+    "assembly.v0head.note.head_motor_tighten": {
+      "source_revision": "20e009794346d5cc4666",
+      "text": "Затяните те же два винта мотора, затем повторите проверку зазора и подачи филамента."
+    },
+    "assembly.v0head.note.head_hotend_choice": {
+      "source_revision": "c9187508bdb4cc7e2bf0",
+      "text": "В исходном узле установлен Revo Voron. Для других хотэндов нужны соответствующие крепления и метизы."
+    },
+    "assembly.v0head.note.head_hotend": {
+      "source_revision": "ecb5bd42a0ccd765e157",
+      "text": "Используйте подходящее крепление Revo Voron и все четыре винта M3x8."
+    },
+    "assembly.v0head.note.head_tube_length": {
+      "source_revision": "618a6cfa375f39595ecd",
+      "text": "Трубка PTFE должна выступать над креплением на 6 mm и удерживаться хотэндом."
+    },
+    "assembly.v0head.note.head_tube_jig": {
+      "source_revision": "62d868303c11383d5e22",
+      "text": "Вставьте трубку до упора и обрежьте заподлицо официальным шаблоном для шкивов. Шаблон в модель не входит."
+    },
+    "assembly.v0head.note.head_close": {
+      "source_revision": "dc9139b5d208cd2ea478",
+      "text": "Соедините подготовленный хотэнд с кожухом двумя передними винтами M3x35."
+    },
+    "assembly.v0head.note.head_install": {
+      "source_revision": "a0b7be056f8c58f1a1c9",
+      "text": "Закрепите головку на каретке теми же двумя длинными передними винтами. Нижние M3x10 оставьте на месте."
+    },
+    "assembly.v0head.note.head_rear_fixing": {
+      "source_revision": "05db0869af98aa8cfa93",
+      "text": "Установите задний M3x16 в закладную гайку пластины мотора."
+    },
+    "assembly.v0head.note.head_strain_relief": {
+      "source_revision": "550a7127286095dfb796",
+      "text": "Наденьте подготовленные стойки на выступающие винты мотора, затем установите пластину крепления проводов и четыре винта."
+    },
+    "assembly.v0head.note.head_wire_ties": {
+      "source_revision": "a00c126992e4da618364",
+      "text": "Закрепите провода в указанных точках головки и крепления жгута. Полный жгут не смоделирован."
+    },
+    "assembly.v0head.note.head_wire_path": {
+      "source_revision": "f1f2b8fe3cc0e0203b09",
+      "text": "При головке спереди оставьте только необходимый запас. Провода нагревателя ведите отдельно от тонких проводов датчиков и вентиляторов."
+    },
+    "assembly.v0head.note.head_latch_check": {
+      "source_revision": "27f7bfa877089cdf0791",
+      "text": "Защёлка должна войти в паз ползунка."
+    },
+    "assembly.v0head.context.0": {
+      "source_revision": "8c22a802c54fcd32afae",
+      "text": "Подготавливаемые детали головки показаны отдельно. Станок и последующие детали отложены; вставка и движение шарниров не моделируются."
+    },
+    "assembly.v0head.context.1": {
+      "source_revision": "591707747c97343835b1",
+      "text": "Сохранены монтажные положения исходной модели."
     }
   }
 }

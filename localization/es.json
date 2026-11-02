@@ -9795,7 +9795,7 @@
       "text": "Montar el hotend Revo Voron exacto del modelo"
     },
     "ui.v0assembly.text_cd57e91951abb3": {
-      "source_revision": "2cf6ab68f4a9f8850b8b",
+      "source_revision": "08f58f0022c22e9c0b7a",
       "text": "Fijar el hotend y la cubierta"
     },
     "ui.v0assembly.text_d990e91ee5ed53": {
@@ -11815,8 +11815,8 @@
       "text": "Monte B a la izquierda y A a la derecha. Los tornillos traseros usan los extremos roscados del bastidor y los delanteros las tuercas precargadas. Retire las tuercas M3 temporales antes del montaje."
     },
     "assembly.workbench.updated_manual": {
-      "source_revision": "99ba1474f34238880f69",
-      "text": "Se actualizó la tabla de etapas. Se conservaron sus comprobaciones de etapas y piezas originales, así como el registro guardado anterior."
+      "source_revision": "8379498d6a735e983c9d",
+      "text": "Lista de etapas actualizada. Se conservan las comprobaciones de piezas y etapas sin cambios; las operaciones revisadas requieren una nueva comprobación. Se mantienen los registros anteriores."
     },
     "assembly.workbench.related_stages": {
       "source_revision": "3cb043d6029df24fd1bc",
@@ -12209,6 +12209,302 @@
     "assembly.workbench.dim_hint": {
       "source_revision": "f055b60402efad8847f3",
       "text": "Las piezas de este paso conservan sus colores. Las anteriores aparecen en gris claro."
+    },
+    "assembly.v0head.title.head_prep": {
+      "source_revision": "352a36bf0856f89a6e12",
+      "text": "Preparar los insertos de la carcasa"
+    },
+    "assembly.v0head.title.head_shuttle_prep": {
+      "source_revision": "1e08bf14e05327e555b4",
+      "text": "Preparar el inserto de la corredera"
+    },
+    "assembly.v0head.title.head_spacers_prep": {
+      "source_revision": "a685dcb6bcd2907347f4",
+      "text": "Preparar ambos separadores del alivio de tensión"
+    },
+    "assembly.v0head.title.head_midbody_prep": {
+      "source_revision": "8c8990a1e7fa054b4b0a",
+      "text": "Preparar los insertos y el tornillo de tope del cuerpo central"
+    },
+    "assembly.v0head.title.head_carriage_review": {
+      "source_revision": "9feac291f3e1ea88ab7e",
+      "text": "Revisar los insertos ya preparados del carro X"
+    },
+    "assembly.v0head.title.head_shaft_check": {
+      "source_revision": "77996520b505b2f846ba",
+      "text": "Comprobar el eje y ambos rodamientos"
+    },
+    "assembly.v0head.title.head_motorplate_prep": {
+      "source_revision": "ad380ba09fbab4d927b5",
+      "text": "Preparar el rodamiento y la tuerca cautiva de la placa del motor"
+    },
+    "assembly.v0head.title.head_front_bearing": {
+      "source_revision": "f64dd684ed3dec164bdc",
+      "text": "Colocar el rodamiento delantero del eje"
+    },
+    "assembly.v0head.title.head_shuttle_install": {
+      "source_revision": "deb138b06ab258bdc824",
+      "text": "Montar la corredera preparada"
+    },
+    "assembly.v0head.title.head_guidler_install": {
+      "source_revision": "079931a071cc09698ad4",
+      "text": "Montar el guidler preparado"
+    },
+    "assembly.v0head.title.head_latch_install": {
+      "source_revision": "7ecf0e0d7267395c459c",
+      "text": "Montar el pestillo"
+    },
+    "assembly.v0head.title.head_midbody_join": {
+      "source_revision": "621f078f2f8cfb5b8ff6",
+      "text": "Unir el cuerpo central y colocar los tornillos de articulación"
+    },
+    "assembly.v0head.title.head_drive_gear": {
+      "source_revision": "63e967c7e1648f529e2f",
+      "text": "Montar el engranaje de arrastre en el eje de 50T"
+    },
+    "assembly.v0head.title.head_motorplate_close": {
+      "source_revision": "ff0d187bf61fd74d5d1f",
+      "text": "Cerrar el extrusor con la placa del motor preparada"
+    },
+    "assembly.v0head.title.head_gear_spacing": {
+      "source_revision": "c4e6cef7041ee899b52c",
+      "text": "Comprobar la holgura lateral del engranaje 50T"
+    },
+    "assembly.v0head.title.head_drive_align": {
+      "source_revision": "2a2cf6505562bfe8c855",
+      "text": "Alinear los dientes con el recorrido del filamento"
+    },
+    "assembly.v0head.title.head_tension": {
+      "source_revision": "269ff19f60c683f743b6",
+      "text": "Montar el tornillo de tensión y el muelle"
+    },
+    "assembly.v0head.title.head_latch_check": {
+      "source_revision": "02d4deefd02c5e9bf1f4",
+      "text": "Comprobar que el pestillo encaja en la corredera"
+    },
+    "assembly.v0head.title.head_feed_check": {
+      "source_revision": "032f955f75cac9056c85",
+      "text": "Comprobar la alimentación y el tope antiaplastamiento"
+    },
+    "assembly.v0head.title.head_fan_first": {
+      "source_revision": "cadeca49ae71fd8c1102",
+      "text": "Montar el primer ventilador de conducto"
+    },
+    "assembly.v0head.title.head_fan_axial": {
+      "source_revision": "0faf0b4c3fd3bbe39065",
+      "text": "Montar el ventilador 3010 del hotend"
+    },
+    "assembly.v0head.title.head_fan_second": {
+      "source_revision": "0a0a60d6de55ebb5d98c",
+      "text": "Montar el ventilador del lado opuesto"
+    },
+    "assembly.v0head.title.head_motor": {
+      "source_revision": "f7160562102f5f1d27c1",
+      "text": "Presentar el motor por el orificio redondo"
+    },
+    "assembly.v0head.title.head_motor_slot": {
+      "source_revision": "002b005b6439d67374de",
+      "text": "Colocar sin apretar el tornillo de la ranura de ajuste"
+    },
+    "assembly.v0head.title.head_open_latch": {
+      "source_revision": "f653a64cbcb26c4dfa0d",
+      "text": "Abrir el pestillo y el guidler para ajustar"
+    },
+    "assembly.v0head.title.head_backlash": {
+      "source_revision": "6e287d88a7fc35cdb9c5",
+      "text": "Ajustar el juego entre engranajes del motor"
+    },
+    "assembly.v0head.title.head_motor_tighten": {
+      "source_revision": "abc66ce7e9699ac2db5b",
+      "text": "Apretar y volver a comprobar la alimentación"
+    },
+    "assembly.v0head.title.head_hotend_choice": {
+      "source_revision": "96a08e05751777766b3f",
+      "text": "Comprobar el hotend del modelo original"
+    },
+    "assembly.v0head.title.head_hotend": {
+      "source_revision": "33a33fe698ae26567829",
+      "text": "Montar el hotend Revo Voron del modelo original"
+    },
+    "assembly.v0head.title.head_hotend_tube": {
+      "source_revision": "10053682bc12f90f0b13",
+      "text": "Introducir el tubo PTFE del modelo original"
+    },
+    "assembly.v0head.title.head_tube_length": {
+      "source_revision": "801f9b78f85a601d73e8",
+      "text": "Comprobar el saliente del tubo PTFE"
+    },
+    "assembly.v0head.title.head_tube_jig": {
+      "source_revision": "c2a6544e24654044904d",
+      "text": "Recortar el PTFE con el método de la plantilla oficial"
+    },
+    "assembly.v0head.title.head_install": {
+      "source_revision": "28014a0372f1fa0aa876",
+      "text": "Montar el cabezal con los tornillos delanteros"
+    },
+    "assembly.v0head.title.head_rear_fixing": {
+      "source_revision": "1d3fef398cd78eb896df",
+      "text": "Montar el tornillo trasero del carro"
+    },
+    "assembly.v0head.title.head_strain_relief": {
+      "source_revision": "fdd168517fa101796a9d",
+      "text": "Montar las piezas preparadas del alivio de tensión"
+    },
+    "assembly.v0head.title.head_wire_ties": {
+      "source_revision": "cf94a39115e3a6d362c8",
+      "text": "Sujetar el mazo en los puntos para bridas"
+    },
+    "assembly.v0head.title.head_wire_path": {
+      "source_revision": "4af46800517469daeb31",
+      "text": "Separar el cableado del calentador de los cables finos"
+    },
+    "assembly.v0head.note.head_prep": {
+      "source_revision": "148f06ab2c4e427d7429",
+      "text": "Prepara los tres insertos de la carcasa."
+    },
+    "assembly.v0head.note.head_shuttle_prep": {
+      "source_revision": "71ffba347f5980ad192c",
+      "text": "Coloca el inserto de la corredera con la orientación del manual."
+    },
+    "assembly.v0head.note.head_spacers_prep": {
+      "source_revision": "8c0bc063433d81ca76a3",
+      "text": "Coloca cuatro insertos en los extremos de los dos separadores y resérvalos hasta montar el alivio de tensión."
+    },
+    "assembly.v0head.note.head_midbody_prep": {
+      "source_revision": "e1d9429c11f5bf658273",
+      "text": "Coloca cinco insertos y presenta el tornillo de tope M2x6 en el plástico; se ajustará más adelante."
+    },
+    "assembly.v0head.note.head_carriage_review": {
+      "source_revision": "6511d1b770d94ed98c1b",
+      "text": "Reutiliza el carro y sus dos insertos preparados anteriormente."
+    },
+    "assembly.v0head.note.head_guidler": {
+      "source_revision": "88c59cfb3939ee4a52b9",
+      "text": "Sigue el dibujo de retirada del soporte antes de montar los rodamientos, el eje y el tornillo de refuerzo."
+    },
+    "assembly.v0head.note.head_shaft_check": {
+      "source_revision": "7b13319f08ef8a7b4717",
+      "text": "Comprueba que el extremo corto del eje sobresale menos de 3 mm. Prueba ambos rodamientos MR85 y retíralos antes del montaje."
+    },
+    "assembly.v0head.note.head_motorplate_prep": {
+      "source_revision": "e3ef3d9014c7353dfed2",
+      "text": "Fija la tuerca cautiva M3 como se indica, sin adhesivo en la rosca ni el rodamiento. Reserva la placa preparada."
+    },
+    "assembly.v0head.note.head_midbody_join": {
+      "source_revision": "1fef82c5b4574b20694c",
+      "text": "Usa tres tornillos M3x25 y los dos M3x10 inferiores. El M3x25 inferior sirve de bisagra del guidler y debe permitir un movimiento libre."
+    },
+    "assembly.v0head.note.head_drive_gear": {
+      "source_revision": "e4396acb0b73c6fe20da",
+      "text": "Respeta la orientación invertida del engranaje y deja flojo el prisionero hasta alinear el filamento."
+    },
+    "assembly.v0head.note.head_motorplate_close": {
+      "source_revision": "742a5ec6bbfa3231bcef",
+      "text": "Reutiliza la placa, el rodamiento y la tuerca preparados. Usa dos M3x6 y el M3x10 de la zona lateral inferior."
+    },
+    "assembly.v0head.note.head_gear_spacing": {
+      "source_revision": "f5c12b032df395861f93",
+      "text": "Centra el engranaje 50T con una holgura lateral aproximada de 0.75 mm, como se ilustra."
+    },
+    "assembly.v0head.note.head_drive_align": {
+      "source_revision": "f2174d8d79f455427719",
+      "text": "Alinea los dientes con filamento y fija el prisionero contra la cara plana del eje."
+    },
+    "assembly.v0head.note.head_tension": {
+      "source_revision": "f9f14a0cca9c564c6bfa",
+      "text": "Sigue el orden de tornillo, muelle y arandela del manual. La arandela no está identificada por separado en este modelo."
+    },
+    "assembly.v0head.note.head_feed_check": {
+      "source_revision": "d8c70310e58a528bd567",
+      "text": "Ajusta el mismo tope M2 y comprueba que deja marcas ligeras en el filamento antes de montar el motor."
+    },
+    "assembly.v0head.note.head_fan_first": {
+      "source_revision": "1168d4f076948e96551f",
+      "text": "Orienta la salida del ventilador hacia el conducto y sigue el recorrido de cables ilustrado."
+    },
+    "assembly.v0head.note.head_fan_axial": {
+      "source_revision": "d274d7f58fd7db3dbb79",
+      "text": "El ventilador 3010 impulsa aire hacia la carcasa. Sigue la salida de cables ilustrada."
+    },
+    "assembly.v0head.note.head_fan_second": {
+      "source_revision": "366e612cb12973d819c4",
+      "text": "Monta el ventilador opuesto y pasa sus cables por el canal ilustrado."
+    },
+    "assembly.v0head.note.head_led_supplement": {
+      "source_revision": "aeac23209dfc09ce9524",
+      "text": "Complemento opcional del CAD original. Esta sección del manual no describe su instalación."
+    },
+    "assembly.v0head.note.head_motor": {
+      "source_revision": "b4d324aec5faf168b87d",
+      "text": "Monta el motor y aprieta ligeramente el M3x10 del orificio redondo."
+    },
+    "assembly.v0head.note.head_motor_slot": {
+      "source_revision": "5255f19169c981d9d09b",
+      "text": "Deja flojo el M3x10 de la ranura curva hasta ajustar el juego. Su rosca posterior también sujeta el separador del alivio de tensión."
+    },
+    "assembly.v0head.note.head_open_latch": {
+      "source_revision": "7a018cc770097d4de008",
+      "text": "Abre el pestillo y el guidler del conjunto real para girar libremente el engranaje 50T. El modelo de referencia no anima esa articulación."
+    },
+    "assembly.v0head.note.head_backlash": {
+      "source_revision": "79c613e6d9be2e189522",
+      "text": "Ajusta el motor mediante la ranura y comprueba el juego durante una vuelta completa, según el manual."
+    },
+    "assembly.v0head.note.head_motor_tighten": {
+      "source_revision": "20e009794346d5cc4666",
+      "text": "Aprieta los mismos dos tornillos del motor y repite las comprobaciones de juego y filamento."
+    },
+    "assembly.v0head.note.head_hotend_choice": {
+      "source_revision": "c9187508bdb4cc7e2bf0",
+      "text": "Este conjunto usa Revo Voron. Otros hotends necesitan su propio soporte y tornillería compatibles."
+    },
+    "assembly.v0head.note.head_hotend": {
+      "source_revision": "ecb5bd42a0ccd765e157",
+      "text": "Usa el soporte Revo Voron correspondiente y los cuatro tornillos M3x8."
+    },
+    "assembly.v0head.note.head_tube_length": {
+      "source_revision": "618a6cfa375f39595ecd",
+      "text": "El tubo PTFE debe sobresalir 6 mm del soporte y quedar sujeto por el hotend."
+    },
+    "assembly.v0head.note.head_tube_jig": {
+      "source_revision": "62d868303c11383d5e22",
+      "text": "Introduce el tubo hasta el fondo y recórtalo a ras con la plantilla oficial de poleas. La plantilla no está incluida en el modelo."
+    },
+    "assembly.v0head.note.head_close": {
+      "source_revision": "dc9139b5d208cd2ea478",
+      "text": "Une el hotend preparado y la carcasa con los dos tornillos delanteros M3x35."
+    },
+    "assembly.v0head.note.head_install": {
+      "source_revision": "a0b7be056f8c58f1a1c9",
+      "text": "Reutiliza esos dos tornillos largos delanteros para montar el cabezal en el carro. Deja colocados los M3x10 inferiores."
+    },
+    "assembly.v0head.note.head_rear_fixing": {
+      "source_revision": "05db0869af98aa8cfa93",
+      "text": "Usa el tornillo trasero M3x16 con la tuerca cautiva de la placa del motor."
+    },
+    "assembly.v0head.note.head_strain_relief": {
+      "source_revision": "550a7127286095dfb796",
+      "text": "Monta los separadores preparados en las roscas posteriores del motor y añade la placa de alivio y sus cuatro tornillos."
+    },
+    "assembly.v0head.note.head_wire_ties": {
+      "source_revision": "a00c126992e4da618364",
+      "text": "Sujeta los cables en los puntos ilustrados del cabezal y del alivio de tensión. El mazo completo no está modelado."
+    },
+    "assembly.v0head.note.head_wire_path": {
+      "source_revision": "f1f2b8fe3cc0e0203b09",
+      "text": "Deja solo la holgura necesaria con el cabezal delante. Separa los cables del calentador de los finos de sensores y ventiladores."
+    },
+    "assembly.v0head.note.head_latch_check": {
+      "source_revision": "27f7bfa877089cdf0791",
+      "text": "El pestillo debe encajar en la ranura de la corredera."
+    },
+    "assembly.v0head.context.0": {
+      "source_revision": "8c22a802c54fcd32afae",
+      "text": "Se muestran por separado las piezas preparadas del cabezal. La máquina y las piezas posteriores quedan aparte; no se simulan inserciones ni articulaciones."
+    },
+    "assembly.v0head.context.1": {
+      "source_revision": "591707747c97343835b1",
+      "text": "Se conservan las posiciones de montaje del modelo original."
     }
   }
 }

@@ -12,12 +12,12 @@ import {communitySchema,validateCommunityState,communityMotionEnabled,communityC
 import {installationFor,installationOptionAvailable} from './ender-mods.mjs';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {sceneLightingState} from './scene-lighting-state.mjs?v=0e24bd8b53a400dfb636';
-import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=06b4d44feb44328464c6';
+import {translate,loadLanguage,messageIdFor} from './i18n.mjs?v=ce9697136267b44d745f';
 import {rememberDisplayControl} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceFrame,workspaceListen,workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {setResponsiveAspect,frameResponsiveView,settleCameraPose} from './responsive-camera.mjs?v=149a79a654914b2af652';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=4ada675fd20b5bc37076';
+import {setupPublicInfo} from './public-info.js?v=b31c041e97afea84163d';
 const descriptions={
  voron_switchwire_250:'Official Switchwire v1 CAD assembly with Stealthburner, CW2 and Revo Voron.',
  '247zero_beta2_120':'247zero BETA2 · 120 mm / ULW carbon gantry / Crazy Volcano / M4 Bowden',
@@ -45,7 +45,7 @@ const sourceNotices={ '247zero_beta2_120':"BETA2 CAD v43 with original V0.2 skir
 sourceNotices.voron_switchwire_250='Source: VoronDesign/Voron-Switchwire, revision 92cc013ca2af94e6c09950dbe05c0973ee49aa00 (GPL-3.0). Preview movement does not establish physical clearance.';
 import {isSourceAssemblyMachine} from './source-assembly-registry.mjs';
 export async function mount(scope){
- if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=8941fbc5a83b54a6da9f')).mount(scope);
+ if(isSourceAssemblyMachine(new URLSearchParams(location.search).get('machine')))return (await import('./source-assembly.mjs?v=26a2f4fa0bca17e1afa6')).mount(scope);
  await loadLanguage(document.documentElement.lang);if(scope.disposed)return;
  const $=id=>document.getElementById(id),stage=$('stage'),machine=new URLSearchParams(location.search).get('machine')||'ender3_stock_220',t=v=>translate(v,document.documentElement.lang);
  const status=$('status'),modelNotice=$('sourceModelNotice');

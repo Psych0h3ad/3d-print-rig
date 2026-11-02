@@ -112,7 +112,7 @@ async function cacheReferences(outputs){
  for(const name of ['v0-native-installed-gate.mjs','v0-installations.mjs','v0-state.mjs','../V0_INSTALLATIONS.json']){
   const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
  }
- for(const name of ['device-memory.mjs','assembly-stage-emphasis.mjs','v0-m2-seating.mjs','v0-rail-preparation.mjs','v0-drive-assembly.mjs','v0-bed-assembly.mjs','v0-feet-assembly.mjs','v0-idler-assembly.mjs','v0-assembly.mjs','v0-app.js','assembly-workbench.mjs','assembly-workbench-model.mjs','assembly-progress-migrations.mjs','assembly-workbench-messages.mjs','assembly-workbench.css','assembly-picking.mjs','../V0_ASSEMBLY_STAGES.json']){
+ for(const name of ['device-memory.mjs','assembly-stage-emphasis.mjs','v0-m2-seating.mjs','v0-rail-preparation.mjs','v0-drive-assembly.mjs','v0-bed-assembly.mjs','v0-feet-assembly.mjs','v0-idler-assembly.mjs','v0-head-assembly.mjs','v0-assembly.mjs','v0-app.js','assembly-workbench.mjs','assembly-workbench-model.mjs','assembly-progress-migrations.mjs','assembly-workbench-messages.mjs','assembly-workbench.css','assembly-picking.mjs','../V0_ASSEMBLY_STAGES.json']){
   const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));
  }
  // Content revisions propagate from dictionaries to their importers and page

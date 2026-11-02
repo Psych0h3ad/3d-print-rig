@@ -1,3 +1,4 @@
+import {attachHeadFixtureMetadata} from './v0_head_reference_audit.mjs';
 // Explicit Three.js box fixtures for display lifecycle and atomicity only.
 // Native receivers and complete exported models are separate inspections.
 import assert from 'node:assert/strict';
@@ -30,7 +31,7 @@ function fixture(mid){
   nodes.get(key(holder)).position.set(g*.02,.2,.1);
   for(let i=0;i<10;i++)nodes.get(key(first+i)).position.set(g*.02+(i-4.5)*.014,.203,.1);
  }
- scene.updateMatrixWorld(true);const manifest={machine_id:mid,parts},receipts={'model.glb':spec.model_sha256,'assembly_manifest.json':spec.manifest_sha256,'assembly_stages.json':sha(bytes)},options={nodes,manifest,machine:spec,receipts,manualPreparation:true};
+ scene.updateMatrixWorld(true);const manifest={machine_id:mid,parts:attachHeadFixtureMetadata(parts,mid)},receipts={'model.glb':spec.model_sha256,'assembly_manifest.json':spec.manifest_sha256,'assembly_stages.json':sha(bytes)},options={nodes,manifest,machine:spec,receipts,manualPreparation:true};
  return{nodes,manifest,spec,scene,key,options,index:id=>spec.stages.findIndex(s=>s.id===id)};
 }
 const snapshot=f=>{f.scene.updateMatrixWorld(true);return[...f.nodes].map(([k,n])=>[k,n.visible,n.position.toArray(),n.quaternion.toArray(),n.scale.toArray(),n.matrix.toArray(),n.matrixWorld.toArray(),n.geometry,n.material])};
