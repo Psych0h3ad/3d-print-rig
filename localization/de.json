@@ -9795,7 +9795,7 @@
       "text": "Das exakte Revo Voron-Hotend montieren"
     },
     "ui.v0assembly.text_cd57e91951abb3": {
-      "source_revision": "2cf6ab68f4a9f8850b8b",
+      "source_revision": "08f58f0022c22e9c0b7a",
       "text": "Hotend und Haube befestigen"
     },
     "ui.v0assembly.text_d990e91ee5ed53": {
@@ -11815,8 +11815,8 @@
       "text": "B links und A rechts einbauen. Hintere Schrauben greifen in die Rahmengewinde, vordere in die zuvor eingelegten Muttern. Temporäre M3-Muttern vor dem Einbau entfernen."
     },
     "assembly.workbench.updated_manual": {
-      "source_revision": "99ba1474f34238880f69",
-      "text": "Die Schritttabelle wurde aktualisiert. Vorhandene Schritt- und Quellteilmarkierungen sowie der ursprüngliche gespeicherte Datensatz bleiben erhalten."
+      "source_revision": "8379498d6a735e983c9d",
+      "text": "Schrittliste aktualisiert. Teileprüfungen und unveränderte Schritte bleiben erhalten; überarbeitete Vorgänge müssen erneut geprüft werden. Frühere Speicherstände bleiben bestehen."
     },
     "assembly.workbench.related_stages": {
       "source_revision": "3cb043d6029df24fd1bc",
@@ -12209,6 +12209,302 @@
     "assembly.workbench.dim_hint": {
       "source_revision": "f055b60402efad8847f3",
       "text": "Die Bauteile dieses Schritts behalten ihre Farben. Frühere Bauteile erscheinen hellgrau."
+    },
+    "assembly.v0head.title.head_prep": {
+      "source_revision": "352a36bf0856f89a6e12",
+      "text": "Gewindeeinsätze der Verkleidung vorbereiten"
+    },
+    "assembly.v0head.title.head_shuttle_prep": {
+      "source_revision": "1e08bf14e05327e555b4",
+      "text": "Gewindeeinsatz des Schlittens vorbereiten"
+    },
+    "assembly.v0head.title.head_spacers_prep": {
+      "source_revision": "a685dcb6bcd2907347f4",
+      "text": "Beide Abstandshalter der Zugentlastung vorbereiten"
+    },
+    "assembly.v0head.title.head_midbody_prep": {
+      "source_revision": "8c8990a1e7fa054b4b0a",
+      "text": "Gewindeeinsätze und Anschlagschraube des Mittelteils vorbereiten"
+    },
+    "assembly.v0head.title.head_carriage_review": {
+      "source_revision": "9feac291f3e1ea88ab7e",
+      "text": "Vorbereitete Gewindeeinsätze des X-Schlittens prüfen"
+    },
+    "assembly.v0head.title.head_shaft_check": {
+      "source_revision": "77996520b505b2f846ba",
+      "text": "Welle und beide Zahnradlager prüfen"
+    },
+    "assembly.v0head.title.head_motorplate_prep": {
+      "source_revision": "ad380ba09fbab4d927b5",
+      "text": "Lager und Haltemutter der Motorplatte vorbereiten"
+    },
+    "assembly.v0head.title.head_front_bearing": {
+      "source_revision": "f64dd684ed3dec164bdc",
+      "text": "Vorderes Lager der Zahnradwelle einsetzen"
+    },
+    "assembly.v0head.title.head_shuttle_install": {
+      "source_revision": "deb138b06ab258bdc824",
+      "text": "Vorbereiteten Schlitten einsetzen"
+    },
+    "assembly.v0head.title.head_guidler_install": {
+      "source_revision": "079931a071cc09698ad4",
+      "text": "Vorbereiteten Guidler einsetzen"
+    },
+    "assembly.v0head.title.head_latch_install": {
+      "source_revision": "7ecf0e0d7267395c459c",
+      "text": "Verschluss einsetzen"
+    },
+    "assembly.v0head.title.head_midbody_join": {
+      "source_revision": "621f078f2f8cfb5b8ff6",
+      "text": "Mittelteil verbinden und Gelenkschrauben einsetzen"
+    },
+    "assembly.v0head.title.head_drive_gear": {
+      "source_revision": "63e967c7e1648f529e2f",
+      "text": "Antriebsrad auf die 50T-Welle setzen"
+    },
+    "assembly.v0head.title.head_motorplate_close": {
+      "source_revision": "ff0d187bf61fd74d5d1f",
+      "text": "Extruder mit der vorbereiteten Motorplatte schließen"
+    },
+    "assembly.v0head.title.head_gear_spacing": {
+      "source_revision": "c4e6cef7041ee899b52c",
+      "text": "Seitenspiel des 50T-Zahnrads prüfen"
+    },
+    "assembly.v0head.title.head_drive_align": {
+      "source_revision": "2a2cf6505562bfe8c855",
+      "text": "Antriebszähne am Filamentweg ausrichten"
+    },
+    "assembly.v0head.title.head_tension": {
+      "source_revision": "269ff19f60c683f743b6",
+      "text": "Spannschraube und Feder einsetzen"
+    },
+    "assembly.v0head.title.head_latch_check": {
+      "source_revision": "02d4deefd02c5e9bf1f4",
+      "text": "Eingriff des Verschlusses im Schlitten prüfen"
+    },
+    "assembly.v0head.title.head_feed_check": {
+      "source_revision": "032f955f75cac9056c85",
+      "text": "Förderung und Quetschschutz-Anschlag prüfen"
+    },
+    "assembly.v0head.title.head_fan_first": {
+      "source_revision": "cadeca49ae71fd8c1102",
+      "text": "Ersten Radiallüfter einsetzen"
+    },
+    "assembly.v0head.title.head_fan_axial": {
+      "source_revision": "0faf0b4c3fd3bbe39065",
+      "text": "3010-Hotend-Lüfter einsetzen"
+    },
+    "assembly.v0head.title.head_fan_second": {
+      "source_revision": "0a0a60d6de55ebb5d98c",
+      "text": "Gegenüberliegenden Radiallüfter einsetzen"
+    },
+    "assembly.v0head.title.head_motor": {
+      "source_revision": "f7160562102f5f1d27c1",
+      "text": "Motor am runden Loch leicht befestigen"
+    },
+    "assembly.v0head.title.head_motor_slot": {
+      "source_revision": "002b005b6439d67374de",
+      "text": "Schraube im Einstellschlitz locker einsetzen"
+    },
+    "assembly.v0head.title.head_open_latch": {
+      "source_revision": "f653a64cbcb26c4dfa0d",
+      "text": "Verschluss und Guidler zum Einstellen öffnen"
+    },
+    "assembly.v0head.title.head_backlash": {
+      "source_revision": "6e287d88a7fc35cdb9c5",
+      "text": "Zahnflankenspiel des Motors einstellen"
+    },
+    "assembly.v0head.title.head_motor_tighten": {
+      "source_revision": "abc66ce7e9699ac2db5b",
+      "text": "Festziehen und Förderung erneut prüfen"
+    },
+    "assembly.v0head.title.head_hotend_choice": {
+      "source_revision": "96a08e05751777766b3f",
+      "text": "Hotend der Quellbaugruppe prüfen"
+    },
+    "assembly.v0head.title.head_hotend": {
+      "source_revision": "33a33fe698ae26567829",
+      "text": "Hotend Revo Voron der Quellbaugruppe montieren"
+    },
+    "assembly.v0head.title.head_hotend_tube": {
+      "source_revision": "10053682bc12f90f0b13",
+      "text": "PTFE-Schlauch der Quellbaugruppe einsetzen"
+    },
+    "assembly.v0head.title.head_tube_length": {
+      "source_revision": "801f9b78f85a601d73e8",
+      "text": "Überstand des eingesetzten PTFE-Schlauchs prüfen"
+    },
+    "assembly.v0head.title.head_tube_jig": {
+      "source_revision": "c2a6544e24654044904d",
+      "text": "PTFE nach offizieller Anleitung mit Lehre kürzen"
+    },
+    "assembly.v0head.title.head_install": {
+      "source_revision": "28014a0372f1fa0aa876",
+      "text": "Druckkopf mit den vorderen Schrauben montieren"
+    },
+    "assembly.v0head.title.head_rear_fixing": {
+      "source_revision": "1d3fef398cd78eb896df",
+      "text": "Hintere Schlittenschraube einsetzen"
+    },
+    "assembly.v0head.title.head_strain_relief": {
+      "source_revision": "fdd168517fa101796a9d",
+      "text": "Vorbereitete Teile der Zugentlastung montieren"
+    },
+    "assembly.v0head.title.head_wire_ties": {
+      "source_revision": "cf94a39115e3a6d362c8",
+      "text": "Kabelbündel an den Bindestellen befestigen"
+    },
+    "assembly.v0head.title.head_wire_path": {
+      "source_revision": "4af46800517469daeb31",
+      "text": "Heizleitungen und dünne Leitungen getrennt führen"
+    },
+    "assembly.v0head.note.head_prep": {
+      "source_revision": "148f06ab2c4e427d7429",
+      "text": "Die drei Gewindeeinsätze der Verkleidung vorbereiten."
+    },
+    "assembly.v0head.note.head_shuttle_prep": {
+      "source_revision": "71ffba347f5980ad192c",
+      "text": "Gewindeeinsatz des Schlittens wie in der Anleitung einsetzen."
+    },
+    "assembly.v0head.note.head_spacers_prep": {
+      "source_revision": "8c0bc063433d81ca76a3",
+      "text": "Vier Gewindeeinsätze in die Enden der beiden Abstandshalter einsetzen; diese bis zur Montage der Zugentlastung beiseitelegen."
+    },
+    "assembly.v0head.note.head_midbody_prep": {
+      "source_revision": "e1d9429c11f5bf658273",
+      "text": "Fünf Gewindeeinsätze einsetzen und die Anschlagschraube M2x6 im Kunststoff ansetzen. Dieselbe Schraube wird später eingestellt."
+    },
+    "assembly.v0head.note.head_carriage_review": {
+      "source_revision": "6511d1b770d94ed98c1b",
+      "text": "Den zuvor vorbereiteten Schlitten mit seinen beiden Gewindeeinsätzen verwenden."
+    },
+    "assembly.v0head.note.head_guidler": {
+      "source_revision": "88c59cfb3939ee4a52b9",
+      "text": "Stützstruktur gemäß der Abbildung entfernen, dann Rollenlager, Achse und Verstärkungsschraube einsetzen."
+    },
+    "assembly.v0head.note.head_shaft_check": {
+      "source_revision": "7b13319f08ef8a7b4717",
+      "text": "Der kurze Wellenüberstand muss unter 3 mm liegen. Beide MR85-Lager probeweise aufstecken und vor der Montage wieder abnehmen."
+    },
+    "assembly.v0head.note.head_motorplate_prep": {
+      "source_revision": "e3ef3d9014c7353dfed2",
+      "text": "Haltemutter M3 nach Anleitung sichern; Klebstoff von Gewinde und Lager fernhalten. Vorbereitete Platte beiseitelegen."
+    },
+    "assembly.v0head.note.head_midbody_join": {
+      "source_revision": "1fef82c5b4574b20694c",
+      "text": "Drei M3x25 und beide unteren M3x10 verwenden. Die untere M3x25 bildet das Guidler-Gelenk; der Arm muss frei beweglich bleiben."
+    },
+    "assembly.v0head.note.head_drive_gear": {
+      "source_revision": "e4396acb0b73c6fe20da",
+      "text": "Die umgekehrte Zahnradlage aus der Abbildung beachten. Madenschraube bis zur Filamentausrichtung locker lassen."
+    },
+    "assembly.v0head.note.head_motorplate_close": {
+      "source_revision": "742a5ec6bbfa3231bcef",
+      "text": "Vorbereitete Platte, Lager und Haltemutter verwenden. Mit zwei M3x6 und der separaten unteren seitlichen M3x10 befestigen."
+    },
+    "assembly.v0head.note.head_gear_spacing": {
+      "source_revision": "f5c12b032df395861f93",
+      "text": "50T-Zahnrad wie abgebildet mit etwa 0.75 mm Seitenspiel mittig ausrichten."
+    },
+    "assembly.v0head.note.head_drive_align": {
+      "source_revision": "f2174d8d79f455427719",
+      "text": "Antriebszähne mit Filament ausrichten und die Madenschraube auf der Wellenabflachung sichern."
+    },
+    "assembly.v0head.note.head_tension": {
+      "source_revision": "f9f14a0cca9c564c6bfa",
+      "text": "Anordnung von Schraube, Feder und Scheibe der Anleitung entnehmen. Die Scheibe ist im Quellmodell nicht einzeln identifiziert."
+    },
+    "assembly.v0head.note.head_feed_check": {
+      "source_revision": "d8c70310e58a528bd567",
+      "text": "Dieselbe M2-Anschlagschraube einstellen und vor dem Motoreinbau auf leichte Zahnabdrücke im Filament prüfen."
+    },
+    "assembly.v0head.note.head_fan_first": {
+      "source_revision": "1168d4f076948e96551f",
+      "text": "Lüfterauslass in den Kühlkanal richten und der abgebildeten Kabelführung folgen."
+    },
+    "assembly.v0head.note.head_fan_axial": {
+      "source_revision": "d274d7f58fd7db3dbb79",
+      "text": "Der 3010-Lüfter bläst in die Verkleidung. Kabel wie abgebildet herausführen."
+    },
+    "assembly.v0head.note.head_fan_second": {
+      "source_revision": "366e612cb12973d819c4",
+      "text": "Gegenüberliegenden Radiallüfter einsetzen und seine Kabel durch den gezeigten Kanal führen."
+    },
+    "assembly.v0head.note.head_led_supplement": {
+      "source_revision": "aeac23209dfc09ce9524",
+      "text": "Optionale Ergänzung aus dem Quell-CAD. Dieser Anleitungsabschnitt beschreibt deren Montage nicht."
+    },
+    "assembly.v0head.note.head_motor": {
+      "source_revision": "b4d324aec5faf168b87d",
+      "text": "Motor einsetzen und die M3x10 am runden Loch leicht anziehen."
+    },
+    "assembly.v0head.note.head_motor_slot": {
+      "source_revision": "5255f19169c981d9d09b",
+      "text": "M3x10 im gebogenen Schlitz bis zur Einstellung des Zahnflankenspiels locker lassen. Das hintere Gewinde dient auch dem Abstandshalter der Zugentlastung."
+    },
+    "assembly.v0head.note.head_open_latch": {
+      "source_revision": "7a018cc770097d4de008",
+      "text": "Am realen Bauteil Verschluss und Guidler öffnen, damit sich das 50T-Zahnrad frei dreht. Das Referenzmodell animiert dieses Gelenk nicht."
+    },
+    "assembly.v0head.note.head_backlash": {
+      "source_revision": "79c613e6d9be2e189522",
+      "text": "Motor über den Schlitz einstellen und das Spiel gemäß Anleitung über eine volle Umdrehung prüfen."
+    },
+    "assembly.v0head.note.head_motor_tighten": {
+      "source_revision": "20e009794346d5cc4666",
+      "text": "Dieselben beiden Motorschrauben anziehen und Zahnflankenspiel sowie Filamentförderung erneut prüfen."
+    },
+    "assembly.v0head.note.head_hotend_choice": {
+      "source_revision": "c9187508bdb4cc7e2bf0",
+      "text": "Diese Quellbaugruppe verwendet Revo Voron. Andere Hotends benötigen passende Halter und Befestigungsteile."
+    },
+    "assembly.v0head.note.head_hotend": {
+      "source_revision": "ecb5bd42a0ccd765e157",
+      "text": "Passenden Halter für Revo Voron und alle vier M3x8 verwenden."
+    },
+    "assembly.v0head.note.head_tube_length": {
+      "source_revision": "618a6cfa375f39595ecd",
+      "text": "Der PTFE-Schlauch muss 6 mm über den Halter ragen und im Hotend gehalten werden."
+    },
+    "assembly.v0head.note.head_tube_jig": {
+      "source_revision": "62d868303c11383d5e22",
+      "text": "Schlauch vollständig einsetzen und mit der offiziellen Riemenscheibenlehre bündig kürzen. Die Lehre ist im Modell nicht enthalten."
+    },
+    "assembly.v0head.note.head_close": {
+      "source_revision": "dc9139b5d208cd2ea478",
+      "text": "Vorbereitetes Hotend und Verkleidung mit den beiden vorderen M3x35 verbinden."
+    },
+    "assembly.v0head.note.head_install": {
+      "source_revision": "a0b7be056f8c58f1a1c9",
+      "text": "Druckkopf mit denselben beiden langen vorderen Schrauben am Schlitten montieren. Die unteren M3x10 bleiben eingesetzt."
+    },
+    "assembly.v0head.note.head_rear_fixing": {
+      "source_revision": "05db0869af98aa8cfa93",
+      "text": "Hintere M3x16 mit der Haltemutter in der Motorplatte verwenden."
+    },
+    "assembly.v0head.note.head_strain_relief": {
+      "source_revision": "550a7127286095dfb796",
+      "text": "Vorbereitete Abstandshalter auf die hinteren Motorschraubengewinde setzen, dann die Zugentlastungsplatte mit ihren vier Schrauben montieren."
+    },
+    "assembly.v0head.note.head_wire_ties": {
+      "source_revision": "a00c126992e4da618364",
+      "text": "Kabel an den gezeigten Bindestellen von Druckkopf und Zugentlastung befestigen. Das vollständige Kabelbündel ist nicht modelliert."
+    },
+    "assembly.v0head.note.head_wire_path": {
+      "source_revision": "f1f2b8fe3cc0e0203b09",
+      "text": "Bei vorn stehendem Druckkopf nur die nötige Kabelreserve lassen. Heizleitungen getrennt von dünnen Sensor- und Lüfterleitungen führen."
+    },
+    "assembly.v0head.note.head_latch_check": {
+      "source_revision": "27f7bfa877089cdf0791",
+      "text": "Der Verschluss muss in die Nut des Schlittens greifen."
+    },
+    "assembly.v0head.context.0": {
+      "source_revision": "8c22a802c54fcd32afae",
+      "text": "Vorbereitete Druckkopfteile werden getrennt gezeigt. Maschine und spätere Teile bleiben beiseite; Einsetz- und Gelenkbewegungen werden nicht simuliert."
+    },
+    "assembly.v0head.context.1": {
+      "source_revision": "591707747c97343835b1",
+      "text": "Die ursprünglichen Montagepositionen dienen als Referenz."
     }
   }
 }

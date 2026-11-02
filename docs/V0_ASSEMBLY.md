@@ -25,6 +25,10 @@ without inventing part checks. Unaffected stage records are retained. When the
 grouped XY preparation is split into new operations, its old completion marks
 are cleared and it resumes at the insert operation; individual source-part
 checks stay with their original keys.
+The expanded head sequence similarly keeps part checks and unaffected stages,
+while its earlier grouped head operations require a fresh check. Old progress
+can resume at the corresponding preparation step even when the old stage ID
+has been replaced.
 Browser storage uses a separate v2 key while preserving old v1 storage. Import
 is capped at 512 KiB; actual-asset audits require a complete source-part checklist
 to fit that limit. Unknown, duplicated or sparse source records are rejected
@@ -32,7 +36,29 @@ before replacing the current progress. Clear and undo cover both record types.
 
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
-V0.2 has 129 stages and 1,653 exported source leaves. V0.2r1 has 134 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+V0.2 has 158 stages and 1,653 exported source leaves. V0.2r1 has 163 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+
+The stock Mini Stealthburner sequence contains 41 reference operations, following
+V0.2 pages 151–182 and r1 pages 157–188. Cowling, shuttle, midbody, guidler and
+motor-plate preparation are separate views. Prepared spacers stay aside until
+strain-relief installation. The three original fans have separate operations.
+The two lower M3x10 screws join the midbody; the separate side M3x10 closes the
+motor plate. Motor fixing starts with the round-hole screw, followed by the
+curved-slot screw left loose for backlash adjustment. Front head installation
+reuses the same two long M3x35 screws rather than introducing them twice.
+
+These views preserve all 86 head-operation source leaves and the earlier
+carriage/support/fastener references: 99 source occurrences in V0.2 and 100 in
+r1. The support-omitted carriage display remains a stock companion; the removed
+support is not exposed as another carriage. Model geometry, source positions,
+hardware materials and source keys remain unchanged. The optional earlier-step
+gray display also keeps reused current parts in their source colors.
+LED and ADXL source supplements remain distinguished from manual instructions.
+The washer, trimming jig and complete wiring are not separately established by
+this export; the guide points to the official instructions instead of inventing
+their geometry. Latch articulation, insertion, thread engagement, torque and
+native-solid fit are not certified by these reference views. See the
+[head operation review](V0_HEAD_ASSEMBLY_REVIEW.json) for exact source identities.
 
 The rail-nut preparation stage follows page 18 of each pinned manual: all five
 source carriers, each with its ten source nuts, are laid out in parallel for

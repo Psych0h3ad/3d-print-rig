@@ -43,7 +43,7 @@ migration and the size of a complete checklist against the 512 KiB import limit.
 ## Interactive assembly overview
 
 The collection also has a **Start interactive assembly** entry. For V0.2 and
-V0.2r1 it opens the existing 106/107-stage manual view directly. For official
+V0.2r1 it opens the 158/163-stage manual view directly. For official
 Trident and printed V2.4 at 250/300/350 it opens the same part-map page with
 `view=assembly`, using a separate source-bound progress identity.
 

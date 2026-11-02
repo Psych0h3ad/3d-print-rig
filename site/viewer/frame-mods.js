@@ -1,4 +1,4 @@
-import {loadSiboorRegistration} from './siboor-catalog.mjs?v=7794b6da647cd645d0d1';
+import {loadSiboorRegistration} from './siboor-catalog.mjs?v=7df3d00f1c15d15bc4b0';
 import {loadInternalSpool} from './internal-spool.mjs?v=ca3a453f6bf2966e0208';
 import {loadRequestedMods} from './requested-mods.mjs?v=15d2eb7eaa298d86b67d';
 export async function loadFrameMods(machine){

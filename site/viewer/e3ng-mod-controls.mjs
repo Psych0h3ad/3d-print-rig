@@ -1,4 +1,4 @@
-import {formatMessage} from './i18n.mjs?v=06b4d44feb44328464c6';
+import {formatMessage} from './i18n.mjs?v=ce9697136267b44d745f';
 import {e3ngModModel} from './source-assembly-runtime/e3ng-mod-data.mjs?v=6c0d243d5a84b25d0ea1';
 const machineId='rh3d_e3ng_v12_235',schema='e3ng-mods-v1';
 const copy=language=>Object.fromEntries(['base','stock','reinforced','cable','hole','panels','hex'].map(key=>[key,formatMessage(key==='stock'?'text.0258':'e3ng.mods.'+key,{},typeof language==='function'?language():language)]));

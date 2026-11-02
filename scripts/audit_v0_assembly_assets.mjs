@@ -10,6 +10,7 @@ import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 import {auditPartReview} from './assembly_part_review_audit.mjs';
 import {auditV0M2Reference} from './v0_m2_reference_audit.mjs';
+import {auditHeadOwnership,applyReviewedHeadMask,auditActualHeadDisplay} from './v0_head_reference_audit.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const args=Object.fromEntries(process.argv.slice(2).reduce((a,v,i,list)=>v.startsWith('--')?[...a,[v.slice(2),list[i+1]]]:a,[]));
 assert(args.site&&args.report,'--site and --report required');
@@ -37,6 +38,7 @@ for(const name of ['vendor/GLTFLoader.js','v0_adapter.mjs','v0-assembly.mjs','v0
 await pinClosure(new URL('./audit_v0_native_installation_assets.mjs',import.meta.url));
 await pinClosure(new URL('./assembly_part_review_audit.mjs',import.meta.url));
 await pinClosure(new URL('./v0_m2_reference_audit.mjs',import.meta.url));
+await pinClosure(new URL('./v0_head_reference_audit.mjs',import.meta.url));
 const {assemblyPartRows}=await import(new URL('assembly-part-review.mjs',viewer));
 const appDependency=new vm.SourceTextModule((await pin(site+'/viewer/v0-app.js')).toString('utf8')).dependencySpecifiers.find(s=>s.startsWith('./assembly-stage-emphasis.mjs'));
 assert(appDependency,'Actual editor emphasis dependency required');
@@ -115,6 +117,7 @@ try{
   const companions=[...installed.roots.values()].flat().filter(r=>r.wrapper.visible).map(r=>({node:r.wrapper,part_keys:r.option.replace_keys}));
   for(const key of alternatives.excluded_keys)assert.equal(adapter.nodes.get(key).visible,false,'Overlapping alternative remains hidden');
   assert.equal(companions.length,1,'Exact support-omitted stock carriage required');
+  const headOwnership=auditHeadOwnership({id,spec,manifest});
   assert.deepEqual(spec.seat_display_dependencies?.map(s=>({part_key:s.part_key,carrier_key:s.carrier_key,preload_stage_id:s.preload_stage_id})).sort((a,b)=>a.part_key.localeCompare(b.part_key)),reviewedSeats(id),'Exact reviewed source frame-nut owners required');
   const shown=key=>displayed(adapter.nodes.get(key))||companions.some(c=>c.part_keys.includes(key)&&displayed(c.node));
   const original=state(scene),geometryBefore=geometryPins(scene),visibility=new Map([...adapter.nodes].map(([k,n])=>[k,n.visible]));
@@ -198,6 +201,7 @@ try{
     assert.equal(allow.size,{inserts:3,stack:16,close:20,check:20}[kind]);checkXYPreparation(group);
    }else if(index<xyInstall)for(const g of xyGroups)for(const k of g)keys.delete(k);
    if(r.id==='x-joints'){assert.equal(r.subassembly,false);for(const g of xyGroups)for(const k of g)assert(r.operation_part_keys.includes(k),'Install the same original prepared XY joint');}
+   const headView=applyReviewedHeadMask({id,index,spec,keys,result:r});
    for(const n of r1?[250,257,166,209]:[248,255,164,207]){
     const k=idlerKey(n),front=(r1?[250,257]:[248,255]).includes(n),owner=front?'top-front-fasteners':'top-rear-fasteners';
     assert.equal(workbench.owner(k).id,owner,'Original upper-frame M3x10 belongs to later receiving-member operation');
@@ -220,6 +224,8 @@ try{
   controller.setStage(0);controller.leave();unchanged(scene,original,true);
   const manualFasteners=await auditV0M2Reference({module:assemblyModule,adapter,manifest,spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,scene,geometryPins,createAssemblyStageEmphasis,assemblySourceMaterial});
   unchanged(scene,original,true);
+  const headDisplay=await auditActualHeadDisplay({id,module:assemblyModule,adapter,manifest,spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,scene,installed,geometryPins,createAssemblyStageEmphasis,assemblySourceMaterial});
+  unchanged(scene,original,true);
   // Source alternatives must not reappear when normal motion or a stock reset
   // recomputes visibility after leaving assembly mode.
   const nativePose=profile.display_reference_xyz_mm,alternativePoses=[];
@@ -236,7 +242,7 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }
