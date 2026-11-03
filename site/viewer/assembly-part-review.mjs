@@ -3,6 +3,8 @@
 export function isNamedFastener(part){
  if(['base','accent','printed','frame'].includes(part.role))return false;
  const name=String(part.name).replaceAll('_',' ');
+ // A source PTFE liner is a tube, not a threaded insert or fastener.
+ if(/^PTFE Tube Insert(?: \(\d+\))?$/i.test(name.trim()))return false;
  return /(?:\bM\d(?:\.\d+)?\s*[x×]\s*\d|\b(?:screw|bolt|washer|shim|hexnut|nut|insert|BHCS|SHCS|FHCS|HHCS)\b)/i.test(name);
 }
 export function assemblyPartRows(index,value){

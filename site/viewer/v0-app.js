@@ -24,7 +24,7 @@ import {setupPublicInfo} from './public-info.js?v=b31c041e97afea84163d';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=60fe468a02a8754c743e';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=e3fbfd2bd14472f9e28e';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=2af41c1e4108753c7d98';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
 import {formatMessage,translate} from './i18n.mjs?v=ce9697136267b44d745f';
 export async function mount(scope){
