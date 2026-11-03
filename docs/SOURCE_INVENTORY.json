@@ -690,8 +690,8 @@
     },
     {
       "path": "scripts/assembly_part_review_audit.mjs",
-      "bytes": 2212,
-      "sha256": "74a8d098633f0ae966825c1c62603c430d85ba5a0580e4b5b2099ed75fb5719d"
+      "bytes": 2502,
+      "sha256": "3660b20efd632b0e7a7b2c987028055ec3fa05875f5330f40060a5d84010599f"
     },
     {
       "path": "scripts/audit_a4t_printed_companions.mjs",
@@ -1570,8 +1570,8 @@
     },
     {
       "path": "scripts/test_assembly_workbench.mjs",
-      "bytes": 16224,
-      "sha256": "e53843bff81836cff65f18adc1db256aef9b641a2c4bb7c4f40cfcbcd162127a"
+      "bytes": 18555,
+      "sha256": "04d03c1b44874c38c1ccd2af760bd36871a25b6b13306bb99ea46f1fb74001c5"
     },
     {
       "path": "scripts/test_bed_chain.mjs",
@@ -7075,8 +7075,8 @@
     },
     {
       "path": "site/viewer/assembly-part-review.mjs",
-      "bytes": 944,
-      "sha256": "379d3f99dd65e696f001eff91b5443e1de04a2c5721668f0377824751dbdcd5a"
+      "bytes": 1085,
+      "sha256": "c2d5e0177d33e1d95d0ec9e9e87af10eb3272e0da485b2844c51ef417f69f800"
     },
     {
       "path": "site/viewer/assembly-picking.mjs",
@@ -7115,8 +7115,8 @@
     },
     {
       "path": "site/viewer/assembly-workbench.mjs",
-      "bytes": 16224,
-      "sha256": "e3fbfd2bd14472f9e28e0954c50e5485f9957979b7f36e3bc947cbe9bee9f558"
+      "bytes": 16247,
+      "sha256": "2af41c1e4108753c7d98353d827b0d5dcec90ecacf61f19c180f217fa1cf586c"
     },
     {
       "path": "site/viewer/asset-availability.js",
@@ -8401,7 +8401,7 @@
     {
       "path": "site/viewer/source-map-app.mjs",
       "bytes": 13876,
-      "sha256": "0af268bb288974970601fcf19212b2c6b68144cae5bac2ffcf8a2da837a0e5e0"
+      "sha256": "8364a436ad37eb43bfb489ca1f895f4373cdfd2c686f2b87485a8a31193da7ff"
     },
     {
       "path": "site/viewer/source-map.css",
@@ -8411,7 +8411,7 @@
     {
       "path": "site/viewer/source-map.html",
       "bytes": 4537,
-      "sha256": "8242f2606ecb935c085f5d8aa1d607021e7476bdc3cac5d25cf40960e49710ae"
+      "sha256": "6057b85b964b1cff17f88b2d83badedf06c2e8c154097536ad1e3b27470faca0"
     },
     {
       "path": "site/viewer/source-operating-bounds6.mjs",
@@ -8721,7 +8721,7 @@
     {
       "path": "site/viewer/v0-app.js",
       "bytes": 35166,
-      "sha256": "97b8af64b47022db7d2c12bc1da537b9d6d728f24a3e3775663c5f7422d87186"
+      "sha256": "eb2ca1756790b82f4e43b856ea7c8e22f3dfd0090af2234cfce58e2a8e695754"
     },
     {
       "path": "site/viewer/v0-assembly.mjs",
@@ -8816,7 +8816,7 @@
     {
       "path": "site/viewer/v0.html",
       "bytes": 10592,
-      "sha256": "ba4b70a79eec7960f09dcc7266758aa85e3a38ae928a5424fb06c733e67f2936"
+      "sha256": "9659899ee4b35bdf3c689d6fe6e074613ac4572467cdfd16e0c1a994d7934b0a"
     },
     {
       "path": "site/viewer/v0_adapter.mjs",
