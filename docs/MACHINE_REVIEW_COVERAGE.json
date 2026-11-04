@@ -4,7 +4,7 @@
   "reviewed_on": "2026-11-01",
   "input_sha256": {
     ".github/workflows/pages.yml": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b",
-    ".github/workflows/source-check.yml": "c06591ae7325e6a74118ffbddbcc197b0c1d245296266aa6ec5de9d0cceae241",
+    ".github/workflows/source-check.yml": "b5492ccbb791b87e5d478478f0c180de81b91fd470e2e0d9e025e140b3a51cac",
     "scripts/assembly_part_review_audit.mjs": "3660b20efd632b0e7a7b2c987028055ec3fa05875f5330f40060a5d84010599f",
     "scripts/audit_a4t_printed_companions.mjs": "770c4e5da4eba20f0141952ac2afd961f70ca26fb3d6925abfd9361c8ac7287a",
     "scripts/audit_changer_banks.mjs": "cbbbe6833a7c8becaf47e74ac875d9f6759591956144d6733646b27131dee839",
