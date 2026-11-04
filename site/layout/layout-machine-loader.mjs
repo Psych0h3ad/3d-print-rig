@@ -39,7 +39,7 @@ async function parseAsset(bytes,row) {
 }
 
 async function delegateMachine(id,options) {
-  const module=await import('../viewer/layout-machine-loader.mjs?v=1f598efb6b3f6d5ed658');
+  const module=await import('../viewer/layout-machine-loader.mjs?v=1c5a4fdca891a824bdb3');
   return module.loadLayoutMachine(id,options);
 }
 

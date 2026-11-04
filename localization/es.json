@@ -12027,8 +12027,8 @@
       "text": "Centrar el husillo y apretar los mismos tornillos"
     },
     "v0.feet.manual.edb68c9afec35ea1": {
-      "source_revision": "1bf838ba409165fde248",
-      "text": "Con la cama aún completamente abajo, centre el husillo en el soporte. Apriete los mismos dos tornillos superiores y después los cuatro motor-bastidor según el manual. Este paso no añade tornillos nuevos."
+      "source_revision": "deae059ab4e5f52003c8",
+      "text": "Mantén la cama en su posición más baja. Coloca el motor aproximadamente en el centro entre los dos raíles Z y aprieta primero los cuatro tornillos M3x8 que fijan el motor al bastidor. Después, vuelve a apretar o a colocar los mismos dos tornillos superiores M3x12 del soporte de la tuerca que aflojaste en la página anterior. No se añaden tornillos nuevos."
     },
     "v0.feet.manual.27d7c2c4d38ab37e": {
       "source_revision": "2585afcf039f9911b8d7",
