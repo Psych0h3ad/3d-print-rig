@@ -12505,6 +12505,110 @@
     "assembly.v0head.context.1": {
       "source_revision": "591707747c97343835b1",
       "text": "Die ursprünglichen Montagepositionen dienen als Referenz."
+    },
+    "ui.v0rail.y_clean.title": {
+      "source_revision": "8749811e594da70f8039",
+      "text": "Schienen und zugehörige Laufwagen reinigen und schmieren"
+    },
+    "ui.v0rail.y_clean.note": {
+      "source_revision": "708aa8d9449f0108c479",
+      "text": "Transportöl entfernen und alle fünf Schienen nach der offiziellen Anleitung schmieren. Jeden Laufwagen auf seiner zugehörigen Schiene halten und gegen Abrutschen sichern. Hier sind die beiden Y-Paare zu sehen."
+    },
+    "ui.v0rail.y_load.title": {
+      "source_revision": "046a902335fb078ce570",
+      "text": "Y-Mutternleisten in die E-Profile einsetzen"
+    },
+    "ui.v0rail.y_load.note": {
+      "source_revision": "03d02d757fc37d71e8b1",
+      "text": "Die beiden vorbereiteten langen Mutternleisten und E-Profile verwenden. Die Lage der Werkzeugöffnungen prüfen. Die Ausrichtung der Muttern hängt vom verwendeten Profil ab; die Ansicht behält die ursprüngliche CAD-Ausrichtung bei."
+    },
+    "ui.v0rail.y_mount.title": {
+      "source_revision": "2d10f4773d8f0eaa1678",
+      "text": "Y-Schienen zentrieren und M2x6-Schrauben einsetzen"
+    },
+    "ui.v0rail.y_mount.note": {
+      "source_revision": "72920c7cad59cf0b9197",
+      "text": "Die Zeichnung verwendet fünf M2x6-Schrauben je Schiene und lässt jedes zweite Loch frei. Dieses CAD zeigt die vollständige Bestückung mit zehn Schrauben je Schiene von Seite 18. Mit Führungen zentrieren und von der Mitte nach außen anziehen."
+    },
+    "ui.v0rail.y_position.title": {
+      "source_revision": "1aa25facf5e0b17bf01b",
+      "text": "38 mm Abstand am Y-Schienenende prüfen"
+    },
+    "ui.v0rail.y_position.note": {
+      "source_revision": "7af57f06fe91f4799376",
+      "text": "Das Schienenende 38 mm vom gezeigten Profilende positionieren. Dies ist eine Maßreferenz aus der Anleitung; die Ansicht behält die ursprünglichen Positionen bei."
+    },
+    "ui.v0rail.y_retention.title": {
+      "source_revision": "1f192b3c0df6449e3e03",
+      "text": "Y-Laufwagen gegen Abrutschen sichern"
+    },
+    "ui.v0rail.y_retention.note": {
+      "source_revision": "fecfcc612495fc1bbcc8",
+      "text": "Mitgelieferte Sicherungsstifte an den Schienenenden belassen. Ohne diese nennt die Anleitung leicht gelöste Endschrauben oder vorübergehendes Klebeband. Diese Hilfsmittel werden nicht als CAD-Teile ergänzt."
+    },
+    "ui.v0rail.y_stops.title": {
+      "source_revision": "c5dcda9dd85630093f62",
+      "text": "Beide Y-Schienenanschläge mit M3x8-Befestigung montieren"
+    },
+    "ui.v0rail.y_stops.note": {
+      "source_revision": "d00702133c25cd2cf337",
+      "text": "Die beiden ursprünglichen Y-Anschläge mit ihren Schrauben und Nutmuttern verwenden. Zuvor eingesetzte Muttern fehlen in manchen Zeichnungen. Optionale No-Drop-Nut-Mods ersetzen die ursprünglichen Teile nicht."
+    },
+    "ui.v0rail.z_load.title": {
+      "source_revision": "b10cce7e2b8876cbd7fb",
+      "text": "Z-Mutternleisten in die C-Profile einsetzen"
+    },
+    "ui.v0rail.z_load.note": {
+      "source_revision": "c40957d0f4ebfa933814",
+      "text": "Die beiden C-Stützen mit ihren vorbereiteten langen Mutternleisten verwenden. Werkzeugöffnungen und tatsächliches Profil prüfen. Die waagerechte B-Querstrebe wird im folgenden Rahmenabschnitt vorbereitet."
+    },
+    "ui.v0rail.z_mount.title": {
+      "source_revision": "5c2d6a46c60f76f5639a",
+      "text": "Z-Schienen zentrieren und M2x6-Schrauben einsetzen"
+    },
+    "ui.v0rail.z_mount.note": {
+      "source_revision": "a8a4b94248d65f631e44",
+      "text": "Die Zeichnung verwendet fünf M2x6-Schrauben je Schiene. Dieses CAD behält die vollständige Bestückung von Seite 18 mit allen zehn ursprünglichen Schrauben je Schiene bei. Beim Zentrieren mit den Führungen jeden Laufwagen gegen Abrutschen sichern."
+    },
+    "ui.v0rail.z_position.title": {
+      "source_revision": "2693e31286dd6c64c8ad",
+      "text": "Verstellbare 33 mm Referenz am Z-Schienenende prüfen"
+    },
+    "ui.v0rail.z_position.note": {
+      "source_revision": "59fd535292e4125faa13",
+      "text": "Die Anleitung nennt am gezeigten Schienenende ungefähr 33 mm. Bei der endgültigen Bettausrichtung kann eine Anpassung nötig sein. Die gegenüberliegenden ungeschützten Enden gegen Abrutschen der Laufwagen sichern."
+    },
+    "ui.v0rail.z_stops.title": {
+      "source_revision": "90f5b74c4af1d006df0f",
+      "text": "Beide oberen Z-Schienenanschläge montieren"
+    },
+    "ui.v0rail.z_stops.note": {
+      "source_revision": "92764ddb449181010dd1",
+      "text": "Die beiden ursprünglichen oberen Anschläge mit ihren M3x8-Schrauben und Nutmuttern montieren. Der untere Anschlag folgt nach dem Aufbau des Z-Rahmens auf Seite 35. Einsetzen und Anziehen werden nicht als Bewegung simuliert."
+    },
+    "ui.v0rail.z_lower.title": {
+      "source_revision": "0f14453dbb535497a6f4",
+      "text": "Verbleibenden unteren Z-Schienenanschlag montieren"
+    },
+    "ui.v0rail.z_lower.note": {
+      "source_revision": "5b0477e00a71a15f44a8",
+      "text": "Die beiden oberen Anschläge wurden auf Seite 26 montiert. Nach Aufbau und Ausrichten des Z-Rahmens den verbleibenden unteren Anschlag mit seiner ursprünglichen M3x8-Schraube und Nutmutter montieren."
+    },
+    "ui.v0rail.status.y_preparation": {
+      "source_revision": "6f07093ee01f298be10b",
+      "text": "Y-Schienen vorbereiten"
+    },
+    "ui.v0rail.status.y_mounting": {
+      "source_revision": "70f532f731b5fd21b2b9",
+      "text": "Y-Schienen montieren"
+    },
+    "ui.v0rail.status.z_preparation": {
+      "source_revision": "74988a6d397fbead3aac",
+      "text": "Z-Schienen vorbereiten"
+    },
+    "ui.v0rail.status.z_mounting": {
+      "source_revision": "38e1b4322cb6c3a0e66e",
+      "text": "Z-Schienen montieren"
     }
   }
 }

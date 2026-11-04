@@ -12505,6 +12505,110 @@
     "assembly.v0head.context.1": {
       "source_revision": "591707747c97343835b1",
       "text": "원본 모델의 장착 위치를 참조로 표시합니다."
+    },
+    "ui.v0rail.y_clean.title": {
+      "source_revision": "8749811e594da70f8039",
+      "text": "레일과 블록을 한 쌍으로 청소하고 윤활"
+    },
+    "ui.v0rail.y_clean.note": {
+      "source_revision": "708aa8d9449f0108c479",
+      "text": "공식 안내에 따라 레일 다섯 개의 출하용 오일을 제거하고 윤활하세요. 각 블록은 원래 레일에서 빼지 말고 이탈을 방지하세요. 여기에는 Y 레일 두 쌍이 표시됩니다."
+    },
+    "ui.v0rail.y_load.title": {
+      "source_revision": "046a902335fb078ce570",
+      "text": "Y 너트 홀더를 E 프로파일에 삽입"
+    },
+    "ui.v0rail.y_load.note": {
+      "source_revision": "03d02d757fc37d71e8b1",
+      "text": "준비한 긴 너트 홀더 두 개와 E 프로파일을 사용하세요. 도면의 공구 접근 구멍 방향을 확인하세요. 너트 방향은 실제 프로파일에 따라 정하며, 화면은 원본 CAD 방향을 유지합니다."
+    },
+    "ui.v0rail.y_mount.title": {
+      "source_revision": "2d10f4773d8f0eaa1678",
+      "text": "Y 레일을 중앙에 맞추고 M2x6 나사 장착"
+    },
+    "ui.v0rail.y_mount.note": {
+      "source_revision": "72920c7cad59cf0b9197",
+      "text": "도면은 레일마다 M2x6 나사 다섯 개를 한 칸씩 건너 장착합니다. 이 CAD는 18페이지의 전체 구멍 사용 구성으로 레일마다 원본 나사 열 개를 유지합니다. 가이드로 중앙에 맞추고 가운데에서 양 끝으로 조이세요."
+    },
+    "ui.v0rail.y_position.title": {
+      "source_revision": "1aa25facf5e0b17bf01b",
+      "text": "Y 레일 끝의 38 mm 기준 위치 확인"
+    },
+    "ui.v0rail.y_position.note": {
+      "source_revision": "7af57f06fe91f4799376",
+      "text": "그림의 프로파일 끝에서 레일 끝까지 38 mm로 맞추세요. 매뉴얼의 치수 기준이며 화면은 원래 위치를 유지합니다."
+    },
+    "ui.v0rail.y_retention.title": {
+      "source_revision": "1f192b3c0df6449e3e03",
+      "text": "Y 블록의 레일 이탈 방지"
+    },
+    "ui.v0rail.y_retention.note": {
+      "source_revision": "fecfcc612495fc1bbcc8",
+      "text": "동봉된 레일 끝 핀은 그대로 두세요. 핀이 없으면 매뉴얼처럼 끝 나사를 조금 풀어 두거나 임시 테이프로 고정하세요. 이러한 임시 보조물은 CAD 부품으로 추가하지 않습니다."
+    },
+    "ui.v0rail.y_stops.title": {
+      "source_revision": "c5dcda9dd85630093f62",
+      "text": "Y 레일 스토퍼 두 개와 M3x8 나사 장착"
+    },
+    "ui.v0rail.y_stops.note": {
+      "source_revision": "d00702133c25cd2cf337",
+      "text": "원본 Y 스토퍼 두 개와 나사 및 슬롯 너트를 사용하세요. 도면에서는 미리 넣은 너트가 생략되기도 합니다. 선택형 너트 이탈 방지 MOD로 원본 부품을 대체하지 않습니다."
+    },
+    "ui.v0rail.z_load.title": {
+      "source_revision": "b10cce7e2b8876cbd7fb",
+      "text": "Z 너트 홀더를 C 프로파일에 삽입"
+    },
+    "ui.v0rail.z_load.note": {
+      "source_revision": "c40957d0f4ebfa933814",
+      "text": "C 기둥 두 개와 준비한 긴 너트 홀더를 사용하세요. 그림의 접근 구멍과 실제 프로파일을 확인하세요. 수평 B 가로대는 다음 프레임 단계에서 준비합니다."
+    },
+    "ui.v0rail.z_mount.title": {
+      "source_revision": "5c2d6a46c60f76f5639a",
+      "text": "Z 레일을 중앙에 맞추고 M2x6 나사 장착"
+    },
+    "ui.v0rail.z_mount.note": {
+      "source_revision": "a8a4b94248d65f631e44",
+      "text": "도면은 레일마다 M2x6 나사 다섯 개를 사용합니다. 이 CAD는 18페이지의 전체 구멍 사용 구성을 유지하여 원본 나사 열 개를 모두 표시합니다. 블록의 이탈을 막으면서 가이드로 레일을 중앙에 맞추세요."
+    },
+    "ui.v0rail.z_position.title": {
+      "source_revision": "2693e31286dd6c64c8ad",
+      "text": "Z 레일 끝의 조정 가능한 약 33 mm 기준 확인"
+    },
+    "ui.v0rail.z_position.note": {
+      "source_revision": "59fd535292e4125faa13",
+      "text": "표시된 레일 끝의 기준은 약 33 mm입니다. 최종 베드 정렬 시 조정할 수 있습니다. 아직 보호되지 않은 반대쪽 끝으로 블록이 빠지지 않게 하세요."
+    },
+    "ui.v0rail.z_stops.title": {
+      "source_revision": "90f5b74c4af1d006df0f",
+      "text": "Z 레일 위쪽 스토퍼 두 개 장착"
+    },
+    "ui.v0rail.z_stops.note": {
+      "source_revision": "92764ddb449181010dd1",
+      "text": "원본 위쪽 스토퍼 두 개를 M3x8 나사와 슬롯 너트로 장착하세요. 아래쪽 스토퍼는 Z 프레임 조립 후 35페이지에서 장착합니다. 삽입이나 조임 동작은 시뮬레이션하지 않습니다."
+    },
+    "ui.v0rail.z_lower.title": {
+      "source_revision": "0f14453dbb535497a6f4",
+      "text": "남은 Z 레일 아래쪽 스토퍼 장착"
+    },
+    "ui.v0rail.z_lower.note": {
+      "source_revision": "5b0477e00a71a15f44a8",
+      "text": "위쪽 두 개는 26페이지에서 장착했습니다. Z 프레임을 조립하고 직각을 확인한 후, 남은 아래쪽 스토퍼를 원본 M3x8 나사와 슬롯 너트로 장착하세요."
+    },
+    "ui.v0rail.status.y_preparation": {
+      "source_revision": "6f07093ee01f298be10b",
+      "text": "Y 레일 준비"
+    },
+    "ui.v0rail.status.y_mounting": {
+      "source_revision": "70f532f731b5fd21b2b9",
+      "text": "Y 레일 장착"
+    },
+    "ui.v0rail.status.z_preparation": {
+      "source_revision": "74988a6d397fbead3aac",
+      "text": "Z 레일 준비"
+    },
+    "ui.v0rail.status.z_mounting": {
+      "source_revision": "38e1b4322cb6c3a0e66e",
+      "text": "Z 레일 장착"
     }
   }
 }

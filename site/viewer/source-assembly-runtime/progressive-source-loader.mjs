@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {validateChunkManifest} from './chunk_loader.mjs?v=0fae11eb8769d528e085';
-import {fetchPinned,createChunkProgress} from './loading.mjs?v=37e47f36be669b5a2744';
+import {validateChunkManifest} from './chunk_loader.mjs?v=89dafe80db759fcfd216';
+import {fetchPinned,createChunkProgress} from './loading.mjs?v=cdd9786662113cba46b5';
 import {fetchExactChunk} from './exact_gzip_transport.mjs?v=e2841a828f7106242706';
 import {releaseRoot} from './resources.mjs?v=53e0f29aff2fcb720ede';
 

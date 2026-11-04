@@ -20,6 +20,10 @@ def main():
             head=row['machines'][0].get('headOwnership',{});display=row['machines'][0].get('headDisplay',{})
             if head.get('operations')!=41 or head.get('originalHeadOperationLeaves')!=86 or head.get('originalSourceCohort')!=(100 if mid=='voron_v02r1_120'else 99):raise ValueError('Missing exact original head/companion operation audit: '+mid)
             if len(display.get('visits',[]))!=3 or display.get('separatePalettes')!=3 or not all(display.get(k)for k in ['originalRestored','originalSourceMaterialsRetained','fullGeometryContentRetained']):raise ValueError('Missing actual current head display/material restoration: '+mid)
+            rail=row['machines'][0].get('railOwnership',{})
+            if rail.get('operations')!=10 or rail.get('originalScrews')!=40 or not all(rail.get(k)for k in ['allOriginalKeysOnce','upperStopsPage26','lowerStopPage35','topBInFollowingFrameSection','fullPopulationOptionRetained']):raise ValueError('Missing source-backed rail page operations: '+mid)
+            rail_display=row['machines'][0].get('railDisplay',{})
+            if len(rail_display.get('visits',[]))!=10 or rail_display.get('reverseVisits')!=10 or rail_display.get('visibilityRollback')!=1 or not rail_display.get('originalFramesMaterialsVisibilityRestored'):raise ValueError('Missing actual rail operation lifecycle: '+mid)
             rows.append(row)
     if stages.read_bytes()!=source:raise ValueError('Stage source changed between machines')
     result={k:v for k,v in rows[0].items()if k not in {'machines','source_sha256'}};result['machines']=[m for row in rows for m in row['machines']];pins={}

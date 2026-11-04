@@ -1,5 +1,5 @@
 import {WorkspaceMutationObserver,workspaceListen} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {translate,originalText,originalAttribute} from './i18n.mjs?v=ce9697136267b44d745f';
+import {translate,originalText,originalAttribute} from './i18n.mjs?v=f6bcae1447111c6b88c4';
 
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu, ' ').trim();
 export function matchingChoices(rows, query) {

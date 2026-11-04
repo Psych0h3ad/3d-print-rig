@@ -1,4 +1,4 @@
-import {assemblyProgressNeedsMigration,assemblyProgressStageCorrection} from './assembly-progress-migrations.mjs?v=6c45502842661826e92e';
+import {assemblyProgressNeedsMigration,assemblyProgressStageCorrection} from './assembly-progress-migrations.mjs?v=a61d4b0b29ed27620b79';
 const record=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
 const text=v=>typeof v==='string'&&v.trim().length>0;
 const hash=v=>typeof v==='string'&&/^[a-f0-9]{64}$/i.test(v);

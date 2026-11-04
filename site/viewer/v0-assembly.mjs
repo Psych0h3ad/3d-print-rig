@@ -1,3 +1,4 @@
+import {createV0RailOperations} from './v0-rail-operations.mjs?v=fc62c168beaafce91163';
 import {prepareV0M2Seating,createV0M2Seating} from './v0-m2-seating.mjs?v=d15ba41d0be2c9a7b68b';
 // Manual stages with an optional, source-pinned rail preparation presentation.
 // Preparation poses are temporary rigid layouts, not insertion or clearance.
@@ -143,6 +144,7 @@ export function createV0AssemblyStages(options){
  if(received)received.used=true;
  const companionBindings=spec.companions,companionForKey=new Map();
  const preparation=options.manualPreparation?createV0RailPreparation({nodes,manifest:options.manifest,spec}):null;
+ const rail=options.manualPreparation?createV0RailOperations({spec,manifest:options.manifest}):null;
  const drive=options.manualPreparation?createV0DriveAssembly(spec,options.manifest.machine_id):null;
  const bed=options.manualPreparation?createV0BedAssembly(spec,options.manifest.machine_id):null;
  const feet=options.manualPreparation?createV0FeetAssembly(spec,options.manifest.machine_id):null;
@@ -212,7 +214,7 @@ export function createV0AssemblyStages(options){
   if(preparation){value.preparation=preparation.prepared(active.index);value.stored_count=preparation.deferred(active.index).length;
    value.presentation_note=value.preparation?'The five prepared carriers are laid out together. This arrangement is for inspection; it does not show installation positions or insertion paths.':value.stored_count?'Prepared carriers for later rails are set aside. Each appears with its receiving rail at the installation stage.':'';
   }
-  const bedWork=bed?.at(active.index),feetWork=feet?.at(active.index),idlerWork=idler?.at(active.index),xyWork=xy?.at(active.index),headWork=head?.at(active.index),manualWork=headWork||xyWork||idlerWork||feetWork||bedWork,work=manualWork||drive?.at(active.index);
+  const railWork=rail?.at(active.index),bedWork=bed?.at(active.index),feetWork=feet?.at(active.index),idlerWork=idler?.at(active.index),xyWork=xy?.at(active.index),headWork=head?.at(active.index),manualWork=railWork||headWork||xyWork||idlerWork||feetWork||bedWork,work=manualWork||drive?.at(active.index);
   value.presentation_id=work?.id||(value.preparation?'rail-preparation':'installed');
   value.subassembly=manualWork?manualWork.isolated:Boolean(work);value.underside=Boolean(work?.underside);
   if(work&&!manualWork)value.presentation_note='Only the current drive subassembly is shown. The frame and previously prepared parts are set aside; the drives join the frame at manual page 81.';
@@ -220,7 +222,7 @@ export function createV0AssemblyStages(options){
   value.manual_fastener_reference=Boolean(m2&&active.index>=spec.stages.findIndex(s=>s.id==='x-install'));
   value.manual_note=drive?.note(active.index)||'';
   value.presentation_notes=[value.presentation_note,...manualWork?.notes||[]].filter(Boolean);
-  if(manualWork){value.presentation_label=manualWork.status;value.camera_direction=[...manualWork.direction];value.camera_distance_floor=manualWork.isolated ? .05 : .24;value.part_notes={...manualWork.partNotes};value.stored_keys=(headWork?head:xyWork?xy:idlerWork?idler:feetWork?feet:bed).stored(active.index,new Set(active.part_keys))}
+  if(manualWork){value.presentation_label=manualWork.status;value.camera_direction=[...manualWork.direction];value.camera_distance_floor=manualWork.isolated ? .05 : .24;value.part_notes={...manualWork.partNotes};value.stored_keys=(railWork?rail:headWork?head:xyWork?xy:idlerWork?idler:feetWork?feet:bed).stored(active.index,new Set(active.part_keys))}
   if(idler){const stored=idler.stored(active.index,new Set(active.part_keys));value.stored_count=(value.stored_count||0)+stored.length}
   if(xy){const stored=xy.stored(active.index,new Set(active.part_keys));value.stored_count=(value.stored_count||0)+stored.length}
   return value;
@@ -236,6 +238,7 @@ export function createV0AssemblyStages(options){
   shown=idler?.filter(index,shown)||shown;
   shown=xy?.filter(index,shown)||shown;
   shown=head?.filter(index,shown)||shown;
+  shown=rail?.filter(index,shown)||shown;
   // Native-hidden alternatives stay hidden. No part, transform or material is
   // replaced. Validate every root before applying the cumulative mask.
   for(const [key,node]of [...bindings,...companionBindings.map((row,i)=>['companion '+i,row.node])]){
@@ -271,7 +274,7 @@ export function createV0AssemblyStages(options){
   current(){checkActive();return result()},
   // Stage keys include assigned alternatives; "focus added" only uses this
   // stage's keys which were visible when assembly mode was entered.
-  getBoundsKeys(){checkActive();return active?visibleKeys([...new Set([...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[],...xy?.focus(active.index)||[],...head?.focus(active.index)||[]])]):[]},
+  getBoundsKeys(){checkActive();return active?visibleKeys([...new Set([...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[],...xy?.focus(active.index)||[],...head?.focus(active.index)||[],...rail?.focus(active.index)||[]])]):[]},
   getVisibleKeys(){checkActive();return active?visibleKeys():[]},
   getDisplayedParts(){
    checkActive();if(!active)return [];
@@ -288,7 +291,7 @@ export function createV0AssemblyStages(options){
   // support-bearing leaf. Counts/keys remain native identities, not mesh count.
   getBoundsNodes(){
    checkActive();if(!active)return [];
-   const keys=[...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[],...xy?.focus(active.index)||[],...head?.focus(active.index)||[]],roots=new Set();
+   const keys=[...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[],...xy?.focus(active.index)||[],...head?.focus(active.index)||[],...rail?.focus(active.index)||[]],roots=new Set();
    for(const key of keys){const native=nodes.get(key),companion=companionForKey.get(key);if(visibleNode(native))roots.add(native);if(visibleNode(companion))roots.add(companion)}
    return [...roots];
   },
