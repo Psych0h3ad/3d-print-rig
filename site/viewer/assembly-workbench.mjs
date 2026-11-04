@@ -1,7 +1,7 @@
 import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=60fe468a02a8754c743e';
 import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=3110166c940701420da3';
 
-import {assemblyPartRows} from './assembly-part-review.mjs';
+import {assemblyPartRows} from './assembly-part-review.mjs?v=c2d5e0177d33e1d95d0e';
 import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs?v=6c45502842661826e92e';
 
 // UI state describes the reader's checklist, never a mechanical validation.

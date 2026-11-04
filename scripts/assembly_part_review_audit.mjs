@@ -4,6 +4,8 @@ export function auditPartReview(index,{assemblyPartRows,createAssemblyProgress,v
  assert.equal(rows.length,index.partCount);assert.equal(new Set(keys).size,index.partCount);
  for(const stage of index.stages)for(const key of stage.part_keys)assert(index.parts(stage.id).some(p=>p.key===key),'Every introduced source part must remain in its operation');
  for(const r of rows){assert.equal(r.part,index.part(r.key));assert(r.ordinal>=1&&r.ordinal<=r.total);assert(index.owner(r.key).part_keys.includes(r.key));}
+ // The V0 source calls its short PTFE liners inserts; they remain source parts, not fasteners.
+ for(const r of rows)if(/^PTFE Tube Insert(?: \(\d+\))?$/i.test(r.part.name.replaceAll('_',' ').trim()))assert.equal(r.fastener,false,'PTFE liner incorrectly classified as a fastener: '+r.key);
  const hardware=rows.filter(r=>r.fastener);assert(hardware.length>0,'Actual named source fasteners required');
  const progress=createAssemblyProgress(index),samples=[hardware[0],hardware[Math.floor(hardware.length/2)],hardware.at(-1)];
  for(const r of samples)if(!progress.snapshot().checked_parts.includes(r.key))progress.togglePart(r.key);
