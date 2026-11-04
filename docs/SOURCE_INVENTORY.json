@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1353540,
-      "sha256": "58f91b34529950ab71a5a16b12d786b218117fe13d5bf5dc73e8be54dc258d63"
+      "bytes": 1353664,
+      "sha256": "406cb7b69d1028fce92733cc2039aefcfdbb392fd62b721637301af318a9e00e"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -560,8 +560,8 @@
     },
     {
       "path": "docs/V0_ASSEMBLY.md",
-      "bytes": 17937,
-      "sha256": "fe04ca059bfa04352cff3db0073bfe41a0e2328ed4357094b47ad93aa7270081"
+      "bytes": 18172,
+      "sha256": "5e4508f20d1316d0c3594fadbd8426fb23c4f464e940e67bb0faee4fffdda2af"
     },
     {
       "path": "docs/V0_ASSEMBLY_REVIEW_130.json",
@@ -1557,6 +1557,11 @@
       "path": "scripts/test_assembly_progress_migration.mjs",
       "bytes": 5810,
       "sha256": "d8ad5a004c35b70782a7c5724e15d80c2ec1ab177a9a8831c9ee505738936b4e"
+    },
+    {
+      "path": "scripts/test_assembly_progress_storage_order.mjs",
+      "bytes": 4495,
+      "sha256": "ad12fbcd189197774e0e3358ba8191a6bde5faf1942f25f55733d0cf3c3c16c5"
     },
     {
       "path": "scripts/test_assembly_stage_emphasis.mjs",
@@ -7095,8 +7100,8 @@
     },
     {
       "path": "site/viewer/assembly-progress-migrations.mjs",
-      "bytes": 3858,
-      "sha256": "a61d4b0b29ed27620b79cd1f232ef001c82f5e06889415b7db5f730f1ae086a4"
+      "bytes": 3941,
+      "sha256": "1be318593326d40813ae7356b001b989860579600633e5f1706695618b9c2840"
     },
     {
       "path": "site/viewer/assembly-stage-emphasis.mjs",
@@ -7116,7 +7121,7 @@
     {
       "path": "site/viewer/assembly-workbench-model.mjs",
       "bytes": 9607,
-      "sha256": "4519a2adca1a574ccecfcba4a30eb2ffd0b8a0a4e7fe499a3fab5d1f0c84abde"
+      "sha256": "7b3073fdbc344af1819cf9b298ee494cdcdfb5bbea66b0fa611c2e975e77cb6b"
     },
     {
       "path": "site/viewer/assembly-workbench.css",
@@ -7126,7 +7131,7 @@
     {
       "path": "site/viewer/assembly-workbench.mjs",
       "bytes": 16247,
-      "sha256": "f9be81c89bb72956044476e6ea4bc70157f378ce77fb77a1c798b715732a1717"
+      "sha256": "af983a14b5611b49a6834218800fc55c5252ee8e3452cada26e9ffc0ea65d5e9"
     },
     {
       "path": "site/viewer/asset-availability.js",
@@ -8411,7 +8416,7 @@
     {
       "path": "site/viewer/source-map-app.mjs",
       "bytes": 13876,
-      "sha256": "07883d4c96a6691a12f786daa75a773f6a12c3d6526309f83219a3bff3e89bcd"
+      "sha256": "718f62b098478322289421134f5599e88412fb0cc1d6b2609fc53708efebd1e0"
     },
     {
       "path": "site/viewer/source-map.css",
@@ -8421,7 +8426,7 @@
     {
       "path": "site/viewer/source-map.html",
       "bytes": 4537,
-      "sha256": "ffe2a36be7d993c260e08541260d497e1c82b5a02ec4eb2396c4040fbab29c09"
+      "sha256": "d493b1d775c5d7327a52e4423dcd9cc5914bc696a394e84c011a04dd43f9b297"
     },
     {
       "path": "site/viewer/source-operating-bounds6.mjs",
@@ -8731,7 +8736,7 @@
     {
       "path": "site/viewer/v0-app.js",
       "bytes": 35166,
-      "sha256": "db47f4cb9bb827d1b63aa06a9b24eac44b6b40c4e6f9816ca399beb6b41991c8"
+      "sha256": "f86bf9446d730cb154f8d0c7ce61e11051749e435d95ae48176a66ce850cb83e"
     },
     {
       "path": "site/viewer/v0-assembly.mjs",
@@ -8831,7 +8836,7 @@
     {
       "path": "site/viewer/v0.html",
       "bytes": 10592,
-      "sha256": "0efb6aac3b80445fdb22f9cbc92935dca6720c55b3a52a36cf502cecc458bc1f"
+      "sha256": "bb8b25ee7f278ae960ce06bc9b7ec8e12c3137563706cbafd763c004edfec797"
     },
     {
       "path": "site/viewer/v0_adapter.mjs",
