@@ -12609,6 +12609,126 @@
     "ui.v0rail.status.z_mounting": {
       "source_revision": "38e1b4322cb6c3a0e66e",
       "text": "Установка рельсов Z"
+    },
+    "v0.electronics.manual.6d1ee1d32098f43b": {
+      "source_revision": "041016fc78e28af3fef8",
+      "text": "Совместить среднюю панель с заранее установленными гайками"
+    },
+    "v0.electronics.manual.c4856673878676c0": {
+      "source_revision": "de38f95c29b4fe08f871",
+      "text": "Используйте шесть гаек, заранее вложенных во внутренние стойки. В руководстве принтер поворачивают для доступа; здесь этот поворот не моделируется."
+    },
+    "v0.electronics.manual.bdf7a7f814f005b2": {
+      "source_revision": "3bf277e70fcba5f602fa",
+      "text": "Закрепить среднюю панель шестью винтами M3×6"
+    },
+    "v0.electronics.manual.7d0bf31c6a9849f6": {
+      "source_revision": "7ffb6adeb1adf5633896",
+      "text": "Используйте шесть исходных заранее установленных гаек M3; не добавляйте второй комплект."
+    },
+    "v0.electronics.manual.a0045290fc76ef77": {
+      "source_revision": "2d7f365c5ea728e06959",
+      "text": "Подготовить оба крепления плат и DIN-зажимы"
+    },
+    "v0.electronics.manual.b49e401538e72668": {
+      "source_revision": "598cbfc960111e770e17",
+      "text": "Закрепите каждый исходный DIN-зажим двумя самонарезающими винтами M2×10. Восемь винтов плат используются после размещения покупных плат."
+    },
+    "v0.electronics.manual.e6f8a9d99cb26ef2": {
+      "source_revision": "33770c29ff77017a1b8c",
+      "text": "Проверить высоту и выбранные монтажные отверстия"
+    },
+    "v0.electronics.manual.094aab78510c3467": {
+      "source_revision": "8914819ead4f7d8e7902",
+      "text": "Руководство допускает выбор отверстий под высоту платы. Здесь сохранены исходные положения отверстий модели."
+    },
+    "v0.electronics.manual.948d6a1ad65cdccc": {
+      "source_revision": "2e1232ba3bbaaa6ad420",
+      "text": "Наклеить ленту на обе опорные планки DIN"
+    },
+    "v0.electronics.manual.2939ff433c6bb276": {
+      "source_revision": "7054f3e77a1e13b516fa",
+      "text": "Показан исходный вариант с DIN-зажимом и опорной планкой на ленте. Альтернативное прямое крепление лентой из руководства здесь не подставляется."
+    },
+    "v0.electronics.manual.77b1cd809afbc75f": {
+      "source_revision": "3f4957f3b93af154b4bc",
+      "text": "Разместить опорные планки с лентой на средней панели"
+    },
+    "v0.electronics.manual.68a544a4d54b802a": {
+      "source_revision": "35871f4b8aac9e204912",
+      "text": "Перед приклеиванием опорных планок проверьте положение плат."
+    },
+    "v0.electronics.manual.a6ea7cccb1cef1fe": {
+      "source_revision": "59d2e6e978aa36d8bdb7",
+      "text": "Установить подготовленные крепления на опорные планки"
+    },
+    "v0.electronics.manual.0500d9676bec5ad1": {
+      "source_revision": "a078ddf678b9002c7007",
+      "text": "Используйте подготовленные крепления и направление установки из руководства. Здесь меняется состояние отображения без моделирования траектории защёлкивания."
+    },
+    "v0.electronics.manual.f66ac0914dbf8312": {
+      "source_revision": "bbde2e14f14de2ec3379",
+      "text": "Разместить плату SKR Pico в сборе"
+    },
+    "v0.electronics.manual.3eb2f39d0bd01bbe": {
+      "source_revision": "798d7836604df7237f96",
+      "text": "Сохраняйте покупную плату как единый узел. Её исходные компоненты показаны для справки, а не как указания по пайке."
+    },
+    "v0.electronics.manual.f846bf270de7d0c1": {
+      "source_revision": "88634f7f9bd3e8c49857",
+      "text": "Закрепить SKR Pico четырьмя винтами M2×10"
+    },
+    "v0.electronics.manual.1f190ed884c6e9b5": {
+      "source_revision": "c4272c03330943ab7d06",
+      "text": "Используйте четыре исходных крепёжных винта, относящихся к этой плате."
+    },
+    "v0.electronics.manual.f6f7b3856d1f9c8e": {
+      "source_revision": "2b82e732d6bc2de59e41",
+      "text": "Разместить плату Raspberry Pi в сборе"
+    },
+    "v0.electronics.manual.896980fa94b9e27c": {
+      "source_revision": "de3a5c8add827cd36e08",
+      "text": "Сохраняйте исходный узел Raspberry Pi целиком."
+    },
+    "v0.electronics.manual.3e00950841e753f1": {
+      "source_revision": "33e8cf1a57c940296a66",
+      "text": "Закрепить Raspberry Pi четырьмя винтами M2×10"
+    },
+    "v0.electronics.manual.131d39f9f1ac9b95": {
+      "source_revision": "4804f272b76f01459422",
+      "text": "Проверить установку обеих плат"
+    },
+    "v0.electronics.manual.5835c645d2756008": {
+      "source_revision": "a0422eec806f76d1576c",
+      "text": "Сверьте две исходные платы и отдельные крепёжные винты. Подключение и электрические проверки выполняются далее по официальному руководству."
+    },
+    "v0.electronics.manual.9bca2c02b66a3446": {
+      "source_revision": "fed681adb86a2b5607f4",
+      "text": "Показан подготовленный узел электроники"
+    },
+    "v0.electronics.manual.b8f93e80b1d0dc84": {
+      "source_revision": "f483aec3f8d6316af3b5",
+      "text": "Справочный вид установки электроники"
+    },
+    "v0.electronics.manual.a4b625653e36b69d": {
+      "source_revision": "c174914a9778c5168e91",
+      "text": "Подготовленные детали показаны отдельно. Ранее собранные детали принтера и последующие винты плат отложены."
+    },
+    "v0.electronics.manual.9acb31c5d87461aa": {
+      "source_revision": "e4ff77ad48776eb9f698",
+      "text": "Сохраняются исходные положения; зацепление и траектория вставки не моделируются."
+    },
+    "v0.electronics.manual.43416b374193158b": {
+      "source_revision": "1ff8f267630d8854f482",
+      "text": "Подготовить крепление вентилятора с четырьмя вставками"
+    },
+    "v0.electronics.manual.c161eab16f0b9cca": {
+      "source_revision": "0644f85dd1bf6e60de84",
+      "text": "Подготовьте четыре исходные резьбовые вставки в нижнем креплении по официальной схеме термовставки. Отложите узел до этапа установки вентилятора."
+    },
+    "v0.electronics.manual.3bb1160d32fb5e68": {
+      "source_revision": "d831cf654091b1cabca7",
+      "text": "Используйте шесть ранее заложенных гаек M3; второй комплект не добавляйте. Два неиспользуемых отверстия предназначены для опционального экструдера Bowden, показанного в руководстве."
     }
   }
 }

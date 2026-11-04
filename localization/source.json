@@ -15873,6 +15873,156 @@
       "kind": "message",
       "ja": "Zレールの取り付け",
       "en": "Z rail mounting"
+    },
+    "v0.electronics.manual.6d1ee1d32098f43b": {
+      "kind": "message",
+      "ja": "中間パネルを先入れナットに合わせる",
+      "en": "Align the mid panel with the preloaded nuts"
+    },
+    "v0.electronics.manual.c4856673878676c0": {
+      "kind": "message",
+      "ja": "内側の縦フレームに先入れしたナット6個を使います。公式図では作業のため機体を回転させますが、この表示では反転動作を再現していません。",
+      "en": "Use the six nuts preloaded into the inner uprights. The official guide shows turning the printer for access; this reference does not simulate a flip."
+    },
+    "v0.electronics.manual.bdf7a7f814f005b2": {
+      "kind": "message",
+      "ja": "M3×6ネジ6本で中間パネルを固定",
+      "en": "Secure the mid panel with six M3x6 screws"
+    },
+    "v0.electronics.manual.7d0bf31c6a9849f6": {
+      "kind": "message",
+      "ja": "元の先入れM3ナット6個を使います。別のナットを追加しないでください。",
+      "en": "Reuse the original six preloaded M3 nuts; do not add a second set."
+    },
+    "v0.electronics.manual.a0045290fc76ef77": {
+      "kind": "message",
+      "ja": "2組の基板マウントとDINクリップを準備",
+      "en": "Prepare both board mounts and DIN clips"
+    },
+    "v0.electronics.manual.b49e401538e72668": {
+      "kind": "message",
+      "ja": "各DINクリップをM2×10タッピングネジ2本で取り付けます。基板用のネジ8本は、基板を配置した後に使います。",
+      "en": "Fit each source DIN clip with two M2x10 self-tapping screws. The eight board screws are used after the purchased boards are in place."
+    },
+    "v0.electronics.manual.e6f8a9d99cb26ef2": {
+      "kind": "message",
+      "ja": "基板の高さと取付穴を確認",
+      "en": "Check the mount height and selected holes"
+    },
+    "v0.electronics.manual.094aab78510c3467": {
+      "kind": "message",
+      "ja": "マニュアルでは、基板の高さに応じて取付穴を選べます。この参照表示では元CADの穴位置を保っています。",
+      "en": "The manual allows selecting mounting holes for board height. This source reference retains its captured hole positions."
+    },
+    "v0.electronics.manual.948d6a1ad65cdccc": {
+      "kind": "message",
+      "ja": "2個のDIN受け台にテープを貼る",
+      "en": "Apply tape to both DIN cleats"
+    },
+    "v0.electronics.manual.2939ff433c6bb276": {
+      "kind": "message",
+      "ja": "ここでは元CADのDINクリップとテープ付き受け台を使う構成を表示します。マニュアルにあるテープで直接固定する別案への置換は行っていません。",
+      "en": "Use the captured DIN-clip and taped-cleat branch. The manual also describes direct tape mounting as an alternative; it is not substituted here."
+    },
+    "v0.electronics.manual.77b1cd809afbc75f": {
+      "kind": "message",
+      "ja": "テープ付き受け台を中間パネルに配置",
+      "en": "Position the taped cleats on the mid panel"
+    },
+    "v0.electronics.manual.68a544a4d54b802a": {
+      "kind": "message",
+      "ja": "受け台を貼り付ける前に、基板の配置を確認してください。",
+      "en": "Confirm the board positions before sticking down the cleats."
+    },
+    "v0.electronics.manual.a6ea7cccb1cef1fe": {
+      "kind": "message",
+      "ja": "準備した基板マウントを受け台に取り付け",
+      "en": "Clip the prepared mounts onto the cleats"
+    },
+    "v0.electronics.manual.0500d9676bec5ad1": {
+      "kind": "message",
+      "ja": "準備した基板マウントを使います。はめ込む向きは公式図で確認してください。この表示ではスナップの移動経路を再現していません。",
+      "en": "Use the prepared mounts. The manual illustrates engagement direction; this reference changes display state without simulating a snap path."
+    },
+    "v0.electronics.manual.f66ac0914dbf8312": {
+      "kind": "message",
+      "ja": "SKR Pico基板を配置",
+      "en": "Place the complete SKR Pico board"
+    },
+    "v0.electronics.manual.3eb2f39d0bd01bbe": {
+      "kind": "message",
+      "ja": "購入品の基板は分解せず、一つの組立品として扱います。元モデルの内部部品は参照表示であり、はんだ付けの指示ではありません。",
+      "en": "Treat the purchased board as one assembly. Its source components are references, not soldering instructions."
+    },
+    "v0.electronics.manual.f846bf270de7d0c1": {
+      "kind": "message",
+      "ja": "M2×10ネジ4本でSKR Picoを固定",
+      "en": "Fasten the SKR Pico with four M2x10 screws"
+    },
+    "v0.electronics.manual.1f190ed884c6e9b5": {
+      "kind": "message",
+      "ja": "この基板に対応する元の固定ネジ4本を使います。",
+      "en": "Use the four board-attachment screws from this source owner."
+    },
+    "v0.electronics.manual.f6f7b3856d1f9c8e": {
+      "kind": "message",
+      "ja": "Raspberry Pi基板を配置",
+      "en": "Place the complete Raspberry Pi board"
+    },
+    "v0.electronics.manual.896980fa94b9e27c": {
+      "kind": "message",
+      "ja": "元モデルのRaspberry Piは一つの組立品として扱います。",
+      "en": "Keep the source Raspberry Pi assembly complete."
+    },
+    "v0.electronics.manual.3e00950841e753f1": {
+      "kind": "message",
+      "ja": "M2×10ネジ4本でRaspberry Piを固定",
+      "en": "Fasten the Raspberry Pi with four M2x10 screws"
+    },
+    "v0.electronics.manual.131d39f9f1ac9b95": {
+      "kind": "message",
+      "ja": "2枚の基板の取付状態を確認",
+      "en": "Review both mounted boards"
+    },
+    "v0.electronics.manual.5835c645d2756008": {
+      "kind": "message",
+      "ja": "2枚の基板と、それぞれに対応する固定ネジを公式図と照合します。配線と電気的な確認は、この後の公式手順に従ってください。",
+      "en": "Check the two source board assemblies and their separate fasteners. Wiring and electrical checks follow in the official guide."
+    },
+    "v0.electronics.manual.9bca2c02b66a3446": {
+      "kind": "message",
+      "ja": "基板マウントの準備状態を参照表示中",
+      "en": "Prepared electronics subassembly reference"
+    },
+    "v0.electronics.manual.b8f93e80b1d0dc84": {
+      "kind": "message",
+      "ja": "基板まわりの取付状態を参照表示中",
+      "en": "Electronics installation reference"
+    },
+    "v0.electronics.manual.a4b625653e36b69d": {
+      "kind": "message",
+      "ja": "準備中の部品を単独で表示します。それまでの機体部品と、後で使う基板固定ネジは脇に置きます。",
+      "en": "Prepared parts are inspected separately. Earlier machine parts and later board screws stay aside."
+    },
+    "v0.electronics.manual.9acb31c5d87461aa": {
+      "kind": "message",
+      "ja": "元CADの位置を参照表示しており、噛合や挿入経路は再現していません。",
+      "en": "Original source positions are retained. No engagement or insertion path is simulated."
+    },
+    "v0.electronics.manual.43416b374193158b": {
+      "kind": "message",
+      "ja": "ファン取付部にインサート4個を準備",
+      "en": "Prepare the fan mount with four inserts"
+    },
+    "v0.electronics.manual.c161eab16f0b9cca": {
+      "kind": "message",
+      "ja": "公式の熱圧入図に従い、下側のファン取付部に元のインサート4個を準備します。ファン取付工程まで、この組を脇に置きます。",
+      "en": "Prepare the four original threaded inserts in the lower fan mount as shown in the official heat-set diagram. Keep the prepared subassembly aside until the fan-mount installation."
+    },
+    "v0.electronics.manual.3bb1160d32fb5e68": {
+      "kind": "message",
+      "ja": "先入れした元のM3ナット6個を使い、追加しません。残る2つの穴は、マニュアルにある別構成のボーデンエクストルーダー用です。",
+      "en": "Reuse the original six preloaded M3 nuts; do not add a second set. The two unused holes are for the optional Bowden extruder shown in the manual."
     }
   }
 }

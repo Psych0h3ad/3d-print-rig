@@ -12609,6 +12609,126 @@
     "ui.v0rail.status.z_mounting": {
       "source_revision": "38e1b4322cb6c3a0e66e",
       "text": "Z 레일 장착"
+    },
+    "v0.electronics.manual.6d1ee1d32098f43b": {
+      "source_revision": "041016fc78e28af3fef8",
+      "text": "중간 패널을 미리 넣은 너트에 정렬"
+    },
+    "v0.electronics.manual.c4856673878676c0": {
+      "source_revision": "de38f95c29b4fe08f871",
+      "text": "안쪽 수직 프레임에 미리 넣은 너트 6개를 사용합니다. 공식 가이드는 작업을 위해 프린터를 돌리지만 이 참조 표시에서는 뒤집는 동작을 재현하지 않습니다."
+    },
+    "v0.electronics.manual.bdf7a7f814f005b2": {
+      "source_revision": "3bf277e70fcba5f602fa",
+      "text": "M3×6 나사 6개로 중간 패널 고정"
+    },
+    "v0.electronics.manual.7d0bf31c6a9849f6": {
+      "source_revision": "7ffb6adeb1adf5633896",
+      "text": "미리 넣은 원본 M3 너트 6개를 재사용합니다. 너트를 추가하지 마세요."
+    },
+    "v0.electronics.manual.a0045290fc76ef77": {
+      "source_revision": "2d7f365c5ea728e06959",
+      "text": "두 보드 마운트와 DIN 클립 준비"
+    },
+    "v0.electronics.manual.b49e401538e72668": {
+      "source_revision": "598cbfc960111e770e17",
+      "text": "각 원본 DIN 클립을 M2×10 태핑 나사 2개로 장착합니다. 보드용 나사 8개는 구매한 보드를 배치한 뒤 사용합니다."
+    },
+    "v0.electronics.manual.e6f8a9d99cb26ef2": {
+      "source_revision": "33770c29ff77017a1b8c",
+      "text": "보드 높이와 선택한 장착 구멍 확인"
+    },
+    "v0.electronics.manual.094aab78510c3467": {
+      "source_revision": "8914819ead4f7d8e7902",
+      "text": "매뉴얼에서는 보드 높이에 따라 장착 구멍을 선택할 수 있습니다. 이 참조 표시는 원본 CAD의 구멍 위치를 유지합니다."
+    },
+    "v0.electronics.manual.948d6a1ad65cdccc": {
+      "source_revision": "2e1232ba3bbaaa6ad420",
+      "text": "두 DIN 받침대에 테이프 부착"
+    },
+    "v0.electronics.manual.2939ff433c6bb276": {
+      "source_revision": "7054f3e77a1e13b516fa",
+      "text": "원본 CAD의 DIN 클립과 테이프 받침대 구성을 표시합니다. 매뉴얼의 테이프 직접 부착 대안으로 바꾸지 않습니다."
+    },
+    "v0.electronics.manual.77b1cd809afbc75f": {
+      "source_revision": "3f4957f3b93af154b4bc",
+      "text": "테이프를 붙인 받침대를 중간 패널에 배치"
+    },
+    "v0.electronics.manual.68a544a4d54b802a": {
+      "source_revision": "35871f4b8aac9e204912",
+      "text": "받침대를 붙이기 전에 보드 위치를 확인하세요."
+    },
+    "v0.electronics.manual.a6ea7cccb1cef1fe": {
+      "source_revision": "59d2e6e978aa36d8bdb7",
+      "text": "준비한 보드 마운트를 받침대에 장착"
+    },
+    "v0.electronics.manual.0500d9676bec5ad1": {
+      "source_revision": "a078ddf678b9002c7007",
+      "text": "준비한 마운트를 사용하고 끼우는 방향은 공식 그림을 따릅니다. 이 표시는 스냅 이동 경로를 재현하지 않고 표시 상태만 바꿉니다."
+    },
+    "v0.electronics.manual.f66ac0914dbf8312": {
+      "source_revision": "bbde2e14f14de2ec3379",
+      "text": "SKR Pico 보드 전체 배치"
+    },
+    "v0.electronics.manual.3eb2f39d0bd01bbe": {
+      "source_revision": "798d7836604df7237f96",
+      "text": "구매한 보드는 하나의 조립체로 유지합니다. 원본 모델의 내부 부품은 참조 표시이며 납땜 지침이 아닙니다."
+    },
+    "v0.electronics.manual.f846bf270de7d0c1": {
+      "source_revision": "88634f7f9bd3e8c49857",
+      "text": "M2×10 나사 4개로 SKR Pico 고정"
+    },
+    "v0.electronics.manual.1f190ed884c6e9b5": {
+      "source_revision": "c4272c03330943ab7d06",
+      "text": "원본 모델에서 이 보드에 속한 고정 나사 4개를 사용합니다."
+    },
+    "v0.electronics.manual.f6f7b3856d1f9c8e": {
+      "source_revision": "2b82e732d6bc2de59e41",
+      "text": "Raspberry Pi 보드 전체 배치"
+    },
+    "v0.electronics.manual.896980fa94b9e27c": {
+      "source_revision": "de3a5c8add827cd36e08",
+      "text": "원본 Raspberry Pi를 하나의 조립체로 유지합니다."
+    },
+    "v0.electronics.manual.3e00950841e753f1": {
+      "source_revision": "33e8cf1a57c940296a66",
+      "text": "M2×10 나사 4개로 Raspberry Pi 고정"
+    },
+    "v0.electronics.manual.131d39f9f1ac9b95": {
+      "source_revision": "4804f272b76f01459422",
+      "text": "두 보드의 장착 상태 확인"
+    },
+    "v0.electronics.manual.5835c645d2756008": {
+      "source_revision": "a0422eec806f76d1576c",
+      "text": "두 원본 보드와 각각의 고정 나사를 확인합니다. 배선과 전기 점검은 이후 공식 절차를 따르세요."
+    },
+    "v0.electronics.manual.9bca2c02b66a3446": {
+      "source_revision": "fed681adb86a2b5607f4",
+      "text": "준비된 전자부 조립체 참조 표시"
+    },
+    "v0.electronics.manual.b8f93e80b1d0dc84": {
+      "source_revision": "f483aec3f8d6316af3b5",
+      "text": "전자부 장착 상태 참조 표시"
+    },
+    "v0.electronics.manual.a4b625653e36b69d": {
+      "source_revision": "c174914a9778c5168e91",
+      "text": "준비 중인 부품을 따로 표시합니다. 앞서 조립한 기체 부품과 나중에 쓸 보드 나사는 따로 둡니다."
+    },
+    "v0.electronics.manual.9acb31c5d87461aa": {
+      "source_revision": "e4ff77ad48776eb9f698",
+      "text": "원본 CAD 위치를 유지하며 맞물림이나 삽입 경로는 재현하지 않습니다."
+    },
+    "v0.electronics.manual.43416b374193158b": {
+      "source_revision": "1ff8f267630d8854f482",
+      "text": "팬 마운트에 인서트 4개 준비"
+    },
+    "v0.electronics.manual.c161eab16f0b9cca": {
+      "source_revision": "0644f85dd1bf6e60de84",
+      "text": "공식 열압입 그림에 따라 하부 팬 마운트에 원본 인서트 4개를 준비합니다. 팬 마운트 장착 단계까지 이 조립체를 따로 보관합니다."
+    },
+    "v0.electronics.manual.3bb1160d32fb5e68": {
+      "source_revision": "d831cf654091b1cabca7",
+      "text": "미리 넣은 기존 M3 너트 6개를 다시 사용하며 추가하지 않습니다. 남는 구멍 2개는 매뉴얼의 선택 사양인 보우덴 익스트루더용입니다."
     }
   }
 }

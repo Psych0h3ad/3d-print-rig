@@ -1,8 +1,8 @@
-import {setupUsageStatistics} from './usage-statistics.mjs?v=224130094b756ca59182';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=bd81ca65d646dbd3f8f8';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
-import {setupLanguage,formatMessage} from './i18n.mjs?v=96c93d0af1358e9b3e64';
+import {setupLanguage,formatMessage} from './i18n.mjs?v=a1d103965b88c3dc3cd3';
 import {setupHeaderThemeToggle} from './display-preferences.mjs?v=8f347468def25922153c';
 import {createModelProgress,readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {cutawaySource} from './stealthburner-cutaway-source.mjs';
