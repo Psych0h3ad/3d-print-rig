@@ -197,6 +197,26 @@ inspection scope. The four 19 mm plane datums are not insert-depth, torque,
 thread, continuous-trim, receiver-fit or whole-machine certification. No new
 slot nuts, source geometry or installation registrations are added here.
 
+Electronics follows V0.2 pages 185–190 and r1 pages 191–196. Thirteen
+operations distinguish middle-panel alignment and six original preloaded M3
+nuts, fan-mount inserts, two board-mount/clip pairs, board-hole alignment,
+tape/cleats, mounting, each complete purchased board and its four original
+self-tapping screws. The two clip screws per mount belong to mount preparation;
+the four board screws appear only after that board. Prepared mounts, cleats and
+fan parts remain set aside until their receiving operation. The r1 middle-panel
+note keeps the manual's optional Bowden-extruder holes distinct.
+
+The SKR Pico's 739 CAD leaves and the Pi's single composite leaf remain complete
+purchased boards. They do not create soldering or PCB-disassembly instructions.
+The selected CAD depicts the DIN branch; the manual's direct-tape alternative
+does not silently replace it. Original electronics transforms are unchanged;
+these inspection views do not simulate insertion, flipping the whole printer,
+thread engagement or retention. See the [electronics source review](V0_ELECTRONICS_ASSEMBLY_REVIEW.json).
+
+Exact older progress retains original part checks and unchanged stages. The
+previous grouped panel/mount/board/fan completion marks require rechecking;
+no new individual fastener check is invented.
+
 | Version | Pinned source revision | Official manual |
 | --- | --- | --- |
 | V0.2 | `a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8` | [V0.2 manual](https://raw.githubusercontent.com/VoronDesign/Voron-0/a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8/Manuals/VORON_V0.2_Assembly_Manual.pdf), 246 pages |

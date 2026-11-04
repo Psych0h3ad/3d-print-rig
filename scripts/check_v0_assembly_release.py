@@ -24,6 +24,9 @@ def main():
             if rail.get('operations')!=10 or rail.get('originalScrews')!=40 or not all(rail.get(k)for k in ['allOriginalKeysOnce','upperStopsPage26','lowerStopPage35','topBInFollowingFrameSection','fullPopulationOptionRetained']):raise ValueError('Missing source-backed rail page operations: '+mid)
             rail_display=row['machines'][0].get('railDisplay',{})
             if len(rail_display.get('visits',[]))!=10 or rail_display.get('reverseVisits')!=10 or rail_display.get('visibilityRollback')!=1 or not rail_display.get('originalFramesMaterialsVisibilityRestored'):raise ValueError('Missing actual rail operation lifecycle: '+mid)
+            electronics=row['machines'][0].get('electronicsOwnership',{});electronics_display=row['machines'][0].get('electronicsDisplay',{})
+            if electronics.get('operations')!=13 or electronics.get('introducedSourceKeys')!=772 or electronics.get('referencedSourceKeys')!=778 or electronics.get('purchasedBoardLeaves')!=740:raise ValueError('Missing original electronics ownership: '+mid)
+            if len(electronics_display.get('observations',[]))!=13 or electronics_display.get('operationsReverse')!=13 or electronics_display.get('grayJumps')!=6 or electronics_display.get('separatePalettes')!=3 or electronics_display.get('visibilityFailureCases')!=1 or not all(electronics_display.get(k)for k in ['allSelectedFramesEqualOriginal','allNativeMatricesMaterialsVisibilityRestored','fullGeometryBuffersUnchanged']):raise ValueError('Missing actual electronics lifecycle: '+mid)
             rows.append(row)
     if stages.read_bytes()!=source:raise ValueError('Stage source changed between machines')
     result={k:v for k,v in rows[0].items()if k not in {'machines','source_sha256'}};result['machines']=[m for row in rows for m in row['machines']];pins={}

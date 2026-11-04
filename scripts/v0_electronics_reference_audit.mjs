@@ -1,0 +1,64 @@
+// Independent pinned original metadata and reviewed manual ownership.
+// Actual geometry and software lifecycle are checked by the release consumer.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+const review=JSON.parse(fs.readFileSync(new URL('../docs/V0_ELECTRONICS_ASSEMBLY_REVIEW.json',import.meta.url)));
+export function attachElectronicsFixtureMetadata(parts,id){const byKey=new Map(review.machines[id].source_rows.map(p=>[p.key,p]));return parts.map(p=>({...p,...structuredClone(byKey.get(p.key)||{})}));}
+export function reviewedElectronics(id){const spec=review.machines[id],r1=id==='voron_v02r1_120',key=n=>(r1?'v02r1_':'v02_')+String(n).padStart(5,'0');return {...spec,
+ mounts:(r1?[1663,1662,1655,1657,1673,1672,1665,1667]:[1639,1638,1630,1632,1649,1648,1640,1642]).map(key),
+ cleats:(r1?[1664,1661,1674,1671]:[1637,1636,1647,1646]).map(key),fan:(r1?[914,909,910,911,912]:[889,884,885,886,887]).map(key),
+ boardFix:(r1?[1656,1658,1659,1660]:[1631,1633,1634,1635]).map(key),piFix:(r1?[1666,1668,1669,1670]:[1641,1643,1644,1645]).map(key)};}
+export function auditElectronicsOwnership({id,spec,manifest}){const r=reviewedElectronics(id),parts=new Map(manifest.parts.map(p=>[p.key,p]));for(const [name,pin]of [['manual',r.manual_sha256],['manifest',r.manifest_sha256],['model',r.model_sha256]])assert.equal(name==='manual'?spec.manual.sha256:spec[name+'_sha256'],pin);
+ const start=spec.stages.findIndex(s=>s.id===r.operations[0].id);let own=0;const refs=new Set();for(const [j,row]of r.operations.entries()){const s=spec.stages[start+j];for(const k of ['id','page_start','page_end','part_keys','operation_part_keys'])assert.deepEqual(s[k],row[k]);own+=s.part_keys.length;for(const k of s.operation_part_keys||s.part_keys)refs.add(k);}
+ for(const row of r.source_rows){const actual=parts.get(row.key);assert(actual);for(const[k,v]of Object.entries(row))assert.deepEqual(actual[k],v,'Original electronics metadata '+row.key+'/'+k);}
+ assert.equal(own,772);assert.equal(refs.size,778);assert.equal(spec.stages.find(s=>s.id==='electronics-control-board').part_keys.length,739);assert.equal(spec.stages.find(s=>s.id==='electronics-pi-board').part_keys.length,1);
+ return {operations:13,introducedSourceKeys:own,referencedSourceKeys:refs.size,purchasedBoardLeaves:740,originalSourceOwnership:true,physicalFitQualified:false};}
+const isolated=new Set(['electronics-fan-inserts','electronics-mounts','electronics-mount-height','electronics-cleat-tape']);
+export function applyReviewedElectronicsMask({id,index,spec,keys,result}){const r=reviewedElectronics(id),name=spec.stages[index].id,at=n=>spec.stages.findIndex(s=>s.id===n),row=r.operations.find(s=>s.id===name),refs=row?.operation_part_keys||row?.part_keys;
+ if(isolated.has(name)){const allow=new Set(refs);for(const k of keys)if(!allow.has(k))keys.delete(k);assert.deepEqual(keys,allow);assert.equal(result.subassembly,true);}
+ else for(const k of [...(index<at('electronics-mount-install')?r.mounts:[]),...(index<at('electronics-cleat-install')?r.cleats:[]),...(index<at('electronics-fan')?r.fan:[])])keys.delete(k);
+ if(row){assert.deepEqual(new Set(result.operation_part_keys||result.part_keys),new Set(refs));assert.equal(result.subassembly,isolated.has(name));}
+ return row?{id:name,visible:keys.size}:null;}
+
+export async function auditActualElectronicsDisplay({THREE,id,module,adapter,manifest,spec,receipts,companions,scene,createAssemblyStageEmphasis,assemblySourceMaterial,registry}){
+ const sha=b=>createHash('sha256').update(b).digest('hex'),r1=id==='voron_v02r1_120',key=n=>(r1?'v02r1_':'v02_')+String(n).padStart(5,'0'),affectedOperations=reviewedElectronics(id).operations.map(s=>s.id),observations=[];
+ const selectedOptions={nodes:adapter.nodes,manifest,machine:spec,receipts,companions,manualPreparation:true,sourceDerivedFastenerSeating:true};selectedOptions.m2SeatingReceipt=await module.prepareV0AssemblyM2Seating(selectedOptions);
+ const controller=module.createV0AssemblyStages(selectedOptions),emphasis=createAssemblyStageEmphasis(),si=name=>spec.stages.findIndex(s=>s.id===name);
+ const materialValues=m=>[m.color?.getHex(),m.opacity,m.transparent,m.depthWrite,m.metalness,m.roughness,m.emissive?.getHex(),m.emissiveIntensity],mats=n=>n.material?(Array.isArray(assemblySourceMaterial(n))?assemblySourceMaterial(n):[assemblySourceMaterial(n)]):[];scene.updateMatrixWorld(true);
+ const baseline=[];scene.traverse(n=>baseline.push({n,parent:n.parent,children:[...n.children],position:n.position.toArray(),quaternion:n.quaternion.toArray(),scale:n.scale.toArray(),world:n.matrixWorld.toArray(),geometry:n.geometry,material:n.material,mats:mats(n),values:mats(n).map(materialValues),visible:n.visible}));
+ const byNode=new Map(baseline.map(r=>[r.n,r])),nativeShown=new Map([...adapter.nodes].map(([k,n])=>[k,n.visible])),companionKeys=new Set(companions.flatMap(c=>c.part_keys));
+ const geometrySignature=()=>{const h=createHash('sha256');scene.traverse(n=>{if(!n.geometry)return;h.update(n.uuid);for(const[k,a]of Object.entries(n.geometry.attributes)){h.update(k);h.update(Buffer.from(a.array.buffer,a.array.byteOffset,a.array.byteLength));}if(n.geometry.index){const a=n.geometry.index.array;h.update('index');h.update(Buffer.from(a.buffer,a.byteOffset,a.byteLength));}});return h.digest('hex');},originalGeometry=geometrySignature();
+ let disposed=0;const watched=new Set();for(const r of baseline)for(const resource of [r.geometry,...r.mats])if(resource&&!watched.has(resource)){watched.add(resource);resource.addEventListener('dispose',()=>disposed++);}
+ const mounts=(r1?[1663,1662,1655,1657,1673,1672,1665,1667]:[1639,1638,1630,1632,1649,1648,1640,1642]).map(key),cleats=(r1?[1664,1661,1674,1671]:[1637,1636,1647,1646]).map(key),fan=(r1?[914,909,910,911,912]:[889,884,885,886,887]).map(key),boardFix=(r1?[1656,1658,1659,1660]:[1631,1633,1634,1635]).map(key),piFix=(r1?[1666,1668,1669,1670]:[1641,1643,1644,1645]).map(key);
+ const selected=new Set(affectedOperations.flatMap(name=>spec.stages[si(name)].operation_part_keys||spec.stages[si(name)].part_keys));assert.equal(selected.size,778,'772 introduced source parts plus six preloaded panel nut references');
+ controller.setStage(si('mid-panel-alignment'));scene.updateMatrixWorld(true);const manualFrames=new Map(baseline.map(r=>[r.n,{position:r.n.position.toArray(),quaternion:r.n.quaternion.toArray(),scale:r.n.scale.toArray(),world:r.n.matrixWorld.toArray()}]));
+ for(const k of selected)adapter.nodes.get(k).traverse(n=>{const old=byNode.get(n),now=manualFrames.get(n);assert.deepEqual(now.position,old.position,'New electronics source moved '+k);assert.deepEqual(now.quaternion,old.quaternion);assert.deepEqual(now.scale,old.scale);assert.deepEqual(now.world,old.world);});
+ function structure(manual=true){scene.updateMatrixWorld(true);for(const r of baseline){const expected=manual?manualFrames.get(r.n):r;assert.equal(r.n.parent,r.parent);assert.deepEqual(r.n.children,r.children);assert.equal(r.n.geometry,r.geometry);assert.deepEqual(r.n.position.toArray(),expected.position);assert.deepEqual(r.n.quaternion.toArray(),expected.quaternion);assert.deepEqual(r.n.scale.toArray(),expected.scale);assert.deepEqual(r.n.matrixWorld.toArray(),expected.world);assert.deepEqual(mats(r.n),r.mats);}}
+ controller.leave();structure(false);
+ const isolatedIDs=new Set(['electronics-fan-inserts','electronics-mounts','electronics-mount-height','electronics-cleat-tape']);
+ function visit(name,gray=false){
+  const i=si(name),stage=spec.stages[i],refs=stage.operation_part_keys||stage.part_keys,isolate=isolatedIDs.has(name),all=spec.stages.slice(0,i+1).flatMap(s=>s.part_keys),stored=new Set([...(i<si('electronics-mount-install')?mounts:[]),...(i<si('electronics-cleat-install')?cleats:[]),...(i<si('electronics-fan')?fan:[])]),expected=all.filter(k=>(isolate?refs.includes(k):!stored.has(k))&&(nativeShown.get(k)||companionKeys.has(k)));
+  const state=controller.setStage(i);assert.deepEqual(new Set(controller.getVisibleKeys()),new Set(expected),'Independent source storage mask '+name);assert.equal(state.subassembly,isolate);assert.deepEqual(new Set(state.operation_part_keys||state.part_keys),new Set(refs));for(const k of controller.getBoundsKeys())assert(expected.includes(k));
+  for(const k of registry.machines[id].native_alternatives.excluded_keys)assert.equal(adapter.nodes.get(k).visible,false);
+  emphasis.update({parts:controller.getDisplayedParts(),currentKeys:refs,enabled:gray});
+  for(const k of refs)for(const node of controller.getPartNodes(k))node.traverse(n=>{if(n.isMesh)assert.equal(n.material,assemblySourceMaterial(n),'Current/reused source retains original material '+k);});
+  structure();emphasis.clear();for(const r of baseline)assert.equal(r.n.material,r.material);
+  return {id:name,shown:expected.length,owned:stage.part_keys.length,operationRefs:refs.length,gray,isolated:isolate,preparedFanStored:i<si('electronics-fan')&&!isolate};
+ }
+ for(const name of affectedOperations)observations.push(visit(name));for(const name of [...affectedOperations].reverse())visit(name);
+ for(const name of ['mid-panel','electronics-mounts','electronics-control-board-fixing','electronics-pi-board-fixing','electronics-boards','electronics-fan'])visit(name,true);
+ visit('electronics-control-board');assert(boardFix.every(k=>!controller.getVisibleKeys().includes(k)));assert(piFix.every(k=>!controller.getVisibleKeys().includes(k)));
+ visit('electronics-control-board-fixing');assert(boardFix.every(k=>controller.getVisibleKeys().includes(k)));assert(piFix.every(k=>!controller.getVisibleKeys().includes(k)));
+ visit('electronics-pi-board');assert(piFix.every(k=>!controller.getVisibleKeys().includes(k)));visit('electronics-pi-board-fixing');assert(piFix.every(k=>controller.getVisibleKeys().includes(k)));
+ visit('electronics-boards');assert(fan.every(k=>!controller.getVisibleKeys().includes(k)));visit('electronics-fan');assert(fan.every(k=>controller.getVisibleKeys().includes(k)));
+ visit('electronics-boards');const node=adapter.nodes.get(boardFix[0]),descriptor=Object.getOwnPropertyDescriptor(node,'visible'),previous=controller.getVisibleKeys();Object.defineProperty(node,'visible',{...descriptor,writable:false});try{assert.throws(()=>controller.setStage(si('electronics-mounts')),/Native visibility/);}finally{Object.defineProperty(node,'visible',descriptor);}assert.equal(controller.current().id,'electronics-boards');assert.deepEqual(controller.getVisibleKeys(),previous);structure();controller.leave();
+ const purchased=new Set([...spec.stages[si('electronics-control-board')].part_keys,...spec.stages[si('electronics-pi-board')].part_keys,...boardFix,...piFix,...mounts.filter(k=>/Self Tapper/.test(manifest.parts.find(p=>p.key===k).name)),...fan.filter(k=>/Insert/.test(manifest.parts.find(p=>p.key===k).name))]);
+ for(const k of purchased)assert(!['base','accent'].includes(adapter.records.get(k).appearance_role),'Purchased electronics remain hardware material '+k);
+ for(const palette of [{base:'#17385d',accent:'#f2ca37'},{base:'#f2ca37',accent:'#17385d'},{base:'#92cbb4',accent:'#542646'}]){
+  adapter.setPalette(palette);for(const k of selected)adapter.nodes.get(k).traverse(n=>{if(!n.isMesh)return;const r=byNode.get(n),role=adapter.records.get(k).appearance_role;for(let j=0;j<r.mats.length;j++){const m=r.mats[j];if(!m.color)continue;if(palette[role])assert.equal(m.color.getHex(),new THREE.Color(palette[role]).getHex());else assert.equal(m.color.getHex(),r.values[j][0],'Hardware color changed '+k);}});for(const name of ['electronics-mounts','electronics-boards'])visit(name,true);controller.leave();
+ }
+ for(const r of baseline)for(let j=0;j<r.mats.length;j++)if(r.mats[j].color)r.mats[j].color.setHex(r.values[j][0]);structure(false);assert.equal(geometrySignature(),originalGeometry);for(const r of baseline){assert.equal(r.n.visible,r.visible);assert.equal(r.n.material,r.material);assert.deepEqual(mats(r.n).map(materialValues),r.values);}assert.equal(disposed,0);emphasis.dispose();
+ return {sourceParts:manifest.parts.length,stages:spec.stages.length,observations,operationsForward:affectedOperations.length,operationsReverse:affectedOperations.length,grayJumps:6,separatePalettes:3,paletteVisits:6,visibilityFailureCases:1,purchasedSourceKeys: purchased.size,selectedSourceKeys:selected.size,allSelectedFramesEqualOriginal:true,preExistingM2ManualFrameKeptSeparate:true,allNativeMatricesMaterialsVisibilityRestored:true,fullGeometryBuffersUnchanged:true,sourceDisposals:disposed ,physicalFitQualified:false,scope:'Thirteen source-specific electronics operations, forward/reverse, six gray jumps, three separate palettes, one visibility failure and complete source restoration. No insertion, native contact, whole physical fit or Cartesian-product claim.'};
+
+}

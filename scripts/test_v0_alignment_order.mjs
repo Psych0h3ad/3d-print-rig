@@ -20,7 +20,8 @@ const frame=[546,548,549,550].map(n=>'v02r1_'+String(n).padStart(5,'0')),holder=
 assert.deepEqual(r1.stages.find(s=>s.id==='z-motor-mount').part_keys,frame);
 assert([...frame,...holder].every(k=>step.operation_part_keys.includes(k)));
 const v02=doc.machines.voron_v02_120;
-assert.equal(createHash('sha256').update(JSON.stringify(v02)).digest('hex'),'1c98ed86db269c8544f1ca4d935955d1091530596662a7101e507b36b2451b62','V0.2 guide must remain unchanged');
+const electronics=new Set(["electronics-boards", "electronics-cleat-install", "electronics-cleat-tape", "electronics-control-board", "electronics-control-board-fixing", "electronics-fan", "electronics-fan-inserts", "electronics-mount-height", "electronics-mount-install", "electronics-mounts", "electronics-pi-board", "electronics-pi-board-fixing", "mid-panel", "mid-panel-alignment"]),unchanged={...v02,stages:v02.stages.filter(s=>!electronics.has(s.id))};
+assert.equal(createHash('sha256').update(JSON.stringify(unchanged)).digest('hex'),'0084c20de6fe0c0c46b3ae54c6704e114e99372f02bef2508cf3f0ade5f3bece','Every V0.2 row outside the separately reviewed electronics operations must remain unchanged');
 assert.equal(v02.stages.find(s=>s.id==='z-align').page_start,106);assert(!v02.stages.some(s=>s.id==='z-motor-center'));
 const previous='64ffe3c0359d11e1c1ff523cfc8eda6b63fb51a5ce7cba3b6c857112c2fcc3e8';let cases=0;
 for(const[mid,machine]of Object.entries(doc.machines)){

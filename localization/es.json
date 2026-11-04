@@ -12609,6 +12609,126 @@
     "ui.v0rail.status.z_mounting": {
       "source_revision": "38e1b4322cb6c3a0e66e",
       "text": "Montaje de las guías Z"
+    },
+    "v0.electronics.manual.6d1ee1d32098f43b": {
+      "source_revision": "041016fc78e28af3fef8",
+      "text": "Alinear el panel central con las tuercas previamente colocadas"
+    },
+    "v0.electronics.manual.c4856673878676c0": {
+      "source_revision": "de38f95c29b4fe08f871",
+      "text": "Use las seis tuercas previamente colocadas en los perfiles verticales interiores. La guía indica girar la impresora para acceder; esta referencia no simula ese giro."
+    },
+    "v0.electronics.manual.bdf7a7f814f005b2": {
+      "source_revision": "3bf277e70fcba5f602fa",
+      "text": "Fijar el panel central con seis tornillos M3×6"
+    },
+    "v0.electronics.manual.7d0bf31c6a9849f6": {
+      "source_revision": "7ffb6adeb1adf5633896",
+      "text": "Reutilice las seis tuercas M3 originales ya colocadas; no añada otro juego."
+    },
+    "v0.electronics.manual.a0045290fc76ef77": {
+      "source_revision": "2d7f365c5ea728e06959",
+      "text": "Preparar ambos soportes de placa y sus clips DIN"
+    },
+    "v0.electronics.manual.b49e401538e72668": {
+      "source_revision": "598cbfc960111e770e17",
+      "text": "Fije cada clip DIN original con dos tornillos autorroscantes M2×10. Los ocho tornillos de las placas se usan después de colocarlas."
+    },
+    "v0.electronics.manual.e6f8a9d99cb26ef2": {
+      "source_revision": "33770c29ff77017a1b8c",
+      "text": "Comprobar la altura y los orificios elegidos"
+    },
+    "v0.electronics.manual.094aab78510c3467": {
+      "source_revision": "8914819ead4f7d8e7902",
+      "text": "El manual permite elegir orificios según la altura de la placa. Esta referencia conserva las posiciones capturadas del modelo original."
+    },
+    "v0.electronics.manual.948d6a1ad65cdccc": {
+      "source_revision": "2e1232ba3bbaaa6ad420",
+      "text": "Aplicar cinta a las dos bases DIN"
+    },
+    "v0.electronics.manual.2939ff433c6bb276": {
+      "source_revision": "7054f3e77a1e13b516fa",
+      "text": "Se muestra la opción original de clip DIN con base adhesiva. El manual también ofrece fijación directa con cinta; aquí no se sustituye esa opción."
+    },
+    "v0.electronics.manual.77b1cd809afbc75f": {
+      "source_revision": "3f4957f3b93af154b4bc",
+      "text": "Colocar las bases adhesivas en el panel central"
+    },
+    "v0.electronics.manual.68a544a4d54b802a": {
+      "source_revision": "35871f4b8aac9e204912",
+      "text": "Compruebe la posición de las placas antes de pegar las bases."
+    },
+    "v0.electronics.manual.a6ea7cccb1cef1fe": {
+      "source_revision": "59d2e6e978aa36d8bdb7",
+      "text": "Encajar los soportes preparados en sus bases"
+    },
+    "v0.electronics.manual.0500d9676bec5ad1": {
+      "source_revision": "a078ddf678b9002c7007",
+      "text": "Use los soportes preparados y consulte la dirección de encaje en el manual. Esta referencia cambia el estado mostrado sin simular la trayectoria de encaje."
+    },
+    "v0.electronics.manual.f66ac0914dbf8312": {
+      "source_revision": "bbde2e14f14de2ec3379",
+      "text": "Colocar la placa SKR Pico completa"
+    },
+    "v0.electronics.manual.3eb2f39d0bd01bbe": {
+      "source_revision": "798d7836604df7237f96",
+      "text": "Trate la placa comprada como un conjunto completo. Sus componentes originales son referencias, no instrucciones de soldadura."
+    },
+    "v0.electronics.manual.f846bf270de7d0c1": {
+      "source_revision": "88634f7f9bd3e8c49857",
+      "text": "Fijar la SKR Pico con cuatro tornillos M2×10"
+    },
+    "v0.electronics.manual.1f190ed884c6e9b5": {
+      "source_revision": "c4272c03330943ab7d06",
+      "text": "Use los cuatro tornillos de fijación pertenecientes a esta placa en el modelo original."
+    },
+    "v0.electronics.manual.f6f7b3856d1f9c8e": {
+      "source_revision": "2b82e732d6bc2de59e41",
+      "text": "Colocar la placa Raspberry Pi completa"
+    },
+    "v0.electronics.manual.896980fa94b9e27c": {
+      "source_revision": "de3a5c8add827cd36e08",
+      "text": "Mantenga completo el conjunto Raspberry Pi del modelo original."
+    },
+    "v0.electronics.manual.3e00950841e753f1": {
+      "source_revision": "33e8cf1a57c940296a66",
+      "text": "Fijar la Raspberry Pi con cuatro tornillos M2×10"
+    },
+    "v0.electronics.manual.131d39f9f1ac9b95": {
+      "source_revision": "4804f272b76f01459422",
+      "text": "Revisar el montaje de ambas placas"
+    },
+    "v0.electronics.manual.5835c645d2756008": {
+      "source_revision": "a0422eec806f76d1576c",
+      "text": "Compare las dos placas y sus tornillos separados con el diagrama original. El cableado y las comprobaciones eléctricas siguen en la guía oficial."
+    },
+    "v0.electronics.manual.9bca2c02b66a3446": {
+      "source_revision": "fed681adb86a2b5607f4",
+      "text": "Referencia del conjunto electrónico preparado"
+    },
+    "v0.electronics.manual.b8f93e80b1d0dc84": {
+      "source_revision": "f483aec3f8d6316af3b5",
+      "text": "Referencia del montaje de la electrónica"
+    },
+    "v0.electronics.manual.a4b625653e36b69d": {
+      "source_revision": "c174914a9778c5168e91",
+      "text": "Las piezas preparadas se muestran por separado. Las piezas anteriores y los tornillos posteriores de las placas quedan aparte."
+    },
+    "v0.electronics.manual.9acb31c5d87461aa": {
+      "source_revision": "e4ff77ad48776eb9f698",
+      "text": "Se conservan las posiciones originales; no se simulan el acoplamiento ni la trayectoria de inserción."
+    },
+    "v0.electronics.manual.43416b374193158b": {
+      "source_revision": "1ff8f267630d8854f482",
+      "text": "Preparar el soporte del ventilador con cuatro insertos"
+    },
+    "v0.electronics.manual.c161eab16f0b9cca": {
+      "source_revision": "0644f85dd1bf6e60de84",
+      "text": "Prepare los cuatro insertos roscados originales en el soporte inferior según el diagrama oficial de inserción térmica. Reserve el conjunto hasta montar el soporte del ventilador."
+    },
+    "v0.electronics.manual.3bb1160d32fb5e68": {
+      "source_revision": "d831cf654091b1cabca7",
+      "text": "Reutilice las seis tuercas M3 previamente colocadas; no añada otro juego. Los dos orificios sin utilizar son para el extrusor Bowden opcional que muestra el manual."
     }
   }
 }

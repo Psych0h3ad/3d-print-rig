@@ -12,9 +12,9 @@ import {loadKitReference} from './kit-reference-loader.mjs?v=1e4ea653a75783c74b4
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=a784fffe48f2fd6bbae1';
+import {setupPublicInfo} from './public-info.js?v=f649b1f77c684d7c6bc5';
 import {createCommunityAdapter} from './community-adapter.mjs?v=bf2f8389de9daf3045e7';
-import {setupNativeMotionControls} from './native-motion-controls.mjs?v=cf6fccee7aa31bce7305';
+import {setupNativeMotionControls} from './native-motion-controls.mjs?v=3af3dfd3f66e92f29acb';
 export async function mount(scope){
 const $=s=>document.querySelector(s),id='fysetc_v24_250_pro',stage=$('#stage');
 setupMachineNavigation(id);setupPublicInfo({includeDownloads:false});
