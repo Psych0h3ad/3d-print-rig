@@ -1105,4 +1105,61 @@ class GeneratedReviewCompaction(unittest.TestCase):
                     self.assertEqual((root/name).read_bytes(), body)
 
 
+class ApprovedPowerReferences(unittest.TestCase):
+    """Complete public source JSON with a tiny local runtime fixture."""
+
+    def fixture(self):
+        import prepare_v0_power_delivery as power
+        temporary=tempfile.TemporaryDirectory();self.addCleanup(temporary.cleanup)
+        root=pathlib.Path(temporary.name);(root/'site').mkdir();(root/'docs').mkdir()
+        raw=(pathlib.Path(__file__).resolve().parents[1]/'site'/power.SOURCE_PATH).read_bytes()
+        source=root/'site'/power.SOURCE_PATH;source.parent.mkdir(parents=True);source.write_bytes(raw)
+        (root/'site/index.html').write_bytes(b'<html>Viewer</html>')
+        inventory={'files':[{'path':'site/index.html','sha256':hashlib.sha256((root/'site/index.html').read_bytes()).hexdigest()},{'path':'site/'+power.SOURCE_PATH,'sha256':power.SOURCE_SHA256}]}
+        (root/'docs/SOURCE_INVENTORY.json').write_text(json.dumps(inventory))
+        (root/'docs/MACHINE_REVIEW_COVERAGE.json').write_text(json.dumps({'machines':[{'id':'fixture'}]}))
+        body=root/'runtime';body.write_bytes(b'approved runtime')
+        row={'path':'models/body.bin','url':'https://psych0h3ad.github.io/models/body.bin','bytes':body.stat().st_size,'sha256':hashlib.sha256(body.read_bytes()).hexdigest(),'approval_receipt_sha256':'1'*64}
+        contract={'schema':'approved-static-delivery-v1','machine_ids':['fixture'],'files':[row],'source_catalog_sha256':{power.SOURCE_PATH:power.SOURCE_SHA256}}
+        return root,contract,{'files':{row['path']:str(body)}},inventory,power
+
+    def test_generated_identity_budget_and_build_only_source(self):
+        import gzip
+        root,contract,inputs,_,power=self.fixture()
+        plan=run(root,contract,root/'plan',inputs,plan_only=True,verify_inputs=True)
+        self.assertFalse(plan['deployment_ready']);self.assertFalse((root/'plan').exists())
+        result=run(root,contract,root/'built',inputs);encoded=(root/'built'/power.OUTPUT_PATH).read_bytes()
+        self.assertEqual(hashlib.sha256(encoded).hexdigest(),power.ENCODED_SHA256)
+        self.assertEqual(gzip.decompress(encoded),(root/'site'/power.SOURCE_PATH).read_bytes())
+        self.assertEqual(plan['planned_site_bytes'],result['planned_site_bytes'])
+        self.assertEqual(result['planned_site_bytes'],sum(p.stat().st_size for p in (root/'built').rglob('*')if p.is_file()))
+        self.assertFalse((root/'built'/power.SOURCE_PATH).exists());self.assertFalse((root/'built/APPROVED_DELIVERY.json').exists())
+        self.assertEqual(set(build_approved_site.BUILD_ONLY_SOURCE_PATHS),{'APPROVED_DELIVERY.json',power.SOURCE_PATH})
+        with patch.object(build_approved_site,'MAX_SITE_BYTES',result['planned_site_bytes']):
+            with self.assertRaises(ValueError):run(root,contract,root/'cap',inputs,plan_only=True)
+
+    def test_unapproved_stale_missing_and_colliding_sources_rejected(self):
+        for case in ['approval','pin','inventory','duplicate','raw-runtime','gzip-runtime','gzip-source','changed-source','missing-source']:
+            for plan in [False,True]:
+                with self.subTest(case=case,plan=plan):
+                    root,contract,inputs,inventory,power=self.fixture()
+                    if case=='approval':contract['source_catalog_sha256']={}
+                    elif case=='pin':contract['source_catalog_sha256'][power.SOURCE_PATH]='0'*64
+                    elif case=='inventory':inventory['files']=inventory['files'][:1]
+                    elif case=='duplicate':inventory['files'].append(dict(inventory['files'][1]))
+                    elif case in ['raw-runtime','gzip-runtime']:contract['files'].append({**contract['files'][0],'path':power.SOURCE_PATH if case=='raw-runtime'else power.OUTPUT_PATH})
+                    elif case=='gzip-source':
+                        (root/'site'/power.OUTPUT_PATH).write_bytes(b'collision');inventory['files'].append({'path':'site/'+power.OUTPUT_PATH,'sha256':hashlib.sha256(b'collision').hexdigest()})
+                    elif case=='changed-source':
+                        source=root/'site'/power.SOURCE_PATH;source.write_bytes(source.read_bytes()+b' ');inventory['files'][1]['sha256']=hashlib.sha256(source.read_bytes()).hexdigest()
+                    elif case=='missing-source':(root/'site'/power.SOURCE_PATH).unlink()
+                    (root/'docs/SOURCE_INVENTORY.json').write_text(json.dumps(inventory))
+                    with self.assertRaises((ValueError,FileNotFoundError)):run(root,contract,root/'output',inputs,plan_only=plan)
+
+    def test_changed_compressor_never_weakens_encoded_pin(self):
+        root,contract,inputs,_,power=self.fixture()
+        with patch.object(power.gzip,'compress',return_value=b'0'*power.ENCODED_BYTES):
+            with self.assertRaisesRegex(ValueError,'compressor'):run(root,contract,root/'output',inputs,plan_only=True)
+
+
 if __name__ == '__main__': unittest.main()

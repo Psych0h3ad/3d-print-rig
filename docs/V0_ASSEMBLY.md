@@ -39,7 +39,7 @@ before replacing the current progress. Clear and undo cover both record types.
 
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
-V0.2 has 166 stages and 1,653 exported source leaves. V0.2r1 has 171 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+V0.2 has 185 stages and 1,653 exported source leaves. V0.2r1 has 190 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
 
 The stock Mini Stealthburner sequence contains 41 reference operations, following
 V0.2 pages 151–182 and r1 pages 157–188. Cowling, shuttle, midbody, guidler and
@@ -216,6 +216,33 @@ thread engagement or retention. See the [electronics source review](V0_ELECTRONI
 Exact older progress retains original part checks and unchanged stages. The
 previous grouped panel/mount/board/fan completion marks require rechecking;
 no new individual fastener check is invented.
+
+Power and wiring uses thirteen page-specific reference operations on V0.2
+pages 191–205 and r1 pages 197–211. The complete purchased supply and inlet
+are inspected separately before their installation steps. Their existing source
+frames return unchanged at the receiving step. The unchanged fan installation
+stays between the supply and mains instructions. AC/protective-earth/DC,
+head devices, A/B/Z/E motors, the actual 739-leaf SKR Pico and Pi communication
+choices have separate references. The r1 filament-sensor note is source-specific.
+Current and reused parts retain source materials with earlier-step gray enabled.
+
+The source supply position has an unresolved 0.8 mm frame gap versus the manual's
+1–2 mm instruction. Adhesive versus drilled/screwed mounting, inlet snap-in
+retention, terminal-guard holding, connectors, wire routes and electrical
+checks remain unqualified. Displayed source positions are not a clearance,
+retention or electrical-safety certificate. No insertion path is invented.
+Older progress keeps individual source keys and unaffected stage records;
+only the expanded grouped power rows need checking again.
+
+The original-source reference metadata retains VoronDesign attribution and the
+GPL-3.0 source terms below. The exact raw JSON is build-only. The approved builder
+verifies its separate source pin and emits a deterministic, lossless gzip whose
+encoded and decoded hashes are checked by the production loader. A failed load
+restores the prior configuration and can be retried. Publication also requires
+both actual GLBs through that received-reference path, independent source-owner
+and operation masks, reversed visits, three separate palettes, visibility-failure
+rollback, and complete frame/material/geometry/visibility restoration. These
+software and display checks do not resolve the native mounting findings.
 
 | Version | Pinned source revision | Official manual |
 | --- | --- | --- |

@@ -15,12 +15,17 @@ import urllib.error
 import time
 
 import layout_equipment_inputs
+from prepare_v0_power_delivery import (
+    SOURCE_PATH as POWER_SOURCE_PATH, OUTPUT_PATH as POWER_OUTPUT_PATH,
+    SOURCE_SHA256 as POWER_SOURCE_SHA256, build_v0_power_delivery_body,
+    write_v0_power_delivery,
+)
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MAX_SITE_BYTES = 990_000_000
 # Keep this contract inventoried and checksum-checked for build authentication,
 # without shipping build-only metadata as a browser asset.
-BUILD_ONLY_SOURCE_PATHS = frozenset({'APPROVED_DELIVERY.json'})
+BUILD_ONLY_SOURCE_PATHS = frozenset({'APPROVED_DELIVERY.json', POWER_SOURCE_PATH})
 LAYOUT_EQUIPMENT_SOURCE = 'layout/layout-equipment.mjs'
 LAYOUT_EQUIPMENT_AUDITS = ('audit_layout_equipment_geometry.mjs', 'audit_layout_equipment_assets.mjs')
 U1_BOTTOM_AUDIT = 'scripts/audit_u1_bottom.mjs'
@@ -485,11 +490,29 @@ def release_failures(root, contract):
     failures += contract.get('unresolved_release_findings', [])
     return failures
 
+def approved_power_delivery(root, contract, sources, rows):
+    """One inventoried source JSON and its exact generated representation."""
+    catalogs = contract.get('source_catalog_sha256', {})
+    inventory = json.loads((root/'docs/SOURCE_INVENTORY.json').read_bytes())
+    entries = [r for r in inventory['files'] if r['path'] == 'site/'+POWER_SOURCE_PATH]
+    present = (root/'site'/POWER_SOURCE_PATH).is_file()
+    if POWER_OUTPUT_PATH in sources or any(r['path'] == POWER_OUTPUT_PATH for r in rows):
+        raise ValueError('Generated power reference body collides with source/runtime delivery')
+    if not present and not entries and POWER_SOURCE_PATH not in catalogs:
+        return None
+    if (not present or len(entries) != 1
+            or entries[0]['sha256'] != POWER_SOURCE_SHA256
+            or catalogs.get(POWER_SOURCE_PATH) != POWER_SOURCE_SHA256):
+        raise ValueError('Power references require exact source inventory and approval pin')
+    return build_v0_power_delivery_body(root/'site')
+
+
 def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=False, equipment_inputs=None,
         equipment_prepared_dir=None):
     rows = validate_contract(contract); sources = source_files(root)
     if any(row['path'] in BUILD_ONLY_SOURCE_PATHS for row in rows):
         raise ValueError('Build-only source path cannot be an approved runtime body')
+    power_delivery = approved_power_delivery(root, contract, sources, rows)
     equipment_scripts = layout_equipment_scripts(root) if LAYOUT_EQUIPMENT_SOURCE in sources else None
     if equipment_inputs is not None:
         if not equipment_scripts:
@@ -504,7 +527,8 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
         safe_path(name)
         if digest(root/'site'/name)!=pin: raise ValueError('Source catalog changed after delivery approval: '+name)
     if any(r['path'] in sources for r in rows): raise ValueError('Runtime body collides with tracked source')
-    size = sum(p.stat().st_size for p in sources.values()) + sum(r['bytes'] for r in rows)
+    size = (sum(p.stat().st_size for p in sources.values()) + sum(r['bytes'] for r in rows)
+            + (len(power_delivery[0]) if power_delivery else 0))
     if size >= MAX_SITE_BYTES: raise ValueError('Approved site reaches/exceeds 990000000 bytes: '+str(size))
     failures = release_failures(root, contract); verified = []; missing = []
     mapping = (inputs or {}).get('files', {})
@@ -535,6 +559,8 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
             fetch_pinned_body(row, dest)
         verified.append(row['path'])
     if missing: raise ValueError('Missing exact approved inputs: '+json.dumps(missing))
+    if not plan_only and power_delivery:
+        write_v0_power_delivery(root/'site', output, power_delivery[0])
     equipment_audits = None
     if equipment_scripts:
         if plan_only:
@@ -560,6 +586,7 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
             'plan_only':plan_only,'release_failures':failures,'deployment_ready':not failures and not plan_only,
             'legacy_archive_opened':False,'raw_model_substitution':False}
     if equipment_audits is not None: result['layout_equipment_audits'] = equipment_audits
+    if power_delivery: result['generated_power_references'] = power_delivery[1]
     return result
 
 def main():

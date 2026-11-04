@@ -12729,6 +12729,130 @@
     "v0.electronics.manual.3bb1160d32fb5e68": {
       "source_revision": "d831cf654091b1cabca7",
       "text": "Die sechs ursprünglich eingelegten M3-Muttern wiederverwenden; keinen zweiten Satz hinzufügen. Die beiden unbenutzten Bohrungen sind für den optionalen Bowden-Extruder aus dem Handbuch vorgesehen."
+    },
+    "v0.power.manual.052b58227de62f3d": {
+      "source_revision": "fd160344ef25778c6d6b",
+      "text": "Netzteilmodell und Eingangsspannungswahlschalter prüfen"
+    },
+    "v0.power.manual.7dcaf1831cae1264": {
+      "source_revision": "4e799c32bfcbcb75ce4c",
+      "text": "Die offizielle Abbildung zeigt den Eingangsspannungswahlschalter, sofern vorhanden. Genaues Netzteil und Herstellerunterlagen prüfen; das Quellmodell enthält keinen elektrischen Schalterzustand."
+    },
+    "v0.power.manual.b08cc64ce2fc39fb": {
+      "source_revision": "05cc599b7de605933522",
+      "text": "Position und Befestigung des Netzteils prüfen"
+    },
+    "v0.power.manual.befa8d0c35e67366": {
+      "source_revision": "7f4534eabff235b05047",
+      "text": "Die Anleitung nennt 1–2 mm Abstand zwischen Netzteilgehäuse und Rahmen sowie Klebebefestigung oder zwei M3x6-Schrauben mit gebohrten Löchern. Die ursprüngliche CAD-Position und nicht modellierte Klebe- oder Schraubenbefestigung sind nicht als passend bestätigt."
+    },
+    "v0.power.manual.33966357715a8f8b": {
+      "source_revision": "15b53f7283401665c4e2",
+      "text": "Vor der Verdrahtung die Stromversorgung trennen"
+    },
+    "v0.power.manual.1943c2b5ea0e5740": {
+      "source_revision": "5a892f5eceb370959465",
+      "text": "Vor der Verdrahtung die offiziellen Prüfungen zur Netztrennung durchführen. Der Viewer beurteilt nicht, ob das reale Gerät eingeschaltet werden darf."
+    },
+    "v0.power.manual.b62c41155465dbfe": {
+      "source_revision": "4da1848b2f958d769e83",
+      "text": "Wechselstrom, Schutzleiter und Gleichstrom unterscheiden"
+    },
+    "v0.power.manual.1427d1a2d4e4a349": {
+      "source_revision": "ef0113d0c9588d2cc2c0",
+      "text": "L/N/PE und V+/V- im offiziellen Schaltbild prüfen. Schutzleiter und Controller-GND sind unterschiedliche Bezüge; Anschlüsse nicht allein nach der Kabelfarbe bestimmen."
+    },
+    "v0.power.manual.b8b736f25bc36c29": {
+      "source_revision": "7e2fba3ffeab07e455ca",
+      "text": "Schaltbild des Netzanschlusses prüfen"
+    },
+    "v0.power.manual.6f478bb6cb9231b1": {
+      "source_revision": "044564c6f5a9ea1bd98e",
+      "text": "Die offizielle Seite zeigt den getrennten Netzanschluss vor dem Einbau. Arbeiten an Netzspannung erfordern nach örtlichen Vorschriften qualifiziertes Personal. Das Kaufteil bleibt vollständig; Kabellängen, Klemmen, Führung und elektrische Prüfungen gelten nicht als abgeschlossen."
+    },
+    "v0.power.manual.8174227be7c9a813": {
+      "source_revision": "cfca5d9a19830cd924c6",
+      "text": "Vollständigen Netzanschluss im gedruckten Fuß zuordnen"
+    },
+    "v0.power.manual.643c700409a088ac": {
+      "source_revision": "085a40bfae5617d72e7b",
+      "text": "Vollständigen Netzanschluss und seinen gedruckten Aufnahmefuß mit der offiziellen Zeichnung vergleichen. Gezeigt wird nur die Quellposition; Einrastweg, Eingriff und Haltekraft sind nicht nachgewiesen."
+    },
+    "v0.power.manual.3b7981f60c35a2d2": {
+      "source_revision": "9bfd839e5c540ef62196",
+      "text": "Netzanschlüsse und Kabelbefestigung prüfen"
+    },
+    "v0.power.manual.e94e97a85bd97152": {
+      "source_revision": "25cd74b4b161a31e0f34",
+      "text": "Das genaue offizielle Schaltbild zwischen Netzanschluss und Netzteil verwenden und Kabel wie gezeigt befestigen. Die Klemmenabdeckung folgt später. Externer Kabelbaum, Klemmen und Schutzleiterdurchgang sind hier nicht bestätigt."
+    },
+    "v0.power.manual.9bd958aa8b740f93": {
+      "source_revision": "bf2a9359ac6a2296d538",
+      "text": "Gleichstromversorgung und Controllerlüfter prüfen"
+    },
+    "v0.power.manual.b6ffb9193f51048d": {
+      "source_revision": "21b10c8081608aa9f8ec",
+      "text": "Für Netzteil, Platine und Lüfter das Schaltbild dieser Ausgabe verwenden. Die gedruckten Querschnittsangaben von V0.2 und r1 unterscheiden sich; mm²/AWG nicht als elektrische Gleichwertigkeit oder geprüfte Kabelauswahl behandeln."
+    },
+    "v0.power.manual.eaf1dab0acc72e36": {
+      "source_revision": "fb3a55ffff846189d0aa",
+      "text": "Anschlüsse des Druckkopfs prüfen"
+    },
+    "v0.power.manual.509604a43ea13e5a": {
+      "source_revision": "5fc498b465e4831d23d1",
+      "text": "Das offizielle Schaltbild setzt 24-V-Lüfter voraus. Tatsächliche Nennwerte und Bauteile statt nur Farben prüfen. Die Quelllüfter sind zugeordnet; externer Kabelbaum sowie Heizungs- und Thermistorklemmen sind physisch noch nicht zugeordnet."
+    },
+    "v0.power.manual.47726ccf2df2cad2": {
+      "source_revision": "f69393712df629f27c7b",
+      "text": "Positionen der Motoren A, B, Z und E vergleichen"
+    },
+    "v0.power.manual.7fa38999cbba3ee6": {
+      "source_revision": "7d6e06c790552dd2cf49",
+      "text": "Die offizielle Zeichnung bezeichnet B als X und A als Y. Mit den genauen Quellantrieben und den Z/E-Motoren abgleichen. Phasen und Pinbelegung nicht aus Kabelfarben ableiten."
+    },
+    "v0.power.manual.04884741352018a0": {
+      "source_revision": "9dbce1d388ab034bdd90",
+      "text": "Schaltbild der SKR Pico prüfen"
+    },
+    "v0.power.manual.b70f00d756ddabeb": {
+      "source_revision": "5dc15c9d5ea10efb14fc",
+      "text": "Die ursprüngliche SKR Pico bleibt vollständig. X/Y-DIAG und Geräteanschlüsse mit dem offiziellen Pico-Schaltbild vergleichen; E3 V3 ist eine andere Platine. Einzelne CAD-Stecker, Pins und Verdrahtung sind noch nicht zugeordnet und geprüft."
+    },
+    "v0.power.manual.619c1bb190199f89": {
+      "source_revision": "2ac007836ffa60fbf24d",
+      "text": "Anschlüsse des Raspberry Pi prüfen"
+    },
+    "v0.power.manual.8e1fe9cdb0052ef2": {
+      "source_revision": "1615b11ccfa31d62b7d5",
+      "text": "Die Anleitung unterscheidet USB/UART und zeigt eine separate E3-V3-Stromversorgungsalternative. In dieser Pico-Baugruppe weder Platine noch generischen Wandler einsetzen. Pi-Versorgung, Kabel und Firmware erfordern die genau gewählte Hardware."
+    },
+    "v0.power.manual.d78780214200acf1": {
+      "source_revision": "ce8b3e7ea76ca72f25f5",
+      "text": "Klemmenabdeckung zuordnen"
+    },
+    "v0.power.manual.d242e32555c8fcdb": {
+      "source_revision": "e5ba3e3f08f38bdde74f",
+      "text": "Die offizielle Abdeckung verringert unbeabsichtigten Kontakt mit Klemmen. Ihre Quellposition bestätigt weder elektrische Sicherheit noch Halt oder Freiraum der gesamten Maschine."
+    },
+    "v0.power.manual.cc8ee299e6e65ce4": {
+      "source_revision": "307f1cfb995eb63415ec",
+      "text": "Die ursprüngliche SKR Pico bleibt vollständig. X/Y-DIAG und Geräteanschlüsse mit dem offiziellen Pico-Schaltbild vergleichen; E3 V3 ist eine andere Platine. Einzelne CAD-Stecker, Pins und Verdrahtung sind noch nicht zugeordnet und geprüft. Dieses r1-Schaltbild nennt zusätzlich einen Filamentsensor; diesen Anschluss nicht stillschweigend auf die frühere Ausgabe übertragen."
+    },
+    "v0.power.manual.cc72b1296f95ba5b": {
+      "source_revision": "029d3a94e2669e97184e",
+      "text": "Vorbereitetes Stromversorgungsbauteil"
+    },
+    "v0.power.manual.ba7e1fa8f99184ed": {
+      "source_revision": "01adc0a21f49ebe7bad5",
+      "text": "Referenz für Stromversorgung und Verdrahtung"
+    },
+    "v0.power.manual.0c20783d6795830b": {
+      "source_revision": "bcc3d74fbc2371d54df4",
+      "text": "Das vollständige Bauteil bis zum Einbauschritt beiseitelegen."
+    },
+    "v0.power.manual.632d5bb0c7cf90fd": {
+      "source_revision": "381d95a8b2b4fca20d4e",
+      "text": "Die Quellpositionen bleiben erhalten; Verdrahtung und Befestigung sind nicht bestätigt."
     }
   }
 }

@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {setupPublicInfo} from './public-info.js?v=f649b1f77c684d7c6bc5';
+import {setupPublicInfo} from './public-info.js?v=6b031d8dcbc50a97e805';
 import {setupRenderExport} from './render-export.js?v=736862a3013dbfd9f9ea';
 import {e3ngSelection,e3ngPartVisible,e3ngURL} from './e3ng-model.mjs?v=workspace-belts-1';
 export async function mount(scope){
