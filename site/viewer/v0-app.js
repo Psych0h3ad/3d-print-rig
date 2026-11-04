@@ -23,8 +23,8 @@ import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=303ae5497e38b6e312de';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=4519a2adca1a574ccecf';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=f9be81c89bb729560444';
+import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=7b3073fdbc344af1819c';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=af983a14b5611b49a683';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
 import {formatMessage,translate} from './i18n.mjs?v=f6bcae1447111c6b88c4';
 export async function mount(scope){

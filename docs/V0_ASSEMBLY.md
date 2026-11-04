@@ -29,6 +29,9 @@ The expanded head sequence similarly keeps part checks and unaffected stages,
 while its earlier grouped head operations require a fresh check. Old progress
 can resume at the corresponding preparation step even when the old stage ID
 has been replaced.
+On reopening, an existing record for the current guide takes priority. Otherwise,
+the most recent supported source revision is resumed, with v2 preferred over
+v1 for that revision. Retained older records do not replace newer progress.
 Browser storage uses a separate v2 key while preserving old v1 storage. Import
 is capped at 512 KiB; actual-asset audits require a complete source-part checklist
 to fit that limit. Unknown, duplicated or sparse source records are rejected
