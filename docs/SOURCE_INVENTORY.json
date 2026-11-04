@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1353208,
-      "sha256": "70a8c9bc36bbc7579c127030f91dd438d96ccfb7647c0a229014ea61674defc1"
+      "bytes": 1353205,
+      "sha256": "e72e39c82b9e3b34de03184db6f205f5544e6964b0ba7e91d9271ad004d9e229"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
