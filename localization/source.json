@@ -15743,6 +15743,136 @@
       "kind": "message",
       "ja": "元モデルの取り付け位置を参照表示しています。",
       "en": "Original installation reference positions are retained."
+    },
+    "ui.v0rail.y_clean.title": {
+      "kind": "message",
+      "ja": "レールとブロックを組にして清掃・給脂する",
+      "en": "Clean and lubricate the captive rail carriages"
+    },
+    "ui.v0rail.y_clean.note": {
+      "kind": "message",
+      "ja": "5本すべてのレールの出荷油を取り除き、公式資料に従って給脂します。各ブロックは元のレールから抜かず、脱落を防いでください。ここではYレール2組を表示します。",
+      "en": "Clean the shipping oil and lubricate all five rails as directed by the official guide. Keep each carriage on its own rail; secure it against sliding off. The two Y pairs are shown here."
+    },
+    "ui.v0rail.y_load.title": {
+      "kind": "message",
+      "ja": "Y用ナット保持具をEフレーム材に入れる",
+      "en": "Load the Y nut carriers into the E extrusions"
+    },
+    "ui.v0rail.y_load.note": {
+      "kind": "message",
+      "ja": "準備済みの長いナット保持具2本をEフレーム材に入れます。図の工具アクセス穴の向きを確認してください。ナットを向ける側は使用するフレーム材に従います。表示は元CADの向きを保ちます。",
+      "en": "Use the two prepared long nut carriers and the E extrusions. Check the access-hole orientation in the diagram. Nut-facing direction depends on the actual extrusion profile; this view keeps the original CAD orientation."
+    },
+    "ui.v0rail.y_mount.title": {
+      "kind": "message",
+      "ja": "Yレールを中央に合わせてM2x6ねじを付ける",
+      "en": "Centre the Y rails and fit the M2x6 screws"
+    },
+    "ui.v0rail.y_mount.note": {
+      "kind": "message",
+      "ja": "図はレール1本につきM2x6ねじ5本を1穴おきに使っています。このCADは18ページにある全穴使用構成で、各レールの元ねじ10本を表示します。ガイドで中央に合わせ、中央から両端へ締めてください。",
+      "en": "The drawing uses five M2x6 screws per rail, leaving alternate holes unused. This CAD retains the full ten-per-rail population described on page 18. Use centring guides and tighten from the middle towards the ends."
+    },
+    "ui.v0rail.y_position.title": {
+      "kind": "message",
+      "ja": "Yレール端の38mm位置を確認する",
+      "en": "Set the Y rail end reference to 38 mm"
+    },
+    "ui.v0rail.y_position.note": {
+      "kind": "message",
+      "ja": "図のフレーム材端からレール端までを38 mmに合わせます。これはマニュアル上の寸法参照で、表示では元の位置を保ちます。",
+      "en": "Set the rail end 38 mm from the illustrated extrusion edge. This is a manual dimension reference; the viewer retains the source positions."
+    },
+    "ui.v0rail.y_retention.title": {
+      "kind": "message",
+      "ja": "Yブロックの抜け止めを確保する",
+      "en": "Keep the Y carriages from leaving the rails"
+    },
+    "ui.v0rail.y_retention.note": {
+      "kind": "message",
+      "ja": "付属のレール端ピンは残します。ピンがない場合は、端のねじを少し緩めて使う方法や仮のテープ固定が図で案内されています。これらの仮止め用品をCAD部品として追加していません。",
+      "en": "Keep supplied rail-end pins in place. Without them, the manual describes slightly loose end screws or temporary tape. These temporary aids are not invented as CAD parts."
+    },
+    "ui.v0rail.y_stops.title": {
+      "kind": "message",
+      "ja": "Yレールストッパー2個とM3x8ねじを付ける",
+      "en": "Fit both Y rail stops and their M3x8 fasteners"
+    },
+    "ui.v0rail.y_stops.note": {
+      "kind": "message",
+      "ja": "元のYストッパー2個と対応するねじ・溝ナットを使います。図では、先に入れたナットが省略される場合があります。任意の抜け止めナットMODへ置き換えていません。",
+      "en": "Use the two original Y stops, screws and slot nuts. The manual omits previously loaded nuts from some drawings. Optional no-drop nut mods are not substituted for the source hardware."
+    },
+    "ui.v0rail.z_load.title": {
+      "kind": "message",
+      "ja": "Z用ナット保持具をCフレーム材に入れる",
+      "en": "Load the Z nut carriers into the C extrusions"
+    },
+    "ui.v0rail.z_load.note": {
+      "kind": "message",
+      "ja": "C支柱2本と準備済みの長いナット保持具を使います。図のアクセス穴と実際のフレーム材を確認してください。横向きのB横桟は次のフレーム工程で準備します。",
+      "en": "Use the two C uprights and their prepared long nut carriers. Follow the shown access holes and the actual extrusion profile. The horizontal B crossmember is prepared in the following frame section."
+    },
+    "ui.v0rail.z_mount.title": {
+      "kind": "message",
+      "ja": "Zレールを中央に合わせてM2x6ねじを付ける",
+      "en": "Centre the Z rails and fit the M2x6 screws"
+    },
+    "ui.v0rail.z_mount.note": {
+      "kind": "message",
+      "ja": "図はレール1本につきM2x6ねじ5本を使っています。このCADは18ページの全穴使用構成を保ち、各レールの元ねじ10本を表示します。各ブロックの脱落を防ぎながら、ガイドでレールを中央に合わせます。",
+      "en": "The drawing uses five M2x6 screws per rail. This CAD retains the full-population option on page 18, with all ten original screws per rail. Keep each carriage captive while using the guides to centre its rail."
+    },
+    "ui.v0rail.z_position.title": {
+      "kind": "message",
+      "ja": "Zレール端の約33mm位置を確認する",
+      "en": "Check the adjustable 33 mm Z rail reference"
+    },
+    "ui.v0rail.z_position.note": {
+      "kind": "message",
+      "ja": "図のレール端の目安は約33 mmです。最終的なベッドの位置合わせで調整する場合があります。反対側の未保護の端からブロックが抜けないようにしてください。",
+      "en": "The manual gives approximately 33 mm at the shown rail end. Final bed alignment can change this setting. Keep the unprotected opposite rail ends secured against carriage loss."
+    },
+    "ui.v0rail.z_stops.title": {
+      "kind": "message",
+      "ja": "Zレール上端のストッパー2個を付ける",
+      "en": "Fit both upper Z rail stops"
+    },
+    "ui.v0rail.z_stops.note": {
+      "kind": "message",
+      "ja": "元の上端ストッパー2個をM3x8ねじと溝ナットで取り付けます。下端ストッパーはZフレーム組立後の35ページで取り付けます。挿入や締め付けの動きは再現していません。",
+      "en": "Fit the two upper original stops with their M3x8 screws and slot nuts. The lower stop is fitted after the Z frame is assembled on manual page 35. No insertion or tightening motion is simulated."
+    },
+    "ui.v0rail.z_lower.title": {
+      "kind": "message",
+      "ja": "残りのZレール下端ストッパーを付ける",
+      "en": "Fit the remaining lower Z rail stop"
+    },
+    "ui.v0rail.z_lower.note": {
+      "kind": "message",
+      "ja": "上端2個は26ページで取り付け済みです。Zフレームを組み立てて直角を確認した後、残りの下端ストッパーを元のM3x8ねじと溝ナットで取り付けます。",
+      "en": "The upper two stops were fitted at manual page 26. After assembling and squaring the Z frame, fit the remaining lower source stop with its original M3x8 screw and slot nut."
+    },
+    "ui.v0rail.status.y_preparation": {
+      "kind": "message",
+      "ja": "Yレールの準備",
+      "en": "Y rail preparation"
+    },
+    "ui.v0rail.status.y_mounting": {
+      "kind": "message",
+      "ja": "Yレールの取り付け",
+      "en": "Y rail mounting"
+    },
+    "ui.v0rail.status.z_preparation": {
+      "kind": "message",
+      "ja": "Zレールの準備",
+      "en": "Z rail preparation"
+    },
+    "ui.v0rail.status.z_mounting": {
+      "kind": "message",
+      "ja": "Zレールの取り付け",
+      "en": "Z rail mounting"
     }
   }
 }

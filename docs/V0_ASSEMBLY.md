@@ -36,7 +36,7 @@ before replacing the current progress. Clear and undo cover both record types.
 
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
-V0.2 has 158 stages and 1,653 exported source leaves. V0.2r1 has 163 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+V0.2 has 166 stages and 1,653 exported source leaves. V0.2r1 has 171 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
 
 The stock Mini Stealthburner sequence contains 41 reference operations, following
 V0.2 pages 151–182 and r1 pages 157–188. Cowling, shuttle, midbody, guidler and
@@ -76,7 +76,25 @@ every original transform exactly. Crossing between the laid-out preparation
 and installed positions frames the new space automatically; stage changes
 within the same work area retain the reader's orbit. These rail assignments keep
 their source keys and manual/model pins. Exact previous-stage progress migrates
-while retaining the rail and source-part records.
+while retaining individual source-part records; corrected grouped rail rows
+require another check.
+
+The Y/Z rail sequence has ten page-specific operations on pages 19–26:
+cleaning and lubrication with captive carriages, carrier loading, rail centring,
+end references, temporary retention and the original end stops. Each view
+isolates the current source rail group; the earlier frame and unused carriers
+remain set aside. The 38 mm Y and approximately 33 mm Z values are manual
+references, not new measured acceptance of the source geometry.
+
+The drawings on pages 21/25 show five M2x6 screws per rail. The source retains
+ten per rail, following the fully populated option on page 18. All forty
+original Y/Z screws remain identified. Upper Z stops appear on page 26; the
+remaining lower stop appears on page 35. The top B crossmember belongs to the
+following frame section, rather than the C-upright preparation on page 24.
+The immediate previous progress identity retains head/XY and individual part
+checks; only the four changed grouped rail/frame rows need another check.
+No rail part is moved, regenerated or removed by this visibility policy.
+Insertion, thread engagement, retention, torque and native contact stay separate.
 
 The A/B drive operations follow pages 69–81. During each drive's preparation,
 the viewer isolates only that source subassembly; the frame and previously

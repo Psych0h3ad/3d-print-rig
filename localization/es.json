@@ -12505,6 +12505,110 @@
     "assembly.v0head.context.1": {
       "source_revision": "591707747c97343835b1",
       "text": "Se conservan las posiciones de montaje del modelo original."
+    },
+    "ui.v0rail.y_clean.title": {
+      "source_revision": "8749811e594da70f8039",
+      "text": "Limpia y lubrica los patines sin separarlos de sus guías"
+    },
+    "ui.v0rail.y_clean.note": {
+      "source_revision": "708aa8d9449f0108c479",
+      "text": "Retira el aceite de transporte y lubrica las cinco guías según la documentación oficial. Mantén cada patín en su propia guía y evita que se salga. Aquí se muestran los dos pares Y."
+    },
+    "ui.v0rail.y_load.title": {
+      "source_revision": "046a902335fb078ce570",
+      "text": "Introduce las tiras portatuercas Y en los perfiles E"
+    },
+    "ui.v0rail.y_load.note": {
+      "source_revision": "03d02d757fc37d71e8b1",
+      "text": "Usa las dos tiras portatuercas largas ya preparadas y los perfiles E. Comprueba la orientación de los orificios de acceso. La cara de las tuercas depende del perfil real; esta vista conserva la orientación del CAD original."
+    },
+    "ui.v0rail.y_mount.title": {
+      "source_revision": "2d10f4773d8f0eaa1678",
+      "text": "Centra las guías Y y coloca los tornillos M2x6"
+    },
+    "ui.v0rail.y_mount.note": {
+      "source_revision": "72920c7cad59cf0b9197",
+      "text": "El dibujo usa cinco tornillos M2x6 por guía y deja libres los orificios alternos. Este CAD conserva los diez tornillos por guía de la opción completa de la página 18. Usa las guías de centrado y aprieta desde el centro hacia los extremos."
+    },
+    "ui.v0rail.y_position.title": {
+      "source_revision": "1aa25facf5e0b17bf01b",
+      "text": "Comprueba la referencia de 38 mm del extremo de la guía Y"
+    },
+    "ui.v0rail.y_position.note": {
+      "source_revision": "7af57f06fe91f4799376",
+      "text": "Sitúa el extremo de la guía a 38 mm del borde del perfil indicado. Es una referencia dimensional del manual; el visor conserva las posiciones originales."
+    },
+    "ui.v0rail.y_retention.title": {
+      "source_revision": "1f192b3c0df6449e3e03",
+      "text": "Evita que los patines Y salgan de las guías"
+    },
+    "ui.v0rail.y_retention.note": {
+      "source_revision": "fecfcc612495fc1bbcc8",
+      "text": "Deja colocados los pasadores de los extremos suministrados. Sin ellos, el manual propone tornillos extremos ligeramente flojos o cinta provisional. Estas ayudas temporales no se añaden como piezas CAD."
+    },
+    "ui.v0rail.y_stops.title": {
+      "source_revision": "c5dcda9dd85630093f62",
+      "text": "Coloca los dos topes Y y sus fijaciones M3x8"
+    },
+    "ui.v0rail.y_stops.note": {
+      "source_revision": "d00702133c25cd2cf337",
+      "text": "Usa los dos topes Y originales con sus tornillos y tuercas de ranura. Algunos dibujos omiten las tuercas cargadas antes. No se sustituyen por modificaciones opcionales de tuercas anticaída."
+    },
+    "ui.v0rail.z_load.title": {
+      "source_revision": "b10cce7e2b8876cbd7fb",
+      "text": "Introduce las tiras portatuercas Z en los perfiles C"
+    },
+    "ui.v0rail.z_load.note": {
+      "source_revision": "c40957d0f4ebfa933814",
+      "text": "Usa los dos montantes C y sus tiras portatuercas largas ya preparadas. Comprueba los orificios de acceso y el perfil real. El travesaño horizontal B se prepara en la siguiente sección del bastidor."
+    },
+    "ui.v0rail.z_mount.title": {
+      "source_revision": "5c2d6a46c60f76f5639a",
+      "text": "Centra las guías Z y coloca los tornillos M2x6"
+    },
+    "ui.v0rail.z_mount.note": {
+      "source_revision": "a8a4b94248d65f631e44",
+      "text": "El dibujo usa cinco tornillos M2x6 por guía. Este CAD conserva la opción completa de la página 18, con los diez tornillos originales por guía. Evita que salga cada patín mientras centras su guía con las herramientas de alineación."
+    },
+    "ui.v0rail.z_position.title": {
+      "source_revision": "2693e31286dd6c64c8ad",
+      "text": "Comprueba la referencia ajustable de 33 mm de la guía Z"
+    },
+    "ui.v0rail.z_position.note": {
+      "source_revision": "59fd535292e4125faa13",
+      "text": "El manual indica aproximadamente 33 mm en el extremo señalado. La alineación final de la cama puede cambiar este ajuste. Evita que los patines salgan por los extremos opuestos aún sin proteger."
+    },
+    "ui.v0rail.z_stops.title": {
+      "source_revision": "90f5b74c4af1d006df0f",
+      "text": "Coloca los dos topes superiores de las guías Z"
+    },
+    "ui.v0rail.z_stops.note": {
+      "source_revision": "92764ddb449181010dd1",
+      "text": "Coloca los dos topes superiores originales con sus tornillos M3x8 y tuercas de ranura. El tope inferior se instala tras montar el bastidor Z, en la página 35. No se simulan los movimientos de inserción ni apriete."
+    },
+    "ui.v0rail.z_lower.title": {
+      "source_revision": "0f14453dbb535497a6f4",
+      "text": "Coloca el tope inferior Z restante"
+    },
+    "ui.v0rail.z_lower.note": {
+      "source_revision": "5b0477e00a71a15f44a8",
+      "text": "Los dos topes superiores se colocaron en la página 26. Tras montar y escuadrar el bastidor Z, instala el tope inferior restante con su tornillo M3x8 y tuerca de ranura originales."
+    },
+    "ui.v0rail.status.y_preparation": {
+      "source_revision": "6f07093ee01f298be10b",
+      "text": "Preparación de las guías Y"
+    },
+    "ui.v0rail.status.y_mounting": {
+      "source_revision": "70f532f731b5fd21b2b9",
+      "text": "Montaje de las guías Y"
+    },
+    "ui.v0rail.status.z_preparation": {
+      "source_revision": "74988a6d397fbead3aac",
+      "text": "Preparación de las guías Z"
+    },
+    "ui.v0rail.status.z_mounting": {
+      "source_revision": "38e1b4322cb6c3a0e66e",
+      "text": "Montaje de las guías Z"
     }
   }
 }

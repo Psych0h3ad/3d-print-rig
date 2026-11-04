@@ -18,8 +18,9 @@ function fixture(){
 const snapshot=f=>[...f.nodes].map(([k,n])=>[k,n.position.toArray(),n.quaternion.toArray(),n.scale.toArray(),n.matrix.toArray(),n.matrixWorld.toArray()]);
 const f=fixture(),native=snapshot(f),p=f.make();
 for(const i of [1,2,3,2,1,57,1,0]){p.check();p.apply(i);p.check();assert.equal(p.prepared(i),i===1);if(i!==1)assert.deepEqual(snapshot(f),native);passed++}
-assert.equal(p.deferred(2).length,33);assert.equal(p.deferred(3).length,11);assert.equal(p.focus(2).length,22);assert.equal(p.focus(3).length,22);
-p.deferred(2).length=0;assert.equal(p.deferred(2).length,33);p.leave();assert.deepEqual(snapshot(f),native);passed++;
+const yi=f.spec.stages.findIndex(s=>s.id==='y-rails'),zi=f.spec.stages.findIndex(s=>s.id==='z-rails');
+assert.equal(p.deferred(yi).length,33);assert.equal(p.deferred(zi).length,11);assert.equal(p.focus(yi).length,22);assert.equal(p.focus(zi).length,22);
+p.deferred(yi).length=0;assert.equal(p.deferred(yi).length,33);p.leave();assert.deepEqual(snapshot(f),native);passed++;
 // A failure after the first two rows moved must restore the previous display,
 // not leave a mixture of preparation and installation coordinates.
 p.apply(1);const prepared=snapshot(f),victim=f.nodes.get('v02r1_00104'),original=victim.updateMatrix;
