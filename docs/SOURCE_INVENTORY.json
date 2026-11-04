@@ -15,8 +15,8 @@
     },
     {
       "path": ".github/workflows/pages.yml",
-      "bytes": 1066,
-      "sha256": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b"
+      "bytes": 1985,
+      "sha256": "282ee4e543e545252c90e4a77487ca9a8b7ffa9561a9570f174a54c304d78357"
     },
     {
       "path": ".github/workflows/source-check.yml",
@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1356847,
-      "sha256": "5af9c30f20449d2e98667e1504d3e96dc0c7c7430e45fa9c7553de337a507135"
+      "bytes": 1358109,
+      "sha256": "c39b2e6268aad51176b945b44a6655f31eada2b9e13cc2d1355fbd71bb4dbd40"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -295,8 +295,8 @@
     },
     {
       "path": "docs/MAINTENANCE.md",
-      "bytes": 12709,
-      "sha256": "8739961a7695f674f03241edd0dc38c859cc2d4b26d833039cba58727034d2f3"
+      "bytes": 13661,
+      "sha256": "247e4e5597f23fbb914f4990ff183bbdb80de55f86e082da38225424da2190ba"
     },
     {
       "path": "docs/MICRON.md",
@@ -1005,8 +1005,8 @@
     },
     {
       "path": "scripts/build_site.py",
-      "bytes": 35463,
-      "sha256": "9a7b6b00b0109d53e1383d78624ea18aa9a71011a7954af08381488575683e60"
+      "bytes": 35607,
+      "sha256": "c3aa3dbc8d742b38290557ee80e3be7e5faaac1aaa24525e7846de03b0193aa4"
     },
     {
       "path": "scripts/build_support_catalog.mjs",
@@ -1100,8 +1100,8 @@
     },
     {
       "path": "scripts/check_viewer_quality_release.py",
-      "bytes": 26727,
-      "sha256": "4eac63421d2e930781c1865076ef2f7b630a39691787d1bf1347c0ea46920ae8"
+      "bytes": 32298,
+      "sha256": "7b3cc4c1c8bf38764de5cb260c90a0b7368b2c7fdbd0574bc73f2572232ddce6"
     },
     {
       "path": "scripts/check_wallpaper_compositions.py",
@@ -1462,6 +1462,11 @@
       "path": "scripts/prepare_v0_power_delivery.py",
       "bytes": 2401,
       "sha256": "13536cf7d4cbdd9085ea417342c68382a218a929a043ad09a6ff15a391f8b63e"
+    },
+    {
+      "path": "scripts/prepare_viewer_quality_inputs.py",
+      "bytes": 724,
+      "sha256": "68f33e53d5bf690fdfd9c4d357b273b4c52d195255e78777845526621c750e13"
     },
     {
       "path": "scripts/prepare_wallpapers.py",
@@ -3085,8 +3090,8 @@
     },
     {
       "path": "scripts/test_viewer_quality_release.py",
-      "bytes": 21490,
-      "sha256": "2b877d51b3f17b874de7834f5b0f3077a1bf7b7bef7e437dc68cad1754a32497"
+      "bytes": 27315,
+      "sha256": "e2433f0650b93d35bf3fc2d82a32c492ab334ed2624e197b21c4b237f2b6833e"
     },
     {
       "path": "scripts/test_virtu_may_role.mjs",

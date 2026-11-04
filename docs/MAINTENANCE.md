@@ -124,6 +124,21 @@ Git. The build rejects existing output directories and enforces its total site
 size budget. Wallpaper originals belong in release assets; only their previews
 and catalogs belong in the site.
 
+CI prepares the 41 extra viewer-quality inputs before the normal site build.
+`prepare_viewer_quality_inputs.py` verifies their current catalog, stored-byte
+and decoded-byte pins and retains them in an external cache. Its report is
+input preparation only; the normal build still runs every required actual
+color and route audit. A restored cache is verified again, and a corrupt body
+fails without overwrite or a network fallback.
+
+For a local cache, run the preparation command with `--site site`, `--cache`
+and a fresh `--output` directory outside the checkout. Set
+`RIG_VIEWER_QUALITY_CACHE` to that cache directory for `build_site.py`.
+Cache files and preparation reports must remain outside the served site.
+The Pages workflow keys its cache by the exact delivery/provider catalogs and
+saves it only after all 41 inputs verify. Timeouts name the logical input and
+its checksum; this does not change retry counts, approved origins or audit limits.
+
 ## Evidence and publication
 
 For a model, registration, renderer or interaction change, run the affected

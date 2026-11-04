@@ -19,7 +19,20 @@ jobs:
       - run: python3 scripts/prepare_repository_inputs.py
       - run: python3 -m pip install numpy==2.4.4
       - run: python3 scripts/check_repository.py --regression-workers 2
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        id: quality-inputs
+        with:
+          path: ${{ runner.temp }}/viewer-quality-cache
+          key: viewer-quality-public-v1-${{ runner.os }}-${{ hashFiles('site/APPROVED_DELIVERY.json', 'site/CROSSANT_ASSETS.json', 'site/COMMUNITY_MACHINES_ASSETS.json', 'site/CUSTOM_VORON_ASSETS.json') }}
+      - run: python3 scripts/prepare_viewer_quality_inputs.py --site site --cache "$RUNNER_TEMP/viewer-quality-cache" --output "$RUNNER_TEMP/viewer-quality-prefetch"
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        if: steps.quality-inputs.outputs.cache-hit != 'true'
+        with:
+          path: ${{ runner.temp }}/viewer-quality-cache
+          key: ${{ steps.quality-inputs.outputs.cache-primary-key }}
       - run: python3 scripts/build_site.py --delivery site/APPROVED_DELIVERY.json --output _site
+        env:
+          RIG_VIEWER_QUALITY_CACHE: ${{ runner.temp }}/viewer-quality-cache
       - run: python3 scripts/check_approved_site_size.py --site _site
       - uses: actions/upload-pages-artifact@v4
         with:

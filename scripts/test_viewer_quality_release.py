@@ -131,6 +131,101 @@ class ViewerQualityRelease(unittest.TestCase):
         self.assertEqual(len(gate.read(self.out / 'color-plan.json')['assets']), 19)
         self.assertFalse((self.site / 'bindings.json').exists())
 
+    def prefetch(self, out=None, cache=None, fetch=None):
+        cache = cache or self.root / 'persistent-cache'
+        with patch.object(gate, 'ROOT', self.repo), patch.object(gate, 'source_snapshot', return_value={'fixture-source': 'exact'}), \
+                patch.object(gate, 'fetch_pinned_source', side_effect=fetch or AssertionError('Unexpected public download')) as network, \
+                patch.object(gate.subprocess, 'run', side_effect=AssertionError('Preparation cannot run or pass actual audits')):
+            result = gate.prefetch_public_inputs(self.site, out or self.out, cache)
+        return result, network
+
+    def test_prefetch_retains_all_41_local_or_network_inputs_without_passing_audits(self):
+        result, network = self.prefetch()
+        self.assertEqual(network.call_count, 0)
+        self.assertEqual(result['public_inputs'], 41)
+        self.assertTrue(result['inputs_verified'])
+        self.assertFalse(result['actual_audits_run'])
+        self.assertFalse(result['publication_qualified'])
+        for row in result['bindings']:
+            file = Path(row['actual_path'])
+            self.assertTrue(file.is_relative_to(self.root / 'persistent-cache'))
+            original = next(pin for pin in self.rows if pin['catalog'] == row['catalog'] and pin['path'] == row['path'])
+            self.assertEqual(gate.verify(file, original), row['decoded_sha256'])
+        # Model the next CI attempt without local source bodies: the restored
+        # cache must be reverified and still must run all five actual commands.
+        for row in self.rows:
+            if row['catalog'] != 'APPROVED_DELIVERY.json':
+                Path(row['actual_path']).unlink()
+        out = self.root / 'next-reports'
+        with patch.object(gate, 'ROOT', self.repo), patch.object(gate, 'source_snapshot', return_value={'fixture-source': 'exact'}), \
+                patch.object(gate.shutil, 'which', return_value='node'), patch.object(gate.subprocess, 'run', side_effect=self.fake_node) as node, \
+                patch.object(gate, 'fetch_pinned_source', side_effect=AssertionError('Verified restored cache should avoid network')):
+            report = gate.run(self.site, out, cache=self.root / 'persistent-cache')
+        self.assertTrue(report['passed'])
+        self.assertEqual(node.call_count, 5)
+
+    def test_corrupt_restored_cache_fails_without_overwrite_or_network_fallback(self):
+        result, _ = self.prefetch()
+        for row in self.rows:
+            if row['catalog'] != 'APPROVED_DELIVERY.json':
+                Path(row['actual_path']).unlink()
+        file = Path(result['bindings'][0]['actual_path'])
+        corrupt = b'x' * file.stat().st_size
+        file.write_bytes(corrupt)
+        with self.assertRaisesRegex(ValueError, 'checksum|cache body'):
+            self.prefetch(out=self.root / 'corrupt-reports')
+        self.assertEqual(file.read_bytes(), corrupt)
+        summary = gate.read(self.root / 'corrupt-reports/public-quality-inputs.json')
+        self.assertFalse(summary['inputs_verified'])
+        self.assertFalse(summary['publication_qualified'])
+
+    def test_prefetch_transport_failure_names_exact_input_and_never_marks_audit_passed(self):
+        first = next(r for r in self.rows if r['catalog'] == 'CROSSANT_ASSETS.json' and r['path'].endswith('assembly_manifest.json'))
+        Path(first['actual_path']).unlink()
+        with self.assertRaises(TimeoutError) as failure:
+            self.prefetch(fetch=TimeoutError('read timed out'))
+        self.assertIn(first['path'], '\n'.join(failure.exception.__notes__))
+        self.assertIn(first['sha256'], '\n'.join(failure.exception.__notes__))
+        self.assertFalse(gate.read(self.out / 'public-quality-inputs.json')['inputs_verified'])
+        self.assertFalse(any((self.root / 'persistent-cache').rglob('*.download')))
+
+    def test_network_preparation_caches_only_exact_current_extra_inputs(self):
+        bodies = {}
+        for row in self.rows:
+            if row['catalog'] != 'APPROVED_DELIVERY.json':
+                file = Path(row['actual_path'])
+                bodies[row['path']] = file.read_bytes()
+                file.unlink()
+        def fetch(row, target, **options):
+            self.assertTrue(row['url'].startswith('https://psych0h3ad.github.io/'))
+            self.assertGreater(options['timeout'], 0)
+            self.assertLessEqual(options['timeout'], 45)
+            target.write_bytes(bodies[row['path']])
+        report, network = self.prefetch(fetch=fetch)
+        self.assertEqual(network.call_count, 41)
+        self.assertTrue(report['inputs_verified'])
+        self.assertEqual(len(report['bindings']), 41)
+        self.assertFalse(report['publication_qualified'])
+
+    def test_restored_gzip_body_must_match_current_decoded_pin(self):
+        report, _ = self.prefetch()
+        for row in self.rows:
+            if row['catalog'] != 'APPROVED_DELIVERY.json':
+                Path(row['actual_path']).unlink()
+        pin = self.catalogs['COMMUNITY_MACHINES_ASSETS.json']['machines']['vzbot_330_printed']['files']['model.glb']
+        cached = next(Path(r['actual_path']) for r in report['bindings'] if r['sha256'] == pin['sha256'])
+        original = cached.read_bytes()
+        pin['decoded_sha256'] = '0' * 64
+        self.refresh_catalogs()
+        with self.assertRaisesRegex(ValueError, 'Decoded public checksum'):
+            self.prefetch(out=self.root / 'decoded-failure')
+        self.assertEqual(cached.read_bytes(), original)
+
+    def test_persistent_cache_inside_checkout_or_site_is_rejected(self):
+        for i, cache in enumerate([self.site / 'cache', self.repo / 'cache']):
+            with self.subTest(cache=cache), self.assertRaisesRegex(ValueError, 'outside'):
+                self.prefetch(out=self.root / ('invalid-cache-' + str(i)), cache=cache)
+
     def test_source_inventory_catalogs_need_not_be_delivery_file_entries(self):
         delivery = gate.read(self.site / 'APPROVED_DELIVERY.json')
         delivery['files'] = [r for r in delivery['files'] if r['path'] not in gate.CATALOGS]

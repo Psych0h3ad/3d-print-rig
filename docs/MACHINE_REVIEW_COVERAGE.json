@@ -3,7 +3,7 @@
   "review_revision": "v0-feet-manual-operations",
   "reviewed_on": "2026-11-01",
   "input_sha256": {
-    ".github/workflows/pages.yml": "b9b6d0c7068a553c378f275aa6be6f363b41b74e68ca352f1618ae973ec5cb5b",
+    ".github/workflows/pages.yml": "282ee4e543e545252c90e4a77487ca9a8b7ffa9561a9570f174a54c304d78357",
     ".github/workflows/source-check.yml": "1932aa069b6073bac1b2c21ae92ab062039dd565c3d2f77bc7fe7b4c83a3c54f",
     "scripts/assembly_part_review_audit.mjs": "3660b20efd632b0e7a7b2c987028055ec3fa05875f5330f40060a5d84010599f",
     "scripts/audit_a4t_printed_companions.mjs": "770c4e5da4eba20f0141952ac2afd961f70ca26fb3d6925abfd9361c8ac7287a",
@@ -67,7 +67,7 @@
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
     "scripts/build_locales.mjs": "80ab9b00fe6468e56475ed6bf7f67c573331bd6641518e9af4652331089a456e",
     "scripts/build_seo.py": "d9eea4f62aa4133b8beaf7b6545262cf8b25de42c285a67871c9ff2d2aa5f3b7",
-    "scripts/build_site.py": "9a7b6b00b0109d53e1383d78624ea18aa9a71011a7954af08381488575683e60",
+    "scripts/build_site.py": "c3aa3dbc8d742b38290557ee80e3be7e5faaac1aaa24525e7846de03b0193aa4",
     "scripts/build_support_catalog.mjs": "49dbbf7d24ddbff864a8b231fb73bb91398348fe46bb136bfab86fb052974a3c",
     "scripts/build_toolhead_catalog.py": "e7391d2cc7748db94033069dc44b8365260d169176ee73a31cef249da5023e1a",
     "scripts/cad_section_insert.py": "a590e2fb4045cb3d835901aee33521d63e96e37133979187b0b8503bf16ceefa",
@@ -86,7 +86,7 @@
     "scripts/check_ui_catalog.mjs": "d1b8fb54df58c2bb57295c72736a12b71720240e381c1c2be889419f4bcbaca7",
     "scripts/check_v0_assembly_release.py": "827a43025e799011c467c78841dd8d6cc73bd7905fa0b4d33198be4e4c0358fd",
     "scripts/check_v0_native_assets_release.py": "fe7574b11fc88610535c7844581b4fe988bab1d4e10d0782d5d46644d26e0ed7",
-    "scripts/check_viewer_quality_release.py": "4eac63421d2e930781c1865076ef2f7b630a39691787d1bf1347c0ea46920ae8",
+    "scripts/check_viewer_quality_release.py": "7b3cc4c1c8bf38764de5cb260c90a0b7368b2c7fdbd0574bc73f2572232ddce6",
     "scripts/check_wallpaper_compositions.py": "a52f3c47ebc94c09a8376aee6413065dda38395898671e9a7420db5c4062f5cb",
     "scripts/check_workbench_assets.mjs": "05601049e8417feb1435edee70278e99872f9cf96d65d9a9479f297519ea3514",
     "scripts/community_chain_pose.mjs": "f045323ecb05f3abf4a096445775637215d0ae2adda19b6f3dbb96d565dd79bb",
@@ -483,7 +483,7 @@
     "scripts/test_v24_service_route.mjs": "8c4cc585d60c11a10a898e0c28b4b7acdda980da95af3f014fbce51abc0e6cba",
     "scripts/test_validation_bundle.mjs": "9db8e33ad9eecb578fb97029ef9dc4161f592c3181988f1b759bee040a8055dc",
     "scripts/test_viewer_mesh_quality_scope.mjs": "c66354a59faf658d580e2585ebf75e79eb3d2ee42c1c7613ed52f87c7b6c6f11",
-    "scripts/test_viewer_quality_release.py": "2b877d51b3f17b874de7834f5b0f3077a1bf7b7bef7e437dc68cad1754a32497",
+    "scripts/test_viewer_quality_release.py": "e2433f0650b93d35bf3fc2d82a32c492ab334ed2624e197b21c4b237f2b6833e",
     "scripts/test_virtu_may_role.mjs": "9231a735a99ed4420603e60a0f8a27313693982de0f3685d3abadafb630454fb",
     "scripts/test_virtu_selected_geometry_contract.mjs": "8610d6f8047be5ac41afcd39984991b019aa38846d0fbb5ee2f5c49afdc270f6",
     "scripts/test_virtual_printer_adapter.mjs": "b25320b19d87b8181df8684b30ef4fa42e4eba2fe729f17426e08456d2d3aa7c",
@@ -1045,7 +1045,8 @@
     "site/viewer/workspace-ui.mjs": "4193c794488032c02f9355d5c7fd193eaeb192f6852077b0950145f781be70fd",
     "site/viewer/workspace.css": "7fd916f08df39083d23f57f01ae769d1e78948a2c2eabda405658e0a56b27952",
     "site/viewer/yavoth-cowl-assets.mjs": "7724876b5059647c957b983060fecb3070169cc4c6babb437c8cb830b19e3ef3",
-    "site/XOL_MOD.json": "bc78d4c2ea028fedbacccbcf7f4607505ddfcc7dbb7511bb7186aaca74b53e32"
+    "site/XOL_MOD.json": "bc78d4c2ea028fedbacccbcf7f4607505ddfcc7dbb7511bb7186aaca74b53e32",
+    "scripts/prepare_viewer_quality_inputs.py": "68f33e53d5bf690fdfd9c4d357b273b4c52d195255e78777845526621c750e13"
   },
   "machines": [
     {
@@ -22849,5 +22850,19 @@
     "central_message_entries": 31,
     "stable_locale_ids": 3213,
     "production_translation_comparisons": 744
+  },
+  "viewer_quality_public_input_cache_review": {
+    "scope": "CI transport and untrusted-cache validation only. No runtime/model/adapter/catalog/pin/registration changes; historical machine rows retain their original scope and dates.",
+    "preparation": "prepare_viewer_quality_inputs.py verifies all41extra stored/decoded public bodies before the normal build. Preparation is not an actual-model audit or publication qualification.",
+    "regression": "test_viewer_quality_release.py:23fixture cases, including restored-cache validation, independent required audit invocation, corrupt/decoded-pin rejection and exact-input error context.",
+    "actual_input_review": {
+      "stored_decoded_bodies": 41,
+      "cold_canonical_and_network_denied_restored_sets_match": true,
+      "actual_color_route_or_native_fit_certified_by_preparation": false
+    },
+    "normal_actual_release_audits": "Remain mandatory and unconditional; cache data are outside the checkout/served site and rechecked against current descriptors.",
+    "machine_rows_unchanged": 73,
+    "retry_count_or_audit_limits_changed": false,
+    "physical_fit_certified": false
   }
 }

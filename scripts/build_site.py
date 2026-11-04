@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import shutil
 import subprocess
 import sys
@@ -379,6 +380,7 @@ def _audit_built_runtime(target):
     with tempfile.TemporaryDirectory(prefix='viewer-quality-release-') as folder:
         subprocess.run([sys.executable, str(ROOT/'scripts/check_viewer_quality_release.py'),
                         '--site', str(target), '--output', folder,
+                        *(['--cache', os.environ['RIG_VIEWER_QUALITY_CACHE']] if os.environ.get('RIG_VIEWER_QUALITY_CACHE') else []),
                         *(['--inputs', str(input_options.inputs)] if input_options.inputs else [])],
                        cwd=ROOT, check=True)
     validate_mounting_evidence(target)
