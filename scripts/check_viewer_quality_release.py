@@ -139,8 +139,18 @@ def unique(rows, key, label):
 
 
 class Assets:
-    def __init__(self, site, output, inputs, deadline):
+    def __init__(self, site, output, inputs, deadline, cache=None):
         self.site, self.output, self.deadline = site, output, deadline
+        self.cache = output / 'public-cache'
+        if cache is not None:
+            original = Path(cache)
+            if any(p.is_symlink() for p in (original, *original.parents)):
+                raise ValueError('Public input cache cannot use symbolic links')
+            self.cache = original.resolve()
+            if (self.cache.is_relative_to(site.resolve())
+                    or self.cache.is_relative_to(ROOT.resolve())
+                    or output.resolve().is_relative_to(self.cache)):
+                raise ValueError('Public input cache must be outside the site, checkout and reports')
         self.hints = read(inputs) if inputs else None
         self.inputs = inputs
         self.inputs_hash = digest(inputs) if inputs else None
@@ -151,6 +161,33 @@ class Assets:
         if left <= 0:
             raise TimeoutError('Viewer quality release gate exceeded its 15-minute budget')
         return left
+
+    def cache_file(self, pin, name):
+        cached = self.cache / pin['sha256'] / name
+        if any(p.is_symlink() for p in (cached.parent, cached, cached.with_name(cached.name + '.download'))):
+            raise ValueError('Public input cache contains a symbolic link')
+        return cached
+
+    def retain(self, row, pin):
+        """Retain verified local hints too, without accepting a corrupt cache."""
+        source = Path(row['actual_path'])
+        cached = self.cache_file(row, source.name)
+        if cached.resolve() != source.resolve():
+            if cached.exists():
+                verify(cached, pin)
+            else:
+                cached.parent.mkdir(parents=True, exist_ok=True)
+                temporary = cached.with_name(cached.name + '.download')
+                try:
+                    shutil.copyfile(source, temporary)
+                    verify(temporary, pin)
+                    temporary.replace(cached)
+                finally:
+                    if temporary.exists():
+                        temporary.unlink()
+            self.verified[str(cached.resolve())] = dict(row)
+            row['actual_path'] = str(cached.resolve())
+        return row
 
     def hint(self, catalog, pin, directory):
         value = self.hints
@@ -200,14 +237,20 @@ class Assets:
         name = PurePosixPath(pin['path']).name
         if compressed and not name.endswith('.gz'):
             name += '.gz'
-        cached = self.output / 'public-cache' / pin['sha256'] / name
+        cached = self.cache_file(pin, name)
         if source is None and cached.exists():
             source = cached
         if source is None:
             cached.parent.mkdir(parents=True, exist_ok=True)
-            fetch_pinned_source(dict(pin, url=url), cached, allowed_hosts=HOSTS,
-                                timeout=max(1, min(45, self.remaining() // 3)),
-                                user_agent='3D-Print-Rig-Viewer-Quality-Release')
+            try:
+                fetch_pinned_source(dict(pin, url=url), cached, allowed_hosts=HOSTS,
+                                    timeout=max(1, min(45, self.remaining() // 3)),
+                                    user_agent='3D-Print-Rig-Viewer-Quality-Release')
+            except Exception as error:
+                if hasattr(error, 'add_note'):
+                    error.add_note('Pinned public input: ' + catalog + ' / ' + pin['path']
+                                   + ' / sha256=' + pin['sha256'])
+                raise
             source = cached
         decoded = verify(source, pin)
         # Audit GLTF buffer keys and gzip parsing depend on canonical basenames.
@@ -258,7 +301,7 @@ def source_snapshot():
     return result
 
 
-def prepare(site, output, assets):
+def catalog_inputs(site):
     delivery = read(site / 'APPROVED_DELIVERY.json')
     files = unique(delivery.get('files'), 'path', 'delivery file')
     ids = delivery.get('machine_ids', [])
@@ -285,6 +328,69 @@ def prepare(site, output, assets):
             raise ValueError('Current checkout/assembled community source differs: ' + mid)
     if crossant.get('machine_id') != COLORS[0] or HALF not in custom_rows:
         raise ValueError('Missing required Crossant/half-height source registration')
+    return files, ids, community, crossant, custom, custom_rows, receipts
+
+
+def machine_files(kind):
+    names = ['assembly_manifest.json', 'machine_profile.json', 'model.gltf' if kind == 'crossant' else 'model.glb']
+    if kind == 'crossant':
+        names += [f'geometry_{i:02}.bin' for i in range(7)] + ['belt_bindings.json']
+    return names
+
+
+def artifact_pin(spec, name):
+    pin = spec.get('files', {}).get(name)
+    if not pin or PurePosixPath(pin.get('path', '')).name != ('model.glb.gz' if name == 'model.glb' and pin.get('path', '').endswith('.gz') else name):
+        raise ValueError('Missing/wrong logical public artifact: ' + spec.get('id', spec.get('machine_id', 'unknown')) + '/' + name)
+    return pin
+
+
+def prefetch_public_inputs(site, output, cache):
+    """Acquire only extra public quality inputs; this never runs or passes audits."""
+    site, output, cache = Path(site).resolve(), Path(output).resolve(), Path(cache)
+    if output.exists() or output.is_relative_to(site) or output.is_relative_to(ROOT.resolve()):
+        raise ValueError('Fresh prefetch report directory outside the site/checkout required')
+    output.mkdir(parents=True)
+    start = time.monotonic()
+    summary = {'mode': 'public-quality-inputs-only', 'inputs_verified': False,
+               'actual_audits_run': False, 'publication_qualified': False}
+    try:
+        before = source_snapshot()
+        _, ids, community, crossant, custom, custom_rows, receipts = catalog_inputs(site)
+        if len(custom_rows) != 6 or any(s.get('family') not in ('trident', 'v24') for s in custom_rows.values()):
+            raise ValueError('Unreviewed custom quality input cohort')
+        specifications = [(COLORS[0], 'crossant', 'CROSSANT_ASSETS.json', crossant, crossant),
+                          (COLORS[1], 'community', 'COMMUNITY_MACHINES_ASSETS.json', community['machines'][COLORS[1]], community)]
+        specifications += [(mid, 'custom', 'CUSTOM_VORON_ASSETS.json', spec, custom) for mid, spec in custom_rows.items()]
+        specifications += [(mid, 'community', 'COMMUNITY_MACHINES_ASSETS.json', community['machines'][mid], community) for mid in ROUTES]
+        assets = Assets(site, output, None, start + GATE_SECONDS, cache=cache)
+        for mid, kind, catalog, spec, container in specifications:
+            if mid not in ids or spec.get('id', spec.get('machine_id')) != mid:
+                raise ValueError('Unregistered public quality input: ' + mid)
+            for name in machine_files(kind):
+                pin = artifact_pin(spec, name)
+                row = assets.acquire(catalog, pin, spec.get('base_url', container.get('base_url')),
+                                     spec.get('local_directory', container.get('local_directory')))
+                assets.retain(row, pin)
+        assets.stable()
+        if source_snapshot() != before or any(digest(Path(c['path'])) != c['sha256'] for c in receipts):
+            raise ValueError('Current source/catalog changed during input preparation')
+        if len(specifications) != 11 or len(assets.rows) != 41:
+            raise ValueError('Incomplete public quality input preparation')
+        summary.update(inputs_verified=True, public_inputs=len(assets.rows), catalogs=receipts,
+                       source_sha256=before, bindings=list(assets.rows.values()))
+    except Exception as error:
+        summary['error'] = str(error)
+        raise
+    finally:
+        summary['seconds'] = round(time.monotonic() - start, 3)
+        write(output / 'public-quality-inputs.json', summary)
+    print('Public quality inputs verified: 41 exact stored/decoded bodies; actual audits remain required.', flush=True)
+    return summary
+
+
+def prepare(site, output, assets):
+    files, ids, community, crossant, custom, custom_rows, receipts = catalog_inputs(site)
 
     def machine(mid, kind, catalog, spec, container):
         if mid not in ids:
@@ -292,13 +398,9 @@ def prepare(site, output, assets):
         if not spec or spec.get('id', spec.get('machine_id')) != mid:
             raise ValueError('Catalog machine identity differs: ' + mid)
         chosen = {}
-        names = ['assembly_manifest.json', 'machine_profile.json', 'model.gltf' if kind == 'crossant' else 'model.glb']
-        if kind == 'crossant':
-            names += [f'geometry_{i:02}.bin' for i in range(7)] + ['belt_bindings.json']
+        names = machine_files(kind)
         for name in names:
-            pin = spec.get('files', {}).get(name)
-            if not pin or not PurePosixPath(pin.get('path', '')).name == ('model.glb.gz' if name == 'model.glb' and pin.get('path', '').endswith('.gz') else name):
-                raise ValueError('Missing/wrong logical public artifact: ' + mid + '/' + name)
+            pin = artifact_pin(spec, name)
             chosen[name] = assets.acquire(catalog, pin, spec.get('base_url', container.get('base_url')), spec.get('local_directory', container.get('local_directory')))
             owner = {'machine': mid, 'name': name}
             owners = chosen[name].setdefault('logical_owners', [])
@@ -406,7 +508,7 @@ def validate_report(kind, report, plan, bindings, machine=None):
             raise ValueError('Actual report refers to another public source input')
 
 
-def run(site, output, inputs=None):
+def run(site, output, inputs=None, cache=None):
     site, output = Path(site).resolve(), Path(output).resolve()
     if output.is_relative_to(site):
         raise ValueError('Detailed quality maps/reports must stay outside the served site')
@@ -417,7 +519,7 @@ def run(site, output, inputs=None):
     start = time.monotonic()
     try:
         before = source_snapshot()
-        assets = Assets(site, output, Path(inputs).resolve() if inputs else None, start + GATE_SECONDS)
+        assets = Assets(site, output, Path(inputs).resolve() if inputs else None, start + GATE_SECONDS, cache=cache)
         plan, bindings, receipts = prepare(site, output, assets)
         summary.update(source_sha256=before, catalogs=receipts, color_model_ids=[a['id'] for a in plan['assets']],
                        required_route_ids=[HALF, *ROUTES], inputs_sha256=assets.inputs_hash)
@@ -479,8 +581,9 @@ def main():
     parser.add_argument('--site', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--inputs', type=Path, help='Optional explicit public asset cache map')
+    parser.add_argument('--cache', type=Path, help='Optional persistent verified public-input cache outside the checkout/site')
     args = parser.parse_args()
-    run(args.site, args.output, args.inputs)
+    run(args.site, args.output, args.inputs, args.cache)
 
 
 if __name__ == '__main__':
