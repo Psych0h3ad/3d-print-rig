@@ -1,4 +1,4 @@
-import {assertSiboorIndexInput} from './trinity-alpha-siboor-r2.mjs?v=1cebeb65e75f67b88649';
+import {assertSiboorIndexInput} from './trinity-alpha-siboor-r2.mjs?v=e989a42808041c377298';
 import {contentSHA256} from './mount-validation.mjs';
 export function siboorMachine(href=location.href){
  const id=new URL(href).searchParams.get('machine')||'siboor_trident_350';

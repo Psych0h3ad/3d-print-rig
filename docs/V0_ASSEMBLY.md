@@ -217,3 +217,12 @@ The alternative-selection regression also moves every axis through minimum, maxi
 Native-solid review confirmed the overlapping foot/display alternatives and four r1 insert/carrier pairs by their pilot axes and contact geometry. It does not classify every source contact: 99 V0.2 and 90 r1 positive-contact candidates in the retained native inventory remain held, together with four invalid Boolean results and one unresolved motor/mount operation per model. These inventory counts do not describe simultaneous display contacts. The original support-bearing carriage/Motor Plate pair is not displayed together. Insert/pilot engagement is recorded separately from unintended body overlap. No insertion or folding path is certified by this static view.
 
 These automated checks concern displayed geometry and software state. Manual diagram review, native-solid contact classification, continuous assembly paths and physical build fit are separate scopes. Retaining an author's native pose does not certify every source contact or assembly path.
+
+The V0.2r1 page 111 alignment step follows the two diagrams in order: tighten
+the four M3x8 motor-to-frame screws first, then re-tighten or reinsert the two
+top M3x12 nut-holder screws loosened on page 110. Keep the bed at its lowest
+position during this procedure. The V0.2 page 106 procedure remains separate.
+Progress from the immediately preceding guide retains individual source-part
+checks and unchanged stages; only the r1 final alignment step needs a fresh
+check after this instruction correction. This does not certify modeled thread
+engagement, free travel or native-solid clearance.

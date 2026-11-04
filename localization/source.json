@@ -15146,8 +15146,8 @@
     },
     "v0.feet.manual.edb68c9afec35ea1": {
       "kind": "message",
-      "ja": "実機のベッドを最下部に保ち、リードスクリューをホルダーの中心へ合わせます。説明書どおり、同じ上側2本、続いてモーターとフレームの4本を締めます。この工程で新しいネジは追加しません。",
-      "en": "With the bed still fully down, center the leadscrew in the holder. Tighten the same two top holder screws, then the four motor-to-frame screws as shown. No new screws are introduced in this operation."
+      "ja": "ベッドを最下部に保ち、モーターを2本のZレール間のおおよそ中央へ合わせます。先にフレーム固定用M3x8を4本締め、その後、前工程で緩めたホルダー上側の同じM3x12を2本締め直すか、入れ直して固定します。新しいネジは追加しません。",
+      "en": "Keep the bed fully down. Position the motor approximately midway between the two Z rails and tighten the four M3x8 motor-to-frame screws first. Then re-tighten or reinsert the same two top M3x12 nut-holder screws loosened on the previous page. No new screws are introduced."
     },
     "v0.feet.manual.27d7c2c4d38ab37e": {
       "kind": "message",
