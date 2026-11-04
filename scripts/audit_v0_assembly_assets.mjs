@@ -9,6 +9,8 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 import {auditElectronicsOwnership,applyReviewedElectronicsMask,auditActualElectronicsDisplay} from './v0_electronics_reference_audit.mjs';
+import {auditPowerOwnership,applyReviewedPowerMask,auditActualPowerDisplay} from './v0_power_reference_audit.mjs';
+import {installPowerAuditTransport} from './v0_power_audit_transport.mjs';
 import {auditPartReview} from './assembly_part_review_audit.mjs';
 import {auditRailOwnership,applyReviewedRailMask,auditActualRailDisplay} from './v0_rail_reference_audit.mjs';
 import {auditV0M2Reference} from './v0_m2_reference_audit.mjs';
@@ -58,6 +60,7 @@ const {v0NativeDependencyHash}=await import(new URL('v0-native-installed-gate.mj
 const registryData=JSON.parse(await pin(site+'/V0_INSTALLATIONS.json'));
 for(const name of ['v0-app.js','v0-assembly.mjs','v0_adapter.mjs','v0-belts.mjs','v0-chain.mjs','v0-door.mjs','v0-tophat.mjs','appearance-role.mjs'])await pin(site+'/viewer/'+name);
 await pin(path.resolve(process.argv[1]));
+let powerTransport;
 const report={schema:'actual-v0-assembly-stages-v1',passed:false,workers:1,machines:[],source_sha256:{},
  scope:'Actual decoded stock GLBs, manifests and production adapters/controller. Forward/reverse/jump stages, rail, idler and mirrored XY rigid preparation, original late upper-frame screws and cam-lock removal/refit, drive/bed/feet operations and repeated original source references. Exact native transforms outside the named preparation displays and on exit, unchanged geometry/materials and visibility restoration. Manual diagrams, insertion paths and native-solid contact qualification remain separate.',
  insertion_animation_verified:false,physical_clearance_certified:false};
@@ -95,6 +98,9 @@ const bedViews={
  'leadnut':[true,bedLead], 'leadnut-install':[false,null],
 };
 try{
+ for(const name of ['./v0_power_reference_audit.mjs','./v0_power_audit_transport.mjs'])await pinClosure(new URL(name,import.meta.url));
+ await pin(fileURLToPath(new URL('../site/viewer/data/v0-power-references.source.json',import.meta.url)));
+ powerTransport=await installPowerAuditTransport({viewer,assemblySource:(await pin(site+'/viewer/v0-assembly.mjs')).toString('utf8'),pin,SourceTextModule:vm.SourceTextModule});
  if(args.machine)assert(Object.hasOwn(stages.machines,args.machine),'Unknown requested stock machine');
  for(const[id,spec]of Object.entries(stages.machines).filter(([id])=>!args.machine||args.machine===id)){
   const files=mapping?.machines[id]||{model:site+'/machines/'+id+'/model.glb.gz',manifest:site+'/machines/'+id+'/assembly_manifest.json',profile:site+'/machines/'+id+'/machine_profile.json'};
@@ -122,11 +128,11 @@ try{
   const companions=[...installed.roots.values()].flat().filter(r=>r.wrapper.visible).map(r=>({node:r.wrapper,part_keys:r.option.replace_keys}));
   for(const key of alternatives.excluded_keys)assert.equal(adapter.nodes.get(key).visible,false,'Overlapping alternative remains hidden');
   assert.equal(companions.length,1,'Exact support-omitted stock carriage required');
-  const headOwnership=auditHeadOwnership({id,spec,manifest}),railOwnership=auditRailOwnership({id,spec,manifest}),electronicsOwnership=auditElectronicsOwnership({id,spec,manifest});
+  const headOwnership=auditHeadOwnership({id,spec,manifest}),railOwnership=auditRailOwnership({id,spec,manifest}),electronicsOwnership=auditElectronicsOwnership({id,spec,manifest}),powerOwnership=auditPowerOwnership({id,spec,manifest,references:powerTransport.references});
   assert.deepEqual(spec.seat_display_dependencies?.map(s=>({part_key:s.part_key,carrier_key:s.carrier_key,preload_stage_id:s.preload_stage_id})).sort((a,b)=>a.part_key.localeCompare(b.part_key)),reviewedSeats(id),'Exact reviewed source frame-nut owners required');
   const shown=key=>displayed(adapter.nodes.get(key))||companions.some(c=>c.part_keys.includes(key)&&displayed(c.node));
   const original=state(scene),geometryBefore=geometryPins(scene),visibility=new Map([...adapter.nodes].map(([k,n])=>[k,n.visible]));
-  const controller=createV0AssemblyStages({nodes:adapter.nodes,manifest,machine:stages,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,manualPreparation:true});
+  const controller=createV0AssemblyStages({nodes:adapter.nodes,manifest,machine:stages,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,manualPreparation:true,powerReferences:powerTransport.references});
   const railGroups=(id==='voron_v02_120'?[[56,67,'y-rails'],[79,90,'y-rails'],[102,113,'z-rails'],[125,136,'z-rails'],[320,331,'x-rail']]:[[58,69,'y-rails'],[81,92,'y-rails'],[104,115,'z-rails'],[127,138,'z-rails'],[328,339,'x-rail']]).map(([holder,first,stage])=>({holder:(id==='voron_v02_120'?'v02_':'v02r1_')+String(holder).padStart(5,'0'),keys:[holder,...Array.from({length:10},(_,i)=>first+i)].map(n=>(id==='voron_v02_120'?'v02_':'v02r1_')+String(n).padStart(5,'0')),installed:spec.stages.findIndex(s=>s.id===stage)}));
   const preparationNodes=new Set();for(const g of railGroups)for(const k of g.keys)adapter.nodes.get(k).traverse(n=>preparationNodes.add(n));
   const originalByNode=new Map(original.map(r=>[r.node,r]));
@@ -209,6 +215,7 @@ try{
    const railView=applyReviewedRailMask({id,index,spec,keys,result:r});
    const headView=applyReviewedHeadMask({id,index,spec,keys,result:r});
    applyReviewedElectronicsMask({id,index,spec,keys,result:r});
+   applyReviewedPowerMask({id,index,spec,keys,result:r});
    for(const n of r1?[250,257,166,209]:[248,255,164,207]){
     const k=idlerKey(n),front=(r1?[250,257]:[248,255]).includes(n),owner=front?'top-front-fasteners':'top-rear-fasteners';
     assert.equal(workbench.owner(k).id,owner,'Original upper-frame M3x10 belongs to later receiving-member operation');
@@ -233,9 +240,11 @@ try{
   unchanged(scene,original,true);
   const headDisplay=await auditActualHeadDisplay({id,module:assemblyModule,adapter,manifest,spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,scene,installed,geometryPins,createAssemblyStageEmphasis,assemblySourceMaterial});
   unchanged(scene,original,true);
-  const railDisplay=auditActualRailDisplay({id,module:assemblyModule,adapter,manifest,spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,scene,installed,geometryPins,createAssemblyStageEmphasis,assemblySourceMaterial});
+  const railDisplay=auditActualRailDisplay({id,module:assemblyModule,adapter,manifest,spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,scene,installed,geometryPins,createAssemblyStageEmphasis,assemblySourceMaterial,powerReferences:powerTransport.references});
   unchanged(scene,original,true);
   const electronicsDisplay=await auditActualElectronicsDisplay({THREE,id,module:assemblyModule,adapter,manifest,spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,scene,createAssemblyStageEmphasis,assemblySourceMaterial,registry:registryData});
+  unchanged(scene,original,true);
+  const powerDisplay=await auditActualPowerDisplay({THREE,id,module:assemblyModule,adapter,manifest,spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,scene,geometryPins,createAssemblyStageEmphasis,assemblySourceMaterial,registry:registryData});
   unchanged(scene,original,true);
   // Source alternatives must not reappear when normal motion or a stock reset
   // recomputes visibility after leaving assembly mode.
@@ -253,13 +262,13 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,railOwnership,railDisplay,electronicsOwnership,electronicsDisplay,restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,railOwnership,railDisplay,electronicsOwnership,electronicsDisplay,powerOwnership,powerDisplay,powerTransport:powerTransport.summary(),restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }
  for(const[file,pinValue]of before){assert.equal(sha(await fs.readFile(file)),pinValue,'Input changed during actual stage audit');report.source_sha256[path.relative(site,file).replaceAll('\\','/')]=pinValue;}
  report.passed=true;
-}catch(e){report.failures=[e.stack||String(e)]}
+}catch(e){report.failures=[e.stack||String(e)]}finally{powerTransport?.restore();}
 await fs.mkdir(path.dirname(path.resolve(args.report)),{recursive:true});await fs.writeFile(args.report,JSON.stringify(report)+'\n');
 console.log(JSON.stringify({passed:report.passed,machines:report.machines.map(m=>({id:m.machine_id,parts:m.parts,stages:m.stages,poses:m.poses.length})),failures:report.failures}));
 if(!report.passed)process.exitCode=1;

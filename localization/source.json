@@ -16023,6 +16023,161 @@
       "kind": "message",
       "ja": "先入れした元のM3ナット6個を使い、追加しません。残る2つの穴は、マニュアルにある別構成のボーデンエクストルーダー用です。",
       "en": "Reuse the original six preloaded M3 nuts; do not add a second set. The two unused holes are for the optional Bowden extruder shown in the manual."
+    },
+    "v0.power.manual.052b58227de62f3d": {
+      "kind": "message",
+      "ja": "電源の型番と入力電圧の設定を確認",
+      "en": "Check the supply model and input-voltage selector"
+    },
+    "v0.power.manual.7dcaf1831cae1264": {
+      "kind": "message",
+      "ja": "公式図は、備わっている場合の入力電圧切替器の位置を示しています。実際の電源型番とメーカー資料を確認してください。このモデルに電気的な切替状態はありません。",
+      "en": "The official diagram locates an input-voltage selector where fitted. Check the exact supply and manufacturer documentation; this source model has no electrical selector state."
+    },
+    "v0.power.manual.b08cc64ce2fc39fb": {
+      "kind": "message",
+      "ja": "電源の固定位置と方法を確認",
+      "en": "Check the power-supply position and mounting method"
+    },
+    "v0.power.manual.befa8d0c35e67366": {
+      "kind": "message",
+      "ja": "公式ガイドは筐体とフレームの隙間を1〜2 mmとし、粘着固定、または穴加工とM3×6ネジ2本による固定を示しています。元CADの配置と、未収録の粘着材・代替ネジによる固定は適合確認済みではありません。",
+      "en": "The guide specifies a 1–2 mm body-to-frame gap and shows adhesive mounting or an alternative with two M3x6 screws and drilled holes. This original CAD position and its unmodeled adhesive/alternative fasteners are not a qualified mounting."
+    },
+    "v0.power.manual.33966357715a8f8b": {
+      "kind": "message",
+      "ja": "配線前に電源を切り離す",
+      "en": "Disconnect power before wiring work"
+    },
+    "v0.power.manual.1943c2b5ea0e5740": {
+      "kind": "message",
+      "ja": "配線前に公式手順の電源切離しを確認してください。このビューアーでは実機に通電できる状態かどうかを判定しません。",
+      "en": "Follow the official power-off checks before wiring. This viewer does not determine whether the real machine can be energized."
+    },
+    "v0.power.manual.b62c41155465dbfe": {
+      "kind": "message",
+      "ja": "AC・保護接地・DCを区別して確認",
+      "en": "Distinguish AC, protective earth and DC"
+    },
+    "v0.power.manual.1427d1a2d4e4a349": {
+      "kind": "message",
+      "ja": "L/N/PEとV+/V-を公式図で確認してください。保護接地と制御基板のGNDは別の基準です。線の色だけで接続先を判断しないでください。",
+      "en": "Check the official diagram for L/N/PE and V+/V-. Protective earth and controller GND are different references; do not identify a connection solely by wire color."
+    },
+    "v0.power.manual.b8b736f25bc36c29": {
+      "kind": "message",
+      "ja": "インレットの配線図を確認",
+      "en": "Check the mains-inlet wiring diagram"
+    },
+    "v0.power.manual.6f478bb6cb9231b1": {
+      "kind": "message",
+      "ja": "公式ページは取付前のインレット単体の配線を示しています。商用電源の作業は地域の規則に沿った有資格者が行ってください。元のインレットは購入品一式のまま表示し、配線長・端子・経路・電気的検査の完了は表しません。",
+      "en": "The official page shows the separate inlet wiring before installation. Mains work requires personnel qualified under local rules. The source inlet remains a complete purchased unit; wire lengths, terminals, routing and electrical checks are not represented as completed."
+    },
+    "v0.power.manual.8174227be7c9a813": {
+      "kind": "message",
+      "ja": "インレットを足部の取付位置に合わせる",
+      "en": "Locate the complete inlet in its printed foot"
+    },
+    "v0.power.manual.643c700409a088ac": {
+      "kind": "message",
+      "ja": "インレット一式と、その専用の印刷された足部を公式図で照合してください。元データの配置参照であり、はめ込み経路・噛合・保持は未確認です。",
+      "en": "Compare the complete inlet and its own printed receiving foot with the official diagram. This is source placement reference; a snap-in path, engagement and retention have not been established."
+    },
+    "v0.power.manual.3b7981f60c35a2d2": {
+      "kind": "message",
+      "ja": "AC側の接続と配線の保持を確認",
+      "en": "Check the mains connections and wire retention"
+    },
+    "v0.power.manual.e94e97a85bd97152": {
+      "kind": "message",
+      "ja": "公式のインレットから電源への配線図に従い、図のように配線を保持してください。端子カバーは後の工程です。このモデルでは外部ハーネス・端子・保護接地の導通を認定していません。",
+      "en": "Use the exact official inlet-to-supply diagram and retain the wires as shown. A terminal cover follows later. This model contains no qualified external harness, terminals or protective-earth continuity test."
+    },
+    "v0.power.manual.9bd958aa8b740f93": {
+      "kind": "message",
+      "ja": "DC電源と基板冷却ファンの接続を確認",
+      "en": "Check DC power and controller-fan connections"
+    },
+    "v0.power.manual.b6ffb9193f51048d": {
+      "kind": "message",
+      "ja": "この版の公式図で電源・基板・冷却ファンを確認してください。V0.2とr1では印刷された線の断面積の表記が異なります。mm²/AWGの表記を、電気的に同等または検証済みの線材選定として扱わないでください。",
+      "en": "Use this edition of the official diagram for supply, board and controller fan. The V0.2 and r1 printed cross-section entries differ; do not silently treat the mm²/AWG text as an electrical equivalence or validated cable selection."
+    },
+    "v0.power.manual.eaf1dab0acc72e36": {
+      "kind": "message",
+      "ja": "ヒーター・サーミスタ・ファンを確認",
+      "en": "Identify the heaters, thermistors and fans"
+    },
+    "v0.power.manual.509604a43ea13e5a": {
+      "kind": "message",
+      "ja": "公式図は冷却ファンを24 Vとしています。色だけに頼らず実機部品の定格と型番を確認してください。元モデルのヘッドファンは識別できますが、外部配線とヒーター・サーミスタ端子との実体対応は未確認です。",
+      "en": "The official diagram assumes 24V cooling fans. Verify actual device ratings and identities rather than using colors alone. The source head fans are identifiable, while physical external harness and heater/thermistor terminal correspondence remain open."
+    },
+    "v0.power.manual.47726ccf2df2cad2": {
+      "kind": "message",
+      "ja": "A・B・Z・Eモーターの位置を照合",
+      "en": "Compare the A, B, Z and E motor positions"
+    },
+    "v0.power.manual.7fa38999cbba3ee6": {
+      "kind": "message",
+      "ja": "公式図のBはX、AはYです。元のドライブ一式とZ/Eモーターに対応させて確認してください。線の色からモーターの相やピンを推定しないでください。",
+      "en": "The official drawing identifies B as X and A as Y. Compare these with their exact source drive assemblies and the Z/E motors. Do not infer electrical phase or pin assignment from motor wire colors."
+    },
+    "v0.power.manual.04884741352018a0": {
+      "kind": "message",
+      "ja": "SKR Picoの配線図と照合",
+      "en": "Use the diagram for the actual SKR Pico board"
+    },
+    "v0.power.manual.b70f00d756ddabeb": {
+      "kind": "message",
+      "ja": "元のSKR Picoは一式のまま表示します。X/YのDIAGと機器の接続を公式Pico配線図で確認してください。E3 V3は別の基板です。個々のCADコネクターとピンの対応、配線は未確認です。",
+      "en": "Keep the source SKR Pico complete. Compare the X/Y DIAG and device connections with the official Pico diagram; the E3 V3 diagram is a different board. No individual CAD connector-to-pin mapping or wiring is yet qualified."
+    },
+    "v0.power.manual.619c1bb190199f89": {
+      "kind": "message",
+      "ja": "Piの電源と通信方式を確認",
+      "en": "Check Pi power and the selected communication option"
+    },
+    "v0.power.manual.8e1fe9cdb0052ef2": {
+      "kind": "message",
+      "ja": "ガイドはUSB/UARTを区別し、E3 V3の電源方式を別案として示しています。このPico構成へ別基板や汎用コンバーターを代用しないでください。Piの電源・ケーブル・ファームウェアは実際の選択機器に合わせて確認してください。",
+      "en": "The guide distinguishes USB/UART and shows a separate E3 V3 power alternative. Do not substitute that board or a generic converter into this Pico source assembly. Pi power, cable and firmware configuration require the exact selected hardware."
+    },
+    "v0.power.manual.d78780214200acf1": {
+      "kind": "message",
+      "ja": "配線確認後に端子カバーを合わせる",
+      "en": "Position the supply terminal guard after wiring checks"
+    },
+    "v0.power.manual.d242e32555c8fcdb": {
+      "kind": "message",
+      "ja": "公式のカバーは端子への偶発的な接触を減らすためのものです。元データの表示位置は、電気的安全・保持・完成機全体のクリアランスの認定ではありません。",
+      "en": "The official guard reduces accidental terminal contact. Its displayed source position does not certify electrical safety, retention or whole-machine clearance."
+    },
+    "v0.power.manual.cc8ee299e6e65ce4": {
+      "kind": "message",
+      "ja": "元のSKR Picoは一式のまま表示します。X/YのDIAGと機器の接続を公式Pico配線図で確認してください。E3 V3は別の基板です。個々のCADコネクターとピンの対応、配線は未確認です。 r1のこの図にはフィラメントセンサーの表記が追加されています。旧版へこの接続を自動的に引き継がないでください。",
+      "en": "Keep the source SKR Pico complete. Compare the X/Y DIAG and device connections with the official Pico diagram; the E3 V3 diagram is a different board. No individual CAD connector-to-pin mapping or wiring is yet qualified. This r1 diagram additionally labels a filament sensor; the earlier edition must not inherit that connection silently."
+    },
+    "v0.power.manual.cc72b1296f95ba5b": {
+      "kind": "message",
+      "ja": "取付前の電源部品を表示中",
+      "en": "Prepared power component reference"
+    },
+    "v0.power.manual.ba7e1fa8f99184ed": {
+      "kind": "message",
+      "ja": "電源・配線の参照表示",
+      "en": "Power and wiring reference"
+    },
+    "v0.power.manual.0c20783d6795830b": {
+      "kind": "message",
+      "ja": "部品は一式のまま確認し、取付工程まで保管します。",
+      "en": "Keep the complete source component aside until its installation step."
+    },
+    "v0.power.manual.632d5bb0c7cf90fd": {
+      "kind": "message",
+      "ja": "元データの配置を保持しています。配線と固定の適合は未確認です。",
+      "en": "Original source positions are retained; wiring and mounting remain unqualified."
     }
   }
 }

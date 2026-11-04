@@ -20,13 +20,14 @@ import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=f649b1f77c684d7c6bc5';
+import {setupPublicInfo} from './public-info.js?v=6b031d8dcbc50a97e805';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=f85161eef887607aed63';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=d0510f0bfd159eca1f39';
+import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=6c5c97c5ad1229acf7ea';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=b2c8c4f05fdca2b6e2a8';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate} from './i18n.mjs?v=a1d103965b88c3dc3cd3';
+import {formatMessage,translate as sourceTranslate} from './i18n.mjs?v=bd46dc6874c80e4c196b';
+const translate=(text,language=document.documentElement.lang||'en')=>sourceTranslate(text,language);
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -199,7 +200,7 @@ function setupAssemblyControls(receipts){
   $('#assemblyManual').href=manual.url+'#page='+stage.page_start;
   $('#assemblyManual').textContent=`公式マニュアル ${stage.page_start}–${stage.page_end} ページ`;
   assemblyWorkbench?.update({...state,visible_keys:assemblyView.getVisibleKeys(),manual_text:$('#assemblyManual').textContent});
-  status.textContent=state.manual_fastener_reference?formatMessage('assembly.manual_fastener_reference',[],document.documentElement.lang||'en'):state.presentation_label?translate(state.presentation_label,document.documentElement.lang||'en'):state.preparation?'ナット保持具の準備状態を並べて表示中':state.subassembly?'取付前のドライブ組立を単独で表示中':'元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
+  status.textContent=['Prepared power component reference','Power and wiring reference'].includes(state.presentation_label)?translate(state.presentation_label,document.documentElement.lang||'en'):state.manual_fastener_reference?formatMessage('assembly.manual_fastener_reference',[],document.documentElement.lang||'en'):state.presentation_label?translate(state.presentation_label,document.documentElement.lang||'en'):state.preparation?'ナット保持具の準備状態を並べて表示中':state.subassembly?'取付前のドライブ組立を単独で表示中':'元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
   // The inspection layout and installed rails occupy different spaces. Keep
   // them in view when crossing that boundary, without reframing other stages.
   if(previous&&previous.presentation_id!==state.presentation_id)focusAdded();
@@ -216,8 +217,8 @@ function setupAssemblyControls(receipts){
   if(assemblyLocked||assemblyView)return;assemblyLocked=true;
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
-   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=ec0981b7f877eeb77d81',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
-   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=f173da458af796493095');
+   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=2b8f0d90936c85014900',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
+   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=44ba6be7263b3f7cba85');
    program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();

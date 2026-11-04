@@ -12729,6 +12729,130 @@
     "v0.electronics.manual.3bb1160d32fb5e68": {
       "source_revision": "d831cf654091b1cabca7",
       "text": "미리 넣은 기존 M3 너트 6개를 다시 사용하며 추가하지 않습니다. 남는 구멍 2개는 매뉴얼의 선택 사양인 보우덴 익스트루더용입니다."
+    },
+    "v0.power.manual.052b58227de62f3d": {
+      "source_revision": "fd160344ef25778c6d6b",
+      "text": "전원 공급기 모델과 입력 전압 선택기 확인"
+    },
+    "v0.power.manual.7dcaf1831cae1264": {
+      "source_revision": "4e799c32bfcbcb75ce4c",
+      "text": "공식 도면은 입력 전압 선택기가 있는 경우 그 위치를 보여 줍니다. 정확한 전원 공급기와 제조사 자료를 확인하세요. 이 모델에는 선택기의 전기적 상태가 없습니다."
+    },
+    "v0.power.manual.b08cc64ce2fc39fb": {
+      "source_revision": "05cc599b7de605933522",
+      "text": "전원 공급기 위치와 고정 방법 확인"
+    },
+    "v0.power.manual.befa8d0c35e67366": {
+      "source_revision": "7f4534eabff235b05047",
+      "text": "공식 가이드는 본체와 프레임 사이 간격을 1–2 mm로 지정하고, 접착 고정 또는 구멍 가공 후 M3x6 나사 2개를 사용하는 방식을 보여 줍니다. 원본 CAD 위치와 모델에 없는 접착재·대체 나사의 고정은 검증되지 않았습니다."
+    },
+    "v0.power.manual.33966357715a8f8b": {
+      "source_revision": "15b53f7283401665c4e2",
+      "text": "배선 전에 전원 분리"
+    },
+    "v0.power.manual.1943c2b5ea0e5740": {
+      "source_revision": "5a892f5eceb370959465",
+      "text": "배선 전에 공식 전원 분리 절차를 확인하세요. 이 뷰어는 실제 장비에 전원을 넣어도 되는지 판정하지 않습니다."
+    },
+    "v0.power.manual.b62c41155465dbfe": {
+      "source_revision": "4da1848b2f958d769e83",
+      "text": "AC·보호 접지·DC 구분"
+    },
+    "v0.power.manual.1427d1a2d4e4a349": {
+      "source_revision": "ef0113d0c9588d2cc2c0",
+      "text": "공식 도면에서 L/N/PE와 V+/V-를 확인하세요. 보호 접지와 제어 보드 GND는 서로 다릅니다. 전선 색만으로 연결을 판단하지 마세요."
+    },
+    "v0.power.manual.b8b736f25bc36c29": {
+      "source_revision": "7e2fba3ffeab07e455ca",
+      "text": "전원 인렛 배선도 확인"
+    },
+    "v0.power.manual.6f478bb6cb9231b1": {
+      "source_revision": "044564c6f5a9ea1bd98e",
+      "text": "공식 페이지는 장착 전 분리된 인렛의 배선을 보여 줍니다. 상용 전원 작업에는 현지 규정에 따른 자격이 필요합니다. 원본 인렛은 구매품 전체로 유지되며, 배선 길이·단자·경로·전기 검사가 완료된 것으로 표시하지 않습니다."
+    },
+    "v0.power.manual.8174227be7c9a813": {
+      "source_revision": "cfca5d9a19830cd924c6",
+      "text": "완제품 인렛을 출력 발의 장착 위치에 맞추기"
+    },
+    "v0.power.manual.643c700409a088ac": {
+      "source_revision": "085a40bfae5617d72e7b",
+      "text": "완제품 인렛과 전용 출력 발을 공식 도면과 비교하세요. 원본 배치 참조이며, 끼움 경로·맞물림·유지는 확인되지 않았습니다."
+    },
+    "v0.power.manual.3b7981f60c35a2d2": {
+      "source_revision": "9bfd839e5c540ef62196",
+      "text": "AC 연결과 배선 고정 확인"
+    },
+    "v0.power.manual.e94e97a85bd97152": {
+      "source_revision": "25cd74b4b161a31e0f34",
+      "text": "정확한 공식 인렛-전원 공급기 배선도를 사용하고 도면대로 전선을 고정하세요. 단자 덮개는 이후 단계입니다. 이 모델은 외부 하니스·단자·보호 접지 도통 검사를 검증하지 않습니다."
+    },
+    "v0.power.manual.9bd958aa8b740f93": {
+      "source_revision": "bf2a9359ac6a2296d538",
+      "text": "DC 전원과 제어 보드 팬 연결 확인"
+    },
+    "v0.power.manual.b6ffb9193f51048d": {
+      "source_revision": "21b10c8081608aa9f8ec",
+      "text": "전원 공급기·보드·팬은 해당 판의 공식 도면으로 확인하세요. V0.2와 r1의 인쇄된 단면적 표기는 다릅니다. mm²/AWG를 전기적 동등성이나 검증된 전선 선택으로 취급하지 마세요."
+    },
+    "v0.power.manual.eaf1dab0acc72e36": {
+      "source_revision": "fb3a55ffff846189d0aa",
+      "text": "툴헤드 연결 확인"
+    },
+    "v0.power.manual.509604a43ea13e5a": {
+      "source_revision": "5fc498b465e4831d23d1",
+      "text": "공식 도면은 24 V 냉각 팬을 전제로 합니다. 색만 보지 말고 실제 부품의 정격과 식별을 확인하세요. 원본 헤드 팬은 식별되지만, 외부 하니스 및 히터·서미스터 단자의 물리적 대응은 미확인입니다."
+    },
+    "v0.power.manual.47726ccf2df2cad2": {
+      "source_revision": "f69393712df629f27c7b",
+      "text": "A·B·Z·E 모터 위치 비교"
+    },
+    "v0.power.manual.7fa38999cbba3ee6": {
+      "source_revision": "7d6e06c790552dd2cf49",
+      "text": "공식 도면에서 B는 X, A는 Y입니다. 정확한 원본 드라이브와 Z/E 모터에 대응시켜 확인하세요. 전선 색으로 모터 상이나 핀 배치를 추정하지 마세요."
+    },
+    "v0.power.manual.04884741352018a0": {
+      "source_revision": "9dbce1d388ab034bdd90",
+      "text": "SKR Pico 배선도 확인"
+    },
+    "v0.power.manual.b70f00d756ddabeb": {
+      "source_revision": "5dc15c9d5ea10efb14fc",
+      "text": "원본 SKR Pico를 통째로 유지합니다. 공식 Pico 도면에서 X/Y DIAG와 장치 연결을 비교하세요. E3 V3는 다른 보드입니다. 개별 CAD 커넥터와 핀 대응 및 배선은 아직 검증되지 않았습니다."
+    },
+    "v0.power.manual.619c1bb190199f89": {
+      "source_revision": "2ac007836ffa60fbf24d",
+      "text": "Raspberry Pi 연결 확인"
+    },
+    "v0.power.manual.8e1fe9cdb0052ef2": {
+      "source_revision": "1615b11ccfa31d62b7d5",
+      "text": "가이드는 USB/UART를 구분하고 E3 V3 전원 방식을 별도 대안으로 보여 줍니다. 이 Pico 구성에 다른 보드나 범용 변환기를 대입하지 마세요. Pi 전원·케이블·펌웨어는 정확히 선택한 장치에 맞춰야 합니다."
+    },
+    "v0.power.manual.d78780214200acf1": {
+      "source_revision": "ce8b3e7ea76ca72f25f5",
+      "text": "단자 보호 덮개 위치 확인"
+    },
+    "v0.power.manual.d242e32555c8fcdb": {
+      "source_revision": "e5ba3e3f08f38bdde74f",
+      "text": "공식 덮개는 단자의 우발적 접촉을 줄입니다. 원본 표시 위치는 전기 안전·유지·완성 장비 전체 간격을 보증하지 않습니다."
+    },
+    "v0.power.manual.cc8ee299e6e65ce4": {
+      "source_revision": "307f1cfb995eb63415ec",
+      "text": "원본 SKR Pico를 통째로 유지합니다. 공식 Pico 도면에서 X/Y DIAG와 장치 연결을 비교하세요. E3 V3는 다른 보드입니다. 개별 CAD 커넥터와 핀 대응 및 배선은 아직 검증되지 않았습니다. 이 r1 도면에는 필라멘트 센서 표기가 추가되어 있습니다. 이전 판에 이 연결을 자동으로 적용하지 마세요."
+    },
+    "v0.power.manual.cc72b1296f95ba5b": {
+      "source_revision": "029d3a94e2669e97184e",
+      "text": "장착 전 전원 부품 참조"
+    },
+    "v0.power.manual.ba7e1fa8f99184ed": {
+      "source_revision": "01adc0a21f49ebe7bad5",
+      "text": "전원·배선 참조"
+    },
+    "v0.power.manual.0c20783d6795830b": {
+      "source_revision": "bcc3d74fbc2371d54df4",
+      "text": "부품 전체를 확인하고 장착 단계까지 보관합니다."
+    },
+    "v0.power.manual.632d5bb0c7cf90fd": {
+      "source_revision": "381d95a8b2b4fca20d4e",
+      "text": "원본 배치를 유지합니다. 배선과 고정의 적합성은 미확인입니다."
     }
   }
 }

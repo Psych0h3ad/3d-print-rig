@@ -12729,6 +12729,130 @@
     "v0.electronics.manual.3bb1160d32fb5e68": {
       "source_revision": "d831cf654091b1cabca7",
       "text": "Reutilice las seis tuercas M3 previamente colocadas; no añada otro juego. Los dos orificios sin utilizar son para el extrusor Bowden opcional que muestra el manual."
+    },
+    "v0.power.manual.052b58227de62f3d": {
+      "source_revision": "fd160344ef25778c6d6b",
+      "text": "Comprobar el modelo de fuente y el selector de tensión de entrada"
+    },
+    "v0.power.manual.7dcaf1831cae1264": {
+      "source_revision": "4e799c32bfcbcb75ce4c",
+      "text": "El dibujo oficial sitúa el selector de tensión, si existe. Compruebe el modelo exacto y la documentación del fabricante; este modelo no contiene un estado eléctrico del selector."
+    },
+    "v0.power.manual.b08cc64ce2fc39fb": {
+      "source_revision": "05cc599b7de605933522",
+      "text": "Comprobar la posición y fijación de la fuente"
+    },
+    "v0.power.manual.befa8d0c35e67366": {
+      "source_revision": "7f4534eabff235b05047",
+      "text": "La guía indica una separación de 1–2 mm entre la fuente y el bastidor, con adhesivo o dos tornillos M3x6 y orificios taladrados. La posición CAD original y el adhesivo o los tornillos alternativos no modelados no tienen una fijación validada."
+    },
+    "v0.power.manual.33966357715a8f8b": {
+      "source_revision": "15b53f7283401665c4e2",
+      "text": "Desconectar la alimentación antes del cableado"
+    },
+    "v0.power.manual.1943c2b5ea0e5740": {
+      "source_revision": "5a892f5eceb370959465",
+      "text": "Siga las comprobaciones oficiales de desconexión antes del cableado. El visor no determina si la máquina real puede recibir alimentación."
+    },
+    "v0.power.manual.b62c41155465dbfe": {
+      "source_revision": "4da1848b2f958d769e83",
+      "text": "Distinguir CA, tierra de protección y CC"
+    },
+    "v0.power.manual.1427d1a2d4e4a349": {
+      "source_revision": "ef0113d0c9588d2cc2c0",
+      "text": "Consulte L/N/PE y V+/V- en el esquema oficial. La tierra de protección y GND de la controladora son referencias distintas; no identifique una conexión solo por el color del cable."
+    },
+    "v0.power.manual.b8b736f25bc36c29": {
+      "source_revision": "7e2fba3ffeab07e455ca",
+      "text": "Consultar el esquema del conector de red"
+    },
+    "v0.power.manual.6f478bb6cb9231b1": {
+      "source_revision": "044564c6f5a9ea1bd98e",
+      "text": "La página oficial muestra el cableado del conector separado antes de montarlo. El trabajo con tensión de red requiere personal cualificado según la normativa local. El conector permanece como unidad comprada completa; no se dan por completados longitudes, terminales, rutas ni ensayos eléctricos."
+    },
+    "v0.power.manual.8174227be7c9a813": {
+      "source_revision": "cfca5d9a19830cd924c6",
+      "text": "Situar el conector completo en su pie impreso"
+    },
+    "v0.power.manual.643c700409a088ac": {
+      "source_revision": "085a40bfae5617d72e7b",
+      "text": "Compare el conector completo y su pie impreso específico con el dibujo oficial. Solo se muestra la posición de origen; no se han establecido la trayectoria de encaje, el acoplamiento ni la retención."
+    },
+    "v0.power.manual.3b7981f60c35a2d2": {
+      "source_revision": "9bfd839e5c540ef62196",
+      "text": "Comprobar las conexiones de red y la sujeción de cables"
+    },
+    "v0.power.manual.e94e97a85bd97152": {
+      "source_revision": "25cd74b4b161a31e0f34",
+      "text": "Siga el esquema oficial exacto entre conector y fuente y sujete los cables como se indica. La cubierta de terminales se coloca después. Este modelo no valida el mazo externo, los terminales ni la continuidad de tierra de protección."
+    },
+    "v0.power.manual.9bd958aa8b740f93": {
+      "source_revision": "bf2a9359ac6a2296d538",
+      "text": "Comprobar la alimentación CC y el ventilador de la controladora"
+    },
+    "v0.power.manual.b6ffb9193f51048d": {
+      "source_revision": "21b10c8081608aa9f8ec",
+      "text": "Use el esquema oficial de esta edición para fuente, placa y ventilador. Las secciones impresas de V0.2 y r1 difieren; no trate el texto mm²/AWG como equivalencia eléctrica ni como selección de cable validada."
+    },
+    "v0.power.manual.eaf1dab0acc72e36": {
+      "source_revision": "fb3a55ffff846189d0aa",
+      "text": "Comprobar las conexiones del cabezal"
+    },
+    "v0.power.manual.509604a43ea13e5a": {
+      "source_revision": "5fc498b465e4831d23d1",
+      "text": "El esquema oficial supone ventiladores de 24 V. Compruebe las identidades y tensiones reales, no solo los colores. Los ventiladores del cabezal son identificables, pero sigue pendiente la correspondencia física del mazo y de los terminales del calentador y termistor."
+    },
+    "v0.power.manual.47726ccf2df2cad2": {
+      "source_revision": "f69393712df629f27c7b",
+      "text": "Comparar las posiciones de los motores A, B, Z y E"
+    },
+    "v0.power.manual.7fa38999cbba3ee6": {
+      "source_revision": "7d6e06c790552dd2cf49",
+      "text": "El dibujo oficial identifica B como X y A como Y. Compárelos con sus conjuntos de transmisión exactos y los motores Z/E. No deduzca fases ni pines por los colores de los cables."
+    },
+    "v0.power.manual.04884741352018a0": {
+      "source_revision": "9dbce1d388ab034bdd90",
+      "text": "Consultar el esquema de la SKR Pico"
+    },
+    "v0.power.manual.b70f00d756ddabeb": {
+      "source_revision": "5dc15c9d5ea10efb14fc",
+      "text": "La SKR Pico de origen se conserva completa. Compare DIAG X/Y y las conexiones de dispositivos con su esquema oficial; E3 V3 es otra placa. La correspondencia de conectores CAD con pines y el cableado siguen sin validar."
+    },
+    "v0.power.manual.619c1bb190199f89": {
+      "source_revision": "2ac007836ffa60fbf24d",
+      "text": "Comprobar las conexiones de la Raspberry Pi"
+    },
+    "v0.power.manual.8e1fe9cdb0052ef2": {
+      "source_revision": "1615b11ccfa31d62b7d5",
+      "text": "La guía distingue USB/UART y presenta otra opción de alimentación para E3 V3. No sustituya la placa ni añada un convertidor genérico a este conjunto Pico. La alimentación, cable y firmware de la Pi dependen del hardware exacto elegido."
+    },
+    "v0.power.manual.d78780214200acf1": {
+      "source_revision": "ce8b3e7ea76ca72f25f5",
+      "text": "Colocar la protección de terminales"
+    },
+    "v0.power.manual.d242e32555c8fcdb": {
+      "source_revision": "e5ba3e3f08f38bdde74f",
+      "text": "La cubierta oficial reduce el contacto accidental con los terminales. Su posición de origen no certifica seguridad eléctrica, retención ni holguras de la máquina completa."
+    },
+    "v0.power.manual.cc8ee299e6e65ce4": {
+      "source_revision": "307f1cfb995eb63415ec",
+      "text": "La SKR Pico de origen se conserva completa. Compare DIAG X/Y y las conexiones de dispositivos con su esquema oficial; E3 V3 es otra placa. La correspondencia de conectores CAD con pines y el cableado siguen sin validar. Este esquema r1 añade un sensor de filamento; no transfiera esa conexión automáticamente a la edición anterior."
+    },
+    "v0.power.manual.cc72b1296f95ba5b": {
+      "source_revision": "029d3a94e2669e97184e",
+      "text": "Referencia de componente de alimentación preparado"
+    },
+    "v0.power.manual.ba7e1fa8f99184ed": {
+      "source_revision": "01adc0a21f49ebe7bad5",
+      "text": "Referencia de alimentación y cableado"
+    },
+    "v0.power.manual.0c20783d6795830b": {
+      "source_revision": "bcc3d74fbc2371d54df4",
+      "text": "Conserve el componente completo hasta su paso de montaje."
+    },
+    "v0.power.manual.632d5bb0c7cf90fd": {
+      "source_revision": "381d95a8b2b4fca20d4e",
+      "text": "Se mantienen las posiciones originales; cableado y fijación siguen sin validar."
     }
   }
 }
