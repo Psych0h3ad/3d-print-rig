@@ -276,7 +276,7 @@
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
       "bytes": 1354124,
-      "sha256": "6bddc3186902c7b7c6a1b497f97f1bcaa4afb510491df0069fcd61379508a76c"
+      "sha256": "daf282d33eabb8ff544262620e043c6b229550ae25652024c3d8a4a57eff04b5"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -3281,7 +3281,7 @@
     {
       "path": "site/APPROVED_DELIVERY.json",
       "bytes": 643688,
-      "sha256": "9f45f757daacb4ae49ae2fcddd9f9f8808f83acbdda5979f928b3240508cc7fd"
+      "sha256": "9296a1ba39bb686aa98859aae45ff827f77405506f05ba253b9788255b191d19"
     },
     {
       "path": "site/ASSET_BUNDLE.json",
@@ -3305,8 +3305,8 @@
     },
     {
       "path": "site/COMPONENT_ADDITIONS.json",
-      "bytes": 183149,
-      "sha256": "8d66fbc879378c4a135e52f3ca709cd190f9e4b565098eb2779b200fe3de3d9e"
+      "bytes": 127882,
+      "sha256": "a718aee2d22ef4b197e55b895e4883a369bc3f3307b50ef580fc7b7b36b66553"
     },
     {
       "path": "site/COMPONENT_LIBRARY.json",
@@ -3365,8 +3365,8 @@
     },
     {
       "path": "site/HEAD_ADDITIONS.json",
-      "bytes": 439202,
-      "sha256": "e557448086e27e0a0453740ca8b092537b4b19340235d374d3820458a8a8b8eb"
+      "bytes": 289449,
+      "sha256": "afc0507c765105bac61cd5bec422da011ab74786317483b1f10cc9d47cc08d97"
     },
     {
       "path": "site/HEAD_CATALOG_DELTA_ACE_HF_20261020.json",
