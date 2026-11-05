@@ -83,6 +83,8 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile,failHing
  const namespaces={
   'workspace-entry.mjs':{ensureWorkspaceEntry:()=>{}},
   'i18n.mjs':{translate,formatMessage},
+  'v0-current-manual-copy.mjs':{translateV0ManualCopy:(text,language,fallback)=>fallback(text,language)},
+  'v0-manual-data.mjs':{loadV0ManualData:async()=>{throw Error('State-only fixture must not open manual data')},checkedV0ManualBundle:()=>{throw Error('State-only fixture has no received manual bundle')}},
   'assembly-workbench-model.mjs':assemblyWorkbenchModel,
   'assembly-workbench.mjs':{createAssemblyWorkbench},
   'assembly-stage-emphasis.mjs':assemblyStageEmphasis,

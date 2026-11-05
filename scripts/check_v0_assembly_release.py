@@ -1,3 +1,4 @@
+from prepare_v0_manual_delivery import read_built_v0_stages
 """Audit each complete V0 in a fresh serial process, retaining every row."""
 from pathlib import Path
 import argparse,hashlib,json,subprocess,tempfile
@@ -6,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
     p=argparse.ArgumentParser();p.add_argument('--site',type=Path,required=True);p.add_argument('--report',type=Path,required=True);p.add_argument('--map',type=Path);a=p.parse_args()
     a.site=a.site.resolve();a.report=a.report.resolve();a.map=a.map.resolve()if a.map else None
-    stages=a.site/'V0_ASSEMBLY_STAGES.json';source=stages.read_bytes();machines=json.loads(source)['machines']
+    source,stage_delivery=read_built_v0_stages(a.site);machines=json.loads(source)['machines']
     if set(machines)!={'voron_v02_120','voron_v02r1_120'}:raise ValueError('Both registered V0 assemblies required')
     rows=[]
     with tempfile.TemporaryDirectory(prefix='v0-manual-release-')as folder:
@@ -32,6 +33,11 @@ def main():
             if transport.get('requests')!=1 or transport.get('encodedBytes')!=31361 or transport.get('decodedBytes')!=615743 or transport.get('encodedSHA256')!='2367c37c716689d6fe4107f83feb7a8023dcd5d9ba987f05df0b0331586329b7' or transport.get('decodedSHA256')!='f4b455722cd1878a7de8d6566cd4ab2bd8f5c3f6b5fb0de37625cd468a4ceded' or not transport.get('productionDecoderAndCryptoReceipt'):raise ValueError('Missing actual received power delivery: '+mid)
             if len(power_display.get('observations',[]))!=13 or power_display.get('operationsReverse')!=13 or power_display.get('grayJumps')!=3 or power_display.get('separatePalettes')!=3 or power_display.get('visibilityFailureCases')!=1 or not all(power_display.get(k)for k in ['allSelectedFramesEqualOriginal','allNativeMatricesMaterialsVisibilityRestored','fullGeometryBuffersUnchanged']):raise ValueError('Missing actual power lifecycle: '+mid)
             if power_display.get('physicalFitQualified')is not False or power_display.get('electricalQualified')is not False:raise ValueError('Power reference scope overstated: '+mid)
+            manual_data=row['machines'][0].get('manualDataTransport',{});manual_tail=row['machines'][0].get('manualTailOwnership',{})
+            if manual_data.get('requests')!=13 or not manual_data.get('productionStreamingDecoderAndCryptoReceipt') or manual_data.get('decodedStageSHA256')!=hashlib.sha256(source).hexdigest() or len(manual_data.get('tables',[]))!=13:
+                raise ValueError('Missing exact complete received manual data: '+mid)
+            if manual_tail.get('operations')!=95 or manual_tail.get('tables')!=6 or not manual_tail.get('originalMotorScrewIntroducedOnceAtReceiver') or manual_tail.get('physicalFitQualified') is not False:
+                raise ValueError('Missing full additional manual/source ownership: '+mid)
             hinge_report = Path(folder)/(mid+'-hinge-source.json')
             subprocess.run(['node','--max-old-space-size=176','--max-semi-space-size=1','--v8-pool-size=1','--experimental-vm-modules',str(ROOT/'scripts/audit_v0_hinge_source_assets.mjs'),'--site',str(a.site),'--machine',mid,'--report',str(hinge_report),*(['--map',str(a.map)]if a.map else[])],cwd=ROOT,check=True,timeout=120)
             hinge = json.loads(hinge_report.read_bytes())
@@ -55,13 +61,13 @@ def main():
                 layout_visits.append(visit)
             row['machines'][0]['layoutSourceLifecycle']=layout_visits
             rows.append(row)
-    if stages.read_bytes()!=source:raise ValueError('Stage source changed between machines')
+    if read_built_v0_stages(a.site)[0]!=source:raise ValueError('Stage source changed between machines')
     result={k:v for k,v in rows[0].items()if k not in {'machines','source_sha256'}};result['machines']=[m for row in rows for m in row['machines']];pins={}
     for row in rows:
         for name,pin in row['source_sha256'].items():
             if name in pins and pins[name]!=pin:raise ValueError('Shared actual audit input changed')
             pins[name]=pin
-    result['source_sha256']=pins;result['fresh_serial_machine_processes']=len(rows);result['source_sha256']['V0_ASSEMBLY_STAGES.json']=hashlib.sha256(source).hexdigest()
+    result['source_sha256']=pins;result['fresh_serial_machine_processes']=len(rows);result['source_sha256']['viewer/data/v0-assembly-stages.json.gz']=stage_delivery['sha256'];result['decoded_source_sha256']={'V0_ASSEMBLY_STAGES.json':hashlib.sha256(source).hexdigest()}
     a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(result,separators=(',',':'))+'\n',encoding='utf8')
     print('V0 assembly release: both complete stock revisions passed in fresh serial processes; sampled source references, not physical fit.')
 

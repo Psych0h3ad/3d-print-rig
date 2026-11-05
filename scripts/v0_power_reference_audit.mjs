@@ -14,7 +14,9 @@ export function auditPowerOwnership({id,spec,manifest,references}){
  assert.equal(parts.size,manifest.parts.length);assert.deepEqual(references[id],r,'Received data must match independent reviewed source');
  assert.equal(spec.model_sha256,r.model);assert.equal(spec.manifest_sha256,r.manifest);assert.deepEqual(spec.manual,r.manual);
  assert.deepEqual(r.operations.map(o=>o.id),names);const at=n=>spec.stages.findIndex(s=>s.id===n),refs=new Set();let owned=0;
- assert.deepEqual(spec.stages.slice(at(names[0]),at(names.at(-1))+1).map(s=>s.id),[...names.slice(0,2),'electronics-fan',...names.slice(2)]);
+ const fan=['electronics-fan-upper','electronics-fan-lower','electronics-fan-m3x12','electronics-fan-3010','electronics-fan-m3x16','electronics-fan'];
+ const expanded=spec.stages.some(s=>fan.slice(0,-1).includes(s.id));
+ assert.deepEqual(spec.stages.slice(at(names[0]),at(names.at(-1))+1).map(s=>s.id),[...names.slice(0,2),...(expanded?fan:['electronics-fan']),...names.slice(2)]);
  for(const o of r.operations){const s=spec.stages[at(o.id)];assert.equal(spec.stages.filter(s=>s.id===o.id).length,1);for(const k of ['title','title_ja','page_start','page_end','part_keys','operation_part_keys','note'])assert.deepEqual(s[k],o[k]);owned+=o.part_keys.length;assert.equal(o.sourceElectricalConnectionAccepted,false);
   for(const key of o.operation_part_keys){refs.add(key);const p=parts.get(key),d=r.descriptors[key];assert(p&&d,'Missing exact source owner '+key);assert.equal(p.name,d.name);assert.deepEqual(p.source,d.source);}
  }
@@ -49,7 +51,7 @@ export async function auditActualPowerDisplay({THREE,id,module,adapter,manifest,
  function visit(name,gray=false){const i=at(name),stage=spec.stages[i],refs=stage.operation_part_keys,keys=new Set(spec.stages.slice(0,i+1).flatMap(s=>s.part_keys));
   // These operations follow all mount/cleat/board installations. The prepared
   // fan remains stored until its unchanged intervening installation operation.
-  if(i<at('electronics-fan'))for(const k of spec.stages[at('electronics-fan-inserts')].part_keys)keys.delete(k);
+  if(i<at(spec.stages.some(s=>s.id==='electronics-fan-lower')?'electronics-fan-lower':'electronics-fan'))for(const k of spec.stages[at('electronics-fan-inserts')].part_keys)keys.delete(k);
   const state=c.setStage(i);applyReviewedPowerMask({id,index:i,spec,keys,result:state});const expected=[...keys].filter(k=>native.get(k)||companionKeys.has(k));
   assert.deepEqual(new Set(c.getVisibleKeys()),new Set(expected));for(const k of c.getBoundsKeys())assert(expected.includes(k));
   for(const k of registry.machines[id].native_alternatives.excluded_keys)assert.equal(adapter.nodes.get(k).visible,false);

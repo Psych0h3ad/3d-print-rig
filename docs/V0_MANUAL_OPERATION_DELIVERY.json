@@ -1,0 +1,55 @@
+{
+  "schema": "v0-current-manual-operation-delivery-v1",
+  "sourceStageSHA256": "7cb12de4b91de4fa4b77c8479ab30eed7eef9cc4cfe108f2601bd2d003d6f7f6",
+  "sourceStageBytes": 353076,
+  "operationCounts": {
+    "voron_v02_120": 255,
+    "voron_v02r1_120": 260
+  },
+  "originalSourceParts": {
+    "voron_v02_120": 1653,
+    "voron_v02r1_120": 1678
+  },
+  "manualDataTables": 13,
+  "manualTailOperationsPerEdition": 95,
+  "sourceTablePaths": [
+    "viewer/data/v0-enclosure-assembly.source.json",
+    "viewer/data/v0-enclosure-copy.source.json",
+    "viewer/data/v0-fan-assembly.source.json",
+    "viewer/data/v0-fan-copy.source.json",
+    "viewer/data/v0-panel-closure-copy.source.json",
+    "viewer/data/v0-panel-closure.source.json",
+    "viewer/data/v0-panel-door-copy.source.json",
+    "viewer/data/v0-panel-door.source.json",
+    "viewer/data/v0-spool-assembly.source.json",
+    "viewer/data/v0-spool-copy.source.json",
+    "viewer/data/v0-tophat-assembly.source.json",
+    "viewer/data/v0-tophat-copy.source.json"
+  ],
+  "newSourceParts": 0,
+  "originalGeometryChanged": false,
+  "currentCPUReportsSHA256": [
+    "882db78fa93aefbb5aca4325a173ea0f6f57215ad9f2687d9bcfde4f3f35436a",
+    "a9c51a33379f1598a10b65d805a7208550c3117baa17d94f6e517d3f70c9aa17"
+  ],
+  "selectedLocalBrowser": {
+    "browser": "IAB Chromium",
+    "language": "ja",
+    "viewport": [
+      1280,
+      720
+    ],
+    "transportFailureRetry": true,
+    "originalConfigurationByteRestoration": true,
+    "partChecklistFileChooserABA": true,
+    "previousUncompressedProgressPreserved": true,
+    "PNG": [
+      1920,
+      1368
+    ]
+  },
+  "scope": "Exact two source assemblies with255/260 manual states, streamed data identity, original part membership, selected gray/palette and original restoration. Native source receiver/body intersections, threading, insertion, holding and continuous clearance remain open. Historical machine geometry evidence and old failures retain their original scope. Normal full-site asset gates, all-machine coverage, CI/Pages and exact served revision/browser remain required for publication.",
+  "nativeMatingVerified": false,
+  "fullPhysicalFitCertified": false,
+  "fullManualCompleted": false
+}

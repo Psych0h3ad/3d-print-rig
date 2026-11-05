@@ -7,7 +7,11 @@ export async function auditV0M2Reference({module,adapter,manifest,spec,receipts,
  const ids=(r1?[271,274,275,276,300,301,302,303]:[269,272,273,274,295,296,297,298]).map(key),moves=new Map(ids.map((k,i)=>[k,i<4?.0001:.0009]));
  const baseline=()=>{scene.updateMatrixWorld(true);return new Map([...adapter.nodes].map(([k,n])=>[k,{position:n.position.toArray(),quaternion:n.quaternion.toArray(),scale:n.scale.toArray(),world:n.matrixWorld.toArray(),geometry:n.geometry,material:n.material,visible:n.visible}]))};
  const original=baseline(),geometry=geometryPins(scene),options={nodes:adapter.nodes,manifest,machine:spec,receipts,companions,manualPreparation:true,sourceDerivedFastenerSeating:true};
- const token=await module.prepareV0AssemblyM2Seating(options),note=spec.stages[0].note;spec.stages[0].note=(note||'')+' stale';assert.throws(()=>module.createV0AssemblyStages({...options,m2SeatingReceipt:token}),/Missing current exact/);if(note===undefined)delete spec.stages[0].note;else spec.stages[0].note=note;
+ // The received production stage data is immutable. Mutate only a separate
+ // controlled API input for the stale-receipt negative, never the live bundle.
+ const staleSpec=structuredClone(spec),staleOptions={...options,machine:staleSpec},staleToken=await module.prepareV0AssemblyM2Seating(staleOptions),note=spec.stages[0].note;
+ staleSpec.stages[0].note=(note||'')+' stale';assert.throws(()=>module.createV0AssemblyStages({...staleOptions,m2SeatingReceipt:staleToken}),/Missing current exact/);assert.equal(spec.stages[0].note,note);
+ const token=await module.prepareV0AssemblyM2Seating(options);
  const c=module.createV0AssemblyStages({...options,m2SeatingReceipt:token});assert.throws(()=>module.createV0AssemblyStages({...options,m2SeatingReceipt:token}),/Missing current exact/);
  const installed=spec.stages.findIndex(s=>s.id==='x-install'),visits=[...spec.stages.keys(),...spec.stages.keys()].map((i,j)=>j<spec.stages.length?i:spec.stages.length-1-i),observations=[];
  for(const i of visits){
@@ -25,5 +29,5 @@ export async function auditV0M2Reference({module,adapter,manifest,spec,receipts,
  const receiver=adapter.nodes.get(key(r1?56:54)),displayMaterial=receiver.material;assert.notEqual(displayMaterial,original.get(key(r1?56:54)).material);assert.equal(assemblySourceMaterial(receiver),original.get(key(r1?56:54)).material);
  receiver.material=displayMaterial.clone();const foreign=receiver.material;assert.throws(()=>c.current(),/outside its owner/);receiver.material=displayMaterial;foreign.dispose();c.current();display.dispose();assert.deepEqual(baseline(),beforeDisplay);
  c.leave();assert.deepEqual(baseline(),original);assert.deepEqual(geometryPins(scene),geometry);
- return{sourceFasteners:8,receivedSourceTargets:12,states:observations,staleStageRejected:true,oneUseReceipt:true,partialFailureWholeSourceRollback:true,controlledEarlierPartDisplayLease:true,currentFastenersOriginalHardwareMaterial:true,foreignDisplayReplacementRejected:true,originalTransformsMaterialsGeometryVisibilityRestored:true,physicalFitCertified:false};
+ return{sourceFasteners:8,receivedSourceTargets:12,states:observations,staleStageRejected:true,staleStageUsesSeparateMutableClone:true,receivedStageImmutable:Object.isFrozen(spec),oneUseReceipt:true,partialFailureWholeSourceRollback:true,controlledEarlierPartDisplayLease:true,currentFastenersOriginalHardwareMaterial:true,foreignDisplayReplacementRejected:true,originalTransformsMaterialsGeometryVisibilityRestored:true,physicalFitCertified:false};
 }

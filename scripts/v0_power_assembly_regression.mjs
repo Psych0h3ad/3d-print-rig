@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {auditPowerOwnership,applyReviewedPowerMask,reviewedPower,reviewedPowerSHA256} from './v0_power_reference_audit.mjs';
+import {receiveManualSourceFixture,attachManualTailFixtureMetadata} from './v0_manual_source_fixture.mjs';
+const {bundle:manualFixtureBundle}=await receiveManualSourceFixture();
 const viewer=new URL('../site/viewer/',import.meta.url),source=await fs.readFile(new URL('v0-power-assembly.mjs',viewer),'utf8');
 const imports=[...source.matchAll(/from '(\.\/v0-power-references\.mjs[^']*)'/g)];assert.equal(imports.length,1);
 const {loadV0PowerReferences,checkedV0PowerReferences,v0PowerReferenceDelivery:delivery}=await import(new URL(imports[0][1],viewer));
@@ -14,7 +16,7 @@ assert.equal(checkedV0PowerReferences(references),references);assert(Object.isFr
 assert.throws(()=>{references.voron_v02_120.operations[0].part_keys.push('forged');},TypeError);
 const doc=JSON.parse(await fs.readFile(new URL('../site/V0_ASSEMBLY_STAGES.json',import.meta.url))),rows=[];let negative=0;
 for(const[id,spec]of Object.entries(doc.machines)){
- const r=reviewedPower(id),manifest={machine_id:id,parts:spec.stages.flatMap(s=>s.part_keys).map(key=>({key,...structuredClone(r.descriptors[key]||{})}))};
+ const r=reviewedPower(id),manifest={machine_id:id,parts:attachManualTailFixtureMetadata(spec.stages.flatMap(s=>s.part_keys).map(key=>({key,...structuredClone(r.descriptors[key]||{})})),id,manualFixtureBundle)};
  const ownership=auditPowerOwnership({id,spec,manifest,references}),policy=createV0PowerAssembly({spec,manifest,references});
  assert.equal(ownership.referencedSourceKeys,757);
  const psu=r.operations[0].part_keys[0],inlet=r.operations[4].part_keys[0],at=n=>spec.stages.findIndex(s=>s.id===n);let operationCount=0;
