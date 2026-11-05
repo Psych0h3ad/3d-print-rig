@@ -1,3 +1,4 @@
+import {createV0FanAssembly} from './v0-fan-assembly.mjs?v=418c5c840b367527efe1';
 import {checkedV0PowerReferences} from './v0-power-references.mjs?v=e2467d4d4ae38b8fa20f';
 // Original-source power references. No placement or electrical state is modified.
 const fail=s=>{throw Error('V0 power assembly: '+s)};
@@ -15,7 +16,11 @@ export function createV0PowerAssembly({spec,manifest,references}){
  if(!dense(spec.stages)||!dense(manifest.parts))fail('Sparse source/stages');
  const ids=spec.stages.map(s=>s.id),parts=new Map(),rows=new Map();
  for(const p of manifest.parts){if(!p||parts.has(p.key))fail('Duplicate source owner');parts.set(p.key,p);}
- const order=src.operations.map(o=>o.id),fan=['electronics-fan'];
+ const order=src.operations.map(o=>o.id),expandedFan=ids.includes('electronics-fan-upper');
+ const fan=expandedFan?['electronics-fan-upper','electronics-fan-lower','electronics-fan-m3x12','electronics-fan-3010','electronics-fan-m3x16','electronics-fan']:['electronics-fan'];
+ // The detailed fan provider validates every original owner, page and operation.
+ // Keep power rows and the complete intervening sequence exact.
+ if(expandedFan)createV0FanAssembly({spec,manifest});
  const span=[...order.slice(0,2),...fan,...order.slice(2)];
  if(!exact(ids.slice(ids.indexOf(order[0]),ids.indexOf(order.at(-1))+1),span)||order.some(id=>ids.filter(x=>x===id).length!==1))fail('Changed exact power/fan instruction order');
  for(const rule of src.operations){

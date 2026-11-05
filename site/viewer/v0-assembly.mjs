@@ -1,3 +1,10 @@
+import {loadV0ManualData} from './v0-manual-data.mjs?v=39f5b1cde427278cb44a';
+import {createV0FanAssembly} from './v0-fan-assembly.mjs?v=418c5c840b367527efe1';
+import {createV0EnclosureAssembly} from './v0-enclosure-assembly.mjs?v=51fa0508f6a6c92b679d';
+import {createV0PanelClosure} from './v0-panel-closure.mjs?v=f0ac045c667bb3f83992';
+import {createV0PanelDoor} from './v0-panel-door.mjs?v=b9751e53e8e27a326657';
+import {createV0TophatAssembly} from './v0-tophat-assembly.mjs?v=e631fd1484b4c07a0436';
+import {createV0SpoolAssembly} from './v0-spool-assembly.mjs?v=f308048e97a2ba8504ec';
 import {createV0RailOperations} from './v0-rail-operations.mjs?v=fc62c168beaafce91163';
 import {prepareV0M2Seating,createV0M2Seating} from './v0-m2-seating.mjs?v=d15ba41d0be2c9a7b68b';
 // Manual stages with an optional, source-pinned rail preparation presentation.
@@ -8,8 +15,8 @@ import {createV0BedAssembly} from './v0-bed-assembly.mjs?v=3163b8e34404795e6717'
 import {createV0FeetAssembly} from './v0-feet-assembly.mjs?v=ee39e640a1ba4e93eac0';
 import {createV0IdlerAssembly} from './v0-idler-assembly.mjs?v=0847fa8bd4d517597689';
 import {createV0XYPreparation} from './v0-xy-preparation.mjs?v=0127d6a73db5ed16ccff';
-import {createV0ElectronicsAssembly} from './v0-electronics-assembly.mjs?v=791362178655c7813bfc';
-import {createV0PowerAssembly} from './v0-power-assembly.mjs?v=bd8a997a2d2eea352872';
+import {createV0ElectronicsAssembly} from './v0-electronics-assembly.mjs?v=439d9426f541f2fbb88a';
+import {createV0PowerAssembly} from './v0-power-assembly.mjs?v=8ecd52da50c808760742';
 import {loadV0PowerReferences} from './v0-power-references.mjs?v=e2467d4d4ae38b8fa20f';
 import {createV0HeadAssembly} from './v0-head-assembly.mjs?v=aa602b0240cf8b746e12';
 export const v0AssemblySchema='v0-assembly-stages-v1';
@@ -134,6 +141,7 @@ export function validateV0AssemblyStages({nodes,manifest,machine,receipts,compan
 const m2Preflights=new WeakMap();
 const stageSignature=s=>JSON.stringify([s.machine_id,s.model_sha256,s.manifest_sha256,s.parts,s.manual,s.stages,s.seat_display_dependencies]);
 export async function prepareV0AssemblyM2Seating(options){
+ if(options.manualPreparation)await loadV0ManualData();
  const spec=validateV0AssemblyStages(options),signature=stageSignature(spec);
  const powerReferences=options.manualPreparation?await loadV0PowerReferences():null;
  const receipt=await prepareV0M2Seating({nodes:options.nodes,manifest:options.manifest,spec,receipts:options.receipts});
@@ -157,6 +165,12 @@ export function createV0AssemblyStages(options){
  const electronics=options.manualPreparation?createV0ElectronicsAssembly({spec,manifest:options.manifest}):null;
  const power=options.manualPreparation?createV0PowerAssembly({spec,manifest:options.manifest,references:received?.powerReferences||options.powerReferences}):null;
  const head=options.manualPreparation?createV0HeadAssembly({spec,manifest:options.manifest}):null;
+ const fan=options.manualPreparation?createV0FanAssembly({spec,manifest:options.manifest}):null;
+ const enclosure=options.manualPreparation?createV0EnclosureAssembly({spec,manifest:options.manifest}):null;
+ const panelClosure=options.manualPreparation?createV0PanelClosure({spec,manifest:options.manifest}):null;
+ const panelDoor=options.manualPreparation?createV0PanelDoor({spec,manifest:options.manifest}):null;
+ const tophat=options.manualPreparation?createV0TophatAssembly({spec,manifest:options.manifest}):null;
+ const spool=options.manualPreparation?createV0SpoolAssembly({spec,manifest:options.manifest}):null;
  for(const row of companionBindings)for(const key of row.part_keys)companionForKey.set(key,row.node);
  let active=null;
  function checkBindings(){
@@ -220,7 +234,7 @@ export function createV0AssemblyStages(options){
   if(preparation){value.preparation=preparation.prepared(active.index);value.stored_count=preparation.deferred(active.index).length;
    value.presentation_note=value.preparation?'The five prepared carriers are laid out together. This arrangement is for inspection; it does not show installation positions or insertion paths.':value.stored_count?'Prepared carriers for later rails are set aside. Each appears with its receiving rail at the installation stage.':'';
   }
-  const railWork=rail?.at(active.index),bedWork=bed?.at(active.index),feetWork=feet?.at(active.index),idlerWork=idler?.at(active.index),xyWork=xy?.at(active.index),headWork=head?.at(active.index),electronicsWork=electronics?.at(active.index),powerWork=power?.at(active.index),manualWork=powerWork||electronicsWork||railWork||headWork||xyWork||idlerWork||feetWork||bedWork,work=manualWork||drive?.at(active.index);
+  const railWork=rail?.at(active.index),bedWork=bed?.at(active.index),feetWork=feet?.at(active.index),idlerWork=idler?.at(active.index),xyWork=xy?.at(active.index),headWork=head?.at(active.index),electronicsWork=electronics?.at(active.index),powerWork=power?.at(active.index),fanWork=fan?.at(active.index),enclosureWork=enclosure?.at(active.index),panelClosureWork=panelClosure?.at(active.index),panelDoorWork=panelDoor?.at(active.index),tophatWork=tophat?.at(active.index),spoolWork=spool?.at(active.index),manualWork=spoolWork||tophatWork||panelDoorWork||panelClosureWork||enclosureWork||fanWork||powerWork||electronicsWork||railWork||headWork||xyWork||idlerWork||feetWork||bedWork,work=manualWork||drive?.at(active.index);
   value.presentation_id=work?.id||(value.preparation?'rail-preparation':'installed');
   value.subassembly=manualWork?manualWork.isolated:Boolean(work);value.underside=Boolean(work?.underside);
   if(work&&!manualWork)value.presentation_note='Only the current drive subassembly is shown. The frame and previously prepared parts are set aside; the drives join the frame at manual page 81.';
@@ -228,7 +242,7 @@ export function createV0AssemblyStages(options){
   value.manual_fastener_reference=Boolean(m2&&active.index>=spec.stages.findIndex(s=>s.id==='x-install'));
   value.manual_note=drive?.note(active.index)||'';
   value.presentation_notes=[value.presentation_note,...manualWork?.notes||[]].filter(Boolean);
-  if(manualWork){value.presentation_label=manualWork.status;value.camera_direction=[...manualWork.direction];value.camera_distance_floor=manualWork.isolated ? .05 : .24;value.part_notes={...manualWork.partNotes};value.stored_keys=(powerWork?power:electronicsWork?electronics:railWork?rail:headWork?head:xyWork?xy:idlerWork?idler:feetWork?feet:bed).stored(active.index,new Set(active.part_keys))}
+  if(manualWork){value.presentation_label=manualWork.status;value.camera_direction=[...manualWork.direction];value.camera_distance_floor=manualWork.isolated ? .05 : .24;value.part_notes={...manualWork.partNotes};value.stored_keys=(spoolWork?spool:tophatWork?tophat:panelDoorWork?panelDoor:panelClosureWork?panelClosure:enclosureWork?enclosure:fanWork?fan:powerWork?power:electronicsWork?electronics:railWork?rail:headWork?head:xyWork?xy:idlerWork?idler:feetWork?feet:bed).stored(active.index,new Set(active.part_keys))}
   if(idler){const stored=idler.stored(active.index,new Set(active.part_keys));value.stored_count=(value.stored_count||0)+stored.length}
   if(xy){const stored=xy.stored(active.index,new Set(active.part_keys));value.stored_count=(value.stored_count||0)+stored.length}
   return value;
@@ -247,6 +261,12 @@ export function createV0AssemblyStages(options){
   shown=rail?.filter(index,shown)||shown;
   shown=electronics?.filter(index,shown)||shown;
   shown=power?.filter(index,shown)||shown;
+  shown=fan?.filter(index,shown)||shown;
+  shown=enclosure?.filter(index,shown)||shown;
+  shown=panelClosure?.filter(index,shown)||shown;
+  shown=panelDoor?.filter(index,shown)||shown;
+  shown=tophat?.filter(index,shown)||shown;
+  shown=spool?.filter(index,shown)||shown;
   // Native-hidden alternatives stay hidden. No part, transform or material is
   // replaced. Validate every root before applying the cumulative mask.
   for(const [key,node]of [...bindings,...companionBindings.map((row,i)=>['companion '+i,row.node])]){
@@ -282,7 +302,7 @@ export function createV0AssemblyStages(options){
   current(){checkActive();return result()},
   // Stage keys include assigned alternatives; "focus added" only uses this
   // stage's keys which were visible when assembly mode was entered.
-  getBoundsKeys(){checkActive();return active?visibleKeys([...new Set([...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[],...xy?.focus(active.index)||[],...head?.focus(active.index)||[],...rail?.focus(active.index)||[],...electronics?.focus(active.index)||[],...power?.focus(active.index)||[]])]):[]},
+  getBoundsKeys(){checkActive();return active?visibleKeys([...new Set([...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[],...xy?.focus(active.index)||[],...head?.focus(active.index)||[],...rail?.focus(active.index)||[],...electronics?.focus(active.index)||[],...power?.focus(active.index)||[],...fan?.focus(active.index)||[],...enclosure?.focus(active.index)||[],...panelClosure?.focus(active.index)||[],...panelDoor?.focus(active.index)||[],...tophat?.focus(active.index)||[],...spool?.focus(active.index)||[]])]):[]},
   getVisibleKeys(){checkActive();return active?visibleKeys():[]},
   getDisplayedParts(){
    checkActive();if(!active)return [];
@@ -299,7 +319,7 @@ export function createV0AssemblyStages(options){
   // support-bearing leaf. Counts/keys remain native identities, not mesh count.
   getBoundsNodes(){
    checkActive();if(!active)return [];
-   const keys=[...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[],...xy?.focus(active.index)||[],...head?.focus(active.index)||[],...rail?.focus(active.index)||[],...electronics?.focus(active.index)||[],...power?.focus(active.index)||[]],roots=new Set();
+   const keys=[...(spec.stages[active.index].operation_part_keys||spec.stages[active.index].part_keys),...preparation?.focus(active.index)||[],...drive?.focus(active.index)||[],...bed?.focus(active.index)||[],...feet?.focus(active.index)||[],...idler?.focus(active.index)||[],...xy?.focus(active.index)||[],...head?.focus(active.index)||[],...rail?.focus(active.index)||[],...electronics?.focus(active.index)||[],...power?.focus(active.index)||[],...fan?.focus(active.index)||[],...enclosure?.focus(active.index)||[],...panelClosure?.focus(active.index)||[],...panelDoor?.focus(active.index)||[],...tophat?.focus(active.index)||[],...spool?.focus(active.index)||[]],roots=new Set();
    for(const key of keys){const native=nodes.get(key),companion=companionForKey.get(key);if(visibleNode(native))roots.add(native);if(visibleNode(companion))roots.add(companion)}
    return [...roots];
   },

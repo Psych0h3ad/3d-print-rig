@@ -39,7 +39,39 @@ before replacing the current progress. Clear and undo cover both record types.
 
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
-V0.2 has 185 stages and 1,653 exported source leaves. V0.2r1 has 190 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+V0.2 has 255 stages and 1,653 exported source leaves. V0.2r1 has 260 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+
+The controller-cooling fan, skirts/display, bottom and motor panels, spool
+supports, transparent panels/door and top-hat operations now separate preparation,
+placement, original fasteners, storage and reference checks. Prepared fan mount
+and insert parts return when the lower mount is fitted, before its fixing screws
+and fan are introduced. Previously grouped operations require a fresh check;
+unchanged operations and all original part checks remain attached to their exact
+source identities. The original M3x10 screw named `M3x10 BHCS (3)` belongs to
+the motor-cable support operation, rather than the earlier front-frame operation.
+Its source pose is preserved; native engagement and holding remain unverified.
+
+Thirteen pinned gzip JSON bodies contain the editable stage/source tables and
+six-language phrase dictionaries. They are data, not executable compressed code.
+Before changing the current configuration, the reader receives and validates the
+complete bundle using encoded and decoded lengths and SHA-256 hashes. Failure
+keeps the previous configuration available for retry. Raw source JSON stays in
+the repository for review and is excluded from the delivered site. Progress uses
+the decoded stage-source identity, independently of compression; a predecessor
+whose only difference was its final newline retains all recorded checks.
+The runtime pin table stores each length/hash pair once and derives the fixed
+source and gzip paths from the exact table name. The build requires that same
+path recipe and checks the expanded metadata against the source bodies. This
+changes no data bytes or hashes. Complete source phrases take precedence over
+the shared translation fallback; original owner, operation and storage guards
+remain in the corresponding fan, enclosure, panel, top-hat and spool modules.
+
+These additions describe the exact original CAD and pinned manual operations.
+They do not resolve outstanding source intersections, receiver engagement,
+threading, retention or continuous motion clearance, and do not certify the full
+manual or a physically completed printer.
+The [operation and delivery record](V0_MANUAL_OPERATION_DELIVERY.json) states the
+current source identities, selected review scope and unresolved qualifications.
 
 The stock Mini Stealthburner sequence contains 41 reference operations, following
 V0.2 pages 151–182 and r1 pages 157–188. Cowling, shuttle, midbody, guidler and

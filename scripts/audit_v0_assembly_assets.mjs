@@ -1,3 +1,5 @@
+import {receiveBuiltV0ManualData} from './v0_manual_audit_transport.mjs';
+import {auditManualTailOwnership,applyReviewedManualTailMask} from './v0_manual_tail_reference_audit.mjs';
 // Actual exported stock assets and the production static-stage controller.
 // Native-solid contacts and manual diagram review are separate evidence.
 import assert from 'node:assert/strict';
@@ -32,7 +34,8 @@ async function pinClosure(url){
   assert(spec.startsWith('.'),'Unregistered audit dependency: '+spec);await pinClosure(new URL(spec,clean));
  }
 }
-const stages=JSON.parse(await pin(site+'/V0_ASSEMBLY_STAGES.json'));
+const manualReceived=await receiveBuiltV0ManualData({viewer,assemblySource:(await pin(site+'/viewer/v0-assembly.mjs')).toString('utf8'),pin,SourceTextModule:vm.SourceTextModule});
+const stages=manualReceived.bundle.data['v0-assembly-stages'];
 await pinClosure(new URL('assembly-workbench-model.mjs',viewer));
 const {createAssemblyIndex,createAssemblyProgress,validateAssemblyProgress}=await import(new URL('assembly-workbench-model.mjs',viewer));
 assert.deepEqual(Object.keys(stages.machines).sort(),['voron_v02_120','voron_v02r1_120']);
@@ -42,6 +45,8 @@ const threeURL=new URL('vendor/three.module.js',viewer).href;
 for(const name of ['vendor/GLTFLoader.js','v0_adapter.mjs','v0-assembly.mjs','v0-installations.mjs','v0-native-installed-gate.mjs','v0-app.js'])await pinClosure(new URL(name,viewer));
 await pinClosure(new URL('./audit_v0_native_installation_assets.mjs',import.meta.url));
 await pinClosure(new URL('./assembly_part_review_audit.mjs',import.meta.url));
+await pinClosure(new URL('./v0_manual_audit_transport.mjs',import.meta.url));
+await pinClosure(new URL('./v0_manual_tail_reference_audit.mjs',import.meta.url));
 await pinClosure(new URL('./v0_m2_reference_audit.mjs',import.meta.url));
 await pinClosure(new URL('./v0_head_reference_audit.mjs',import.meta.url));
 await pinClosure(new URL('./v0_rail_reference_audit.mjs',import.meta.url));
@@ -133,6 +138,7 @@ try{
   assert.deepEqual(spec.seat_display_dependencies?.map(s=>({part_key:s.part_key,carrier_key:s.carrier_key,preload_stage_id:s.preload_stage_id})).sort((a,b)=>a.part_key.localeCompare(b.part_key)),reviewedSeats(id),'Exact reviewed source frame-nut owners required');
   const shown=key=>displayed(adapter.nodes.get(key))||companions.some(c=>c.part_keys.includes(key)&&displayed(c.node));
   const original=state(scene),geometryBefore=geometryPins(scene),visibility=new Map([...adapter.nodes].map(([k,n])=>[k,n.visible]));
+  const manualTailOwnership=auditManualTailOwnership({id,spec,manifest,data:manualReceived.bundle.data});
   const controller=createV0AssemblyStages({nodes:adapter.nodes,manifest,machine:stages,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes)},companions,manualPreparation:true,powerReferences:powerTransport.references});
   const railGroups=(id==='voron_v02_120'?[[56,67,'y-rails'],[79,90,'y-rails'],[102,113,'z-rails'],[125,136,'z-rails'],[320,331,'x-rail']]:[[58,69,'y-rails'],[81,92,'y-rails'],[104,115,'z-rails'],[127,138,'z-rails'],[328,339,'x-rail']]).map(([holder,first,stage])=>({holder:(id==='voron_v02_120'?'v02_':'v02r1_')+String(holder).padStart(5,'0'),keys:[holder,...Array.from({length:10},(_,i)=>first+i)].map(n=>(id==='voron_v02_120'?'v02_':'v02r1_')+String(n).padStart(5,'0')),installed:spec.stages.findIndex(s=>s.id===stage)}));
   const preparationNodes=new Set();for(const g of railGroups)for(const k of g.keys)adapter.nodes.get(k).traverse(n=>preparationNodes.add(n));
@@ -167,7 +173,7 @@ try{
    }
    for(let i=1;i<centers.length;i++)assert(Math.abs(centers[i]-centers[i-1]-.018)<1e-9,'Prepared strips must be separate parallel rows');
   }
-  const workbench=createAssemblyIndex({manifest,machine:spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes),'assembly_stages.json':sha(await pin(site+'/V0_ASSEMBLY_STAGES.json'))}}),progress=createAssemblyProgress(workbench);
+  const workbench=createAssemblyIndex({manifest,machine:spec,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes),'assembly_stages.json':manualReceived.bundle.stageSHA256}}),progress=createAssemblyProgress(workbench);
   const partReview=auditPartReview(workbench,{assemblyPartRows,createAssemblyProgress,validateAssemblyProgress});
   for(const p of manifest.parts){const owner=workbench.owner(p.key);assert(owner.part_keys.includes(p.key));assert.equal(workbench.part(p.key).name,p.name)}
   for(const p of [manifest.parts[0],manifest.parts[Math.floor(manifest.parts.length/2)],manifest.parts.at(-1)])assert(workbench.search(p.key).some(s=>s.id===workbench.owner(p.key).id));
@@ -217,6 +223,7 @@ try{
    const headView=applyReviewedHeadMask({id,index,spec,keys,result:r});
    applyReviewedElectronicsMask({id,index,spec,keys,result:r});
    applyReviewedPowerMask({id,index,spec,keys,result:r});
+   {const expected=applyReviewedManualTailMask(keys,{id,spec,index,data:manualReceived.bundle.data});keys.clear();for(const key of expected)keys.add(key)}
    for(const n of r1?[250,257,166,209]:[248,255,164,207]){
     const k=idlerKey(n),front=(r1?[250,257]:[248,255]).includes(n),owner=front?'top-front-fasteners':'top-rear-fasteners';
     assert.equal(workbench.owner(k).id,owner,'Original upper-frame M3x10 belongs to later receiving-member operation');
@@ -263,11 +270,12 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,sourceGeometry,hingeRepresentation,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,railOwnership,railDisplay,electronicsOwnership,electronicsDisplay,powerOwnership,powerDisplay,powerTransport:powerTransport.summary(),restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,sourceGeometry,hingeRepresentation,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,railOwnership,railDisplay,electronicsOwnership,electronicsDisplay,powerOwnership,powerDisplay,powerTransport:powerTransport.summary(),manualDataTransport:manualReceived.summary(),manualTailOwnership,restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }
  for(const[file,pinValue]of before){assert.equal(sha(await fs.readFile(file)),pinValue,'Input changed during actual stage audit');report.source_sha256[path.relative(site,file).replaceAll('\\','/')]=pinValue;}
+ report.decoded_source_sha256={'V0_ASSEMBLY_STAGES.json':manualReceived.bundle.stageSHA256};
  report.passed=true;
 }catch(e){report.failures=[e.stack||String(e)]}finally{powerTransport?.restore();}
 await fs.mkdir(path.dirname(path.resolve(args.report)),{recursive:true});await fs.writeFile(args.report,JSON.stringify(report)+'\n');

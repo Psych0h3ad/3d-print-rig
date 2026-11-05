@@ -69,7 +69,7 @@ const factory=vm.runInNewContext(`(dependencies=>{
  const {THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,location,assemblyEmphasis,
   installations,stateRestorer,program,scope,fetch,workspaceTask,frameResponsiveView,render,
   loadError,stockV0Mods,validateV0State,v0ConfigurationSchema,v0NativeStateProfile,
-  createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash,createAssemblyWorkbench,createAssemblyPicker,renderer,formatMessage,translate}=dependencies;
+  createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash,createAssemblyWorkbench,createAssemblyPicker,renderer,formatMessage,translate,loadV0ManualData,checkedV0ManualBundle}=dependencies;
  let palette=dependencies.palette,assemblyView=null,assemblySnapshot=null,assemblyLocked=false,
   assemblyControlStates=new Map(),assemblyData=null,assemblyStageHash=null,assemblyWorkbench=null;
  ${functions}
@@ -185,7 +185,10 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
   createAssemblyPicker:()=>({dispose:()=>{}}),
   installations,stateRestorer,palette,program:{invalidate(){events.push({type:'gcode-invalidated'})},updatePath:()=>{}},
   scope:{cleanup:fn=>cleanups.push(fn)},receipts,
-  fetch:async(path,options)=>{const url=new URL(path,'https://example.test/viewer/v0.html');assert.equal(url.pathname,'/V0_ASSEMBLY_STAGES.json');assert([...url.searchParams.keys()].every(key=>key==='v'),'Unexpected stage query parameter');assert.equal(options.cache,'no-cache');tasks.fetchCount++;if(tasks.fetchGate)await tasks.fetchGate.promise;return {ok:!fetchFailure,arrayBuffer:async()=>new TextEncoder().encode(JSON.stringify(stageData)).buffer}},
+  // Synthetic UI lifecycle data; exact13 gzip/receipt streams have their own
+  // permanent transport test and real exported-model release audit.
+  loadV0ManualData:async()=>{tasks.fetchCount++;if(tasks.fetchGate)await tasks.fetchGate.promise;if(fetchFailure)throw Error('Injected exact manual acquisition failure');return {data:{'v0-assembly-stages':stageData},stageSHA256:sha(Buffer.from(JSON.stringify(stageData)))}},
+  checkedV0ManualBundle:value=>value,
   workspaceTask:fn=>Promise.resolve().then(fn),frameResponsiveView:()=>{if(focusFailure)throw Error('Injected focus failure')},render:()=>{},loadError:(prefix,e)=>prefix+' '+e.message,
   stockV0Mods:stateModule.stockV0Mods,validateV0State:stateModule.validateV0State,v0ConfigurationSchema:stateModule.v0ConfigurationSchema,v0NativeStateProfile,
  };

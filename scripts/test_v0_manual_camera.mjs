@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 import {register} from 'node:module';
 register('./three-test-loader.mjs',import.meta.url);
 const THREE=await import('three'),{OrbitControls}=await import('../site/viewer/vendor/OrbitControls.js'),{frameResponsiveView}=await import('../site/viewer/responsive-camera.mjs');
-const text=await fs.readFile(new URL('../site/viewer/v0-app.js',import.meta.url),'utf8'),body=text.match(/function view\(name\)\{([\s\S]*?)\n\}\nfor\(const name/)?.[1];assert(body,'Exact V0 named view body required');
+const text=(await fs.readFile(new URL('../site/viewer/v0-app.js',import.meta.url),'utf8')).replaceAll('\r\n','\n'),body=text.match(/function view\(name\)\{([\s\S]*?)\n\}\nfor\(const name/)?.[1];assert(body,'Exact V0 named view body required');
 const view=new Function('THREE','scene','camera','orbit','assemblyView','frameResponsiveView','render','name',body);let cases=0;
 function setup(width,height,damping){
  const document=new EventTarget(),canvas=new EventTarget(),captured=new Set();Object.assign(canvas,{style:{},clientWidth:width,clientHeight:height,getRootNode:()=>document,setPointerCapture:id=>captured.add(id),hasPointerCapture:id=>captured.has(id),releasePointerCapture:id=>captured.delete(id)});

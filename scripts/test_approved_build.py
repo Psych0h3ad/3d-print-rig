@@ -1161,7 +1161,9 @@ class ApprovedPowerReferences(unittest.TestCase):
         self.assertEqual(plan['planned_site_bytes'],result['planned_site_bytes'])
         self.assertEqual(result['planned_site_bytes'],sum(p.stat().st_size for p in (root/'built').rglob('*')if p.is_file()))
         self.assertFalse((root/'built'/power.SOURCE_PATH).exists());self.assertFalse((root/'built/APPROVED_DELIVERY.json').exists())
-        self.assertEqual(set(build_approved_site.BUILD_ONLY_SOURCE_PATHS),{'APPROVED_DELIVERY.json',power.SOURCE_PATH})
+        from prepare_v0_manual_delivery import SOURCE_PATHS as manual_source_paths
+        self.assertEqual(len(manual_source_paths),13)
+        self.assertEqual(set(build_approved_site.BUILD_ONLY_SOURCE_PATHS),{'APPROVED_DELIVERY.json',power.SOURCE_PATH,*manual_source_paths})
         with patch.object(build_approved_site,'MAX_SITE_BYTES',result['planned_site_bytes']):
             with self.assertRaises(ValueError):run(root,contract,root/'cap',inputs,plan_only=True)
 

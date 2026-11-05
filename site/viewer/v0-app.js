@@ -1,3 +1,5 @@
+import {loadV0ManualData,checkedV0ManualBundle} from './v0-manual-data.mjs?v=39f5b1cde427278cb44a';
+import {translateV0ManualCopy} from './v0-current-manual-copy.mjs?v=ee7522cd8d2a42e389be';
 import {applyV0HingeSourceGeometry,guardV0HingeSourceGeometry} from './v0-hinge-source-geometry.mjs?v=069e8252a014807f9c8a';
 import {createAssemblyStageEmphasis} from './assembly-stage-emphasis.mjs?v=31de7db3c02f47abdc16';
 const assemblyEmphasis=createAssemblyStageEmphasis();
@@ -24,11 +26,11 @@ import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=496c2eac18cd9028756a';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex,readAssemblyStageDocument} from './assembly-workbench-model.mjs?v=6c5c97c5ad1229acf7ea';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=b2c8c4f05fdca2b6e2a8';
+import {createAssemblyIndex} from './assembly-workbench-model.mjs?v=5bd4b636d9504c8becc7';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=8e3348da6cd251d55b90';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
 import {formatMessage,translate as sourceTranslate} from './i18n.mjs?v=bd46dc6874c80e4c196b';
-const translate=(text,language=document.documentElement.lang||'en')=>sourceTranslate(text,language);
+const translate=(text,language=document.documentElement.lang||'en')=>translateV0ManualCopy(text,language,sourceTranslate);
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
 const wanted=new URLSearchParams(location.search).get('machine'),id=ids.includes(wanted)?wanted:ids[0];
@@ -219,12 +221,12 @@ function setupAssemblyControls(receipts){
   }catch(e){fail(e)}finally{if(!assemblyView){unlockControls();assemblySnapshot=null}assemblyLocked=false}
  }
  start.onclick=()=>workspaceTask(async()=>{
-  if(assemblyLocked||assemblyView)return;assemblyLocked=true;
+  if(assemblyLocked||assemblyView)return;assemblyLocked=true;let assemblyStateTouched=false;
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
-   if(!assemblyData){const response=await fetch('../V0_ASSEMBLY_STAGES.json?v=2b8f0d90936c85014900',{cache:'no-cache'});const loaded=await readAssemblyStageDocument(response,v0NativeByteHash);assemblyData=loaded.data;assemblyStageHash=loaded.sha256}
-   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=44ba6be7263b3f7cba85');
-   program?.invalidate();
+   if(!assemblyData){const loaded=checkedV0ManualBundle(await loadV0ManualData());assemblyData=loaded.data['v0-assembly-stages'];assemblyStageHash=loaded.stageSHA256}
+   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=68ef1a1b259b7b212a2b');
+   assemblyStateTouched=true;program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();
    $('#doorAngle').value='0';$('#doorAngle').oninput();$('#tophatAngle').value='0';$('#tophatAngle').oninput();$('#reset').onclick();
@@ -247,7 +249,7 @@ function setupAssemblyControls(receipts){
    lockControls();$('#assemblySteps').hidden=false;assemblyWorkbench.activate();present(assemblyWorkbench.resumeIndex());focusAdded();
   }catch(e){
    try{assemblyEmphasis.clear();assemblyView?.leave();assemblyView=null;
-    if(assemblySnapshot){if(!await restoreV0State(assemblySnapshot.configuration))throw Error('元の構成を復元できません');
+    if(assemblySnapshot&&assemblyStateTouched){if(!await restoreV0State(assemblySnapshot.configuration))throw Error('元の構成を復元できません');
      camera.position.copy(assemblySnapshot.camera);camera.up.copy(assemblySnapshot.up);orbit.target.copy(assemblySnapshot.target);orbit.update();render()}
    }catch(rollbackError){e=new Error(e.message+' / '+rollbackError.message)}
    assemblyWorkbench?.deactivate();assemblySnapshot=null;$('#assemblySteps').hidden=true;delete document.body.dataset.assemblyStage;fail(e);

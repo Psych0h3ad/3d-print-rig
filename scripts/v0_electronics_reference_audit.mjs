@@ -10,14 +10,14 @@ export function reviewedElectronics(id){const spec=review.machines[id],r1=id==='
  cleats:(r1?[1664,1661,1674,1671]:[1637,1636,1647,1646]).map(key),fan:(r1?[914,909,910,911,912]:[889,884,885,886,887]).map(key),
  boardFix:(r1?[1656,1658,1659,1660]:[1631,1633,1634,1635]).map(key),piFix:(r1?[1666,1668,1669,1670]:[1641,1643,1644,1645]).map(key)};}
 export function auditElectronicsOwnership({id,spec,manifest}){const r=reviewedElectronics(id),parts=new Map(manifest.parts.map(p=>[p.key,p]));for(const [name,pin]of [['manual',r.manual_sha256],['manifest',r.manifest_sha256],['model',r.model_sha256]])assert.equal(name==='manual'?spec.manual.sha256:spec[name+'_sha256'],pin);
- const start=spec.stages.findIndex(s=>s.id===r.operations[0].id);let own=0;const refs=new Set();for(const [j,row]of r.operations.entries()){const s=spec.stages[start+j];for(const k of ['id','page_start','page_end','part_keys','operation_part_keys'])assert.deepEqual(s[k],row[k]);own+=s.part_keys.length;for(const k of s.operation_part_keys||s.part_keys)refs.add(k);}
+ const start=spec.stages.findIndex(s=>s.id===r.operations[0].id);let own=0;const refs=new Set();for(const [j,row]of r.operations.entries()){const s=spec.stages[start+j];for(const k of ['id','page_start','page_end','part_keys'])assert.deepEqual(s[k],row[k]);assert.deepEqual(s.operation_part_keys||s.part_keys,row.operation_part_keys||row.part_keys);own+=s.part_keys.length;for(const k of s.operation_part_keys||s.part_keys)refs.add(k);}
  for(const row of r.source_rows){const actual=parts.get(row.key);assert(actual);for(const[k,v]of Object.entries(row))assert.deepEqual(actual[k],v,'Original electronics metadata '+row.key+'/'+k);}
  assert.equal(own,772);assert.equal(refs.size,778);assert.equal(spec.stages.find(s=>s.id==='electronics-control-board').part_keys.length,739);assert.equal(spec.stages.find(s=>s.id==='electronics-pi-board').part_keys.length,1);
  return {operations:13,introducedSourceKeys:own,referencedSourceKeys:refs.size,purchasedBoardLeaves:740,originalSourceOwnership:true,physicalFitQualified:false};}
 const isolated=new Set(['electronics-fan-inserts','electronics-mounts','electronics-mount-height','electronics-cleat-tape']);
 export function applyReviewedElectronicsMask({id,index,spec,keys,result}){const r=reviewedElectronics(id),name=spec.stages[index].id,at=n=>spec.stages.findIndex(s=>s.id===n),row=r.operations.find(s=>s.id===name),refs=row?.operation_part_keys||row?.part_keys;
  if(isolated.has(name)){const allow=new Set(refs);for(const k of keys)if(!allow.has(k))keys.delete(k);assert.deepEqual(keys,allow);assert.equal(result.subassembly,true);}
- else for(const k of [...(index<at('electronics-mount-install')?r.mounts:[]),...(index<at('electronics-cleat-install')?r.cleats:[]),...(index<at('electronics-fan')?r.fan:[])])keys.delete(k);
+ else for(const k of [...(index<at('electronics-mount-install')?r.mounts:[]),...(index<at('electronics-cleat-install')?r.cleats:[]),...(index<at(spec.stages.some(s=>s.id==='electronics-fan-lower')?'electronics-fan-lower':'electronics-fan')?r.fan:[])])keys.delete(k);
  if(row){assert.deepEqual(new Set(result.operation_part_keys||result.part_keys),new Set(refs));assert.equal(result.subassembly,isolated.has(name));}
  return row?{id:name,visible:keys.size}:null;}
 
@@ -38,13 +38,13 @@ export async function auditActualElectronicsDisplay({THREE,id,module,adapter,man
  controller.leave();structure(false);
  const isolatedIDs=new Set(['electronics-fan-inserts','electronics-mounts','electronics-mount-height','electronics-cleat-tape']);
  function visit(name,gray=false){
-  const i=si(name),stage=spec.stages[i],refs=stage.operation_part_keys||stage.part_keys,isolate=isolatedIDs.has(name),all=spec.stages.slice(0,i+1).flatMap(s=>s.part_keys),stored=new Set([...(i<si('electronics-mount-install')?mounts:[]),...(i<si('electronics-cleat-install')?cleats:[]),...(i<si('electronics-fan')?fan:[])]),expected=all.filter(k=>(isolate?refs.includes(k):!stored.has(k))&&(nativeShown.get(k)||companionKeys.has(k)));
+  const i=si(name),stage=spec.stages[i],refs=stage.operation_part_keys||stage.part_keys,isolate=isolatedIDs.has(name),all=spec.stages.slice(0,i+1).flatMap(s=>s.part_keys),stored=new Set([...(i<si('electronics-mount-install')?mounts:[]),...(i<si('electronics-cleat-install')?cleats:[]),...(i<si(spec.stages.some(s=>s.id==='electronics-fan-lower')?'electronics-fan-lower':'electronics-fan')?fan:[])]),expected=all.filter(k=>(isolate?refs.includes(k):!stored.has(k))&&(nativeShown.get(k)||companionKeys.has(k)));
   const state=controller.setStage(i);assert.deepEqual(new Set(controller.getVisibleKeys()),new Set(expected),'Independent source storage mask '+name);assert.equal(state.subassembly,isolate);assert.deepEqual(new Set(state.operation_part_keys||state.part_keys),new Set(refs));for(const k of controller.getBoundsKeys())assert(expected.includes(k));
   for(const k of registry.machines[id].native_alternatives.excluded_keys)assert.equal(adapter.nodes.get(k).visible,false);
   emphasis.update({parts:controller.getDisplayedParts(),currentKeys:refs,enabled:gray});
   for(const k of refs)for(const node of controller.getPartNodes(k))node.traverse(n=>{if(n.isMesh)assert.equal(n.material,assemblySourceMaterial(n),'Current/reused source retains original material '+k);});
   structure();emphasis.clear();for(const r of baseline)assert.equal(r.n.material,r.material);
-  return {id:name,shown:expected.length,owned:stage.part_keys.length,operationRefs:refs.length,gray,isolated:isolate,preparedFanStored:i<si('electronics-fan')&&!isolate};
+  return {id:name,shown:expected.length,owned:stage.part_keys.length,operationRefs:refs.length,gray,isolated:isolate,preparedFanStored:i<si(spec.stages.some(s=>s.id==='electronics-fan-lower')?'electronics-fan-lower':'electronics-fan')&&!isolate};
  }
  for(const name of affectedOperations)observations.push(visit(name));for(const name of [...affectedOperations].reverse())visit(name);
  for(const name of ['mid-panel','electronics-mounts','electronics-control-board-fixing','electronics-pi-board-fixing','electronics-boards','electronics-fan'])visit(name,true);
