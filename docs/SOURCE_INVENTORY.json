@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1371296,
-      "sha256": "7522dded8ec4dc82ba53fd7d51cb687d9b9af2d93018b418d4b3e559d472ecd1"
+      "bytes": 1371414,
+      "sha256": "4f5dd0cf5c06f573d326cddb0e3957be6c55e5b3998bcf46ee93187b90fe12e0"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -295,8 +295,8 @@
     },
     {
       "path": "docs/MAINTENANCE.md",
-      "bytes": 13661,
-      "sha256": "247e4e5597f23fbb914f4990ff183bbdb80de55f86e082da38225424da2190ba"
+      "bytes": 13995,
+      "sha256": "71040628fa1e819b66624c6b6b01a27a02ea05c48ccdf2b30a38a0a09913a751"
     },
     {
       "path": "docs/MICRON.md",
@@ -357,6 +357,11 @@
       "path": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
       "bytes": 4857,
       "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5"
+    },
+    {
+      "path": "docs/R2_INPUT_TRANSPORT.json",
+      "bytes": 1153,
+      "sha256": "0687362cf6f32f0541e53bbecd4656deeff3456d271a38fd8b42370d9ff8a1d7"
     },
     {
       "path": "docs/RAPIDO2_SELECTED_AXIS_REPAIRS_20261019.json",
@@ -2654,6 +2659,11 @@
       "sha256": "2c04bdae0fbf907c0a78e4000c85adc1165dfc7872b11cd3f92f5f84bb34ccae"
     },
     {
+      "path": "scripts/test_registered_input_transport.py",
+      "bytes": 2341,
+      "sha256": "dcf0961704d21206ebe50543845c6de96a79882eb02890018735e3a4f5752f21"
+    },
+    {
       "path": "scripts/test_render_geometry_qa.mjs",
       "bytes": 10496,
       "sha256": "ea1195bffab283d622db209c4531641be1e0d8960d8bd1b0aa91c6beea7c95f1"
@@ -3435,8 +3445,8 @@
     },
     {
       "path": "site/APPROVED_DELIVERY.json",
-      "bytes": 645930,
-      "sha256": "e828572f259ea96019819af0b3a2b932e4084f36bd5b43dfc9cd298abee04c39"
+      "bytes": 645997,
+      "sha256": "467d07209ee6c280e2477b613ce1843d9663421860a0aba2414f815e22e72976"
     },
     {
       "path": "site/ASSET_BUNDLE.json",

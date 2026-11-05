@@ -1,0 +1,15 @@
+{
+  "schema": "registered-transport-recovery-v1",
+  "logicalPath": "R2_ENDSTOP_REGISTRATION.json",
+  "assetID": 654419434,
+  "originalURL": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/a9b207bd788dcf8f76ac5116b39a84aa1be748ce3cb9c4dc920f6b418d2ef1dc.json",
+  "registeredURL": "https://github.com/Psych0h3ad/3d-print-rig/releases/download/approved-normal-inputs-20261019/a9b207bd788dcf8f76ac5116b39a84aa1be748ce3cb9c4dc920f6b418d2ef1dc.json?v=a9b207bd788dcf8f76ac5116b39a84aa1be748ce3cb9c4dc920f6b418d2ef1dc",
+  "bytes": 5963,
+  "sha256": "a9b207bd788dcf8f76ac5116b39a84aa1be748ce3cb9c4dc920f6b418d2ef1dc",
+  "reason": "A fixed content-addressed query selects the same uploaded release asset after repeated HTTP504 responses at its bare URL. The replacement response matches every original byte.",
+  "unchanged": "Same source body, byte count, checksum, approved owner/asset/hosts and retry limits. Other delivery rows and approval metadata are unchanged. No implicit fallback.",
+  "modelGeometryChanged": false,
+  "runtimeFilesChanged": false,
+  "hostPolicyChanged": false,
+  "pinPolicyChanged": false
+}

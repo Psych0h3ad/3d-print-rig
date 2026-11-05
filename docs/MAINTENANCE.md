@@ -124,6 +124,12 @@ Git. The build rejects existing output directories and enforces its total site
 size budget. Wallpaper originals belong in release assets; only their previews
 and catalogs belong in the site.
 
+The R2 endstop metadata uses a fixed content-addressed query on its original
+release-asset URL; see [transport record](R2_INPUT_TRANSPORT.json). Its body,
+size, checksum and approval receipt are unchanged. This explicit registered URL
+replacement does not add a fallback or relax the fetcher's origin, size,
+checksum or retry rules.
+
 CI prepares the 41 extra viewer-quality inputs before the normal site build.
 `prepare_viewer_quality_inputs.py` verifies their current catalog, stored-byte
 and decoded-byte pins and retains them in an external cache. Its report is
