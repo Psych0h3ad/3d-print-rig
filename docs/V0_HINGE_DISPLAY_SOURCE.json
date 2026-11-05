@@ -6,7 +6,7 @@
     "path": "modules/v0_hinge_source_tessellation.glb.gz",
     "bytes": 11861,
     "sha256": "49ccce8052c436c44433094506b052a07acd1f4d43d7da2fd4376c17f149c193",
-    "url": "https://raw.githubusercontent.com/Psych0h3ad/3d-print-rig-large-voron-models/977ad398ea64afcd31c0f8600d80b25e95051a90/site/modules/v0_hinge_source_tessellation.glb.gz",
+    "url": "https://psych0h3ad.github.io/3d-print-rig-large-voron-models/modules/v0_hinge_source_tessellation.glb.gz",
     "approval_receipt_sha256": "85fb2598a8b5ba77c024cc9826b2555b4563b09003b38ed1809df5c547c470cd",
     "approval_receipt_url": "https://raw.githubusercontent.com/Psych0h3ad/3d-print-rig-large-voron-models/977ad398ea64afcd31c0f8600d80b25e95051a90/site/v0-hinge-source-v1/PROVENANCE.json",
     "origin": "V0 source hinge display provenance and exact recorded-source regeneration"

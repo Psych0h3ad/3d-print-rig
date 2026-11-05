@@ -6,6 +6,33 @@ import delivery_audit_context
 from build_approved_site import run,validate_contract,safe_path
 
 class ApprovedBuild(unittest.TestCase):
+    def test_registered_hinge_body_uses_approved_transport_host(self):
+        root = pathlib.Path(__file__).resolve().parents[1]
+        contract = json.loads((root/'site/APPROVED_DELIVERY.json').read_bytes())
+        row, = [r for r in contract['files'] if r['path'] == 'modules/v0_hinge_source_tessellation.glb.gz']
+        source = json.loads((root/'docs/V0_HINGE_DISPLAY_SOURCE.json').read_bytes())
+        self.assertEqual(row, source['model_delivery'])
+        self.assertEqual(row['url'], 'https://psych0h3ad.github.io/3d-print-rig-large-voron-models/modules/v0_hinge_source_tessellation.glb.gz')
+        self.assertEqual((row['bytes'], row['sha256']), (11861, '49ccce8052c436c44433094506b052a07acd1f4d43d7da2fd4376c17f149c193'))
+        self.assertIn('/977ad398ea64afcd31c0f8600d80b25e95051a90/', row['approval_receipt_url'])
+        # Source CI has no model body. Exercise the real acquisition function
+        # using the actual registered URL and honest, separately named bytes.
+        data = b'isolated transport fixture, not a model'
+        fixture = dict(row, bytes=len(data), sha256=hashlib.sha256(data).hexdigest())
+        for final_url, body, error in [(row['url'], data, None),
+                ('https://raw.githubusercontent.com/Psych0h3ad/3d-print-rig-large-voron-models/977ad398ea64afcd31c0f8600d80b25e95051a90/site/modules/v0_hinge_source_tessellation.glb.gz', data, 'Unapproved delivery redirect'),
+                (row['url'], data[:-1]+b'!', 'Delivery checksum changed')]:
+            response = io.BytesIO(body); response.url = final_url
+            with self.subTest(url=final_url, error=error), tempfile.TemporaryDirectory() as folder, patch.object(build_approved_site.urllib.request, 'urlopen', return_value=response) as opened, patch.object(build_approved_site.time, 'sleep') as slept:
+                dest = pathlib.Path(folder)/'fixture.bin'
+                if error:
+                    with self.assertRaisesRegex(ValueError, error): build_approved_site.fetch_pinned_body(fixture, dest)
+                else:
+                    build_approved_site.fetch_pinned_body(fixture, dest)
+                    self.assertEqual(dest.read_bytes(), data)
+                self.assertEqual(opened.call_count, 1); slept.assert_not_called()
+                self.assertEqual(opened.call_args.args[0].full_url, row['url'])
+
     def test_transient_acquisition_retries_same_pinned_body(self):
         data = b'approved body'
         row = {'url': 'https://psych0h3ad.github.io/model.bin', 'path': 'model.bin', 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
