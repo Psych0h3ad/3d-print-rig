@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1363871,
-      "sha256": "db3225ac86f3510e8cde8c916c6a70dfaee7700f7609a92d5a15337a7bfb9bed"
+      "bytes": 1363874,
+      "sha256": "cb6dcd8b5b0371530dc25c7fe2b42106ffd6391a2f851894144e5aed92aa7a82"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -595,8 +595,8 @@
     },
     {
       "path": "docs/V0_HINGE_DISPLAY_SOURCE.json",
-      "bytes": 2503,
-      "sha256": "b24ed017e83a1036fef1d09646fdc2a9bb40828dbaa53629409862aae3e84963"
+      "bytes": 2441,
+      "sha256": "9c1d4c67da093e37dacd33c5b4e8140fa46405b38d79b46a4dff282a7fec6a81"
     },
     {
       "path": "docs/V0_IDLER_ASSEMBLY_REVIEW.json",
@@ -1570,8 +1570,8 @@
     },
     {
       "path": "scripts/test_approved_build.py",
-      "bytes": 87143,
-      "sha256": "2eb698ba5c84f77e4f98be666891552e9abf4c19e1c27e86632ebab55d3f2f43"
+      "bytes": 89488,
+      "sha256": "04f8b79c3e79aa2535348bc0c46471422a9d54f79114b46e0200925f7b90fbaf"
     },
     {
       "path": "scripts/test_assembly_downloads.mjs",
@@ -3360,8 +3360,8 @@
     },
     {
       "path": "site/APPROVED_DELIVERY.json",
-      "bytes": 644482,
-      "sha256": "6eff1c930bfae53abc1e26570320eb6c4873b639fff02ce03c916d27f2771a70"
+      "bytes": 644420,
+      "sha256": "9c98f92c30d164d3e03a0110aa9f598c92e7d51278d6e766ee5595f2d4e935e2"
     },
     {
       "path": "site/ASSET_BUNDLE.json",
