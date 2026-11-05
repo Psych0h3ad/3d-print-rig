@@ -3,6 +3,22 @@ from prepare_v0_manual_delivery import read_built_v0_stages
 from pathlib import Path
 import argparse,hashlib,json,subprocess,tempfile
 ROOT=Path(__file__).resolve().parents[1]
+REQUIRED_STAGE_PROVIDERS=tuple('viewer/'+name+'.mjs' for name in (
+    'v0-bed-assembly','v0-drive-assembly','v0-electronics-assembly',
+    'v0-enclosure-assembly','v0-fan-assembly','v0-feet-assembly',
+    'v0-head-assembly','v0-idler-assembly','v0-m2-seating',
+    'v0-panel-closure','v0-panel-door','v0-power-assembly',
+    'v0-power-references','v0-rail-operations','v0-rail-preparation',
+    'v0-spool-assembly','v0-tophat-assembly','v0-xy-preparation'))
+
+
+def require_stage_provider_pins(report, site):
+    """A successful stage result must identify every known source provider."""
+    pins=report.get('source_sha256',{})
+    for name in REQUIRED_STAGE_PROVIDERS:
+        expected=hashlib.sha256((Path(site)/name).read_bytes()).hexdigest()
+        if pins.get(name)!=expected:
+            raise ValueError('Missing exact current V0 stage provider pin: '+name)
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--site',type=Path,required=True);p.add_argument('--report',type=Path,required=True);p.add_argument('--map',type=Path);a=p.parse_args()
@@ -15,6 +31,7 @@ def main():
             report=Path(folder)/(mid+'.json')
             subprocess.run(['node','--max-old-space-size=176','--max-semi-space-size=1','--v8-pool-size=1','--experimental-vm-modules',str(ROOT/'scripts/audit_v0_assembly_assets.mjs'),'--site',str(a.site),'--machine',mid,'--report',str(report),*(['--map',str(a.map)]if a.map else[])],cwd=ROOT,check=True,timeout=120)
             row=json.loads(report.read_bytes())
+            require_stage_provider_pins(row,a.site)
             if not row.get('passed')or len(row['machines'])!=1 or row['machines'][0]['machine_id']!=mid:raise ValueError('Missing exact V0 assembly: '+mid)
             proof=row['machines'][0].get('manualFasteners',{})
             if proof.get('sourceFasteners')!=8 or not all(proof.get(k)for k in ['controlledEarlierPartDisplayLease','currentFastenersOriginalHardwareMaterial','foreignDisplayReplacementRejected','originalTransformsMaterialsGeometryVisibilityRestored']):raise ValueError('Missing actual source fastener/display audit: '+mid)

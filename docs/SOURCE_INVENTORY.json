@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1370341,
-      "sha256": "dbed5faa2458fe5b3167e42681bd90246c69643a3855cf89758eef70ad59140c"
+      "bytes": 1371414,
+      "sha256": "4f5dd0cf5c06f573d326cddb0e3957be6c55e5b3998bcf46ee93187b90fe12e0"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -295,8 +295,8 @@
     },
     {
       "path": "docs/MAINTENANCE.md",
-      "bytes": 13661,
-      "sha256": "247e4e5597f23fbb914f4990ff183bbdb80de55f86e082da38225424da2190ba"
+      "bytes": 13995,
+      "sha256": "71040628fa1e819b66624c6b6b01a27a02ea05c48ccdf2b30a38a0a09913a751"
     },
     {
       "path": "docs/MICRON.md",
@@ -357,6 +357,11 @@
       "path": "docs/PUBLISHED_ASSEMBLY_DOWNLOAD_REVIEW.json",
       "bytes": 4857,
       "sha256": "c07c5bbb4199ccb0639cb52fc3898044b48b8edb93915acb75a49e345eafc2d5"
+    },
+    {
+      "path": "docs/R2_INPUT_TRANSPORT.json",
+      "bytes": 1153,
+      "sha256": "0687362cf6f32f0541e53bbecd4656deeff3456d271a38fd8b42370d9ff8a1d7"
     },
     {
       "path": "docs/RAPIDO2_SELECTED_AXIS_REPAIRS_20261019.json",
@@ -560,13 +565,18 @@
     },
     {
       "path": "docs/V0_ASSEMBLY.md",
-      "bytes": 24186,
-      "sha256": "193894f32b49db26f8e6355253f16c4d19a239b864278e1bcc4210065cb1da35"
+      "bytes": 24626,
+      "sha256": "a3f22acccfcec5cc53e8ae434a47e06e90fc528fc5e17c2901eb18d4692fe06b"
     },
     {
       "path": "docs/V0_ASSEMBLY_REVIEW_130.json",
       "bytes": 60644,
       "sha256": "3e1e98e2691b093df9d8c21759931e8b5fb60f0541b9e908bdfe8659078542d1"
+    },
+    {
+      "path": "docs/V0_AUDIT_SOURCE_CLOSURE.json",
+      "bytes": 2249,
+      "sha256": "97d68c7dd2a0bbdae6e783d12997261519d2ea9a9fa3084738d03de960dad892"
     },
     {
       "path": "docs/V0_BED_ASSEMBLY_REVIEW.json",
@@ -849,6 +859,11 @@
       "sha256": "6097010d71af9d5fdfa599c863c0d393dcb942dfc4d2911c6798fe1ceb30e67a"
     },
     {
+      "path": "scripts/audit_module_closure.mjs",
+      "bytes": 998,
+      "sha256": "aa59e0c62bf0901d363f6e283b3bb71216103cf4151d81b36760bad9ed592117"
+    },
+    {
       "path": "scripts/audit_monolith_motion.mjs",
       "bytes": 5506,
       "sha256": "24053829ef864cea8d37c2d918b638b2776074e99f55529c45f431db7250649c"
@@ -960,8 +975,8 @@
     },
     {
       "path": "scripts/audit_v0_assembly_assets.mjs",
-      "bytes": 35615,
-      "sha256": "24df358439cbc0fe83179cd202de9cac252d21fdf8e6f35b86adb74689a23aec"
+      "bytes": 35197,
+      "sha256": "552f45afab28f2999b5d8b45e7f2b38b3c578f823abc69f48b0c536753aa135b"
     },
     {
       "path": "scripts/audit_v0_hinge_source_assets.mjs",
@@ -1075,8 +1090,8 @@
     },
     {
       "path": "scripts/check_machine_regressions.py",
-      "bytes": 3730,
-      "sha256": "c701041bc8e47b0e32cd8b8e088cb2a1218abe5092b656d593aca6137d86d559"
+      "bytes": 3766,
+      "sha256": "8eb1b29a039fc8964e40b3e5604d873c72d2f3fe253f57e44d0c34dcf9ae3c63"
     },
     {
       "path": "scripts/check_motion_assets.mjs",
@@ -1110,8 +1125,8 @@
     },
     {
       "path": "scripts/check_v0_assembly_release.py",
-      "bytes": 10330,
-      "sha256": "6f245c338733f1052df7d488323762e6aea6d351a6653c28ad6e13814bebf80d"
+      "bytes": 11247,
+      "sha256": "41ae3f44e98a50e48657dba3ff77c5cad5c8536e4a2151e00ac02cb1164d39d3"
     },
     {
       "path": "scripts/check_v0_native_assets_release.py",
@@ -1627,6 +1642,11 @@
       "path": "scripts/test_assembly_workbench.mjs",
       "bytes": 18555,
       "sha256": "04d03c1b44874c38c1ccd2af760bd36871a25b6b13306bb99ea46f1fb74001c5"
+    },
+    {
+      "path": "scripts/test_audit_module_closure.mjs",
+      "bytes": 2721,
+      "sha256": "40fd6ae2d284a144407102e7200b3ddfb0ab3b872ffa328e6f1aaff374ca7eae"
     },
     {
       "path": "scripts/test_bed_chain.mjs",
@@ -2639,6 +2659,11 @@
       "sha256": "2c04bdae0fbf907c0a78e4000c85adc1165dfc7872b11cd3f92f5f84bb34ccae"
     },
     {
+      "path": "scripts/test_registered_input_transport.py",
+      "bytes": 2341,
+      "sha256": "dcf0961704d21206ebe50543845c6de96a79882eb02890018735e3a4f5752f21"
+    },
+    {
       "path": "scripts/test_render_geometry_qa.mjs",
       "bytes": 10496,
       "sha256": "ea1195bffab283d622db209c4531641be1e0d8960d8bd1b0aa91c6beea7c95f1"
@@ -2982,6 +3007,11 @@
       "path": "scripts/test_v0_assembly_app.mjs",
       "bytes": 33640,
       "sha256": "7981dee446c30b8173a26de80b4a9870d9fa4af51309f46f32d3b61b897fc79e"
+    },
+    {
+      "path": "scripts/test_v0_audit_source_pins.py",
+      "bytes": 1679,
+      "sha256": "b3489e0523a9d5ac760b45e2fdc44269ae754d2fe980bfba8648e7b8ed783f9a"
     },
     {
       "path": "scripts/test_v0_bed_assembly.mjs",
@@ -3415,8 +3445,8 @@
     },
     {
       "path": "site/APPROVED_DELIVERY.json",
-      "bytes": 645930,
-      "sha256": "e828572f259ea96019819af0b3a2b932e4084f36bd5b43dfc9cd298abee04c39"
+      "bytes": 645997,
+      "sha256": "467d07209ee6c280e2477b613ce1843d9663421860a0aba2414f815e22e72976"
     },
     {
       "path": "site/ASSET_BUNDLE.json",

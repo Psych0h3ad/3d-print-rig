@@ -20,7 +20,7 @@ def main():
     started_at=datetime.datetime.now(datetime.timezone.utc).isoformat()
     tasks=[['node',*(['--max-old-space-size=48','--max-semi-space-size=1','--expose-gc','--v8-pool-size=1'] if p.name=='test_e3ng_loom_route.mjs' else []),*(['--max-old-space-size=224','--max-semi-space-size=4','--v8-pool-size=1']
                     if p.name in {'test_layout_equipment_input_preparation.mjs','test_layout_equipment_preview.mjs'} else []),*(['--max-old-space-size=256','--expose-gc']
-                    if p.name in {'test_native_baseline_bootstrap.mjs','test_v24_exact_native_reset.mjs','test_machine_head_global_inputs.mjs'} else []),*(['--experimental-vm-modules'] if p.name=='test_layout_source_zero_face_binding.mjs' else []),str(p)]
+                    if p.name in {'test_native_baseline_bootstrap.mjs','test_v24_exact_native_reset.mjs','test_machine_head_global_inputs.mjs'} else []),*(['--experimental-vm-modules'] if p.name in {'test_layout_source_zero_face_binding.mjs','test_audit_module_closure.mjs'} else []),str(p)]
            for p in sorted((ROOT/'scripts').glob('test_*.mjs'))]
     tasks.append(['node',str(ROOT/'scripts/check_machine_coverage.mjs')])
     tasks.extend([[sys.executable,str(p)]for p in sorted((ROOT/'scripts').glob('test_*.py'))])

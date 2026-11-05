@@ -73,6 +73,13 @@ manual or a physically completed printer.
 The [operation and delivery record](V0_MANUAL_OPERATION_DELIVERY.json) states the
 current source identities, selected review scope and unresolved qualifications.
 
+The actual-stage audit traverses imported source modules independently of its
+already-hashed input cache. Every report must include exact hashes for all
+eighteen known stage providers. Missing or changed provider pins reject the
+release report even when its stage assertions passed. The
+[source-closure record](V0_AUDIT_SOURCE_CLOSURE.json) preserves the distinct
+runtime and audit identities; this adds no geometry or physical-fit claim.
+
 The stock Mini Stealthburner sequence contains 41 reference operations, following
 V0.2 pages 151–182 and r1 pages 157–188. Cowling, shuttle, midbody, guidler and
 motor-plate preparation are separate views. Prepared spacers stay aside until
