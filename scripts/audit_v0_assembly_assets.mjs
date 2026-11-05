@@ -11,6 +11,7 @@ import vm from 'node:vm';
 import {auditElectronicsOwnership,applyReviewedElectronicsMask,auditActualElectronicsDisplay} from './v0_electronics_reference_audit.mjs';
 import {auditPowerOwnership,applyReviewedPowerMask,auditActualPowerDisplay} from './v0_power_reference_audit.mjs';
 import {installPowerAuditTransport} from './v0_power_audit_transport.mjs';
+import {applyBuiltV0HingeGeometry} from './v0_hinge_audit_transport.mjs';
 import {auditPartReview} from './assembly_part_review_audit.mjs';
 import {auditRailOwnership,applyReviewedRailMask,auditActualRailDisplay} from './v0_rail_reference_audit.mjs';
 import {auditV0M2Reference} from './v0_m2_reference_audit.mjs';
@@ -115,7 +116,7 @@ try{
   const glb=JSON.parse(bytes.subarray(20,20+bytes.readUInt32LE(12)).toString('utf8'));assert(!(glb.buffers||[]).some(b=>b.uri));assert(!(glb.images||[]).some(b=>b.uri));
   const loaded=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');
   const scene=new THREE.Scene();scene.add(loaded.scene);
-  const geometry=auditGeometry(loaded.scene),adapter=createV0Adapter(loaded.scene,manifest,profile);
+  const sourceGeometry=auditGeometry(loaded.scene),hingeRepresentation=await applyBuiltV0HingeGeometry({site,loader:new GLTFLoader(),root:loaded.scene,manifest,profile,receipts:{'model.glb':sha(bytes),'assembly_manifest.json':sha(manifestBytes),'machine_profile.json':sha(profileBytes)},pinFile:pin}),geometry=auditGeometry(loaded.scene),adapter=createV0Adapter(loaded.scene,manifest,profile);
   adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,profile.display_reference_xyz_mm[i]])));
   adapter.setEnclosureVisible(true);adapter.setFlexibleVisible(true);adapter.setDoorAngle(0);adapter.setTophatAngle(0);
   const installed=await createV0Installations({scene,adapter,profile,registry:{...registryData.machines[id],sources:registryData.sources},loadModule:async name=>{
@@ -262,7 +263,7 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,railOwnership,railDisplay,electronicsOwnership,electronicsDisplay,powerOwnership,powerDisplay,powerTransport:powerTransport.summary(),restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,sourceGeometry,hingeRepresentation,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,railOwnership,railDisplay,electronicsOwnership,electronicsDisplay,powerOwnership,powerDisplay,powerTransport:powerTransport.summary(),restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }

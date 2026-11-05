@@ -32,6 +32,28 @@ def main():
             if transport.get('requests')!=1 or transport.get('encodedBytes')!=31361 or transport.get('decodedBytes')!=615743 or transport.get('encodedSHA256')!='2367c37c716689d6fe4107f83feb7a8023dcd5d9ba987f05df0b0331586329b7' or transport.get('decodedSHA256')!='f4b455722cd1878a7de8d6566cd4ab2bd8f5c3f6b5fb0de37625cd468a4ceded' or not transport.get('productionDecoderAndCryptoReceipt'):raise ValueError('Missing actual received power delivery: '+mid)
             if len(power_display.get('observations',[]))!=13 or power_display.get('operationsReverse')!=13 or power_display.get('grayJumps')!=3 or power_display.get('separatePalettes')!=3 or power_display.get('visibilityFailureCases')!=1 or not all(power_display.get(k)for k in ['allSelectedFramesEqualOriginal','allNativeMatricesMaterialsVisibilityRestored','fullGeometryBuffersUnchanged']):raise ValueError('Missing actual power lifecycle: '+mid)
             if power_display.get('physicalFitQualified')is not False or power_display.get('electricalQualified')is not False:raise ValueError('Power reference scope overstated: '+mid)
+            hinge_report = Path(folder)/(mid+'-hinge-source.json')
+            subprocess.run(['node','--max-old-space-size=176','--max-semi-space-size=1','--v8-pool-size=1','--experimental-vm-modules',str(ROOT/'scripts/audit_v0_hinge_source_assets.mjs'),'--site',str(a.site),'--machine',mid,'--report',str(hinge_report),*(['--map',str(a.map)]if a.map else[])],cwd=ROOT,check=True,timeout=120)
+            hinge = json.loads(hinge_report.read_bytes())
+            representation = row['machines'][0].get('hingeRepresentation', {})
+            if representation.get('requests') != 2 or not representation.get('productionDecoderAndGeometryGuard') or representation.get('nativeClearanceVerified') is not False or representation.get('physicalFitVerified') is not False:
+                raise ValueError('Assembly stages did not consume the mandatory source hinge geometry: '+mid)
+            if not hinge.get('passed') or hinge.get('machine_id') != mid or hinge.get('source_parts') != (1678 if mid=='voron_v02r1_120' else 1653) or hinge.get('moving_source_leaves') != 10 or hinge.get('stationary_pivot_leaves') != 2 or hinge.get('stationary_latch_leaves') != (14 if mid=='voron_v02r1_120' else 10):
+                raise ValueError('Missing exact source hinge/door ownership gate: '+mid)
+            if not all(hinge.get(k) for k in ['original_source_materials_and_frames_preserved','wrong_original_model_rejected','prepare_commit_rollback_preserved_source','mandatory_geometry_receipt_verified','detached_source_owner_rejected','original_source_owner_restored']) or any(hinge.get(k) is not False for k in ['native_clearance_verified','physical_fit_verified','continuous_motion_verified']):
+                raise ValueError('Missing strict hinge source receipt/restoration or overstated fit scope: '+mid)
+            row['machines'][0]['hingeSource'] = hinge
+            layout_visits=[]
+            for mode in ['success','fail','abort']:
+                layout_report=Path(folder)/(mid+'-layout-'+mode+'.json')
+                subprocess.run(['node','--max-old-space-size=176','--max-semi-space-size=1','--v8-pool-size=1',str(ROOT/'scripts/audit_v0_layout_source_assets.mjs'),'--site',str(a.site),'--machine',mid,'--mode',mode,'--report',str(layout_report)],cwd=ROOT,check=True,timeout=120)
+                visit=json.loads(layout_report.read_bytes())
+                if not visit.get('passed') or visit.get('machine')!=mid or visit.get('mode')!=mode or visit.get('finalHashes')!=1 or visit.get('observedGeometryDisposals',0)<1500:
+                    raise ValueError('Missing current V0 Layout identity/resource lifecycle gate: '+mid+'/'+mode)
+                if visit.get('physicalFitQualified')is not False or visit.get('browserQualified')is not False:
+                    raise ValueError('Layout CPU source gate scope overstated')
+                layout_visits.append(visit)
+            row['machines'][0]['layoutSourceLifecycle']=layout_visits
             rows.append(row)
     if stages.read_bytes()!=source:raise ValueError('Stage source changed between machines')
     result={k:v for k,v in rows[0].items()if k not in {'machines','source_sha256'}};result['machines']=[m for row in rows for m in row['machines']];pins={}

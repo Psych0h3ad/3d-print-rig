@@ -21,7 +21,7 @@ async function prepare(run) {
 export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
  if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=d6d26c7b85b3eba53113');return loadV24ReferenceLayout(id,{signal,onProgress})}
- if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=ceba0226b6221074c089');return loadV0DefaultLayout(id,{signal,onProgress})}
+ if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=5cb8fd28b010b370174f');return loadV0DefaultLayout(id,{signal,onProgress})}
  if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=c9ddeeeea5d9c7ebaa5e');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
   const m=await import('./source-assembly-loader.mjs?v=d968fe09473fc9405d43'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede');

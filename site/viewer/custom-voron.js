@@ -15,7 +15,7 @@ import {setResponsiveAspect,frameResponsiveView} from './responsive-camera.mjs?v
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=6b031d8dcbc50a97e805';
+import {setupPublicInfo} from './public-info.js?v=496c2eac18cd9028756a';
 import {setupGcodePanel} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {formatMessage,translate} from './i18n.mjs?v=bd46dc6874c80e4c196b';

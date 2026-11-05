@@ -26,7 +26,7 @@ import {setupConfigurations} from './configurations.js?v=175f6b3e3faa551413f1';
 import {setupAccessories} from './accessories.js?v=a11dccebed0b3d8cd117';
 import {setupAppearance} from './appearance.js';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=6b031d8dcbc50a97e805';
+import {setupPublicInfo} from './public-info.js?v=496c2eac18cd9028756a';
 import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=cc95b5a3162018900d4e';
 import {setupChangerBank} from './changer-bank.js?v=f5029fbbdd962cbe2c85';
 import {expandedPrinterCatalog} from './machine-head-model.mjs?v=bb3949841f41afc5a4eb';
