@@ -34,6 +34,7 @@
     "scripts/audit_madmax_ptfe.mjs": "27c5e1fb939944d14c3d3320cf5d0c3c0d841f6afd4a2e3ae09e3ed97a68fb56",
     "scripts/audit_micron_colors.mjs": "763647fa548c3d043af636c594e040165f83825d1a67deafc2c074ad736f09b4",
     "scripts/audit_microswiss_source_shrouds.mjs": "6097010d71af9d5fdfa599c863c0d393dcb942dfc4d2911c6798fe1ceb30e67a",
+    "scripts/audit_module_closure.mjs": "aa59e0c62bf0901d363f6e283b3bb71216103cf4151d81b36760bad9ed592117",
     "scripts/audit_monolith_motion.mjs": "24053829ef864cea8d37c2d918b638b2776074e99f55529c45f431db7250649c",
     "scripts/audit_monolith_mounts.mjs": "74f93d74aff9965ecdc0cb9679077d9b21435b8c2f062d24b77858f02f32707e",
     "scripts/audit_monolith_printers.mjs": "aa2371f25f31ce6952d22e7a1c2dfe2bc8334bad4f16e8c5e813e459c341ad20",
@@ -56,7 +57,7 @@
     "scripts/audit_trinity_beacon_controller.mjs": "a9a503adf030fc014453fa57ba81400942797a21e019f1270138673e7ffc96dd",
     "scripts/audit_trinity_beacon_helpers.mjs": "bb1a98a9062faa3935fe61b5831f6c53e3d807cb4df3c7c4b16ff19c72dba6a4",
     "scripts/audit_u1_bottom.mjs": "6ada34785127c7388b98e3460c36f329ab4cfd95fbb46dc57af6eff9214bec7e",
-    "scripts/audit_v0_assembly_assets.mjs": "24df358439cbc0fe83179cd202de9cac252d21fdf8e6f35b86adb74689a23aec",
+    "scripts/audit_v0_assembly_assets.mjs": "552f45afab28f2999b5d8b45e7f2b38b3c578f823abc69f48b0c536753aa135b",
     "scripts/audit_v0_hinge_source_assets.mjs": "70e73e503771c5907b6c4d22f516de3132eec61f909a692955ed34266ea989b5",
     "scripts/audit_v0_layout_source_assets.mjs": "30e87c1058efa2b5fd695ed42ceef67ced4386eaf7ec661ac3c9938f915f4253",
     "scripts/audit_v0_mod_selection.mjs": "f58a5b74103b3506892649cd91ed5fb3d882fa17c31d93d057ccf650879c6e27",
@@ -79,14 +80,14 @@
     "scripts/check_eva_front_release.py": "cbbefaae96061b08e5063c8ac98b7e920083b43dd5aa0b0b91e1588ceb1317f8",
     "scripts/check_eva_options_release.py": "7ac53b648dc361de4021a34e11ba9c4a00bbd6849c37704e4f7b3de078a08801",
     "scripts/check_machine_coverage.mjs": "527ce77f06a6058ccb8bee12d2fb31ee2d5770a520dbc16d9d7c68dd46f6da72",
-    "scripts/check_machine_regressions.py": "c701041bc8e47b0e32cd8b8e088cb2a1218abe5092b656d593aca6137d86d559",
+    "scripts/check_machine_regressions.py": "8eb1b29a039fc8964e40b3e5604d873c72d2f3fe253f57e44d0c34dcf9ae3c63",
     "scripts/check_motion_assets.mjs": "1edd9abfa8c75a7fe8a0ddde73fda84504f89ff7c709c9f3a06a89116153befe",
     "scripts/check_repository.py": "a75185832174573fe2d5124656315401cce828aaa805c34e767a7d45f2f66224",
     "scripts/check_source_dependency_closure.mjs": "4dec3ea3522b975c66b94692b1071071158754f2436b15286088c23504f57bfd",
     "scripts/check_source_parts_map_release.py": "099a6a523a715d6c2576866d025c6fe0b16303a57179d2f7d03105dfa43fee86",
     "scripts/check_trinity_beacon_release.py": "cb20af0245f22d132189e18aaa2596060a4aeac93f50000f98a04d459ae71615",
     "scripts/check_ui_catalog.mjs": "d1b8fb54df58c2bb57295c72736a12b71720240e381c1c2be889419f4bcbaca7",
-    "scripts/check_v0_assembly_release.py": "6f245c338733f1052df7d488323762e6aea6d351a6653c28ad6e13814bebf80d",
+    "scripts/check_v0_assembly_release.py": "41ae3f44e98a50e48657dba3ff77c5cad5c8536e4a2151e00ac02cb1164d39d3",
     "scripts/check_v0_native_assets_release.py": "7e0fb9a215dabefdf50105717eff40681c50e0f2afd18556af754b1d136cafa0",
     "scripts/check_viewer_quality_release.py": "7b3cc4c1c8bf38764de5cb260c90a0b7368b2c7fdbd0574bc73f2572232ddce6",
     "scripts/check_wallpaper_compositions.py": "a52f3c47ebc94c09a8376aee6413065dda38395898671e9a7420db5c4062f5cb",
@@ -190,6 +191,7 @@
     "scripts/test_assembly_stage_emphasis.mjs": "fc8c6659858ffcb5192d47cbf3631f1470f8270657c0540a6b7c31cb563e3c96",
     "scripts/test_assembly_transactions.mjs": "beff2ee061eff5ce55f9b292732659761855b4f87a30d33f64251a9eee6c285f",
     "scripts/test_assembly_workbench.mjs": "04d03c1b44874c38c1ccd2af760bd36871a25b6b13306bb99ea46f1fb74001c5",
+    "scripts/test_audit_module_closure.mjs": "40fd6ae2d284a144407102e7200b3ddfb0ab3b872ffa328e6f1aaff374ca7eae",
     "scripts/test_bed_chain_native_roots.mjs": "fb4eb3085cb4bfaa58d335690148e0df71795508736db07494f7a6fa22d16a29",
     "scripts/test_bed_chain.mjs": "13d44bc398cbf1e0510c5a86ad7e7d4224cda54c6cac4ade6755319824a0cbbf",
     "scripts/test_build_evidence.py": "18fd1e29424b98fbf2931c39922cbf44e4c6a2ae809db2cf17576389db3de41e",
@@ -461,6 +463,7 @@
     "scripts/test_v0_alignment_order.mjs": "144f108fec3151f0a3e8d891d01ccb1e7e028d0983223c1a36851c25839e534e",
     "scripts/test_v0_assembly_app.mjs": "7981dee446c30b8173a26de80b4a9870d9fa4af51309f46f32d3b61b897fc79e",
     "scripts/test_v0_assembly.mjs": "40380dc1156cba8a9e6eba4e670d77d4d60c3332f057d7eed8f5967b73dd1d09",
+    "scripts/test_v0_audit_source_pins.py": "b3489e0523a9d5ac760b45e2fdc44269ae754d2fe980bfba8648e7b8ed783f9a",
     "scripts/test_v0_bed_assembly.mjs": "b0f9e3f31281bcc25b55e5fc857d688593c24a681fc4b2684d3188d83ddb0032",
     "scripts/test_v0_belts.mjs": "d9a9aef04c055c0fce5311f3f1bf8484ec2a1f359e2d5152a12ada93bbdb85d8",
     "scripts/test_v0_door_ownership.mjs": "ae8d558f3543c70c4853c6811d57195c9dd4f4e8fb67be81efa2cbe3c1cbaf4b",
@@ -12579,6 +12582,13 @@
         "original_source_parts": 1678,
         "native_fit_verified": false,
         "scope": "Exact two source assemblies with255/260 manual states, streamed data identity, original part membership, selected gray/palette and original restoration. Native source receiver/body intersections, threading, insertion, holding and continuous clearance remain open. Historical machine geometry evidence and old failures retain their original scope. Normal full-site asset gates, all-machine coverage, CI/Pages and exact served revision/browser remain required for publication."
+      },
+      "current_v0_audit_source_closure": {
+        "record": "docs/V0_AUDIT_SOURCE_CLOSURE.json",
+        "sha256": "97d68c7dd2a0bbdae6e783d12997261519d2ea9a9fa3084738d03de960dad892",
+        "required_provider_pins": 18,
+        "runtime_geometry_changed": false,
+        "native_fit_verified": false
       }
     },
     {
@@ -12818,6 +12828,13 @@
         "original_source_parts": 1653,
         "native_fit_verified": false,
         "scope": "Exact two source assemblies with255/260 manual states, streamed data identity, original part membership, selected gray/palette and original restoration. Native source receiver/body intersections, threading, insertion, holding and continuous clearance remain open. Historical machine geometry evidence and old failures retain their original scope. Normal full-site asset gates, all-machine coverage, CI/Pages and exact served revision/browser remain required for publication."
+      },
+      "current_v0_audit_source_closure": {
+        "record": "docs/V0_AUDIT_SOURCE_CLOSURE.json",
+        "sha256": "97d68c7dd2a0bbdae6e783d12997261519d2ea9a9fa3084738d03de960dad892",
+        "required_provider_pins": 18,
+        "runtime_geometry_changed": false,
+        "native_fit_verified": false
       }
     },
     {

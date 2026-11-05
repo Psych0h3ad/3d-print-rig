@@ -1,0 +1,43 @@
+{
+  "schema": "v0-audit-import-closure-v1",
+  "runtimeSourceRevision": "59beca053648dad79dc08417ab53d9d6eb5c6179",
+  "runtimeGeometryChanged": false,
+  "stageIdentityChanged": false,
+  "sourceProviderPinsRequired": 18,
+  "canonicalLFSourceFiles": {
+    "scripts/audit_module_closure.mjs": "aa59e0c62bf0901d363f6e283b3bb71216103cf4151d81b36760bad9ed592117",
+    "scripts/audit_v0_assembly_assets.mjs": "552f45afab28f2999b5d8b45e7f2b38b3c578f823abc69f48b0c536753aa135b",
+    "scripts/check_v0_assembly_release.py": "41ae3f44e98a50e48657dba3ff77c5cad5c8536e4a2151e00ac02cb1164d39d3"
+  },
+  "localEvidenceAuditorByteSHA256": {
+    "scripts/audit_module_closure.mjs": "aa59e0c62bf0901d363f6e283b3bb71216103cf4151d81b36760bad9ed592117",
+    "scripts/audit_v0_assembly_assets.mjs": "37942b2ae27b59b69952b24267f8bc80028c1dedd1f635082c55c23f2271f361",
+    "scripts/check_v0_assembly_release.py": "9b539019281ad40f8338f1ad3d8493d441bb943c1d16a2bdbc429624d65ec6d5"
+  },
+  "actualReports": [
+    {
+      "machine": "voron_v02_120",
+      "parts": 1653,
+      "stages": 255,
+      "poses": 514,
+      "sourceBindings": 134,
+      "requiredProviders": 18,
+      "reportSHA256": "af6fc425e4f3702ffee852aa0e4e57c7394c6a6e84990aeb09ae1c0adc966cc0",
+      "runtimeCanonicalGitMain": "59beca053648dad79dc08417ab53d9d6eb5c6179"
+    },
+    {
+      "machine": "voron_v02r1_120",
+      "parts": 1678,
+      "stages": 260,
+      "poses": 524,
+      "sourceBindings": 134,
+      "requiredProviders": 18,
+      "reportSHA256": "e35179a98541d834378ff10e8895476897906630319f66ba83cef51a58a38209",
+      "runtimeCanonicalGitMain": "59beca053648dad79dc08417ab53d9d6eb5c6179"
+    }
+  ],
+  "scope": "Both complete original stock assemblies on exact committed LF runtime source, all current stages and explicit source-provider hashes. Local auditor working-tree bytes and canonical LF source identities are recorded separately; deployment must run its own exact committed auditors and retains its own report. No evidence is reassigned across line-ending variants. Source hashing and dependency traversal are independent; omitted or changed provider pins reject a stage report.",
+  "nativeMatingVerified": false,
+  "fullPhysicalFitCertified": false,
+  "fullManualCompleted": false
+}

@@ -1,4 +1,5 @@
 import {receiveBuiltV0ManualData} from './v0_manual_audit_transport.mjs';
+import {createPinnedModuleClosure} from './audit_module_closure.mjs';
 import {auditManualTailOwnership,applyReviewedManualTailMask} from './v0_manual_tail_reference_audit.mjs';
 // Actual exported stock assets and the production static-stage controller.
 // Native-solid contacts and manual diagram review are separate evidence.
@@ -24,16 +25,7 @@ assert(args.site&&args.report,'--site and --report required');
 const site=path.resolve(args.site),viewer=pathToFileURL(site+'/viewer/');
 const before=new Map();
 async function pin(file){const b=await fs.readFile(file),digest=sha(b);if(before.has(file))assert.equal(digest,before.get(file),'Input changed between reads');else before.set(file,digest);return b;}
-async function pinClosure(url){
- const clean=new URL(url);clean.search='';clean.hash='';const file=fileURLToPath(clean);if(before.has(file))return;
- const source=(await pin(file)).toString('utf8');
- assert(vm.SourceTextModule,'Use node --experimental-vm-modules for exact production import closure');
- for(const spec of new vm.SourceTextModule(source).dependencySpecifiers){
-  if(spec.startsWith('node:'))continue;
-  if(spec==='three'){await pinClosure(new URL('vendor/three.module.js',viewer));continue}
-  assert(spec.startsWith('.'),'Unregistered audit dependency: '+spec);await pinClosure(new URL(spec,clean));
- }
-}
+const pinClosure=createPinnedModuleClosure({pin,viewer});
 const manualReceived=await receiveBuiltV0ManualData({viewer,assemblySource:(await pin(site+'/viewer/v0-assembly.mjs')).toString('utf8'),pin,SourceTextModule:vm.SourceTextModule});
 const stages=manualReceived.bundle.data['v0-assembly-stages'];
 await pinClosure(new URL('assembly-workbench-model.mjs',viewer));
@@ -47,6 +39,7 @@ await pinClosure(new URL('./audit_v0_native_installation_assets.mjs',import.meta
 await pinClosure(new URL('./assembly_part_review_audit.mjs',import.meta.url));
 await pinClosure(new URL('./v0_manual_audit_transport.mjs',import.meta.url));
 await pinClosure(new URL('./v0_manual_tail_reference_audit.mjs',import.meta.url));
+await pinClosure(new URL('./audit_module_closure.mjs',import.meta.url));
 await pinClosure(new URL('./v0_m2_reference_audit.mjs',import.meta.url));
 await pinClosure(new URL('./v0_head_reference_audit.mjs',import.meta.url));
 await pinClosure(new URL('./v0_rail_reference_audit.mjs',import.meta.url));
