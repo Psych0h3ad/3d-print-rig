@@ -16,6 +16,7 @@ assert.equal(translate('Load error: Invalid XYZ settings','en'),'Load error: Inv
 import * as libraryModule from '../site/viewer/v0-mod-library.mjs';
 import * as adapterModule from '../site/viewer/v0_adapter.mjs';
 import * as nativeGateModule from '../site/viewer/v0-native-installed-gate.mjs';
+import * as hingeGeometryModule from '../site/viewer/v0-hinge-source-geometry.mjs';
 import {fixtureProfile,makeV0Fixture,modStates,conflicts} from './v0-state-fixtures.mjs';
 const catalog=JSON.parse(await fs.readFile(new URL('../site/V0_INSTALLATIONS.json',import.meta.url),'utf8'));
 const appSource=await fs.readFile(new URL('../site/viewer/v0-app.js',import.meta.url),'utf8');
@@ -58,7 +59,7 @@ class Element{
  closest(selector){if(selector!=='details')return null;return this._details??={querySelectorAll:()=>this._motionNotes??=[new Element('','p'),new Element('','p')]}}
  setAttribute(){}removeAttribute(){}click(){this.onclick?.()}getBoundingClientRect(){return {width:900,height:700}}
 }
-async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
+async function mountApp(machine_id,mods,{rawURL,profile:providedProfile,failHinge=false}={}){
  const profile=structuredClone(providedProfile||fixtureProfile(machine_id)),stockProfile=structuredClone(profile),registry=catalog.machines[machine_id],fixture=makeV0Fixture(registry,profile);
  const registration=structuredClone(catalog),metadata=new Map(),badHashes=new Set(),gates=new Map(),missingParts=new Set(),storage=new Map(),elements=new Map(),historyCalls=[],blobs=[],cleanups=[];
  const library={items:libraryModule.v0ModCategories.flatMap(category=>category.mods.map(id=>({id:'v0mod_'+id,kind:'mod',label:id})))};
@@ -73,7 +74,12 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
  const location={href,get search(){return new URL(this.href).search}};
  const history={state:{workspaceMarker:42},replaceState(state,title,url){assert.equal(state,this.state);location.href=String(url);historyCalls.push(location.href)}};
  const scope={renderer:r=>r,scene:s=>s,resource:r=>r,cleanup:fn=>cleanups.push(fn)};
- let programFrame,programPose;
+ let programFrame,programPose,adapterCalls=0;const fixtureHingeReceipts=new WeakMap();
+ // These keyed meshes cannot authenticate a real source-geometry lease. Keep
+ // the software lifecycle stub explicitly unauthenticated, and require that
+ // the production guard rejects it even after this fixture mounts. The normal
+ // actual-asset jobs separately execute the real geometry manager and guard.
+ assert.throws(()=>hingeGeometryModule.guardV0HingeSourceGeometry(fixture.scene),/required source geometry receipt missing/);
  const namespaces={
   'workspace-entry.mjs':{ensureWorkspaceEntry:()=>{}},
   'i18n.mjs':{translate,formatMessage},
@@ -86,6 +92,10 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
   'workspace-navigation.mjs':{replaceWorkspaceURL:(state,title,url)=>history.replaceState(state,title,url)},
   'v0-installations.mjs':installationsModule,'v0-state.mjs':stateModule,'v0-mod-library.mjs':libraryModule,
   'v0-native-installed-gate.mjs':nativeGateModule,
+  'v0-hinge-source-geometry.mjs':{
+   applyV0HingeSourceGeometry:async({root,manifest,profile:p,receipts})=>{assert.equal(root,fixture.scene);assert.equal(manifest.machine_id,machine_id);assert.equal(p.machine_id,machine_id);assert(receipts['assembly_manifest.json']);if(failHinge)throw Error('Required hinge geometry fixture transport failed');const receipt=Object.freeze({metadata_sha256:'fixture-unauthenticated-not-a-source-hash',fixtureOnly:true});fixtureHingeReceipts.set(root,receipt);return receipt},
+   guardV0HingeSourceGeometry:root=>{const receipt=fixtureHingeReceipts.get(root);assert(receipt,'Fixture geometry preparation must finish before adapter construction');assert.throws(()=>hingeGeometryModule.guardV0HingeSourceGeometry(root),/required source geometry receipt missing/);return receipt}
+  },
   'component-assets.mjs':{loadExternalComponent:()=>{throw Error('Unexpected external source')}},
   'responsive-camera.mjs':{setResponsiveAspect:()=>{},frameResponsiveView:()=>{}},
   'appearance-role.mjs':{appearanceRole:()=>null},
@@ -98,7 +108,7 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
    if(!module)throw Error('Unexpected model: '+path);if(gates.has(module))await gates.get(module);
    const value=await fixture.loadModule(module);if(missingParts.has(module)){const scene=value.scene.clone(true);scene.remove(scene.children[0]);return {scene}}return value;
   }},
-  'v0_adapter.mjs':{...adapterModule,createV0Adapter:()=>fixture.adapter},
+  'v0_adapter.mjs':{...adapterModule,createV0Adapter:()=>{assert(fixtureHingeReceipts.has(fixture.scene));adapterCalls++;return fixture.adapter}},
   'machines.js':{setupMachineNavigation:()=>{}},
   'grid-control.js':{setupGrid:(scene,render)=>{const grid=new THREE.Group();$('#gridVisible').onchange=()=>{grid.visible=$('#gridVisible').checked;render()};return grid}},
   'render-export.js':{setupRenderExport:()=>{}},'public-info.js':{setupPublicInfo:()=>{}},
@@ -122,10 +132,13 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile}={}){
  // Dependency injection preserves the controller body and closures while
  // allowing the normal source-test runner to avoid experimental VM modules.
  const factory=vm.runInContext(`(function(dependencies){${code}\nreturn {mount,setV0Mods,currentV0,captureV0State,restoreV0State};})`,context,{filename:'v0-app.js'});
- const api=factory(namespaces);await api.mount(scope);assert.equal(document.body.dataset.ready,'true',document.body.dataset.error);assert.equal($('#saveConfiguration').disabled,false);
+ const api=factory(namespaces);await api.mount(scope);
+ if(failHinge){assert.notEqual(document.body.dataset.ready,'true');assert.match(document.body.dataset.error,/Required hinge geometry fixture transport failed/);assert.equal(adapterCalls,0);assert.throws(()=>hingeGeometryModule.guardV0HingeSourceGeometry(fixture.scene),/required source geometry receipt missing/);for(const fn of cleanups.reverse())fn();fixture.dispose();return {requiredHingeFailureRejected:true}}
+ assert.equal(document.body.dataset.ready,'true',document.body.dataset.error);assert.equal($('#saveConfiguration').disabled,false);assert.equal(adapterCalls,1);assert.throws(()=>hingeGeometryModule.guardV0HingeSourceGeometry(fixture.scene),/required source geometry receipt missing/);
  return {api,fixture,profile:api.currentV0().profile,stockProfile,$,location,history,historyCalls,document,badHashes,gates,missingParts,blobs,programPose:()=>programPose,dispose(){for(const fn of cleanups.reverse())fn();fixture.dispose()}};
 }
 for(const [machine_id,registry]of Object.entries(catalog.machines)){
+ assert.equal((await mountApp(machine_id,null,{failHinge:true})).requiredHingeFailureRejected,true);
  // A provided local exported profile is read as metadata only; meshes stay
  // fixtures. There is deliberately no model/CAD download or parse here.
  const profile=process.argv[2]?JSON.parse(await fs.readFile(new URL('file:///'+process.argv[2].replace(/\\/g,'/')+'/machines/'+machine_id+'/machine_profile.json'),'utf8')):fixtureProfile(machine_id);

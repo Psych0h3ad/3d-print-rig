@@ -1,4 +1,4 @@
-import {validateV0Mods,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=52be32c4d360655dbf4f';
+import {validateV0Mods,v0Slots,v0TophatMaxAngle} from './v0-installations.mjs?v=d41f05f15e4e1aa193c4';
 
 export const v0ConfigurationSchema='v0-configuration-v1';
 export const v0ModsParameter='v0_mods';

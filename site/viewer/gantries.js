@@ -12,7 +12,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js?v=workspace-belts-1';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {setupPublicInfo} from './public-info.js?v=6b031d8dcbc50a97e805';
+import {setupPublicInfo} from './public-info.js?v=496c2eac18cd9028756a';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {loadMachineHeadCatalog,createMachineHeads,ensureMachineHeadControls} from './machine-heads.js?v=cc95b5a3162018900d4e';
 import {monolithHeadCatalog} from './monolith-head-model.mjs?v=2349e10fa1148ea37792';

@@ -14,7 +14,7 @@ import {createV24Adapter} from './v24_matrix_adapter.mjs?v=c71e052633de09bc592d'
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=6b031d8dcbc50a97e805';
+import {setupPublicInfo} from './public-info.js?v=496c2eac18cd9028756a';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {setupV24MachineHeads} from './machine-heads.js?v=cc95b5a3162018900d4e';
 export async function mount(scope){

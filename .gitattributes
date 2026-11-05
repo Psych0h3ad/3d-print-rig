@@ -26,3 +26,5 @@ docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json -text
 site/SIBOOR_TRIDENT_ASSETS.json -text
 # Preserve exact source/native receipt bytes used by the E3NG fastener gate.
 scripts/fixtures/e3ng-skirt-fasteners-source.json -text
+# Preserve exact bytes verified by the V0 source-geometry representation guard.
+site/modules/v0_hinge_source_tessellation.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

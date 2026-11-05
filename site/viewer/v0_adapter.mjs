@@ -1,7 +1,7 @@
 import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
 import {createV0Belts} from './v0-belts.mjs?v=trident-clearance-35';
 import {createV0Chain} from './v0-chain.mjs?v=9bd91f8c757a0dfafbbc';
-import {createV0Door} from './v0-door.mjs?v=v0-mounts-39';
+import {createV0Door} from './v0-door.mjs?v=acb1a5c37e6edd3fa496';
 import {createV0Tophat} from './v0-tophat.mjs?v=v0-mounts-39';
 /** V0: fixed-Z CoreXY gantry, Y beam, XY toolhead, single downward-moving bed. */
 export const cadToGlb = ([x,y,z]) => [x/1000,z/1000,-y/1000];

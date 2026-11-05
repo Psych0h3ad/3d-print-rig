@@ -18,7 +18,7 @@ import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {createV24Adapter} from './v24_adapter.mjs?v=c1618d21979653eb97f2';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=6b031d8dcbc50a97e805';
+import {setupPublicInfo} from './public-info.js?v=496c2eac18cd9028756a';
 import {setupV24MachineHeads} from './machine-heads.js?v=cc95b5a3162018900d4e';
 export async function mount(scope){
 setupMachineNavigation('siboor_v24_350');

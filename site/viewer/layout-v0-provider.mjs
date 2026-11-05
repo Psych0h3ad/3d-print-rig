@@ -1,12 +1,14 @@
+import {v0LayoutDisplayIdentity} from './v0-layout-source-identity.mjs?v=304b47ebef53ffe81922';
+import {applyV0HingeSourceGeometry,guardV0HingeSourceGeometry} from './v0-hinge-source-geometry.mjs?v=069e8252a014807f9c8a';
 import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {modelURL} from './model-loader.js?v=319442cce47f582793a9';
 import {readModelBytes} from './model-progress.mjs?v=beaef781095b6f56b290';
 import {externalModelDelivery} from './model-delivery.mjs';
 import {registeredModelDelivery,verifyDeliveredModel} from './model-delivery-policy.mjs';
-import {createV0Adapter} from './v0_adapter.mjs?v=649d5ff906cefaa9659f';
-import {createV0Installations} from './v0-installations.mjs?v=52be32c4d360655dbf4f';
-import {stockV0Mods} from './v0-state.mjs?v=5c6698815b7212715492';
+import {createV0Adapter} from './v0_adapter.mjs?v=725912f4e1e710a2d24d';
+import {createV0Installations} from './v0-installations.mjs?v=d41f05f15e4e1aa193c4';
+import {stockV0Mods} from './v0-state.mjs?v=5c32df52e80e8ddd605f';
 import {v0NativeModelHash,v0NativeDependencyHash,v0NativeByteHash,guardV0NativeInstallations,guardV0NativeAdapter} from './v0-native-installed-gate.mjs?v=2801ee4ab692384c0d13';
 
 const siteRoot=new URL('../',import.meta.url),ids=new Set(['voron_v02r1_120','voron_v02_120']);
@@ -17,18 +19,18 @@ const materials=node=>[].concat(node.material||[]);
 export async function loadV0DefaultLayout(machineId,{signal,onProgress=()=>{}}={}){
   if(!ids.has(machineId))throw Object.assign(Error('Unknown V0 layout machine'),{code:'LAYOUT_UNKNOWN_MACHINE'});
   signal?.throwIfAborted();
-  const assets={},receipts={},owned=new Set(),root=new THREE.Group();
+  const assets={},receipts={},owned=new Set(),sourceGeometries=new Set(),root=new THREE.Group();
   root.name=`Layout default ${machineId}`;let installations,disposed=false;
   function dispose(){
     if(disposed)return;disposed=true;
-    const geometries=new Set(),mats=new Set(),textures=new Set(),installationMats=new Set();
+    const geometries=new Set(sourceGeometries),mats=new Set(),textures=new Set(),installationMats=new Set();
     for(const rows of installations?.roots.values()||[])for(const r of rows)r.model.traverse(n=>{for(const m of materials(n))installationMats.add(m)});
     for(const r of [root,...owned])r.traverse(n=>{if(n.geometry)geometries.add(n.geometry);for(const m of materials(n)){mats.add(m);for(const v of Object.values(m))if(v?.isTexture)textures.add(v)}});
     installations?.dispose();
     for(const g of geometries)g.dispose();
     for(const m of mats)if(!installationMats.has(m))m.dispose();
     for(const t of textures)t.dispose();
-    for(const r of [root,...owned]){r.removeFromParent();r.clear()}owned.clear();
+    for(const r of [root,...owned]){r.removeFromParent();r.clear()}owned.clear();sourceGeometries.clear();
   }
   async function json(path){
     signal?.throwIfAborted();const url=new URL(path,siteRoot),r=await fetch(url,{signal,cache:'no-cache'});
@@ -60,6 +62,11 @@ export async function loadV0DefaultLayout(machineId,{signal,onProgress=()=>{}}={
     const registration=(await json('V0_INSTALLATIONS.json')).value,registry=registration.machines?.[machineId];
     if(!registry||registry.native_alternatives?.manifest_sha256!==mf.sha256||registry.native_alternatives?.model_sha256!==v0NativeModelHash(machineId))throw Error('V0 layout source registration mismatch');
     const gltf=await model(`machines/${machineId}/model.glb`,v0NativeModelHash(machineId));root.add(gltf.scene);receipts['model.glb']=v0NativeModelHash(machineId);
+    const hingeSource=await applyV0HingeSourceGeometry({loader:new GLTFLoader(),root:gltf.scene,manifest,profile,receipts,signal});
+    guardV0HingeSourceGeometry(gltf.scene);assets.hinge_source_geometry=hingeSource;
+    // Belt updates substitute generated route geometry after adapter creation.
+    // Own the source geometry as well as the current scene through cleanup.
+    gltf.scene.traverse(n=>{if(n.geometry)sourceGeometries.add(n.geometry)});
     const adapter=createV0Adapter(gltf.scene,manifest,profile);
     for(const node of adapter.nodes.values())node.traverse(mesh=>{
       if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();
@@ -86,7 +93,11 @@ export async function loadV0DefaultLayout(machineId,{signal,onProgress=()=>{}}={
     installations.setPose(adapter.getPose());
     if(!pose.atReference||!pose.chain_visible||!pose.belts_visible)throw Error('V0 default route/reference state mismatch');
     signal?.throwIfAborted();root.updateMatrixWorld(true);
+    const displayedIdentity=v0LayoutDisplayIdentity({machineId,baselineRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',manifestSHA256:mf.sha256,profileSHA256:pf.sha256,hingeReceipt:hingeSource,movingKeys:[...adapter.door.keys],fixedPivotKeys:[...adapter.door.fixedPivotKeys],fixedLatchKeys:[...adapter.door.fixedLatchKeys]});
+    const displayedSourceRevision=await v0NativeByteHash(new TextEncoder().encode(JSON.stringify(displayedIdentity)));
+    signal?.throwIfAborted();
     return {root,manifest,profile,adapter,installations,source:{machineId,
+      displayedSourceRevision,displayedSourceSchema:displayedIdentity.schema,normalSourceRevisionScope:'frozen-normal-baseline; current displayed derivation has its own revision',
       normalSourceRevision:'182cf109acf3fa867927bb017b9705e8b7dac68143e322197a4e3cf517d42391',
       recipe:'v0-app clean stock default: native MiniSB/BMG/Revo; source stock carriage display correction; exclusive native alternatives; source reference pose; door0/tophat0; panels/belts/chain visible; native hardware palette',
       mods:installations.getState(),referenceXYZ:adapter.getPose(),doorAngleDeg:adapter.door.getAngle(),tophatAngleDeg:adapter.tophat.getAngle(),

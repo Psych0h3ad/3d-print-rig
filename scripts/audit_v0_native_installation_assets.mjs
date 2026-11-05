@@ -8,6 +8,7 @@ import {createHash} from 'node:crypto';
 import {gunzipSync,gzipSync} from 'node:zlib';
 import {register} from 'node:module';
 import vm from 'node:vm';
+import {applyBuiltV0HingeGeometry} from './v0_hinge_audit_transport.mjs';
 
 const INPUT_SCHEMA='3d-print-rig-v0-native-assets-inputs-v1';
 const CONTRACT_SCHEMA='3d-print-rig-v0-native-assets-contract-v1';
@@ -169,6 +170,7 @@ async function actualAudit({site,contract,inputs,report,output}){
  const loader=new GLTFLoader();
  const parse=async role=>{const bytes=await artifact(role);assert.equal(bytes.readUInt32LE(0),0x46546c67,'Expected embedded GLB');assert.equal(bytes.readUInt32LE(4),2);assert.equal(bytes.readUInt32LE(8),bytes.length);assert.equal(bytes.readUInt32LE(16),0x4e4f534a);const glbJSON=JSON.parse(bytes.subarray(20,20+bytes.readUInt32LE(12)).toString('utf8'));assert(!(glbJSON.buffers||[]).some(b=>b.uri),'External GLB buffer not permitted');assert(!(glbJSON.images||[]).some(b=>b.uri),'External GLB image not permitted');return loader.parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');};
  const native=await parse('host_model');report.geometry={host:auditGeometry(native.scene)};report.machine_model_sha256=receipts['model.glb'];report.machine_stored_sha256=contract.assets.host_model.descriptor.sha256;
+ report.hinge_source_representation=await applyBuiltV0HingeGeometry({site,loader,root:native.scene,manifest,profile,receipts});report.geometry.host_with_source_hinges=auditGeometry(native.scene);
  const scene=new THREE.Scene();scene.add(native.scene);const adapter=createV0Adapter(native.scene,manifest,profile);adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,profile.display_reference_xyz_mm[i]])));
  const materials=mesh=>Array.isArray(mesh.material)?mesh.material:[mesh.material],hostMaterials=new Map();
  for(const node of adapter.nodes.values())node.traverse(mesh=>{if(!mesh.isMesh)return;mesh.material=Array.isArray(mesh.material)?mesh.material.map(m=>m.clone()):mesh.material.clone();for(const m of materials(mesh))hostMaterials.set(m,m.color.clone());});

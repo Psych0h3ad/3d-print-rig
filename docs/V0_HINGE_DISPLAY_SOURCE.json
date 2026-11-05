@@ -1,0 +1,44 @@
+{
+  "schema": "v0-source-hinge-display-release-source-v1",
+  "asset_repository": "Psych0h3ad/3d-print-rig-large-voron-models",
+  "asset_commit": "977ad398ea64afcd31c0f8600d80b25e95051a90",
+  "model_delivery": {
+    "path": "modules/v0_hinge_source_tessellation.glb.gz",
+    "bytes": 11861,
+    "sha256": "49ccce8052c436c44433094506b052a07acd1f4d43d7da2fd4376c17f149c193",
+    "url": "https://raw.githubusercontent.com/Psych0h3ad/3d-print-rig-large-voron-models/977ad398ea64afcd31c0f8600d80b25e95051a90/site/modules/v0_hinge_source_tessellation.glb.gz",
+    "approval_receipt_sha256": "85fb2598a8b5ba77c024cc9826b2555b4563b09003b38ed1809df5c547c470cd",
+    "approval_receipt_url": "https://raw.githubusercontent.com/Psych0h3ad/3d-print-rig-large-voron-models/977ad398ea64afcd31c0f8600d80b25e95051a90/site/v0-hinge-source-v1/PROVENANCE.json",
+    "origin": "V0 source hinge display provenance and exact recorded-source regeneration"
+  },
+  "metadata": {
+    "path": "modules/v0_hinge_source_tessellation.json",
+    "bytes": 5477,
+    "sha256": "0d0c84fb0021281ea72c340df1b5e664c9e426c417bb562e8ea26ac0a7733511"
+  },
+  "corresponding_source": {
+    "url": "https://raw.githubusercontent.com/Psych0h3ad/3d-print-rig-large-voron-models/977ad398ea64afcd31c0f8600d80b25e95051a90/site/v0-hinge-source-v1/v0-hinge-tessellation-source.zip",
+    "bytes": 31106,
+    "sha256": "41a03fd9d6b15164328a840c1b210e0799d97cfb2c6a7e1e735c11e8b92b59d1"
+  },
+  "source_repositories": [
+    {
+      "repository": "VoronDesign/Voron-0",
+      "commit": "a4d02db92a7dd71e8f2c72d6f74f6bc3b9d020c8"
+    },
+    {
+      "repository": "VoronDesign/Voron-0",
+      "commit": "a53fc87562fd630c846af38d7de850c894dc3d85"
+    }
+  ],
+  "license": "GPL-3.0-only",
+  "changes": [
+    "Selected finite cylinder/underhead display facets use recorded source-derived points; original radius, pose, material and identities remain unchanged.",
+    "Frame latches and their screws/magnets retain frame ownership while the door and handle move.",
+    "No original whole model, source solids or embedded supports are removed."
+  ],
+  "scope": "Display geometry and source motion ownership. Recorded geometry-source regeneration does not replay native CAD/kernel evaluation. Full original trim identity, contact intent, thread/holding/retention, continuous native clearance and physical assembly remain unqualified.",
+  "physical_fit_verified": false,
+  "continuous_native_clearance_verified": false,
+  "new_machine_or_toolhead_registration": false
+}

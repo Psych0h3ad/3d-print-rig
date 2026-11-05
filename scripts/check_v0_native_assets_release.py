@@ -279,6 +279,11 @@ def main():
     report = read_json(output / 'actual-v0-native-installation.json')
     if not report.get('passed') or not report.get('source_endcheck') or not report.get('artifact_endcheck'):
         raise ValueError('V0 actual native installation job incomplete')
+    hinge = report.get('hinge_source_representation', {})
+    if (hinge.get('requests') != 2 or not hinge.get('productionDecoderAndGeometryGuard')
+            or hinge.get('nativeClearanceVerified') is not False or hinge.get('physicalFitVerified') is not False
+            or set(hinge.get('assets', {})) != {'modules/v0_hinge_source_tessellation.json', 'modules/v0_hinge_source_tessellation.glb.gz'}):
+        raise ValueError('Native installed audit did not consume the mandatory source hinge representation')
     print('V0 actual installation release check passed; sampled geometry only, physical use remains gated.')
 
 
