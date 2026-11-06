@@ -28,3 +28,8 @@ site/SIBOOR_TRIDENT_ASSETS.json -text
 scripts/fixtures/e3ng-skirt-fasteners-source.json -text
 # Preserve exact bytes verified by the V0 source-geometry representation guard.
 site/modules/v0_hinge_source_tessellation.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Source47 saved bindings identify these exact original JSON byte arrays.
+site/viewer/source47/data/ROUTE350_CAPTURE_BINDINGS_V2.json -text
+site/viewer/source47/data/FULL350_SOURCE_REFERENCE.json -text
+site/viewer/source47/data/SOURCE_SERVICE_ROUTE_BINDINGS.json -text

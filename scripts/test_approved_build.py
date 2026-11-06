@@ -1163,7 +1163,12 @@ class ApprovedPowerReferences(unittest.TestCase):
         self.assertFalse((root/'built'/power.SOURCE_PATH).exists());self.assertFalse((root/'built/APPROVED_DELIVERY.json').exists())
         from prepare_v0_manual_delivery import SOURCE_PATHS as manual_source_paths
         self.assertEqual(len(manual_source_paths),13)
-        self.assertEqual(set(build_approved_site.BUILD_ONLY_SOURCE_PATHS),{'APPROVED_DELIVERY.json',power.SOURCE_PATH,*manual_source_paths})
+        self.assertEqual(set(build_approved_site.BUILD_ONLY_SOURCE_PATHS),{
+            'APPROVED_DELIVERY.json', power.SOURCE_PATH, *manual_source_paths,
+            'viewer/source47/data/ROUTE350_CAPTURE_BINDINGS_V2.json',
+            'viewer/source47/data/FULL350_SOURCE_REFERENCE.json',
+            'viewer/source47/data/SOURCE_SERVICE_ROUTE_BINDINGS.json',
+        })
         with patch.object(build_approved_site,'MAX_SITE_BYTES',result['planned_site_bytes']):
             with self.assertRaises(ValueError):run(root,contract,root/'cap',inputs,plan_only=True)
 

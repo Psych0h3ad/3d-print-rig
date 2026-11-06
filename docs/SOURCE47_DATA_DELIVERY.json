@@ -1,0 +1,96 @@
+{
+  "schema": "source47-exact-data-delivery-v1",
+  "decoded_source_identity_preserved": true,
+  "saved_binding_preserved": {
+    "model_sha256": "96309090e82efd59e214c403edf4716357a245e76a190038bea88abae315ff52",
+    "HF40_sha256": "8c7810f878cb6e2e954cec6544fb6bdb20e54aa8d2e206beda4948c56f7197e9",
+    "v14_bindings_sha256": "7d12e0537458abe969e8c97f461189fbe27f928030d2ca54a45b7aabd8757e81"
+  },
+  "data": [
+    {
+      "name": "ROUTE350_CAPTURE_BINDINGS_V2.json",
+      "decoded_bytes": 54606,
+      "decoded_sha256": "7d12e0537458abe969e8c97f461189fbe27f928030d2ca54a45b7aabd8757e81",
+      "gzip_bytes": 9703,
+      "gzip_sha256": "79275f6caac624778ad869fa261c88ddc62bc7c0fdb64f0a4d274e8d8a04d439"
+    },
+    {
+      "name": "FULL350_SOURCE_REFERENCE.json",
+      "decoded_bytes": 50952,
+      "decoded_sha256": "5be74e659c3d88f619fdbb83e50797e6aaaa35a8dd8cab79dd43c853bbcee5d1",
+      "gzip_bytes": 6565,
+      "gzip_sha256": "38d3486408948747caa32569a3b34a42dd13d334d379a310ee540aee55e93f6c"
+    },
+    {
+      "name": "SOURCE_SERVICE_ROUTE_BINDINGS.json",
+      "decoded_bytes": 23155,
+      "decoded_sha256": "37cd0f66c83c104561d37897a34e2d1df92fd64b79502b5fe3dac6a33404042e",
+      "gzip_bytes": 1928,
+      "gzip_sha256": "b93131624448c90bfc286b0f6583a43d5e7b3a44813d7c49f32c5ab6862af030"
+    }
+  ],
+  "total_gzip_bytes": 18196,
+  "original_source_bytes": 128713,
+  "runtime_source_sha256": {
+    "site/viewer/app.js": "f9b04c44bfd677f98fe9809465f553e4fb7a6b9d32a1f07649d3a4e951d83108",
+    "site/viewer/bootstrap.js": "053a90418e59dd206ed565b2af2b81f2ca15399f66ac0a0831daaf2e6c123e2b",
+    "site/viewer/source47/source47-data.mjs": "0da87eeb6615780cc8662190eff72b5a2ed86c6193c1184d9f9b1e033a7e2519",
+    "site/viewer/source47/source47-full-machine.mjs": "4dba57e073613dd6bf470f79cafb957790d5d959a02c42120b9f75cfc1016021",
+    "site/viewer/source47/source-service-routes.mjs": "9da93f444528e8746651d2ca33339181378cab08497b2612e2388e9b5dc55148",
+    "site/viewer/source47/captured47-state-v14-fixed-terminal.mjs": "152d83040b0fb0fd9ef820aee5dd486587537a4620e274462b298ada14d51766",
+    "site/viewer/source-assembly-runtime/exact_gzip_transport.mjs": "e2841a828f7106242706391f2d08534df73ab0ed43239f7993feba43f20b495d"
+  },
+  "actual_source_scope": {
+    "machine": "siboor_trident_350",
+    "stock_meshes": 1518,
+    "retained_base_meshes": 171,
+    "selected_source47_targets": [
+      [
+        177.60000610351562,
+        186.39999389648438,
+        0
+      ],
+      [
+        0,
+        186.39999389648438,
+        0
+      ],
+      [
+        350,
+        186.39999389648438,
+        0
+      ],
+      [
+        177.60000610351562,
+        0,
+        115
+      ],
+      [
+        177.60000610351562,
+        360,
+        230
+      ],
+      [
+        175,
+        180,
+        115
+      ],
+      [
+        177.60000610351562,
+        186.39999389648438,
+        0
+      ]
+    ],
+    "controller_planned_finite_steps": 1331,
+    "original_mesh_state_restored": true,
+    "JSON_saved_link_matrices_restored": true,
+    "wrong_saved_binding_rejected": true,
+    "outer_machine_onPose_callback": "recording fixture; full app motion requires separate editor evidence",
+    "actual_report_sha256": "bc18b421cc3dec7169792c6ee1454bfbfedd04d9d7395cc3d43000b51bfa71b4"
+  },
+  "scope": "Exact original reference data transport and selected production source47 controller/actual-mesh checks only. Original model/normal/material bytes and source poses are unchanged. Full source40 composition, whole machine motion, native clearance, service length, bend limits, threading and physical installation remain unqualified. Browser and current normal release gates are separate.",
+  "new_native_fit_claim": false,
+  "new_registrations": 0,
+  "full_physical_fit_certified": false,
+  "runtime_source_hash_policy": "Canonical LF source bytes; encoded and decoded data bodies use their separate exact raw-byte hashes."
+}
