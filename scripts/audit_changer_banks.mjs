@@ -1,3 +1,4 @@
+import {loadSource47AuditData} from './source47_audit_transport.mjs';
 import fs from 'node:fs/promises';import path from 'node:path';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import {gunzipSync} from 'node:zlib';import {pathToFileURL,fileURLToPath} from 'node:url';import * as THREE from '../site/viewer/vendor/three.module.js';
 import {withEmbeddedBoards,xolEmbeddedBoard,sbEmbeddedBoard} from '../site/viewer/embedded-boards.mjs';
 import {machineHeadVariants} from '../site/viewer/machine-head-model.mjs';
@@ -143,7 +144,7 @@ for(const [machine,binding]of Object.entries(registry.machines))for(const gantry
   let source47;
   if(machine==='siboor_trident_350'){
    const meshes=[];base.traverse(o=>{if(!o.isMesh)return;const key=o.userData.part_key||o.name.slice(1).split('__')[0];Object.assign(o.userData,{partKey:key,originalKey:key,stock:true});meshes.push(o)});
-   source47=createFullMachineSource47({model:base,meshes,manifest:metadata,input:await read('viewer/source47/data/ROUTE350_CAPTURE_BINDINGS_V2.json'),reference:await read('viewer/source47/data/FULL350_SOURCE_REFERENCE.json'),serviceInput:await read('viewer/source47/data/SOURCE_SERVICE_ROUTE_BINDINGS.json'),getHead:()=>rig.cache.get('stealthburner')?.loaded,onPose:()=>{throw Error('Inactive source route unexpectedly requested a pose')}});
+   source47=createFullMachineSource47({model:base,meshes,manifest:metadata,...await loadSource47AuditData(root,{onBody:(name,body)=>pins.set(name,{sha256:sha(body),bytes:body.length})}),getHead:()=>rig.cache.get('stealthburner')?.loaded,onPose:()=>{throw Error('Inactive source route unexpectedly requested a pose')}});
   }
   if(isSiboor&&size===300){assert.equal(pins.get(metaFile).sha256,siboor.machines[machine].files['assembly_manifest.json'].sha256);const actual=pins.get(modelFile+'.gz');assert.equal(actual?.sha256,siboor.machines[machine].files['model.glb'].sha256);assert.equal(actual?.decoded_sha256,siboor.machines[machine].files['model.glb'].decoded_sha256);}
   const motion=profile?createTridentMotion(profile):null;if(motion)motion.register(base,metadata);

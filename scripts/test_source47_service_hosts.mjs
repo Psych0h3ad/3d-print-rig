@@ -6,8 +6,8 @@ import * as THREE from '../site/viewer/vendor/three.module.js';
 register('./three-test-loader.mjs',import.meta.url);
 const {createSourceServiceRoutes}=await import('../site/viewer/source47/source-service-routes.mjs');
 const input=JSON.parse(fs.readFileSync(new URL('../site/viewer/source47/data/SOURCE_SERVICE_ROUTE_BINDINGS.json',import.meta.url)));
-export function exerciseServiceHosts(create,stock,head,model){
- const service=create({model,meshes:stock,input,getHead:()=>head}),sourcePoint=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000),origins=head.entries.map(e=>e.mesh.matrix.clone());
+export function exerciseServiceHosts(create,stock,head,model,inputData=input){
+ const service=create({model,meshes:stock,input:inputData,getHead:()=>head}),sourcePoint=p=>new THREE.Vector3(p[0]/1000,p[2]/1000,-p[1]/1000),origins=head.entries.map(e=>e.mesh.matrix.clone());
  const snapshots=[];
  for(const delta of [[0,0,0],[.04,.02,-.03],[-.015,.05,.06],[0,0,0]]){
   for(const [i,e]of head.entries.entries()){e.mesh.matrixAutoUpdate=false;e.mesh.matrix.copy(origins[i]);e.mesh.matrix.elements[12]+=delta[0];e.mesh.matrix.elements[13]+=delta[1];e.mesh.matrix.elements[14]+=delta[2];}

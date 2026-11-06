@@ -119,6 +119,14 @@ temporary contract also fails the build. Keep audit reports outside the served
 site. Removing the manifest must not select a legacy audit fallback or relax
 the actual asset pins.
 
+SIBOOR350 source47 references use three exact gzip data bodies. The editable
+JSON remains tracked as build-only input; its complete original decoded bytes
+and saved-state binding are unchanged. `prepare_source47_delivery.py` checks
+both stored and decoded size/hash pins, and the browser stages all three tables
+before creating the source47 controller. Actual assembled-site audits use the
+same receiver and reject raw-source fallback or changed loader bytes. Data
+transport checks do not qualify the route's native clearances or service length.
+
 Keep output models, native source archives, logs and generated reports outside
 Git. The build rejects existing output directories and enforces its total site
 size budget. Wallpaper originals belong in release assets; only their previews

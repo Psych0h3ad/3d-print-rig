@@ -27,11 +27,16 @@ from prepare_v0_manual_delivery import (
     write_v0_manual_delivery,
 )
 
+from prepare_source47_delivery import (
+    MODULE_PATH as SOURCE47_MODULE_PATH, SOURCE_PATHS as SOURCE47_SOURCE_PATHS,
+    delivery_pins as source47_delivery_pins, build_source47_delivery, write_source47_delivery,
+)
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MAX_SITE_BYTES = 990_000_000
 # Keep this contract inventoried and checksum-checked for build authentication,
 # without shipping build-only metadata as a browser asset.
-BUILD_ONLY_SOURCE_PATHS = frozenset({'APPROVED_DELIVERY.json', POWER_SOURCE_PATH}) | MANUAL_SOURCE_PATHS
+BUILD_ONLY_SOURCE_PATHS = frozenset({'APPROVED_DELIVERY.json', POWER_SOURCE_PATH}) | MANUAL_SOURCE_PATHS | SOURCE47_SOURCE_PATHS
 LAYOUT_EQUIPMENT_SOURCE = 'layout/layout-equipment.mjs'
 LAYOUT_EQUIPMENT_AUDITS = ('audit_layout_equipment_geometry.mjs', 'audit_layout_equipment_assets.mjs')
 U1_BOTTOM_AUDIT = 'scripts/audit_u1_bottom.mjs'
@@ -540,6 +545,28 @@ def approved_manual_delivery(root, contract, sources, rows):
     return build_v0_manual_delivery_bodies(root/'site')
 
 
+def approved_source47_delivery(root, sources, rows):
+    """Frozen original source data, inventoried with separate transport pins."""
+    inventory = json.loads((root/'docs/SOURCE_INVENTORY.json').read_bytes())
+    entries = {r['path']: r for r in inventory['files']}
+    names = SOURCE47_SOURCE_PATHS | {SOURCE47_MODULE_PATH}
+    present = {name for name in names if (root/'site'/name).is_file()}
+    admitted = {'site/'+name for name in names}.intersection(entries)
+    if not present and not admitted:
+        return None
+    if present != names or admitted != {'site/'+name for name in names} or SOURCE47_MODULE_PATH not in sources:
+        raise ValueError('Incomplete inventoried exact source47 data')
+    for name in names:
+        raw = (root/'site'/name).read_bytes()
+        if hashlib.sha256(raw.replace(b'\r\n', b'\n')).hexdigest() != entries['site/'+name]['sha256']:
+            raise ValueError('Changed source47 inventory: '+name)
+    for pin in source47_delivery_pins(root/'site').values():
+        name = pin['gzip']['path']
+        if name in sources or any(row['path'] == name for row in rows):
+            raise ValueError('Source47 generated body collides with source/runtime delivery')
+    return build_source47_delivery(root/'site')
+
+
 def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=False, equipment_inputs=None,
         equipment_prepared_dir=None):
     rows = validate_contract(contract); sources = source_files(root)
@@ -547,6 +574,7 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
         raise ValueError('Build-only source path cannot be an approved runtime body')
     power_delivery = approved_power_delivery(root, contract, sources, rows)
     manual_delivery = approved_manual_delivery(root, contract, sources, rows)
+    source47_delivery = approved_source47_delivery(root, sources, rows)
     equipment_scripts = layout_equipment_scripts(root) if LAYOUT_EQUIPMENT_SOURCE in sources else None
     if equipment_inputs is not None:
         if not equipment_scripts:
@@ -563,7 +591,8 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
     if any(r['path'] in sources for r in rows): raise ValueError('Runtime body collides with tracked source')
     size = (sum(p.stat().st_size for p in sources.values()) + sum(r['bytes'] for r in rows)
             + (len(power_delivery[0]) if power_delivery else 0)
-            + sum(len(body) for body, _ in (manual_delivery or [])))
+            + sum(len(body) for body, _ in (manual_delivery or []))
+            + sum(len(body) for body, _ in (source47_delivery or [])))
     if size >= MAX_SITE_BYTES: raise ValueError('Approved site reaches/exceeds 990000000 bytes: '+str(size))
     failures = release_failures(root, contract); verified = []; missing = []
     mapping = (inputs or {}).get('files', {})
@@ -598,6 +627,8 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
         write_v0_power_delivery(root/'site', output, power_delivery[0])
     if not plan_only and manual_delivery:
         write_v0_manual_delivery(root/'site', output, manual_delivery)
+    if not plan_only and source47_delivery:
+        write_source47_delivery(root/'site', output, source47_delivery)
     equipment_audits = None
     if equipment_scripts:
         if plan_only:
@@ -625,6 +656,7 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
     if equipment_audits is not None: result['layout_equipment_audits'] = equipment_audits
     if power_delivery: result['generated_power_references'] = power_delivery[1]
     if manual_delivery: result['generated_v0_manual_references'] = [receipt for _, receipt in manual_delivery]
+    if source47_delivery: result['generated_source47_references'] = [receipt for _, receipt in source47_delivery]
     return result
 
 def main():
