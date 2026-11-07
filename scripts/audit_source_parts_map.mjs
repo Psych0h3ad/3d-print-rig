@@ -6,6 +6,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {register} from 'node:module';
 import {createHash} from 'node:crypto';
 import {auditPartReview} from './assembly_part_review_audit.mjs';
+import {auditTridentRailNutGuide} from './trident_rail_nut_guide_audit.mjs';
 const arg=n=>process.argv[process.argv.indexOf(n)+1];const site=pathToFileURL(path.resolve(arg('--site'))+'/'),machine=arg('--machine'),reportFile=arg('--report');
 register('data:text/javascript,'+encodeURIComponent(`export async function resolve(s,c,n){if(s==='three')return {url:${JSON.stringify(new URL('viewer/vendor-r180/three.module.js',site).href)},shortCircuit:true};return n(s,c)}`),import.meta.url);
 globalThis.location={href:new URL('viewer/reference.html',site).href};
@@ -35,7 +36,7 @@ try{
  const partReview=auditPartReview(index,{assemblyPartRows,createAssemblyProgress,validateAssemblyProgress});
  for(const s of index.stages){index.state(s.index);progress.setStage(s.id);progress.toggle(s.id);for(const p of index.parts(s.id))index.getPartNodes(p.key)}
  validateAssemblyProgress(index,JSON.parse(JSON.stringify(progress.snapshot())));if(index.search('M3').length===0)throw Error('Source search lost hardware');
- const sample=index.entries()[0].node,parent=sample.parent;sample.removeFromParent();let rejects=0;try{index.verifyLive()}catch{rejects++}parent.add(sample);index.verifyLive();
+ const sample=index.entries()[0].node,parent=sample.parent,siblingOrder=parent.children.slice(),childIndex=parent.children.indexOf(sample);sample.removeFromParent();let rejects=0;try{index.verifyLive()}catch{rejects++}parent.add(sample);parent.children.splice(parent.children.indexOf(sample),1);parent.children.splice(childIndex,0,sample);if(parent.children.length!==siblingOrder.length||parent.children.some((node,i)=>node!==siblingOrder[i]))throw Error('Graph negative failed to restore original source sibling order');index.verifyLive();
  const savedX=sample.position.x;sample.position.x+=.001;try{index.verifyLive()}catch{rejects++}sample.position.x=savedX;index.verifyLive();
  if(rejects!==2)throw Error('Live graph negatives accepted');
  const {createVoronAssemblyGuide,supportsVoronAssembly}=await import(new URL('viewer/voron-assembly-guide.mjs',site));let assembly=null;
@@ -43,6 +44,7 @@ try{
  const displayURL=new URL(displayDependency,mapSourceURL),displaySourceURL=new URL(displayURL);displaySourceURL.search='';const displayBytes=await fs.readFile(displaySourceURL),{createAssemblyStageEmphasis,assemblySourceMaterial}=await import(displayURL);
  if(supportsVoronAssembly(machine)){
   const baselineVisible=new Set(index.entries().map(r=>r.key)),guide=await createVoronAssemblyGuide(loaded,scene),counts=[];let last=0;
+  const railNutGuide=auditTridentRailNutGuide(guide,loaded,{createAssemblyProgress,validateAssemblyProgress});
   const beltReceivers=[];
   for(const c of loaded.inspection.components)for(const p of c.meta.parts){
    const required=c.path.includes('trident_r2_sb_carriage')||p.group==='V24_Toolhead'&&['Panasonic GX-H15A:1','MGN12H (1):1','X_Carriage:1'].includes(p.source_path?.[4]);
@@ -56,7 +58,7 @@ try{
   const saved=createAssemblyProgress(guide);saved.setStage(2);saved.toggle(2);validateAssemblyProgress(guide,JSON.parse(JSON.stringify(saved.snapshot())));let mapRejected=false;try{validateAssemblyProgress(guide,progress.snapshot())}catch{mapRejected=true}if(!mapRejected)throw Error('Part-map progress accepted as assembly');
   const display=createAssemblyStageEmphasis(),displayVisits=[];
   for(const i of [1,Math.floor(guide.stages.length/2),guide.stages.length-2]){guide.setStage(i);const beforeDisplay=signature(loaded.root),parts=guide.entries().map(r=>({key:r.key,nodes:[r.node]})),currentKeys=guide.parts(i).map(p=>p.key),current=new Set(currentKeys);display.update({parts,currentKeys,enabled:true});guide.verifyLive();let dimmed=0;for(const part of parts)for(const node of part.nodes){if(current.has(part.key)&&node.material!==assemblySourceMaterial(node))throw Error('Current source part was dimmed');if(node.material!==assemblySourceMaterial(node))dimmed++}if(!dimmed)throw Error('Previous source parts were not dimmed');display.clear();if(signature(loaded.root)!==beforeDisplay)throw Error('Display mode changed source');displayVisits.push({stage:i,dimmedMeshes:dimmed,currentSourceKeys:currentKeys.length})}
-  display.dispose();guide.restore();assembly={stages:guide.stages.length,visibleCounts:counts,sourceItems:guide.partCount,beltReceiverKeys:beltReceivers,beltReceiversBeforeBelts:true,reverseAndPreview:true,restoredUnchanged:signature(loaded.root)===before,wrongViewProgressRejected:mapRejected,identity:guide.identity,stageEmphasis:{visits:displayVisits,sourceRestored:true,displayModuleSHA256:createHash('sha256').update(displayBytes).digest('hex'),sourceMapSHA256:createHash('sha256').update(mapSource).digest('hex')}};
+  display.dispose();guide.restore();assembly={stages:guide.stages.length,visibleCounts:counts,sourceItems:guide.partCount,railNutGuide,beltReceiverKeys:beltReceivers,beltReceiversBeforeBelts:true,reverseAndPreview:true,restoredUnchanged:signature(loaded.root)===before,wrongViewProgressRejected:mapRejected,identity:guide.identity,stageEmphasis:{visits:displayVisits,sourceRestored:true,displayModuleSHA256:createHash('sha256').update(displayBytes).digest('hex'),sourceMapSHA256:createHash('sha256').update(mapSource).digest('hex')}};
  }
  const after=signature(loaded.root);if(before!==after)throw Error('Inspection mutated source assembly');
  loaded.dispose();let retired=false;try{index.verifyLive()}catch{retired=true}loaded=null;if(!retired)throw Error('Retired model accepted');

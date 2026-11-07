@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1372901,
-      "sha256": "d1dcc562ef37eaa901a2770049e9efcd61d5776826c8bfcf2e9cf9d413d2a5a7"
+      "bytes": 1374495,
+      "sha256": "9f6c9e7bf431e3a92dfd14ee5e27840e6194bf1f8a5a1f78c3a8e07fb4c48c54"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -915,8 +915,8 @@
     },
     {
       "path": "scripts/audit_source_parts_map.mjs",
-      "bytes": 9997,
-      "sha256": "963e332fa4b8c6f6b0b1188eeabd6845c808120dfd2e47665584f3feeb1e1805"
+      "bytes": 10562,
+      "sha256": "3e050c38cac4eaf1569581d8df3762c7083743cbcb87b610f95d690121592691"
     },
     {
       "path": "scripts/audit_source_printed_colors.mjs",
@@ -1115,8 +1115,8 @@
     },
     {
       "path": "scripts/check_source_parts_map_release.py",
-      "bytes": 2612,
-      "sha256": "099a6a523a715d6c2576866d025c6fe0b16303a57179d2f7d03105dfa43fee86"
+      "bytes": 3064,
+      "sha256": "1283edab82d2f089695df01cf4cde11699e3aec22e1f2375c63ae7e1b0e781c5"
     },
     {
       "path": "scripts/check_trinity_beacon_release.py",
@@ -1377,6 +1377,11 @@
       "path": "scripts/fixtures/trident-native-chain-roots.json",
       "bytes": 29814,
       "sha256": "40e088296841ff2be1edcee67ad794042aee3ee1de5d6d058519d6394133333f"
+    },
+    {
+      "path": "scripts/fixtures/trident-rail-nut-guide-source.json",
+      "bytes": 5677,
+      "sha256": "73f5db9297d9146112af37fb281f94194efab3346396ec0166a324df9fd21e42"
     },
     {
       "path": "scripts/fixtures/v0-door-source-occurrences.json",
@@ -3275,8 +3280,8 @@
     },
     {
       "path": "scripts/test_voron_assembly_guide.mjs",
-      "bytes": 7463,
-      "sha256": "eaff9d14db69405b67e93f736e2b4bdaac36a8229b661e4b985af1adc1bed17c"
+      "bytes": 8355,
+      "sha256": "ea4a345fe44dcc2ef716d7733b4e117b5ca154987b390a55663b24db2c4ffc49"
     },
     {
       "path": "scripts/test_wallpaper_catalog.mjs",
@@ -3367,6 +3372,11 @@
       "path": "scripts/trident-deck-evidence.mjs",
       "bytes": 2093,
       "sha256": "80098115be4be6cfe302c707c2ec9436a2aa5a33ca51a0aedf79c6dc5b617ad0"
+    },
+    {
+      "path": "scripts/trident_rail_nut_guide_audit.mjs",
+      "bytes": 3493,
+      "sha256": "d3b0cbb96f973c58bf4281c42cfab26426ac983e0c890439087901fc4060dd57"
     },
     {
       "path": "scripts/update_inventory.py",
@@ -7330,8 +7340,8 @@
     },
     {
       "path": "site/viewer/assembly-progress-migrations.mjs",
-      "bytes": 8263,
-      "sha256": "b55c79b9750c582c21eed10f1a199260e92b5a1f2623013553998018a4e9a2c8"
+      "bytes": 8747,
+      "sha256": "b1e8e1ef1097235db6112bd8ed461ca7389c146e30ea829d9db9f762d186e543"
     },
     {
       "path": "site/viewer/assembly-stage-emphasis.mjs",
@@ -7351,7 +7361,7 @@
     {
       "path": "site/viewer/assembly-workbench-model.mjs",
       "bytes": 9607,
-      "sha256": "5bd4b636d9504c8becc7b317fa6c1ec3ad85fceda3987e0ca82a5b728d549ff4"
+      "sha256": "f436dc7c3357ff49c7dd35d71f8692f230e6acad594d82c37ea1e0cce23d3b29"
     },
     {
       "path": "site/viewer/assembly-workbench.css",
@@ -7361,7 +7371,7 @@
     {
       "path": "site/viewer/assembly-workbench.mjs",
       "bytes": 16247,
-      "sha256": "8e3348da6cd251d55b90b506d364a7667588f034b4a34609ac8d29cbe2417690"
+      "sha256": "7b250d38b0811a059a342c0c39f33a9a5d4dbcf5e482b50d6894e756e62c344d"
     },
     {
       "path": "site/viewer/asset-availability.js",
@@ -8711,7 +8721,7 @@
     {
       "path": "site/viewer/source-map-app.mjs",
       "bytes": 13876,
-      "sha256": "d0dbbe2251c0873e7cacad7c198ad65bd5c320025453451b587e2b053c107e27"
+      "sha256": "b17e210909310fa28863d7a04298bca51aa76e97ce2cb522994ce26db9486de5"
     },
     {
       "path": "site/viewer/source-map.css",
@@ -8721,7 +8731,7 @@
     {
       "path": "site/viewer/source-map.html",
       "bytes": 4537,
-      "sha256": "bd30a7e6a2a22a15392efad6a69cde353c191993cbc16d5ffa5135078f7cee3f"
+      "sha256": "3538c3d4b6588c7228fb285fc2eec9ddd69bc125e76f433d0ee7f335b76f4e27"
     },
     {
       "path": "site/viewer/source-operating-bounds6.mjs",
@@ -8984,6 +8994,16 @@
       "sha256": "77312c6bfbf6c7e7563dbf5548ed5600baf2ab2ec2f0f438aa1860af355059ec"
     },
     {
+      "path": "site/viewer/trident-rail-nut-manual-roles.mjs",
+      "bytes": 14847,
+      "sha256": "42409a0b3a35030d08ba1e1143f84051a98808c9688dfa8821eede735988ecdb"
+    },
+    {
+      "path": "site/viewer/trident-rail-progress-migrations.mjs",
+      "bytes": 3763,
+      "sha256": "9d88bd9a8a1b347faad144da3d869f7bab7ad731a41bd9672cb58a034ea91812"
+    },
+    {
       "path": "site/viewer/trident-roof-tube.mjs",
       "bytes": 13799,
       "sha256": "3c2b6b629363a92659ed04e7fa9d37a2d89c6ae3f008c0acf4ce2f296155ab97"
@@ -9036,7 +9056,7 @@
     {
       "path": "site/viewer/v0-app.js",
       "bytes": 36138,
-      "sha256": "0fa817795ab301d17051d2b89078078e207c31db3b32e8ce6a65a78b912d1e55"
+      "sha256": "f7575bc21886f4c71dbbc1ea57f436f0e307c1447d7e0805bb4c0c5a84c1677c"
     },
     {
       "path": "site/viewer/v0-assembly.mjs",
@@ -9231,7 +9251,7 @@
     {
       "path": "site/viewer/v0.html",
       "bytes": 10592,
-      "sha256": "969954be86aaa4973df55f62ff58672abf52f39732383f467cdc5489c2571f43"
+      "sha256": "0cbb2e98c62ff5736e109fdd1924c832f3afe71820337477280e52bd02f938c2"
     },
     {
       "path": "site/viewer/v0_adapter.mjs",
@@ -9410,8 +9430,8 @@
     },
     {
       "path": "site/viewer/voron-assembly-guide.mjs",
-      "bytes": 7235,
-      "sha256": "5c43b26be052d21bc97d68a1707d297481c65065ac4e9100f49805109f0226cb"
+      "bytes": 7534,
+      "sha256": "2047e27bc027aaba30ee9fd12c7ba9a700d19805330e42d1cb0fb929f88aace3"
     },
     {
       "path": "site/viewer/voron-guide-lineage.mjs",
