@@ -1,3 +1,4 @@
+import {tridentRailNutManualSection,assertTridentRailNutManualCohort} from './trident-rail-nut-manual-roles.mjs';
 import {createSourcePartsMap} from './source-parts-map.mjs?v=603f6fb0f1d8fa8afc35';
 import {tridentGuideLineage} from './voron-guide-lineage.mjs';
 const hash=async v=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(v))))].map(n=>n.toString(16).padStart(2,'0')).join('');
@@ -10,7 +11,8 @@ const plans={
  trident:[['frame','Frame',12,23],['drives','A/B drives and idlers',24,48],['gantry','Y rails and gantry frame',49,76],['zaxis','Z rails and lift',77,117],['xaxis','X axis',118,141],['belts','A/B belts',142,163],['bed','Print bed and support',164,187],['head','Stealthburner assembly',188,189],['wiring','Electronics and cable paths',190,268],['skirts','Skirts',269,290],['panels','Panels and doors',291,320],['filament','Filament path',291,320]],
  v24:[['frame','Frame',12,21],['zdrives','Z drives and idlers',22,51],['bed','Print bed and support',52,61],['drives','A/B drives and idlers',62,81],['gantry','Gantry and X beam',82,107],['zaxis','Z joints and belts',108,123],['belts','A/B belts',124,145],['head','Stealthburner assembly',146,147],['wiring','Electronics and cable paths',148,211],['skirts','Skirts',212,239],['panels','Panels and doors',240,259],['exhaust','Exhaust filter',240,259],['filament','Filament path',240,259]]
 };
-function tridentSection(p,path){
+function tridentSection(p,path,machine,component){
+ const role=tridentRailNutManualSection(machine,component,p);if(role)return role;
  if(p.group==='Frame')return p.motion==='z'||p.source_leaf==='1167'?'bed':path.includes('Cable Frame Anchors')?'wiring':'frame';
  if(p.group==='Z Assembly')return /Bed Components/.test(path)?'bed':/Chain|Wago|WAGO/.test(path)?'wiring':'zaxis';
  if(p.group==='Electronics')return 'wiring';if(p.group==='Skirt')return 'skirts';
@@ -42,9 +44,10 @@ export async function createVoronAssemblyGuide(loaded,scene){
  const id=loaded?.source?.machineId;if(!supportsVoronAssembly(id))fail('No source-backed assembly overview for this machine');
  const base=await createSourcePartsMap(loaded,scene,{allowVisibilityStages:true}),family=id.startsWith('voron_trident_')?'trident':'v24',groups=new Map(plans[family].map(r=>[r[0],[]]));
  const raw=new Map();for(const c of loaded.inspection.components)for(const p of c.meta.parts)raw.set(c.path+'#'+p.key,{p,component:c.path});
+ assertTridentRailNutManualCohort(id,raw,loaded.inspection.components);
  for(const source of base.stages)for(const key of source.part_keys){
   const {p,component}=raw.get(key),path=(p.source_path??[p.source_component??'']).join('/');
-  const section=family==='v24'?v24Section(p,path):component.includes('trident_r2_sb_carriage')?'xaxis':component.startsWith('toolheads/')||!p.group&&!component.includes('trident_r2_gantry_')?'head':tridentSection(p,path);
+  const section=family==='v24'?v24Section(p,path):component.includes('trident_r2_sb_carriage')?'xaxis':component.startsWith('toolheads/')||!p.group&&!component.includes('trident_r2_gantry_')?'head':tridentSection(p,path,id,component);
   if(!groups.has(section))fail('Unknown assembly section: '+section);groups.get(section).push(key);
  }
  const note='Advance to add the next source subassembly. Hardware stays with its source group. Parts use their final CAD positions; this overview does not animate insertion paths or replace the full manual.';

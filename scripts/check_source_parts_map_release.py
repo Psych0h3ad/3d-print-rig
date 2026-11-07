@@ -18,6 +18,10 @@ def main():
   if mid.endswith('_ldo_cnc'):
    if r.get('assembly')is not None or r.get('assemblyUnsupportedExplicitly')is not True:raise ValueError('CNC source lacks a reviewed assembly plan')
   elif not r.get('assembly')or not all(r['assembly'].get(k)for k in ['beltReceiversBeforeBelts','reverseAndPreview','restoredUnchanged','wrongViewProgressRejected']):raise ValueError('Missing actual interactive assembly: '+mid)
+  if mid.startswith('voron_trident_'):
+   nuts=(r.get('assembly')or{}).get('railNutGuide')or{}
+   if len(nuts.get('sourceNutKeys',[]))!=24 or not all(nuts.get(k)for k in ['sourceIdentityBound','frameAndDrivesExcluded','zaxisIncluded','onlyRevisedStageRechecked','v1ChecksNotInvented','currentReconfirmationPreserved']) or nuts.get('unrelatedIdentityNegatives')!=4:
+    raise ValueError('Missing source-backed rail-nut stage/progress regression: '+mid)
   rows.append({k:r[k]for k in ['machine','sourceItems','meshes','classifications','identity','sourceUnchanged','retiredRejected','assembly','assemblyUnsupportedExplicitly','partReview']})
  (a.output/'summary.json').write_text(json.dumps({'passed':True,'machines':rows,'scope':'Nine default source maps; live ownership, progress, unchanged source buffers/matrices/materials. No insertion/mating/continuous-motion certification.'},separators=(',',':'))+'\n',encoding='utf-8')
  print(f'Source part maps: {len(rows)} actual assemblies passed in fresh serial processes.')

@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+
+// Original Z-rail receiver occurrences, shared by the three source sizes.
+// These are source identities, not a name filter or a hardware replacement.
+const leaves=['1085','1075','1079','1077','1074','1078','1076','1073','1080','1081','1082','1091','1086','1088','1087','1084','1116','1117','1118','1119','1120','1121','1122','1123'];
+const previousStages={
+ voron_trident_250:'ccd9458d8d6cdf9556584cb9f0a16de0f8752233b2eb106a57d72278bcf34491',
+ voron_trident_300:'6c21c832f0639c7342fd7b39e1897791382f438379910c490af3d9edfc6440c9',
+ voron_trident_350:'cd6391c01f33d6c7dc24055800312dfe5f737e960228d61764e57beaa8fcb0cc',
+};
+export function auditTridentRailNutGuide(guide,loaded,{createAssemblyProgress,validateAssemblyProgress}){
+ const machine=guide.identity.machine;if(!previousStages[machine])return null;
+ const component='machines/'+machine+'/assembly_manifest.json',metadata=loaded.inspection.components.find(c=>c.path===component);
+ assert.ok(metadata,'Original base metadata required');
+ const parts=leaves.map(leaf=>{
+  const matches=metadata.meta.parts.filter(p=>String(p.source_leaf)===leaf);
+  assert.equal(matches.length,1,'Unique original source occurrence');const p=matches[0],key=component+'#'+p.key;
+  assert.equal(p.group,'Frame');assert.equal(p.motion,'fixed');assert.ok(p.source_component.includes('/T-Nuts:'));
+  assert.equal(guide.owner(key).id,'zaxis','Rail receiver nut must first appear with Z rails');
+  assert.ok(!guide.stage('frame').part_keys.includes(key));return key;
+ });
+ for(const id of ['frame','drives','zaxis']){
+  const state=guide.setStage(id),visible=new Set(state.visible_keys);
+  for(const key of parts)assert.equal(visible.has(key),id==='zaxis','Cumulative rail-nut visibility');
+ }
+ const current=createAssemblyProgress(guide).snapshot(),allParts=guide.stages.flatMap(s=>s.part_keys),old={...current,identity:{...current.identity,stages_sha256:previousStages[machine]},current_stage:'zaxis',checked_stages:guide.stages.map(s=>s.id),checked_parts:allParts};
+ const input=JSON.stringify(old),migrated=validateAssemblyProgress(guide,JSON.parse(input));
+ assert.equal(JSON.stringify(old),input,'Input progress must not be mutated');
+ assert.deepEqual(new Set(migrated.checked_parts),new Set(allParts));
+ assert.deepEqual(migrated.checked_stages,old.checked_stages.filter(id=>id!=='zaxis'));
+ const legacy={...old,schema:'assembly-workbench-progress-v1'};delete legacy.checked_parts;
+ assert.deepEqual(validateAssemblyProgress(guide,legacy).checked_parts,[],'v1 must not invent part checks');
+ const resumed=createAssemblyProgress(guide,migrated);resumed.toggle('zaxis');
+ assert.ok(validateAssemblyProgress(guide,JSON.parse(JSON.stringify(resumed.snapshot()))).checked_stages.includes('zaxis'),'Confirmed current stage must survive reload');
+ let rejected=0;
+ for(const field of ['source_documents_sha256','source_state_sha256','manual_sha256','stages_sha256']){
+  const bad={...old,identity:{...old.identity,[field]:'0'.repeat(64)}};
+  assert.throws(()=>validateAssemblyProgress(guide,bad));rejected++;
+ }
+ guide.restore();
+ return {sourceNutKeys:parts,sourceIdentityBound:true,frameAndDrivesExcluded:true,zaxisIncluded:true,partChecksPreserved:allParts.length,onlyRevisedStageRechecked:true,v1ChecksNotInvented:true,currentReconfirmationPreserved:true,unrelatedIdentityNegatives:rejected,scope:'Original source receiver identities and reader progress only; no native mating or physical-fit qualification.'};
+}
