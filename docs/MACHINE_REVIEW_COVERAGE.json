@@ -57,7 +57,7 @@
     "scripts/audit_trinity_beacon_controller.mjs": "a9a503adf030fc014453fa57ba81400942797a21e019f1270138673e7ffc96dd",
     "scripts/audit_trinity_beacon_helpers.mjs": "bb1a98a9062faa3935fe61b5831f6c53e3d807cb4df3c7c4b16ff19c72dba6a4",
     "scripts/audit_u1_bottom.mjs": "6ada34785127c7388b98e3460c36f329ab4cfd95fbb46dc57af6eff9214bec7e",
-    "scripts/audit_v0_assembly_assets.mjs": "552f45afab28f2999b5d8b45e7f2b38b3c578f823abc69f48b0c536753aa135b",
+    "scripts/audit_v0_assembly_assets.mjs": "a78fe91326ff47665f14798ce0ed3ebe94d0e9cd1baacbf46d34fab1833561cb",
     "scripts/audit_v0_hinge_source_assets.mjs": "70e73e503771c5907b6c4d22f516de3132eec61f909a692955ed34266ea989b5",
     "scripts/audit_v0_layout_source_assets.mjs": "30e87c1058efa2b5fd695ed42ceef67ced4386eaf7ec661ac3c9938f915f4253",
     "scripts/audit_v0_mod_selection.mjs": "f58a5b74103b3506892649cd91ed5fb3d882fa17c31d93d057ccf650879c6e27",
@@ -68,7 +68,7 @@
     "scripts/audit_yavoth_source_assets.mjs": "f194771f349a1d2038176061bfbb08310ca34871a92dc29bc84c7db229bd902f",
     "scripts/build_approved_site.py": "f69dd8bb9241b78189e4c82471d98b4bf13608dbc0558c4ef15ba82fe7099207",
     "scripts/build_configuration_catalog.py": "cb128a25a44434b63c62b30a33001c11ab7bd20e95dba90fa8bfa2139fe392ab",
-    "scripts/build_locales.mjs": "c3f02f3c890351ded19872857a215fa295afa142e7cb7d0bb4d3eaf27506f726",
+    "scripts/build_locales.mjs": "bad10a0a7fa05b315df4d4f60769060dacec39d89e6120c691e8224178f05c0a",
     "scripts/build_seo.py": "d9eea4f62aa4133b8beaf7b6545262cf8b25de42c285a67871c9ff2d2aa5f3b7",
     "scripts/build_site.py": "c3aa3dbc8d742b38290557ee80e3be7e5faaac1aaa24525e7846de03b0193aa4",
     "scripts/build_support_catalog.mjs": "49dbbf7d24ddbff864a8b231fb73bb91398348fe46bb136bfab86fb052974a3c",
@@ -87,7 +87,7 @@
     "scripts/check_source_parts_map_release.py": "ac2d1b63a168cecd17fd1ca3f34407ae2719822090d7acf726d7d8c76e45a88a",
     "scripts/check_trinity_beacon_release.py": "cb20af0245f22d132189e18aaa2596060a4aeac93f50000f98a04d459ae71615",
     "scripts/check_ui_catalog.mjs": "d1b8fb54df58c2bb57295c72736a12b71720240e381c1c2be889419f4bcbaca7",
-    "scripts/check_v0_assembly_release.py": "41ae3f44e98a50e48657dba3ff77c5cad5c8536e4a2151e00ac02cb1164d39d3",
+    "scripts/check_v0_assembly_release.py": "00aad3b8255e0803149ccc24a6423f8a68d9d81ce24d2b525dc5c52e60ff1a50",
     "scripts/check_v0_native_assets_release.py": "7e0fb9a215dabefdf50105717eff40681c50e0f2afd18556af754b1d136cafa0",
     "scripts/check_viewer_quality_release.py": "7b3cc4c1c8bf38764de5cb260c90a0b7368b2c7fdbd0574bc73f2572232ddce6",
     "scripts/check_wallpaper_compositions.py": "a52f3c47ebc94c09a8376aee6413065dda38395898671e9a7420db5c4062f5cb",
@@ -165,7 +165,7 @@
     "scripts/prepare_source47_fixture.py": "22e38de5d0d27fa17e5dcf96f938c3e3b1a4b04cbc06c8dbfb8b9b6744c7ddc3",
     "scripts/prepare_trident_size_assets.py": "957256f48e3c5653df9f5dae54d6013506a93080d969bc3eb9a33424b464e4c3",
     "scripts/prepare_trident_size_catalogs.py": "390251beb152887f5fb6c3be1b0173509dcca2d28d8765ef88e224200ff98a74",
-    "scripts/prepare_v0_manual_delivery.py": "378b1e0beb79a451855d5496b66593f9d102e2165bcc0cd03fed0fef52309798",
+    "scripts/prepare_v0_manual_delivery.py": "a3130fb66d2b9993ae4ef02cb3b6b6554f1c7c660d4191f7d8d4f558450394f6",
     "scripts/prepare_v0_manual_fixture.py": "463432eecea56a2e951dd9a43fb87535dbf09ec14fa94e97d9ccbc886e4a684b",
     "scripts/prepare_v0_power_delivery.py": "13536cf7d4cbdd9085ea417342c68382a218a929a043ad09a6ff15a391f8b63e",
     "scripts/prepare_viewer_quality_inputs.py": "68f33e53d5bf690fdfd9c4d357b273b4c52d195255e78777845526621c750e13",
@@ -187,11 +187,11 @@
     "scripts/test_a4t_printed_companions.mjs": "59992e9a580f9bc0aa91b6b80a754121cb3488d8e4b25a9caff27766355b29ae",
     "scripts/test_accessories.mjs": "e071b9664e4424f11c603e1074c26e812b803d4c56e91495df9c627eed70ede9",
     "scripts/test_appearance_roles.mjs": "942c8d0e502447741c9929a7f238e2f8ab9524140edd2fcdcb675bd23d970983",
-    "scripts/test_approved_build.py": "e20a9f8a623508b9931fc798ccce5923448666fb44ee21214ec3802586668903",
+    "scripts/test_approved_build.py": "b03a62acc9bda4827f7b076c616de60d1cd6534c45044e3d25f6b577730cdc94",
     "scripts/test_assembly_downloads.mjs": "20b9a463aec89afd8356ceb89a0fd03a1d540f2150df98a3a17daf09911dd182",
     "scripts/test_assembly_operation_references.mjs": "6eb8271af045d08fd5fdb35cf41232c4604f1a75a5ad09f4ba4cd1352b82108a",
     "scripts/test_assembly_picking.mjs": "36c08120bf3b3503aa7650a3cc551bba38603defad6b7de855e7e39c0efa487e",
-    "scripts/test_assembly_progress_migration.mjs": "cd435bf5920f125e9d3b81dc48ae1e0978b7d98167b1bd4b2f150181ee3d6189",
+    "scripts/test_assembly_progress_migration.mjs": "cdff0c01160dcbc193fa0371f8787346c8a520d7cea05e5560bc67b54f177b54",
     "scripts/test_assembly_progress_storage_order.mjs": "97cd6d218600b6c01dd399d00539ee3a2426b96b084afde79a3a602fbdbc5abc",
     "scripts/test_assembly_stage_emphasis.mjs": "fc8c6659858ffcb5192d47cbf3631f1470f8270657c0540a6b7c31cb563e3c96",
     "scripts/test_assembly_transactions.mjs": "beff2ee061eff5ce55f9b292732659761855b4f87a30d33f64251a9eee6c285f",
@@ -470,8 +470,8 @@
     "scripts/test_usage_analytics.mjs": "e14e55711af5f43cd63c087f3830f0816917c47eb294c9a27c9dba8f16411fa9",
     "scripts/test_usage_statistics_independent.mjs": "3c07f5070b7d5c76dd34dcab366efa7b62b354aece704d5478b09c8ab3ed4b83",
     "scripts/test_usage_statistics.mjs": "0027fdcc6757fd41cd0c0225572a4595b9c64780895f84f4dc6ca1cb593286dd",
-    "scripts/test_v0_alignment_order.mjs": "144f108fec3151f0a3e8d891d01ccb1e7e028d0983223c1a36851c25839e534e",
-    "scripts/test_v0_assembly_app.mjs": "7981dee446c30b8173a26de80b4a9870d9fa4af51309f46f32d3b61b897fc79e",
+    "scripts/test_v0_alignment_order.mjs": "0dbdc2702ac30721900ab1c0d9f06b063198de714cc8275505af61dfb2c7f878",
+    "scripts/test_v0_assembly_app.mjs": "3bd2739ccb8b2896cd6187d9f3b5fcbdda0554152cd743f530873c6fe06a2b23",
     "scripts/test_v0_assembly.mjs": "40380dc1156cba8a9e6eba4e670d77d4d60c3332f057d7eed8f5967b73dd1d09",
     "scripts/test_v0_audit_source_pins.py": "b3489e0523a9d5ac760b45e2fdc44269ae754d2fe980bfba8648e7b8ed783f9a",
     "scripts/test_v0_bed_assembly.mjs": "b0f9e3f31281bcc25b55e5fc857d688593c24a681fc4b2684d3188d83ddb0032",
@@ -487,18 +487,19 @@
     "scripts/test_v0_layout_source_identity.mjs": "301e3cbe0c356402f4e690a3df096c4296bee3bac70b0b8b90236202917cfdef",
     "scripts/test_v0_m2_seating.mjs": "d77939f00dc566a4bfcb250801fb35a2eb14eebbf215223c2b2bd4f690137115",
     "scripts/test_v0_manual_camera.mjs": "47693be272abe46743f6046ccddd9b1e03873bc758f9719b25bf1edbd58fdb8f",
-    "scripts/test_v0_manual_delivery.py": "8737a9efc6099ef57835fe08ce7ce2d2be4dedd82dc2ce1ff3b9cae2606f83a9",
+    "scripts/test_v0_manual_delivery.py": "668e65578f6f525cb068c4bf2ea04c308ee7d301abc022e86b4f83ee25e1a4d7",
     "scripts/test_v0_manual_fan_handoff.mjs": "abe72fc6de88bf76052117381f044e26d3f6cdd2d5909ec30ac72938e85a011e",
-    "scripts/test_v0_manual_preflight.mjs": "82fb2510a4a7b779e81886d2d545d79b1255bbb73580336d029675a64461cde4",
-    "scripts/test_v0_manual_stage_identity.mjs": "b5d05697dce89d87b8f5a25a2d4576cf90c2944e2118f576a86e616429a9e8f9",
-    "scripts/test_v0_manual_transport.mjs": "6881ffad02f86fe441582e59422c8421883715ec4029984725f14c6c6d6be833",
+    "scripts/test_v0_manual_preflight.mjs": "72b5d379ef887b5618daae921c9067d058de545a4002967da451a59e175a30bf",
+    "scripts/test_v0_manual_stage_identity.mjs": "8d98a88abbfefb3928da101d066c6fb108170658a9950065d1266dc0c7cc7d74",
+    "scripts/test_v0_manual_transport.mjs": "8bd588f97e4b81d4ccf74b01dd00005ed7163f615fcf1b5878ca9e097b14ffe1",
     "scripts/test_v0_mod_selection.mjs": "94e546cea6ec94c0f09143da712e36ceea7e1e9a9a4a6ca101ddb8c82ee9c283",
     "scripts/test_v0_native_installed_gate.mjs": "9bba2cf6e4a401c132ca021b9eb113a9a8599965355409a397f5e86a044cf2bd",
     "scripts/test_v0_power_assembly.py": "965185d0848aebb31a146d256085cc4078a32296badbafa92b2eec115e642a87",
     "scripts/test_v0_power_copy.mjs": "9e7c3eb2e78546491e077963275e97a3ac13cbecdd825c1d3ca18bf6eae463da",
     "scripts/test_v0_rail_operations.mjs": "bc6d3aebc89b9ce5fd17ef8c9000f981b9483e05327318952e259afaef1c0119",
-    "scripts/test_v0_rail_preparation.mjs": "d91242db9fe1ef7cb6c2478086929e3887b636b9680038b625514c6495560a08",
-    "scripts/test_v0_state_app.mjs": "61518c7856b93c09d3f49253c766e847706b974a35ff42acfe0bd2c4948e7401",
+    "scripts/test_v0_rail_preparation.mjs": "66b3e124b25d855926ae1ef0bc9d8c1d34edd80aff4b997d4d5e85fb06671cd1",
+    "scripts/test_v0_reference_frontier.mjs": "4f721b499358c01a0fedc2d835a59dbfb7d12a484c918de578ec171822c924a0",
+    "scripts/test_v0_state_app.mjs": "d9484208af4a2f8591edc3102e5f58fd15dd7678a7b67df4760224807eb77f84",
     "scripts/test_v0_state.mjs": "0810a100f64ea1a1a698c45e43d1fb989ebea8a2a2a651d980d2cfff8b7be379",
     "scripts/test_v0_xy_preparation.mjs": "4536c722e56925d714ed944e38dbd8efa9ad2356e892b48abe0cada489f7b21b",
     "scripts/test_v24_adapter.mjs": "213349652e00b5a8283764725d1cfea31a251a7df2a0eae7db6cf218b28b78f9",
@@ -544,8 +545,8 @@
     "scripts/v0_head_reference_audit.mjs": "3e75b242f3f62f59f85c911ca2c86615fef9c4a5453be1d77c062a8058133757",
     "scripts/v0_hinge_audit_transport.mjs": "5b3d7db498e6953c87c06c163ac6118d6158368118574502ba9964d2a1d09eb0",
     "scripts/v0_m2_reference_audit.mjs": "1bfbe8f4b7847ba4162c8a54aa0b8ac912c0010df760c6de54a9455dcf4dc349",
-    "scripts/v0_manual_audit_transport.mjs": "bb1d2891857afb2e64abc55bcfdd4f3b23817a4cdd97ec215612f3ebdeb4ecd2",
-    "scripts/v0_manual_source_fixture.mjs": "ae0956f0bfc3b913010b2427fd4be57dbafdb4fbcbd5ae1810e90d62bc59b1d2",
+    "scripts/v0_manual_audit_transport.mjs": "7d4d8269d1dacca5f720d2e7c2c94f31f5a05a8ab30bb64a92fb481c3caf19c5",
+    "scripts/v0_manual_source_fixture.mjs": "d9ef8b1ede953923f5f1593a0371aba914f25c2077c9e3c78684738893053b7c",
     "scripts/v0_manual_tail_reference_audit.mjs": "6aecb45554b2c642cfa98f5d5702468ba112665a247e5df2a7c6a8ef28ded4c2",
     "scripts/v0_power_assembly_regression.mjs": "2cce84ffbd3b3ed399714f5ef523b0ceb8f9dbc36ed53023aa3f735d778213aa",
     "scripts/v0_power_audit_transport.mjs": "6965579d615527fffb81e8c6d49fa4827bd40e2587f43ea6b9a79a3538e0466e",
@@ -562,7 +563,7 @@
     "scripts/yavoth-cowl-identity.mjs": "1d992c3631d0d17e56719eb6b089c2cd1ec2baae318cbbb08171fdfd3de758c1",
     "scripts/yavoth-exact-companions.mjs": "7c7deb5d3657dbc5de9caf1c9f4ae66d0a1a834981df04b84ab552151f4186bb",
     "scripts/yavoth-support-omission.mjs": "4aeaf567cf322c5b08e5a4734e6ef0e7dd4671d9c088e7ae8234108e941009f8",
-    "site/APPROVED_DELIVERY.json": "467d07209ee6c280e2477b613ce1843d9663421860a0aba2414f815e22e72976",
+    "site/APPROVED_DELIVERY.json": "147c23f453dbb7bc289d3962fc8862fbfb858fd89b8873b4078672dd03f3f297",
     "site/ASSEMBLY_CONFIGURATIONS.json": "2542f57d3ddeb63322057bbbf324b154f4e7b1f0c7edf7168fb4155ed042574a",
     "site/assembly_manifest.json": "4fe7fed76a8c003aa652bed57608026dad7b1953ac7b4b589a990d47ff74dadf",
     "site/ASSET_BUNDLE.json": "10c44725a05926348f9c25ec2f655fa08c2776f855a6f0e3d376e11e24698bca",
@@ -680,7 +681,7 @@
     "site/TRINITY_ALPHA_HOST_EXTENSIONS_92.json": "afe8f7fb50cc1b3270dd2d14520ae8ca515cad69d318116373ec66e248184f9b",
     "site/TRINITY_ALPHA_INSTALLATIONS.json": "5edc6b987958e516e63c5b8bdae7a1ff30a3d61dce8f04bb4dbbf22ad8204707",
     "site/TRINITY_ALPHA_SIBOOR_R2_92.json": "0e4f95bff20e71618f0ea9e1fd71786b4939c65cab27e620a0cf971c3f61e767",
-    "site/V0_ASSEMBLY_STAGES.json": "7cb12de4b91de4fa4b77c8479ab30eed7eef9cc4cfe108f2601bd2d003d6f7f6",
+    "site/V0_ASSEMBLY_STAGES.json": "cbcdeba5d465a35dd1787c2f6064595d24e215b97601fc71ca8f450c7e3c6205",
     "site/V0_INSTALLATIONS.json": "33ea90dc4303d3dced78965e79db1a2f3ffdd0889d8cf9644d5fecf8d3142bd5",
     "site/V24_PROBES.json": "5936d472aa038bb83b93a3dae80e10d452e69db2f2cbe7d666bcb5d593c3159e",
     "site/viewer/247zero-bowden.mjs": "315a9fa6d2f032a56dbe1f8312485d71d605d5ff665476d07b7dc6d32a625168",
@@ -697,13 +698,13 @@
     "site/viewer/assembly-downloads.mjs": "d4f5f38789bc9764212544340fad4b83b70dc5db846f95b343e131e12f003d8a",
     "site/viewer/assembly-part-review.mjs": "c2d5e0177d33e1d95d0ec9e9e87af10eb3272e0da485b2844c51ef417f69f800",
     "site/viewer/assembly-picking.mjs": "32b91919c45312facdd13f592838a3c11039719cc158f983b755ee3d75dfb584",
-    "site/viewer/assembly-progress-migrations.mjs": "b1e8e1ef1097235db6112bd8ed461ca7389c146e30ea829d9db9f762d186e543",
+    "site/viewer/assembly-progress-migrations.mjs": "1592734d20464c9cae4b4f69b69a853718b9fe4e3c886df13d0239a4cfbfe8f5",
     "site/viewer/assembly-stage-emphasis.mjs": "31de7db3c02f47abdc1634e21c9062acc8e8f17d96373b382d6adae3f672b8f5",
     "site/viewer/assembly-transaction.mjs": "54d2f160131c0edd22cc3d5deabee30865875f332d677efc36ea06017e2646a8",
     "site/viewer/assembly-workbench-messages.mjs": "3110166c940701420da31dd6b8220648699aaa11c86c649a0607de17046bff58",
-    "site/viewer/assembly-workbench-model.mjs": "f436dc7c3357ff49c7dd35d71f8692f230e6acad594d82c37ea1e0cce23d3b29",
+    "site/viewer/assembly-workbench-model.mjs": "9b2c851ee9de76fdd2f2b2d5ff9898ee8346d40aef0ca288cf7388f8f28a8b20",
     "site/viewer/assembly-workbench.css": "f52abcc4a52fe950e89b3bfc4cab312672aa0d5b501cf63839dcb45262b994bb",
-    "site/viewer/assembly-workbench.mjs": "7b250d38b0811a059a342c0c39f33a9a5d4dbcf5e482b50d6894e756e62c344d",
+    "site/viewer/assembly-workbench.mjs": "5bf20eb1f17729272dc5d9b679bf0d13b21efe5105b8b52156f2a964de8b8c84",
     "site/viewer/asset-availability.js": "33f38142e82e9d8afd4d99f77c4c48ec11f46ffd56e50f5d7558ec48509537e4",
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
@@ -753,6 +754,7 @@
     "site/viewer/data/v0-panel-door-copy.source.json": "394d718fd2bd54bdbf29a6b157d3aa2888c0202ea60b8a41384c3d47eac136e6",
     "site/viewer/data/v0-panel-door.source.json": "3a75177508aae9186fac30673ddd2a8b1a84d6972a396a05c4b8b4692b4a7059",
     "site/viewer/data/v0-power-references.source.json": "f4b455722cd1878a7de8d6566cd4ab2bd8f5c3f6b5fb0de37625cd468a4ceded",
+    "site/viewer/data/v0-reference-copy.source.json": "e3106fe9a5e4e6e8a56dfc22de65c8ed298cd591914e7c2e42abc4d2d08d155a",
     "site/viewer/data/v0-spool-assembly.source.json": "717f6bb092ca1fb5d46dfc99bfab6afcb7274ee8b0227cc406c185e1f4bc4028",
     "site/viewer/data/v0-spool-copy.source.json": "0b2664bde977d85e5f5eef3eb19c8132f014459e11119eab611471168f203dbf",
     "site/viewer/data/v0-tophat-assembly.source.json": "128ae71c503c951561a31f2aef51fd344cb3ce831c29ba1c60de4270ff831d09",
@@ -954,9 +956,9 @@
     "site/viewer/source-assembly.mjs": "6010fcc448f423c93e836024a8e930c9e934a689dffd9b8ba5969ae8541d8143",
     "site/viewer/source-control-bounds.mjs": "1c112b375b6d53fd511793cc7d28c564417da8a33bbcdc1ab983af9f9535fdf2",
     "site/viewer/source-credit-format.mjs": "5f0524475081b0c7357655fe3b79692476591f709d4385f4d89924cf98bab430",
-    "site/viewer/source-map-app.mjs": "3e37d71cda0bd7525fab55d63d31ca36286facc8269808e7cceb2fe6cd727a0b",
+    "site/viewer/source-map-app.mjs": "060fafd7fa2460004c7e6f2546fc07de569258a42ff99237ffe771ca00bcaec6",
     "site/viewer/source-map.css": "cc2d66f63e6228c577f86f39e291fff0eebfc66305c72e23a0d00c5d94e3275e",
-    "site/viewer/source-map.html": "534ff4de3a46c4636f5be0c5c55453ba9cae7ecc8fcec8f27f980cdaec5efe58",
+    "site/viewer/source-map.html": "1d548edd7c9752ce17d6398cda3be8336c5b9e80ea865d31648297c8a1e74774",
     "site/viewer/source-operating-bounds6.mjs": "1e6289b77e9233488baff1e8d1f265d09e754f22f15be3ca1808967c3e58d8e1",
     "site/viewer/source-parts-map.mjs": "603f6fb0f1d8fa8afc35e2d0740b3c3335857b0cf6b88baf81a475a648fe83df",
     "site/viewer/source-picking-core.mjs": "ca04efe661ce9d571b7fe5cabbc45984a957dfccfc39eb8642f3bff7f31ead26",
@@ -1022,20 +1024,20 @@
     "site/viewer/usage-statistics.css": "b74b6815cd2fbb983174ee29e85472f229fc402cf1e5c5f4709dd50286c23366",
     "site/viewer/usage-statistics.mjs": "667031a470038b54c6a3ed8cc8efcad593abb5205cc3b82293a3ababfbb7ff4f",
     "site/viewer/v0_adapter.mjs": "d0de1de3b303ba8e0256e2d8f313eda0b300ccbd70346213d02034338b6ccf97",
-    "site/viewer/v0-app.js": "38c0765f339209e64d190740d1483b0050fd505c875ef598695057f6b3c07c25",
-    "site/viewer/v0-assembly.mjs": "68ef1a1b259b7b212a2b81643c885acdb556481a6f59ce61db26b56e0dd7a52d",
+    "site/viewer/v0-app.js": "3bb27570212f999737890a546728d901302341d98ad44723f30f70fc7b3c043d",
+    "site/viewer/v0-assembly.mjs": "50ec494552065a0733bc79c33293a423ab510ec34b24a3f387050c4768929250",
     "site/viewer/v0-bed-assembly.mjs": "3163b8e34404795e671794f66c690323f820b3dbd2e0ff1a549ba6b6ae6cac31",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
     "site/viewer/v0-chain-pins.mjs": "6d41fb943c5b19ea28ac78025bcd1559ddccbb4baab4872a28816fe5c4c81136",
     "site/viewer/v0-chain.mjs": "9bd91f8c757a0dfafbbc4d53774944e7b9aaab5aac3841af478dff98d773147e",
-    "site/viewer/v0-current-manual-copy.mjs": "ee7522cd8d2a42e389be76b26f5309766aa45f6199153fb8e170ea39ddac5646",
+    "site/viewer/v0-current-manual-copy.mjs": "24f2ee26978d0c24f60915126f88ac1cc8b8f036b1172b0fc506d2a0e36515d9",
     "site/viewer/v0-door.mjs": "acb1a5c37e6edd3fa496794c8e0716a003dec49232f811a4b055a7d43d8cfda9",
     "site/viewer/v0-drive-assembly.mjs": "87761f3c0ebfce5998a9facfce27958dcbe4c8223c98fa91c54234c539cb3e74",
-    "site/viewer/v0-electronics-assembly.mjs": "439d9426f541f2fbb88a054c23e811ecb90180dc4bfabcc9a87492890da1a19b",
-    "site/viewer/v0-enclosure-assembly.mjs": "51fa0508f6a6c92b679df490f7acb84797dbd382e9de4d7142746ca0f086d3ae",
-    "site/viewer/v0-enclosure-copy.mjs": "c87c2a348c18b6eed758a171fbd4145cb0f2b23af23cc0acdb9c2bfa3d6ad8be",
-    "site/viewer/v0-fan-assembly.mjs": "418c5c840b367527efe1a8b2df896dffa2540659663fabfb8b064b348268a029",
-    "site/viewer/v0-fan-copy.mjs": "66c56c3318956ab3e3ab66be284158a224173d6fba15572770e7d7013573c6ca",
+    "site/viewer/v0-electronics-assembly.mjs": "04dade492ba14a762b8d7e7c53b13a135788ee0277520d641eab1bacd036fe9e",
+    "site/viewer/v0-enclosure-assembly.mjs": "c0ad67e549496f50291f7b5e9e4daf4442c84d660ab8a8e355da4c2b9ca48f24",
+    "site/viewer/v0-enclosure-copy.mjs": "b519aa0b432c20ea12d7657b2f128be0c894006d87c9ce4d21ec36a21fdc5809",
+    "site/viewer/v0-fan-assembly.mjs": "3cc5ef985ea6cb7019e4ee0d0bd4f80af464b67cc9e423d6d21fc51a63a9add4",
+    "site/viewer/v0-fan-copy.mjs": "06acccdc998183291d6fa5fccb59ca9f9bd08b048a28f01c56041129e1b67c83",
     "site/viewer/v0-feet-assembly.mjs": "ee39e640a1ba4e93eac0d6b8e052e25db732df3696757b0ef45c68975aa36a9d",
     "site/viewer/v0-head-assembly.mjs": "aa602b0240cf8b746e12c4a6f301d9c045f1be7e966cd70966db04db9f3b5cc2",
     "site/viewer/v0-hinge-source-geometry.mjs": "069e8252a014807f9c8a0d4f6b361c1a8695748cd8242e2b1cd1a1153c1891ef",
@@ -1043,25 +1045,27 @@
     "site/viewer/v0-installations.mjs": "1779bb11385936ade2c5a165d15324f0598965f8d24da37e5cf69928d4878c26",
     "site/viewer/v0-layout-source-identity.mjs": "304b47ebef53ffe81922aa1f57b8289ff4f9846c2a44b6213d0bafe5a0110c78",
     "site/viewer/v0-m2-seating.mjs": "d15ba41d0be2c9a7b68bf13a06e93b52f95bc25f9dd9979187854c27d7197a5c",
-    "site/viewer/v0-manual-data.mjs": "39f5b1cde427278cb44a84364076f48cc6a1fb63e423c561737f6ce22d215f9d",
+    "site/viewer/v0-manual-data.mjs": "02c5ea8d6a8687e71f2b3dc6deafa14072dc436f56f0d2fdd9f69febb5f647f1",
     "site/viewer/v0-mod-library.mjs": "abb4fafb1e86da0d36334ab4b392abfda1170bda5254dee7d33d55b858af3887",
     "site/viewer/v0-native-installed-gate.mjs": "2801ee4ab692384c0d13083bede9a7428f7f47516bf81ea7310f5616dce47084",
-    "site/viewer/v0-panel-closure-copy.mjs": "7f79f2a273787af142010ae5513b9de7c0c6aa771fae29566fb1227c89f418ab",
-    "site/viewer/v0-panel-closure.mjs": "f0ac045c667bb3f839925552e6313074044aaba2612abc3b65e5f8bf0fe4fcb4",
-    "site/viewer/v0-panel-door-copy.mjs": "5c05dd4f87f7a348836ec4301c82815a3dabc50ea717e04ff1cac3124cc22688",
-    "site/viewer/v0-panel-door.mjs": "b9751e53e8e27a326657f50ad614d7ce35ae0570653e7ead7e5fbbb457a38ce1",
-    "site/viewer/v0-power-assembly.mjs": "8ecd52da50c808760742b0bdb3930119c2d19a642c527b5afebc0afe9820d934",
+    "site/viewer/v0-panel-closure-copy.mjs": "c25efd85dd2ad27972f4d626acd0353eb779f2022ac24cae2362555fb0ac10bc",
+    "site/viewer/v0-panel-closure.mjs": "4ed81cd955f455e88f403624b31d96591be07056521819cccc86fb5767ee970a",
+    "site/viewer/v0-panel-door-copy.mjs": "74fbc50fa0695878ba5937e9bbbbda407ebdfdc290ba0b645632cdc7ab15d076",
+    "site/viewer/v0-panel-door.mjs": "f9c70cbec1648e2106d46df050ee5da72e8057a7b3f4e369decd6259a3b68df9",
+    "site/viewer/v0-power-assembly.mjs": "f0547a52531701f565c4aa52dbf801b9b2e6613ff5fe7c90e24352bb4806a250",
     "site/viewer/v0-power-references.mjs": "e2467d4d4ae38b8fa20f3d8f3c8665bbb6c350b835f8e18af75c3e79272fa5cb",
     "site/viewer/v0-rail-operations.mjs": "fc62c168beaafce911633baca5a2d08994360d4ec49e9b0d33581fe3956b9405",
     "site/viewer/v0-rail-preparation.mjs": "74bbc70d05eb89bed68a19a90c950388c9df203bdbfa71e1a8265bfdc8efc2df",
-    "site/viewer/v0-spool-assembly.mjs": "f308048e97a2ba8504ec1937718a453bc06871088f92835918dab274097dc6c3",
-    "site/viewer/v0-spool-copy.mjs": "f9a6113be023159c76dea798ef6e09750d72ed5c778fa38b752575453eac80f3",
+    "site/viewer/v0-reference-copy.mjs": "f873cd289f790b320f45e50354960dac686b740b15f5af23d76f4abe80a06740",
+    "site/viewer/v0-reference-focus.mjs": "f3eb16d3c627d0df0fae060bde9a90c23b2721a1dff5f0145ce83905053e25d9",
+    "site/viewer/v0-spool-assembly.mjs": "79c75c019fd2cb6dbeffa88a1229e35167b52b44d4a8f77202906a68b5d0f41f",
+    "site/viewer/v0-spool-copy.mjs": "a70abe495ea3e9e80860d0f36fce14f077c2f7bd77494f7a435978a26bde9f9e",
     "site/viewer/v0-state.mjs": "a2d97480d6b42c7586f2996443d3b27c59eb93b4dc7b927cbbf3b4d619bb4c2c",
-    "site/viewer/v0-tophat-assembly.mjs": "e631fd1484b4c07a0436947c43d993754967bef8993e9c16194a65ba2f635d05",
-    "site/viewer/v0-tophat-copy.mjs": "ef62e8c41c1a22e10a2153e02da8891738b74bec1fd49e1e86e7374b3bedb1ef",
+    "site/viewer/v0-tophat-assembly.mjs": "d8453bdd0b927e523abf402ae4de85fe856066de3a3130f1bcbdf1430b30970a",
+    "site/viewer/v0-tophat-copy.mjs": "65a4678f3b0a76d6f65dbc525645dc4abf1c2efce6d3c2659eac95cef4ae43c1",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
     "site/viewer/v0-xy-preparation.mjs": "0127d6a73db5ed16ccff2ce1494ec88b977e5aa87e2124af70eda20cc636dccf",
-    "site/viewer/v0.html": "8d8ba9680870aa5c3a877815253b52b0266b6369372545f784a453713e58d393",
+    "site/viewer/v0.html": "ad78c08c51ec42f832efbf7e01e76e0bc566efaa5d35f3d8b5c7de70b3d39b54",
     "site/viewer/v24_adapter.mjs": "a185b2e795a7d3f736ac13e6a60448d1f83c099f8a28ccbd6e689ff922ca30fe",
     "site/viewer/v24_matrix_adapter.mjs": "4505d42f4dbfffc9445422817a19c348412ead5036aa71ac46eec53b5cce1f24",
     "site/viewer/v24-app.js": "ed7602eca7690a648a759a2c5f7f47c19559cec59786a8b9dae874a5d23e9fe3",
@@ -12886,6 +12890,55 @@
         "required_provider_pins": 18,
         "runtime_geometry_changed": false,
         "native_fit_verified": false
+      },
+      "manual_reference_frontier_review": {
+        "machine": "voron_v02r1_120",
+        "source_parts": 1678,
+        "stages": 269,
+        "stage_visits": 542,
+        "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+        "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+        "reference_frontier": {
+          "referenceOperations": 9,
+          "allForwardReverseVisits": true,
+          "introducedSourceParts": 0,
+          "nativeFitQualified": false
+        },
+        "original_restored": true,
+        "source_geometry_changed": false,
+        "physical_fit_certified": false,
+        "context_focus_visits": [
+          {
+            "id": "reference-belt-paths",
+            "index": 89,
+            "sourceKeys": 514
+          },
+          {
+            "id": "reference-tophat-profiles",
+            "index": 228,
+            "sourceKeys": 1553
+          },
+          {
+            "id": "reference-startup-docs",
+            "index": 267,
+            "sourceKeys": 1668
+          },
+          {
+            "id": "reference-startup-docs",
+            "index": 267,
+            "sourceKeys": 1668
+          },
+          {
+            "id": "reference-tophat-profiles",
+            "index": 228,
+            "sourceKeys": 1553
+          },
+          {
+            "id": "reference-belt-paths",
+            "index": 89,
+            "sourceKeys": 514
+          }
+        ]
       }
     },
     {
@@ -13132,6 +13185,55 @@
         "required_provider_pins": 18,
         "runtime_geometry_changed": false,
         "native_fit_verified": false
+      },
+      "manual_reference_frontier_review": {
+        "machine": "voron_v02_120",
+        "source_parts": 1653,
+        "stages": 264,
+        "stage_visits": 532,
+        "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+        "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+        "reference_frontier": {
+          "referenceOperations": 9,
+          "allForwardReverseVisits": true,
+          "introducedSourceParts": 0,
+          "nativeFitQualified": false
+        },
+        "original_restored": true,
+        "source_geometry_changed": false,
+        "physical_fit_certified": false,
+        "context_focus_visits": [
+          {
+            "id": "reference-belt-paths",
+            "index": 84,
+            "sourceKeys": 498
+          },
+          {
+            "id": "reference-tophat-profiles",
+            "index": 223,
+            "sourceKeys": 1537
+          },
+          {
+            "id": "reference-startup-docs",
+            "index": 262,
+            "sourceKeys": 1652
+          },
+          {
+            "id": "reference-startup-docs",
+            "index": 262,
+            "sourceKeys": 1652
+          },
+          {
+            "id": "reference-tophat-profiles",
+            "index": 223,
+            "sourceKeys": 1537
+          },
+          {
+            "id": "reference-belt-paths",
+            "index": 84,
+            "sourceKeys": 498
+          }
+        ]
       }
     },
     {
@@ -23638,6 +23740,123 @@
         "editor_palette_save_format_unchanged": true,
         "physical_fit_certified": false
       }
+    ]
+  },
+  "current_v0_manual_reference_review": {
+    "reviewed_on": "2026-11-08",
+    "scope": "Nine official-manual text-only references for each stock V0; original source assignments and geometry unchanged. Actual forward/reverse/jump stage lifecycle, current-visible context focus at three named references and complete restoration. Physical assembly, clearance, full manual completion and all combinations remain unqualified.",
+    "required_actual_gate": "scripts/check_v0_assembly_release.py",
+    "source_regression": "scripts/test_v0_reference_frontier.mjs",
+    "reference_operations_per_model": 9,
+    "actual_report_sha256": "fff3add3ef6c42ac289db206acebeb9a321adce7ca8e14cbdde8861b514a0c13",
+    "normal_actual_build_passed": true,
+    "prior_73_machine_rows_retained": true,
+    "new_native_mating_or_holding_certificate": false,
+    "machines": [
+      {
+        "machine": "voron_v02_120",
+        "source_parts": 1653,
+        "stages": 264,
+        "stage_visits": 532,
+        "model_sha256": "da642150957fa38289499bd1c1586737f4f970968c3b32b3f7b81d76bef05ea9",
+        "manifest_sha256": "16b195acbaf4e74ea8b68f629aacf17066c0151fc7c4910647a71cd52ef9c23c",
+        "reference_frontier": {
+          "referenceOperations": 9,
+          "allForwardReverseVisits": true,
+          "introducedSourceParts": 0,
+          "nativeFitQualified": false
+        },
+        "original_restored": true,
+        "source_geometry_changed": false,
+        "physical_fit_certified": false,
+        "context_focus_visits": [
+          {
+            "id": "reference-belt-paths",
+            "index": 84,
+            "sourceKeys": 498
+          },
+          {
+            "id": "reference-tophat-profiles",
+            "index": 223,
+            "sourceKeys": 1537
+          },
+          {
+            "id": "reference-startup-docs",
+            "index": 262,
+            "sourceKeys": 1652
+          },
+          {
+            "id": "reference-startup-docs",
+            "index": 262,
+            "sourceKeys": 1652
+          },
+          {
+            "id": "reference-tophat-profiles",
+            "index": 223,
+            "sourceKeys": 1537
+          },
+          {
+            "id": "reference-belt-paths",
+            "index": 84,
+            "sourceKeys": 498
+          }
+        ]
+      },
+      {
+        "machine": "voron_v02r1_120",
+        "source_parts": 1678,
+        "stages": 269,
+        "stage_visits": 542,
+        "model_sha256": "d89064824fa67ed6e7c78e90c642620afe62c3b4520255f6c626181754b7d29d",
+        "manifest_sha256": "3bc45717c986aea14895e52532d76284c7d084740dd19c4dea09dc104ff847ea",
+        "reference_frontier": {
+          "referenceOperations": 9,
+          "allForwardReverseVisits": true,
+          "introducedSourceParts": 0,
+          "nativeFitQualified": false
+        },
+        "original_restored": true,
+        "source_geometry_changed": false,
+        "physical_fit_certified": false,
+        "context_focus_visits": [
+          {
+            "id": "reference-belt-paths",
+            "index": 89,
+            "sourceKeys": 514
+          },
+          {
+            "id": "reference-tophat-profiles",
+            "index": 228,
+            "sourceKeys": 1553
+          },
+          {
+            "id": "reference-startup-docs",
+            "index": 267,
+            "sourceKeys": 1668
+          },
+          {
+            "id": "reference-startup-docs",
+            "index": 267,
+            "sourceKeys": 1668
+          },
+          {
+            "id": "reference-tophat-profiles",
+            "index": 228,
+            "sourceKeys": 1553
+          },
+          {
+            "id": "reference-belt-paths",
+            "index": 89,
+            "sourceKeys": 514
+          }
+        ]
+      }
+    ],
+    "context_focus_actual_helper": "viewer/v0-reference-focus.mjs",
+    "context_focus_stage_ids": [
+      "reference-belt-paths",
+      "reference-tophat-profiles",
+      "reference-startup-docs"
     ]
   }
 }

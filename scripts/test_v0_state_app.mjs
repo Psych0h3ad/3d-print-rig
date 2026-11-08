@@ -1,3 +1,4 @@
+import * as referenceFocusModule from '../site/viewer/v0-reference-focus.mjs';
 // Evaluate the real V0 mount/controller with a minimal DOM and keyed meshes.
 // This is software integration coverage, not a browser or exported-mesh audit.
 import assert from 'node:assert/strict';
@@ -81,6 +82,7 @@ async function mountApp(machine_id,mods,{rawURL,profile:providedProfile,failHing
  // actual-asset jobs separately execute the real geometry manager and guard.
  assert.throws(()=>hingeGeometryModule.guardV0HingeSourceGeometry(fixture.scene),/required source geometry receipt missing/);
  const namespaces={
+  'v0-reference-focus.mjs':referenceFocusModule,
   'workspace-entry.mjs':{ensureWorkspaceEntry:()=>{}},
   'i18n.mjs':{translate,formatMessage},
   'v0-current-manual-copy.mjs':{translateV0ManualCopy:(text,language,fallback)=>fallback(text,language)},

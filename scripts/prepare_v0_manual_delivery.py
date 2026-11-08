@@ -16,7 +16,7 @@ TABLE_NAMES = (
     'v0-panel-door', 'v0-tophat-assembly', 'v0-spool-assembly',
     'v0-assembly-stages', 'v0-fan-copy', 'v0-enclosure-copy',
     'v0-panel-closure-copy', 'v0-panel-door-copy', 'v0-tophat-copy',
-    'v0-spool-copy',
+    'v0-spool-copy', 'v0-reference-copy',
 )
 SOURCE_PATHS = frozenset(
     'V0_ASSEMBLY_STAGES.json' if name == 'v0-assembly-stages'

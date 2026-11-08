@@ -1,5 +1,6 @@
-import {loadV0ManualData,checkedV0ManualBundle} from './v0-manual-data.mjs?v=39f5b1cde427278cb44a';
-import {translateV0ManualCopy} from './v0-current-manual-copy.mjs?v=ee7522cd8d2a42e389be';
+import {getV0AssemblyFocus} from './v0-reference-focus.mjs?v=f3eb16d3c627d0df0fae';
+import {loadV0ManualData,checkedV0ManualBundle} from './v0-manual-data.mjs?v=02c5ea8d6a8687e71f2b';
+import {translateV0ManualCopy} from './v0-current-manual-copy.mjs?v=24f2ee26978d0c24f609';
 import {applyV0HingeSourceGeometry,guardV0HingeSourceGeometry} from './v0-hinge-source-geometry.mjs?v=069e8252a014807f9c8a';
 import {createAssemblyStageEmphasis} from './assembly-stage-emphasis.mjs?v=31de7db3c02f47abdc16';
 const assemblyEmphasis=createAssemblyStageEmphasis();
@@ -26,8 +27,8 @@ import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
 import {setupPublicInfo} from './public-info.js?v=496c2eac18cd9028756a';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex} from './assembly-workbench-model.mjs?v=f436dc7c3357ff49c7dd';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=7b250d38b0811a059a34';
+import {createAssemblyIndex} from './assembly-workbench-model.mjs?v=9b2c851ee9de76fdd2f2';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=5bf20eb1f17729272dc5';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
 import {formatMessage,translate as sourceTranslate} from './i18n.mjs?v=bd46dc6874c80e4c196b';
 const translate=(text,language=document.documentElement.lang||'en')=>translateV0ManualCopy(text,language,sourceTranslate);
@@ -183,7 +184,7 @@ function setupAssemblyControls(receipts){
  function focusAdded(){
   if(!assemblyView)return;
   const box=new THREE.Box3(),partBox=new THREE.Box3();scene.updateMatrixWorld(true);
-  for(const key of assemblyView.getBoundsKeys()){
+  for(const key of getV0AssemblyFocus(assemblyView).keys){
    const native=adapter.nodes.get(key),display=[...installations.roots.values()].flat().filter(r=>r.wrapper.visible&&r.option.replace_keys.includes(key)).map(r=>r.wrapper);
    for(const node of [...(native?.visible?[native]:[]),...display])node.traverse(n=>{
     for(let p=n;p&&p!==node.parent;p=p.parent)if(!p.visible)return;
@@ -206,7 +207,7 @@ function setupAssemblyControls(receipts){
   const manual=assemblyData.machines[id].manual;
   $('#assemblyManual').href=manual.url+'#page='+stage.page_start;
   $('#assemblyManual').textContent=`公式マニュアル ${stage.page_start}–${stage.page_end} ページ`;
-  assemblyWorkbench?.update({...state,visible_keys:assemblyView.getVisibleKeys(),manual_text:$('#assemblyManual').textContent});
+  assemblyWorkbench?.update({...state,focus_text:getV0AssemblyFocus(assemblyView).text,visible_keys:assemblyView.getVisibleKeys(),manual_text:$('#assemblyManual').textContent});
   status.textContent=['Prepared power component reference','Power and wiring reference'].includes(state.presentation_label)?translate(state.presentation_label,document.documentElement.lang||'en'):state.manual_fastener_reference?formatMessage('assembly.manual_fastener_reference',[],document.documentElement.lang||'en'):state.presentation_label?translate(state.presentation_label,document.documentElement.lang||'en'):state.preparation?'ナット保持具の準備状態を並べて表示中':state.subassembly?'取付前のドライブ組立を単独で表示中':'元CADの位置で組立状態を表示中';document.body.dataset.assemblyStage=stage.id;render();
   // The inspection layout and installed rails occupy different spaces. Keep
   // them in view when crossing that boundary, without reframing other stages.
@@ -225,7 +226,7 @@ function setupAssemblyControls(receipts){
   assemblySnapshot={configuration:captureV0State(),camera:camera.position.clone(),up:camera.up.clone(),target:orbit.target.clone()};lockControls();
   try{
    if(!assemblyData){const loaded=checkedV0ManualBundle(await loadV0ManualData());assemblyData=loaded.data['v0-assembly-stages'];assemblyStageHash=loaded.stageSHA256}
-   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=68ef1a1b259b7b212a2b');
+   const {createV0AssemblyStages,prepareV0AssemblyM2Seating}=await import('./v0-assembly.mjs?v=50ec494552065a0733bc');
    assemblyStateTouched=true;program?.invalidate();
    if(!await setV0Mods(stockV0Mods()))throw Error('標準構成を読み込めません');
    $('#enclosure').checked=true;$('#enclosure').onchange();$('#belts').checked=true;$('#belts').onchange();

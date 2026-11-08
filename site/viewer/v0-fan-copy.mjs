@@ -1,4 +1,4 @@
-import {checkedV0ManualData} from './v0-manual-data.mjs?v=39f5b1cde427278cb44a';
+import {checkedV0ManualData} from './v0-manual-data.mjs?v=02c5ea8d6a8687e71f2b';
 
 const tails=["Keep this prepared subassembly aside until installation.", "Original source positions are retained; no insertion or thermal deformation is simulated."];
 const prep="Prepare the four original threaded inserts in the lower fan mount as shown in the official heat-set diagram. Keep the prepared subassembly aside until the fan-mount installation.";

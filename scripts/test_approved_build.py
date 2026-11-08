@@ -1162,7 +1162,8 @@ class ApprovedPowerReferences(unittest.TestCase):
         self.assertEqual(result['planned_site_bytes'],sum(p.stat().st_size for p in (root/'built').rglob('*')if p.is_file()))
         self.assertFalse((root/'built'/power.SOURCE_PATH).exists());self.assertFalse((root/'built/APPROVED_DELIVERY.json').exists())
         from prepare_v0_manual_delivery import SOURCE_PATHS as manual_source_paths
-        self.assertEqual(len(manual_source_paths),13)
+        self.assertEqual(len(manual_source_paths),14)
+        self.assertIn('viewer/data/v0-reference-copy.source.json', manual_source_paths)
         self.assertEqual(set(build_approved_site.BUILD_ONLY_SOURCE_PATHS),{
             'APPROVED_DELIVERY.json', power.SOURCE_PATH, *manual_source_paths,
             'viewer/source47/data/ROUTE350_CAPTURE_BINDINGS_V2.json',

@@ -16,20 +16,20 @@ function fixture(){
  scene.updateMatrixWorld(true);const input={nodes,manifest:{machine_id:id,parts},spec};return {...input,scene,make:()=>createV0RailPreparation(input)};
 }
 const snapshot=f=>[...f.nodes].map(([k,n])=>[k,n.position.toArray(),n.quaternion.toArray(),n.scale.toArray(),n.matrix.toArray(),n.matrixWorld.toArray()]);
-const f=fixture(),native=snapshot(f),p=f.make();
-for(const i of [1,2,3,2,1,57,1,0]){p.check();p.apply(i);p.check();assert.equal(p.prepared(i),i===1);if(i!==1)assert.deepEqual(snapshot(f),native);passed++}
+const f=fixture(),native=snapshot(f),p=f.make(),prepIndex=f.spec.stages.findIndex(s=>s.id==='nut-carriers');assert(prepIndex>=0);
+for(const i of [prepIndex,prepIndex+1,prepIndex+2,prepIndex+1,prepIndex,57,prepIndex,0]){p.check();p.apply(i);p.check();assert.equal(p.prepared(i),i===prepIndex);if(i!==prepIndex)assert.deepEqual(snapshot(f),native);passed++}
 const yi=f.spec.stages.findIndex(s=>s.id==='y-rails'),zi=f.spec.stages.findIndex(s=>s.id==='z-rails');
 assert.equal(p.deferred(yi).length,33);assert.equal(p.deferred(zi).length,11);assert.equal(p.focus(yi).length,22);assert.equal(p.focus(zi).length,22);
 p.deferred(yi).length=0;assert.equal(p.deferred(yi).length,33);p.leave();assert.deepEqual(snapshot(f),native);passed++;
 // A failure after the first two rows moved must restore the previous display,
 // not leave a mixture of preparation and installation coordinates.
-p.apply(1);const prepared=snapshot(f),victim=f.nodes.get('v02r1_00104'),original=victim.updateMatrix;
+p.apply(prepIndex);const prepared=snapshot(f),victim=f.nodes.get('v02r1_00104'),original=victim.updateMatrix;
 let injected=true;victim.updateMatrix=function(){if(injected){injected=false;throw Error('injected update failure')}return original.call(this)};
-assert.throws(()=>p.apply(1),/injected/);victim.updateMatrix=original;assert.deepEqual(snapshot(f),prepared);p.check();p.leave();assert.deepEqual(snapshot(f),native);passed++;
-p.apply(1);const n=f.nodes.get('v02r1_00058'),old=n.position.x;n.position.x+=.01;assert.throws(()=>p.check(),/outside preparation/);n.position.x=old;n.updateMatrix();n.updateWorldMatrix(true,false);p.check();p.leave();passed++;
+assert.throws(()=>p.apply(prepIndex),/injected/);victim.updateMatrix=original;assert.deepEqual(snapshot(f),prepared);p.check();p.leave();assert.deepEqual(snapshot(f),native);passed++;
+p.apply(prepIndex);const n=f.nodes.get('v02r1_00058'),old=n.position.x;n.position.x+=.01;assert.throws(()=>p.check(),/outside preparation/);n.position.x=old;n.updateMatrix();n.updateWorldMatrix(true,false);p.check();p.leave();passed++;
 for(const change of [
  f=>{f.spec.model_sha256='0'.repeat(64)},f=>{f.spec.manifest_sha256='0'.repeat(64)},f=>{f.spec.manual.sha256='0'.repeat(64)},
- f=>{f.spec.stages.find(s=>s.id==='x-rail').id='other'},f=>{f.spec.stages[1].part_keys.pop()},
+ f=>{f.spec.stages.find(s=>s.id==='x-rail').id='other'},f=>{f.spec.stages.find(s=>s.id==='nut-carriers').part_keys.pop()},
  f=>{f.manifest.parts[0].name='Generic substitute'},f=>{f.manifest.parts[1].name='Wrong nut'},
  f=>{f.nodes.get('v02r1_00058').matrixAutoUpdate=false},f=>{f.nodes.get('v02r1_00069').parent=f.nodes.get('v02r1_00058')},
 ]){const x=fixture();change(x);assert.throws(()=>x.make(),/V0 rail preparation/);negative++}

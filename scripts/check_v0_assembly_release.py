@@ -9,7 +9,7 @@ REQUIRED_STAGE_PROVIDERS=tuple('viewer/'+name+'.mjs' for name in (
     'v0-head-assembly','v0-idler-assembly','v0-m2-seating',
     'v0-panel-closure','v0-panel-door','v0-power-assembly',
     'v0-power-references','v0-rail-operations','v0-rail-preparation',
-    'v0-spool-assembly','v0-tophat-assembly','v0-xy-preparation'))
+    'v0-spool-assembly','v0-tophat-assembly','v0-xy-preparation','v0-reference-focus'))
 
 
 def require_stage_provider_pins(report, site):
@@ -51,10 +51,22 @@ def main():
             if len(power_display.get('observations',[]))!=13 or power_display.get('operationsReverse')!=13 or power_display.get('grayJumps')!=3 or power_display.get('separatePalettes')!=3 or power_display.get('visibilityFailureCases')!=1 or not all(power_display.get(k)for k in ['allSelectedFramesEqualOriginal','allNativeMatricesMaterialsVisibilityRestored','fullGeometryBuffersUnchanged']):raise ValueError('Missing actual power lifecycle: '+mid)
             if power_display.get('physicalFitQualified')is not False or power_display.get('electricalQualified')is not False:raise ValueError('Power reference scope overstated: '+mid)
             manual_data=row['machines'][0].get('manualDataTransport',{});manual_tail=row['machines'][0].get('manualTailOwnership',{})
-            if manual_data.get('requests')!=13 or not manual_data.get('productionStreamingDecoderAndCryptoReceipt') or manual_data.get('decodedStageSHA256')!=hashlib.sha256(source).hexdigest() or len(manual_data.get('tables',[]))!=13:
+            if manual_data.get('requests')!=14 or not manual_data.get('productionStreamingDecoderAndCryptoReceipt') or manual_data.get('decodedStageSHA256')!=hashlib.sha256(source).hexdigest() or len(manual_data.get('tables',[]))!=14:
                 raise ValueError('Missing exact complete received manual data: '+mid)
             if manual_tail.get('operations')!=95 or manual_tail.get('tables')!=6 or not manual_tail.get('originalMotorScrewIntroducedOnceAtReceiver') or manual_tail.get('physicalFitQualified') is not False:
                 raise ValueError('Missing full additional manual/source ownership: '+mid)
+            reference_ids = ('reference-printed-parts', 'reference-fasteners', 'reference-blind-joints', 'reference-tools', 'reference-drilling', 'reference-frame-profiles', 'reference-belt-paths', 'reference-tophat-profiles', 'reference-startup-docs')
+            actual = row['machines'][0]
+            for reference_id in reference_ids:
+                expected = next((s for s in machines[mid]['stages'] if s['id'] == reference_id), None)
+                visits = [v for v in actual.get('poses', []) if v['id'] == reference_id]
+                if expected is None or expected.get('part_keys') != [] or 'operation_part_keys' in expected or len(visits) < 2 or any(v.get('added') != 0 for v in visits):
+                    raise ValueError('Missing new text-only manual reference lifecycle: '+mid+'/'+reference_id)
+            actual['manualReferenceFrontier'] = dict(referenceOperations=len(reference_ids), allForwardReverseVisits=True, introducedSourceParts=0, nativeFitQualified=False)
+            context_visits=actual.get('referenceContextFocus', [])
+            for context_id in ('reference-belt-paths', 'reference-tophat-profiles', 'reference-startup-docs'):
+                if len([v for v in context_visits if v['id']==context_id and v.get('sourceKeys',0)>0])<2:
+                    raise ValueError('Missing actual visible context focus: '+mid+'/'+context_id)
             hinge_report = Path(folder)/(mid+'-hinge-source.json')
             subprocess.run(['node','--max-old-space-size=176','--max-semi-space-size=1','--v8-pool-size=1','--experimental-vm-modules',str(ROOT/'scripts/audit_v0_hinge_source_assets.mjs'),'--site',str(a.site),'--machine',mid,'--report',str(hinge_report),*(['--map',str(a.map)]if a.map else[])],cwd=ROOT,check=True,timeout=120)
             hinge = json.loads(hinge_report.read_bytes())
