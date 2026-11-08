@@ -1,4 +1,4 @@
-import {createV0FanAssembly} from './v0-fan-assembly.mjs?v=418c5c840b367527efe1';
+import {createV0FanAssembly} from './v0-fan-assembly.mjs?v=3cc5ef985ea6cb7019e4';
 import {checkedV0PowerReferences} from './v0-power-references.mjs?v=e2467d4d4ae38b8fa20f';
 // Original-source power references. No placement or electrical state is modified.
 const fail=s=>{throw Error('V0 power assembly: '+s)};

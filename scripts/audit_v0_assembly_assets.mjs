@@ -28,6 +28,8 @@ async function pin(file){const b=await fs.readFile(file),digest=sha(b);if(before
 const pinClosure=createPinnedModuleClosure({pin,viewer});
 const manualReceived=await receiveBuiltV0ManualData({viewer,assemblySource:(await pin(site+'/viewer/v0-assembly.mjs')).toString('utf8'),pin,SourceTextModule:vm.SourceTextModule});
 const stages=manualReceived.bundle.data['v0-assembly-stages'];
+await pinClosure(new URL('v0-reference-focus.mjs',viewer));
+const {getV0AssemblyFocus}=await import(new URL('v0-reference-focus.mjs',viewer));
 await pinClosure(new URL('assembly-workbench-model.mjs',viewer));
 const {createAssemblyIndex,createAssemblyProgress,validateAssemblyProgress}=await import(new URL('assembly-workbench-model.mjs',viewer));
 assert.deepEqual(Object.keys(stages.machines).sort(),['voron_v02_120','voron_v02r1_120']);
@@ -171,7 +173,7 @@ try{
   for(const p of manifest.parts){const owner=workbench.owner(p.key);assert(owner.part_keys.includes(p.key));assert.equal(workbench.part(p.key).name,p.name)}
   for(const p of [manifest.parts[0],manifest.parts[Math.floor(manifest.parts.length/2)],manifest.parts.at(-1)])assert(workbench.search(p.key).some(s=>s.id===workbench.owner(p.key).id));
   const sequence=[...spec.stages.map((_,i)=>i),...spec.stages.map((_,i)=>spec.stages.length-1-i),spec.stages.length-1,0,Math.floor(spec.stages.length/2),spec.stages.length-1];
-  const poses=[];
+  const poses=[],referenceContextFocus=[];
   for(const index of sequence){const r=controller.setStage(index),keys=new Set(spec.stages.slice(0,index+1).flatMap(s=>s.part_keys));
    const prep=spec.stages[index].id==='nut-carriers';for(const g of railGroups)if(!prep&&index<g.installed)for(const k of g.keys)keys.delete(k);
    // Independent source occurrence cohorts: A and B are assembled separately
@@ -226,6 +228,7 @@ try{
    for(const c of companions)assert.equal(c.node.visible,c.part_keys.some(k=>keys.has(k)),'Support-omitted carriage follows native stage');
    for(const seat of spec.seat_display_dependencies)assert(!shown(seat.part_key)||shown(seat.carrier_key),'Preloaded nut displayed without its receiving source member');
    assert.equal(r.total,spec.stages.length);assert.equal(r.added,spec.stages[index].part_keys.length);unchanged(scene,original,false,true,prep?preparationNodes:idlerPreparing?idlerPreparationNodes:xyPreparing?xyNodes[xySide]:new Set());if(prep)checkPreparation();if(idlerPreparing)checkIdlerPreparation();poses.push({index,id:r.id,added:r.added,visible:r.visible_count,prepared:prep,idler_prepared:idlerPreparing,xy_prepared:xyPreparing,stored:r.stored_count,subassembly:r.subassembly,underside:r.underside,...(bedView?{bedStored:r.stored_keys.length,operationReferences:(r.operation_part_keys||spec.stages[index].part_keys).length}:{} )});
+   if(['reference-belt-paths','reference-tophat-profiles','reference-startup-docs'].includes(r.id)){const focus=getV0AssemblyFocus(controller);assert(focus.context);assert.equal(focus.text,'Focus visible assembly');assert.deepEqual(focus.keys,controller.getVisibleKeys());assert(focus.keys.length>0);referenceContextFocus.push({id:r.id,index,sourceKeys:focus.keys.length})}
    const shownParts=controller.getDisplayedParts();assert.equal(shownParts.length,r.visible_count);assert.deepEqual(shownParts.map(p=>p.key),controller.getVisibleKeys());
    for(const p of shownParts){assert(keys.has(p.key));for(const n of p.nodes)assert(displayed(n))}
    for(const p of [shownParts[0],shownParts[Math.floor(shownParts.length/2)],shownParts.at(-1)].filter(Boolean))assert.deepEqual(controller.getPartNodes(p.key),p.nodes);
@@ -263,7 +266,7 @@ try{
   adapter.setPose(Object.fromEntries(['x','y','z'].map((key,i)=>[key,nativePose[i]])));installed.setPose(nativePose);
   assert.equal(await installed.setState(installed.getState()),true);unchanged(scene,original,true,false);
   assert.deepEqual(geometryPins(scene),geometryBefore,'Native reset must restore geometry content, including rebuilt belt meshes');
-  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,sourceGeometry,hingeRepresentation,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,railOwnership,railDisplay,electronicsOwnership,electronicsDisplay,powerOwnership,powerDisplay,powerTransport:powerTransport.summary(),manualDataTransport:manualReceived.summary(),manualTailOwnership,restored:true});
+  report.machines.push({partReview,machine_id:id,parts:adapter.nodes.size,stages:spec.stages.length,workbench_source_parts:workbench.partCount,workbench_progress_identity:workbench.identity,sourceGeometry,hingeRepresentation,geometry,model_sha256:sha(bytes),manifest_sha256:sha(manifestBytes),profile_sha256:sha(profileBytes),manual:spec.manual,poses,alternative_poses:alternativePoses,fastener_display_dependencies_checked:spec.seat_display_dependencies.length,idler_rigid_preparation_parts:14,xy_rigid_preparation_parts:40,xy_manual_operation_count:8,idler_actual_partial_failure_rollback:true,upper_side_member_screw_occurrences:4,manualFasteners,headOwnership,headDisplay,railOwnership,railDisplay,electronicsOwnership,electronicsDisplay,powerOwnership,powerDisplay,powerTransport:powerTransport.summary(),manualDataTransport:manualReceived.summary(),manualTailOwnership,referenceContextFocus,restored:true});
   installed.dispose();adapter.belts.entries.forEach(e=>e.node.traverse(n=>n.geometry?.dispose()));
   loaded.scene.traverse(n=>{n.geometry?.dispose();if(n.material)for(const m of Array.isArray(n.material)?n.material:[n.material])m.dispose()});
  }

@@ -1,3 +1,4 @@
+import {getV0AssemblyFocus} from '../site/viewer/v0-reference-focus.mjs';
 // Execute the production assembly UI with the real static-stage/state modules.
 // Keyed geometry and DOM fixtures cover software state only, not native CAD fit.
 import assert from 'node:assert/strict';
@@ -66,7 +67,7 @@ const handlers=Object.fromEntries([
  ['tophatAngle',"$('#tophatAngle').oninput="],
 ].map(([key,prefix])=>[key,extractHandler(prefix)]));
 const factory=vm.runInNewContext(`(dependencies=>{
- const {THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,location,assemblyEmphasis,
+ const {getV0AssemblyFocus,THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,location,assemblyEmphasis,
   installations,stateRestorer,program,scope,fetch,workspaceTask,frameResponsiveView,render,
   loadError,stockV0Mods,validateV0State,v0ConfigurationSchema,v0NativeStateProfile,
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash,createAssemblyWorkbench,createAssemblyPicker,renderer,formatMessage,translate,loadV0ManualData,checkedV0ManualBundle}=dependencies;
@@ -177,7 +178,7 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
   const mode=s=>s?{...s,...(bedBoundary&&s.index===1?{camera_direction:[.15,.18,1],camera_distance_floor:.24,presentation_label:'Installation reference view'}:{}),preparation:preparationBoundary&&s.index===1,subassembly:driveBoundary&&s.index===1,underside:driveBoundary&&s.index===1,presentation_id:s.index===1?(driveBoundary?'drive-a-underside':'rail-preparation'):'installed'}:null;
   return {...c,current:()=>mode(c.current()),setStage:i=>mode(c.setStage(i))};
  };
- const dependencies={THREE,assemblyEmphasis:createAssemblyStageEmphasis(),assemblyModule:{...assemblyModule,prepareV0AssemblyM2Seating:prepareFixture,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
+ const dependencies={getV0AssemblyFocus,THREE,assemblyEmphasis:createAssemblyStageEmphasis(),assemblyModule:{...assemblyModule,prepareV0AssemblyM2Seating:prepareFixture,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash:async bytes=>sha(Buffer.from(bytes)),renderer:{domElement:{}},formatMessage:()=>'',translate:x=>x,
   // This port isolates the complete native/configuration lifecycle; the real DOM
   // workbench/picker have independent tests and an actual-model browser audit.
@@ -343,6 +344,15 @@ await check('dispose restores visibility and releases stage UI locks',async f=>{
  await f.start();f.dispose();assert.equal(f.api.state().assemblyView,null);assertNative(f);
  for(const key of ordinary)assert.equal(f.$('#'+key).disabled,f.initialDisabled[key],key+' must not retain disposed locks');assert(!('assemblyStage' in f.document.body.dataset));assert.equal(f.$('#assemblySteps').hidden,true);
 });
+for(const contextID of ['reference-belt-paths','reference-tophat-profiles','reference-startup-docs'])for(const machineID of machineIds){
+ await check('visible context focus '+contextID+' '+machineID,async f=>{
+  const spec=Object.values(f.stageData.machines)[0];spec.stages.push({id:contextID,title:'Context reference fixture',page_start:41,page_end:41,part_keys:[]});
+  await f.start();f.$('#assemblyStage').value='3';f.$('#assemblyStage').onchange();f.orbit.target.set(.7,.6,.5);f.$('#assemblyFocus').click();
+  const expected=new THREE.Box3();f.nodes.get('frame').parent.updateMatrixWorld(true);for(const[key,node]of f.nodes)if(key!=='alternative')expected.union(new THREE.Box3().setFromObject(node));
+  assert(f.orbit.target.distanceTo(expected.getCenter(new THREE.Vector3()))<1e-12,'Empty current references must frame only visible source parts');
+  assert.equal(f.api.state().assemblyView.current().added,0);await f.finish();assertConfig(f);assertNative(f);assert.deepEqual(f.cameraState(),f.originalCamera);
+ },{machine_id:machineID});
+}
 report.result=report.findings.length?'FAIL':'PASS';
 assert.equal(sha(await fs.readFile(appURL,'utf8')),report.app_source_sha256,'Production source changed during fixture run');
 assert.equal(sha(await fs.readFile(new URL('../site/viewer/v0-assembly.mjs',import.meta.url))),report.assembly_source_sha256,'Assembly source changed during fixture run');

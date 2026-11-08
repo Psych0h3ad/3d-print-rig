@@ -1,4 +1,4 @@
-import {checkedV0ManualData} from './v0-manual-data.mjs?v=39f5b1cde427278cb44a';
+import {checkedV0ManualData} from './v0-manual-data.mjs?v=02c5ea8d6a8687e71f2b';
 
 const fail=s=>{throw Error('V0 enclosure assembly: '+s)};
 const dense=a=>Array.isArray(a)&&Array.from({length:a.length},(_,i)=>Object.hasOwn(a,i)).every(Boolean);

@@ -1,3 +1,4 @@
+import {getV0AssemblyFocus} from '../site/viewer/v0-reference-focus.mjs';
 // Execute the production assembly UI with the real static-stage/state modules.
 // Keyed geometry and DOM fixtures cover software state only, not native CAD fit.
 import assert from 'node:assert/strict';
@@ -66,7 +67,7 @@ const handlers=Object.fromEntries([
  ['tophatAngle',"$('#tophatAngle').oninput="],
 ].map(([key,prefix])=>[key,extractHandler(prefix)]));
 const factory=vm.runInNewContext(`(dependencies=>{
- const {THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,location,assemblyEmphasis,
+ const {getV0AssemblyFocus,THREE,$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest,id,location,assemblyEmphasis,
   installations,stateRestorer,program,scope,fetch,workspaceTask,frameResponsiveView,render,
   loadError,stockV0Mods,validateV0State,v0ConfigurationSchema,v0NativeStateProfile,
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash,createAssemblyWorkbench,createAssemblyPicker,renderer,formatMessage,translate,loadV0ManualData,checkedV0ManualBundle}=dependencies;
@@ -177,7 +178,7 @@ function mount({machine_id='voron_v02r1_120',nonstock=false,stale=false,fetchFai
   const mode=s=>s?{...s,...(bedBoundary&&s.index===1?{camera_direction:[.15,.18,1],camera_distance_floor:.24,presentation_label:'Installation reference view'}:{}),preparation:preparationBoundary&&s.index===1,subassembly:driveBoundary&&s.index===1,underside:driveBoundary&&s.index===1,presentation_id:s.index===1?(driveBoundary?'drive-a-underside':'rail-preparation'):'installed'}:null;
   return {...c,current:()=>mode(c.current()),setStage:i=>mode(c.setStage(i))};
  };
- const dependencies={THREE,assemblyEmphasis:createAssemblyStageEmphasis(),assemblyModule:{...assemblyModule,prepareV0AssemblyM2Seating:prepareFixture,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
+ const dependencies={getV0AssemblyFocus,THREE,assemblyEmphasis:createAssemblyStageEmphasis(),assemblyModule:{...assemblyModule,prepareV0AssemblyM2Seating:prepareFixture,createV0AssemblyStages:assemblyFactory},$,document,scene,camera,orbit,adapter,profile,stockProfile,currentManifest:{machine_id:id,parts:keys.map(key=>({key,name:key}))},id,location:{href:'https://example.test/viewer/v0.html?machine='+id+(autoAssembly?'&assembly=1':'')},
   createAssemblyIndex,readAssemblyStageDocument,v0NativeByteHash:async bytes=>sha(Buffer.from(bytes)),renderer:{domElement:{}},formatMessage:()=>'',translate:x=>x,
   // This port isolates the complete native/configuration lifecycle; the real DOM
   // workbench/picker have independent tests and an actual-model browser audit.

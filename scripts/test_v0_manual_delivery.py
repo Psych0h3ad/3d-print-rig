@@ -66,10 +66,10 @@ class ManualDeliveryTests(unittest.TestCase):
 
     def test_exact_bodies_and_no_raw_delivery(self):
         bodies = manual.build_v0_manual_delivery_bodies(self.site)
-        self.assertEqual(len(bodies), 13)
+        self.assertEqual(len(bodies), 14)
         output = self.root / 'out'
         manual.write_v0_manual_delivery(self.site, output, bodies)
-        self.assertEqual(len([p for p in output.rglob('*') if p.is_file()]), 13)
+        self.assertEqual(len([p for p in output.rglob('*') if p.is_file()]), 14)
         for body, receipt in bodies:
             self.assertEqual((output / receipt['path']).read_bytes(), body)
         for source in manual.SOURCE_PATHS:
@@ -130,7 +130,7 @@ class ManualDeliveryTests(unittest.TestCase):
         contract = {'source_catalog_sha256': pins}
         sources = {manual.MODULE_PATH: self.site / manual.MODULE_PATH}
         self.assertEqual(len(approved.approved_manual_delivery(
-            self.root, contract, sources, [])), 13)
+            self.root, contract, sources, [])), 14)
         self.assertTrue(manual.SOURCE_PATHS <= approved.BUILD_ONLY_SOURCE_PATHS)
         for mutate in (
             lambda c: c['source_catalog_sha256'].pop('V0_ASSEMBLY_STAGES.json'),

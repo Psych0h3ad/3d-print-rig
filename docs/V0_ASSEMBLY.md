@@ -39,7 +39,7 @@ before replacing the current progress. Clear and undo cover both record types.
 
 Open **Assembly steps** in the V0 printer's Configuration tab. The temporary view uses the stock assembly and closed enclosure at its CAD reference pose. Select a stage, use Previous/Next, or focus the added parts. The manual link opens the pinned document at that stage's page. **Return to previous configuration** restores the previous Mod selection, pose, appearance, enclosure settings and camera.
 
-V0.2 has 255 stages and 1,653 exported source leaves. V0.2r1 has 260 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
+V0.2 has 264 stages and 1,653 exported source leaves. V0.2r1 has 269 stages and 1,678 leaves. Preparation, preloaded fasteners, inspection and wiring instructions are retained even when they add no modeled parts. Electronic board components count as individual source leaves. Most stages show cumulative final CAD positions; this view does not animate insertion, screw tightening or wiring.
 
 The controller-cooling fan, skirts/display, bottom and motor panels, spool
 supports, transparent panels/door and top-hat operations now separate preparation,
@@ -312,3 +312,19 @@ Progress from the immediately preceding guide retains individual source-part
 checks and unchanged stages; only the r1 final alignment step needs a fresh
 check after this instruction correction. This does not certify modeled thread
 engagement, free travel or native-solid clearance.
+
+The preparation references now separate printed-part settings and quantities, fastener
+identification, blind joints, tools, access-hole preparation and profile drawings.
+Before their respective sections, the guide also links directly to the stacked
+belt-path diagram and the revision-specific top-hat profile reference. V0.2 uses
+J/K labels there; V0.2r1 uses B/J. These text-only references add no geometry or
+assumed drilled holes and leave every original source assignment unchanged.
+The final documentation reference points to the official software/startup page;
+its check is separate from commissioning the physical printer. Exact previous
+progress retains all original stage/part checks and leaves the nine new references
+unchecked.
+
+The belt-path, top-hat profile and startup references can frame the currently
+visible assembly when the reference introduces no source parts. The focus
+control names that context explicitly; source ownership and geometry stay
+unchanged.

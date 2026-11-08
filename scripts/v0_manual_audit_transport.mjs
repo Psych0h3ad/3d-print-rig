@@ -13,6 +13,6 @@ export async function receiveBuiltV0ManualData({viewer,assemblySource,pin,Source
  const bundle=api.checkedV0ManualBundle(await api.loadV0ManualData({fetchImpl:async(url,options)=>{
   assert.equal(options.cache,'no-cache');const body=bodies.get(String(url));assert(body,'Unregistered exact manual data request');options.signal?.throwIfAborted();requests++;return new Response(body.bytes,{headers:{'Content-Length':String(body.bytes.length)}});
  }}));
- assert.equal(requests,13);assert.equal(Object.keys(bundle.data).length,13);
+ assert.equal(requests,14);assert.equal(Object.keys(bundle.data).length,14);
  return {bundle,api,summary(){return {requests,productionStreamingDecoderAndCryptoReceipt:true,decodedStageSHA256:bundle.stageSHA256,tables:[...bodies.values()].map(({name,ref,bytes})=>({name,encodedBytes:bytes.length,encodedSHA256:ref.gzip.sha256,decodedBytes:ref.bytes,decodedSHA256:ref.sha256}))}}};
 }

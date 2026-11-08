@@ -1,8 +1,8 @@
-import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=f436dc7c3357ff49c7dd';
+import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=9b2c851ee9de76fdd2f2';
 import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=3110166c940701420da3';
 
 import {assemblyPartRows} from './assembly-part-review.mjs?v=c2d5e0177d33e1d95d0e';
-import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs?v=b1e8e1ef1097235db611';
+import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs?v=1592734d20464c9cae4b';
 
 // UI state describes the reader's checklist, never a mechanical validation.
 // Native visibility and camera changes stay with the viewer's stage controller.
@@ -72,7 +72,7 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
   bannerText.textContent=say('active',[s.index+1,index.stages.length]);
   exit.textContent=translate('閉じる');exit.title=translate('Return to previous configuration');
   for(const n of legacy.select.options)n.textContent=translate(index.stage(Number(n.value)).title);
-  for(const [n,raw]of [[legacy.previous,'Previous stage'],[legacy.next,'Next stage'],[legacy.focus,'Focus added parts'],[legacy.finish,'Return to previous configuration']])n.textContent=translate(raw);
+  for(const [n,raw]of [[legacy.previous,'Previous stage'],[legacy.next,'Next stage'],[legacy.focus,'Focus added parts'],[legacy.finish,'Return to previous configuration']])n.textContent=translate(n===legacy.focus&&state?.focus_text?state.focus_text:raw);
   if(state){legacy.note.textContent=[state.manual_note||s.note,...(state.presentation_notes||[state.presentation_note])].filter(Boolean).map(translate).join(' ');legacy.manual.textContent=translate(state.manual_text);sourceCount.textContent=say('counts',[state.added,state.visible_count])}
   renderResults();renderParts();renderSelection();refreshEmphasis();
  }
