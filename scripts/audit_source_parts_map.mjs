@@ -7,6 +7,7 @@ import {register} from 'node:module';
 import {createHash} from 'node:crypto';
 import {auditPartReview} from './assembly_part_review_audit.mjs';
 import {auditTridentRailNutGuide} from './trident_rail_nut_guide_audit.mjs';
+import {auditTridentBottomVHB} from './trident_bottom_vhb_audit.mjs';
 const arg=n=>process.argv[process.argv.indexOf(n)+1];const site=pathToFileURL(path.resolve(arg('--site'))+'/'),machine=arg('--machine'),reportFile=arg('--report');
 register('data:text/javascript,'+encodeURIComponent(`export async function resolve(s,c,n){if(s==='three')return {url:${JSON.stringify(new URL('viewer/vendor-r180/three.module.js',site).href)},shortCircuit:true};return n(s,c)}`),import.meta.url);
 globalThis.location={href:new URL('viewer/reference.html',site).href};
@@ -31,7 +32,13 @@ try{
  if(machine.startsWith('voron_trident_')){const m=await import(new URL('viewer/layout-voron-defaults.mjs',site));loaded=await m.loadVoronDefaultLayout(machine)}
  else{const m=await import(new URL('viewer/layout-v24-reference-provider.mjs',site));loaded=await m.loadV24ReferenceLayout(machine)}
  const {Scene}=await import(new URL('viewer/vendor-r180/three.module.js',site)),{createSourcePartsMap}=await import(new URL('viewer/source-parts-map.mjs',site)),{createAssemblyProgress,validateAssemblyProgress}=await import(new URL('viewer/assembly-workbench-model.mjs',site));
- const scene=new Scene();scene.add(loaded.root);const before=signature(loaded.root);const index=await createSourcePartsMap(loaded,scene),progress=createAssemblyProgress(index);
+ const scene=new Scene();scene.add(loaded.root);const before=signature(loaded.root);let bottomVHBMaterials=null;
+ if(machine.startsWith('voron_trident_')){
+  const {appearanceRole}=await import(new URL('viewer/appearance-role.mjs',site)),{createPaletteController}=await import(new URL('viewer/palette-controller.mjs',site));
+  bottomVHBMaterials=auditTridentBottomVHB(loaded,{size:Number(machine.split('_').at(-1)),appearanceRole,createPaletteController});
+  if(signature(loaded.root)!==before)throw Error('Bottom VHB material audit changed original source state');
+ }
+ const index=await createSourcePartsMap(loaded,scene),progress=createAssemblyProgress(index);
  const {assemblyPartRows}=await import(new URL('viewer/assembly-part-review.mjs',site));
  const partReview=auditPartReview(index,{assemblyPartRows,createAssemblyProgress,validateAssemblyProgress});
  for(const s of index.stages){index.state(s.index);progress.setStage(s.id);progress.toggle(s.id);for(const p of index.parts(s.id))index.getPartNodes(p.key)}
@@ -62,6 +69,6 @@ try{
  }
  const after=signature(loaded.root);if(before!==after)throw Error('Inspection mutated source assembly');
  loaded.dispose();let retired=false;try{index.verifyLive()}catch{retired=true}loaded=null;if(!retired)throw Error('Retired model accepted');
- const report={passed:true,partReview,machine,sourceItems:index.partCount,meshes:index.renderCount,classifications:index.stages.length,checked:index.stages.length,graphNegatives:rejects,retiredRejected:retired,sourceUnchanged:before===after,assembly,assemblyUnsupportedExplicitly:!supportsVoronAssembly(machine),identity:index.identity,requests,limitations:'Current default source-map and chapter-level cumulative assembly CPU inspection only; CNC remains part map only. No new mechanical fit, manual insertion paths, whole normal/GPU or continuous-motion qualification.'};
+ const report={passed:true,partReview,machine,bottomVHBMaterials,sourceItems:index.partCount,meshes:index.renderCount,classifications:index.stages.length,checked:index.stages.length,graphNegatives:rejects,retiredRejected:retired,sourceUnchanged:before===after,assembly,assemblyUnsupportedExplicitly:!supportsVoronAssembly(machine),identity:index.identity,requests,limitations:'Current default source-map and chapter-level cumulative assembly CPU inspection only; CNC remains part map only. No new mechanical fit, manual insertion paths, whole normal/GPU or continuous-motion qualification.'};
  await fs.writeFile(reportFile,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({machine,passed:true,sourceItems:index.partCount,meshes:index.renderCount,classifications:index.stages.length}));
 }finally{loaded?.dispose()}

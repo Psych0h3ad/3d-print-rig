@@ -4,12 +4,12 @@ import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 ensureWorkspaceEntry(import.meta.url);
 import {setupSceneDisplay} from './display-preferences.mjs?v=8f347468def25922153c';
 import {workspaceTask,WorkspaceResizeObserver} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
-import {loadMonolithData} from './monolith-machine.js?v=aa95e6d6c895f59a86c4';
+import {loadMonolithData} from './monolith-machine.js?v=016eecc7f50bb01900d9';
 import {setupChangerBank} from './changer-bank.js?v=f5029fbbdd962cbe2c85';
-import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=cc95b5a3162018900d4e';
+import {createMachineHeads,loadMachineHeadCatalog} from './machine-heads.js?v=cbc54c464a87ce74a890';
 import {headPrinterLink} from './head-navigation.mjs?v=0d3a3b687edb49b79dcc';
 import {headBuilderDimensions} from './configuration-model.js?v=ffcb5378701b391d2cab';
-import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
+import {appearanceRole} from './appearance-role.mjs?v=cec2fd2240d0ce2ccfe3';
 import {headPrintedCounts,visibleInAsset} from './head-printed-parts.mjs?v=8f8ed3d5c06ff2b0f6c8';
 import {frameHeadBounds,updateHeadClipping} from './head-camera.mjs?v=47ec56c126168b690489';
 import * as THREE from 'three';
@@ -26,8 +26,8 @@ import {setRapidoXUhfSurface} from './rapido-x-uhf-cover.mjs?v=8b458475dac84cfcd
 import {contentSHA256} from './mount-validation.mjs';
 import {probeCheck,probeMetrics,probeGuide,headInspectionState,headBodyCollisionNotes} from './probe-checks.js?v=0f70f5c099338db857e7';
 import {renderProductLinks} from './product-links.js?v=ba0e9d9c9326819ea0fb';
-import {setupHeadBuilder} from './builder-ui.mjs?v=89265ef5139eb098bde0';
-import {validateBuilderExtras} from './toolhead-builder.mjs?v=7177100fadcc7fdc8975';
+import {setupHeadBuilder} from './builder-ui.mjs?v=d7ad9cbec1b091c11bb6';
+import {validateBuilderExtras} from './toolhead-builder.mjs?v=8f9ea78880812340c81b';
 import {setupSurfaceStep} from './step-surface-ui.mjs?v=ca1d29beb3818e86b71a';
 import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
 export async function mount(scope){

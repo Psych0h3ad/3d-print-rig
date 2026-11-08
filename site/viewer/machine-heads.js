@@ -17,11 +17,11 @@ import {augmentTrinityAlpha,TRINITY_ALPHA_SOURCE} from './trinity-alpha-installa
 import {workspaceTask} from './workspace-lifecycle.mjs?v=515fc62bbb4b109d92c0';
 import {createCatalogRequests} from './catalog-requests.mjs?v=e08161a1108d8bf2b5b3';
 import {monolithDisplayLimits} from './monolith-machine-model.mjs?v=a3882d4936227f7a4023';
-import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=aa95e6d6c895f59a86c4';
+import {loadMonolithMachines,createMonolithGantry,stockGantryVisibility} from './monolith-machine.js?v=016eecc7f50bb01900d9';
 import * as THREE from 'three';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
-import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
+import {appearanceRole} from './appearance-role.mjs?v=cec2fd2240d0ce2ccfe3';
 import {partKey} from './head-assembly.js';
 import {v24HeadCatalog} from './machine-head-model.mjs?v=bb3949841f41afc5a4eb';
 import {setupConfigurations} from './configurations.js?v=175f6b3e3faa551413f1';

@@ -20,9 +20,9 @@ async function prepare(run) {
 }
 export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
  const id=recipe.machine_id,progressOptions=headless(onProgress),options={signal,progressOptions,onProgress};
- if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=d6d26c7b85b3eba53113');return loadV24ReferenceLayout(id,{signal,onProgress})}
- if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=5cb8fd28b010b370174f');return loadV0DefaultLayout(id,{signal,onProgress})}
- if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=c9ddeeeea5d9c7ebaa5e');return loadVoronDefaultLayout(id,{signal,onProgress})}
+ if(recipe.category==='v24-reference'){const {loadV24ReferenceLayout}=await import('./layout-v24-reference-provider.mjs?v=37918808819d2b0b5896');return loadV24ReferenceLayout(id,{signal,onProgress})}
+ if(recipe.category==='v0'){const {loadV0DefaultLayout}=await import('./layout-v0-provider.mjs?v=7329008a712150765626');return loadV0DefaultLayout(id,{signal,onProgress})}
+ if(['siboor','trident','v24'].includes(recipe.category)){const {loadVoronDefaultLayout}=await import('./layout-voron-defaults.mjs?v=cc72484e1ea83227c692');return loadVoronDefaultLayout(id,{signal,onProgress})}
  if(recipe.category==='source') {
   const m=await import('./source-assembly-loader.mjs?v=d968fe09473fc9405d43'),{releaseRoot}=await import('./source-assembly-runtime/resources.mjs?v=53e0f29aff2fcb720ede');
   const index=await m.loadSourceIndex(signal),record=index.models.find(r=>r.id===id);if(!record)throw Error('Missing layout source record');
@@ -97,19 +97,19 @@ export async function loadLayoutRecipe(recipe,{signal,onProgress}) {
     const {GLTFLoader}=await import('./vendor/GLTFLoader.js'),{loadModel}=await import('./model-loader.js?v=319442cce47f582793a9');
     const manifest=await json('machines/'+id+'/assembly_manifest.json',signal),profile=await json('machines/'+id+'/machine_profile.json',signal);
     const g=await loadModel(new GLTFLoader(),url('machines/'+id+'/model.glb'),onProgress,{signal,progressOptions});loaded={root:g.scene,manifest,profile};own(loaded);
-    const {createMicronAdapter}=await import('./micron-adapter.mjs?v=8ae6f18798e4a7a0fddb');loaded.adapter=createMicronAdapter(loaded.root,manifest,profile);
+    const {createMicronAdapter}=await import('./micron-adapter.mjs?v=c8d1c557b6589c52d28a');loaded.adapter=createMicronAdapter(loaded.root,manifest,profile);
    }else{
     const {loadLayoutCustomVoron:loadCustomVoron}=await import('./layout-custom-source.mjs?v=2a491ec6cfb8d905ee10');loaded=await loadCustomVoron(id,options);own(loaded);
     if(loaded.profile.kinematics==='trident'){const {isolateLayoutPaletteMaterials}=await import('./layout-material-ownership.mjs?v=9c2148661b8089152e3d');loaded.layoutMaterialOwnership=isolateLayoutPaletteMaterials(loaded.root);}
     if(loaded.profile.kinematics==='trident'){const {createTridentMotion}=await import('./trident-motion.mjs?v=77312c6bfbf6c7e7563d');loaded.adapter=createTridentMotion(loaded.profile);loaded.adapter.register(loaded.root,loaded.manifest)}
-    else {const {createV24Adapter}=await import('./v24_matrix_adapter.mjs?v=c71e052633de09bc592d');loaded.adapter=createV24Adapter(loaded.root,loaded.manifest,loaded.profile)}
+    else {const {createV24Adapter}=await import('./v24_matrix_adapter.mjs?v=4505d42f4dbfffc94454');loaded.adapter=createV24Adapter(loaded.root,loaded.manifest,loaded.profile)}
     const {createCustomTube}=await import('./custom-voron-tube.mjs?v=f28049ddc0e0358894a7'),{createV24PtfePreview,V24_PTFE_SPEC}=await import('./v24-ptfe.mjs?v=9def2f0b771f25d14c14');
     const tube=createCustomTube(loaded.root,loaded.manifest);if(tube){tube.update(0,0,true);auxiliaries.push(tube)}
     const spec=id===V24_PTFE_SPEC.machine_id?V24_PTFE_SPEC:loaded.manifest.v24_ptfe_spec;if(spec)auxiliaries.push(createV24PtfePreview(THREE,loaded.root,loaded.manifest,loaded.profile,spec));
    }
    loaded.adapter.setFlexibleVisible?.(true);loaded.adapter.setEnclosureVisible?.(true);loaded.adapter.setPose(pose(loaded.profile),{flexibleVisible:true});
    if(loaded.adapter.setPalette)loaded.adapter.setPalette(loaded.profile.appearance?.palette_defaults??{base:'#24272c',accent:'#e32636',frame:'#25282d'});
-   else {const {appearanceRole}=await import('./appearance-role.mjs?v=977c4d1e134e7fe27a0e');const rows=new Map(loaded.manifest.parts.map(r=>[r.key,r]));loaded.root.traverse(n=>{if(n.isMesh){const role=appearanceRole(rows.get(n.userData.part_key));if(['base','accent','frame'].includes(role))for(const m of [].concat(n.material))m.color.set({base:'#24272c',accent:'#e32636',frame:'#25282d'}[role]);}})}
+   else {const {appearanceRole}=await import('./appearance-role.mjs?v=cec2fd2240d0ce2ccfe3');const rows=new Map(loaded.manifest.parts.map(r=>[r.key,r]));loaded.root.traverse(n=>{if(n.isMesh){const role=appearanceRole(rows.get(n.userData.part_key));if(['base','accent','frame'].includes(role))for(const m of [].concat(n.material))m.color.set({base:'#24272c',accent:'#e32636',frame:'#25282d'}[role]);}})}
    return finish(loaded,{catalog:recipe.category==='micron'?'machines/'+id:'CUSTOM_VORON_ASSETS.json',asset:loaded.row,referenceXYZ:loaded.profile.display_reference_xyz_mm,materialOwnership:loaded.layoutMaterialOwnership??null,sourceZeroFaceCleanup:loaded.layoutSourceZeroFaces??null},()=>{for(const a of auxiliaries)a.dispose?.();loaded.disposeLayoutSourceCleanup?.();disposeRoot(loaded.root)});
   }
   throw Object.assign(Error('Missing layout family provider: '+recipe.category),{code:'LAYOUT_DEFAULT_RECIPE_UNEXTRACTED'});

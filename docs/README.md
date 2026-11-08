@@ -57,6 +57,7 @@ For printers without a separate guide, open the viewer's **References** panel fo
 | --- | --- |
 | Add or update a printer, component or combination | [Maintenance](MAINTENANCE.md) |
 | Check mounting, movement, materials, companion parts and release evidence | [Machine review requirements](MACHINE_REVIEW.md) · [Coverage record](MACHINE_REVIEW_COVERAGE.json) |
+| Preserve Trident bottom-panel adhesive materials during palette changes | [Bottom-panel VHB materials](TRIDENT_BOTTOM_VHB_MATERIALS.md) |
 | Review belts, chains, cables and moving parts | [Motion audit](MOTION_AUDIT.md) · [Source assembly motion](NATIVE_MOTION.md) |
 | Review nozzle, probe, bed and parked-tool clearance | [Probe clearance](PROBE_CLEARANCE.md) · [Probe travel](PROBE_TRAVEL.md) · [Head travel](HEAD_TRAVEL.md) |
 | Update the shared English, Japanese, Spanish, Korean, Russian and German text | [Translations](TRANSLATING.md) |
