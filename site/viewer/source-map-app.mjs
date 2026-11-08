@@ -1,8 +1,8 @@
 import {createAssemblyStageEmphasis} from './assembly-stage-emphasis.mjs?v=31de7db3c02f47abdc16';
 import * as THREE from './vendor-r180/three.module.js';
 import {OrbitControls} from './vendor-r180/OrbitControls.js';
-import {loadVoronDefaultLayout} from './layout-voron-defaults.mjs?v=c9ddeeeea5d9c7ebaa5e';
-import {loadV24ReferenceLayout} from './layout-v24-reference-provider.mjs?v=d6d26c7b85b3eba53113';
+import {loadVoronDefaultLayout} from './layout-voron-defaults.mjs?v=cc72484e1ea83227c692';
+import {loadV24ReferenceLayout} from './layout-v24-reference-provider.mjs?v=37918808819d2b0b5896';
 import {createVoronAssemblyGuide,supportsVoronAssembly} from './voron-assembly-guide.mjs?v=2047e27bc027aaba30ee';
 import {createSourcePartsMap,sourceMapMachines} from './source-parts-map.mjs?v=603f6fb0f1d8fa8afc35';
 import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=7b250d38b0811a059a34';

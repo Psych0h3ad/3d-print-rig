@@ -94,6 +94,9 @@ const tridentPrintedLeaves=new Map([
  ["1381",["Deck Support","Panels:1/Deck Supports:1/Deck Support:6","base"]],
  ["1393",["PTFE_Holder","Filament_Path:1/PTFE Holder:1/PTFE_Holder_Printed:1/PTFE_Holder:1","base"]],
 ]);
+// Exact a8628f48 original bottom VHB sheets; source solids and manual290.
+// Separate purchased layers retain their source PBR under all printed palettes.
+const tridentBottomVHBLayers=new Map([["1171",["Bottom_Panel_Hinge_VHB","Panels:1/Opaque Panels:1/Bottom Panel:1/Bottom_panel_hinge:1/Bottom_Panel_Hinge_VHB:1"]],["1174",["Bottom_Panel_Hinge_VHB","Panels:1/Opaque Panels:1/Bottom Panel:1/Bottom_panel_hinge:2/Bottom_Panel_Hinge_VHB:1"]],["1177",["Bottom_Panel_Clip_VHB","Panels:1/Opaque Panels:1/Bottom Panel:1/Bottom_panel_clip:1/Bottom_Panel_Clip_VHB:1"]],["1180",["Bottom_Panel_Clip_VHB","Panels:1/Opaque Panels:1/Bottom Panel:1/Bottom_panel_clip:4/Bottom_Panel_Clip_VHB:1"]],["1183",["Bottom_Panel_Clip_VHB","Panels:1/Opaque Panels:1/Bottom Panel:1/Bottom_panel_clip:3/Bottom_Panel_Clip_VHB:1"]],["1186",["Bottom_Panel_Clip_VHB","Panels:1/Opaque Panels:1/Bottom Panel:1/Bottom_panel_clip:2/Bottom_Panel_Clip_VHB:1"]]]);
 export function appearanceRole(part){
  if(!part)return null;const key=String(part.key),name=(part.name||'').trim().replace(/(?:\s*\(\d+\)|\s+v\d+|:\d+)+$/g,'').trim();
  if(sbBase.has(key))return 'base';if(sbAccent.has(key))return 'accent';
@@ -124,6 +127,8 @@ export function appearanceRole(part){
  }
  if(/^v24_\d+$/.test(key)&&printedR2.has(name))return accents.has(name)?'accent':'base';
  const tridentLeaf=key.match(/^voron_trident_(?:250|300|350)_base_(\d+)$/)?.[1],trident=tridentPrintedLeaves.get(tridentLeaf);
+ const layer=tridentBottomVHBLayers.get(tridentLeaf);
+ if(layer&&part.source_leaf===tridentLeaf&&part.name===layer[0]&&part.source_component===layer[1]&&part.method==='rigid_source')return null;
  if(trident&&part.source_leaf===tridentLeaf&&part.name===trident[0]&&part.source_component===trident[1])return trident[2];
  if(/^voron_trident_(250|300|350)_base_1396$/.test(key)&&name==='Exhaust Grill'&&/PTFE_Plate_Printed:1\/Exhaust Grill/.test(part.source_component||''))return 'accent';
  // a192410e native spool-holder body; its PTFE liners and fasteners are

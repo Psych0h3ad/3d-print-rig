@@ -2,7 +2,7 @@ import * as THREE from './vendor-r180/three.module.js';
 import {machineChoices} from './machines.js?v=def15e6e5867393ab8db';
 import {layoutMachineRecipes} from './layout-machine-recipes.mjs?v=3eb0f71f591126691e8d';
 import {createLayoutMachineLoader} from './layout-machine-loader-core.mjs?v=b403e94f8eef056e9e2d';
-import {loadLayoutRecipe} from './layout-machine-providers.mjs?v=b4c24435f79aa5f254b1';
+import {loadLayoutRecipe} from './layout-machine-providers.mjs?v=3f2024b665db40ef477f';
 
 // Measure the active default scene, excluding hidden reference/alternate roots.
 // These are rendered geometry bounds, never a native-solid clearance proof.

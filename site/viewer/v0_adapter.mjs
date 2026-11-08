@@ -1,4 +1,4 @@
-import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
+import {appearanceRole} from './appearance-role.mjs?v=cec2fd2240d0ce2ccfe3';
 import {createV0Belts} from './v0-belts.mjs?v=trident-clearance-35';
 import {createV0Chain} from './v0-chain.mjs?v=9bd91f8c757a0dfafbbc';
 import {createV0Door} from './v0-door.mjs?v=acb1a5c37e6edd3fa496';

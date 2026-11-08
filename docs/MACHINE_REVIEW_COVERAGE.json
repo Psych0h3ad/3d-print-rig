@@ -43,7 +43,7 @@
     "scripts/audit_rear_enclosures.mjs": "8a831e9b5f798cd8bd325495a95dfbc325346f74686c28145b7850155b887d20",
     "scripts/audit_selection_catalogs.mjs": "91a0f126bdebfc12dd658ec6b3d1fba88c5d62941bb814f86fde83e8410e04b9",
     "scripts/audit_source_backed_combinations.mjs": "bee987d9529f93bc3c342b724f4fbb6de7e0bf13ce2401549358d4c3d2b6794f",
-    "scripts/audit_source_parts_map.mjs": "3e050c38cac4eaf1569581d8df3762c7083743cbcb87b610f95d690121592691",
+    "scripts/audit_source_parts_map.mjs": "b78f98825c9abf3ae3736173089669a6b2f4844c8426cc9b2434a76fa1c40bcb",
     "scripts/audit_source_printed_colors.mjs": "0886207d2db88a28157cba94e8c2d4bc01cf70677a10a44d4d7c2d21f2adcba0",
     "scripts/audit_source47_service_hosts.mjs": "4b11134db3f756632cd790ee483523b8e020d3c1e5203aee525d91389b0bc6fa",
     "scripts/audit_stealthburner_cutaway.mjs": "d9b327b8a550f4b27aecdf875d04698dfb1df25c082d200bfde137f04153e49b",
@@ -79,12 +79,12 @@
     "scripts/check_entrypoint_delivery.py": "65432fe33fa6669dec5a9746378ff18b54762d36bf042d0f72b7f5528ddd8dcb",
     "scripts/check_eva_front_release.py": "cbbefaae96061b08e5063c8ac98b7e920083b43dd5aa0b0b91e1588ceb1317f8",
     "scripts/check_eva_options_release.py": "7ac53b648dc361de4021a34e11ba9c4a00bbd6849c37704e4f7b3de078a08801",
-    "scripts/check_machine_coverage.mjs": "527ce77f06a6058ccb8bee12d2fb31ee2d5770a520dbc16d9d7c68dd46f6da72",
+    "scripts/check_machine_coverage.mjs": "b381d1b8d30a5914e73e433b0b3d37fdce97a41959d4c02148b2bcfe623c11ca",
     "scripts/check_machine_regressions.py": "8eb1b29a039fc8964e40b3e5604d873c72d2f3fe253f57e44d0c34dcf9ae3c63",
     "scripts/check_motion_assets.mjs": "1edd9abfa8c75a7fe8a0ddde73fda84504f89ff7c709c9f3a06a89116153befe",
     "scripts/check_repository.py": "a75185832174573fe2d5124656315401cce828aaa805c34e767a7d45f2f66224",
     "scripts/check_source_dependency_closure.mjs": "4dec3ea3522b975c66b94692b1071071158754f2436b15286088c23504f57bfd",
-    "scripts/check_source_parts_map_release.py": "1283edab82d2f089695df01cf4cde11699e3aec22e1f2375c63ae7e1b0e781c5",
+    "scripts/check_source_parts_map_release.py": "ac2d1b63a168cecd17fd1ca3f34407ae2719822090d7acf726d7d8c76e45a88a",
     "scripts/check_trinity_beacon_release.py": "cb20af0245f22d132189e18aaa2596060a4aeac93f50000f98a04d459ae71615",
     "scripts/check_ui_catalog.mjs": "d1b8fb54df58c2bb57295c72736a12b71720240e381c1c2be889419f4bcbaca7",
     "scripts/check_v0_assembly_release.py": "41ae3f44e98a50e48657dba3ff77c5cad5c8536e4a2151e00ac02cb1164d39d3",
@@ -454,6 +454,7 @@
     "scripts/test_toolhead_lighting_discovery.mjs": "d12647d21a35d4c77a267c08193a495009fec3194a3af4b1ece3fa2659155b3e",
     "scripts/test_toolhead_lighting.mjs": "c00fb6dce7e3f2c15975302cd97c7cb3fff513cb430a34c21892a2e221e374b6",
     "scripts/test_trident_bed_registration.mjs": "477dc31348f85029c87e4fce8b7daa8db328846da35c85048a3d0c1d83ecde5d",
+    "scripts/test_trident_bottom_vhb_materials.mjs": "297c536c72a6fe4af4fdca164322079e9abd98806724583cb03e2fc20ea5fd08",
     "scripts/test_trident_custom_bed_joint.mjs": "d94fb50e984adb419318c70270072d85101a1c1501a751320d2299e429d5ff6d",
     "scripts/test_trident_front_registration.mjs": "9dff2c4fb8a838d532f4e720de9436a96a55e88bcfa2be9cab2e93d100c09cfb",
     "scripts/test_trident_half_ptfe.mjs": "5e85ff587cd347e0cbc3ff60ea1cd8d9585055eca64be949c4570cc70549db6b",
@@ -535,6 +536,7 @@
     "scripts/test_yavoth_source_gate.mjs": "c6dc860b6741ac4cc002f5b9d049cc7131dcc37916410223c83d3944c01f117a",
     "scripts/test_yavoth_support_omission.mjs": "c6ce6ec7c55a65d9adbf3459407dab472d25479516ebc4c311010f4073203c0c",
     "scripts/three-test-loader.mjs": "38288237bc9e74ea7279b75e7b7389dfebda76fc1689697f7b1fb55277082387",
+    "scripts/trident_bottom_vhb_audit.mjs": "230f43d65e0db4309b4e563744c26b4dc0b09d54cb75120aa8f3297ea914aece",
     "scripts/trident_rail_nut_guide_audit.mjs": "d3b0cbb96f973c58bf4281c42cfab26426ac983e0c890439087901fc4060dd57",
     "scripts/trident-deck-evidence.mjs": "80098115be4be6cfe302c707c2ec9436a2aa5a33ca51a0aedf79c6dc5b617ad0",
     "scripts/update_inventory.py": "36a73b988051e344c5e4526e0b109dcca4c4f579623036a1577c5061f2abaf29",
@@ -599,8 +601,8 @@
     "site/layout/assets/equipment/u1-exterior/U1_BED_SOURCE_RECEIPT.json": "5a9d3a1e00ccd8535a38dc4b1c0c596d691a9fb46f0ae14248ecf1af50bf8467",
     "site/layout/assets/equipment/u1-exterior/U1_exterior_notices.json": "810fbfe12e4b0e994a5243eb7d638b8eebd952b2131c12d59bc238a9714e2e72",
     "site/layout/assets/equipment/u1-exterior/U1_preview_geometry_index.json": "2c6eae6bf619ba93e7a2036860594bcb21b6839805a70b0797b1c1bb26da840c",
-    "site/layout/index.html": "f062f91c7d19676983e94bf5044b0cb1b247367a403c8cb5875eda7b2ee6bf61",
-    "site/layout/layout-app.mjs": "10bb93bb66696f80b7574d98d5f7724ca5b2c7a156c0d230c5e091f0d1d68804",
+    "site/layout/index.html": "95a61df2f819ed9ed1e057413b20bdd36854a9d42f5079d137289ddf4c05bfdd",
+    "site/layout/layout-app.mjs": "27de4081ab8d7f8019b200ca8e6e47c5ee9aebaa6b6a4ce6a5bccfee8e0a2e89",
     "site/layout/layout-biqu-appearance.mjs": "4235983a3b0c67dca3c232ad37bb3d91a79f66a426fb6b08fdcb49c7d88bde9e",
     "site/layout/layout-biqu-display.mjs": "e3cd65f8c1a727ffcf79fa93eb18203e1983411508e843026f5122735670f122",
     "site/layout/layout-biqu-popstation.mjs": "49c41d6d1cb8cb8f58d0ef952d872e23eed9437e2d8b59619504305ae2cc2e50",
@@ -621,7 +623,7 @@
     "site/layout/layout-groups.mjs": "3bdc5f2d8f82e416b7eb830ed430b68e92a6c63190933ab95773e4dfc052b41a",
     "site/layout/layout-i18n.mjs": "de32c3983fbf1bcb9fb831c54b1215b329c850f0df362c6a90a9b64356df845a",
     "site/layout/layout-language.mjs": "f89ce10de9331ed1ef8a3f63189c731c27be62bcb4afe1c9071943fd9faf8476",
-    "site/layout/layout-machine-loader.mjs": "031457ba13817c20fae774565354bfd146378e183bb0781c18100d32857119d1",
+    "site/layout/layout-machine-loader.mjs": "bee68c07aa0742ec304419a8d104235770f5d8978e26344103d65e839577de97",
     "site/layout/layout-opening-blueprint.css": "3d0edd2a85edf47c654caa7054815b499113a2505353d0eacccc164b978a8a00",
     "site/layout/layout-opening-blueprint.mjs": "9f00a849e44af23d5fa39bad9242ab6433fbbfdfc2c4ddcfe173d4b0f69faa79",
     "site/layout/layout-opening-handles.css": "753fb9b5f31f53e36dad187c62c5d3e1b6bc7d43c78c7630459b49eeec1c1b95",
@@ -687,8 +689,8 @@
     "site/viewer/annex-machines.mjs": "3a0e3f3d8e456bee4e5ac266d91c69ca3b6fbc6db8f5a40694f85428c6148c13",
     "site/viewer/annex.html": "ab6a3ceab6a1dc4f24d4916fec4b0f3b3ed26876715503b156abe9bc6a430a10",
     "site/viewer/annex.js": "344c2dd9979faea2884d70cc762a612bb6289336ee9cb3bb5276460fe0b0dc33",
-    "site/viewer/app.js": "f9b04c44bfd677f98fe9809465f553e4fb7a6b9d32a1f07649d3a4e951d83108",
-    "site/viewer/appearance-role.mjs": "977c4d1e134e7fe27a0ed8c73ecb3f81592822c9e25b94f9fe80d0444c336b5a",
+    "site/viewer/app.js": "7e28379c3f5aac25a85398e10ec20fd0b9a723397d569081520015a442b1f3c7",
+    "site/viewer/appearance-role.mjs": "cec2fd2240d0ce2ccfe3625aee24690973926318f4674d799b6642911a3f142e",
     "site/viewer/appearance.js": "c50ecf4651c6ad0e68392df9eea9eb67e8bab6c9542106019c464682b45a01ab",
     "site/viewer/art/cad-background.json": "ebd23566959ec740ae479345ba5601478b53593693ff11466e4934474dd071e8",
     "site/viewer/art/credits.html": "f0cde9da5ca3b35adcefdb4f055fa11aa86c4aa389fdfa8dbfeb109971afd547",
@@ -706,9 +708,9 @@
     "site/viewer/baseline-native-datum.mjs": "b86b6ff7d71bab3c11174f8e0834dd181ac5a70d14077b8ff00fffa817e0ad58",
     "site/viewer/bed-chain-pins.mjs": "ea9c3d5f368a9509af7f99da784303eba92df5e316246c8a14942bc0f1bb3ae9",
     "site/viewer/bed-chain.mjs": "5c6ddd46ac13e6974c7352b944225966455ccb4a462a5315519428af3788d4d0",
-    "site/viewer/bootstrap.js": "053a90418e59dd206ed565b2af2b81f2ca15399f66ac0a0831daaf2e6c123e2b",
+    "site/viewer/bootstrap.js": "1f8d6e6dd466763fe42cc89be8bed08053504793479692e48ee8668b92ad9f96",
     "site/viewer/bounded-sha256.mjs": "61cd1fa2895a71447920bcc4a8c56024c884b86ec2ace24e0a19207af183b0d4",
-    "site/viewer/builder-ui.mjs": "89265ef5139eb098bde0eda36e25c6f38824a17a6b16c9096405f666a1a1ecf7",
+    "site/viewer/builder-ui.mjs": "d7ad9cbec1b091c11bb604a8a4e31dfc2ba5c80c726ef0854e56479fe0ca6c0c",
     "site/viewer/catalog-requests.mjs": "e08161a1108d8bf2b5b35fe10dbb7d1e3ba6818b900179fa1da762749bf2abd5",
     "site/viewer/changer-bank-model.mjs": "024cc52a5bbc61da75066a1822bca711fd6543b532a1c922e8ac0b44469a016c",
     "site/viewer/changer-bank.js": "f5029fbbdd962cbe2c856168e4769ac5cf06968c475892568db4f66ad78b5e76",
@@ -740,8 +742,8 @@
     "site/viewer/custom-voron-loader.mjs": "96c2a05646e84785faf5c8a4d83a8fc9d035563493b52f116d623a45b6b03f13",
     "site/viewer/custom-voron-state.mjs": "4b6132fe80a74098a8bade2347c6e581bb39bcf3b8dc9459cf8298b7e7938949",
     "site/viewer/custom-voron-tube.mjs": "f28049ddc0e0358894a762abfa88df4b25ecfcee5f225ee7b96e27b919563652",
-    "site/viewer/custom-voron.html": "86d0d56c13d3a9a8ea40a20b71f00d0b01d29beb5fe4f9cd53257fd833659cb1",
-    "site/viewer/custom-voron.js": "c632e6ef3780c882b79446bedd45f9ab56d825547e63f7088e418cd6eece7a34",
+    "site/viewer/custom-voron.html": "e1f5efb9142d8001280a2e95a9d035f4f9b05974bab71195f596f698180aff3c",
+    "site/viewer/custom-voron.js": "3d4d9c00ecf2ce51891c3cb7919ded1c052385c8f24fbf3e1da06541e1ba795d",
     "site/viewer/data/v0-enclosure-assembly.source.json": "98f232ddb517a2f3567e49969f1f7fd69cbbf43bdd630d6cefb3f4637827aec9",
     "site/viewer/data/v0-enclosure-copy.source.json": "e6d52fdb86f79aab2babbc3074a2bd17c1fcb566164098dd6e62bea817ae97fc",
     "site/viewer/data/v0-fan-assembly.source.json": "67444c089c78524d834b7bf0641ea44d37497a000533c205f9136657877c55ba",
@@ -786,8 +788,8 @@
     "site/viewer/extra-machine-loader.mjs": "c57003e05d00c49566e3e73c54ded8c4a4e37bd5c2d78cfe015a4ae103fd112e",
     "site/viewer/flexible.js": "37fd0f2d1bdfe5ac356f0c58bf4a658b8b97a8b5cd6126ecafb1d64f09b0d284",
     "site/viewer/frame-mods.js": "28b7a874e2fe1c828812db5236e4f183e3d293d46fc2c157f716ca0bc8a450a1",
-    "site/viewer/gantries.html": "baa9178e9744d981a4e27a9cfebf9ec80887aa4011ca639c125bb277de1c3ef9",
-    "site/viewer/gantries.js": "5c50ea710d54e2a69c9c41c1c8cf324ea28fff40601af3ee654ee5e6ce26e99e",
+    "site/viewer/gantries.html": "bbd8f57e5b9e21ec61aada36462f6fa011ce78b9706fb101123cf1cbfe8f2cc4",
+    "site/viewer/gantries.js": "1f3e138a7c4884e00fd6dc97c799e56c889dc8a848a3386751c1786eb0e02cff",
     "site/viewer/gantry-model.js": "77bee27ae99e3944fc901c733b7fa2450b2e36deb9b789c66328e8c979db2ec4",
     "site/viewer/gcode-loaded-asset-identity.mjs": "42ac134c2d9a8b8f8dfc31744744fb59abf735171ae6b928030371d5e7de8dec",
     "site/viewer/gcode-machine-bindings.mjs": "460777c3fc4d1a74bf27e66d6c4fcca7c4fdd09336412a3263a2b843be621ce1",
@@ -806,25 +808,25 @@
     "site/viewer/head-validation.mjs": "bba39d88e1b5b7f848c0447a93850abd4e8a3accbadfcd4db2e9ff772e855e9d",
     "site/viewer/i18n.mjs": "bd46dc6874c80e4c196b624b499cf35bd430ad86ddc64191b538be8a95431b56",
     "site/viewer/inactive-head-cache.mjs": "6822e90a376bc578618589c2dfb804276ccc46d9ea257c20ca83b197a8049299",
-    "site/viewer/index.html": "e47c820973a4214827091fbf962145f3f66dae08ec061a049044f83b67b70d6f",
+    "site/viewer/index.html": "cea61235f3f6df2e6f972cd6cbb6b1d0984c0bdb5677dfef9777681c7ef5e7e3",
     "site/viewer/internal-spool.mjs": "ca3a453f6bf2966e020830957f6ca3290d89dffebe02ec3aa1b82a45a31c5f99",
     "site/viewer/kit-reference-loader.mjs": "1e4ea653a75783c74b414c0dece9a16f70221eaa579b25382caa8162f3d000cc",
-    "site/viewer/kit-reference.html": "27958b29b5ded72ec113815bee4f2a782af2e760d9f28e35989843353d7c7daa",
-    "site/viewer/kit-reference.js": "ee72e453678d1f0506ccb2b6a1d8294d2d2682af5739d4d7d49d05752a41afef",
+    "site/viewer/kit-reference.html": "197ba660e192cbb6030141e640bd1396099e0f975f406b3b00682dd4a0af78fb",
+    "site/viewer/kit-reference.js": "1173cc03347369e8e234c10c27ae65558f62f1fbb5a390d01aac9db5f22f5335",
     "site/viewer/klipper-macro-subset.mjs": "99f089a84c395186fe576a9f5fbf1e35e2da121e5cfaf5b00b4e85d2280a4a1b",
     "site/viewer/languages.mjs": "2e376566920474c0f57c0a220636d322eda996bf6369193e91df3d68136f960a",
     "site/viewer/layout-custom-source.mjs": "2a491ec6cfb8d905ee10cbbcfe7bf2526e0d59fbf3571e625b6f66ea0458522b",
     "site/viewer/layout-default-source-pins.mjs": "40ec0e1e7e69deb4b586ba2eaa54db2caea97bb0695a46aba6e736583131f374",
     "site/viewer/layout-machine-loader-core.mjs": "b403e94f8eef056e9e2d699742b47b766416f88a0792993e9231a2b20b541508",
-    "site/viewer/layout-machine-loader.mjs": "b2643718b4126f83043db4bb8d308e524513764fc56791f868f230471e2ce4e2",
-    "site/viewer/layout-machine-providers.mjs": "b4c24435f79aa5f254b1cacd1cac20e104e8f4bc9293e8f415ddbf6df04c6814",
+    "site/viewer/layout-machine-loader.mjs": "89894b5ffde38da9655b65c1ae94ae606a2098650b0c37b9a41b099aae72e223",
+    "site/viewer/layout-machine-providers.mjs": "3f2024b665db40ef477f433a41959eb0c60fabcbcb99eca24120d59cef0fdd15",
     "site/viewer/layout-machine-recipes.mjs": "3eb0f71f591126691e8d189a0bd4a524270bb4be9404d9d7f8ca088d7c13a851",
     "site/viewer/layout-material-ownership.mjs": "9c2148661b8089152e3d082b9d6aaa33f5ad41147743b5a0678c10e8daec054f",
     "site/viewer/layout-nav.mjs": "3b2a70a879b1cd6ce5d6159b8a97642824d29f8fac7eb1f7285c99a9c95a15a1",
     "site/viewer/layout-ratrig-procedural-cleanup.mjs": "f111d8d72bb5ad2443b4e76bd7db26c7d59f85555387295e39fa92b884c103a1",
-    "site/viewer/layout-v0-provider.mjs": "5cb8fd28b010b370174fc1a343edb7c067e5696f906c6ce517dda680e2a023c8",
-    "site/viewer/layout-v24-reference-provider.mjs": "d6d26c7b85b3eba53113a6085976aec45ee781a8474407fc46c427297bd967f1",
-    "site/viewer/layout-voron-defaults.mjs": "c9ddeeeea5d9c7ebaa5ef983dad9ba447d596ab845f7c75220d8b0fb4a6c3f2f",
+    "site/viewer/layout-v0-provider.mjs": "7329008a7121507656266635d945dd0fe4cf373c97d8bb888c99033f0b87c15f",
+    "site/viewer/layout-v24-reference-provider.mjs": "37918808819d2b0b5896bba522e051166f2cf4620a099905dfa913247e5c07c1",
+    "site/viewer/layout-voron-defaults.mjs": "cc72484e1ea83227c69245b052618578f5943779375a5ea8aee877e3473add3c",
     "site/viewer/led-emission-surface.mjs": "af40a3200e128a08c940436bbb8d230661343fa68a5d001908f01fe72f7497d2",
     "site/viewer/led-source-binding.mjs": "07c592e9f44bb0258d02368fb0304037542e081116dade44206d7bb75e8246f6",
     "site/viewer/led-source-contract.mjs": "0c7250095060f644475eb86d418c26c91c14afa464aeb56e9209b31dc7cf7ec9",
@@ -834,21 +836,21 @@
     "site/viewer/machine-gallery.css": "f908e970282898fc091bd49337b8db94ed004bc9a4a0fee255b0bdfa7b9a5a0f",
     "site/viewer/machine-gallery.mjs": "7a0a5b0f811993ba2676336b6194cee2769aa892b77d48a67d44f96379efd75c",
     "site/viewer/machine-head-model.mjs": "bb3949841f41afc5a4ebba7a1003b0992704ac2c9ddbceb97240c9a7075c433f",
-    "site/viewer/machine-heads.js": "cc95b5a3162018900d4e758214e0124940e5d0044b7ac4cb985e26df14f09a3f",
+    "site/viewer/machine-heads.js": "cbc54c464a87ce74a8908420768f28a6109645946326f1de3f0d3f0f9a849e24",
     "site/viewer/machines.html": "8665f86f076c9696ab41bbbb378ae5f90a1d2f89b59f5dfac0f6585790f00e2f",
     "site/viewer/machines.js": "def15e6e5867393ab8db71d93df7ed0ef52a8dfff9e1ae027402cc8d4c8d3358",
     "site/viewer/madmax-native-joint.mjs": "d39e974d7b782135b52a126b72a071d534bce4beb2acd82f6fe4f509cffd7b42",
     "site/viewer/madmax-ptfe.mjs": "5c6deded33e560c6e7b6c6b77ff7dfc468150b8b5dbb19ddf2c2c3874314dd28",
     "site/viewer/mercury-tube-routes.mjs": "5013e035f93c8e7f2eaa5454c78786534633edfb1775fc0544bd42124fac6b1a",
-    "site/viewer/micron-adapter.mjs": "8ae6f18798e4a7a0fddb36b1cee48c21b122e60495fbda7a3767f453083a08b7",
+    "site/viewer/micron-adapter.mjs": "c8d1c557b6589c52d28a91447e1e92724ce0f655c453065e1bbf835a3aaf9d23",
     "site/viewer/micron-belts.mjs": "b786cde8a5ef24666fe2891892fc082910dc0fff9a8053a2dab9dd357477b5aa",
     "site/viewer/micron-flexible-pins.mjs": "9e386712b40c4b8116583ec34a7f56709cb25f7dfc93339c9c68faa39d1cd2bd",
     "site/viewer/micron-flexible.mjs": "bcd319c6ee8b160c9d8eea050d70bf9b8f5ba5abba4899ff692bf17738bd3da7",
     "site/viewer/micron-native-materials.mjs": "55b8c3644415d202fa4af8bac672b52803fde6b2c1d1278acbb38afac75e2e2c",
     "site/viewer/micron-tube-bindings.mjs": "a7589691b354aaef29d3eb0e79adf01cfd7264edba99cea493e2aa67e27b3ff4",
     "site/viewer/micron-tube-routes.mjs": "42301291ca24b3c155bedff2c9a2116db24382172ec838c02c3d1c21339a5e8e",
-    "site/viewer/micron.html": "7fa8b0ab13179d44aecb9c846a28e2ad629c3c5081af119def517f419ddc805a",
-    "site/viewer/micron.js": "4121331e99123420fb4227d447c9078b5832faa5b09f5358365d97948b9784e8",
+    "site/viewer/micron.html": "6a9a221ee7b562c62bf4b9f60a3e6b4042274bf15d9d3895afc2ba560066041b",
+    "site/viewer/micron.js": "9f1a63dc2f89dcc210b5af2decf87e1c0dd4b5dfbbf91e3316ad5d98551da9cc",
     "site/viewer/microswiss-source-shroud-palette.mjs": "f014e574106d0f8792bc77f2ab67a95ad58f2c70022a99f3a4d22698b4cfc24c",
     "site/viewer/model-delivery-policy.mjs": "7677e1f8ddfa3d5cc6acce428a2be49204c9b69622e4e65fd6a723d0b12130f2",
     "site/viewer/model-delivery.mjs": "7f46579d616549dce0605f04ebfffb4173cee2995b8b027f20b4840f3140af65",
@@ -858,7 +860,7 @@
     "site/viewer/monolith-belts.mjs": "9cd68953335278238c4e078e4196bdf9d31e6c77fb4241fa01146375b8aac70f",
     "site/viewer/monolith-head-model.mjs": "2349e10fa1148ea37792dea94ef0ff3842610266426c52747060123ad4b233cf",
     "site/viewer/monolith-machine-model.mjs": "a3882d4936227f7a402399ff7f8c555e191abc3f1d4cf412079780e952f40f44",
-    "site/viewer/monolith-machine.js": "aa95e6d6c895f59a86c4fce0fde677caad482beb66462b5cd0922dd44656f2ef",
+    "site/viewer/monolith-machine.js": "016eecc7f50bb01900d9c1b98a0794f061bbd3d60619fe1d47806583ba3c542f",
     "site/viewer/motion-profiles/annex_k1_assembly.json": "631319e2c6f400bd040d276f89df3fd00b57ce69ece186a5afac3c25fb81adf9",
     "site/viewer/motion-profiles/annex_k2_assembly.json": "3dd6822292abf79f2f62e95d4a20247657607a13b52702c111aa89854fa2f532",
     "site/viewer/motion-profiles/annex_k3_assembly.json": "c7f7eff5381e3d508daacc44282c6d1222a4f93b07c46b7a95b6a2d551bd8410",
@@ -952,9 +954,9 @@
     "site/viewer/source-assembly.mjs": "6010fcc448f423c93e836024a8e930c9e934a689dffd9b8ba5969ae8541d8143",
     "site/viewer/source-control-bounds.mjs": "1c112b375b6d53fd511793cc7d28c564417da8a33bbcdc1ab983af9f9535fdf2",
     "site/viewer/source-credit-format.mjs": "5f0524475081b0c7357655fe3b79692476591f709d4385f4d89924cf98bab430",
-    "site/viewer/source-map-app.mjs": "b17e210909310fa28863d7a04298bca51aa76e97ce2cb522994ce26db9486de5",
+    "site/viewer/source-map-app.mjs": "3e37d71cda0bd7525fab55d63d31ca36286facc8269808e7cceb2fe6cd727a0b",
     "site/viewer/source-map.css": "cc2d66f63e6228c577f86f39e291fff0eebfc66305c72e23a0d00c5d94e3275e",
-    "site/viewer/source-map.html": "3538c3d4b6588c7228fb285fc2eec9ddd69bc125e76f433d0ee7f335b76f4e27",
+    "site/viewer/source-map.html": "534ff4de3a46c4636f5be0c5c55453ba9cae7ecc8fcec8f27f980cdaec5efe58",
     "site/viewer/source-operating-bounds6.mjs": "1e6289b77e9233488baff1e8d1f265d09e754f22f15be3ca1808967c3e58d8e1",
     "site/viewer/source-parts-map.mjs": "603f6fb0f1d8fa8afc35e2d0740b3c3335857b0cf6b88baf81a475a648fe83df",
     "site/viewer/source-picking-core.mjs": "ca04efe661ce9d571b7fe5cabbc45984a957dfccfc39eb8642f3bff7f31ead26",
@@ -993,14 +995,14 @@
     "site/viewer/theme-toggle.css": "4e62a8462e0b9ed5c6653d7dcb43cf66a36893b1be13b5b267e4e0af3f85613b",
     "site/viewer/toolchanger-model.js": "0688c022fbab64a87c2e33d823880ec90afaa05223f3d4a3f2f454a258e7c443",
     "site/viewer/toolchangers.css": "aeb1af01008eeb68e8915ccf6a73a4944f2d70ad906feccca6da2579b4dba488",
-    "site/viewer/toolchangers.html": "fbecef9a5965f9b29b019f465958bf3431ab07b30ba31d0672e91d664765ffbb",
-    "site/viewer/toolchangers.js": "8b36ebdf3026cc4ef6a00204ed4502b51b1868c48581f8478bcec91460e50e21",
-    "site/viewer/toolhead-builder.mjs": "7177100fadcc7fdc8975c98267192bba4260c395c876806a9c80acf16f16f105",
+    "site/viewer/toolchangers.html": "67fde2c6f92807f6bb1ae9ab757cb78da21614f76ef8fcc7caaf94b963c449fa",
+    "site/viewer/toolchangers.js": "1ef986ef67a0b2578c4badf89b200dfc2c3cdf15229d69c7594ab9964e955b04",
+    "site/viewer/toolhead-builder.mjs": "8f9ea78880812340c81b37b43f40cdbf5e0b7145e00ca427884055ff39965b91",
     "site/viewer/toolhead-led-identities.mjs": "5cd13006c9b761a9594ff10aa66c1b32e64ed5b45807ca377bb67be184c29808",
     "site/viewer/toolhead-lighting.mjs": "b1b7fd7dbb41511786d5cee80bfbe9edffd0d5ad5c0e57927985acf51841992b",
     "site/viewer/toolheads.css": "1463dcd87ae1690cc6444355328d2f8e7b9bd59befe38d99f3d6c9846dbd4244",
-    "site/viewer/toolheads.html": "9d5867124621dbbebae20a52b7a28a473135d933e176473f774ded4f65f9466f",
-    "site/viewer/toolheads.js": "8c26753edc36027e3cc8b9a35526af960a9f3b9ab344bc9cb9269d46a8fd80e3",
+    "site/viewer/toolheads.html": "80e5437cc91a8cd1ca84f965cacc634ea05864a21dd39b14a57d0860c45f8cc6",
+    "site/viewer/toolheads.js": "e3f73fae2f65bb3ea0a13464599d1f8ac6998ff342758778f2bd8f91e4e7d53b",
     "site/viewer/translation-engine.mjs": "ad5021536c774dab7b4dd6b7573dc507b06f1d54f5a71bc79809033e33ac8cff",
     "site/viewer/trident-bed-registration.mjs": "17201d090ac06e795be090c94f875e677d4e80054ed8ad16d57a25bb4eddd4fd",
     "site/viewer/trident-belts.mjs": "36cbfcd85e770a25e8220665ee8b44e47c202523f588b9dd2e8e8aa944146511",
@@ -1010,7 +1012,7 @@
     "site/viewer/trident-rail-nut-manual-roles.mjs": "42409a0b3a35030d08ba1e1143f84051a98808c9688dfa8821eede735988ecdb",
     "site/viewer/trident-rail-progress-migrations.mjs": "9d88bd9a8a1b347faad144da3d869f7bab7ad731a41bd9672cb58a034ea91812",
     "site/viewer/trident-roof-tube.mjs": "3c2b6b629363a92659ed04e7fa9d37a2d89c6ae3f008c0acf4ce2f296155ab97",
-    "site/viewer/trident.html": "3dd690fef46b58f5afbdb25a9544ed3965dc007b0eed3160520346a84fcacb83",
+    "site/viewer/trident.html": "f14e3a9e5b00062cd1fc5b8db78fced0294df79025e6680e861b93ceec969402",
     "site/viewer/trinity-alpha-host-extensions.mjs": "8efec37b5918f11be032f8825308f4732387be6c66eb696b46ed9c879bf7fe28",
     "site/viewer/trinity-alpha-installation.mjs": "c4e0c0ebfcc3c0c5333f27ec7098b22f8d25e5d2125c2f6acf477acbf9ab1f0e",
     "site/viewer/trinity-alpha-siboor-r2.mjs": "c8931012c8eb52ee50ac737abf40e3e55fd961c17f4290e4a87789e0f7410976",
@@ -1019,8 +1021,8 @@
     "site/viewer/usage-analytics.mjs": "a686f7c8e70e907ce2766681181ab6cc209e29c5c11a8cb36ef2c4da3eec5663",
     "site/viewer/usage-statistics.css": "b74b6815cd2fbb983174ee29e85472f229fc402cf1e5c5f4709dd50286c23366",
     "site/viewer/usage-statistics.mjs": "667031a470038b54c6a3ed8cc8efcad593abb5205cc3b82293a3ababfbb7ff4f",
-    "site/viewer/v0_adapter.mjs": "725912f4e1e710a2d24d5ee6378c3cce82a4d613f7e7e13ebbcc18bd831c8ce5",
-    "site/viewer/v0-app.js": "f7575bc21886f4c71dbbc1ea57f436f0e307c1447d7e0805bb4c0c5a84c1677c",
+    "site/viewer/v0_adapter.mjs": "d0de1de3b303ba8e0256e2d8f313eda0b300ccbd70346213d02034338b6ccf97",
+    "site/viewer/v0-app.js": "38c0765f339209e64d190740d1483b0050fd505c875ef598695057f6b3c07c25",
     "site/viewer/v0-assembly.mjs": "68ef1a1b259b7b212a2b81643c885acdb556481a6f59ce61db26b56e0dd7a52d",
     "site/viewer/v0-bed-assembly.mjs": "3163b8e34404795e671794f66c690323f820b3dbd2e0ff1a549ba6b6ae6cac31",
     "site/viewer/v0-belts.mjs": "948e42567a0013aa58217f9a877c9387159934bf848215d8d5a1d9515f911e5d",
@@ -1038,7 +1040,7 @@
     "site/viewer/v0-head-assembly.mjs": "aa602b0240cf8b746e12c4a6f301d9c045f1be7e966cd70966db04db9f3b5cc2",
     "site/viewer/v0-hinge-source-geometry.mjs": "069e8252a014807f9c8a0d4f6b361c1a8695748cd8242e2b1cd1a1153c1891ef",
     "site/viewer/v0-idler-assembly.mjs": "0847fa8bd4d51759768930ef0b33712cd1d859135de60b93e1990a42a4495bc0",
-    "site/viewer/v0-installations.mjs": "d41f05f15e4e1aa193c42dd6069fe43c39acf29c28ec33c0a00c68a1518000d8",
+    "site/viewer/v0-installations.mjs": "1779bb11385936ade2c5a165d15324f0598965f8d24da37e5cf69928d4878c26",
     "site/viewer/v0-layout-source-identity.mjs": "304b47ebef53ffe81922aa1f57b8289ff4f9846c2a44b6213d0bafe5a0110c78",
     "site/viewer/v0-m2-seating.mjs": "d15ba41d0be2c9a7b68bf13a06e93b52f95bc25f9dd9979187854c27d7197a5c",
     "site/viewer/v0-manual-data.mjs": "39f5b1cde427278cb44a84364076f48cc6a1fb63e423c561737f6ce22d215f9d",
@@ -1054,25 +1056,25 @@
     "site/viewer/v0-rail-preparation.mjs": "74bbc70d05eb89bed68a19a90c950388c9df203bdbfa71e1a8265bfdc8efc2df",
     "site/viewer/v0-spool-assembly.mjs": "f308048e97a2ba8504ec1937718a453bc06871088f92835918dab274097dc6c3",
     "site/viewer/v0-spool-copy.mjs": "f9a6113be023159c76dea798ef6e09750d72ed5c778fa38b752575453eac80f3",
-    "site/viewer/v0-state.mjs": "5c32df52e80e8ddd605f50a7e0e09b882fac712168aac567739f8840b12e104c",
+    "site/viewer/v0-state.mjs": "a2d97480d6b42c7586f2996443d3b27c59eb93b4dc7b927cbbf3b4d619bb4c2c",
     "site/viewer/v0-tophat-assembly.mjs": "e631fd1484b4c07a0436947c43d993754967bef8993e9c16194a65ba2f635d05",
     "site/viewer/v0-tophat-copy.mjs": "ef62e8c41c1a22e10a2153e02da8891738b74bec1fd49e1e86e7374b3bedb1ef",
     "site/viewer/v0-tophat.mjs": "1c65737cefc844de5ab72663dc4c38ba929f98dec76fe8b318298142305bfd2f",
     "site/viewer/v0-xy-preparation.mjs": "0127d6a73db5ed16ccff2ce1494ec88b977e5aa87e2124af70eda20cc636dccf",
-    "site/viewer/v0.html": "0cbb2e98c62ff5736e109fdd1924c832f3afe71820337477280e52bd02f938c2",
-    "site/viewer/v24_adapter.mjs": "c1618d21979653eb97f2cc9c1e29f57087cd832f35614dc7710e7de0913b56a0",
-    "site/viewer/v24_matrix_adapter.mjs": "c71e052633de09bc592d218b7dbc07faedfd7b7c13ed1b42ea9ffc4a34916e3c",
-    "site/viewer/v24-app.js": "4a3997efa19bbb19162988d8351a234bcaeb8db733f3124ac04e069edbe8b6f6",
+    "site/viewer/v0.html": "8d8ba9680870aa5c3a877815253b52b0266b6369372545f784a453713e58d393",
+    "site/viewer/v24_adapter.mjs": "a185b2e795a7d3f736ac13e6a60448d1f83c099f8a28ccbd6e689ff922ca30fe",
+    "site/viewer/v24_matrix_adapter.mjs": "4505d42f4dbfffc9445422817a19c348412ead5036aa71ac46eec53b5cce1f24",
+    "site/viewer/v24-app.js": "ed7602eca7690a648a759a2c5f7f47c19559cec59786a8b9dae874a5d23e9fe3",
     "site/viewer/v24-belts.mjs": "20e70ae28d622a3cb07b6412459e91edf1755e487b8eb860c3be0aebdc9bd415",
-    "site/viewer/v24-bootstrap.js": "8e1b165e46dd7f4254ccc0754f162d6349ce473d1deeb8c7e91154253c661a02",
+    "site/viewer/v24-bootstrap.js": "f1ff2c7dca01c7acf8ff377b8a4add3f2c185e2b5f8577bbd5a82bd8e7e68cbb",
     "site/viewer/v24-drive-metadata.mjs": "dbdf9f37cb0849ffc262891895fa2f6f8580d6ec81b23c0821b0f0c00a512c43",
     "site/viewer/v24-flexible.mjs": "4de2768da445f9eef0d59ead19639302112d082c26084fa80d48b6f98635470b",
     "site/viewer/v24-ptfe.mjs": "9def2f0b771f25d14c147beb83c9e394cd7b035103b6b56986d7bd24c98ca661",
-    "site/viewer/v24-reference.html": "5deda356c586c9b49ad0941453ad3a30420615a21cdf5326bf1981915eb181a0",
-    "site/viewer/v24-reference.js": "dc92175922d90ae4b9a812422e0847bc6831effdd0496e7a3838947cf3f02a98",
+    "site/viewer/v24-reference.html": "66d98d47a2d760e56b3d8aa7b9621a4241804bf7159b9e64c7330963da24b3d0",
+    "site/viewer/v24-reference.js": "a792be13bc7a3d4f3658160cb69e248dd51ce1c5f557773041695a871262d7c9",
     "site/viewer/v24-service-route.mjs": "2c285941a6f12fa3009b19a1235bd17bc48d36f8fc919ed75d25db3d909f791b",
-    "site/viewer/v24.html": "5cac5697cb60278d48226e857149910dc0b72002eb7e949d5a508baa4f6ee193",
-    "site/viewer/vanilla-trident.js": "22165708388ce0cebd9ce9d56b50d71612109eb7e65102238e49873d610c039e",
+    "site/viewer/v24.html": "4ceb0303e8782cd6f60335ae8be0aa0ea85ed9c4c77c792ea97abc2d665b9d1f",
+    "site/viewer/vanilla-trident.js": "c536dd9077b613dd4b3d558d137fe141deaf1243327950e8035d7eee3cbfffe7",
     "site/viewer/vendor-r180/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
     "site/viewer/vendor-r180/GLTFLoader.js": "adbbafe8ce40416525b6be0ee5cac0d3782482bcf0122c8ca8ec1ffa77d3440b",
     "site/viewer/vendor-r180/OrbitControls.js": "1c5dfa7751d7ab320ac09b578638f08eecacdaaa68109d097158105f3fc6ad43",
@@ -2923,7 +2925,7 @@
           "proper_rigid_basis": true,
           "precise_source_bounds_verified": true,
           "source_bound_tolerance_mm": 0.01,
-          "max_source_bound_error_mm": 0.000010728836041806744,
+          "max_source_bound_error_mm": 1.0728836041806744e-05,
           "material_identity_preserved": true,
           "native_vertex_colors_preserved": true,
           "native_reference_reset_passed": true,
@@ -3075,7 +3077,7 @@
             "proper_rigid_basis": true,
             "precise_source_bounds_verified": true,
             "source_bound_tolerance_mm": 0.01,
-            "max_source_bound_error_mm": 0.000010728836041806744,
+            "max_source_bound_error_mm": 1.0728836041806744e-05,
             "material_identity_preserved": true,
             "native_vertex_colors_preserved": true,
             "native_reference_reset_passed": true,
@@ -3313,7 +3315,7 @@
           "proper_rigid_basis": true,
           "precise_source_bounds_verified": true,
           "source_bound_tolerance_mm": 0.01,
-          "max_source_bound_error_mm": 0.00009860684191398406,
+          "max_source_bound_error_mm": 9.860684191398406e-05,
           "material_identity_preserved": true,
           "native_vertex_colors_preserved": true,
           "native_reference_reset_passed": true,
@@ -3465,7 +3467,7 @@
             "proper_rigid_basis": true,
             "precise_source_bounds_verified": true,
             "source_bound_tolerance_mm": 0.01,
-            "max_source_bound_error_mm": 0.00009860684191398406,
+            "max_source_bound_error_mm": 9.860684191398406e-05,
             "material_identity_preserved": true,
             "native_vertex_colors_preserved": true,
             "native_reference_reset_passed": true,
@@ -9261,6 +9263,100 @@
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "6cfe09afa0565b8b7475c9504a37cfcab3fd807dc281b8d5701eadec434bca67",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
+      },
+      "bottom_vhb_material_review": {
+        "machine": "voron_trident_250",
+        "actual_factory_meshes": 1444,
+        "source_layers": [
+          "1171",
+          "1174",
+          "1177",
+          "1180",
+          "1183",
+          "1186"
+        ],
+        "printed_owners": [
+          "1170",
+          "1173",
+          "1176",
+          "1179",
+          "1182",
+          "1185"
+        ],
+        "palette_visits": 5,
+        "attached_material_checks": 30,
+        "motion_visits": 15,
+        "native_reference_reset_exact": true,
+        "actual_components": [
+          {
+            "path": "machines/voron_trident_250/assembly_manifest.json",
+            "metadata": {
+              "path": "machines/voron_trident_250/assembly_manifest.json",
+              "bytes": 540406,
+              "sha256": "64a681faee6c50a1c80707f71a5a45e42176a9c14595bd630a00aede4a2626ca"
+            },
+            "model": {
+              "path": "machines/voron_trident_250/model.glb",
+              "bytes": 35744704,
+              "sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce"
+            }
+          },
+          {
+            "path": "modules/trident_r2_gantry_250.json",
+            "metadata": {
+              "path": "modules/trident_r2_gantry_250.json",
+              "bytes": 172896,
+              "sha256": "13bd7b50c0c381b497dc7f618152cc5fb4fb66acb9acee17acc360e956b71e92"
+            },
+            "model": {
+              "path": "modules/trident_r2_gantry_250.glb",
+              "bytes": 17206884,
+              "sha256": "80259fd41c1359d81fc59171974559d8212c1f74a49647ecc688583b40513db3"
+            }
+          },
+          {
+            "path": "toolheads/sb_stock.json",
+            "metadata": {
+              "path": "toolheads/sb_stock.json",
+              "bytes": 35208,
+              "sha256": "4a516030dd823a0bac1fb198005029f07540022325c7cad0ae9f59d0c490418b"
+            },
+            "model": {
+              "path": "toolheads/sb_stock.glb",
+              "bytes": 22443592,
+              "sha256": "5b139696ecbd801076863c3c3e752a4c1630f6f39ca70e8f817a15a2ae0404d5"
+            }
+          },
+          {
+            "path": "modules/sb_revo_voron.json",
+            "metadata": {
+              "path": "modules/sb_revo_voron.json",
+              "bytes": 12185,
+              "sha256": "bae72e31c97691400f73b3e00a23ed097e44756144f5aa0710cbfd9ba5a06d07"
+            },
+            "model": {
+              "path": "modules/sb_revo_voron.glb",
+              "bytes": 3894844,
+              "sha256": "055bc21b8dea9ea7d859a2d461967224271fe47bec8a91dfce29052290dcb721"
+            }
+          },
+          {
+            "path": "modules/trident_r2_sb_carriage.json",
+            "metadata": {
+              "path": "modules/trident_r2_sb_carriage.json",
+              "bytes": 8018,
+              "sha256": "3bd518b3481c316b0e4da71e37d056d5999ccc3af6cef82cfc6f8808ba9dbd78"
+            },
+            "model": {
+              "path": "modules/trident_r2_sb_carriage.glb",
+              "bytes": 963104,
+              "sha256": "e91d0d08b09bd8134142c80d4d33ba7611189788d5cb396351bad1068be73892"
+            }
+          }
+        ],
+        "report_sha256": "58eb51db53ca2a16be7de072e4b6e27429a4706c466916b62ec3dbf800a4a914",
+        "editor_palette_save_format_unchanged": true,
+        "physical_fit_certified": false
       }
     },
     {
@@ -9478,6 +9574,100 @@
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "ffa5bc7749ac32996dfb9f9e344f8a60a0735550ebe52919649ec9153be54057",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
+      },
+      "bottom_vhb_material_review": {
+        "machine": "voron_trident_300",
+        "actual_factory_meshes": 1454,
+        "source_layers": [
+          "1171",
+          "1174",
+          "1177",
+          "1180",
+          "1183",
+          "1186"
+        ],
+        "printed_owners": [
+          "1170",
+          "1173",
+          "1176",
+          "1179",
+          "1182",
+          "1185"
+        ],
+        "palette_visits": 5,
+        "attached_material_checks": 30,
+        "motion_visits": 15,
+        "native_reference_reset_exact": true,
+        "actual_components": [
+          {
+            "path": "machines/voron_trident_300/assembly_manifest.json",
+            "metadata": {
+              "path": "machines/voron_trident_300/assembly_manifest.json",
+              "bytes": 541453,
+              "sha256": "504593577292b209f9cf32c26a16cc735a42c0d1705570ccfab7df341c57f438"
+            },
+            "model": {
+              "path": "machines/voron_trident_300/model.glb",
+              "bytes": 36186576,
+              "sha256": "d927d9e14276901cdfcd2d433a16e67ae461ec0bc67ea1912715881a64181b16"
+            }
+          },
+          {
+            "path": "modules/trident_r2_gantry_300.json",
+            "metadata": {
+              "path": "modules/trident_r2_gantry_300.json",
+              "bytes": 177291,
+              "sha256": "96a5667cc97d044f10e61b58206393931f7839ae2f7ee21c26efed75cc581cc7"
+            },
+            "model": {
+              "path": "modules/trident_r2_gantry_300.glb",
+              "bytes": 17487212,
+              "sha256": "76c742c7832cde422eab6aa193ff3a4fea2565894b18aa83524eab97fda8916f"
+            }
+          },
+          {
+            "path": "toolheads/sb_stock.json",
+            "metadata": {
+              "path": "toolheads/sb_stock.json",
+              "bytes": 35208,
+              "sha256": "4a516030dd823a0bac1fb198005029f07540022325c7cad0ae9f59d0c490418b"
+            },
+            "model": {
+              "path": "toolheads/sb_stock.glb",
+              "bytes": 22443592,
+              "sha256": "5b139696ecbd801076863c3c3e752a4c1630f6f39ca70e8f817a15a2ae0404d5"
+            }
+          },
+          {
+            "path": "modules/sb_revo_voron.json",
+            "metadata": {
+              "path": "modules/sb_revo_voron.json",
+              "bytes": 12185,
+              "sha256": "bae72e31c97691400f73b3e00a23ed097e44756144f5aa0710cbfd9ba5a06d07"
+            },
+            "model": {
+              "path": "modules/sb_revo_voron.glb",
+              "bytes": 3894844,
+              "sha256": "055bc21b8dea9ea7d859a2d461967224271fe47bec8a91dfce29052290dcb721"
+            }
+          },
+          {
+            "path": "modules/trident_r2_sb_carriage.json",
+            "metadata": {
+              "path": "modules/trident_r2_sb_carriage.json",
+              "bytes": 8018,
+              "sha256": "3bd518b3481c316b0e4da71e37d056d5999ccc3af6cef82cfc6f8808ba9dbd78"
+            },
+            "model": {
+              "path": "modules/trident_r2_sb_carriage.glb",
+              "bytes": 963104,
+              "sha256": "e91d0d08b09bd8134142c80d4d33ba7611189788d5cb396351bad1068be73892"
+            }
+          }
+        ],
+        "report_sha256": "6bdaec9984f7008698b597eca13f5acd3e1bcb61a156f8446a2cb63df69dcdee",
+        "editor_palette_save_format_unchanged": true,
+        "physical_fit_certified": false
       }
     },
     {
@@ -9711,6 +9901,100 @@
         "complete_exported_binary_scan": true,
         "binary_report_sha256": "2e2091f881afb22120a61e03145053d121c5eeb00af2f481899c3c95b5b3dfd7",
         "scope": "Current exported model bytes, registered source identity and scoped workbench assertions. Earlier native/motion evidence retains its original scope; this is not a new whole-machine clearance qualification."
+      },
+      "bottom_vhb_material_review": {
+        "machine": "voron_trident_350",
+        "actual_factory_meshes": 1462,
+        "source_layers": [
+          "1171",
+          "1174",
+          "1177",
+          "1180",
+          "1183",
+          "1186"
+        ],
+        "printed_owners": [
+          "1170",
+          "1173",
+          "1176",
+          "1179",
+          "1182",
+          "1185"
+        ],
+        "palette_visits": 5,
+        "attached_material_checks": 30,
+        "motion_visits": 15,
+        "native_reference_reset_exact": true,
+        "actual_components": [
+          {
+            "path": "machines/voron_trident_350/assembly_manifest.json",
+            "metadata": {
+              "path": "machines/voron_trident_350/assembly_manifest.json",
+              "bytes": 541314,
+              "sha256": "c30875c2cdae7b7ee59618a76cb2e3fd3285e439a666e0f5f6c441bec7b9b173"
+            },
+            "model": {
+              "path": "machines/voron_trident_350/model.glb",
+              "bytes": 36505784,
+              "sha256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4"
+            }
+          },
+          {
+            "path": "modules/trident_r2_gantry_350.json",
+            "metadata": {
+              "path": "modules/trident_r2_gantry_350.json",
+              "bytes": 183534,
+              "sha256": "070c8ffa0ee7e5b085616aacd561a6f10a2bc997027b150028326c4b3783da53"
+            },
+            "model": {
+              "path": "modules/trident_r2_gantry_350.glb",
+              "bytes": 18557764,
+              "sha256": "80c132a822684a270db4d13f2971cb22825d098588ccaa34d7cb53e3cddfac9b"
+            }
+          },
+          {
+            "path": "toolheads/sb_stock.json",
+            "metadata": {
+              "path": "toolheads/sb_stock.json",
+              "bytes": 35208,
+              "sha256": "4a516030dd823a0bac1fb198005029f07540022325c7cad0ae9f59d0c490418b"
+            },
+            "model": {
+              "path": "toolheads/sb_stock.glb",
+              "bytes": 22443592,
+              "sha256": "5b139696ecbd801076863c3c3e752a4c1630f6f39ca70e8f817a15a2ae0404d5"
+            }
+          },
+          {
+            "path": "modules/sb_revo_voron.json",
+            "metadata": {
+              "path": "modules/sb_revo_voron.json",
+              "bytes": 12185,
+              "sha256": "bae72e31c97691400f73b3e00a23ed097e44756144f5aa0710cbfd9ba5a06d07"
+            },
+            "model": {
+              "path": "modules/sb_revo_voron.glb",
+              "bytes": 3894844,
+              "sha256": "055bc21b8dea9ea7d859a2d461967224271fe47bec8a91dfce29052290dcb721"
+            }
+          },
+          {
+            "path": "modules/trident_r2_sb_carriage.json",
+            "metadata": {
+              "path": "modules/trident_r2_sb_carriage.json",
+              "bytes": 8018,
+              "sha256": "3bd518b3481c316b0e4da71e37d056d5999ccc3af6cef82cfc6f8808ba9dbd78"
+            },
+            "model": {
+              "path": "modules/trident_r2_sb_carriage.glb",
+              "bytes": 963104,
+              "sha256": "e91d0d08b09bd8134142c80d4d33ba7611189788d5cb396351bad1068be73892"
+            }
+          }
+        ],
+        "report_sha256": "8bc8fef45e0eb62f957278685ada4454e4e04146519cc2bbc1c792b03b8caf7f",
+        "editor_palette_save_format_unchanged": true,
+        "physical_fit_certified": false
       }
     },
     {
@@ -17509,7 +17793,7 @@
         "actual_source_gate": "scripts/audit_e3ng_routes.mjs",
         "source_fixture_sha256": "e93f992fd29cae40f18e699770f30dfdc5eddfe11b5cdde67bd46e31927faf20",
         "finite_skirt_mount_contact_mm2": 2339.9775505334983,
-        "selected_native_common_volume_limit_mm3": 1e-7,
+        "selected_native_common_volume_limit_mm3": 1e-07,
         "physical_threads_certified": false,
         "whole_machine_fit_certified": false
       },
@@ -23056,5 +23340,304 @@
     "machine_rows_preserved": 73,
     "full_manual_complete": false,
     "full_physical_fit_certified": false
+  },
+  "current_trident_bottom_vhb_material_review": {
+    "reviewed_on": "2026-11-08",
+    "scope": "Six exact bottom-panel adhesive source identities in standard Trident 250/300/350 retain source PBR while their six printed owners follow the palette. Geometry, normals, source PBR bytes and poses are unchanged. Existing native/clearance evidence keeps its original scope.",
+    "classifier_sha256": "cec2fd2240d0ce2ccfe3625aee24690973926318f4674d799b6642911a3f142e",
+    "required_actual_gate": "scripts/check_source_parts_map_release.py",
+    "actual_helper": "scripts/trident_bottom_vhb_audit.mjs",
+    "helper_sha256": "230f43d65e0db4309b4e563744c26b4dc0b09d54cb75120aa8f3297ea914aece",
+    "source_regression": "scripts/test_trident_bottom_vhb_materials.mjs",
+    "source_identity_negative_cases": 90,
+    "normal_actual_build_passed": true,
+    "all_nine_source_maps_and_six_guides_retained": true,
+    "prior_73_machine_rows_retained": true,
+    "new_native_mating_or_holding_certificate": false,
+    "full_physical_fit_certified": false,
+    "sizes": [
+      {
+        "machine": "voron_trident_250",
+        "actual_factory_meshes": 1444,
+        "source_layers": [
+          "1171",
+          "1174",
+          "1177",
+          "1180",
+          "1183",
+          "1186"
+        ],
+        "printed_owners": [
+          "1170",
+          "1173",
+          "1176",
+          "1179",
+          "1182",
+          "1185"
+        ],
+        "palette_visits": 5,
+        "attached_material_checks": 30,
+        "motion_visits": 15,
+        "native_reference_reset_exact": true,
+        "actual_components": [
+          {
+            "path": "machines/voron_trident_250/assembly_manifest.json",
+            "metadata": {
+              "path": "machines/voron_trident_250/assembly_manifest.json",
+              "bytes": 540406,
+              "sha256": "64a681faee6c50a1c80707f71a5a45e42176a9c14595bd630a00aede4a2626ca"
+            },
+            "model": {
+              "path": "machines/voron_trident_250/model.glb",
+              "bytes": 35744704,
+              "sha256": "8cad57cf1550f8827ffdfd34cc4d7ab28edfe94b65c99a0fc7b9b28fad7f60ce"
+            }
+          },
+          {
+            "path": "modules/trident_r2_gantry_250.json",
+            "metadata": {
+              "path": "modules/trident_r2_gantry_250.json",
+              "bytes": 172896,
+              "sha256": "13bd7b50c0c381b497dc7f618152cc5fb4fb66acb9acee17acc360e956b71e92"
+            },
+            "model": {
+              "path": "modules/trident_r2_gantry_250.glb",
+              "bytes": 17206884,
+              "sha256": "80259fd41c1359d81fc59171974559d8212c1f74a49647ecc688583b40513db3"
+            }
+          },
+          {
+            "path": "toolheads/sb_stock.json",
+            "metadata": {
+              "path": "toolheads/sb_stock.json",
+              "bytes": 35208,
+              "sha256": "4a516030dd823a0bac1fb198005029f07540022325c7cad0ae9f59d0c490418b"
+            },
+            "model": {
+              "path": "toolheads/sb_stock.glb",
+              "bytes": 22443592,
+              "sha256": "5b139696ecbd801076863c3c3e752a4c1630f6f39ca70e8f817a15a2ae0404d5"
+            }
+          },
+          {
+            "path": "modules/sb_revo_voron.json",
+            "metadata": {
+              "path": "modules/sb_revo_voron.json",
+              "bytes": 12185,
+              "sha256": "bae72e31c97691400f73b3e00a23ed097e44756144f5aa0710cbfd9ba5a06d07"
+            },
+            "model": {
+              "path": "modules/sb_revo_voron.glb",
+              "bytes": 3894844,
+              "sha256": "055bc21b8dea9ea7d859a2d461967224271fe47bec8a91dfce29052290dcb721"
+            }
+          },
+          {
+            "path": "modules/trident_r2_sb_carriage.json",
+            "metadata": {
+              "path": "modules/trident_r2_sb_carriage.json",
+              "bytes": 8018,
+              "sha256": "3bd518b3481c316b0e4da71e37d056d5999ccc3af6cef82cfc6f8808ba9dbd78"
+            },
+            "model": {
+              "path": "modules/trident_r2_sb_carriage.glb",
+              "bytes": 963104,
+              "sha256": "e91d0d08b09bd8134142c80d4d33ba7611189788d5cb396351bad1068be73892"
+            }
+          }
+        ],
+        "report_sha256": "58eb51db53ca2a16be7de072e4b6e27429a4706c466916b62ec3dbf800a4a914",
+        "editor_palette_save_format_unchanged": true,
+        "physical_fit_certified": false
+      },
+      {
+        "machine": "voron_trident_300",
+        "actual_factory_meshes": 1454,
+        "source_layers": [
+          "1171",
+          "1174",
+          "1177",
+          "1180",
+          "1183",
+          "1186"
+        ],
+        "printed_owners": [
+          "1170",
+          "1173",
+          "1176",
+          "1179",
+          "1182",
+          "1185"
+        ],
+        "palette_visits": 5,
+        "attached_material_checks": 30,
+        "motion_visits": 15,
+        "native_reference_reset_exact": true,
+        "actual_components": [
+          {
+            "path": "machines/voron_trident_300/assembly_manifest.json",
+            "metadata": {
+              "path": "machines/voron_trident_300/assembly_manifest.json",
+              "bytes": 541453,
+              "sha256": "504593577292b209f9cf32c26a16cc735a42c0d1705570ccfab7df341c57f438"
+            },
+            "model": {
+              "path": "machines/voron_trident_300/model.glb",
+              "bytes": 36186576,
+              "sha256": "d927d9e14276901cdfcd2d433a16e67ae461ec0bc67ea1912715881a64181b16"
+            }
+          },
+          {
+            "path": "modules/trident_r2_gantry_300.json",
+            "metadata": {
+              "path": "modules/trident_r2_gantry_300.json",
+              "bytes": 177291,
+              "sha256": "96a5667cc97d044f10e61b58206393931f7839ae2f7ee21c26efed75cc581cc7"
+            },
+            "model": {
+              "path": "modules/trident_r2_gantry_300.glb",
+              "bytes": 17487212,
+              "sha256": "76c742c7832cde422eab6aa193ff3a4fea2565894b18aa83524eab97fda8916f"
+            }
+          },
+          {
+            "path": "toolheads/sb_stock.json",
+            "metadata": {
+              "path": "toolheads/sb_stock.json",
+              "bytes": 35208,
+              "sha256": "4a516030dd823a0bac1fb198005029f07540022325c7cad0ae9f59d0c490418b"
+            },
+            "model": {
+              "path": "toolheads/sb_stock.glb",
+              "bytes": 22443592,
+              "sha256": "5b139696ecbd801076863c3c3e752a4c1630f6f39ca70e8f817a15a2ae0404d5"
+            }
+          },
+          {
+            "path": "modules/sb_revo_voron.json",
+            "metadata": {
+              "path": "modules/sb_revo_voron.json",
+              "bytes": 12185,
+              "sha256": "bae72e31c97691400f73b3e00a23ed097e44756144f5aa0710cbfd9ba5a06d07"
+            },
+            "model": {
+              "path": "modules/sb_revo_voron.glb",
+              "bytes": 3894844,
+              "sha256": "055bc21b8dea9ea7d859a2d461967224271fe47bec8a91dfce29052290dcb721"
+            }
+          },
+          {
+            "path": "modules/trident_r2_sb_carriage.json",
+            "metadata": {
+              "path": "modules/trident_r2_sb_carriage.json",
+              "bytes": 8018,
+              "sha256": "3bd518b3481c316b0e4da71e37d056d5999ccc3af6cef82cfc6f8808ba9dbd78"
+            },
+            "model": {
+              "path": "modules/trident_r2_sb_carriage.glb",
+              "bytes": 963104,
+              "sha256": "e91d0d08b09bd8134142c80d4d33ba7611189788d5cb396351bad1068be73892"
+            }
+          }
+        ],
+        "report_sha256": "6bdaec9984f7008698b597eca13f5acd3e1bcb61a156f8446a2cb63df69dcdee",
+        "editor_palette_save_format_unchanged": true,
+        "physical_fit_certified": false
+      },
+      {
+        "machine": "voron_trident_350",
+        "actual_factory_meshes": 1462,
+        "source_layers": [
+          "1171",
+          "1174",
+          "1177",
+          "1180",
+          "1183",
+          "1186"
+        ],
+        "printed_owners": [
+          "1170",
+          "1173",
+          "1176",
+          "1179",
+          "1182",
+          "1185"
+        ],
+        "palette_visits": 5,
+        "attached_material_checks": 30,
+        "motion_visits": 15,
+        "native_reference_reset_exact": true,
+        "actual_components": [
+          {
+            "path": "machines/voron_trident_350/assembly_manifest.json",
+            "metadata": {
+              "path": "machines/voron_trident_350/assembly_manifest.json",
+              "bytes": 541314,
+              "sha256": "c30875c2cdae7b7ee59618a76cb2e3fd3285e439a666e0f5f6c441bec7b9b173"
+            },
+            "model": {
+              "path": "machines/voron_trident_350/model.glb",
+              "bytes": 36505784,
+              "sha256": "e619e8944eba1a45ff7f72f28f808d4c475a0d0fb95d08a5eacf4fe2cffa97f4"
+            }
+          },
+          {
+            "path": "modules/trident_r2_gantry_350.json",
+            "metadata": {
+              "path": "modules/trident_r2_gantry_350.json",
+              "bytes": 183534,
+              "sha256": "070c8ffa0ee7e5b085616aacd561a6f10a2bc997027b150028326c4b3783da53"
+            },
+            "model": {
+              "path": "modules/trident_r2_gantry_350.glb",
+              "bytes": 18557764,
+              "sha256": "80c132a822684a270db4d13f2971cb22825d098588ccaa34d7cb53e3cddfac9b"
+            }
+          },
+          {
+            "path": "toolheads/sb_stock.json",
+            "metadata": {
+              "path": "toolheads/sb_stock.json",
+              "bytes": 35208,
+              "sha256": "4a516030dd823a0bac1fb198005029f07540022325c7cad0ae9f59d0c490418b"
+            },
+            "model": {
+              "path": "toolheads/sb_stock.glb",
+              "bytes": 22443592,
+              "sha256": "5b139696ecbd801076863c3c3e752a4c1630f6f39ca70e8f817a15a2ae0404d5"
+            }
+          },
+          {
+            "path": "modules/sb_revo_voron.json",
+            "metadata": {
+              "path": "modules/sb_revo_voron.json",
+              "bytes": 12185,
+              "sha256": "bae72e31c97691400f73b3e00a23ed097e44756144f5aa0710cbfd9ba5a06d07"
+            },
+            "model": {
+              "path": "modules/sb_revo_voron.glb",
+              "bytes": 3894844,
+              "sha256": "055bc21b8dea9ea7d859a2d461967224271fe47bec8a91dfce29052290dcb721"
+            }
+          },
+          {
+            "path": "modules/trident_r2_sb_carriage.json",
+            "metadata": {
+              "path": "modules/trident_r2_sb_carriage.json",
+              "bytes": 8018,
+              "sha256": "3bd518b3481c316b0e4da71e37d056d5999ccc3af6cef82cfc6f8808ba9dbd78"
+            },
+            "model": {
+              "path": "modules/trident_r2_sb_carriage.glb",
+              "bytes": 963104,
+              "sha256": "e91d0d08b09bd8134142c80d4d33ba7611189788d5cb396351bad1068be73892"
+            }
+          }
+        ],
+        "report_sha256": "8bc8fef45e0eb62f957278685ada4454e4e04146519cc2bbc1c792b03b8caf7f",
+        "editor_palette_save_format_unchanged": true,
+        "physical_fit_certified": false
+      }
+    ]
   }
 }

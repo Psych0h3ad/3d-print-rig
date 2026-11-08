@@ -4,7 +4,7 @@ import * as THREE from './vendor-r180/three.module.js';
 import {GLTFLoader} from './vendor-r180/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {loadExternalComponent} from './component-assets.mjs?v=a912f0a87d5f3993e9ad';
-import {appearanceRole} from './appearance-role.mjs?v=977c4d1e134e7fe27a0e';
+import {appearanceRole} from './appearance-role.mjs?v=cec2fd2240d0ce2ccfe3';
 import {layoutDefaultSourcePins} from './layout-default-source-pins.mjs?v=40ec0e1e7e69deb4b586';
 const site=new URL('../',import.meta.url),point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);
 const hash=async b=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',b))].map(v=>v.toString(16).padStart(2,'0')).join('');
@@ -34,7 +34,7 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
  }
  try{
   if(id==='siboor_v24_350'){
-   const {createV24Adapter}=await import('./v24_adapter.mjs?v=c1618d21979653eb97f2'),{alphaNativeHostModelOptions}=await import('./trinity-alpha-host-extensions.mjs?v=8efec37b5918f11be032'),{ProbeMountSelection}=await import('./probe-mounts.js?v=517d139912b21c017b1b');
+   const {createV24Adapter}=await import('./v24_adapter.mjs?v=a185b2e795a7d3f736ac'),{alphaNativeHostModelOptions}=await import('./trinity-alpha-host-extensions.mjs?v=8efec37b5918f11be032'),{ProbeMountSelection}=await import('./probe-mounts.js?v=517d139912b21c017b1b');
    manifest=await json('machines/'+id+'/assembly_manifest.json');profile=await json('machines/'+id+'/machine_profile.json');
    const base=await asset({meta:'machines/'+id+'/assembly_manifest.json',glb:'machines/'+id+'/model.glb',modelOptions:alphaNativeHostModelOptions(id)}),adapter=createV24Adapter(base.root,manifest,profile),probes=await json('V24_PROBES.json');
    if(probes.probes[0].id!=='stock_panasonic'||probes.probes[0].module)throw Error('V24 native default probe changed');
@@ -42,7 +42,7 @@ export async function loadVoronDefaultLayout(id,{signal,onProgress=()=>{}}={}){
    adapter.setFlexibleVisible(true);adapter.setEnclosureVisible(true);adapter.setPalette({});const out=adapter.setPose(Object.fromEntries(['x','y','z'].map((a,i)=>[a,profile.display_reference_xyz_mm[i]])));
    if(!out.atReference)throw Error('V24 native reference mismatch');configuration=(profile.available_configurations?.[0]?.id||'stock')+'__stock_panasonic';details={reference:profile.display_reference_xyz_mm,nativeHead:true,defaultDiscoInstalled:false};
   } else if(/^voron_trident_(250|300|350)$/.test(id)){
-   const {createTridentMotion}=await import('./trident-motion.mjs?v=77312c6bfbf6c7e7563d'),{headPlan}=await import('./head-assembly.js?v=workspace-belts-1'),{baselineReference,baselineLimits,baselineResetPose,NATIVE_BASELINE_SOURCE}=await import('./baseline-native-datum.mjs?v=b86b6ff7d71bab3c1117'),{stockGantryVisibility}=await import('./monolith-machine.js?v=aa95e6d6c895f59a86c4');
+   const {createTridentMotion}=await import('./trident-motion.mjs?v=77312c6bfbf6c7e7563d'),{headPlan}=await import('./head-assembly.js?v=workspace-belts-1'),{baselineReference,baselineLimits,baselineResetPose,NATIVE_BASELINE_SOURCE}=await import('./baseline-native-datum.mjs?v=b86b6ff7d71bab3c1117'),{stockGantryVisibility}=await import('./monolith-machine.js?v=016eecc7f50bb01900d9');
    profile=await json('machines/'+id+'/machine_profile.json');const catalog=await json('machines/'+id+'/configurations.json'),heads=await json('TOOLHEAD_CONFIGURATIONS.json'),datum=await json(NATIVE_BASELINE_SOURCE.file),v=structuredClone(catalog.variants[0]);
    const binding=datum.baselines.find(r=>r.machine===id&&r.source_variant===v.id);if(!binding)throw Error('Missing accepted native default head datum');v.native_reference_92=binding;v.fit={...v.fit,nozzle_mm:[...binding.nozzle_native_machine_mm]};configuration=v.id;
    const motion=createTridentMotion(profile),base=await asset(profile.base_assets);manifest=base.meta;motion.register(base.root,base.meta);

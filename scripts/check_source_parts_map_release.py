@@ -19,6 +19,9 @@ def main():
    if r.get('assembly')is not None or r.get('assemblyUnsupportedExplicitly')is not True:raise ValueError('CNC source lacks a reviewed assembly plan')
   elif not r.get('assembly')or not all(r['assembly'].get(k)for k in ['beltReceiversBeforeBelts','reverseAndPreview','restoredUnchanged','wrongViewProgressRejected']):raise ValueError('Missing actual interactive assembly: '+mid)
   if mid.startswith('voron_trident_'):
+   sheets=r.get('bottomVHBMaterials')or{}
+   if any(sheets.get(k)!=v for k,v in [('sourceLayers',6),('printedOwners',6),('paletteVisits',5),('attachedMaterialChecks',30),('actualNegativeAssertions',18)]) or sheets.get('originalMaterialsGeometryAndPlacementPreserved')is not True:
+    raise ValueError('Missing actual bottom VHB purchased-material regression: '+mid)
    nuts=(r.get('assembly')or{}).get('railNutGuide')or{}
    if len(nuts.get('sourceNutKeys',[]))!=24 or not all(nuts.get(k)for k in ['sourceIdentityBound','frameAndDrivesExcluded','zaxisIncluded','onlyRevisedStageRechecked','v1ChecksNotInvented','currentReconfirmationPreserved']) or nuts.get('unrelatedIdentityNegatives')!=4:
     raise ValueError('Missing source-backed rail-nut stage/progress regression: '+mid)
