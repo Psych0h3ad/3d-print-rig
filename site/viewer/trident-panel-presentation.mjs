@@ -1,12 +1,12 @@
 import {Box3,Vector3} from './vendor-r180/three.module.js';
-import {tridentPanelProfile,tridentPanelPresentationID} from './trident-panel-manual.mjs?v=2fda5c71863db6cdf37d';
+import {tridentPanelProfile,tridentPanelPresentationID} from './trident-panel-manual.mjs?v=795bc1fc2c5884db979f';
 const fail=s=>{throw Error('Trident panel presentation: '+s)};
 const identity=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
 const equal=(a,b)=>a.length===b.length&&a.every((v,i)=>v===b[i]);
 // These are source-rigid preparation diagrams, never insertion trajectories.
 // Disjoint display slots do not qualify internal mating/contact or retention.
 export function createTridentPanelStagePresentation(profile,loaded,scene,snapshots){
- const spec=tridentPanelProfile();
+ const spec=tridentPanelProfile(loaded?.source?.machineId);
  if(profile!==tridentPanelPresentationID||loaded?.source?.machineId!==spec.machine||loaded.source.configuration!==spec.configuration||loaded.root.parent!==scene||loaded.inspection.active()!==true)fail('Unregistered or inactive source profile');
  const c=loaded.inspection.components.find(c=>c.path===spec.component);
  if(!c||['bytes','sha256'].some(k=>c.metadata[k]!==spec.metadata[k]||c.model[k]!==spec.model[k]))fail('Received source profile changed');

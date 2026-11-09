@@ -1,8 +1,8 @@
-import {loadTridentManualData} from './trident-manual-data.mjs?v=19bb83f1fe559b8920ac';
-import {refineTridentPanelManual,tridentPanelPresentationID} from './trident-panel-manual.mjs?v=2fda5c71863db6cdf37d';
-import {refineTridentFilamentManual} from './trident-filament-manual.mjs?v=aa986af0746b7b14b041';
+import {loadTridentManualData,supportsTridentManual} from './trident-manual-data.mjs?v=89aae9a1d36964be49de';
+import {refineTridentPanelManual,tridentPanelPresentationID} from './trident-panel-manual.mjs?v=795bc1fc2c5884db979f';
+import {refineTridentFilamentManual} from './trident-filament-manual.mjs?v=846503f7be0b6c0968b2';
 import {tridentRailNutManualSection,assertTridentRailNutManualCohort} from './trident-rail-nut-manual-roles.mjs';
-import {createSourcePartsMap} from './source-parts-map.mjs?v=5144c9bfd3f5e39738e9';
+import {createSourcePartsMap} from './source-parts-map.mjs?v=ff5539ef39272cb03929';
 import {tridentGuideLineage} from './voron-guide-lineage.mjs';
 const hash=async v=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(v))))].map(n=>n.toString(16).padStart(2,'0')).join('');
 const norm=s=>String(s).normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[_\-]+/g,' ');
@@ -45,8 +45,8 @@ function v24Section(p,path){
 }
 export async function createVoronAssemblyGuide(loaded,scene,{signal}={}){
  const id=loaded?.source?.machineId;if(!supportsVoronAssembly(id))fail('No source-backed assembly overview for this machine');
- if(id==='voron_trident_250')await loadTridentManualData({signal});
- const base=await createSourcePartsMap(loaded,scene,{allowVisibilityStages:true,presentationProfile:id==='voron_trident_250'?tridentPanelPresentationID:null}),family=id.startsWith('voron_trident_')?'trident':'v24',groups=new Map(plans[family].map(r=>[r[0],[]]));
+ if(supportsTridentManual(id))await loadTridentManualData({machine:id,signal});
+ const base=await createSourcePartsMap(loaded,scene,{allowVisibilityStages:true,presentationProfile:supportsTridentManual(id)?tridentPanelPresentationID:null}),family=id.startsWith('voron_trident_')?'trident':'v24',groups=new Map(plans[family].map(r=>[r[0],[]]));
  const raw=new Map();for(const c of loaded.inspection.components)for(const p of c.meta.parts)raw.set(c.path+'#'+p.key,{p,component:c.path});
  assertTridentRailNutManualCohort(id,raw,loaded.inspection.components);
  for(const source of base.stages)for(const key of source.part_keys){

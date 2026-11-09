@@ -1167,6 +1167,8 @@ class ApprovedPowerReferences(unittest.TestCase):
         self.assertEqual(set(build_approved_site.BUILD_ONLY_SOURCE_PATHS),{
             'APPROVED_DELIVERY.json', power.SOURCE_PATH, *manual_source_paths,
             'viewer/data/trident-250-manual.source.json',
+            'viewer/data/trident-300-manual.source.json',
+            'viewer/data/trident-350-manual.source.json',
             'viewer/source47/data/ROUTE350_CAPTURE_BINDINGS_V2.json',
             'viewer/source47/data/FULL350_SOURCE_REFERENCE.json',
             'viewer/source47/data/SOURCE_SERVICE_ROUTE_BINDINGS.json',

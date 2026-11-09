@@ -1,4 +1,4 @@
-import {checkedTridentManualData} from './trident-manual-data.mjs?v=19bb83f1fe559b8920ac';
+import {checkedTridentManualData,supportsTridentManual} from './trident-manual-data.mjs?v=89aae9a1d36964be49de';
 // Source-specific manual references. Visibility uses final CAD placements;
 // these operations do not certify insertion, native interference or retention.
 const fail=message=>{throw Error('Trident filament manual: '+message)};
@@ -20,8 +20,8 @@ const operationRows=[
  ['reverse-bowden','Route the reverse Bowden tube',315,['1409'],['1393','1395','1409','1390','1403']]
 ];
 export function refineTridentFilamentManual(machine,stages,raw,components){
- if(machine!=='voron_trident_250')return stages;
- const spec=checkedTridentManualData().filament[machine];if(!spec)fail('Missing exact source binding');
+ if(!supportsTridentManual(machine))return stages;
+ const spec=checkedTridentManualData(machine).filament[machine];if(!spec)fail('Missing exact source binding');
  const component=components.find(c=>c.path===spec.component);
  if(!component||component.metadata.bytes!==spec.metadata.bytes||component.metadata.sha256!==spec.metadata.sha256||component.model.bytes!==spec.model.bytes||component.model.sha256!==spec.model.sha256)fail('Received model/metadata changed');
  const full=id=>spec.component+'#'+machine+'_base_'+id,keys=ids=>ids.map(full),same=(a,b)=>a.length===b.length&&new Set(a).size===a.length&&a.every(v=>b.includes(v));

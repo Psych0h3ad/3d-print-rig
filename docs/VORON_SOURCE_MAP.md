@@ -47,12 +47,35 @@ V0.2r1 it opens the 158/163-stage manual view directly. For official
 Trident and printed V2.4 at 250/300/350 it opens the same part-map page with
 `view=assembly`, using a separate source-bound progress identity.
 
-Trident has 12 chapter-sized states and printed V2.4 has 13. Next/previous,
+The stock Trident 250/300/350 defaults have 71 source-reference states, including
+47 panel and door operations plus rear-panel and filament-path references.
+Each size uses its own exact received model and metadata. The existing
+size-adapted panels retain their source-specific geometry; a smaller machine is
+not uniformly scaled, and no alternate private gantry is substituted.
+Earlier frame, drive, gantry, Z, X, belt, bed, head, electronics and skirt states
+remain chapter-sized references. Printed V2.4 retains 13 chapters. Next/previous,
 the stage range control, search and part focus change the cumulative native
 visibility mask. Compare complete assembly temporarily restores the original
 full display; returning or changing stage restores the current assembly mask.
-Hidden source alternatives stay hidden. Positions, normals, topology and
-materials are unchanged. The floor uses the complete assembly bounds.
+Hidden source alternatives stay hidden. Normals, topology, source coordinates
+and original materials are retained. During panel preparation, source groups
+are translated rigidly into separate display slots and returned at the manual's
+installation step. Full comparison, reset and closing restore original source
+matrices and visibility. These display slots are not insertion paths or a proof
+of contact, fastener engagement or retention. The floor uses the complete
+assembly bounds.
+
+Older matching 12-chapter progress preserves individual source-part checks and
+unmodified chapters. Electronics, panels and filament stages require review
+after the refinement; an old file cannot claim completion of the new operations.
+V1 files start without individual part checks. Old browser records remain
+available, and another size or changed source identity is rejected.
+
+The manual's optional side-frame foam strips are not identified in the selected
+R2 gantry source. Source rear-panel M3x12 screws also differ from the manual's
+M3x8 specification. These remain explicit open items, alongside native mating,
+clearance, insertion and holding; a visible source reference does not resolve
+them.
 
 These are subassembly overviews. They do not represent every screw operation,
 preload, insertion path or interference-free assembly trajectory. The complete

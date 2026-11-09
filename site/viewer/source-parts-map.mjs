@@ -1,4 +1,4 @@
-import {createTridentPanelStagePresentation} from './trident-panel-presentation.mjs?v=74124a5085d2547341da';
+import {createTridentPanelStagePresentation} from './trident-panel-presentation.mjs?v=2943a685885677085616';
 import {assemblySourceMaterial} from './assembly-stage-emphasis.mjs?v=31de7db3c02f47abdc16';
 const sha=b=>crypto.subtle.digest('SHA-256',b).then(a=>[...new Uint8Array(a)].map(v=>v.toString(16).padStart(2,'0')).join(''));
 const digest=v=>sha(new TextEncoder().encode(JSON.stringify(v)));

@@ -7,15 +7,15 @@ import build_approved_site as approved
 class TridentReferenceDelivery(unittest.TestCase):
     def fixture(self, raw=b'{"references":[1,2,3]}\n'):
         tmp=tempfile.TemporaryDirectory();self.addCleanup(tmp.cleanup);root=Path(tmp.name);site=root/'site';site.mkdir()
-        name=next(iter(packed.TABLE_NAMES));source=next(iter(packed.SOURCE_PATHS));module=packed.MODULE_PATH
+        name=packed.TABLE_NAMES[0];source='viewer/data/'+name+'.source.json';module=packed.MODULE_PATH
         body=bytearray(gzip.compress(raw,compresslevel=9,mtime=0));body[9]=255;body=bytes(body)
         row=[len(raw),hashlib.sha256(raw).hexdigest(),len(body),hashlib.sha256(body).hexdigest()]
-        code='const packedDelivery='+json.dumps({name:row},separators=(',',':'))+';\n'+packed.PACKED_DELIVERY_RECIPE+'\n'
-        for path,data in [(source,raw),(module,code.encode())]:
+        code='const packedDelivery='+json.dumps({name:row for name in packed.TABLE_NAMES},separators=(',',':'))+';\n'+packed.PACKED_DELIVERY_RECIPE+'\n'
+        for path,data in [('viewer/data/'+name+'.source.json',raw) for name in packed.TABLE_NAMES]+[(module,code.encode())]:
             q=site/path;q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(data)
-        inventory={'files':[{'path':'site/'+source,'sha256':row[1]},{'path':'site/'+module,'sha256':hashlib.sha256(code.encode()).hexdigest()}]}
+        inventory={'files':[{'path':'site/viewer/data/'+name+'.source.json','sha256':row[1]} for name in packed.TABLE_NAMES]+[{'path':'site/'+module,'sha256':hashlib.sha256(code.encode()).hexdigest()}]}
         (root/'docs').mkdir();(root/'docs/SOURCE_INVENTORY.json').write_text(json.dumps(inventory),'utf-8')
-        contract={'source_catalog_sha256':{source:row[1],module:hashlib.sha256(code.encode()).hexdigest()}}
+        contract={'source_catalog_sha256':{'viewer/data/'+name+'.source.json':row[1] for name in packed.TABLE_NAMES}};contract['source_catalog_sha256'][module]=hashlib.sha256(code.encode()).hexdigest()
         return root,site,source,module,contract,{module:site/module},body
 
     def test_exact_generation_and_raw_source_excluded(self):

@@ -24,7 +24,8 @@ export function auditTridentRailNutGuide(guide,loaded,{createAssemblyProgress,va
   for(const key of parts)assert.equal(visible.has(key),id==='zaxis','Cumulative rail-nut visibility');
  }
  const priorChapters=['frame','drives','gantry','zaxis','xaxis','belts','bed','head','wiring','skirts','panels','filament'];
- const panelRefinement=machine==='voron_trident_250'&&guide.identity.stages_sha256==='2cc066a75495be1d960cf8e0ca3092e9c75f957a62a21fb8bc527ec01979fa54';
+ const refinedPanelStages={"voron_trident_250":"2cc066a75495be1d960cf8e0ca3092e9c75f957a62a21fb8bc527ec01979fa54","voron_trident_300":"7744a7ce6c16c807d2a84f72fa4bf1923925f0299928892b71f96d5d98074cea","voron_trident_350":"353f8ef228a28e270113cda02fa13bbe1cee7cb49575a96c7c650b3446c9da85"};
+ const panelRefinement=guide.identity.stages_sha256===refinedPanelStages[machine];
  const requiredRechecks=['zaxis',...(panelRefinement?['wiring','panels','filament']:[])];
  const current=createAssemblyProgress(guide).snapshot(),allParts=guide.stages.flatMap(s=>s.part_keys),old={...current,identity:{...current.identity,stages_sha256:previousStages[machine]},current_stage:'zaxis',checked_stages:priorChapters,checked_parts:allParts};
  const input=JSON.stringify(old),migrated=validateAssemblyProgress(guide,JSON.parse(input));

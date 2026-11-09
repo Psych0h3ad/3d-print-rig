@@ -1,0 +1,119 @@
+[
+  {
+    "previous": {
+      "machine": "voron_trident_250",
+      "view_kind": "manual-assembly-overview-v1",
+      "source_documents_sha256": "3aba22162c2bf754d16b694f9f857dfdeca0282bce8cc2e7db9ec5aee30d1c9e",
+      "source_state_sha256": "2de30c0f48208b15f424c5788314bdbd76f3af5d0a5dadb3bcd30173fc7281cd",
+      "stages_sha256": "73724b47befd2a6d8fd1282c463cafa8e9f249a9f8873045593766f2e447664d",
+      "manual_sha256": "e85cecd14df3b892d84bc51496943b3c70c7f78539a2e5149404f17401444319",
+      "manual_revision": "Trident / 2026-06-24"
+    },
+    "current": {
+      "machine": "voron_trident_250",
+      "view_kind": "manual-assembly-overview-v1",
+      "source_documents_sha256": "3aba22162c2bf754d16b694f9f857dfdeca0282bce8cc2e7db9ec5aee30d1c9e",
+      "source_state_sha256": "2de30c0f48208b15f424c5788314bdbd76f3af5d0a5dadb3bcd30173fc7281cd",
+      "stages_sha256": "2cc066a75495be1d960cf8e0ca3092e9c75f957a62a21fb8bc527ec01979fa54",
+      "manual_sha256": "e85cecd14df3b892d84bc51496943b3c70c7f78539a2e5149404f17401444319",
+      "manual_revision": "Trident / 2026-06-24"
+    },
+    "previousStages": [
+      "frame",
+      "drives",
+      "gantry",
+      "zaxis",
+      "xaxis",
+      "belts",
+      "bed",
+      "head",
+      "wiring",
+      "skirts",
+      "panels",
+      "filament"
+    ],
+    "sourceKeys": [
+      "machines/voron_trident_250/assembly_manifest.json#voron_trident_250_base_1258",
+      "machines/voron_trident_250/assembly_manifest.json#voron_trident_250_base_1259"
+    ],
+    "refinedStage": "sideone-panel-prep"
+  },
+  {
+    "previous": {
+      "machine": "voron_trident_300",
+      "view_kind": "manual-assembly-overview-v1",
+      "source_documents_sha256": "6140cc36d3c74071d57c28fb107d8a557a6db6850b3475c63af4f564c15ff1fa",
+      "source_state_sha256": "5a6e0e29c243ff8af033d2fa966481760f8a4e73a18463a03a99565b8f939f04",
+      "stages_sha256": "ece52384d63d0683be666f0260a89db72e5ce873ec00fd1839081beabaf0555e",
+      "manual_sha256": "e85cecd14df3b892d84bc51496943b3c70c7f78539a2e5149404f17401444319",
+      "manual_revision": "Trident / 2026-06-24"
+    },
+    "current": {
+      "machine": "voron_trident_300",
+      "view_kind": "manual-assembly-overview-v1",
+      "source_documents_sha256": "6140cc36d3c74071d57c28fb107d8a557a6db6850b3475c63af4f564c15ff1fa",
+      "source_state_sha256": "5a6e0e29c243ff8af033d2fa966481760f8a4e73a18463a03a99565b8f939f04",
+      "stages_sha256": "7744a7ce6c16c807d2a84f72fa4bf1923925f0299928892b71f96d5d98074cea",
+      "manual_sha256": "e85cecd14df3b892d84bc51496943b3c70c7f78539a2e5149404f17401444319",
+      "manual_revision": "Trident / 2026-06-24"
+    },
+    "previousStages": [
+      "frame",
+      "drives",
+      "gantry",
+      "zaxis",
+      "xaxis",
+      "belts",
+      "bed",
+      "head",
+      "wiring",
+      "skirts",
+      "panels",
+      "filament"
+    ],
+    "sourceKeys": [
+      "machines/voron_trident_300/assembly_manifest.json#voron_trident_300_base_1258",
+      "machines/voron_trident_300/assembly_manifest.json#voron_trident_300_base_1259"
+    ],
+    "refinedStage": "sideone-panel-prep"
+  },
+  {
+    "previous": {
+      "machine": "voron_trident_350",
+      "view_kind": "manual-assembly-overview-v1",
+      "source_documents_sha256": "3823ea38e3744dcbfebe72274a577abdfdf63e7f5fb6975fcbd085e890d7582c",
+      "source_state_sha256": "95243f3f2c9df6bef5c055969dfca7af621a940e463a65f01787afe98ff463db",
+      "stages_sha256": "f28e524014fdbfe8f3010e15024d24dcadb5ddfd1a7b3aeed15ccb608e2b5bc1",
+      "manual_sha256": "e85cecd14df3b892d84bc51496943b3c70c7f78539a2e5149404f17401444319",
+      "manual_revision": "Trident / 2026-06-24"
+    },
+    "current": {
+      "machine": "voron_trident_350",
+      "view_kind": "manual-assembly-overview-v1",
+      "source_documents_sha256": "3823ea38e3744dcbfebe72274a577abdfdf63e7f5fb6975fcbd085e890d7582c",
+      "source_state_sha256": "95243f3f2c9df6bef5c055969dfca7af621a940e463a65f01787afe98ff463db",
+      "stages_sha256": "353f8ef228a28e270113cda02fa13bbe1cee7cb49575a96c7c650b3446c9da85",
+      "manual_sha256": "e85cecd14df3b892d84bc51496943b3c70c7f78539a2e5149404f17401444319",
+      "manual_revision": "Trident / 2026-06-24"
+    },
+    "previousStages": [
+      "frame",
+      "drives",
+      "gantry",
+      "zaxis",
+      "xaxis",
+      "belts",
+      "bed",
+      "head",
+      "wiring",
+      "skirts",
+      "panels",
+      "filament"
+    ],
+    "sourceKeys": [
+      "machines/voron_trident_350/assembly_manifest.json#voron_trident_350_base_1258",
+      "machines/voron_trident_350/assembly_manifest.json#voron_trident_350_base_1259"
+    ],
+    "refinedStage": "sideone-panel-prep"
+  }
+]

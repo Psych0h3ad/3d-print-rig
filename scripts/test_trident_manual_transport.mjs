@@ -24,3 +24,27 @@ for(const when of ['before','after-fetch','during-body']){
 }
 await assert.rejects(()=>decodeExactGzip(encoded,{...ref,sha256:'0'.repeat(64)},ref.gzip));cases++;
 console.log(JSON.stringify({cases,exactDecodedSource:true,encodedBytes:encoded.length,scope:'Pinned reference transport/cancellation software regression; no model or physical-fit claim'}));
+const allFixtures=JSON.parse(fixture),received=new Map(),requests=[];
+await Promise.all([300,350].map(async size=>{
+ const machine='voron_trident_'+size,body=Buffer.from(allFixtures['trident-'+size+'-manual'],'base64');
+ const value=await loadTridentManualData({machine,fetchImpl:async url=>{requests.push(new URL(url).pathname);return response(body)}});
+ assert.equal(value.panel.machine,machine);assert.deepEqual(Object.keys(value.filament),[machine]);assert.equal(checkedTridentManualData(machine),value);received.set(machine,value);cases++;
+}));
+assert(requests.some(url=>url.endsWith('/trident-300-manual.json.gz')));assert(requests.some(url=>url.endsWith('/trident-350-manual.json.gz')));
+for(const size of [300,350]){
+ const machine='voron_trident_'+size,other=size===300?350:300,wrong=Buffer.from(allFixtures['trident-'+other+'-manual'],'base64');
+ await assert.rejects(async()=>loadTridentManualData({machine,fetchImpl:async()=>response(wrong)}));assert.equal(checkedTridentManualData(machine),received.get(machine));cases++;
+ const signal=AbortSignal.abort();await assert.rejects(async()=>loadTridentManualData({machine,signal,fetchImpl:async()=>{throw Error('Must not fetch cancelled size')}}),e=>e.name==='AbortError');assert.equal(checkedTridentManualData(machine),received.get(machine));cases++;
+}
+assert.equal(checkedTridentManualData(),actual);let fetchedUnknown=false;
+assert.throws(()=>loadTridentManualData({machine:'voron_trident_999',fetchImpl:async()=>{fetchedUnknown=true;return response()}}),/Unregistered/);assert.equal(fetchedUnknown,false);cases++;
+// Exercise the production shared-fetch path too: explicit fetchImpl controls
+// above deliberately bypass request coalescing and therefore do not prove it.
+const pendingReceiver=await import(new URL('../site/viewer/trident-manual-data.mjs?size-pending-regression',import.meta.url)),savedFetch=globalThis.fetch,pendingRequests=[];
+try{
+ globalThis.fetch=async url=>{const path=new URL(url).pathname,size=path.match(/trident-(300|350)-manual\.json\.gz$/)?.[1];assert(size);pendingRequests.push(size);await Promise.resolve();return response(Buffer.from(allFixtures['trident-'+size+'-manual'],'base64'))};
+ const [a,b,c]=await Promise.all([pendingReceiver.loadTridentManualData({machine:'voron_trident_300'}),pendingReceiver.loadTridentManualData({machine:'voron_trident_300'}),pendingReceiver.loadTridentManualData({machine:'voron_trident_350'})]);
+ assert.equal(a,b);assert.notEqual(a,c);assert.equal(a.panel.machine,'voron_trident_300');assert.equal(c.panel.machine,'voron_trident_350');assert.deepEqual(pendingRequests.sort(),['300','350']);
+ assert.equal(await pendingReceiver.loadTridentManualData({machine:'voron_trident_300'}),a);assert.equal(await pendingReceiver.loadTridentManualData({machine:'voron_trident_350'}),c);assert.equal(pendingRequests.length,2);cases++;
+}finally{globalThis.fetch=savedFetch}
+console.log(JSON.stringify({cases,machines:['voron_trident_250','voron_trident_300','voron_trident_350'],scope:'Independent per-size exact body/ready-cache ownership, concurrent300/350receipt, wrong-size body and prefetch cancellation refusals. No native fit claim.'}));
