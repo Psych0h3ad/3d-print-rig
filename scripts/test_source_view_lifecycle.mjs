@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {TestDocument} from './fixtures/layout_ui_dom.mjs';
+import {createAssemblyIndex} from '../site/viewer/assembly-workbench-model.mjs';
+import {createAssemblyWorkbench} from '../site/viewer/assembly-workbench.mjs';
+import {createSourceStageNavigation} from '../site/viewer/source-stage-navigation.mjs';
+import {createSourceViewLifetime} from '../site/viewer/source-view-lifetime.mjs';
+const hash='a'.repeat(64),manual={url:'https://example.org/official-manual.pdf',sha256:hash,revision:'software-fixture',pages:2};
+const source=createAssemblyIndex({manifest:{machine_id:'voron_trident_250',parts:[{key:'one',name:'First source item'},{key:'two',name:'Second source item'}]},machine:{parts:2,manual,model_sha256:hash,manifest_sha256:hash,stages:[{id:'frame',title:'Frame',page_start:1,page_end:1,part_keys:['one']},{id:'panel',title:'Panel',page_start:2,page_end:2,part_keys:['two']}]},receipts:{'model.glb':hash,'assembly_manifest.json':hash,'assembly_stages.json':hash}});
+const doc=new TestDocument(),container=doc.createElement('div'),legacy={};doc.body.append(container);
+for(const k of ['select','previous','next','focus','finish','manual','note'])legacy[k]=doc.createElement(k==='select'?'select':k==='manual'?'a':'button');
+for(const s of source.stages){const o=doc.createElement('option');o.value=String(s.index);legacy.select.append(o)}
+const position=doc.createElement('input'),positionValue=doc.createElement('output'),preview=doc.createElement('button'),storage=new Map(),errors=[];
+let rendered=0,compared=false,reject=false,renderFailure=false,writes=0,transitions=0,fits=0,navigation;
+const state=changed=>({index:rendered,visible_keys:source.stages.slice(0,rendered+1).flatMap(s=>s.part_keys),visible_count:rendered+1,added:1,preview:compared,presentation_frame_changed:changed});
+const index={...source,manual,setStage(i){transitions++;if(reject)throw Error('Controlled source rejection');const changed=i!==rendered||compared;rendered=i;compared=false;return state(changed)},previewComplete(){if(reject)throw Error('Controlled source preview rejection');compared=true;return state(true)},getPartNodes:()=>[]};
+const ui=createAssemblyWorkbench({container,index,legacy,storage:{getItem:k=>storage.get(k),setItem:(k,v)=>{writes++;storage.set(k,v)}},translate:x=>x,format:(id,values)=>id+' '+JSON.stringify(values),onStage:i=>navigation.show(i),download(){}});
+navigation=createSourceStageNavigation({index,assemblyMode:true,controls:{...legacy,position,positionValue,preview,body:doc.body},getWorkbench:()=>ui,manualText:()=>'',previewText:v=>String(v),fit:()=>fits++,viewNodes:()=>[],render(){if(renderFailure){renderFailure=false;throw Error('Controlled render diagnostic')}},onFailure:(e,scope)=>errors.push(scope),onSuccess(){}});
+ui.activate();assert.equal(navigation.show(0),true);const A=ui.snapshot();A.checked_stages=['frame'];A.checked_parts=['one'];ui.importProgress(A);const savedA=JSON.stringify(ui.snapshot()),count=writes;reject=true;position.value='1';
+assert.equal(navigation.show(1),false);assert.equal(rendered,0);assert.equal(position.value,'0');assert.equal(JSON.stringify(ui.snapshot()),savedA);assert.equal(writes,count);assert.equal(errors.at(-1).committed,false);
+const B=structuredClone(A);B.current_stage='panel';B.checked_parts=['two'];assert.throws(()=>ui.importProgress(B),e=>e.code==='ASSEMBLY_STAGE_REJECTED');assert.equal(JSON.stringify(ui.snapshot()),savedA);assert.equal(writes,count);assert.equal(navigation.togglePreview(),false);assert.equal(compared,false);
+reject=false;ui.importProgress(B);assert.equal(rendered,1);ui.importProgress(A);assert.equal(JSON.stringify(ui.snapshot()),savedA);
+renderFailure=true;assert.equal(navigation.show(1),true);assert.equal(rendered,1);assert.equal(ui.snapshot().current_stage,'panel');assert.equal(errors.at(-1).committed,true);const oldFits=fits;assert.equal(navigation.refresh(),true);assert.equal(fits,oldFits);
+navigation.dispose();const oldTransitions=transitions;assert.equal(navigation.show(0),false);assert.equal(transitions,oldTransitions);ui.dispose();
+const calls=[],diagnostics=[];let closed=false;
+const lifetime=createSourceViewLifetime({onClose:()=>{closed=true;calls.push('close')},abort:()=>calls.push('abort'),cleanup:[()=>{calls.push('first');throw Error('Controlled cleanup failure')},()=>calls.push('last')],reportError:e=>diagnostics.push(e)});
+assert.equal(lifetime.close({persisted:true}),false);assert.equal(closed,false);assert.equal(lifetime.close(),true);assert.deepEqual(calls,['close','abort','first','last']);assert.equal(diagnostics.length,1);assert.equal(lifetime.close(),false);
+let disposals=0;const late={dispose(){disposals++}};assert.equal(lifetime.acceptLoaded(late),false);assert.equal(lifetime.acceptLoaded(late),false);assert.equal(disposals,1);assert.equal(lifetime.acceptIndex({}),false);
+console.log(JSON.stringify({navigationAndImportCases:6,lifetimeCases:3,scope:'Real source-view/workbench/progress modules with explicit two-stage controller,DOM,render and disposable-resource fixtures;no actual model,GPU,BFCache or physical-fit claim'}));

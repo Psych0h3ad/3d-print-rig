@@ -12853,6 +12853,302 @@
     "v0.power.manual.632d5bb0c7cf90fd": {
       "source_revision": "381d95a8b2b4fca20d4e",
       "text": "원본 배치를 유지합니다. 배선과 고정의 적합성은 미확인입니다."
+    },
+    "assembly.trident.rear_preload.title": {
+      "source_revision": "1bb56ccad32ca8165d83",
+      "text": "후면 프레임용 M5 너트 준비"
+    },
+    "assembly.trident.rear_panel.title": {
+      "source_revision": "7515caca55b13ca87b5a",
+      "text": "후면 패널 장착"
+    },
+    "assembly.trident.inlet_plate_inserts.title": {
+      "source_revision": "c76874718920025f644c",
+      "text": "커버 플레이트 인서트"
+    },
+    "assembly.trident.inlet_body_inserts.title": {
+      "source_revision": "d8ae3baf9ae041e16000",
+      "text": "필라멘트 입구 인서트"
+    },
+    "assembly.trident.inlet_to_plate.title": {
+      "source_revision": "bc30833fbb515f2c0b71",
+      "text": "필라멘트 입구 고정"
+    },
+    "assembly.trident.inlet_tube_clamp.title": {
+      "source_revision": "cd20cac3eb3ecc77b5c6",
+      "text": "입구 쪽 튜브 클램프 준비"
+    },
+    "assembly.trident.inlet_to_rear_frame.title": {
+      "source_revision": "08a4ecbff7c4e6ff664f",
+      "text": "커버 플레이트 고정"
+    },
+    "assembly.trident.inlet_grill.title": {
+      "source_revision": "aaf59380b0f2f6677783",
+      "text": "배기 그릴 고정"
+    },
+    "assembly.trident.spool_holder.title": {
+      "source_revision": "78bc3a3516c73c89a1ca",
+      "text": "스풀 홀더 조립"
+    },
+    "assembly.trident.spool_support_liner.title": {
+      "source_revision": "809a679ef6fb3575d829",
+      "text": "스풀 지지부의 PTFE 라이너 장착"
+    },
+    "assembly.trident.retainer_inserts.title": {
+      "source_revision": "92561c1fb57c4feb249a",
+      "text": "필라멘트 고정부 인서트"
+    },
+    "assembly.trident.retainer_tube_clamp.title": {
+      "source_revision": "7e511f231ad2a8b1affc",
+      "text": "고정부 쪽 튜브 클램프 준비"
+    },
+    "assembly.trident.retainer_frame.title": {
+      "source_revision": "50f5bfb58d5558e62a96",
+      "text": "필라멘트 고정부 고정"
+    },
+    "assembly.trident.reverse_bowden.title": {
+      "source_revision": "f05b21d4b95b813c20d1",
+      "text": "리버스 보우덴 튜브 배치"
+    },
+    "assembly.trident.rear_preload.note": {
+      "source_revision": "bd85bbabab2d01cbd9ab",
+      "text": "후면 패널을 장착하기 전에 후면 프레임용 M5 너트 두 개를 준비합니다. 이 두 개는 309페이지의 커버 플레이트 고정에 다시 사용하며, 오른쪽 앞 스풀 홀더에는 별도의 두 개를 사용합니다."
+    },
+    "assembly.trident.rear_panel.note": {
+      "source_revision": "2938dcb6d598af4daa05",
+      "text": "원본 후면 패널과 클립의 참조 표시입니다. 원본의 M3x12 나사는 매뉴얼의 M3x8 규격과 다릅니다. 간극과 체결은 아직 확인되지 않았습니다."
+    },
+    "assembly.trident.source_operation.note": {
+      "source_revision": "d947b5f3f50a83826d78",
+      "text": "원본 CAD 위치를 보여 주는 참조 표시입니다. 링크된 매뉴얼을 따라야 하며, 삽입·조임·실물 적합성은 아직 검증되지 않았습니다."
+    },
+    "assembly.trident.spool_support_liner.note": {
+      "source_revision": "5152d888e1102e118ba7",
+      "text": "원본의 짧은 PTFE 지지 라이너는 315페이지의 연속된 리버스 보우덴 튜브와 별개의 부품입니다. 길이·고정·삽입은 원본 지침을 따라야 합니다."
+    },
+    "assembly.workbench.operation_items": {
+      "source_revision": "31ff7fe0cefccd3254de",
+      "text": "이 단계에서 사용하는 부품"
+    },
+    "assembly.workbench.operation_focus": {
+      "source_revision": "0b46ddfafd304ea66664",
+      "text": "이 단계에서 사용하는 부품에 초점 맞추기"
+    },
+    "assembly.trident.panels.stage.side_frame_foam_review": {
+      "source_revision": "113d88e8063541116424",
+      "text": "측면 프레임의 폼 테이프 확인"
+    },
+    "assembly.trident.panels.stage.sideone_panel_prep": {
+      "source_revision": "6c059ed88ceb90e0c7bc",
+      "text": "첫 번째 측면 패널: 폼 테이프와 패널"
+    },
+    "assembly.trident.panels.stage.sideone_clip_1": {
+      "source_revision": "7ffbd8a84cdbc6d963c5",
+      "text": "첫 번째 측면 패널: 6 mm 코너 클립 1"
+    },
+    "assembly.trident.panels.stage.sideone_clip_2": {
+      "source_revision": "dcd2799e06791ad5f08c",
+      "text": "첫 번째 측면 패널: 6 mm 중간 클립 1"
+    },
+    "assembly.trident.panels.stage.sideone_clip_3": {
+      "source_revision": "6af13c25946b7b20a381",
+      "text": "첫 번째 측면 패널: 6 mm 코너 클립 2"
+    },
+    "assembly.trident.panels.stage.sideone_clip_4": {
+      "source_revision": "55d81eff1cdd116163bb",
+      "text": "첫 번째 측면 패널: 6 mm 코너 클립 3"
+    },
+    "assembly.trident.panels.stage.sideone_clip_5": {
+      "source_revision": "43e6ceabc6d6b7aaae5a",
+      "text": "첫 번째 측면 패널: 6 mm 코너 클립 4"
+    },
+    "assembly.trident.panels.stage.sideone_clip_6": {
+      "source_revision": "c98f263310e21899f688",
+      "text": "첫 번째 측면 패널: 6 mm 중간 클립 2"
+    },
+    "assembly.trident.panels.stage.sideone_clip_7": {
+      "source_revision": "1cad500b5e61ceced393",
+      "text": "첫 번째 측면 패널: 6 mm 중간 클립 3"
+    },
+    "assembly.trident.panels.stage.sideone_clip_8": {
+      "source_revision": "964b6682542229395d71",
+      "text": "첫 번째 측면 패널: 6 mm 중간 클립 4"
+    },
+    "assembly.trident.panels.stage.sideone_install": {
+      "source_revision": "c5b68d0f770731dc7f75",
+      "text": "첫 번째 측면 패널 장착"
+    },
+    "assembly.trident.panels.stage.sidetwo_panel_prep": {
+      "source_revision": "05c65e79bbdf33fe44d0",
+      "text": "반대쪽 측면 패널: 폼 테이프와 패널"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_1": {
+      "source_revision": "4801bf6ab4b9b5be624c",
+      "text": "반대쪽 측면 패널: 6 mm 코너 클립 1"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_2": {
+      "source_revision": "87b1abffea415f9905e8",
+      "text": "반대쪽 측면 패널: 6 mm 중간 클립 1"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_3": {
+      "source_revision": "27da543ed8eed4b7dd4d",
+      "text": "반대쪽 측면 패널: 6 mm 코너 클립 2"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_4": {
+      "source_revision": "92c077b71535511d1c78",
+      "text": "반대쪽 측면 패널: 6 mm 코너 클립 3"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_5": {
+      "source_revision": "85e75ba10893523275b1",
+      "text": "반대쪽 측면 패널: 6 mm 코너 클립 4"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_6": {
+      "source_revision": "ff241297891dbbafa637",
+      "text": "반대쪽 측면 패널: 6 mm 중간 클립 2"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_7": {
+      "source_revision": "ec750c7a1eec88d555df",
+      "text": "반대쪽 측면 패널: 6 mm 중간 클립 3"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_8": {
+      "source_revision": "2e3aac9168d488f050e1",
+      "text": "반대쪽 측면 패널: 6 mm 중간 클립 4"
+    },
+    "assembly.trident.panels.stage.sidetwo_install": {
+      "source_revision": "2c165f4df3afb22c9fbb",
+      "text": "반대쪽 측면 패널 장착"
+    },
+    "assembly.trident.panels.stage.top_panel_prep": {
+      "source_revision": "8e1a13a9e8ff66301a2c",
+      "text": "상단 패널: 폼 테이프와 패널"
+    },
+    "assembly.trident.panels.stage.top_clip_1": {
+      "source_revision": "520d97c5ce69790f26c6",
+      "text": "상단 패널: 6 mm 코너 클립 9"
+    },
+    "assembly.trident.panels.stage.top_clip_2": {
+      "source_revision": "87aa80ac82d1b187da1c",
+      "text": "상단 패널: 6 mm 중간 클립 9"
+    },
+    "assembly.trident.panels.stage.top_clip_3": {
+      "source_revision": "5c81d968019810e96869",
+      "text": "상단 패널: 6 mm 코너 클립 10"
+    },
+    "assembly.trident.panels.stage.top_clip_4": {
+      "source_revision": "327d6741f811a01127cb",
+      "text": "상단 패널: 6 mm 중간 클립 10"
+    },
+    "assembly.trident.panels.stage.top_clip_5": {
+      "source_revision": "cb91d65ff2701c085925",
+      "text": "상단 패널: 6 mm 코너 클립 11"
+    },
+    "assembly.trident.panels.stage.top_clip_6": {
+      "source_revision": "cc74728b069a176f048a",
+      "text": "상단 패널: 6 mm 중간 클립 11"
+    },
+    "assembly.trident.panels.stage.top_clip_7": {
+      "source_revision": "ef8211d20cd55b14aa8d",
+      "text": "상단 패널: 6 mm 중간 클립 12"
+    },
+    "assembly.trident.panels.stage.top_clip_8": {
+      "source_revision": "361400e4470dffcc5159",
+      "text": "상단 패널: 6 mm 코너 클립 12"
+    },
+    "assembly.trident.panels.stage.top_install": {
+      "source_revision": "c7a0c6db11cdf668272a",
+      "text": "상단 패널 장착"
+    },
+    "assembly.trident.panels.stage.catchtop_prep": {
+      "source_revision": "effeac09e8e4fa566953",
+      "text": "상단 도어 캐치 준비"
+    },
+    "assembly.trident.panels.stage.catchbottom_prep": {
+      "source_revision": "2c9963f80379c294420b",
+      "text": "하단 도어 캐치 준비"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_1": {
+      "source_revision": "f8e2d7c903e591e6bacb",
+      "text": "오른쪽 도어 손잡이 자석 1 준비"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_2": {
+      "source_revision": "330c7fe0cd5b3a63b063",
+      "text": "오른쪽 도어 손잡이 자석 2 준비"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_3": {
+      "source_revision": "88c8c6b4f4a7fbe4f294",
+      "text": "왼쪽 도어 손잡이 자석 1 준비"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_4": {
+      "source_revision": "90cb2b372364b5481365",
+      "text": "왼쪽 도어 손잡이 자석 2 준비"
+    },
+    "assembly.trident.panels.stage.door_catches_install": {
+      "source_revision": "ff84c969693a08ba43c7",
+      "text": "상단 및 하단 도어 캐치 장착"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_1": {
+      "source_revision": "b1c4ce3a6c7b53e387d7",
+      "text": "오른쪽 도어 힌지 1 준비"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_2": {
+      "source_revision": "68b4c9eb6a2db0424c96",
+      "text": "오른쪽 도어 힌지 2 준비"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_3": {
+      "source_revision": "ab64ad9c733d4b4dc1fb",
+      "text": "오른쪽 도어 힌지 3 준비"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_1": {
+      "source_revision": "5067d260fdb7de0a06bf",
+      "text": "왼쪽 도어 힌지 1 준비"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_2": {
+      "source_revision": "49887956a581511b3bfb",
+      "text": "왼쪽 도어 힌지 2 준비"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_3": {
+      "source_revision": "8a3694218284275f1b8b",
+      "text": "왼쪽 도어 힌지 3 준비"
+    },
+    "assembly.trident.panels.stage.door_right_vhb": {
+      "source_revision": "777046a1c56924aec4b2",
+      "text": "오른쪽 도어 패널에 VHB 준비"
+    },
+    "assembly.trident.panels.stage.door_left_vhb": {
+      "source_revision": "d7e6c2a372199d7394a2",
+      "text": "왼쪽 도어 패널에 VHB 준비"
+    },
+    "assembly.trident.panels.stage.door_leaves_install": {
+      "source_revision": "fb7d963b8eaf70ecb96f",
+      "text": "준비한 양쪽 도어 패널 장착"
+    },
+    "assembly.trident.panels.note.5b01551fc22c8f73": {
+      "source_revision": "c9c966c8d2b4e3fd4f66",
+      "text": "접착하기 전에 매뉴얼 그림에 따라 도어와 프레임의 자석이 서로 끌어당기는지 확인하세요. CAD 모델에서는 자극, 접착에 의한 고정 및 실제 조립 적합성을 검증하지 않았습니다."
+    },
+    "assembly.trident.panels.note.dfaec87bc3363da8": {
+      "source_revision": "5890fdc5a3c8c3a4215b",
+      "text": "원본 모델의 준비된 부품 그룹은 장착 단계까지 분리해서 표시합니다. 링크된 매뉴얼을 따르세요. 삽입, 체결 및 실제 조립 적합성은 검증하지 않았습니다."
+    },
+    "assembly.trident.panels.note.20560a1cde89ea23": {
+      "source_revision": "5f8c9697259a2463331b",
+      "text": "원본 매뉴얼에는 측면 프레임용 선택 사양 폼 테이프 두 개가 표시되어 있습니다. 선택한 R2 갠트리 모델에서는 해당 부품을 확인할 수 없습니다. 295페이지를 따르세요. 패널용 폼 링은 별도의 원본 부품입니다."
+    },
+    "assembly.trident.panels.note.3ea87f596a268b3a": {
+      "source_revision": "9859a6ce5707c36737df",
+      "text": "305페이지 그림에 따라 도어 쪽 힌지와 손잡이 접착면에 VHB를 사용하세요. VHB, 폼 테이프 및 자석 접착은 서로 다른 작업입니다. 접착에 의한 고정 및 실제 조립 적합성은 검증하지 않았습니다."
+    },
+    "assembly.view.stage_failed": {
+      "source_revision": "5e68b74cc45cbfb10718",
+      "text": "조립 보기를 변경하지 못했습니다. 이 단계는 기록되지 않았습니다."
+    },
+    "assembly.view.refresh_failed": {
+      "source_revision": "55a976c249e6839468cc",
+      "text": "단계는 변경되었지만 화면을 갱신하지 못했습니다. 페이지를 새로고침하세요."
+    },
+    "assembly.workbench.stage_failed": {
+      "source_revision": "4f27b10c0436f7bc00b6",
+      "text": "요청한 단계를 표시하지 못해 진행 상황 파일을 불러오지 않았습니다."
     }
   }
 }

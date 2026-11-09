@@ -1,4 +1,4 @@
-import {assemblyProgressNeedsMigration,assemblyProgressStageCorrection} from './assembly-progress-migrations.mjs?v=1592734d20464c9cae4b';
+import {assemblyProgressNeedsMigration,assemblyProgressStageCorrection} from './assembly-progress-migrations.mjs?v=7087102735cc55ebd5a7';
 const record=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
 const text=v=>typeof v==='string'&&v.trim().length>0;
 const hash=v=>typeof v==='string'&&/^[a-f0-9]{64}$/i.test(v);
@@ -85,18 +85,21 @@ export function validateAssemblyProgress(index,value){
  const expected=index.identity;
  if(Object.keys(value.identity).sort().join('|')!==Object.keys(expected).sort().join('|')||Object.keys(expected).some(k=>value.identity[k]!==expected[k])&&!assemblyProgressNeedsMigration(index,value.identity))fail('Progress belongs to another model or manual revision');
  const correction=assemblyProgressStageCorrection(index,value.identity),corrected=id=>correction?.current[id]||id;
+ if(correction?.previous_stages&&(!correction.previous_stages.includes(value.current_stage)||value.checked_stages.some(id=>!correction.previous_stages.includes(id))))fail('Progress references a stage absent from its source revision');
  index.stage(corrected(value.current_stage));const checked=new Set();
  for(let i=0;i<value.checked_stages.length;i++){
   if(!Object.hasOwn(value.checked_stages,i)||!text(value.checked_stages[i])||checked.has(value.checked_stages[i]))fail('Invalid checked stage');
   index.stage(corrected(value.checked_stages[i]));checked.add(value.checked_stages[i]);
  }
- const parts=new Set(),order=index.stages.flatMap(s=>s.part_keys),input=legacy?[]:value.checked_parts;
+ const parts=new Set(),seenParts=new Set(),retired=new Set(correction?.retired_parts??[]),introduced=new Set(correction?.introduced_parts??[]),order=index.stages.flatMap(s=>s.part_keys),input=legacy?[]:value.checked_parts;
  for(let i=0;i<input.length;i++){
-  if(!Object.hasOwn(input,i)||!text(input[i])||parts.has(input[i]))fail('Invalid checked part');
+  if(!Object.hasOwn(input,i)||!text(input[i])||seenParts.has(input[i]))fail('Invalid checked part');
+  seenParts.add(input[i]);if(introduced.has(input[i]))fail('Progress references a part introduced by the source update');if(retired.has(input[i]))continue;
   index.part(input[i]);parts.add(input[i]);
  }
  const current_stage=corrected(value.current_stage);
  index.stage(current_stage);if(correction)for(const id of correction.recheck)checked.delete(id);
+ if(correction?.recheck_parts)for(const key of correction.recheck_parts){index.part(key);parts.delete(key)}
  return {schema:assemblyProgressSchema,identity:plain(expected),current_stage,checked_stages:index.stages.filter(s=>checked.has(s.id)).map(s=>s.id),checked_parts:order.filter(k=>parts.has(k))};
 }
 

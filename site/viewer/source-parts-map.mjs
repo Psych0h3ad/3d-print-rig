@@ -1,3 +1,4 @@
+import {createTridentPanelStagePresentation} from './trident-panel-presentation.mjs?v=74124a5085d2547341da';
 import {assemblySourceMaterial} from './assembly-stage-emphasis.mjs?v=31de7db3c02f47abdc16';
 const sha=b=>crypto.subtle.digest('SHA-256',b).then(a=>[...new Uint8Array(a)].map(v=>v.toString(16).padStart(2,'0')).join(''));
 const digest=v=>sha(new TextEncoder().encode(JSON.stringify(v)));
@@ -15,9 +16,10 @@ const visible=n=>{for(let p=n;p;p=p.parent)if(!p.visible)return false;return tru
 const under=(n,p)=>{for(let q=n;q;q=q.parent)if(q===p)return true;return false};
 const matrix=n=>{const a=n.matrixWorld?.elements;if(!a||a.length!==16||!Array.from(a).every(Number.isFinite))fail('Nonfinite source matrix');return Array.from(a)};
 
-// A source occurrence may own several render primitives. No mesh is moved,
-// recolored or hidden by this index. Hierarchy is not an insertion sequence.
-export async function createSourcePartsMap(loaded,scene,{allowVisibilityStages=false}={}){
+// A source occurrence may own several render primitives. Native indexing stays
+// unchanged; exact source profiles may opt into owned preparation diagrams.
+// Hierarchy and display poses do not certify insertion or physical fitting.
+export async function createSourcePartsMap(loaded,scene,{allowVisibilityStages=false,presentationProfile=null}={}){
  const id=loaded?.source?.machineId;if(!sourceMapMachines.includes(id))fail('Unregistered machine');
  const root=loaded.root;if(root?.parent!==scene||!scene?.isScene||loaded.inspection?.active()!==true)fail('Inactive or detached assembly');
  const family=id.startsWith('voron_v24_')?'v24':'trident',manual=Object.freeze({...manuals[family]}),components=loaded.inspection.components;
@@ -47,6 +49,8 @@ export async function createSourcePartsMap(loaded,scene,{allowVisibilityStages=f
  }
  root.traverse(n=>{if(n.isMesh&&!claimed.has(n))fail('Unregistered rendered companion')});
  const nativeVisibility=new Map(snapshots.map(s=>[s,s.visible]));
+ const presentation=presentationProfile===null?null:createTridentPanelStagePresentation(presentationProfile,loaded,scene,snapshots);
+ const updateRoot=root.updateMatrixWorld;let transactionFailed=false;
  const metadataSnapshot=JSON.stringify(components.map(c=>c.meta)),state=snapshots.map(s=>[s.key,s.n.name,s.matrix,s.visible,s.p.count,s.index?.count??0]);
  const sourceDocuments=await digest(assets),sourceState=await digest([metadataSnapshot,state,loaded.source.configuration??loaded.source.defaultConfiguration??null]);
  const stages=Array.from(groups,([group,keys],i)=>Object.freeze({id:group,index:i,title:group.replace(/^V24_/,'').replaceAll('_',' ').replace(/^head$/,'Head').replace(/^gantry$/,'Gantry'),note:'The complete default assembly stays visible. Classifications are not an insertion order. Manual links are related references; CNC and companion details require their original instructions.',page_start:chapters[family][group][0],page_end:chapters[family][group][1],part_keys:Object.freeze(keys)}));
@@ -54,18 +58,44 @@ export async function createSourcePartsMap(loaded,scene,{allowVisibilityStages=f
  const stage=v=>{const s=typeof v==='string'?stages.find(s=>s.id===v):stages[v];if(!s)fail('Unknown classification');return s};
  const owners=new Map(stages.flatMap(s=>s.part_keys.map(k=>[k,s]))),search=stages.map(s=>normalize([s.title,...s.part_keys.flatMap(k=>{const p=rows.get(k);return[p.key,p.name,...p.path]})].join(' ')));
  function verifyLive(){
-  if(root.parent!==scene||loaded.inspection.active()!==true||JSON.stringify(components.map(c=>c.meta))!==metadataSnapshot)fail('Source assembly retired or metadata changed');root.updateMatrixWorld(true);
-  for(const s of snapshots){if(!under(s.n,root)||s.n.parent!==s.parent||s.n.geometry!==s.g||s.g.drawRange.start!==s.drawStart||s.g.drawRange.count!==s.drawCount||s.p.version!==s.positionVersion||s.g.getAttribute('position')!==s.p||s.g.index!==s.index||assemblySourceMaterial(s.n)!==s.material||s.n.visible!==s.visible||matrix(s.n).some((n,i)=>n!==s.matrix[i]))fail('Source assembly changed')}
+   if(transactionFailed)fail('Source stage transaction is retired');if(presentation&&root.updateMatrixWorld!==updateRoot)fail('Source update method changed');
+   if(root.parent!==scene||loaded.inspection.active()!==true||JSON.stringify(components.map(c=>c.meta))!==metadataSnapshot)fail('Source assembly retired or metadata changed');root.updateMatrixWorld(true);
+  for(const s of snapshots){if(!under(s.n,root)||s.n.parent!==s.parent||s.n.geometry!==s.g||s.g.drawRange.start!==s.drawStart||s.g.drawRange.count!==s.drawCount||s.p.version!==s.positionVersion||s.g.getAttribute('position')!==s.p||s.g.index!==s.index||assemblySourceMaterial(s.n)!==s.material||s.n.visible!==s.visible||matrix(s.n).some((n,i)=>n!==(presentation?presentation.expectedMatrix(s):s.matrix)[i]))fail('Source assembly changed')}
  }
- function setVisibilityKeys(keys){
-  if(!allowVisibilityStages)fail('Visibility stages require explicit opt-in');verifyLive();
+ function planVisibility(keys){
+  if(!allowVisibilityStages)fail('Visibility stages require explicit opt-in');
   if(keys!==null&&(!dense(keys)||new Set(keys).size!==keys.length||keys.some(k=>!rows.has(k))))fail('Invalid visibility stage');
   const shown=keys===null?null:new Set(keys);
   for(const s of snapshots){const d=Object.getOwnPropertyDescriptor(s.n,'visible');if(!d||!('value'in d)||!d.writable)fail('Unwritable source visibility')}
-  for(const s of snapshots){s.n.visible=nativeVisibility.get(s)&&(shown===null||shown.has(s.key));s.visible=s.n.visible}
-  return snapshots.filter(s=>visible(s.n)).map(s=>({key:s.key,node:s.n}));
+  return snapshots.map(s=>[s,nativeVisibility.get(s)&&(shown===null||shown.has(s.key))]);
  }
- return Object.freeze({identity,manual,setVisibilityKeys,stages:Object.freeze(stages),partCount:rows.size,renderCount:snapshots.length,stage,
+ function writeVisibility(plan){for(const[s,value]of plan){s.n.visible=value;s.visible=value}}
+ const visibleEntries=()=>snapshots.filter(s=>visible(s.n)).map(s=>({key:s.key,node:s.n}));
+ function setVisibilityKeys(keys){
+  if(!allowVisibilityStages)fail('Visibility stages require explicit opt-in');verifyLive();writeVisibility(planVisibility(keys));return visibleEntries();
+ }
+ function transitionPresentation(id,keys,changeVisibility){
+  verifyLive();const visibility=changeVisibility?planVisibility(keys):null,previous=snapshots.map(s=>[s,s.n.visible,s.visible]),pose=presentation.prepareStage(id);
+  try{
+   const changed=pose.commit();if(visibility)writeVisibility(visibility);verifyLive();
+   return {presentation_frame_changed:changed,visible_entries:visibleEntries()};
+  }catch(error){
+   const failures=[];
+   try{for(const[s,nodeValue,expectedValue]of previous){if(s.n.visible!==nodeValue)s.n.visible=nodeValue;s.visible=expectedValue}}catch(e){failures.push(e)}
+   try{pose.rollback()}catch(e){failures.push(e)}
+   try{verifyLive()}catch(e){failures.push(e)}
+   if(failures.length){transactionFailed=true;throw new AggregateError([error,...failures],'Source stage rollback failed; reload the source assembly')}
+   throw error;
+  }
+ }
+ function setPresentationStage(id){verifyLive();return presentation?transitionPresentation(id,null,false).presentation_frame_changed:false}
+ function setAssemblyStage(id,keys){
+  if(!presentation)return {presentation_frame_changed:false,visible_entries:setVisibilityKeys(keys)};
+  return transitionPresentation(id,keys,true);
+ }
+
+ verifyLive();
+ return Object.freeze({identity,manual,setVisibilityKeys,setPresentationStage,setAssemblyStage,stages:Object.freeze(stages),partCount:rows.size,renderCount:snapshots.length,stage,
   part(k){const p=rows.get(k);if(!p)fail('Unknown source part');return p},owner(k){const s=owners.get(k);if(!s)fail('Unknown source part');return s},parts(v){return Object.freeze(stage(v).part_keys.map(k=>rows.get(k)))},
   matchParts(value,query,translate=v=>v){const s=stage(value),tokens=normalize(query).split(/\s+/).filter(Boolean);return s.part_keys.map(k=>rows.get(k)).filter(p=>tokens.every(t=>normalize([translate(s.title),p.key,p.name,p.group,...p.path].join(' ')).includes(t)))},
   search(query,translate=v=>v){const tokens=normalize(query).split(/\s+/).filter(Boolean);return stages.filter(s=>tokens.every(t=>(search[s.index]+' '+normalize(translate(s.title))).includes(t)))},

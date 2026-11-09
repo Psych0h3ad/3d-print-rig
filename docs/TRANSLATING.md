@@ -66,3 +66,11 @@ the same stable source IDs. `build_locales.mjs` generates its compact six-langua
 subset; do not maintain a separate copy of those translations in the page.
 Shared labels reuse existing IDs, while wallpaper-specific copy has `fun.*`
 IDs. Source revisions and placeholder checks apply to both.
+
+The generated catalog packs repeated field names into shared ordered layouts.
+Its synchronous `definitions` export reconstructs the same IDs, fields, values,
+aliases, revisions and property order used by the translator. Edit the source
+catalog and dictionaries, then regenerate; do not edit packed rows directly.
+`test_catalog_packing.mjs` compares the complete export and language formatting,
+including optional fields and aliases. This representation adds no runtime
+download, decoder or asynchronous initialization.

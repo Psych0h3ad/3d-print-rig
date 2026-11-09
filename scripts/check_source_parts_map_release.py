@@ -23,8 +23,12 @@ def main():
    if any(sheets.get(k)!=v for k,v in [('sourceLayers',6),('printedOwners',6),('paletteVisits',5),('attachedMaterialChecks',30),('actualNegativeAssertions',18)]) or sheets.get('originalMaterialsGeometryAndPlacementPreserved')is not True:
     raise ValueError('Missing actual bottom VHB purchased-material regression: '+mid)
    nuts=(r.get('assembly')or{}).get('railNutGuide')or{}
-   if len(nuts.get('sourceNutKeys',[]))!=24 or not all(nuts.get(k)for k in ['sourceIdentityBound','frameAndDrivesExcluded','zaxisIncluded','onlyRevisedStageRechecked','v1ChecksNotInvented','currentReconfirmationPreserved']) or nuts.get('unrelatedIdentityNegatives')!=4:
+   if len(nuts.get('sourceNutKeys',[]))!=24 or not all(nuts.get(k)for k in ['sourceIdentityBound','frameAndDrivesExcluded','zaxisIncluded','priorChapterProgressUsed','v1ChecksNotInvented','currentReconfirmationPreserved']) or nuts.get('unrelatedIdentityNegatives')!=4:
     raise ValueError('Missing source-backed rail-nut stage/progress regression: '+mid)
+   panel_refinement=mid=='voron_trident_250'and r['assembly']['identity']['stages_sha256']=='2cc066a75495be1d960cf8e0ca3092e9c75f957a62a21fb8bc527ec01979fa54'
+   expected=['zaxis','wiring','panels','filament']if panel_refinement else ['zaxis']
+   if nuts.get('requiredStageRechecks')!=expected or nuts.get('onlyRevisedStageRechecked')is not(not panel_refinement):
+    raise ValueError('Changed exact prior-stage reconfirmation: '+mid)
   rows.append({k:r[k]for k in ['machine','sourceItems','meshes','classifications','identity','sourceUnchanged','retiredRejected','assembly','assemblyUnsupportedExplicitly','partReview']})
  (a.output/'summary.json').write_text(json.dumps({'passed':True,'machines':rows,'scope':'Nine default source maps; live ownership, progress, unchanged source buffers/matrices/materials. No insertion/mating/continuous-motion certification.'},separators=(',',':'))+'\n',encoding='utf-8')
  print(f'Source part maps: {len(rows)} actual assemblies passed in fresh serial processes.')

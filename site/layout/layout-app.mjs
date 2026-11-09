@@ -333,7 +333,7 @@ async function render(){
   document.body.dataset.layoutRendering='loading';message(()=>t(floorplan?'layout.render.planLoading':'layout.render.loading'));
   try{
     // Genuine CAD and its loaders are intentionally absent from the placement path.
-    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=bee68c07aa0742ec3044')).loadLayoutMachine;
+    const loadLayoutMachine=floorplan?undefined:(await import('./layout-machine-loader.mjs?v=b5550a19fd7fd71134cf')).loadLayoutMachine;
     let lastPercent=0;
     const result=await view.exportImage({loadMachine:loadLayoutMachine,width:1920,signal:operation.signal,onProgress:p=>{
       if(floorplan){message(()=>t('layout.render.planLoading'),false,{renderProgress:null});return;}

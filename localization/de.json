@@ -12853,6 +12853,302 @@
     "v0.power.manual.632d5bb0c7cf90fd": {
       "source_revision": "381d95a8b2b4fca20d4e",
       "text": "Die Quellpositionen bleiben erhalten; Verdrahtung und Befestigung sind nicht bestätigt."
+    },
+    "assembly.trident.rear_preload.title": {
+      "source_revision": "1bb56ccad32ca8165d83",
+      "text": "M5-Muttern für den hinteren Rahmen vorbereiten"
+    },
+    "assembly.trident.rear_panel.title": {
+      "source_revision": "7515caca55b13ca87b5a",
+      "text": "Rückwand einsetzen"
+    },
+    "assembly.trident.inlet_plate_inserts.title": {
+      "source_revision": "c76874718920025f644c",
+      "text": "Gewindeeinsätze der Abdeckplatte"
+    },
+    "assembly.trident.inlet_body_inserts.title": {
+      "source_revision": "d8ae3baf9ae041e16000",
+      "text": "Gewindeeinsätze der Filamentzuführung"
+    },
+    "assembly.trident.inlet_to_plate.title": {
+      "source_revision": "bc30833fbb515f2c0b71",
+      "text": "Filamentzuführung befestigen"
+    },
+    "assembly.trident.inlet_tube_clamp.title": {
+      "source_revision": "cd20cac3eb3ecc77b5c6",
+      "text": "Schlauchklemme an der Zuführung vorbereiten"
+    },
+    "assembly.trident.inlet_to_rear_frame.title": {
+      "source_revision": "08a4ecbff7c4e6ff664f",
+      "text": "Abdeckplatte montieren"
+    },
+    "assembly.trident.inlet_grill.title": {
+      "source_revision": "aaf59380b0f2f6677783",
+      "text": "Abluftgitter befestigen"
+    },
+    "assembly.trident.spool_holder.title": {
+      "source_revision": "78bc3a3516c73c89a1ca",
+      "text": "Spulenhalter zusammenbauen"
+    },
+    "assembly.trident.spool_support_liner.title": {
+      "source_revision": "809a679ef6fb3575d829",
+      "text": "PTFE-Einsatz der Spulenstütze einsetzen"
+    },
+    "assembly.trident.retainer_inserts.title": {
+      "source_revision": "92561c1fb57c4feb249a",
+      "text": "Gewindeeinsätze des Filamenthalters"
+    },
+    "assembly.trident.retainer_tube_clamp.title": {
+      "source_revision": "7e511f231ad2a8b1affc",
+      "text": "Schlauchklemme am Filamenthalter vorbereiten"
+    },
+    "assembly.trident.retainer_frame.title": {
+      "source_revision": "50f5bfb58d5558e62a96",
+      "text": "Filamenthalter befestigen"
+    },
+    "assembly.trident.reverse_bowden.title": {
+      "source_revision": "f05b21d4b95b813c20d1",
+      "text": "Reverse-Bowden-Schlauch verlegen"
+    },
+    "assembly.trident.rear_preload.note": {
+      "source_revision": "bd85bbabab2d01cbd9ab",
+      "text": "Diese beiden M5-Muttern des hinteren Rahmens vor dem Einsetzen der Rückwand vorbereiten. Sie werden auf Seite 309 für die Abdeckplatte wiederverwendet; der Spulenhalter vorne rechts verwendet ein anderes Paar."
+    },
+    "assembly.trident.rear_panel.note": {
+      "source_revision": "2938dcb6d598af4daa05",
+      "text": "Referenzdarstellung der Rückwand und Clips aus dem Originalmodell. Die M3x12-Schrauben im Modell weichen von der M3x8-Angabe im Handbuch ab; Freigängigkeit und Befestigung sind weiterhin ungeklärt."
+    },
+    "assembly.trident.source_operation.note": {
+      "source_revision": "d947b5f3f50a83826d78",
+      "text": "Referenzdarstellung an den ursprünglichen CAD-Positionen. Das verlinkte Handbuch beachten; Einsetzen, Anziehen und tatsächliche Passung sind nicht geprüft."
+    },
+    "assembly.trident.spool_support_liner.note": {
+      "source_revision": "5152d888e1102e118ba7",
+      "text": "Der kurze PTFE-Stützeinsatz aus dem Originalmodell ist ein anderes Bauteil als der durchgehende Reverse-Bowden-Schlauch auf Seite 315. Für Länge, Halt und Einsetzen gelten weiterhin die Originalanweisungen."
+    },
+    "assembly.workbench.operation_items": {
+      "source_revision": "31ff7fe0cefccd3254de",
+      "text": "In diesem Schritt verwendete Teile"
+    },
+    "assembly.workbench.operation_focus": {
+      "source_revision": "0b46ddfafd304ea66664",
+      "text": "Auf die Teile dieses Schritts fokussieren"
+    },
+    "assembly.trident.panels.stage.side_frame_foam_review": {
+      "source_revision": "113d88e8063541116424",
+      "text": "Schaumstoffstreifen am seitlichen Rahmen prüfen"
+    },
+    "assembly.trident.panels.stage.sideone_panel_prep": {
+      "source_revision": "6c059ed88ceb90e0c7bc",
+      "text": "Erste Seitenwand: Schaumstoffband und Platte"
+    },
+    "assembly.trident.panels.stage.sideone_clip_1": {
+      "source_revision": "7ffbd8a84cdbc6d963c5",
+      "text": "Erste Seitenwand: Eckclip für 6 mm 1"
+    },
+    "assembly.trident.panels.stage.sideone_clip_2": {
+      "source_revision": "dcd2799e06791ad5f08c",
+      "text": "Erste Seitenwand: Mittelclip für 6 mm 1"
+    },
+    "assembly.trident.panels.stage.sideone_clip_3": {
+      "source_revision": "6af13c25946b7b20a381",
+      "text": "Erste Seitenwand: Eckclip für 6 mm 2"
+    },
+    "assembly.trident.panels.stage.sideone_clip_4": {
+      "source_revision": "55d81eff1cdd116163bb",
+      "text": "Erste Seitenwand: Eckclip für 6 mm 3"
+    },
+    "assembly.trident.panels.stage.sideone_clip_5": {
+      "source_revision": "43e6ceabc6d6b7aaae5a",
+      "text": "Erste Seitenwand: Eckclip für 6 mm 4"
+    },
+    "assembly.trident.panels.stage.sideone_clip_6": {
+      "source_revision": "c98f263310e21899f688",
+      "text": "Erste Seitenwand: Mittelclip für 6 mm 2"
+    },
+    "assembly.trident.panels.stage.sideone_clip_7": {
+      "source_revision": "1cad500b5e61ceced393",
+      "text": "Erste Seitenwand: Mittelclip für 6 mm 3"
+    },
+    "assembly.trident.panels.stage.sideone_clip_8": {
+      "source_revision": "964b6682542229395d71",
+      "text": "Erste Seitenwand: Mittelclip für 6 mm 4"
+    },
+    "assembly.trident.panels.stage.sideone_install": {
+      "source_revision": "c5b68d0f770731dc7f75",
+      "text": "Erste Seitenwand montieren"
+    },
+    "assembly.trident.panels.stage.sidetwo_panel_prep": {
+      "source_revision": "05c65e79bbdf33fe44d0",
+      "text": "Gegenüberliegende Seitenwand: Schaumstoffband und Platte"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_1": {
+      "source_revision": "4801bf6ab4b9b5be624c",
+      "text": "Gegenüberliegende Seitenwand: Eckclip für 6 mm 1"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_2": {
+      "source_revision": "87b1abffea415f9905e8",
+      "text": "Gegenüberliegende Seitenwand: Mittelclip für 6 mm 1"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_3": {
+      "source_revision": "27da543ed8eed4b7dd4d",
+      "text": "Gegenüberliegende Seitenwand: Eckclip für 6 mm 2"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_4": {
+      "source_revision": "92c077b71535511d1c78",
+      "text": "Gegenüberliegende Seitenwand: Eckclip für 6 mm 3"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_5": {
+      "source_revision": "85e75ba10893523275b1",
+      "text": "Gegenüberliegende Seitenwand: Eckclip für 6 mm 4"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_6": {
+      "source_revision": "ff241297891dbbafa637",
+      "text": "Gegenüberliegende Seitenwand: Mittelclip für 6 mm 2"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_7": {
+      "source_revision": "ec750c7a1eec88d555df",
+      "text": "Gegenüberliegende Seitenwand: Mittelclip für 6 mm 3"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_8": {
+      "source_revision": "2e3aac9168d488f050e1",
+      "text": "Gegenüberliegende Seitenwand: Mittelclip für 6 mm 4"
+    },
+    "assembly.trident.panels.stage.sidetwo_install": {
+      "source_revision": "2c165f4df3afb22c9fbb",
+      "text": "Gegenüberliegende Seitenwand montieren"
+    },
+    "assembly.trident.panels.stage.top_panel_prep": {
+      "source_revision": "8e1a13a9e8ff66301a2c",
+      "text": "Deckplatte: Schaumstoffband und Platte"
+    },
+    "assembly.trident.panels.stage.top_clip_1": {
+      "source_revision": "520d97c5ce69790f26c6",
+      "text": "Deckplatte: Eckclip für 6 mm 9"
+    },
+    "assembly.trident.panels.stage.top_clip_2": {
+      "source_revision": "87aa80ac82d1b187da1c",
+      "text": "Deckplatte: Mittelclip für 6 mm 9"
+    },
+    "assembly.trident.panels.stage.top_clip_3": {
+      "source_revision": "5c81d968019810e96869",
+      "text": "Deckplatte: Eckclip für 6 mm 10"
+    },
+    "assembly.trident.panels.stage.top_clip_4": {
+      "source_revision": "327d6741f811a01127cb",
+      "text": "Deckplatte: Mittelclip für 6 mm 10"
+    },
+    "assembly.trident.panels.stage.top_clip_5": {
+      "source_revision": "cb91d65ff2701c085925",
+      "text": "Deckplatte: Eckclip für 6 mm 11"
+    },
+    "assembly.trident.panels.stage.top_clip_6": {
+      "source_revision": "cc74728b069a176f048a",
+      "text": "Deckplatte: Mittelclip für 6 mm 11"
+    },
+    "assembly.trident.panels.stage.top_clip_7": {
+      "source_revision": "ef8211d20cd55b14aa8d",
+      "text": "Deckplatte: Mittelclip für 6 mm 12"
+    },
+    "assembly.trident.panels.stage.top_clip_8": {
+      "source_revision": "361400e4470dffcc5159",
+      "text": "Deckplatte: Eckclip für 6 mm 12"
+    },
+    "assembly.trident.panels.stage.top_install": {
+      "source_revision": "c7a0c6db11cdf668272a",
+      "text": "Deckplatte montieren"
+    },
+    "assembly.trident.panels.stage.catchtop_prep": {
+      "source_revision": "effeac09e8e4fa566953",
+      "text": "Oberen Türhalter vorbereiten"
+    },
+    "assembly.trident.panels.stage.catchbottom_prep": {
+      "source_revision": "2c9963f80379c294420b",
+      "text": "Unteren Türhalter vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_1": {
+      "source_revision": "f8e2d7c903e591e6bacb",
+      "text": "Magnete für rechten Türgriff 1 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_2": {
+      "source_revision": "330c7fe0cd5b3a63b063",
+      "text": "Magnete für rechten Türgriff 2 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_3": {
+      "source_revision": "88c8c6b4f4a7fbe4f294",
+      "text": "Magnete für linken Türgriff 1 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_4": {
+      "source_revision": "90cb2b372364b5481365",
+      "text": "Magnete für linken Türgriff 2 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_catches_install": {
+      "source_revision": "ff84c969693a08ba43c7",
+      "text": "Oberen und unteren Türhalter montieren"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_1": {
+      "source_revision": "b1c4ce3a6c7b53e387d7",
+      "text": "Rechtes Türscharnier 1 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_2": {
+      "source_revision": "68b4c9eb6a2db0424c96",
+      "text": "Rechtes Türscharnier 2 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_3": {
+      "source_revision": "ab64ad9c733d4b4dc1fb",
+      "text": "Rechtes Türscharnier 3 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_1": {
+      "source_revision": "5067d260fdb7de0a06bf",
+      "text": "Linkes Türscharnier 1 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_2": {
+      "source_revision": "49887956a581511b3bfb",
+      "text": "Linkes Türscharnier 2 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_3": {
+      "source_revision": "8a3694218284275f1b8b",
+      "text": "Linkes Türscharnier 3 vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_right_vhb": {
+      "source_revision": "777046a1c56924aec4b2",
+      "text": "Rechten Türflügel mit VHB vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_left_vhb": {
+      "source_revision": "d7e6c2a372199d7394a2",
+      "text": "Linken Türflügel mit VHB vorbereiten"
+    },
+    "assembly.trident.panels.stage.door_leaves_install": {
+      "source_revision": "fb7d963b8eaf70ecb96f",
+      "text": "Beide vorbereiteten Türflügel montieren"
+    },
+    "assembly.trident.panels.note.5b01551fc22c8f73": {
+      "source_revision": "c9c966c8d2b4e3fd4f66",
+      "text": "Vor dem Verkleben gemäß Handbuch prüfen, ob sich die Magnete an Tür und Rahmen anziehen. Magnetpolung, Klebehalt und mechanische Passung sind durch das CAD-Modell nicht geprüft."
+    },
+    "assembly.trident.panels.note.dfaec87bc3363da8": {
+      "source_revision": "5890fdc5a3c8c3a4215b",
+      "text": "Vorbereitete Baugruppen aus dem Quellmodell werden bis zu ihrem Montageschritt getrennt angezeigt. Das verlinkte Handbuch beachten; Einführen, Anziehen und mechanische Passung sind nicht geprüft."
+    },
+    "assembly.trident.panels.note.20560a1cde89ea23": {
+      "source_revision": "5f8c9697259a2463331b",
+      "text": "Das Originalhandbuch zeigt zwei optionale Schaumstoffstreifen für den seitlichen Rahmen. Im gewählten R2-Gantry-Modell sind sie nicht identifiziert. Seite 295 beachten; die Schaumstoffringe der Platten sind separate Quellteile."
+    },
+    "assembly.trident.panels.note.3ea87f596a268b3a": {
+      "source_revision": "9859a6ce5707c36737df",
+      "text": "VHB gemäß Seite 305 auf den Klebeflächen des türseitigen Scharniers und Griffs verwenden. VHB, Schaumstoffband und Magnetkleber sind getrennte Arbeitsschritte; Klebehalt und mechanische Passung sind nicht geprüft."
+    },
+    "assembly.view.stage_failed": {
+      "source_revision": "5e68b74cc45cbfb10718",
+      "text": "Die Montageansicht konnte nicht geändert werden. Dieser Schritt wurde nicht gespeichert."
+    },
+    "assembly.view.refresh_failed": {
+      "source_revision": "55a976c249e6839468cc",
+      "text": "Der Schritt wurde gewechselt, aber die Anzeige konnte nicht aktualisiert werden. Laden Sie die Seite neu."
+    },
+    "assembly.workbench.stage_failed": {
+      "source_revision": "4f27b10c0436f7bc00b6",
+      "text": "Der angeforderte Schritt konnte nicht angezeigt werden. Die Fortschrittsdatei wurde nicht geladen."
     }
   }
 }

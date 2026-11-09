@@ -16178,6 +16178,376 @@
       "kind": "message",
       "ja": "元データの配置を保持しています。配線と固定の適合は未確認です。",
       "en": "Original source positions are retained; wiring and mounting remain unqualified."
+    },
+    "assembly.trident.rear_preload.title": {
+      "kind": "message",
+      "ja": "後部フレーム用M5ナットの準備",
+      "en": "Prepare the rear-frame M5 nuts"
+    },
+    "assembly.trident.rear_panel.title": {
+      "kind": "message",
+      "ja": "リアパネルの取付",
+      "en": "Fit the rear panel"
+    },
+    "assembly.trident.inlet_plate_inserts.title": {
+      "kind": "message",
+      "ja": "カバープレートのインサート",
+      "en": "Cover-plate inserts"
+    },
+    "assembly.trident.inlet_body_inserts.title": {
+      "kind": "message",
+      "ja": "フィラメント入口のインサート",
+      "en": "Filament-inlet inserts"
+    },
+    "assembly.trident.inlet_to_plate.title": {
+      "kind": "message",
+      "ja": "フィラメント入口の取付",
+      "en": "Attach the filament inlet"
+    },
+    "assembly.trident.inlet_tube_clamp.title": {
+      "kind": "message",
+      "ja": "入口側チューブクランプの準備",
+      "en": "Prepare the inlet tube clamp"
+    },
+    "assembly.trident.inlet_to_rear_frame.title": {
+      "kind": "message",
+      "ja": "カバープレートの固定",
+      "en": "Mount the cover plate"
+    },
+    "assembly.trident.inlet_grill.title": {
+      "kind": "message",
+      "ja": "排気グリルの取付",
+      "en": "Attach the exhaust grill"
+    },
+    "assembly.trident.spool_holder.title": {
+      "kind": "message",
+      "ja": "スプールホルダーの組立",
+      "en": "Assemble the spool holder"
+    },
+    "assembly.trident.spool_support_liner.title": {
+      "kind": "message",
+      "ja": "スプール支持部のPTFEライナーの取付",
+      "en": "Fit the spool-support PTFE liner"
+    },
+    "assembly.trident.retainer_inserts.title": {
+      "kind": "message",
+      "ja": "フィラメント保持具のインサート",
+      "en": "Filament-retainer inserts"
+    },
+    "assembly.trident.retainer_tube_clamp.title": {
+      "kind": "message",
+      "ja": "保持具側チューブクランプの準備",
+      "en": "Prepare the retainer tube clamp"
+    },
+    "assembly.trident.retainer_frame.title": {
+      "kind": "message",
+      "ja": "フィラメント保持具の取付",
+      "en": "Attach the filament retainer"
+    },
+    "assembly.trident.reverse_bowden.title": {
+      "kind": "message",
+      "ja": "リバースボーデンチューブの配管",
+      "en": "Route the reverse Bowden tube"
+    },
+    "assembly.trident.rear_preload.note": {
+      "kind": "message",
+      "ja": "リアパネルを付ける前に、後部フレーム用M5ナット2個を準備します。この2個は309ページのカバープレート固定で再使用します。右前のスプールホルダーには別の2個を使います。",
+      "en": "Prepare these two rear-frame M5 nuts before fitting the rear panel. They are reused for the cover plate on page 309; the right-front spool holder uses a different pair."
+    },
+    "assembly.trident.rear_panel.note": {
+      "kind": "message",
+      "ja": "原本のリアパネルとクリップの参照表示です。原本のM3x12ねじはマニュアル指定のM3x8と一致していません。クリアランスと締結は未解決です。",
+      "en": "Original-source rear panel and clip references. The source M3x12 screws differ from the manual M3x8 specification; clearance and fastening remain unresolved."
+    },
+    "assembly.trident.source_operation.note": {
+      "kind": "message",
+      "ja": "原本CADの位置を示す参照表示です。リンク先のマニュアルに従ってください。挿入・締付・実物の適合は未検証です。",
+      "en": "Source reference at the original CAD positions. Follow the linked manual; insertion, tightening and physical fit remain unverified."
+    },
+    "assembly.trident.spool_support_liner.note": {
+      "kind": "message",
+      "ja": "原本にある短いPTFE支持ライナーは、315ページの連続したリバースボーデンチューブとは別部品です。長さ・保持・挿入については元の説明に従ってください。",
+      "en": "The short source PTFE support liner is separate from the continuous reverse Bowden tube on page 315. Length, holding and insertion still require the source instructions."
+    },
+    "assembly.workbench.operation_items": {
+      "kind": "message",
+      "ja": "この工程で使う部品",
+      "en": "Parts used in this step"
+    },
+    "assembly.workbench.operation_focus": {
+      "kind": "message",
+      "ja": "この工程で使う部品を表示",
+      "en": "Focus parts used in this step"
+    },
+    "assembly.trident.panels.stage.side_frame_foam_review": {
+      "kind": "message",
+      "ja": "側面フレームのフォームテープを確認",
+      "en": "Review the side-frame foam strips"
+    },
+    "assembly.trident.panels.stage.sideone_panel_prep": {
+      "kind": "message",
+      "ja": "片側の側板: フォームテープとパネル",
+      "en": "First side panel: foam and panel"
+    },
+    "assembly.trident.panels.stage.sideone_clip_1": {
+      "kind": "message",
+      "ja": "片側の側板: 6mm用コーナークリップ 1",
+      "en": "First side panel: Corner Clip 6mm 1"
+    },
+    "assembly.trident.panels.stage.sideone_clip_2": {
+      "kind": "message",
+      "ja": "片側の側板: 6mm用中間クリップ 1",
+      "en": "First side panel: Midspan Clip 6mm 1"
+    },
+    "assembly.trident.panels.stage.sideone_clip_3": {
+      "kind": "message",
+      "ja": "片側の側板: 6mm用コーナークリップ 2",
+      "en": "First side panel: Corner Clip 6mm 2"
+    },
+    "assembly.trident.panels.stage.sideone_clip_4": {
+      "kind": "message",
+      "ja": "片側の側板: 6mm用コーナークリップ 3",
+      "en": "First side panel: Corner Clip 6mm 3"
+    },
+    "assembly.trident.panels.stage.sideone_clip_5": {
+      "kind": "message",
+      "ja": "片側の側板: 6mm用コーナークリップ 4",
+      "en": "First side panel: Corner Clip 6mm 4"
+    },
+    "assembly.trident.panels.stage.sideone_clip_6": {
+      "kind": "message",
+      "ja": "片側の側板: 6mm用中間クリップ 2",
+      "en": "First side panel: Midspan Clip 6mm 2"
+    },
+    "assembly.trident.panels.stage.sideone_clip_7": {
+      "kind": "message",
+      "ja": "片側の側板: 6mm用中間クリップ 3",
+      "en": "First side panel: Midspan Clip 6mm 3"
+    },
+    "assembly.trident.panels.stage.sideone_clip_8": {
+      "kind": "message",
+      "ja": "片側の側板: 6mm用中間クリップ 4",
+      "en": "First side panel: Midspan Clip 6mm 4"
+    },
+    "assembly.trident.panels.stage.sideone_install": {
+      "kind": "message",
+      "ja": "片側の側板を取り付ける",
+      "en": "Fit the first side panel"
+    },
+    "assembly.trident.panels.stage.sidetwo_panel_prep": {
+      "kind": "message",
+      "ja": "反対側の側板: フォームテープとパネル",
+      "en": "Opposite side panel: foam and panel"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_1": {
+      "kind": "message",
+      "ja": "反対側の側板: 6mm用コーナークリップ 1",
+      "en": "Opposite side panel: Corner Clip 6mm 1"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_2": {
+      "kind": "message",
+      "ja": "反対側の側板: 6mm用中間クリップ 1",
+      "en": "Opposite side panel: Midspan Clip 6mm 1"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_3": {
+      "kind": "message",
+      "ja": "反対側の側板: 6mm用コーナークリップ 2",
+      "en": "Opposite side panel: Corner Clip 6mm 2"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_4": {
+      "kind": "message",
+      "ja": "反対側の側板: 6mm用コーナークリップ 3",
+      "en": "Opposite side panel: Corner Clip 6mm 3"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_5": {
+      "kind": "message",
+      "ja": "反対側の側板: 6mm用コーナークリップ 4",
+      "en": "Opposite side panel: Corner Clip 6mm 4"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_6": {
+      "kind": "message",
+      "ja": "反対側の側板: 6mm用中間クリップ 2",
+      "en": "Opposite side panel: Midspan Clip 6mm 2"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_7": {
+      "kind": "message",
+      "ja": "反対側の側板: 6mm用中間クリップ 3",
+      "en": "Opposite side panel: Midspan Clip 6mm 3"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_8": {
+      "kind": "message",
+      "ja": "反対側の側板: 6mm用中間クリップ 4",
+      "en": "Opposite side panel: Midspan Clip 6mm 4"
+    },
+    "assembly.trident.panels.stage.sidetwo_install": {
+      "kind": "message",
+      "ja": "反対側の側板を取り付ける",
+      "en": "Fit the opposite side panel"
+    },
+    "assembly.trident.panels.stage.top_panel_prep": {
+      "kind": "message",
+      "ja": "天板: フォームテープとパネル",
+      "en": "Top panel: foam and panel"
+    },
+    "assembly.trident.panels.stage.top_clip_1": {
+      "kind": "message",
+      "ja": "天板: 6mm用コーナークリップ 9",
+      "en": "Top panel: Corner Clip 6mm 9"
+    },
+    "assembly.trident.panels.stage.top_clip_2": {
+      "kind": "message",
+      "ja": "天板: 6mm用中間クリップ 9",
+      "en": "Top panel: Midspan Clip 6mm 9"
+    },
+    "assembly.trident.panels.stage.top_clip_3": {
+      "kind": "message",
+      "ja": "天板: 6mm用コーナークリップ 10",
+      "en": "Top panel: Corner Clip 6mm 10"
+    },
+    "assembly.trident.panels.stage.top_clip_4": {
+      "kind": "message",
+      "ja": "天板: 6mm用中間クリップ 10",
+      "en": "Top panel: Midspan Clip 6mm 10"
+    },
+    "assembly.trident.panels.stage.top_clip_5": {
+      "kind": "message",
+      "ja": "天板: 6mm用コーナークリップ 11",
+      "en": "Top panel: Corner Clip 6mm 11"
+    },
+    "assembly.trident.panels.stage.top_clip_6": {
+      "kind": "message",
+      "ja": "天板: 6mm用中間クリップ 11",
+      "en": "Top panel: Midspan Clip 6mm 11"
+    },
+    "assembly.trident.panels.stage.top_clip_7": {
+      "kind": "message",
+      "ja": "天板: 6mm用中間クリップ 12",
+      "en": "Top panel: Midspan Clip 6mm 12"
+    },
+    "assembly.trident.panels.stage.top_clip_8": {
+      "kind": "message",
+      "ja": "天板: 6mm用コーナークリップ 12",
+      "en": "Top panel: Corner Clip 6mm 12"
+    },
+    "assembly.trident.panels.stage.top_install": {
+      "kind": "message",
+      "ja": "天板を取り付ける",
+      "en": "Fit the top panel"
+    },
+    "assembly.trident.panels.stage.catchtop_prep": {
+      "kind": "message",
+      "ja": "上側のドアキャッチを準備",
+      "en": "Prepare the upper door catch"
+    },
+    "assembly.trident.panels.stage.catchbottom_prep": {
+      "kind": "message",
+      "ja": "下側のドアキャッチを準備",
+      "en": "Prepare the lower door catch"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_1": {
+      "kind": "message",
+      "ja": "右ドアの取っ手用磁石 1 を準備",
+      "en": "Prepare right door handle magnets 1"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_2": {
+      "kind": "message",
+      "ja": "右ドアの取っ手用磁石 2 を準備",
+      "en": "Prepare right door handle magnets 2"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_3": {
+      "kind": "message",
+      "ja": "左ドアの取っ手用磁石 1 を準備",
+      "en": "Prepare left door handle magnets 1"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_4": {
+      "kind": "message",
+      "ja": "左ドアの取っ手用磁石 2 を準備",
+      "en": "Prepare left door handle magnets 2"
+    },
+    "assembly.trident.panels.stage.door_catches_install": {
+      "kind": "message",
+      "ja": "上下のドアキャッチを取り付ける",
+      "en": "Fit the upper and lower door catches"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_1": {
+      "kind": "message",
+      "ja": "右ドアのヒンジ 1 を準備",
+      "en": "Prepare right door hinge 1"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_2": {
+      "kind": "message",
+      "ja": "右ドアのヒンジ 2 を準備",
+      "en": "Prepare right door hinge 2"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_3": {
+      "kind": "message",
+      "ja": "右ドアのヒンジ 3 を準備",
+      "en": "Prepare right door hinge 3"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_1": {
+      "kind": "message",
+      "ja": "左ドアのヒンジ 1 を準備",
+      "en": "Prepare left door hinge 1"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_2": {
+      "kind": "message",
+      "ja": "左ドアのヒンジ 2 を準備",
+      "en": "Prepare left door hinge 2"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_3": {
+      "kind": "message",
+      "ja": "左ドアのヒンジ 3 を準備",
+      "en": "Prepare left door hinge 3"
+    },
+    "assembly.trident.panels.stage.door_right_vhb": {
+      "kind": "message",
+      "ja": "右のドアパネルにVHBを準備",
+      "en": "Prepare the right door leaf with VHB"
+    },
+    "assembly.trident.panels.stage.door_left_vhb": {
+      "kind": "message",
+      "ja": "左のドアパネルにVHBを準備",
+      "en": "Prepare the left door leaf with VHB"
+    },
+    "assembly.trident.panels.stage.door_leaves_install": {
+      "kind": "message",
+      "ja": "準備した左右のドアパネルを取り付ける",
+      "en": "Fit the two prepared door leaves"
+    },
+    "assembly.trident.panels.note.5b01551fc22c8f73": {
+      "kind": "message",
+      "ja": "接着する前に、マニュアルの図に従ってドア側とフレーム側の磁石が引き合うことを確認してください。CADモデルでは磁極、接着による保持、実際の取付適合は検証していません。",
+      "en": "Check that the door and frame magnets attract before gluing, as shown in the manual. Magnetic polarity, glue retention and physical fit are not verified by the CAD model."
+    },
+    "assembly.trident.panels.note.dfaec87bc3363da8": {
+      "kind": "message",
+      "ja": "元データの部品群は取付工程まで分けて表示します。リンク先のマニュアルに従ってください。挿入、締付け、実際の取付適合は未検証です。",
+      "en": "Prepared source groups are shown separately until their installation step. Follow the linked manual; insertion, tightening and physical fit remain unverified."
+    },
+    "assembly.trident.panels.note.20560a1cde89ea23": {
+      "kind": "message",
+      "ja": "公式マニュアルには側面フレーム用の任意のフォームテープが2本示されています。選択中のR2ガントリーモデルでは対応する部品を確認できません。295ページを参照してください。パネルのフォームリングは別の元部品です。",
+      "en": "The original manual shows two optional side-frame foam strips. They are not identified in the selected R2 gantry model. Follow page 295; the panel foam rings are separate source parts."
+    },
+    "assembly.trident.panels.note.3ea87f596a268b3a": {
+      "kind": "message",
+      "ja": "305ページの図のとおり、ドア側ヒンジと取っ手の接着面にVHBを使用します。VHB、フォームテープ、磁石の接着は別の作業です。接着による保持と実際の取付適合は未検証です。",
+      "en": "Use VHB on the door-side hinge and handle pads as shown on page 305. VHB, foam tape and magnet glue are separate operations; adhesive holding and physical fit remain unverified."
+    },
+    "assembly.view.stage_failed": {
+      "kind": "message",
+      "ja": "組立表示を切り替えられませんでした。この工程は記録していません。",
+      "en": "The assembly view could not be changed. This step was not recorded."
+    },
+    "assembly.view.refresh_failed": {
+      "kind": "message",
+      "ja": "工程は切り替わりましたが、表示を更新できませんでした。ページを再読み込みしてください。",
+      "en": "The step changed, but the display could not be refreshed. Reload the page."
+    },
+    "assembly.workbench.stage_failed": {
+      "kind": "message",
+      "ja": "指定された工程を表示できなかったため、進捗ファイルは読み込んでいません。",
+      "en": "The requested step could not be displayed. Your progress file was not loaded."
     }
   }
 }

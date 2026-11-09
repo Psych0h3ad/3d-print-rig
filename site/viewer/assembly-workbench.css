@@ -53,3 +53,6 @@ body[data-assembly-stage] #assemblyControls { padding:0;margin:0;border:0; }
 .assembly-display-options {margin:8px 0 14px;}
 .assembly-display-options button[aria-pressed="true"] {border-color:var(--assembly-accent);background:color-mix(in srgb,var(--assembly-accent) 12%,transparent);}
 .assembly-display-hint {margin:6px 0 0;font-size:11px;line-height:1.6;color:var(--muted);}
+
+/* Retain readable hover labels with the existing dark palette. */
+.ui-workspace.night .assembly-workbench button:hover:not(:disabled) { background:var(--paper); color:var(--ink); border-color:var(--muted); }

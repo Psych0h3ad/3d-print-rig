@@ -1,8 +1,8 @@
-import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=9b2c851ee9de76fdd2f2';
-import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=3110166c940701420da3';
+import {createAssemblyProgress,assemblyProgressStorageKey,legacyAssemblyProgressStorageKey,validateAssemblyProgress} from './assembly-workbench-model.mjs?v=5b7c425c30bf4c8e948c';
+import {assemblyWorkbenchMessages as messages} from './assembly-workbench-messages.mjs?v=9e0d31d7511e21fe271b';
 
 import {assemblyPartRows} from './assembly-part-review.mjs?v=c2d5e0177d33e1d95d0e';
-import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs?v=1592734d20464c9cae4b';
+import {assemblyProgressNeedsMigration,previousAssemblyProgressStorageKeys} from './assembly-progress-migrations.mjs?v=7087102735cc55ebd5a7';
 
 // UI state describes the reader's checklist, never a mechanical validation.
 // Native visibility and camera changes stay with the viewer's stage controller.
@@ -67,6 +67,7 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
  }
  function refresh(){
   for(const b of bindings)b.n.textContent=say(b.key,b.values);const saved=progress.snapshot(),s=index.stage(saved.current_stage);
+  partTitle.textContent=s.operation_part_keys?translate('Parts used in this step'):say('items');
   number.textContent=say('current_step',[s.index+1,index.stages.length]);title.textContent=translate(s.title);check.checked=saved.checked_stages.includes(s.id);meter.value=saved.checked_stages.length;meter.setAttribute('aria-label',say('progress',[meter.value,index.stages.length]));progressText.textContent=say('progress',[saved.checked_stages.length,index.stages.length]);actionsLabel.textContent=progressText.textContent;
   search.placeholder=say('search_hint');results.setAttribute('aria-label',say('search'));storageNote.textContent=say(sessionOnly?'session_only':'local');status.textContent=notice?say(notice):'';undoButton.hidden=!undo;
   bannerText.textContent=say('active',[s.index+1,index.stages.length]);
@@ -77,9 +78,9 @@ export function createAssemblyWorkbench({container,index,legacy,bannerHost,onSta
   renderResults();renderParts();renderSelection();refreshEmphasis();
  }
  function select(part,{reveal=false}={}){if(!active)return;index.part(part);selected=part;renderSelection();for(const n of items.querySelectorAll('[data-part]'))n.setAttribute('aria-pressed',String(n.dataset.part===part));if(reveal){onReveal?.();selection.scrollIntoView?.({block:'nearest'})}}
- function importProgress(value){if(!active)throw Error('Inactive assembly view');const checked=validateAssemblyProgress(index,value),updated=assemblyProgressNeedsMigration(index,value.identity);onStage(index.stage(checked.current_stage).index);progress.restore(checked);undo=null;notice=updated?'updated_manual':'loaded';persist();refresh()}
+ function importProgress(value){if(!active)throw Error('Inactive assembly view');const checked=validateAssemblyProgress(index,value),updated=assemblyProgressNeedsMigration(index,value.identity);if(onStage(index.stage(checked.current_stage).index)===false){const error=new Error('Assembly stage could not be applied');error.code='ASSEMBLY_STAGE_REJECTED';throw error}if(!active)throw Error('Inactive assembly view');progress.restore(checked);undo=null;notice=updated?'updated_manual':'loaded';persist();refresh()}
  listen(check,'change',()=>{progress.toggle(progress.snapshot().current_stage);undo=null;notice='';persist();refresh()});listen(search,'input',()=>{limit=40;renderResults();renderParts();if(search.value.trim())results.scrollIntoView?.({block:'nearest'})});
- let fileEpoch=0;listen(file,'change',async()=>{const epoch=++fileEpoch,input=file.files?.[0];file.value='';if(!input||!active)return;try{if(input.size>524288)throw Error('size');const text=await input.text();if(!active||epoch!==fileEpoch)return;importProgress(JSON.parse(text))}catch(e){if(!active||epoch!==fileEpoch)return;notice=String(e.message).includes('another model')?'wrong_version':'invalid';refresh()}});
+ let fileEpoch=0;listen(file,'change',async()=>{const epoch=++fileEpoch,input=file.files?.[0];file.value='';if(!input||!active)return;try{if(input.size>524288)throw Error('size');const text=await input.text();if(!active||epoch!==fileEpoch)return;importProgress(JSON.parse(text))}catch(e){if(!active||epoch!==fileEpoch)return;notice=e.code==='ASSEMBLY_STAGE_REJECTED'?'stage_failed':String(e.message).includes('another model')?'wrong_version':'invalid';refresh()}});
  if(win)listen(win,'rig-language-change',refresh);
  refresh();
  return Object.freeze({resumeIndex:()=>index.stage(progress.snapshot().current_stage).index,

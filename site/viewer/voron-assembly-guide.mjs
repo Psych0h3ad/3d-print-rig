@@ -1,5 +1,8 @@
+import {loadTridentManualData} from './trident-manual-data.mjs?v=19bb83f1fe559b8920ac';
+import {refineTridentPanelManual,tridentPanelPresentationID} from './trident-panel-manual.mjs?v=2fda5c71863db6cdf37d';
+import {refineTridentFilamentManual} from './trident-filament-manual.mjs?v=aa986af0746b7b14b041';
 import {tridentRailNutManualSection,assertTridentRailNutManualCohort} from './trident-rail-nut-manual-roles.mjs';
-import {createSourcePartsMap} from './source-parts-map.mjs?v=603f6fb0f1d8fa8afc35';
+import {createSourcePartsMap} from './source-parts-map.mjs?v=5144c9bfd3f5e39738e9';
 import {tridentGuideLineage} from './voron-guide-lineage.mjs';
 const hash=async v=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(v))))].map(n=>n.toString(16).padStart(2,'0')).join('');
 const norm=s=>String(s).normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[_\-]+/g,' ');
@@ -40,9 +43,10 @@ function v24Section(p,path){
  default:fail('Unreviewed printed V2.4 source group: '+p.group);
  }
 }
-export async function createVoronAssemblyGuide(loaded,scene){
+export async function createVoronAssemblyGuide(loaded,scene,{signal}={}){
  const id=loaded?.source?.machineId;if(!supportsVoronAssembly(id))fail('No source-backed assembly overview for this machine');
- const base=await createSourcePartsMap(loaded,scene,{allowVisibilityStages:true}),family=id.startsWith('voron_trident_')?'trident':'v24',groups=new Map(plans[family].map(r=>[r[0],[]]));
+ if(id==='voron_trident_250')await loadTridentManualData({signal});
+ const base=await createSourcePartsMap(loaded,scene,{allowVisibilityStages:true,presentationProfile:id==='voron_trident_250'?tridentPanelPresentationID:null}),family=id.startsWith('voron_trident_')?'trident':'v24',groups=new Map(plans[family].map(r=>[r[0],[]]));
  const raw=new Map();for(const c of loaded.inspection.components)for(const p of c.meta.parts)raw.set(c.path+'#'+p.key,{p,component:c.path});
  assertTridentRailNutManualCohort(id,raw,loaded.inspection.components);
  for(const source of base.stages)for(const key of source.part_keys){
@@ -51,17 +55,20 @@ export async function createVoronAssemblyGuide(loaded,scene){
   if(!groups.has(section))fail('Unknown assembly section: '+section);groups.get(section).push(key);
  }
  const note='Advance to add the next source subassembly. Hardware stays with its source group. Parts use their final CAD positions; this overview does not animate insertion paths or replace the full manual.';
- const stages=plans[family].map(([id,title,start,end],index)=>{const keys=groups.get(id);if(!keys.length)fail('Missing assembly section: '+id);return Object.freeze({id,index,title,note,page_start:start,page_end:end,part_keys:Object.freeze(keys)})});
+ const chapters=plans[family].map(([id,title,start,end],index)=>{const keys=groups.get(id);if(!keys.length)fail('Missing assembly section: '+id);return Object.freeze({id,index,title,note,page_start:start,page_end:end,part_keys:Object.freeze(keys)})});
+ const stages=refineTridentPanelManual(id,refineTridentFilamentManual(id,chapters,raw,loaded.inspection.components),raw,loaded.inspection.components).map((s,index)=>Object.freeze({...s,index,part_keys:Object.freeze([...s.part_keys]),...(s.operation_part_keys?{operation_part_keys:Object.freeze([...s.operation_part_keys])}:{})}));
+ const refs=s=>s.operation_part_keys||s.part_keys;
  const identity=Object.freeze({...base.identity,view_kind:'manual-assembly-overview-v1',stages_sha256:await hash([base.identity,stages,tridentGuideLineage.inventory_sha256])});
  const owners=new Map(stages.flatMap(s=>s.part_keys.map(k=>[k,s])));if(owners.size!==base.partCount)fail('Incomplete assembly assignment');
  const stage=v=>{const s=typeof v==='string'?stages.find(s=>s.id===v):stages[v];if(!s)fail('Unknown assembly stage');return s};let current=0,preview=false;
  const visibleKeys=()=>[...new Set(base.entries().map(r=>r.key))];
- const result=()=>{const s=stages[current],keys=visibleKeys();return {index:current,visible_keys:keys,visible_count:keys.length,added:s.part_keys.length,preview,manual_text:`Official manual ${s.page_start}–${s.page_end}`}};
- const search=(query,translate=v=>v)=>{const ts=norm(query).split(/\s+/).filter(Boolean);return stages.filter(s=>{const content=norm([translate(s.title),...s.part_keys.flatMap(k=>{const p=base.part(k);return[p.key,p.name,p.group,...p.path]})].join(' '));return ts.every(t=>content.includes(t))})};
- return Object.freeze({identity,manual:base.manual,stages:Object.freeze(stages),partCount:base.partCount,renderCount:base.renderCount,stage,part:base.part,owner:k=>{const s=owners.get(k);if(!s)fail('Unknown source part');return s},parts:v=>stage(v).part_keys.map(base.part),search,
-  matchParts(value,query,translate=v=>v){const s=stage(value),ts=norm(query).split(/\s+/).filter(Boolean);return s.part_keys.map(base.part).filter(p=>ts.every(t=>norm([translate(s.title),p.key,p.name,...p.path].join(' ')).includes(t)))},
-  setStage(v){const s=stage(v);base.setVisibilityKeys(stages.slice(0,s.index+1).flatMap(r=>r.part_keys));current=s.index;preview=false;return result()},
-  previewComplete(){base.setVisibilityKeys(null);preview=true;return result()},
-  restore(){base.setVisibilityKeys(null);preview=false},state(){base.verifyLive();return result()},entries:base.entries,getPartNodes:base.getPartNodes,verifyLive:base.verifyLive,
+ const result=(keys=visibleKeys())=>{const s=stages[current];return {index:current,visible_keys:keys,visible_count:keys.length,added:s.part_keys.length,preview,...(s.operation_part_keys?{focus_text:'Focus parts used in this step'}:{}),manual_text:`Official manual ${s.page_start}–${s.page_end}`}};
+ const search=(query,translate=v=>v)=>{const ts=norm(query).split(/\s+/).filter(Boolean);return stages.filter(s=>{const content=norm([translate(s.title),...refs(s).flatMap(k=>{const p=base.part(k);return[p.key,p.name,p.group,...p.path]})].join(' '));return ts.every(t=>content.includes(t))})};
+ base.verifyLive();
+ return Object.freeze({identity,manual:base.manual,stages:Object.freeze(stages),partCount:base.partCount,renderCount:base.renderCount,stage,part:base.part,owner:k=>{const s=owners.get(k);if(!s)fail('Unknown source part');return s},parts:v=>refs(stage(v)).map(base.part),operations:k=>{base.part(k);return stages.filter(s=>refs(s).includes(k))},search,
+  matchParts(value,query,translate=v=>v){const s=stage(value),ts=norm(query).split(/\s+/).filter(Boolean);return refs(s).map(base.part).filter(p=>ts.every(t=>norm([translate(s.title),p.key,p.name,...p.path].join(' ')).includes(t)))},
+  setStage(v){const s=stage(v),committed=base.setAssemblyStage(s.id,stages.slice(0,s.index+1).flatMap(r=>r.part_keys));current=s.index;preview=false;return {...result([...new Set(committed.visible_entries.map(r=>r.key))]),presentation_frame_changed:committed.presentation_frame_changed}},
+  previewComplete(){const committed=base.setAssemblyStage(null,null);preview=true;return {...result([...new Set(committed.visible_entries.map(r=>r.key))]),presentation_frame_changed:committed.presentation_frame_changed}},
+  restore(){base.setAssemblyStage(null,null);preview=false},state(){base.verifyLive();return result()},entries:base.entries,getPartNodes:base.getPartNodes,verifyLive:base.verifyLive,
  });
 }
