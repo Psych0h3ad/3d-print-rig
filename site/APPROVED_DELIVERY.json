@@ -11242,8 +11242,10 @@
     "viewer/data/v0-spool-copy.source.json": "0b2664bde977d85e5f5eef3eb19c8132f014459e11119eab611471168f203dbf",
     "viewer/v0-manual-data.mjs": "02c5ea8d6a8687e71f2b3dc6deafa14072dc436f56f0d2fdd9f69febb5f647f1",
     "viewer/data/v0-reference-copy.source.json": "e3106fe9a5e4e6e8a56dfc22de65c8ed298cd591914e7c2e42abc4d2d08d155a",
-    "viewer/trident-manual-data.mjs": "19bb83f1fe559b8920ac15fa84f7aac9415ddd7eddf7ef8723a8eb7cf2d6224e",
-    "viewer/data/trident-250-manual.source.json": "4bb1a3608ee9ffcc3c41aca5dc504f4e59dd945a9cc8efb4ee319a293f060d73"
+    "viewer/trident-manual-data.mjs": "89aae9a1d36964be49de2a7a8334495e6474c8f10721153b4520d96a275f9b87",
+    "viewer/data/trident-250-manual.source.json": "4bb1a3608ee9ffcc3c41aca5dc504f4e59dd945a9cc8efb4ee319a293f060d73",
+    "viewer/data/trident-300-manual.source.json": "813e4a26724f4c0dd5189558dadb3f7db8da3877e64dddfd4005be3e959aa993",
+    "viewer/data/trident-350-manual.source.json": "51db22c962a96dca335b608530f9c513259df66b8c2b36ff6a8b3dd3aaae9925"
   },
   "unresolved_release_findings": [],
   "source_projection_primary_URLs_preserved": true,

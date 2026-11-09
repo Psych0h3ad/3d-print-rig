@@ -10,7 +10,7 @@ import json
 import re
 
 MODULE_PATH = 'viewer/trident-manual-data.mjs'
-TABLE_NAMES = ('trident-250-manual',)
+TABLE_NAMES = ('trident-250-manual', 'trident-300-manual', 'trident-350-manual')
 SOURCE_PATHS = frozenset(
     'viewer/data/' + name + '.source.json' for name in TABLE_NAMES)
 PACKED_DELIVERY_RECIPE = "const delivery=Object.fromEntries(Object.entries(packedDelivery).map(([name,[bytes,sha256,encodedBytes,encodedSHA256]])=>[name,{sourcePath:'viewer/data/'+name+'.source.json',bytes,sha256,gzip:{path:'viewer/data/'+name+'.json.gz',bytes:encodedBytes,sha256:encodedSHA256}}]));"

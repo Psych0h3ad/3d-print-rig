@@ -25,7 +25,8 @@ def main():
    nuts=(r.get('assembly')or{}).get('railNutGuide')or{}
    if len(nuts.get('sourceNutKeys',[]))!=24 or not all(nuts.get(k)for k in ['sourceIdentityBound','frameAndDrivesExcluded','zaxisIncluded','priorChapterProgressUsed','v1ChecksNotInvented','currentReconfirmationPreserved']) or nuts.get('unrelatedIdentityNegatives')!=4:
     raise ValueError('Missing source-backed rail-nut stage/progress regression: '+mid)
-   panel_refinement=mid=='voron_trident_250'and r['assembly']['identity']['stages_sha256']=='2cc066a75495be1d960cf8e0ca3092e9c75f957a62a21fb8bc527ec01979fa54'
+   refined_panel_stages={'voron_trident_250': '2cc066a75495be1d960cf8e0ca3092e9c75f957a62a21fb8bc527ec01979fa54', 'voron_trident_300': '7744a7ce6c16c807d2a84f72fa4bf1923925f0299928892b71f96d5d98074cea', 'voron_trident_350': '353f8ef228a28e270113cda02fa13bbe1cee7cb49575a96c7c650b3446c9da85'}
+   panel_refinement=r['assembly']['identity']['stages_sha256']==refined_panel_stages.get(mid)
    expected=['zaxis','wiring','panels','filament']if panel_refinement else ['zaxis']
    if nuts.get('requiredStageRechecks')!=expected or nuts.get('onlyRevisedStageRechecked')is not(not panel_refinement):
     raise ValueError('Changed exact prior-stage reconfirmation: '+mid)
