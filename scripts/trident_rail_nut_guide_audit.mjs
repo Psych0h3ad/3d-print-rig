@@ -23,11 +23,14 @@ export function auditTridentRailNutGuide(guide,loaded,{createAssemblyProgress,va
   const state=guide.setStage(id),visible=new Set(state.visible_keys);
   for(const key of parts)assert.equal(visible.has(key),id==='zaxis','Cumulative rail-nut visibility');
  }
- const current=createAssemblyProgress(guide).snapshot(),allParts=guide.stages.flatMap(s=>s.part_keys),old={...current,identity:{...current.identity,stages_sha256:previousStages[machine]},current_stage:'zaxis',checked_stages:guide.stages.map(s=>s.id),checked_parts:allParts};
+ const priorChapters=['frame','drives','gantry','zaxis','xaxis','belts','bed','head','wiring','skirts','panels','filament'];
+ const panelRefinement=machine==='voron_trident_250'&&guide.identity.stages_sha256==='2cc066a75495be1d960cf8e0ca3092e9c75f957a62a21fb8bc527ec01979fa54';
+ const requiredRechecks=['zaxis',...(panelRefinement?['wiring','panels','filament']:[])];
+ const current=createAssemblyProgress(guide).snapshot(),allParts=guide.stages.flatMap(s=>s.part_keys),old={...current,identity:{...current.identity,stages_sha256:previousStages[machine]},current_stage:'zaxis',checked_stages:priorChapters,checked_parts:allParts};
  const input=JSON.stringify(old),migrated=validateAssemblyProgress(guide,JSON.parse(input));
  assert.equal(JSON.stringify(old),input,'Input progress must not be mutated');
  assert.deepEqual(new Set(migrated.checked_parts),new Set(allParts));
- assert.deepEqual(migrated.checked_stages,old.checked_stages.filter(id=>id!=='zaxis'));
+ assert.deepEqual(migrated.checked_stages,old.checked_stages.filter(id=>!requiredRechecks.includes(id)));
  const legacy={...old,schema:'assembly-workbench-progress-v1'};delete legacy.checked_parts;
  assert.deepEqual(validateAssemblyProgress(guide,legacy).checked_parts,[],'v1 must not invent part checks');
  const resumed=createAssemblyProgress(guide,migrated);resumed.toggle('zaxis');
@@ -38,5 +41,5 @@ export function auditTridentRailNutGuide(guide,loaded,{createAssemblyProgress,va
   assert.throws(()=>validateAssemblyProgress(guide,bad));rejected++;
  }
  guide.restore();
- return {sourceNutKeys:parts,sourceIdentityBound:true,frameAndDrivesExcluded:true,zaxisIncluded:true,partChecksPreserved:allParts.length,onlyRevisedStageRechecked:true,v1ChecksNotInvented:true,currentReconfirmationPreserved:true,unrelatedIdentityNegatives:rejected,scope:'Original source receiver identities and reader progress only; no native mating or physical-fit qualification.'};
+ return {sourceNutKeys:parts,sourceIdentityBound:true,frameAndDrivesExcluded:true,zaxisIncluded:true,partChecksPreserved:allParts.length,onlyRevisedStageRechecked:!panelRefinement,requiredStageRechecks:requiredRechecks,priorChapterProgressUsed:true,v1ChecksNotInvented:true,currentReconfirmationPreserved:true,unrelatedIdentityNegatives:rejected,scope:'Original source receiver identities and exact prior chapter progress; refined panel/filament operations require their own review. No native mating or physical-fit qualification.'};
 }

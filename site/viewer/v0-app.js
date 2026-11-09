@@ -24,13 +24,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=d0de1de3b303ba8e0256';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=496c2eac18cd9028756a';
+import {setupPublicInfo} from './public-info.js?v=c2276e604ea80d1567f2';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
-import {createAssemblyIndex} from './assembly-workbench-model.mjs?v=9b2c851ee9de76fdd2f2';
-import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=5bf20eb1f17729272dc5';
+import {createAssemblyIndex} from './assembly-workbench-model.mjs?v=5b7c425c30bf4c8e948c';
+import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=89b6f5ed3fb5d7dcd906';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate as sourceTranslate} from './i18n.mjs?v=bd46dc6874c80e4c196b';
+import {formatMessage,translate as sourceTranslate} from './i18n.mjs?v=a57993b9b21d4a955d8e';
 const translate=(text,language=document.documentElement.lang||'en')=>translateV0ManualCopy(text,language,sourceTranslate);
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];

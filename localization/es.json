@@ -12853,6 +12853,302 @@
     "v0.power.manual.632d5bb0c7cf90fd": {
       "source_revision": "381d95a8b2b4fca20d4e",
       "text": "Se mantienen las posiciones originales; cableado y fijación siguen sin validar."
+    },
+    "assembly.trident.rear_preload.title": {
+      "source_revision": "1bb56ccad32ca8165d83",
+      "text": "Preparar las tuercas M5 del bastidor trasero"
+    },
+    "assembly.trident.rear_panel.title": {
+      "source_revision": "7515caca55b13ca87b5a",
+      "text": "Colocar el panel trasero"
+    },
+    "assembly.trident.inlet_plate_inserts.title": {
+      "source_revision": "c76874718920025f644c",
+      "text": "Insertos de la placa de cubierta"
+    },
+    "assembly.trident.inlet_body_inserts.title": {
+      "source_revision": "d8ae3baf9ae041e16000",
+      "text": "Insertos de la entrada de filamento"
+    },
+    "assembly.trident.inlet_to_plate.title": {
+      "source_revision": "bc30833fbb515f2c0b71",
+      "text": "Fijar la entrada de filamento"
+    },
+    "assembly.trident.inlet_tube_clamp.title": {
+      "source_revision": "cd20cac3eb3ecc77b5c6",
+      "text": "Preparar la abrazadera del tubo de entrada"
+    },
+    "assembly.trident.inlet_to_rear_frame.title": {
+      "source_revision": "08a4ecbff7c4e6ff664f",
+      "text": "Montar la placa de cubierta"
+    },
+    "assembly.trident.inlet_grill.title": {
+      "source_revision": "aaf59380b0f2f6677783",
+      "text": "Fijar la rejilla de extracción"
+    },
+    "assembly.trident.spool_holder.title": {
+      "source_revision": "78bc3a3516c73c89a1ca",
+      "text": "Montar el soporte de bobina"
+    },
+    "assembly.trident.spool_support_liner.title": {
+      "source_revision": "809a679ef6fb3575d829",
+      "text": "Colocar el revestimiento de PTFE del soporte de bobina"
+    },
+    "assembly.trident.retainer_inserts.title": {
+      "source_revision": "92561c1fb57c4feb249a",
+      "text": "Insertos del retenedor de filamento"
+    },
+    "assembly.trident.retainer_tube_clamp.title": {
+      "source_revision": "7e511f231ad2a8b1affc",
+      "text": "Preparar la abrazadera del tubo del retenedor"
+    },
+    "assembly.trident.retainer_frame.title": {
+      "source_revision": "50f5bfb58d5558e62a96",
+      "text": "Fijar el retenedor de filamento"
+    },
+    "assembly.trident.reverse_bowden.title": {
+      "source_revision": "f05b21d4b95b813c20d1",
+      "text": "Guiar el tubo Bowden inverso"
+    },
+    "assembly.trident.rear_preload.note": {
+      "source_revision": "bd85bbabab2d01cbd9ab",
+      "text": "Preparar estas dos tuercas M5 del bastidor trasero antes de colocar el panel trasero. Se reutilizan para la placa de cubierta de la página 309; el soporte de bobina delantero derecho usa otro par."
+    },
+    "assembly.trident.rear_panel.note": {
+      "source_revision": "2938dcb6d598af4daa05",
+      "text": "Referencias del panel trasero y los clips de la fuente original. Los tornillos M3x12 de la fuente difieren de la especificación M3x8 del manual; la holgura y la fijación siguen sin resolverse."
+    },
+    "assembly.trident.source_operation.note": {
+      "source_revision": "d947b5f3f50a83826d78",
+      "text": "Referencia de la fuente en las posiciones originales del CAD. Seguir el manual enlazado; la inserción, el apriete y el ajuste físico siguen sin verificarse."
+    },
+    "assembly.trident.spool_support_liner.note": {
+      "source_revision": "5152d888e1102e118ba7",
+      "text": "El revestimiento corto de apoyo de PTFE de la fuente es distinto del tubo Bowden inverso continuo de la página 315. La longitud, la sujeción y la inserción deben seguir las instrucciones originales."
+    },
+    "assembly.workbench.operation_items": {
+      "source_revision": "31ff7fe0cefccd3254de",
+      "text": "Piezas utilizadas en este paso"
+    },
+    "assembly.workbench.operation_focus": {
+      "source_revision": "0b46ddfafd304ea66664",
+      "text": "Enfocar las piezas utilizadas en este paso"
+    },
+    "assembly.trident.panels.stage.side_frame_foam_review": {
+      "source_revision": "113d88e8063541116424",
+      "text": "Revisar las tiras de espuma del marco lateral"
+    },
+    "assembly.trident.panels.stage.sideone_panel_prep": {
+      "source_revision": "6c059ed88ceb90e0c7bc",
+      "text": "Primer panel lateral: cinta de espuma y panel"
+    },
+    "assembly.trident.panels.stage.sideone_clip_1": {
+      "source_revision": "7ffbd8a84cdbc6d963c5",
+      "text": "Primer panel lateral: clip de esquina de 6 mm 1"
+    },
+    "assembly.trident.panels.stage.sideone_clip_2": {
+      "source_revision": "dcd2799e06791ad5f08c",
+      "text": "Primer panel lateral: clip intermedio de 6 mm 1"
+    },
+    "assembly.trident.panels.stage.sideone_clip_3": {
+      "source_revision": "6af13c25946b7b20a381",
+      "text": "Primer panel lateral: clip de esquina de 6 mm 2"
+    },
+    "assembly.trident.panels.stage.sideone_clip_4": {
+      "source_revision": "55d81eff1cdd116163bb",
+      "text": "Primer panel lateral: clip de esquina de 6 mm 3"
+    },
+    "assembly.trident.panels.stage.sideone_clip_5": {
+      "source_revision": "43e6ceabc6d6b7aaae5a",
+      "text": "Primer panel lateral: clip de esquina de 6 mm 4"
+    },
+    "assembly.trident.panels.stage.sideone_clip_6": {
+      "source_revision": "c98f263310e21899f688",
+      "text": "Primer panel lateral: clip intermedio de 6 mm 2"
+    },
+    "assembly.trident.panels.stage.sideone_clip_7": {
+      "source_revision": "1cad500b5e61ceced393",
+      "text": "Primer panel lateral: clip intermedio de 6 mm 3"
+    },
+    "assembly.trident.panels.stage.sideone_clip_8": {
+      "source_revision": "964b6682542229395d71",
+      "text": "Primer panel lateral: clip intermedio de 6 mm 4"
+    },
+    "assembly.trident.panels.stage.sideone_install": {
+      "source_revision": "c5b68d0f770731dc7f75",
+      "text": "Instalar el primer panel lateral"
+    },
+    "assembly.trident.panels.stage.sidetwo_panel_prep": {
+      "source_revision": "05c65e79bbdf33fe44d0",
+      "text": "Panel lateral opuesto: cinta de espuma y panel"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_1": {
+      "source_revision": "4801bf6ab4b9b5be624c",
+      "text": "Panel lateral opuesto: clip de esquina de 6 mm 1"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_2": {
+      "source_revision": "87b1abffea415f9905e8",
+      "text": "Panel lateral opuesto: clip intermedio de 6 mm 1"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_3": {
+      "source_revision": "27da543ed8eed4b7dd4d",
+      "text": "Panel lateral opuesto: clip de esquina de 6 mm 2"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_4": {
+      "source_revision": "92c077b71535511d1c78",
+      "text": "Panel lateral opuesto: clip de esquina de 6 mm 3"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_5": {
+      "source_revision": "85e75ba10893523275b1",
+      "text": "Panel lateral opuesto: clip de esquina de 6 mm 4"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_6": {
+      "source_revision": "ff241297891dbbafa637",
+      "text": "Panel lateral opuesto: clip intermedio de 6 mm 2"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_7": {
+      "source_revision": "ec750c7a1eec88d555df",
+      "text": "Panel lateral opuesto: clip intermedio de 6 mm 3"
+    },
+    "assembly.trident.panels.stage.sidetwo_clip_8": {
+      "source_revision": "2e3aac9168d488f050e1",
+      "text": "Panel lateral opuesto: clip intermedio de 6 mm 4"
+    },
+    "assembly.trident.panels.stage.sidetwo_install": {
+      "source_revision": "2c165f4df3afb22c9fbb",
+      "text": "Instalar el panel lateral opuesto"
+    },
+    "assembly.trident.panels.stage.top_panel_prep": {
+      "source_revision": "8e1a13a9e8ff66301a2c",
+      "text": "Panel superior: cinta de espuma y panel"
+    },
+    "assembly.trident.panels.stage.top_clip_1": {
+      "source_revision": "520d97c5ce69790f26c6",
+      "text": "Panel superior: clip de esquina de 6 mm 9"
+    },
+    "assembly.trident.panels.stage.top_clip_2": {
+      "source_revision": "87aa80ac82d1b187da1c",
+      "text": "Panel superior: clip intermedio de 6 mm 9"
+    },
+    "assembly.trident.panels.stage.top_clip_3": {
+      "source_revision": "5c81d968019810e96869",
+      "text": "Panel superior: clip de esquina de 6 mm 10"
+    },
+    "assembly.trident.panels.stage.top_clip_4": {
+      "source_revision": "327d6741f811a01127cb",
+      "text": "Panel superior: clip intermedio de 6 mm 10"
+    },
+    "assembly.trident.panels.stage.top_clip_5": {
+      "source_revision": "cb91d65ff2701c085925",
+      "text": "Panel superior: clip de esquina de 6 mm 11"
+    },
+    "assembly.trident.panels.stage.top_clip_6": {
+      "source_revision": "cc74728b069a176f048a",
+      "text": "Panel superior: clip intermedio de 6 mm 11"
+    },
+    "assembly.trident.panels.stage.top_clip_7": {
+      "source_revision": "ef8211d20cd55b14aa8d",
+      "text": "Panel superior: clip intermedio de 6 mm 12"
+    },
+    "assembly.trident.panels.stage.top_clip_8": {
+      "source_revision": "361400e4470dffcc5159",
+      "text": "Panel superior: clip de esquina de 6 mm 12"
+    },
+    "assembly.trident.panels.stage.top_install": {
+      "source_revision": "c7a0c6db11cdf668272a",
+      "text": "Instalar el panel superior"
+    },
+    "assembly.trident.panels.stage.catchtop_prep": {
+      "source_revision": "effeac09e8e4fa566953",
+      "text": "Preparar el cierre superior de la puerta"
+    },
+    "assembly.trident.panels.stage.catchbottom_prep": {
+      "source_revision": "2c9963f80379c294420b",
+      "text": "Preparar el cierre inferior de la puerta"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_1": {
+      "source_revision": "f8e2d7c903e591e6bacb",
+      "text": "Preparar los imanes del asa 1 de la puerta derecha"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_2": {
+      "source_revision": "330c7fe0cd5b3a63b063",
+      "text": "Preparar los imanes del asa 2 de la puerta derecha"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_3": {
+      "source_revision": "88c8c6b4f4a7fbe4f294",
+      "text": "Preparar los imanes del asa 1 de la puerta izquierda"
+    },
+    "assembly.trident.panels.stage.door_handle_magnets_4": {
+      "source_revision": "90cb2b372364b5481365",
+      "text": "Preparar los imanes del asa 2 de la puerta izquierda"
+    },
+    "assembly.trident.panels.stage.door_catches_install": {
+      "source_revision": "ff84c969693a08ba43c7",
+      "text": "Instalar los cierres superior e inferior de la puerta"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_1": {
+      "source_revision": "b1c4ce3a6c7b53e387d7",
+      "text": "Preparar la bisagra 1 de la puerta derecha"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_2": {
+      "source_revision": "68b4c9eb6a2db0424c96",
+      "text": "Preparar la bisagra 2 de la puerta derecha"
+    },
+    "assembly.trident.panels.stage.door_right_hinge_3": {
+      "source_revision": "ab64ad9c733d4b4dc1fb",
+      "text": "Preparar la bisagra 3 de la puerta derecha"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_1": {
+      "source_revision": "5067d260fdb7de0a06bf",
+      "text": "Preparar la bisagra 1 de la puerta izquierda"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_2": {
+      "source_revision": "49887956a581511b3bfb",
+      "text": "Preparar la bisagra 2 de la puerta izquierda"
+    },
+    "assembly.trident.panels.stage.door_left_hinge_3": {
+      "source_revision": "8a3694218284275f1b8b",
+      "text": "Preparar la bisagra 3 de la puerta izquierda"
+    },
+    "assembly.trident.panels.stage.door_right_vhb": {
+      "source_revision": "777046a1c56924aec4b2",
+      "text": "Preparar la hoja derecha de la puerta con VHB"
+    },
+    "assembly.trident.panels.stage.door_left_vhb": {
+      "source_revision": "d7e6c2a372199d7394a2",
+      "text": "Preparar la hoja izquierda de la puerta con VHB"
+    },
+    "assembly.trident.panels.stage.door_leaves_install": {
+      "source_revision": "fb7d963b8eaf70ecb96f",
+      "text": "Instalar las dos hojas de puerta preparadas"
+    },
+    "assembly.trident.panels.note.5b01551fc22c8f73": {
+      "source_revision": "c9c966c8d2b4e3fd4f66",
+      "text": "Antes de pegar, comprueba que los imanes de la puerta y del marco se atraen, como indica el manual. El modelo CAD no verifica la polaridad magnética, la retención del adhesivo ni el ajuste físico."
+    },
+    "assembly.trident.panels.note.dfaec87bc3363da8": {
+      "source_revision": "5890fdc5a3c8c3a4215b",
+      "text": "Los grupos de piezas del modelo original se muestran por separado hasta su instalación. Sigue el manual enlazado; la inserción, el apriete y el ajuste físico siguen sin verificar."
+    },
+    "assembly.trident.panels.note.20560a1cde89ea23": {
+      "source_revision": "5f8c9697259a2463331b",
+      "text": "El manual original muestra dos tiras opcionales de espuma para el marco lateral. No están identificadas en el modelo de pórtico R2 seleccionado. Sigue la página 295; los anillos de espuma de los paneles son piezas originales distintas."
+    },
+    "assembly.trident.panels.note.3ea87f596a268b3a": {
+      "source_revision": "9859a6ce5707c36737df",
+      "text": "Aplica VHB en las superficies de la bisagra y del asa del lado de la puerta, como se muestra en la página 305. El VHB, la cinta de espuma y el pegado de los imanes son operaciones distintas; la retención del adhesivo y el ajuste físico siguen sin verificar."
+    },
+    "assembly.view.stage_failed": {
+      "source_revision": "5e68b74cc45cbfb10718",
+      "text": "No se pudo cambiar la vista de montaje. Este paso no se ha registrado."
+    },
+    "assembly.view.refresh_failed": {
+      "source_revision": "55a976c249e6839468cc",
+      "text": "El paso cambió, pero no se pudo actualizar la vista. Recarga la página."
+    },
+    "assembly.workbench.stage_failed": {
+      "source_revision": "4f27b10c0436f7bc00b6",
+      "text": "No se pudo mostrar el paso solicitado. No se ha cargado el archivo de progreso."
     }
   }
 }

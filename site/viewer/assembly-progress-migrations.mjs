@@ -1,3 +1,4 @@
+import {tridentPanelProgressNeedsMigration,previousTridentPanelProgressStorageKeys,tridentPanelProgressStageCorrection} from './trident-panel-progress-migrations.mjs?v=30dd4c6e8e9984c09db2';
 import {tridentRailProgressNeedsMigration,previousTridentRailProgressStorageKeys,tridentRailProgressStageCorrection} from './trident-rail-progress-migrations.mjs?v=9d88bd9a8a1b347faad1';
 // Exact V0 manual-stage corrections. Original models, manuals and source keys
 // are unchanged. New manual operations do not inherit completion marks.
@@ -7,10 +8,12 @@ const currentIdentities=Object.freeze({"voron_v02_120":{"machine":"voron_v02_120
 const same=(a,b)=>a&&b&&Object.keys(a).length===Object.keys(b).length&&Object.keys(b).every(k=>Object.hasOwn(a,k)&&a[k]===b[k]);
 function currentIdentity(index){const expected=currentIdentities[index?.identity?.machine];return same(index?.identity,expected)?expected:null}
 export function assemblyProgressNeedsMigration(index,identity){
+ if(tridentPanelProgressNeedsMigration(index,identity))return true;
  if(tridentRailProgressNeedsMigration(index,identity))return true;
  const current=currentIdentity(index);return Boolean(current&&oldStageSHA256.some(stages_sha256=>same(identity,{...current,stages_sha256})));
 }
 export function previousAssemblyProgressStorageKeys(index){
+ const panelKeys=previousTridentPanelProgressStorageKeys(index);if(panelKeys.length)return panelKeys;
  const tridentKeys=previousTridentRailProgressStorageKeys(index);if(tridentKeys.length)return tridentKeys;
  const current=currentIdentity(index);return current?oldStageSHA256.flatMap(hash=>[2,1].map(v=>'3d-print-rig-assembly-progress-v'+v+':'+current.machine+':'+hash)):[];
 }
@@ -37,6 +40,7 @@ const currentManualFrom="2b8f0d90936c85014900f9de026addcbf0c338cf10e72939142f3c2
 const currentManualAliases={"electronics-fan":"electronics-fan-upper","skirt-right":"skirt-right-position","skirt-left":"skirt-left-position","skirt-rear":"skirt-rear-position","skirt-front":"skirt-front-left-prep","display":"display-faceplate-prep","bottom-panel":"bottom-feet-remove","motor-panel":"motor-strain-relief","spool-holder":"spool-upper-liner","reverse-bowden":"reverse-bowden","rear-panels":"rear-panel-position","panel-right":"panel-right-position","panel-left":"panel-left-position","door-panel":"door-panel-vhb","door-latches":"door-latch-magnets","door-handle":"door-handle-magnets","tophat-frame":"tophat-long-front-prep","tophat-nut-check":"tophat-nuts-front","tophat-top":"tophat-top-position","tophat-sides":"tophat-front-position","tophat-rear":"tophat-rear-position","tophat-attach":"tophat-hinge-washers","tophat-check":"tophat-locks-open"};
 const currentManualRecheck={"voron_v02_120":["frame-front","electronics-fan-inserts","electronics-fan","skirt-right","skirt-left","skirt-rear","skirt-front","display","bottom-panel","motor-panel","spool-holder","reverse-bowden","rear-panels","panel-right","panel-left","door-panel","door-latches","door-handle","tophat-frame","tophat-nut-check","tophat-top","tophat-sides","tophat-rear","tophat-attach","tophat-check"],"voron_v02r1_120":["frame-front","electronics-fan-inserts","electronics-fan","skirt-right","skirt-left","skirt-rear","skirt-front","display","bottom-panel","motor-panel","spool-holder","reverse-bowden","rear-panels","panel-right","panel-left","door-latches","door-panel","door-handle","tophat-frame","tophat-nut-check","tophat-top","tophat-sides","tophat-rear","tophat-attach","tophat-check"]};
 export function assemblyProgressStageCorrection(index,identity){
+ const panelCorrection=tridentPanelProgressStageCorrection(index,identity);if(panelCorrection)return panelCorrection;
  if(identity?.stages_sha256==="7cb12de4b91de4fa4b77c8479ab30eed7eef9cc4cfe108f2601bd2d003d6f7f6"&&assemblyProgressNeedsMigration(index,identity))return Object.freeze({current:Object.freeze({}),recheck:Object.freeze(["reference-printed-parts","reference-fasteners","reference-blind-joints","reference-tools","reference-drilling","reference-frame-profiles","reference-belt-paths","reference-tophat-profiles","reference-startup-docs"])});
  const tridentCorrection=tridentRailProgressStageCorrection(index,identity);if(tridentCorrection)return tridentCorrection;
  if(!assemblyProgressNeedsMigration(index,identity))return null;

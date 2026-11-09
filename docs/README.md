@@ -16,6 +16,7 @@ Guides for using and contributing to 3D Print Rig.
 | Change printers, use browser Back/Forward, and keep theme and language preferences | [Navigation](WORKSPACE_NAVIGATION.md) |
 | Try the supported G-code and macro preview commands | [Virtual printer preview](VIRTUAL_FIRMWARE.md) |
 | Follow the V0.2 / V0.2r1 assembly sequence | [Assembly steps](V0_ASSEMBLY.md) |
+| Follow Trident source assembly references | [Panels, doors and filament path](TRIDENT_MANUAL_REFERENCES.md) |
 | Explore the filament path, heating and cooling inside Stealthburner | [Animated cutaway](STEALTHBURNER_CUTAWAY.md) |
 | Embed the viewer on another site (alpha test) | [Embedding](EMBEDDING.md) |
 | Configure optional GA4 measurement, public aggregate reports and review exclusions | [Usage statistics](ANALYTICS.md) · [Privacy and cookies](https://psych0h3ad.github.io/3d-print-rig/viewer/privacy.html) |

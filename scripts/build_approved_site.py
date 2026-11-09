@@ -32,11 +32,18 @@ from prepare_source47_delivery import (
     delivery_pins as source47_delivery_pins, build_source47_delivery, write_source47_delivery,
 )
 
+
+from prepare_trident_manual_delivery import (
+    MODULE_PATH as TRIDENT_MANUAL_MODULE_PATH, SOURCE_PATHS as TRIDENT_MANUAL_SOURCE_PATHS,
+    delivery_pins as trident_manual_delivery_pins, build_trident_manual_delivery_bodies,
+    write_trident_manual_delivery,
+)
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MAX_SITE_BYTES = 990_000_000
 # Keep this contract inventoried and checksum-checked for build authentication,
 # without shipping build-only metadata as a browser asset.
-BUILD_ONLY_SOURCE_PATHS = frozenset({'APPROVED_DELIVERY.json', POWER_SOURCE_PATH}) | MANUAL_SOURCE_PATHS | SOURCE47_SOURCE_PATHS
+BUILD_ONLY_SOURCE_PATHS = frozenset({'APPROVED_DELIVERY.json', POWER_SOURCE_PATH}) | MANUAL_SOURCE_PATHS | SOURCE47_SOURCE_PATHS | TRIDENT_MANUAL_SOURCE_PATHS
 LAYOUT_EQUIPMENT_SOURCE = 'layout/layout-equipment.mjs'
 LAYOUT_EQUIPMENT_AUDITS = ('audit_layout_equipment_geometry.mjs', 'audit_layout_equipment_assets.mjs')
 U1_BOTTOM_AUDIT = 'scripts/audit_u1_bottom.mjs'
@@ -545,6 +552,32 @@ def approved_manual_delivery(root, contract, sources, rows):
     return build_v0_manual_delivery_bodies(root/'site')
 
 
+def approved_trident_manual_delivery(root, contract, sources, rows):
+    """Every manual input has both inventory and explicit approval identities."""
+    catalogs = contract.get('source_catalog_sha256', {})
+    inventory = json.loads((root/'docs/SOURCE_INVENTORY.json').read_bytes())
+    inventory_rows = {name: [r for r in inventory['files'] if r['path'] == 'site/'+name]
+                      for name in TRIDENT_MANUAL_SOURCE_PATHS}
+    present = {name for name in TRIDENT_MANUAL_SOURCE_PATHS if (root/'site'/name).is_file()}
+    if (not present and not any(inventory_rows.values())
+            and not TRIDENT_MANUAL_SOURCE_PATHS.intersection(catalogs)
+            and not (root/'site'/TRIDENT_MANUAL_MODULE_PATH).is_file()):
+        return None  # Synthetic builder fixtures without this feature.
+    if TRIDENT_MANUAL_MODULE_PATH not in sources or catalogs.get(TRIDENT_MANUAL_MODULE_PATH) != digest(root/'site'/TRIDENT_MANUAL_MODULE_PATH):
+        raise ValueError('Manual data module requires exact inventoried approval pin')
+    pins = trident_manual_delivery_pins(root/'site')
+    for pin in pins.values():
+        name = pin['sourcePath']; entries = inventory_rows[name]
+        if (name not in present or len(entries) != 1
+                or entries[0]['sha256'] != pin['sha256']
+                or catalogs.get(name) != pin['sha256']):
+            raise ValueError('Manual data requires exact source inventory and approval pin: '+name)
+        target = pin['gzip']['path']
+        if target in sources or any(r['path'] == target for r in rows):
+            raise ValueError('Generated manual body collides with source/runtime delivery')
+    return build_trident_manual_delivery_bodies(root/'site')
+
+
 def approved_source47_delivery(root, sources, rows):
     """Frozen original source data, inventoried with separate transport pins."""
     inventory = json.loads((root/'docs/SOURCE_INVENTORY.json').read_bytes())
@@ -574,6 +607,7 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
         raise ValueError('Build-only source path cannot be an approved runtime body')
     power_delivery = approved_power_delivery(root, contract, sources, rows)
     manual_delivery = approved_manual_delivery(root, contract, sources, rows)
+    trident_manual_delivery = approved_trident_manual_delivery(root, contract, sources, rows)
     source47_delivery = approved_source47_delivery(root, sources, rows)
     equipment_scripts = layout_equipment_scripts(root) if LAYOUT_EQUIPMENT_SOURCE in sources else None
     if equipment_inputs is not None:
@@ -592,6 +626,7 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
     size = (sum(p.stat().st_size for p in sources.values()) + sum(r['bytes'] for r in rows)
             + (len(power_delivery[0]) if power_delivery else 0)
             + sum(len(body) for body, _ in (manual_delivery or []))
+            + sum(len(body) for body, _ in (trident_manual_delivery or []))
             + sum(len(body) for body, _ in (source47_delivery or [])))
     if size >= MAX_SITE_BYTES: raise ValueError('Approved site reaches/exceeds 990000000 bytes: '+str(size))
     failures = release_failures(root, contract); verified = []; missing = []
@@ -627,6 +662,8 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
         write_v0_power_delivery(root/'site', output, power_delivery[0])
     if not plan_only and manual_delivery:
         write_v0_manual_delivery(root/'site', output, manual_delivery)
+    if not plan_only and trident_manual_delivery:
+        write_trident_manual_delivery(root/'site', output, trident_manual_delivery)
     if not plan_only and source47_delivery:
         write_source47_delivery(root/'site', output, source47_delivery)
     equipment_audits = None
@@ -656,6 +693,7 @@ def run(root, contract, output, inputs=None, plan_only=False, verify_inputs=Fals
     if equipment_audits is not None: result['layout_equipment_audits'] = equipment_audits
     if power_delivery: result['generated_power_references'] = power_delivery[1]
     if manual_delivery: result['generated_v0_manual_references'] = [receipt for _, receipt in manual_delivery]
+    if trident_manual_delivery: result['generated_trident_manual_references'] = [receipt for _, receipt in trident_manual_delivery]
     if source47_delivery: result['generated_source47_references'] = [receipt for _, receipt in source47_delivery]
     return result
 
