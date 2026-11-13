@@ -11171,8 +11171,8 @@
       "text": "배경화면은 테스트 중입니다. 임베드 뷰어는 알파 테스트 중입니다. 외관과 조작 방식은 변경될 수 있습니다."
     },
     "fun.back": {
-      "source_revision": "91263d4d92e7aaf3006b",
-      "text": "뷰어 열기 ↗"
+      "source_revision": "de21204b9c1e0b1fa779",
+      "text": "뷰어 열기"
     },
     "fun.intro": {
       "source_revision": "c35c0a85193214a49cb7",
@@ -11211,8 +11211,8 @@
       "text": "임베드 뷰어는 알파 테스트 중입니다. 머신을 열고 공유를 선택한 다음 임베드 코드를 복사하세요. 방문자는 페이지를 떠나지 않고 모델을 살펴볼 수 있습니다."
     },
     "fun.embed_link": {
-      "source_revision": "3a457747dd54eaecab5b",
-      "text": "머신 선택 ↗"
+      "source_revision": "8c074c7e3c59c7c14e9a",
+      "text": "임베드할 머신 선택"
     },
     "fun.credits": {
       "source_revision": "bce0284413de33638b32",

@@ -87,6 +87,7 @@ async function cacheReferences(outputs){
  // Layout owns its message dictionary; include its source importers in cache propagation.
  await scan(resolve(viewer,'../layout'));
  await scan(resolve(viewer,'../home'));
+ await scan(resolve(viewer,'../embed'));
  const homeIndex=resolve(viewer,'../index.html');files.set(homeIndex,await fs.readFile(homeIndex,'utf8'));
  const changed=new Map(Object.entries(outputs).map(([name,text])=>[fileURLToPath(new URL(name,root)),text]));
  for(const name of ['step-surface-selection.mjs','step-surface-package.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
@@ -101,7 +102,7 @@ async function cacheReferences(outputs){
  for(const name of ['source-assembly-loader.mjs','e3ng-mod-controls.mjs','source-assembly-runtime/e3ng-mods.mjs','source-assembly-runtime/e3ng-mod-data.mjs','layout-machine-providers.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['source-assembly-runtime/assembly.mjs','source-assembly-runtime/source_loom306.mjs','source-assembly-runtime/e3ng-installation-corrections.mjs','source-assembly-runtime/e3ng-skirt-fastener-data.mjs','source-assembly-runtime/e3ng-skirt-fasteners.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['../support/resource.mjs','../support/support.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
- for(const name of ['../fun/fun.mjs','machine-gallery.mjs','machine-gallery.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
+ for(const name of ['../fun/fun.mjs','../fun/fun.css','../support/support.css','../embed/embed.mjs','../embed/embed.css','machine-gallery.mjs','machine-gallery.css']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['trident-roof-tube.mjs','trident-front-registration.mjs','trident-motion.mjs','baseline-native-datum.mjs','ender-bowden-route.mjs','247zero-bowden.mjs','gcode-panel.js','gcode-preview.mjs','gcode-timeline.mjs','klipper-macro-subset.mjs','virtual-printer-emulator.mjs','gcode-machine-bindings.mjs','gcode-loaded-asset-identity.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['palette-controller.mjs','micron-native-materials.mjs','appearance-role.mjs','head-printed-parts.mjs','accessories.js','requested-mods.mjs','../REQUESTED_MOD_INSTALLATIONS.json']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}
  for(const name of ['public-info.js','step-downloads.mjs','step-download-admission.mjs','icons/download.svg','lighting.js','scene-lighting-state.mjs','led-emission-surface.mjs','disco-led-apertures.mjs','toolhead-lighting.mjs','toolhead-led-identities.mjs','workspace-lifecycle.mjs']){const path=resolve(viewer,name);changed.set(path,await fs.readFile(path,'utf8'));}

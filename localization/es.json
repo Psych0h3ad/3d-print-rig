@@ -11171,8 +11171,8 @@
       "text": "Los fondos de pantalla están en fase de prueba. Los visores integrados están en fase alfa. La apariencia y los controles pueden cambiar."
     },
     "fun.back": {
-      "source_revision": "91263d4d92e7aaf3006b",
-      "text": "Abrir visor ↗"
+      "source_revision": "de21204b9c1e0b1fa779",
+      "text": "Abrir visor"
     },
     "fun.intro": {
       "source_revision": "c35c0a85193214a49cb7",
@@ -11211,8 +11211,8 @@
       "text": "Los visores integrados están en fase alfa. Abre una máquina, selecciona Compartir y copia el código de inserción. Tus visitantes podrán explorar el modelo sin salir de tu página."
     },
     "fun.embed_link": {
-      "source_revision": "3a457747dd54eaecab5b",
-      "text": "Elegir una máquina ↗"
+      "source_revision": "8c074c7e3c59c7c14e9a",
+      "text": "Elegir una máquina para insertar"
     },
     "fun.credits": {
       "source_revision": "bce0284413de33638b32",

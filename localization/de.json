@@ -11171,8 +11171,8 @@
       "text": "Die Hintergrundbilder sind in der Testphase. Eingebettete Viewer sind im Alphatest. Darstellung und Bedienung können sich ändern."
     },
     "fun.back": {
-      "source_revision": "91263d4d92e7aaf3006b",
-      "text": "Viewer öffnen ↗"
+      "source_revision": "de21204b9c1e0b1fa779",
+      "text": "Viewer öffnen"
     },
     "fun.intro": {
       "source_revision": "c35c0a85193214a49cb7",
@@ -11211,8 +11211,8 @@
       "text": "Eingebettete Viewer befinden sich im Alphatest. Eine Maschine öffnen, „Teilen“ wählen und den Einbettungscode kopieren. Besucher können das Modell direkt auf Ihrer Seite erkunden."
     },
     "fun.embed_link": {
-      "source_revision": "3a457747dd54eaecab5b",
-      "text": "Drucker auswählen ↗"
+      "source_revision": "8c074c7e3c59c7c14e9a",
+      "text": "Drucker zum Einbetten auswählen"
     },
     "fun.credits": {
       "source_revision": "bce0284413de33638b32",

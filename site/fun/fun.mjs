@@ -1,4 +1,4 @@
-import {funWords,formatFunMessage} from './fun-language.mjs?v=f8396e9bb7a5b7e9ccfe';
+import {funWords,formatFunMessage} from './fun-language.mjs?v=a8011b66e283b8758de3';
 import {applyDisplay,displayKey,setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
 import {chooseLanguage,languageURL,supportedLanguages,languageNames} from '../viewer/languages.mjs?v=2e376566920474c0f57c';
 const $=id=>document.getElementById(id),query=new URLSearchParams(location.search),form=$('filters');
@@ -56,7 +56,7 @@ try{
       const download=make('a','','download');download.href=row.download;download.append(make('span',words.save),make('span','↓'));info.append(download);
       const source=make(row.sources.length>2?'details':'div','','source');
       source.append(make(row.sources.length>2?'summary':'span',words.sourceLabel+(row.sources.length>2?' ('+row.sources.length+')':'')));
-      for(const[url,label]of row.sources){const a=make('a',label+' ↗');a.href=url;a.target='_blank';a.rel='noopener';source.append(a);}info.append(source);card.append(preview,info);fragment.append(card);
+      for(const[url,label]of row.sources){const a=make('a',label,'external-link');a.href=url;a.target='_blank';a.rel='noopener';source.append(a);}info.append(source);card.append(preview,info);fragment.append(card);
     }
     $('grid').replaceChildren(fragment);$('grid').setAttribute('aria-busy','false');$('count').textContent=message('count',{0:rows.length});
     const url=new URL(location.href);for(const key of ['format','palette','kind'])url.searchParams.set(key,form.elements[key].value);history.replaceState(null,'',url);
