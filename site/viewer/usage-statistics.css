@@ -21,3 +21,6 @@
 [data-theme=dark] .usage-statistics-dialog { background: #1b3039; color: #e2ebee; border-color: #526771; }
 [data-theme=dark] .usage-statistics-dialog a { color: #9dd4ec; }
 [data-theme=dark] .usage-statistics-actions button { color: #e2ebee; background: #293f49; border-color: #526771; }
+.home-consent:modal { max-height: calc(100dvh - 32px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }
+.home-consent .usage-statistics-actions button { min-height: 44px; }
+.home-consent :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }

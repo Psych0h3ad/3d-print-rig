@@ -1,7 +1,8 @@
-import {homeMessages} from './locale-data.mjs?v=3b846df8b2a43621a029';
+import {homeMessages} from './locale-data.mjs?v=7bfda71afb4b939f4d6e';
 import {chooseLanguage,languageNames} from '../viewer/languages.mjs?v=2e376566920474c0f57c';
 import {setupHeaderThemeToggle} from '../viewer/display-preferences.mjs?v=8f347468def25922153c';
-import {startHomeAnalytics} from './usage.mjs?v=0c49acb3d710bfca61a2';
+import {startHomeAnalytics} from './usage.mjs?v=63f5f545fe478ffdf215';
+import {setupHomeConsent} from './consent.mjs?v=4f56d70d37bc6f307faf';
 
 // The root used to be a viewer entry. Keep explicit model/configuration links
 // on the same-origin viewer, while ordinary visits now stay on the home page.
@@ -25,6 +26,7 @@ export function setupHome({document=globalThis.document,window=globalThis.window
  const select=document.getElementById('homeLanguage');
  const theme=setupHeaderThemeToggle(document.querySelector('.header-tools'),'Dark mode');
  const links=[...document.querySelectorAll('a[href]')].map(node=>[node,node.getAttribute('href')]);
+ let consent;
  function render(){
   const copy=homeMessages[language];document.documentElement.lang=language;
   document.title='3D Print Rig · '+copy.heroTitle;
@@ -34,6 +36,7 @@ export function setupHome({document=globalThis.document,window=globalThis.window
   theme.setAttribute('aria-label',copy.darkMode);theme.title=copy.darkMode;
   select.value=language;select.setAttribute('aria-label',copy.language);
   for(const [node,href]of links)if(!href.startsWith('#'))node.href=homeDestination(href,window.location.href,language);
+  consent?.render();
  }
  select.addEventListener('change',()=>{
   language=chooseLanguage({query:select.value});
@@ -41,6 +44,7 @@ export function setupHome({document=globalThis.document,window=globalThis.window
   const url=new URL(window.location.href);url.searchParams.set('lang',language);window.history.replaceState(null,'',url);render();
  });
  for(const [value,label]of Object.entries(languageNames)){const option=select.querySelector('option[value="'+value+'"]');if(option)option.textContent=label;}
- render();startHomeAnalytics({window,document});
+ render();const analytics=startHomeAnalytics({window,document});
+ consent=setupHomeConsent({window,document,analytics,copy:()=>homeMessages[language]});
 }
 if(typeof document!=='undefined')setupHome();

@@ -64,7 +64,7 @@ export function setupUsageStatistics(container, {
   }
   if (!document.querySelector('link[data-usage-statistics]')) {
     const style = document.createElement('link');
-    style.rel = 'stylesheet'; style.href = new URL('./usage-statistics.css?v=b74b6815cd2fbb983174', import.meta.url).href;
+    style.rel = 'stylesheet'; style.href = new URL('./usage-statistics.css?v=a56b6e0d3268434ac7aa', import.meta.url).href;
     style.setAttribute('data-usage-statistics', ''); document.head.append(style);
   }
 

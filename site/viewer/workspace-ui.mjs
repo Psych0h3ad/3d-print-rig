@@ -1,4 +1,4 @@
-import {setupUsageStatistics} from './usage-statistics.mjs?v=fff446041918beda1fbe';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=b4627744c21b6a784eb3';
 import {ensureWorkspaceEntry} from './workspace-entry.mjs';
 import {setupLayoutNavigation} from './layout-nav.mjs?v=3b2a70a879b1cd6ce5d6';
 ensureWorkspaceEntry(import.meta.url);

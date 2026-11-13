@@ -132,6 +132,7 @@ function fixture(choice,query=''){
  const data=new Map(),session=new Map(),calls=[],cookies=[];const storage={getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)};
  if(choice)storeStatisticsConsent(storage,choice);
  const window=new EventTarget();Object.assign(window,{location:{href:current.split('?')[0]+query},navigator:{webdriver:false},localStorage:storage,sessionStorage:{getItem:k=>session.get(k),setItem:(k,v)=>session.set(k,v)},clearTimeout(){},setTimeout(){return 1;}});
+ window.self=window;window.top=window;
  const create=options=>{calls.push(['create',options]);return {allow:()=>calls.push(['allow']),deny:()=>calls.push(['deny']),page:()=>calls.push(['page']),dispose:()=>calls.push(['dispose'])};};
  const document={set cookie(value){cookies.push(value)}};
  startHomeAnalytics({window,document},create);return {calls,window,storage,session,cookies,data};

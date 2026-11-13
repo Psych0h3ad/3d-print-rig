@@ -15,10 +15,11 @@ fit. The layout planner link identifies the desktop requirement.
 The theme switch shares the viewer preference, with light and dark styles.
 The shared brand links in the viewer, machine gallery and planner return home.
 
-Analytics uses the existing versioned, expiring consent record. No choice means
-no measurement; the privacy page provides the choice UI. An existing grant is
-honored only on the production origin, with a canonical root path and fixed
-page title. Review exclusion, privacy signals and withdrawal remain effective.
+Analytics uses the existing versioned, expiring consent record. A first-visit
+popup offers allow and decline; the footer's Usage statistics button reopens
+the choice. No choice means no measurement. An existing grant is honored only
+on the production origin, with a canonical root path and fixed page title.
+Review exclusion, privacy signals and withdrawal remain effective.
 See [analytics](ANALYTICS.md) and run `node scripts/test_homepage.mjs`.
 
 The page introduces configuration tools; it does not certify mechanical fit,
