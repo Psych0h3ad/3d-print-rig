@@ -4,7 +4,7 @@ import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {loadModel} from './model-loader.js?v=319442cce47f582793a9';
 import {partKey} from './head-assembly.js?v=trident-clearance-35';
 import {appearanceRole} from './appearance-role.mjs?v=cec2fd2240d0ce2ccfe3';
-import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=f5296a2494d0a186ffed';
+import {withMonolithMachines,monolithPartDelta} from './monolith-machine-model.mjs?v=d01705ffa4e3c9d98eb6';
 import {monolithBeltRoute,monolithBeltGeometry,monolithBeltTravelLimits} from './monolith-belts.mjs?v=9cd68953335278238c4e';
 
 const point=p=>new THREE.Vector3(p[0],p[2],-p[1]).multiplyScalar(.001);

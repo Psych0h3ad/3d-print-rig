@@ -14076,8 +14076,8 @@
     },
     "fun.back": {
       "kind": "message",
-      "ja": "ビューアーを開く ↗",
-      "en": "Open viewer ↗"
+      "ja": "ビューアーを開く",
+      "en": "Open viewer"
     },
     "fun.intro": {
       "kind": "message",
@@ -14126,8 +14126,8 @@
     },
     "fun.embed_link": {
       "kind": "message",
-      "ja": "マシンを選ぶ ↗",
-      "en": "Choose a machine ↗"
+      "ja": "埋め込むマシンを選ぶ",
+      "en": "Choose a machine to embed"
     },
     "fun.credits": {
       "kind": "message",

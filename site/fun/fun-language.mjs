@@ -1,5 +1,5 @@
 import {normalizeLanguage} from '../viewer/languages.mjs?v=2e376566920474c0f57c';
-import {funMessages} from '../viewer/locales/fun.mjs?v=8d513897a5d5c1f6ecf1';
+import {funMessages} from '../viewer/locales/fun.mjs?v=961a84cdcd97a44c43a0';
 
 const messageId=key=>'fun.'+key.replace(/[A-Z]/gu,letter=>'_'+letter.toLowerCase());
 export function funWords(language='en'){

@@ -1,10 +1,10 @@
-import {embedTarget} from '../viewer/embed-contract.mjs';
-import {machineChoices} from '../viewer/machines.js';
+import {embedTarget} from '../viewer/embed-contract.mjs?v=efefdd1fb25011506d9b';
+import {machineChoices} from '../viewer/machines.js?v=def15e6e5867393ab8db';
 const $=id=>document.getElementById(id);
 const language=new URL(location.href).searchParams.get('lang') || navigator.language.split('-')[0];
 const ja=language==='ja';
 // This small shell loads no CAD until the visitor activates the viewer.
-const words=ja?{load:'3Dモデルを表示',intro:'マシンを回転して、構造を見てみよう。',detail:'ドラッグで回転 · ピンチ・ホイールで拡大縮小',open:'3D Print Rigで開く ↗',live:'Live · 更新を自動反映',error:'指定された機種・埋め込み形式は現在利用できません。元のサイトで確認してください。',unavailable:'接続できませんでした。元のサイトで開いてください。'}:{load:'Load 3D model',intro:'Explore the machine in 3D.',detail:'Drag to orbit · Pinch or scroll to zoom',open:'Open in 3D Print Rig ↗',live:'Live · Updates automatically',error:'This machine or embed format is unavailable. Check the original site.',unavailable:'Could not connect. Open the viewer on the original site.'};
+const words=ja?{load:'3Dモデルを表示',intro:'マシンを回転して、構造を見てみよう。',detail:'ドラッグで回転 · ピンチ・ホイールで拡大縮小',open:'3D Print Rigで開く',live:'Live · 更新を自動反映',error:'指定された機種・埋め込み形式は現在利用できません。元のサイトで確認してください。',unavailable:'接続できませんでした。元のサイトで開いてください。'}:{load:'Load 3D model',intro:'Explore the machine in 3D.',detail:'Drag to orbit · Pinch or scroll to zoom',open:'Open in 3D Print Rig',live:'Live · Updates automatically',error:'This machine or embed format is unavailable. Check the original site.',unavailable:'Could not connect. Open the viewer on the original site.'};
 words.error=ja?'指定された機種・構成・埋め込み形式は現在利用できません。元のサイトで確認してください。':'This machine, configuration or embed format is unavailable. Check the original site.';
 document.documentElement.lang=ja?'ja':'en';
 for(const[id,text]of Object.entries({load:words.load,intro:words.intro,detail:words.detail,openViewer:words.open,policy:(ja?'アルファテスト · ':'Alpha test · ')+words.live}))$(id).textContent=text;

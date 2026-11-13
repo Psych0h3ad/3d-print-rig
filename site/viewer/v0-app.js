@@ -24,13 +24,13 @@ import {createV0Adapter} from './v0_adapter.mjs?v=d0de1de3b303ba8e0256';
 import {setupMachineNavigation} from './machines.js?v=def15e6e5867393ab8db';
 import {setupGrid} from './grid-control.js?v=workspace-belts-1';
 import {setupRenderExport} from './render-export.js?v=92d6e71ee392361a4f7d';
-import {setupPublicInfo} from './public-info.js?v=c2276e604ea80d1567f2';
+import {setupPublicInfo} from './public-info.js?v=f7dd03ae9422e73bff69';
 import {setupGcodePanel,displayedMachineLimits} from './gcode-panel.js?v=66041e969f9190a81416';
 import {programPoint,programPathOffset} from './gcode-timeline.mjs?v=a07bc2dcf7216407fe8c';
 import {createAssemblyIndex} from './assembly-workbench-model.mjs?v=818f5a0b4bebe7ba6256';
 import {createAssemblyWorkbench} from './assembly-workbench.mjs?v=1620946afff79264eb3a';
 import {createAssemblyPicker} from './assembly-picking.mjs?v=32b91919c45312facdd1';
-import {formatMessage,translate as sourceTranslate} from './i18n.mjs?v=a57993b9b21d4a955d8e';
+import {formatMessage,translate as sourceTranslate} from './i18n.mjs?v=6ead562a759ef31778d9';
 const translate=(text,language=document.documentElement.lang||'en')=>translateV0ManualCopy(text,language,sourceTranslate);
 export async function mount(scope){
 const $=s=>document.querySelector(s),ids=['voron_v02r1_120','voron_v02_120'];
