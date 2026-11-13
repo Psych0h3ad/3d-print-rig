@@ -1,4 +1,4 @@
-import {setupUsageStatistics} from './usage-statistics.mjs?v=fff446041918beda1fbe';
+import {setupUsageStatistics} from './usage-statistics.mjs?v=b4627744c21b6a784eb3';
 import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';

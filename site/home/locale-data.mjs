@@ -37,7 +37,16 @@ export const homeMessages = {
     "sources": "Sources & licenses",
     "privacy": "Privacy & analytics",
     "github": "Source code",
-    "sponsor": "Project sponsor"
+    "sponsor": "Project sponsor",
+    "statisticsTitle": "Usage statistics",
+    "statisticsDescription": "Google Analytics (Google LLC, United States) uses cookies to measure page views and approximate visitor countries. You can decline and keep using the viewer. Public reports show aggregate data.",
+    "statisticsAllow": "Allow statistics",
+    "statisticsDeny": "Decline statistics",
+    "statisticsClose": "Close",
+    "statisticsEnabled": "Measurement is allowed on this browser.",
+    "statisticsDisabled": "Measurement is off on this browser.",
+    "statisticsExcluded": "This tab is excluded from usage statistics.",
+    "statisticsPrivacySignal": "Your browser’s privacy preference disables measurement."
   },
   "ja": {
     "skip": "本文へ移動",
@@ -77,7 +86,16 @@ export const homeMessages = {
     "sources": "出典・ライセンス",
     "privacy": "プライバシー・アクセス解析",
     "github": "ソースコード",
-    "sponsor": "プロジェクトスポンサー"
+    "sponsor": "プロジェクトスポンサー",
+    "statisticsTitle": "アクセス統計",
+    "statisticsDescription": "Google Analytics（Google LLC、米国）はCookieを使って閲覧数とおおよそのアクセス元の国を集計します。拒否してもビューアーは使えます。公開レポートには集計データを表示します。",
+    "statisticsAllow": "統計の計測を許可",
+    "statisticsDeny": "統計の計測を拒否",
+    "statisticsClose": "閉じる",
+    "statisticsEnabled": "このブラウザーでの計測を許可しています。",
+    "statisticsDisabled": "このブラウザーでは計測しません。",
+    "statisticsExcluded": "このタブはアクセス統計の対象外です。",
+    "statisticsPrivacySignal": "ブラウザーのプライバシー設定に従い、計測を無効にしています。"
   },
   "es": {
     "skip": "Ir al contenido",
@@ -117,7 +135,16 @@ export const homeMessages = {
     "sources": "Fuentes y licencias",
     "privacy": "Privacidad y analítica",
     "github": "Código fuente",
-    "sponsor": "Patrocinador del proyecto"
+    "sponsor": "Patrocinador del proyecto",
+    "statisticsTitle": "Estadísticas de uso",
+    "statisticsDescription": "Google Analytics (Google LLC, Estados Unidos) utiliza cookies para medir las visitas y los países aproximados de origen. Puedes rechazarlo y seguir usando el visor. Los informes públicos muestran datos agregados.",
+    "statisticsAllow": "Permitir estadísticas",
+    "statisticsDeny": "Rechazar estadísticas",
+    "statisticsClose": "Cerrar",
+    "statisticsEnabled": "La medición está permitida en este navegador.",
+    "statisticsDisabled": "La medición está desactivada en este navegador.",
+    "statisticsExcluded": "Esta pestaña está excluida de las estadísticas de uso.",
+    "statisticsPrivacySignal": "La preferencia de privacidad de tu navegador desactiva la medición."
   },
   "ko": {
     "skip": "본문으로 이동",
@@ -157,7 +184,16 @@ export const homeMessages = {
     "sources": "출처 및 라이선스",
     "privacy": "개인정보 보호 및 방문 분석",
     "github": "소스 코드",
-    "sponsor": "프로젝트 스폰서"
+    "sponsor": "프로젝트 스폰서",
+    "statisticsTitle": "이용 통계",
+    "statisticsDescription": "Google Analytics(Google LLC, 미국)는 쿠키를 사용하여 조회수와 대략적인 방문 국가를 집계합니다. 거부해도 뷰어를 사용할 수 있습니다. 공개 보고서에는 집계 데이터가 표시됩니다.",
+    "statisticsAllow": "통계 측정 허용",
+    "statisticsDeny": "통계 측정 거부",
+    "statisticsClose": "닫기",
+    "statisticsEnabled": "이 브라우저에서 측정이 허용되어 있습니다.",
+    "statisticsDisabled": "이 브라우저에서는 측정하지 않습니다.",
+    "statisticsExcluded": "이 탭은 이용 통계에서 제외됩니다.",
+    "statisticsPrivacySignal": "브라우저의 개인정보 보호 설정에 따라 측정이 비활성화됩니다."
   },
   "ru": {
     "skip": "Перейти к содержимому",
@@ -197,7 +233,16 @@ export const homeMessages = {
     "sources": "Источники и лицензии",
     "privacy": "Конфиденциальность и аналитика",
     "github": "Исходный код",
-    "sponsor": "Спонсор проекта"
+    "sponsor": "Спонсор проекта",
+    "statisticsTitle": "Статистика посещений",
+    "statisticsDescription": "Google Analytics (Google LLC, США) использует файлы cookie для подсчёта просмотров и приблизительного определения стран посетителей. При отказе просмотрщик продолжит работать. Публичные отчёты показывают сводные данные.",
+    "statisticsAllow": "Разрешить сбор статистики",
+    "statisticsDeny": "Отказаться от сбора статистики",
+    "statisticsClose": "Закрыть",
+    "statisticsEnabled": "В этом браузере сбор статистики разрешён.",
+    "statisticsDisabled": "В этом браузере сбор статистики отключён.",
+    "statisticsExcluded": "Эта вкладка исключена из статистики посещений.",
+    "statisticsPrivacySignal": "Сбор статистики отключён в соответствии с настройками конфиденциальности браузера."
   },
   "de": {
     "skip": "Zum Inhalt springen",
@@ -237,7 +282,16 @@ export const homeMessages = {
     "sources": "Quellen & Lizenzen",
     "privacy": "Datenschutz & Webanalyse",
     "github": "Quellcode",
-    "sponsor": "Projektsponsor"
+    "sponsor": "Projektsponsor",
+    "statisticsTitle": "Nutzungsstatistik",
+    "statisticsDescription": "Google Analytics (Google LLC, USA) verwendet Cookies, um Seitenaufrufe und ungefähre Besucherländer zu erfassen. Eine Ablehnung ist möglich; der Viewer bleibt nutzbar. Öffentliche Berichte zeigen zusammengefasste Daten.",
+    "statisticsAllow": "Statistiken erlauben",
+    "statisticsDeny": "Statistiken ablehnen",
+    "statisticsClose": "Schließen",
+    "statisticsEnabled": "Messung ist in diesem Browser erlaubt.",
+    "statisticsDisabled": "Die Messung ist in diesem Browser ausgeschaltet.",
+    "statisticsExcluded": "Dieser Tab ist von der Nutzungsstatistik ausgeschlossen.",
+    "statisticsPrivacySignal": "Die Datenschutzeinstellung Ihres Browsers deaktiviert die Messung."
   }
 };
 
