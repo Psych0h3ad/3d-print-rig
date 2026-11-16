@@ -14,3 +14,5 @@ footer{padding-bottom:30px}.footer-main{display:flex;justify-content:space-betwe
 
 /* Link decoration uses vector paths, independent of platform emoji fonts. */
 .link-icon{display:inline-block;width:18px;height:18px;flex:none;vertical-align:middle;background:currentColor;-webkit-mask:url('../viewer/icons/arrow-up-right.svg') center/contain no-repeat;mask:url('../viewer/icons/arrow-up-right.svg') center/contain no-repeat}.link-icon-right{transform:rotate(45deg)}.text-link,.more-links a{align-items:center}
+
+.work-in-progress{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 9px;max-width:470px;margin:22px 0 0;color:var(--muted);font-size:12px;line-height:1.8}.wip-label{font:700 10px monospace;letter-spacing:.08em;color:var(--ink)}.work-in-progress a{text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
