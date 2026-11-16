@@ -599,13 +599,13 @@
     "site/HEAD_CATALOG_DELTA_ACE_HF_20261020.json": "0995df8a20b9bcbd44856da8f1d5253a285a1f0dbee81222f32677cae7dc32ca",
     "site/HEAD_VALIDATION.json": "307de76ad2fa77fd9f41c62269d8103aa760467f5651cc20a7a71438e99036ec",
     "site/home/consent.mjs": "4f56d70d37bc6f307faf77f06ae61f49bd76f859ba9e3603d20ed43e46b4f49d",
-    "site/home/home.css": "a00b690d1a43b835e5b8270d8f1fedf323d3f681952f63c53f4b0431d69c63b1",
-    "site/home/home.mjs": "4978927c3983fcfabc51a28044880bb202de4bbb658c2642b9f66ca0cd9612e2",
-    "site/home/locale-data.mjs": "7bfda71afb4b939f4d6e2b42295b7a7a6af397765886c573c1814600749e9981",
+    "site/home/home.css": "9204517ac89f171ab2fb3f70df571c708aa026a31260bcaedaa821d86db4c8a2",
+    "site/home/home.mjs": "6089954d3c2f1ae8ef5dc3e555d5cf6ba25e407172a42bfc9a3d8bfd76502b78",
+    "site/home/locale-data.mjs": "a977085ca0a5c4cc9352b043efa49724982f4c43ad6b998e292cc78e6c1b1c64",
     "site/home/render-scenes.json": "102663f016fe3d2e41c1df0a264d5656469f46731439c85ee470d97ba277e833",
     "site/home/trident-render.json": "b2f91d60573d8f2a0874a244dbf983fe6225f3e3a8a62d83cad524c747b226c7",
     "site/home/usage.mjs": "63f5f545fe478ffdf215c659cdb7498d8c99896c774f5530f05ad174b77a8b26",
-    "site/index.html": "52fc7b0f3637e816171e9b3b8c0f049f9d75566c19cea0dd93407bb7a320e43c",
+    "site/index.html": "bb4b437ab66785b8e0940ccf16b6e222630c89de1981a947f355f2ed03f77d51",
     "site/layout/assets/equipment/u1-exterior/MOUNT_SPEC.json": "6ded0ac74b083a69f5e44f4fcdaaa56cd795e4666fb25287e7d97625e7583abe",
     "site/layout/assets/equipment/u1-exterior/POPSTATION_PUBLIC_MANUAL_RECEIPTS.json": "495d6768b272decad51fdf7946e00ffe9f9e46c42912f64979d3f239de081561",
     "site/layout/assets/equipment/u1-exterior/POPSTATION_PUBLIC_MOUNT_RECEIPTS.json": "8b426ec5f45e128fd0d6faf093f5a572fd8c7baac34e7c3eb47b56bc7194d6a5",
@@ -23956,5 +23956,23 @@
     "scope": "First-visit homepage consent dialog, persisted and transient choices, BFCache/cross-tab withdrawal, localization and cache references. Existing model rows and all original geometry/motion evidence retain their historical scope.",
     "geometry_or_mounting_changes": false,
     "full_actual_release_gate": "The normal unchanged actual-asset build and all machine coverage remain required before release."
+  },
+  "current_home_wip_feedback_review": {
+    "scope": "Home WIP status and six-language X feedback invitation; source and DOM fixture review only.",
+    "changed_source_sha256": {
+      "site/index.html": "bb4b437ab66785b8e0940ccf16b6e222630c89de1981a947f355f2ed03f77d51",
+      "site/home/home.css": "9204517ac89f171ab2fb3f70df571c708aa026a31260bcaedaa821d86db4c8a2",
+      "site/home/home.mjs": "6089954d3c2f1ae8ef5dc3e555d5cf6ba25e407172a42bfc9a3d8bfd76502b78",
+      "site/home/locale-data.mjs": "a977085ca0a5c4cc9352b043efa49724982f4c43ad6b998e292cc78e6c1b1c64"
+    },
+    "source_regressions": [
+      "scripts/test_homepage.mjs",
+      "scripts/test_ui_icon_policy.mjs"
+    ],
+    "existing_machine_rows_retained": 73,
+    "previous_row_evidence_unchanged": true,
+    "changed_models_controllers_registrations_or_progress_formats": 0,
+    "new_native_motion_or_physical_fit_certification": false,
+    "actual_asset_and_browser_release_gates": "Required separately; not certified by source checks."
   }
 }
