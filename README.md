@@ -23,9 +23,15 @@ Compare toolheads, hotends, extruders, probes, gantries and Mods on a printer, o
 
 Share a simple 3D model of your printer's exterior and I can add it to [Layout](https://psych0h3ad.github.io/3d-print-rig/layout/). If you don't have a simplified model, I can prepare one. Contact me by [email](mailto:info@psych0h3ad.tech), WeChat or [X](https://x.com/Psych0h3ad).
 
+## Reuse and attribution
+
+3D Print Rig is free and open source. As of November 23, 2026, AI usage for this project's development represents approximately **US$6,539 in credit-equivalent value**, including usage covered by my subscription. This estimate uses [current Standard credit rates](https://learn.chatgpt.com/docs/pricing#token-rates) and US$0.04 per credit; it is a valuation of the usage, not the amount of cash paid.
+
+There is no need to reinvent the wheel. Give your AI assistant this repository and reuse the parts that help your own project, under their applicable licenses. Please clearly credit **[3D Print Rig by Psych0h3ad](https://github.com/Psych0h3ad/3d-print-rig)** in your README, About page or project credits. Keep the required copyright and license notices, and preserve the original authors' credits and license terms for any third-party work you reuse.
+
 ## Support development
 
-Support ongoing maintenance and new features through [GitHub Sponsors](https://github.com/sponsors/Psych0h3ad).
+Sponsorship is still welcome to help with ongoing maintenance and new features through [GitHub Sponsors](https://github.com/sponsors/Psych0h3ad). Please share bugs, improvement suggestions or other feedback at any time through [GitHub Issues](https://github.com/Psych0h3ad/3d-print-rig/issues).
 
 ## Project sponsor
 
