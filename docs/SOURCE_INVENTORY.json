@@ -40,8 +40,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4064,
-      "sha256": "9a5552d35bd739b8bfcb8ee11fe9e8ce1c164a6582573ec47ef06038ae41f8ce"
+      "bytes": 5033,
+      "sha256": "80c533677f4daed11ce20f8d8ba33b9e0ae53e3550464de96d06c492d9aa81dd"
     },
     {
       "path": "docs/ANALYTICS.md",
@@ -275,8 +275,8 @@
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE.json",
-      "bytes": 1410320,
-      "sha256": "4543168a00641ab8dda5a38b4bf84963b3c8acdb06343e2e4553f07c0b98cccf"
+      "bytes": 1411579,
+      "sha256": "0596e5138d3cce2f2ac026c9b28cc3e8e16938d67b74164e0fd0177708cc46a1"
     },
     {
       "path": "docs/MACHINE_REVIEW_COVERAGE_HISTORY_130.json",
@@ -6090,13 +6090,13 @@
     },
     {
       "path": "site/home/home.css",
-      "bytes": 9184,
-      "sha256": "a00b690d1a43b835e5b8270d8f1fedf323d3f681952f63c53f4b0431d69c63b1"
+      "bytes": 11039,
+      "sha256": "9c2c2afe2f651fe60b6175aa7debec0c0ca98f81e3d34b9248ac442ec51b4300"
     },
     {
       "path": "site/home/home.mjs",
-      "bytes": 3441,
-      "sha256": "4978927c3983fcfabc51a28044880bb202de4bbb658c2642b9f66ca0cd9612e2"
+      "bytes": 3713,
+      "sha256": "812250afea753166855ad0ca0a2b174489eee0578ac6860af379ba34aa675fc6"
     },
     {
       "path": "site/home/layout-render.webp",
@@ -6105,8 +6105,8 @@
     },
     {
       "path": "site/home/locale-data.mjs",
-      "bytes": 20293,
-      "sha256": "7bfda71afb4b939f4d6e2b42295b7a7a6af397765886c573c1814600749e9981"
+      "bytes": 19143,
+      "sha256": "a977085ca0a5c4cc9352b043efa49724982f4c43ad6b998e292cc78e6c1b1c64"
     },
     {
       "path": "site/home/machine-render.webp",
@@ -6140,8 +6140,8 @@
     },
     {
       "path": "site/index.html",
-      "bytes": 11082,
-      "sha256": "52fc7b0f3637e816171e9b3b8c0f049f9d75566c19cea0dd93407bb7a320e43c"
+      "bytes": 17631,
+      "sha256": "8a60b49b51c5a21bdc6157ef9958ac09157f770afc5a90130c078811dae75081"
     },
     {
       "path": "site/layout/assets/equipment/u1-exterior/MOUNT_SPEC.json",

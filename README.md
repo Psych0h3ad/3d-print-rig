@@ -6,6 +6,19 @@ Compare toolheads, hotends, extruders, probes, gantries and Mods on a printer, o
 
 **[Start here](https://psych0h3ad.github.io/3d-print-rig/)** · [Open the viewer](https://psych0h3ad.github.io/3d-print-rig/viewer/) · [Choose a printer](https://psych0h3ad.github.io/3d-print-rig/viewer/machines.html) · [Build a toolhead](https://psych0h3ad.github.io/3d-print-rig/viewer/toolheads.html) · [Build a gantry](https://psych0h3ad.github.io/3d-print-rig/viewer/gantries.html)
 
+## Reuse, credit and support
+
+> [!IMPORTANT]
+> ### Approximately US$6,539 in AI development usage
+>
+> As of November 23, 2026, including usage covered by my subscription. This estimate uses [current Standard credit rates](https://learn.chatgpt.com/docs/pricing#token-rates) and US$0.04 per credit; it is a valuation of the usage, not the amount of cash paid.
+
+3D Print Rig is **free and open source**. There is no need to reinvent the wheel: give your AI assistant this repository and reuse the parts that help your own project, under their applicable licenses.
+
+**Please clearly credit [3D Print Rig by Psych0h3ad](https://github.com/Psych0h3ad/3d-print-rig)** in your README, About page or project credits. Keep the required copyright and license notices, and preserve the original authors' credits and license terms for any third-party work you reuse.
+
+**Sponsorship is still welcome through [GitHub Sponsors](https://github.com/sponsors/Psych0h3ad).** Please share bugs, improvement suggestions or other feedback at any time through [GitHub Issues](https://github.com/Psych0h3ad/3d-print-rig/issues).
+
 ## What you can do
 
 - Compare part combinations in 3D.
@@ -22,10 +35,6 @@ Compare toolheads, hotends, extruders, probes, gantries and Mods on a printer, o
 ## Printer manufacturers
 
 Share a simple 3D model of your printer's exterior and I can add it to [Layout](https://psych0h3ad.github.io/3d-print-rig/layout/). If you don't have a simplified model, I can prepare one. Contact me by [email](mailto:info@psych0h3ad.tech), WeChat or [X](https://x.com/Psych0h3ad).
-
-## Support development
-
-Support ongoing maintenance and new features through [GitHub Sponsors](https://github.com/sponsors/Psych0h3ad).
 
 ## Project sponsor
 
